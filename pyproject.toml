@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "hycan"
+version = "0.0.1"
+description = "HyCAN-DB: Hydrogen in Carbon Nanomaterials Database — data curation, meta-analysis, and ML benchmarking pipeline."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "[Your Name]" }]
+requires-python = ">=3.10"
+dependencies = [
+    "pandas",
+    "polars",
+    "numpy",
+    "scipy",
+    "matplotlib",
+    "seaborn",
+    "scikit-learn",
+    "xgboost",
+    "shap",
+    "pydantic",
+    "pandera",
+    "openpyxl",
+    "pyyaml",
+    "duckdb",
+    "statsmodels",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "jupyter", "jupyterlab", "ipykernel"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
