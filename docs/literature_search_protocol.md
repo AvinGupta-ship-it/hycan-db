@@ -72,16 +72,17 @@ See Execution Manual Section 7.3. Summary:
 | Stage | Count | Last updated |
 |---|---|---|
 | Identified — anchor papers | 6 | 2026-06-10 |
-| Identified — Google Scholar S1 | [6] | 2026-06-10 |
-| Identified — Google Scholar S2 | [6] | 2026-06-10 |
-| Identified — Google Scholar S3 | [6] | 2026-06-10 |
-| Identified — Google Scholar S4 | [4] | 2026-06-10 |
-| Identified — Google Scholar S5 | [2] | 2026-06-10 |
+| Identified — Google Scholar S1 | 6 | 2026-06-10 |
+| Identified — Google Scholar S2 | 6 | 2026-06-10 |
+| Identified — Google Scholar S3 | 6 | 2026-06-10 |
+| Identified — Google Scholar S4 | 4 | 2026-06-10 |
+| Identified — Google Scholar S5 | 2 | 2026-06-10 |
 | Identified — citation chaining | 0 | 2026-06-10 |
-| Duplicates removed | [0] | 2026-06-10 |
-| Screened (title and abstract) | 0 | 2026-06-10 |
+| Duplicates removed | 0 | 2026-06-10 |
+| Screened (title and abstract) | 30 | 2026-06-29 |
+| Excluded at screening | 3 | 2026-06-29 |
 | Full-text reviewed | 0 | 2026-06-10 |
-| Included in database | 0 | 2026-06-10 |
+| Included after title/abstract screening (full-text pending) | 27 | 2026-06-29 |
 
 ## Change log
 
