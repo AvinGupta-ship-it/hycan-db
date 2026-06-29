@@ -9,4 +9,4 @@ Purpose: Identify first 30 candidate papers for HyCAN-DB corpus.
 What I provided: Project context (Days 1-4 state) and request for granular Day 5 walkthrough.
 What it produced: Step-by-step task list; scaffold of docs/literature_search_protocol.md.
 What I verified: Every DOI was looked up on the publisher's page. No AI-provided DOIs were accepted. All include/exclude/maybe calls were my own judgment.
-What I changed: [Fill this in at end of day. Note any deviations from the walkthrough.]
+What I changed: N/A — walkthrough followed as written.
