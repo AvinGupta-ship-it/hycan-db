@@ -44,3 +44,13 @@ What I verified against the PDF: DOI; Table 1 BET/pore values for both samples (
 What I digitized myself (WebPlotDigitizer): Act. carbon I 298 K (Fig 5) = 0.53 wt%; SWCNT II 77 K (Fig 2b, cross-checked Fig 3) = 2.52 wt%; SWCNT II 298 K (Fig 2b lower curve, cross-checked Fig 5) = 0.35 wt%.
 Judgments I made/ratified: uptake_type = unspecified; extraction_confidence 4 (text) / 3 (digitized); reproducibility_tier B (rubric ~8/10); sample_id keyed per measurement (S1-S4), pending a Day-9 schema-feedback issue.
 What I changed: Nothing; the CSV validated 4/4 on the first build
+
+## 2026-06-29 — HYC-0004 extraction (Nijkamp 2001)
+Tools: Claude.ai (value location, judgment-call recommendations, build prompt); Claude Code (CSV append).
+Purpose: Append HYC-0004 (Nijkamp et al. 2001) hydrogen-sorption rows to data/raw/measurements_v0.1.csv.
+What I provided: the Nijkamp 2001 PDF and the HyCAN-DB Execution Manual.
+What Claude.ai produced: located 21 carbonaceous Table-1 samples (SBET, MPV, PV, H2 total) with citations; pre-filled mechanical fields; recommended material_class, synthesis_method, tier, and uptake_type; the ml(STP)/g->wt% formula; the Claude Code build prompt; schema-feedback issue text.
+What I verified: confirmed all 21 SBET/MPV/PV/H2-total values against Table 1 (p.620); Find-checked "excess"/"absolute" = [FILL: __ hits each]; verified the conversion factor 22.414 ml(STP)/mmol against [FILL: NIST / textbook] and the paper's DOE anchor (720 ml(STP)/g = 6.5 wt%).
+What I digitized: none — all values table-direct.
+What I decided/ratified: H2 total as the uptake (meso/micro excluded); uptake_type=unspecified; material_class (graphite->other, ACF->activated_carbon, CNF->carbon_nanofiber); CNF synthesis=[FILL: cvd / other]; all rows Tier B; sample_ids HYC-0004-S1..S21. Opened schema-feedback issues #[FILL] and #[FILL].
+What Claude Code produced: appended 21 rows (4 Panella rows preserved); validation = 25 rows, 0 errors, exit 0.
