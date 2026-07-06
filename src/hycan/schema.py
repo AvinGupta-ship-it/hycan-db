@@ -95,6 +95,7 @@ class MeasurementEntry(BaseModel):
 
     # --- Sample-level ---
     sample_id: str
+    measurement_id: str
     material_class: MaterialClass
     material_description: str
     synthesis_method: SynthesisMethod = "unknown"
@@ -116,6 +117,7 @@ class MeasurementEntry(BaseModel):
     pressure_bar: float = Field(ge=0, le=200)
     uptake_wt_pct: Optional[float] = Field(default=None, ge=0, le=20)
     uptake_mmol_g: Optional[float] = Field(default=None, ge=0)
+    uptake_ml_stp_g: Optional[float] = Field(default=None, ge=0, le=2225)
     uptake_type: UptakeType
     measurement_method: MeasurementMethod
     uncertainty_wt_pct: Optional[float] = Field(default=None, ge=0)

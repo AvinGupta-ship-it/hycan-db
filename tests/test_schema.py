@@ -18,6 +18,7 @@ PANELLA_2005 = {
     "title": "Hydrogen adsorption in different carbon nanostructures",
     # Sample – pristine SWCNT
     "sample_id": "HYC-0001-S1",
+    "measurement_id": "HYC-0001-M1",
     "material_class": "SWCNT",
     "material_description": "Purified HiPco SWCNTs, BET SSA ~1000 m2/g",
     "synthesis_method": "hipco",
@@ -142,6 +143,57 @@ def test_both_uptakes_missing_fails():
 
 # ---------------------------------------------------------------------------
 # 8. Panella 2005 real example: model round-trips correctly
+# ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# 9. measurement_id is required (new unique-per-row key)
+# ---------------------------------------------------------------------------
+
+def test_missing_measurement_id_fails():
+    row = _patch(PANELLA_2005, measurement_id=None)
+    ok, errors = validate_row(row)
+    assert ok is False
+    assert any("measurement_id" in e for e in errors)
+
+
+def test_with_measurement_id_passes():
+    row = _patch(PANELLA_2005, measurement_id="HYC-0001-M2")
+    ok, errors = validate_row(row)
+    assert ok is True, errors
+
+
+# ---------------------------------------------------------------------------
+# 10. uptake_ml_stp_g optional field with 0–2225 range
+# ---------------------------------------------------------------------------
+
+def test_uptake_ml_stp_g_in_range_passes():
+    row = _patch(PANELLA_2005, uptake_ml_stp_g=233.0)
+    ok, errors = validate_row(row)
+    assert ok is True, errors
+
+
+def test_uptake_ml_stp_g_null_allowed():
+    row = _patch(PANELLA_2005, uptake_ml_stp_g=None)
+    ok, errors = validate_row(row)
+    assert ok is True, errors
+
+
+def test_uptake_ml_stp_g_negative_fails():
+    row = _patch(PANELLA_2005, uptake_ml_stp_g=-1.0)
+    ok, errors = validate_row(row)
+    assert ok is False
+    assert any("uptake_ml_stp_g" in e for e in errors)
+
+
+def test_uptake_ml_stp_g_above_range_fails():
+    row = _patch(PANELLA_2005, uptake_ml_stp_g=2226.0)
+    ok, errors = validate_row(row)
+    assert ok is False
+    assert any("uptake_ml_stp_g" in e for e in errors)
+
+
+# ---------------------------------------------------------------------------
+# 11. Panella 2005 real example: model round-trips correctly
 # ---------------------------------------------------------------------------
 
 def test_panella_2005_roundtrip():

@@ -17,6 +17,8 @@ from hycan.normalize import (
     kelvin_to_celsius,
     kpa_to_bar,
     mg_per_g_to_wt_pct,
+    ml_stp_per_g_to_mmol_per_g,
+    ml_stp_per_g_to_wt_pct,
     mmol_per_g_to_wt_pct,
     mpa_to_bar,
     psi_to_bar,
@@ -94,6 +96,25 @@ def test_wt_pct_to_mmol_per_g_known():
     assert wt_pct_to_mmol_per_g(2.01588) == pytest.approx(10.0, abs=TOL)
 
 
+def test_ml_stp_per_g_to_mmol_per_g_known():
+    # Vm = 22.414 mL/mmol at STP: 22.414 mL(STP)/g = 1 mmol/g; 224.14 = 10 mmol/g.
+    assert ml_stp_per_g_to_mmol_per_g(22.414) == pytest.approx(1.0, abs=TOL)
+    assert ml_stp_per_g_to_mmol_per_g(224.14) == pytest.approx(10.0, abs=TOL)
+
+
+def test_ml_stp_per_g_to_wt_pct_known():
+    # 1 mmol/g of H2 = 0.201588 wt %; 10 mmol/g = 2.01588 wt %.
+    assert ml_stp_per_g_to_wt_pct(22.414) == pytest.approx(0.201588, abs=TOL)
+    assert ml_stp_per_g_to_wt_pct(224.14) == pytest.approx(2.01588, abs=TOL)
+
+
+@pytest.mark.parametrize("v", [0.0, 22.414, 100.0, 500.0])
+def test_ml_stp_per_g_chain_consistency(v):
+    # wt% via the direct helper must match the mL->mmol->wt% chain.
+    chained = mmol_per_g_to_wt_pct(ml_stp_per_g_to_mmol_per_g(v))
+    assert ml_stp_per_g_to_wt_pct(v) == pytest.approx(chained, abs=TOL)
+
+
 # ---------------------------------------------------------------------------
 # Round-trips (forward then inverse recovers the input within 1e-9)
 # ---------------------------------------------------------------------------
@@ -131,7 +152,13 @@ def test_negative_pressure_raises(func):
 
 @pytest.mark.parametrize(
     "func",
-    [mmol_per_g_to_wt_pct, mg_per_g_to_wt_pct, wt_pct_to_mmol_per_g],
+    [
+        mmol_per_g_to_wt_pct,
+        mg_per_g_to_wt_pct,
+        wt_pct_to_mmol_per_g,
+        ml_stp_per_g_to_mmol_per_g,
+        ml_stp_per_g_to_wt_pct,
+    ],
 )
 def test_negative_uptake_raises(func):
     with pytest.raises(ValueError):

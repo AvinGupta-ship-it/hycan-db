@@ -13,7 +13,9 @@ therefore re-implemented below so the §11.3 classification always wins.
 Design rules:
 - ``validate_row`` is pure: it reads a dict and returns a :class:`ValidationResult`.
 - ``validate_dataset`` runs every row, then layers on the two dataset-level checks
-  (duplicate ``sample_id`` -> error; conflicting DOI metadata -> warning).
+  (duplicate ``measurement_id`` -> error; conflicting DOI metadata -> warning).
+  ``sample_id`` may repeat: one physical sample can be measured under many
+  conditions, so it is no longer the dataset-level uniqueness key.
 - ``print_report`` renders the fixed report shape consumed by ``scripts/validate_data.py``.
 """
 
@@ -239,17 +241,19 @@ def validate_dataset(df: pd.DataFrame) -> DatasetValidationReport:
     rows = _row_dicts(df)
     results = [validate_row(r) for r in rows]
 
-    # --- Dataset check 1: duplicate sample_id -> ERROR on every offending row.
-    sample_ids: dict[str, list[int]] = {}
+    # --- Dataset check 1: duplicate measurement_id -> ERROR on every offending row.
+    # measurement_id is the unique-per-row key; sample_id MAY repeat (one physical
+    # sample measured under multiple conditions), so it is not checked here.
+    measurement_ids: dict[str, list[int]] = {}
     for idx, r in enumerate(rows):
-        sid = r.get("sample_id")
-        if _is_na(sid):
+        mid = r.get("measurement_id")
+        if _is_na(mid):
             continue
-        sample_ids.setdefault(str(sid), []).append(idx)
-    for sid, idxs in sample_ids.items():
+        measurement_ids.setdefault(str(mid), []).append(idx)
+    for mid, idxs in measurement_ids.items():
         if len(idxs) > 1:
             for idx in idxs:
-                _append_unique(results[idx].errors, f"Duplicate sample_id: {sid}")
+                _append_unique(results[idx].errors, f"Duplicate measurement_id: {mid}")
                 results[idx].is_valid = False
 
     # --- Dataset check 2: DOI metadata conflict -> WARNING on every offending row.

@@ -23,6 +23,7 @@ BASE = {
     "journal": "Carbon",
     "title": "Hydrogen uptake baseline",
     "sample_id": "HYC-2001-S1",
+    "measurement_id": "HYC-2001-M1",
     "material_class": "activated_carbon",
     "material_description": "KOH-activated carbon",
     "synthesis_method": "carbonization",
@@ -186,16 +187,32 @@ def test_pre2005_raw_cnt_tier_d_warning():
 # Dataset-level checks
 # ---------------------------------------------------------------------------
 
-def test_dataset_duplicate_sample_id_error():
-    df = pd.DataFrame([dict(BASE), dict(BASE)])  # identical sample_id
+def test_dataset_duplicate_sample_id_allowed():
+    # One physical sample measured at two conditions: same sample_id, distinct
+    # measurement_id. This is now allowed (no duplicate-key error).
+    row_a = _patch(BASE, measurement_id="HYC-2001-M1")
+    row_b = _patch(BASE, measurement_id="HYC-2001-M2", pressure_bar=20.0)
+    report = validate_dataset(pd.DataFrame([row_a, row_b]))
+    assert "Duplicate sample_id" not in report.error_counts
+    assert "Duplicate measurement_id" not in report.error_counts
+    assert all(r.is_valid for r in report.results)
+
+
+def test_dataset_duplicate_measurement_id_error():
+    df = pd.DataFrame([dict(BASE), dict(BASE)])  # identical measurement_id
     report = validate_dataset(df)
-    assert report.error_counts.get("Duplicate sample_id") == 2
+    assert report.error_counts.get("Duplicate measurement_id") == 2
     assert all(r.is_valid is False for r in report.results)
 
 
 def test_dataset_doi_conflict_warning():
     row_a = dict(BASE)
-    row_b = _patch(BASE, sample_id="HYC-2001-S2", first_author="Kim")  # same doi
+    row_b = _patch(
+        BASE,
+        sample_id="HYC-2001-S2",
+        measurement_id="HYC-2001-M2",
+        first_author="Kim",
+    )  # same doi
     report = validate_dataset(pd.DataFrame([row_a, row_b]))
     assert report.warning_counts.get("DOI metadata conflict") == 2
     # A metadata conflict is only a warning; rows stay valid.
@@ -251,12 +268,19 @@ def test_clean_dataset_behaviour():
 def toy_df():
     rows = [
         # 3 fully valid rows
-        _patch(BASE, paper_id="HYC-1001", doi="10.1/a", sample_id="HYC-1001-S1"),
+        _patch(
+            BASE,
+            paper_id="HYC-1001",
+            doi="10.1/a",
+            sample_id="HYC-1001-S1",
+            measurement_id="HYC-1001-M1",
+        ),
         _patch(
             BASE,
             paper_id="HYC-1002",
             doi="10.1/b",
             sample_id="HYC-1002-S1",
+            measurement_id="HYC-1002-M1",
             material_class="MWCNT",
             material_description="Multi-walled carbon nanotubes",
             uptake_wt_pct=0.8,
@@ -266,6 +290,7 @@ def toy_df():
             paper_id="HYC-1003",
             doi="10.1/c",
             sample_id="HYC-1003-S1",
+            measurement_id="HYC-1003-M1",
             material_class="SWCNT",
             material_description="Single-walled carbon nanotubes",
             uptake_wt_pct=2.5,
@@ -276,6 +301,7 @@ def toy_df():
             paper_id="HYC-1004",
             doi="10.1/d",
             sample_id="HYC-1004-S1",
+            measurement_id="HYC-1004-M1",
             uptake_type="unspecified",
         ),
         # 1 row whose only issue is an out-of-range temperature (one error)
@@ -284,6 +310,7 @@ def toy_df():
             paper_id="HYC-1005",
             doi="10.1/e",
             sample_id="HYC-1005-S1",
+            measurement_id="HYC-1005-M1",
             temperature_k=600.0,
         ),
     ]

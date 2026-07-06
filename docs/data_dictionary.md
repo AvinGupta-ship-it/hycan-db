@@ -112,7 +112,23 @@ Fields are grouped into five categories matching the curation spreadsheet column
 **Definition.** Identifier for a distinct physical sample within one paper. Format: `<paper_id>-S<n>` where *n* increments from 1.  
 **Units.** None.  
 **Scientific significance.** One paper often reports results for multiple samples (e.g., pristine vs. activated); this field distinguishes them.  
+**Uniqueness.** `sample_id` is unique per **physical sample**, not per row. It **may repeat** across rows when the same sample is measured at multiple conditions (e.g., an isotherm sampled at several pressures). The per-row uniqueness key is `measurement_id`, not `sample_id`.  
 **If missing.** Cannot be left blank — construct from `paper_id`.
+
+---
+
+### `measurement_id`
+
+| Attribute | Value |
+|---|---|
+| Type | Text |
+| Required | Yes |
+| Example | `HYC-0001-M1` |
+
+**Definition.** The unique-per-row key: exactly one `measurement_id` per row in the dataset. Format: `<paper_id>-M<n>` where *n* increments from 1 across all measurements in the paper.  
+**Units.** None.  
+**Scientific significance.** Because one physical `sample_id` can appear on many rows (measured at multiple temperatures/pressures), a separate per-row identifier is needed as the stable primary key for the dataset. Duplicate `measurement_id` values are a dataset-level error.  
+**If missing.** Cannot be left blank — assign the next unused `-M<n>` for the paper.
 
 ---
 
@@ -377,6 +393,22 @@ Fields are grouped into five categories matching the curation spreadsheet column
 **Conversion.** wt% = mmol_per_g × 0.201588. The factor 0.201588 = 2.01588 g/mol (molar mass of H₂) / 10 (unit conversion).  
 **Scientific significance.** Molar units are preferred for thermodynamic modelling (e.g., isotherm fitting with Langmuir or Toth equations).  
 **If missing.** Compute from `uptake_wt_pct`. Leave null only if `uptake_wt_pct` is filled.
+
+---
+
+### `uptake_ml_stp_g`
+
+| Attribute | Value |
+|---|---|
+| Type | Float or null, 0–2225 mL(STP)/g |
+| Required | No |
+| Example | `233.0` |
+
+**Definition.** As-reported volumetric hydrogen uptake, expressed as a volume of H₂ gas at STP per gram of adsorbent, preserved exactly as the paper reported it.  
+**Units.** mL(STP)/g at 273.15 K, 1 atm (STP).  
+**Conversion.** mmol/g = mL(STP)/g ÷ 22.414; wt% = (mL(STP)/g ÷ 22.414) × 0.201588. The molar volume 22.414 L/mol (= 22.414 mL/mmol) is the ideal-gas value at 273.15 K, 1 atm — the HyCAN-DB convention. The upper bound 2225 mL(STP)/g corresponds to the 20 wt% ceiling on `uptake_wt_pct`.  
+**Scientific significance.** Some older adsorption papers report capacity only in mL(STP)/g; storing the as-reported value keeps a faithful provenance record alongside the canonical `uptake_wt_pct` / `uptake_mmol_g`.  
+**If missing.** Leave null if the paper did not report in this unit.
 
 ---
 

@@ -162,3 +162,49 @@ def wt_pct_to_mmol_per_g(x: float) -> float:
     """
     _reject_negative(x, "uptake (wt %)")
     return x * 10.0 / H2_MOLAR_MASS_G_PER_MOL
+
+
+# ---------------------------------------------------------------------------
+# Uptake reported as a gas volume at STP  (ml(STP)/g)
+# ---------------------------------------------------------------------------
+#
+# Some papers report uptake as a volume of gas at "STP" per gram of sorbent.
+# Converting to an amount of substance needs the molar volume of an ideal gas.
+# HyCAN-DB fixes STP at 273.15 K and 1 atm (101.325 kPa), for which the ideal-gas
+# molar volume is Vm = 22.414 L/mol = 22.414 mL/mmol (the Day-9 convention used
+# throughout the project). We deliberately do NOT use 22.711 L/mol (0 °C, 1 bar)
+# or 24.465 L/mol (25 °C, 1 atm) so that ml(STP)/g <-> mmol/g <-> wt% stays a
+# single self-consistent chain.
+
+# Ideal-gas molar volume at STP (273.15 K, 1 atm), L/mol = mL/mmol.
+STP_MOLAR_VOLUME_ML_PER_MMOL = 22.414
+
+
+def ml_stp_per_g_to_mmol_per_g(x: float) -> float:
+    """Convert hydrogen uptake from mL(STP)/g to mmol H2 per gram of sorbent.
+
+    Divides the reported gas volume by the ideal-gas molar volume at STP:
+    ``mmol/g = x [mL(STP)/g] / Vm`` with Vm = 22.414 L/mol (= 22.414 mL/mmol)
+    at 273.15 K and 1 atm (101.325 kPa) — the STP convention used throughout
+    HyCAN-DB (Day-9). This is the physical definition of the ideal-gas molar
+    volume at 273.15 K, 1 atm, not a source-specific citation. Raises
+    ``ValueError`` for negative input.
+    """
+    _reject_negative(x, "uptake (mL(STP)/g)")
+    return x / STP_MOLAR_VOLUME_ML_PER_MMOL
+
+
+def ml_stp_per_g_to_wt_pct(x: float) -> float:
+    """Convert hydrogen uptake from mL(STP)/g to weight-percent.
+
+    Chains the mL(STP)/g -> mmol/g step (divide by the ideal-gas molar volume at
+    STP, Vm = 22.414 L/mol = 22.414 mL/mmol at 273.15 K and 1 atm / 101.325 kPa,
+    the HyCAN-DB Day-9 convention) with the existing mmol/g -> wt% factor
+    (M(H2) = 2.01588 g/mol):
+    ``wt % = (x / 22.414) × 0.201588`` where 0.201588 = M(H2) / 10. This matches
+    this module's existing mmol/g <-> wt% convention. The molar volume is the
+    physical ideal-gas value at 273.15 K, 1 atm, not a source-specific citation.
+    Raises ``ValueError`` for negative input.
+    """
+    _reject_negative(x, "uptake (mL(STP)/g)")
+    return (x / STP_MOLAR_VOLUME_ML_PER_MMOL) * (H2_MOLAR_MASS_G_PER_MOL / 10.0)
