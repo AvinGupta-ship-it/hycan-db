@@ -5,6 +5,18 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+## [v0.1-alpha] - 2026-07-09
+### Added
+- Reproducibility tiering rubric (docs/reproducibility_tiering.md): 10-point scoring criteria, physics-override clause, and three worked examples (Tier A/C/D).
+- suggest_tier() and score_reproducibility() functions in src/hycan/validate.py, with 6 accompanying unit tests.
+- Corpus-overview notebook (notebooks/01_corpus_overview.ipynb): nine narrated sections running end-to-end on the raw dataset.
+- Plotting module (src/hycan/plotting.py): house style plus corpus map, condition-space, and Chahine-rule figure generators; three 300-dpi figures in figures/.
+- ruff.toml at repository root (ignores E402 in notebooks/ for the sys.path-insert pattern).
+### Changed
+- HYC-0002 (Liu 1999) re-tiered B to D: room-temperature uptake above the ~1 wt% physisorption bound with no reported surface area; physics override applied.
+### Dataset
+- 60 validated measurements across 5 papers (Panella 2005, Liu 1999, Nijkamp 2001, Texier-Mandoki 2004, Serafin 2024). Tier distribution: 57 B, 3 D. Validation: 60 rows, 0 errors.
+
 ## [0.0.2] - 2026-07-05
 
 ### Added
