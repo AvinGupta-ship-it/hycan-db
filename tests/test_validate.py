@@ -7,6 +7,8 @@ from hycan.clean import clean_dataset
 from hycan.validate import (
     DatasetValidationReport,
     ValidationResult,
+    score_reproducibility,
+    suggest_tier,
     validate_dataset,
     validate_row,
 )
@@ -332,3 +334,63 @@ def test_validation_result_dataclass_shape():
     assert hasattr(res, "is_valid")
     assert hasattr(res, "errors")
     assert hasattr(res, "warnings")
+
+
+# ---------------------------------------------------------------------------
+# Reproducibility tiering
+# ---------------------------------------------------------------------------
+
+def test_suggest_tier_returns_valid_letter():
+    assert suggest_tier(BASE) in {"A", "B", "C", "D"}
+
+
+def test_full_report_row_scores_nine_tier_a():
+    row = {
+        "bet_surface_area_m2_g": 2600,
+        "measurement_method": "gravimetric_microbalance",
+        "temperature_k": 77,
+        "pressure_bar": 20,
+        "uptake_type": "excess",
+        "purification_method": "HNO3 reflux",
+        "uptake_wt_pct": 4.8,
+    }
+    # code ceiling is 9; calibration unscored
+    assert score_reproducibility(row)["total"] == 9
+    assert suggest_tier(row) == "A"
+
+
+def test_missing_bet_room_temp_high_uptake_tier_c():
+    row = {
+        "measurement_method": "volumetric_sieverts",
+        "temperature_k": 298,
+        "pressure_bar": 100,
+        "uptake_type": "unspecified",
+        "purification_method": "acid",
+        "uptake_wt_pct": 4.2,
+    }
+    # suggest_tier says C; the human later downgrades to D via the physics clause.
+    assert suggest_tier(row) == "C"
+
+
+def test_cryogenic_low_pressure_low_uptake_tier_b():
+    row = {
+        "bet_surface_area_m2_g": 1500,
+        "measurement_method": "volumetric_sieverts",
+        "temperature_k": 77,
+        "pressure_bar": 1,
+        "uptake_type": "unspecified",
+        "uptake_wt_pct": 0.5,
+    }
+    # low value at 1 bar is consistent, not penalized
+    assert suggest_tier(row) == "B"
+
+
+def test_calibration_always_zero():
+    assert score_reproducibility(BASE)["calibration"] == 0
+
+
+def test_derive_wt_pct_via_mmol():
+    row = {"uptake_mmol_g": 10}
+    assert score_reproducibility(row)["derived_wt_pct"] == pytest.approx(
+        2.01588, abs=1e-6
+    )

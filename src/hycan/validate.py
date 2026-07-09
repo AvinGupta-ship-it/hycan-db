@@ -324,3 +324,110 @@ def print_report(report: DatasetValidationReport) -> None:
         lines.append("- none")
 
     print("\n".join(lines))
+
+
+# ---------------------------------------------------------------------------
+# Reproducibility tiering (see docs/reproducibility_tiering.md)
+# ---------------------------------------------------------------------------
+
+def _present(v) -> bool:
+    """True unless *v* is None, a float NaN, or an empty/whitespace-only string."""
+    if v is None:
+        return False
+    if isinstance(v, float) and math.isnan(v):
+        return False
+    if str(v).strip() == "":
+        return False
+    return True
+
+
+def _derive_wt_pct(row) -> float | None:
+    """Derive uptake in wt% from whichever uptake field is present, else None."""
+    if _present(row.get("uptake_wt_pct")):
+        return float(row["uptake_wt_pct"])
+    elif _present(row.get("uptake_mmol_g")):
+        return float(row["uptake_mmol_g"]) * 0.201588
+    elif _present(row.get("uptake_ml_stp_g")):
+        return (float(row["uptake_ml_stp_g"]) / 22.414) * 0.201588  # project STP convention: 22.414 mL/mmol
+    else:
+        return None
+
+
+def score_reproducibility(row: dict) -> dict:
+    """Apply the 10-point reproducibility rubric to a row's present fields.
+
+    Returns per-criterion points plus the derived wt%, the total, and the
+    suggested tier. This is an approximate scorer; see :func:`suggest_tier`
+    and ``docs/reproducibility_tiering.md`` for its blind spots.
+    """
+    bet = (
+        2
+        if _present(row.get("bet_surface_area_m2_g"))
+        and float(row["bet_surface_area_m2_g"]) > 0
+        else 0
+    )
+    method = (
+        2
+        if row.get("measurement_method")
+        in {"volumetric_sieverts", "gravimetric_microbalance", "TPD", "electrochemical"}
+        else 0
+    )
+    temp_pressure = (
+        1
+        if _present(row.get("temperature_k")) and _present(row.get("pressure_bar"))
+        else 0
+    )
+    uptake_type = 1 if row.get("uptake_type") in {"excess", "absolute", "total"} else 0
+    purity = 1 if _present(row.get("purification_method")) else 0
+    calibration = 0  # no schema field; the human assesses this
+
+    t = row.get("temperature_k")
+    w = _derive_wt_pct(row)
+    bet_area = row.get("bet_surface_area_m2_g")
+    if not _present(t) or w is None:
+        chahine = 1  # cannot assess
+    elif float(t) >= 273:
+        # room-temperature physisorption bound ~1 wt%
+        chahine = 2 if w <= 1.0 else (1 if w <= 2.0 else 0)
+    elif float(t) <= 100:
+        if _present(bet_area) and float(bet_area) > 0:
+            expected = float(bet_area) / 500.0
+            chahine = 0 if w > 1.5 * expected else (1 if w > expected else 2)
+        else:
+            chahine = 1  # cryogenic but no surface area to bound against
+    else:
+        chahine = 0 if w > 6.0 else 2
+
+    total = (
+        bet + method + temp_pressure + uptake_type + purity + calibration + chahine
+    )
+    suggested_tier = (
+        "A" if total >= 9 else "B" if total >= 6 else "C" if total >= 3 else "D"
+    )
+    return {
+        "bet": bet,
+        "method": method,
+        "temp_pressure": temp_pressure,
+        "uptake_type": uptake_type,
+        "purity": purity,
+        "calibration": calibration,
+        "chahine": chahine,
+        "derived_wt_pct": w,
+        "total": total,
+        "suggested_tier": suggested_tier,
+    }
+
+
+def suggest_tier(row: dict) -> str:
+    """Return a SUGGESTED reproducibility tier; the human extractor makes the final call.
+
+    This is only a suggestion and cannot see everything the rubric requires. Its
+    four blind spots: (1) it confirms a measurement method is recorded but cannot
+    judge whether the paper *clearly described* the instrument and protocol
+    (downgrade for a named-only method); (2) "calibration or blank correction" has
+    no schema field, so it is always scored 0; (3) "sample purity" is proxied
+    weakly by the presence of a purification method; and (4) the Chahine check is a
+    coarse heuristic that cannot apply the categorical physics override. When this
+    suggestion and your rubric judgment disagree, your judgment governs.
+    """
+    return score_reproducibility(row)["suggested_tier"]
