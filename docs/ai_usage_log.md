@@ -62,3 +62,61 @@ What I provided: The ratified design (measurement_id format {paper_id}-M{n}; col
 What it produced: edits to src/hycan/schema.py, src/hycan/normalize.py, src/hycan/validate.py, docs/data_dictionary.md, tests/test_schema.py, tests/test_normalize.py, tests/test_validate.py, CHANGELOG.md; and a column-add + Panella re-key + Nijkamp ml(STP)/g backfill migration of data/raw/measurements_v0.1.csv.
 What I verified: read every diff; ran the full pytest suite (76 passing); ran scripts/validate_data.py on the 25-row file (25 valid, 0 errors, exit 0); confirmed the new converters reproduce the stored uptake_mmol_g/uptake_wt_pct for the Nijkamp rows via the migration's per-row consistency check; confirmed the four Panella rows collapsed to two physical samples at BET 2564 and 854; confirmed the pressure>200 warning reclassification and all other fields were untouched.>
 What I changed: None
+
+## 2026-07-06 to 2027-07-09  — extraction, corpus overview, reproducibility tiering
+(3 sessions logged separately below; dates are my working days, not calendar days)
+
+### Day 11 [2026-07-06] — Papers HYC-0002, HYC-0005, HYC-0020 extracted
+Tool: [your actual tool + version]
+Purpose: Locate (not interpret) samples, surface-area values, and H2 uptake in three PDFs,
+using the Part 6 §9.4 extraction-assistance prompt (verbatim quotes required per value).
+What it produced: Per-sample candidate rows with quoted source sentences/table captions.
+What I verified: Opened each PDF and confirmed every quoted sentence exists and every number
+matches the source before it entered measurements_v0.1.csv. Discarded any value the tool
+could not tie to a verbatim quote.
+Scientific decisions I made (not the AI):
+  - Texier-Mandoki 2004: the paper's N2 "total surface area" is not called BET, so I mapped it
+    into bet_surface_area_m2_g with an explicit note flagging the ambiguity rather than treating
+    it as a clean BET value.
+  - Liu 1999: paper reports no surface area of any kind → entered BET-null deliberately, with a
+    note, rather than inferring one.
+  - Marked uptake_type unspecified on all rows because no source states excess vs absolute.
+Result: 60 rows, 60 valid, exit 0.
+
+### Day 12 [2026-07-06] — Corpus overview notebook + plotting module (commit ed9db4a)
+Tool: Claude Code
+Purpose: Draft 01_corpus_overview.ipynb (9 narrated sections) and src/hycan/plotting.py
+(set_house_style, fig1_corpus_map, fig2_condition_space, fig3_chahine).
+What it produced: the notebook, plotting.py, and three 300-dpi PNGs in figures/.
+What I verified: Ran the notebook end-to-end on data/raw/measurements_v0.1.csv; inspected
+Figure 3 and confirmed the Chahine line passes through the 77 K point cloud — my check that no
+unit bug had crept into the mmol/wt% conversions (Part 7). Confirmed all three PNGs saved.
+What I changed: Nothing in the AI output; I own the interpretation in the section commentary.
+
+### Day 13 [2026-07-09] — Reproducibility tiering live (commit 1dfb2ae)
+Tool: Claude Code (3 separate sessions)
+Purpose: Stand up the Part 10 tiering rubric, an approximate scorer, and apply considered tiers.
+What it produced:
+  - docs/reproducibility_tiering.md — 10-point rubric, physics-override clause, three worked
+    examples (Tier A / C / D).
+  - score_reproducibility + suggest_tier in src/hycan/validate.py (pure appends; existing
+    functions untouched) + 6 tests.
+  - ruff.toml (ignore E402 in notebooks — false positive on the src-path insert pattern).
+  - Text-only edit of measurements_v0.1.csv retiering HYC-0002 (see decision below).
+What I verified: Full suite 82 passed; ruff clean; ran a throwaway probe printing
+score_reproducibility's per-criterion breakdown for all five papers and read the scores against
+the rubric myself; confirmed final tier counts 57 B / 3 D via a quote-aware CSV read.
+Scientific decisions I made (the scorer only suggests — §13.5, §17.7):
+  - HYC-0002 Liu 1999 → Tier D. suggest_tier scored it 4 → C, but 2.4–4.2 wt% at 298 K sits far
+    above the ~1 wt% room-temperature physisorption bound on pure carbon with no reported surface
+    area — the discredited-class pattern (§13.2). I applied the categorical physics override the
+    scorer cannot apply, and recorded the rationale in the row note.
+  - HYC-0020 Serafin 2024 → Tier B (kept). suggest_tier scored it 5 → C on the same room-temp
+    Chahine trip, but this is a 2024 paper with reported BET, a named method, and 45 bar elevated-
+    pressure measurement on a characterized activated carbon — the override targets discredited
+    over-claims on pure carbon, which this is not. I judged the scorer's C a false trip and kept B.
+Honest limitations noted: suggest_tier always scores calibration 0 (no schema field), cannot
+judge method-description quality, proxies purity weakly by purification_method, and cannot apply
+the physics override — all documented in reproducibility_tiering.md.
+Follow-up I opened: GitHub issue on the schema's inability to record surface-area *method*
+(BET vs Langmuir vs geometric vs none) — the gap Liu and Texier-Mandoki both exposed.
