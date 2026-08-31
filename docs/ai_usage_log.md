@@ -120,3 +120,53 @@ judge method-description quality, proxies purity weakly by purification_method, 
 the physics override — all documented in reproducibility_tiering.md.
 Follow-up I opened: GitHub issue on the schema's inability to record surface-area *method*
 (BET vs Langmuir vs geometric vs none) — the gap Liu and Texier-Mandoki both exposed.
+
+## 2026-08-30 — HYC-0023 (Gogotsi et al. 2009) extraction
+
+**Tool:** Claude (chat) for locating; Claude Code for writing a staging CSV.
+
+**What I asked.** Ran the §9.4 locate-only prompt against the PDF: enumerate
+samples, BET values, and uptake measurements with figure/table locations, quote
+the source sentence for each, convert nothing, flag uncertainty. Later asked
+Claude Code to generate a 23-row staging file from values I had already verified,
+scoped to one new file and forbidden from touching the dataset or source.
+
+**What I verified.** Checked all five quoted sentences in the PDF — all present
+verbatim. Spot-checked Table 1 rows 1, 13, 16 and Table 2 row 3 before trusting
+the transcription, then re-checked rows 12, 16 and 23 against the PDF after the
+staging file was generated. Two whitespace defects in the generated text
+(`600 Cfor`, `Porevolume`) were caught on review and fixed before merge.
+
+**Decisions I made.**
+- `uptake_type = excess` for all 23 rows. Table headers say only "Hydrogen
+  uptake", so this is not literal per §9.5. I accepted it because Fig. 3's
+  caption reads "Excess capacity at 77 K, 60 bar" — the identical condition to
+  the table column — and §2.3 states the isotherms were determined as excess
+  adsorption. Recorded the basis in `notes` on every row.
+- Tier A, 10/10 on the §13.4 rubric. I questioned whether "method clearly
+  described" should be 1/2 given the home-built Sieverts apparatus, and decided
+  no: the rubric asks whether another lab could perform the measurement from the
+  description, and the paper gives dosing cell, three overlapping 0–60 bar
+  gauges, MBWR equation of state, and a reference for the full apparatus. The
+  home-built rig limits *numerical* reproducibility (§13.3, second layer), which
+  is a different criterion. Noted rather than deducted.
+- Pore volume → `total_pore_volume_cm3_g`, micropore left null. Tables label the
+  column only "Pore volume"; Fig. 3b plots the same values against an axis
+  reading "Total pore volume (cm³/g)".
+- `synthesis_method = other`. Carbide chlorination is not in the controlled
+  vocabulary. Detail preserved in `material_description`. Flagging as a second
+  schema-feedback candidate alongside the open surface-area-method issue.
+- `extraction_confidence = 5` throughout. Every extracted field is directly
+  tabulated. The printed per-SSA column does not always reproduce from
+  uptake ÷ SSA (row 3: ~2.49 computed vs 2.72 printed), but that column is not
+  extracted, so it does not bear on the fields I recorded.
+
+**What I rejected.** Two text-only values not entered as measurements: "saturates
+around 5.5 wt%" at 30 K (hedged, no pressure stated) and "less than 0.5 wt%" at
+room temperature (a bound, not a measurement). Figs. 1, 3, 4, 5 left
+undigitized — no figure-only values were needed, since Tables 1 and 2 carry all
+23 uptake points.
+
+**Outcome.** 23 rows appended to `data/raw/measurements_v0.1.csv` (60 → 83).
+Validation: 83 rows, 83 valid, 0 errors; warning counts unchanged from the
+pre-append baseline. Committed as `b2aa7cf`.
