@@ -170,3 +170,111 @@ undigitized — no figure-only values were needed, since Tables 1 and 2 carry al
 **Outcome.** 23 rows appended to `data/raw/measurements_v0.1.csv` (60 → 83).
 Validation: 83 rows, 83 valid, 0 errors; warning counts unchanged from the
 pre-append baseline. Committed as `b2aa7cf`.
+
+## 2026-08-30 — Paper extraction: HYC-0016 (Klechikov et al. 2015)
+
+Tool: Claude Opus 5 (claude.ai web chat) for locate-only extraction assistance;
+Claude Code (CLI) for staging-file authoring. Session ran past midnight; commits
+carry 2026-08-31 timestamps.
+
+Purpose: §9.4 locate-only assistance for extracting hydrogen sorption data from
+Klechikov et al., "Hydrogen storage in bulk graphene-related materials,"
+Microporous and Mesoporous Materials 210 (2015) 46–51,
+DOI 10.1016/j.micromeso.2015.02.017. Selected to add the first graphene-class
+rows to a corpus dominated by 77 K activated carbon and CDC.
+
+What I provided: the paper PDF; current repo state (83 rows, 6 papers, validation
+baseline 0 errors / 60 "Unspecified uptake_type" / 1 "mmol/g and wt% inconsistent");
+the 38-column header of measurements_v0.1.csv; the DOI, which I resolved myself on
+the ScienceDirect publisher page rather than accepting any AI-supplied identifier.
+
+What it produced:
+- A locate-only inventory: sample groups by precursor, all BET values with
+  section locations, both prose uptake values, and figure locations for all
+  figure-only data. It correctly refused to estimate any value from Figs. 2–5.
+- 16 verbatim search keys for quote verification.
+- The 14-row value set and a fully-specified Claude Code prompt writing only
+  data/raw/staging_HYC-0016.csv, with all other repo files named as forbidden
+  and git/pytest/ruff/CI explicitly prohibited.
+- Two flagged uncertainties I confirmed as real: Figs. 2 and 5 number the same
+  sample set differently and cannot be cross-mapped; and the Fig. 5 caption cites
+  50 bar for the 77 K data while the digitized endpoints fall at 38–39 bar.
+
+What I verified:
+- Cmd+F'd all 16 quoted search keys in the PDF. All 16 located. Under §9.4 a
+  single miss would have voided the entire output.
+- Checked all 12 BET surface-area curve labels against Figs. 3 and 4 directly
+  (310/560/1250/1740/1830; 370/650/1259/1450/1730/1830/2300 m²/g). These labels
+  became the bet_surface_area_m2_g values, so an error here would propagate to
+  every digitized row.
+- Resolved the DOI on the ScienceDirect page and confirmed title, journal,
+  volume, year, and pagination before any row was written.
+- Performed all digitization myself in WebPlotDigitizer. Project files archived
+  at data/digitizations/HYC-0016_fig3.json and HYC-0016_fig4.json and referenced
+  in the row notes.
+- Verified the staging file from the terminal with `wc -l` and `head -3` rather
+  than accepting Claude Code's own summary of what it had written.
+- Validated the staging file standalone: 14 rows, 14 valid, 0 errors, 14
+  "Unspecified uptake_type" warnings and no other warning type.
+- Re-verified 3 rows against the PDF after staging (M5, M12, M14) covering both
+  figures and the prose source.
+- Validated the merged file: 97 rows, 97 valid, 0 errors, warnings 74 + 1,
+  matching the pre-append baseline exactly with no new warning types.
+
+What I caught and corrected:
+- The paper recommendation rested on a false premise. It was proposed as a
+  multi-sample table paper; the paper contains no data tables at all and nearly
+  every value is figure-only. I kept the paper but rescoped the work to endpoint
+  digitization anchored on the printed curve labels.
+- I mistyped the Fig. 3 y-axis calibration as 10.6 instead of 0.6. The resulting
+  uptakes (~11 wt%) were physically impossible for ambient-temperature carbon and
+  contradicted the paper's own statement that uptake does not exceed 1 Wt% at
+  120 Bar. Recalibrated; the stored pixel positions made the fix a single edit.
+- measurement_method was wrong on all 14 rows and extraction_method wrong on 2:
+  the AI supplied `gravimetric`, `volumetric`, and `text_reported`, none of which
+  are in the schema's controlled vocabulary. Validation caught all 16; corrected
+  to `gravimetric_microbalance`, `volumetric_sieverts`, and `text_direct` after
+  reading the Literal definitions in schema.py directly.
+- A first diagnostic script reported spurious errors on every empty optional
+  field, an artifact of `keep_default_na=False` rather than a defect in the data.
+  Confirmed against schema.py before acting on it.
+- Values belonging to other groups that appear in the Introduction (3.1 wt% /
+  925 m²/g; Srinivas 0.7 wt% / 640 m²/g; Wang 0.9 wt% / 2139 m²/g) and the
+  extrapolated ~0.8–0.9 wt% at ~3000 m²/g saturation estimate were identified as
+  not-this-paper's-data and excluded.
+
+Scientific decisions — mine:
+Each of the following was recommended by the AI with a stated basis and ratified
+by me after independent verification against the PDF.
+
+- uptake_type = unspecified on all 14 rows. The word "excess" does not appear in
+  the paper; "absolute" appears once, describing MOFs from other groups rather
+  than these measurements.
+  Why I accepted this rather than inferring a type: [YOUR SENTENCE]
+
+- extraction_confidence = 3 on all 14 rows. Digitized rows carry 3 because
+  uptake and pressure both come off my own axis calibration. The two prose rows
+  were dropped from 4 to 3 because their sentence omits the temperature.
+  Why an inferred temperature is worth the same confidence penalty as a
+  digitized axis: [YOUR SENTENCE]
+
+- temperature_k = 293 on M13/M14, recorded with the inference stated in the notes
+  field. The paper also reports gravimetric runs at 274 K and 288 K, so 293 K is
+  read from surrounding context rather than from the sentence itself.
+  Why recording 293 with a note beats leaving the field blank: [YOUR SENTENCE]
+
+- reproducibility_tier = B (8/10 on the §13.4 rubric). Full marks on BET,
+  method description, T and P, purity (XPS C/O ratios), calibration (2-minute
+  zero-point correction, FLUIDCAL densities), and Chahine consistency; zero on
+  uptake type.
+  Why the single lost point is the right one to lose here: [YOUR SENTENCE]
+
+- M11 retained as material_class = activated_carbon. This is the paper's internal
+  reference sample, not a graphene material, measured on the same instrument
+  under the same conditions.
+  Why I kept a reference sample rather than dropping it: [YOUR SENTENCE]
+
+Schema feedback generated: synthesis_method has no controlled value for thermal
+exfoliation of graphite oxide or for KOH activation; both were recorded as
+`other`. This is the third such case after carbide chlorination (HYC-0023) and
+the
