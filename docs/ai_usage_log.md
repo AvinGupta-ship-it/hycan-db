@@ -276,5 +276,105 @@ by me after independent verification against the PDF.
 
 Schema feedback generated: synthesis_method has no controlled value for thermal
 exfoliation of graphite oxide or for KOH activation; both were recorded as
-`other`. This is the third such case after carbide chlorination (HYC-0023) and
-the
+`other`.
+
+## 2026-08-31 — Paper extraction: HYC-0018 (Singh & De 2020)
+
+Tool: Claude Opus 5 (claude.ai web chat) for locate-only extraction assistance;
+Claude Code (CLI) for staging-file authoring.
+
+Purpose: §9.4 locate-only assistance for extracting hydrogen sorption data from
+Singh & De, "Thermally exfoliated graphene oxide for hydrogen storage,"
+Materials Chemistry and Physics 239 (2020) 122102,
+DOI 10.1016/j.matchemphys.2019.122102. Selected as the most recent paper in the
+unextracted set, on the expectation that a 2020 paper would state excess or
+absolute outright — the criterion every row in the corpus currently fails.
+
+What I provided: the paper PDF; the 38-column header; the running validation
+baseline (97 rows, 0 errors, 74 "Unspecified uptake_type" + 1 "mmol/g and wt%
+inconsistent"); the DOI, which I resolved on the ScienceDirect publisher page.
+
+What it produced:
+- A locate-only inventory: five samples (GO, EGR 200/300/400/500), the complete
+  Table 2 characterization set, all four extractable uptake values with their
+  source locations, and explicit exclusion lists.
+- 17 verbatim search keys, chosen to avoid the mangled degree-sign and
+  superscript characters in this PDF's text layer.
+- A fully-specified Claude Code prompt writing only
+  data/raw/staging_HYC-0018.csv, with all other repo files named as forbidden
+  and git/pytest/ruff/CI explicitly prohibited.
+- Correct identification that the paper is a Chahine outlier by roughly six
+  times, and that the paper states and explains this itself.
+
+What I verified:
+- Cmd+F'd all 17 search keys. All 17 located.
+- Checked the full S_BET and V_T columns of Table 2 (41/46/248/218/135 and
+  0.14/0.27/1.63/1.40/0.85) and the present-study row of Table 3 against the PDF.
+- Resolved the DOI on the publisher page and confirmed journal, volume, year,
+  and article number. Recorded year as 2020 to match the volume, noting the
+  paper was accepted in 2019.
+- Verified the staging file from the terminal rather than accepting Claude Code's
+  summary of what it had written.
+- Validated standalone after correction: 4 rows, 4 valid, 0 errors.
+- Re-verified all 4 rows against Table 3 and the Fig. 10 labels before appending.
+- Validated merged: 101 rows, 101 valid, 0 errors, warnings 78 + 1, matching the
+  pre-append baseline with no new warning types.
+
+What I caught and corrected:
+- The selection premise was wrong. The paper does not designate its values as
+  excess or absolute. It uses the word "excess" exactly once, in the ordinary-
+  English sense of exceeding the Chahine rule — the precise §9.5 trap, and a
+  cleaner instance of it than the previous paper.
+- Table 2 gives EGR(300) total pore volume as 1.63 cm³/g while the abstract,
+  Highlights, and §3.2 body text all give 1.64. I confirmed 1.63 in Table 2
+  directly and recorded that value as the primary data table, with the
+  discrepancy noted in the row.
+- The schema requires temperature_k and pressure_bar on every row, which
+  surfaced only at validation: the two characterization-only rows for GO and
+  EGR(400) failed with 4 missing-field errors. This is a structural constraint,
+  not a typo — measurements_v0.1.csv cannot hold a row that is not a
+  measurement. Second structural schema gap found this week, after the
+  surface-area-method gap blocking HYC-0025.
+- Controlled vocabularies for material_class, synthesis_method,
+  activation_method, and uptake_type were read from schema.py before the staging
+  prompt was written, rather than after validation failed. This followed
+  directly from the previous paper, where AI-supplied values for
+  measurement_method and extraction_method were wrong on every row.
+- That check also showed the schema distinguishes graphene_oxide from
+  reduced_graphene_oxide. Applied here. It also means HYC-0016's rows, entered
+  as plain `graphene`, are coarser than the schema allows — a candidate cleanup,
+  not an error.
+- Excluded: all six literature comparison rows in Table 3; the Introduction's
+  survey values (Wang 1.75 wt%, Rao 3.0 wt%, and the 0.4–1.4 and 0.1–0.7 wt%
+  ranges); and the isosteric heat values, which have no schema field.
+
+Scientific decisions — mine:
+Each was recommended by the AI with a stated basis and ratified by me after
+independent verification against the PDF.
+
+- uptake_type = unspecified on all 4 rows, despite the word "excess" appearing
+  in the paper.
+  Why that appearance does not qualify under §9.5: [YOUR SENTENCE]
+
+- reproducibility_tier = B, 7/10. Full marks on BET, method description, T and P,
+  purity (EDX and XPS elemental analysis), and calibration (explicit blank run to
+  30 bar, stated sample mass and pretreatment). Zero on uptake type. Zero on the
+  Chahine criterion: 3.12 wt% at 248 m²/g is roughly six times the 1 wt% per
+  500 m²/g rule.
+  Why a paper this carefully reported still loses both Chahine points, and why
+  that lands at B rather than C: [YOUR SENTENCE]
+
+- Dropped the GO and EGR(400) characterization rows rather than populating
+  temperature_k and pressure_bar with the nitrogen adsorption conditions.
+  Why filling those fields would have been the worse error: [YOUR SENTENCE]
+
+- Excluded EGR(400)'s 77 K uptake. It is plotted in Fig. 9 but its numeric value
+  is printed nowhere in the paper, while EGR 200/300/500 all have exact printed
+  values.
+  Why I did not digitize it: [YOUR SENTENCE]
+
+- extraction_confidence: 5 on the two Table 3 rows, 4 on the two rows whose
+  values come from printed labels in the Fig. 10 schematic. Nothing in this
+  paper was digitized, which is why these sit above HYC-0016's uniform 3.
+
+Result: 4 rows added, 97 → 101. Eight papers extracted. Commit a1528a6.
