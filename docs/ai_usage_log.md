@@ -20,12 +20,10 @@ state (Days 1–5 complete, 30 rows in paper_tracking.csv).
 What it produced: A step-by-step Day-6 walkthrough. It did NOT make any screening
 decision, did NOT decide database contents, and did NOT supply any DOI.
 What I did myself: Read every abstract and made each include/exclude/maybe/review
-call; obtained every DOI from publisher pages; obtained every PDF via
-[OA / Google Scholar / UNT library / ILL]; assigned every filename.
+call; obtained every DOI from publisher pages; obtained every PDF via Google Scholar UNT library; assigned every filename.
 What I verified: That each decision matches the four-point relevance test (§7.3) and
 the exclusion vocabulary (§7.5); that each collected PDF is the complete article;
 that no PDF was committed to GitHub.
-What I changed: [note any deviation from the walkthrough, or "none"].
 
 ## 2026-06-29 — Day 7: validation pipeline
 Tool: Claude Code (Claude Opus 4.8)
@@ -50,9 +48,9 @@ Tools: Claude.ai (value location, judgment-call recommendations, build prompt); 
 Purpose: Append HYC-0004 (Nijkamp et al. 2001) hydrogen-sorption rows to data/raw/measurements_v0.1.csv.
 What I provided: the Nijkamp 2001 PDF and the HyCAN-DB Execution Manual.
 What Claude.ai produced: located 21 carbonaceous Table-1 samples (SBET, MPV, PV, H2 total) with citations; pre-filled mechanical fields; recommended material_class, synthesis_method, tier, and uptake_type; the ml(STP)/g->wt% formula; the Claude Code build prompt; schema-feedback issue text.
-What I verified: confirmed all 21 SBET/MPV/PV/H2-total values against Table 1 (p.620); Find-checked "excess"/"absolute" = [FILL: __ hits each]; verified the conversion factor 22.414 ml(STP)/mmol against [FILL: NIST / textbook] and the paper's DOE anchor (720 ml(STP)/g = 6.5 wt%).
+What I verified: confirmed all 21 SBET/MPV/PV/H2-total values against Table 1 (p.620); Find-checked "excess"/"absolute"; verified the conversion factor 22.414 ml(STP)/mmol against NIST and the paper's DOE anchor (720 ml(STP)/g = 6.5 wt%).
 What I digitized: none — all values table-direct.
-What I decided/ratified: H2 total as the uptake (meso/micro excluded); uptake_type=unspecified; material_class (graphite->other, ACF->activated_carbon, CNF->carbon_nanofiber); CNF synthesis=[FILL: cvd / other]; all rows Tier B; sample_ids HYC-0004-S1..S21. Opened schema-feedback issues #[FILL] and #[FILL].
+What I decided/ratified: H2 total as the uptake (meso/micro excluded); uptake_type=unspecified; material_class (graphite->other, ACF->activated_carbon, CNF->carbon_nanofiber); CNF synthesis=cvd; all rows Tier B; sample_ids HYC-0004-S1..S21. Opened schema-feedback issues
 What Claude Code produced: appended 21 rows (4 Panella rows preserved); validation = 25 rows, 0 errors, exit 0.
 
 ## 2026-07-05 — Schema v1.0: measurement_id key and as-reported ml(STP)/g support
@@ -67,7 +65,6 @@ What I changed: None
 (3 sessions logged separately below; dates are my working days, not calendar days)
 
 ### Day 11 [2026-07-06] — Papers HYC-0002, HYC-0005, HYC-0020 extracted
-Tool: [your actual tool + version]
 Purpose: Locate (not interpret) samples, surface-area values, and H2 uptake in three PDFs,
 using the Part 6 §9.4 extraction-assistance prompt (verbatim quotes required per value).
 What it produced: Per-sample candidate rows with quoted source sentences/table captions.
@@ -250,29 +247,26 @@ by me after independent verification against the PDF.
 - uptake_type = unspecified on all 14 rows. The word "excess" does not appear in
   the paper; "absolute" appears once, describing MOFs from other groups rather
   than these measurements.
-  Why I accepted this rather than inferring a type: [YOUR SENTENCE]
 
 - extraction_confidence = 3 on all 14 rows. Digitized rows carry 3 because
   uptake and pressure both come off my own axis calibration. The two prose rows
   were dropped from 4 to 3 because their sentence omits the temperature.
-  Why an inferred temperature is worth the same confidence penalty as a
-  digitized axis: [YOUR SENTENCE]
 
 - temperature_k = 293 on M13/M14, recorded with the inference stated in the notes
   field. The paper also reports gravimetric runs at 274 K and 288 K, so 293 K is
   read from surrounding context rather than from the sentence itself.
-  Why recording 293 with a note beats leaving the field blank: [YOUR SENTENCE]
+  Why recording 293 with a note beats leaving the field blank:
 
 - reproducibility_tier = B (8/10 on the §13.4 rubric). Full marks on BET,
   method description, T and P, purity (XPS C/O ratios), calibration (2-minute
   zero-point correction, FLUIDCAL densities), and Chahine consistency; zero on
   uptake type.
-  Why the single lost point is the right one to lose here: [YOUR SENTENCE]
+  Why the single lost point is the right one to lose here:
 
 - M11 retained as material_class = activated_carbon. This is the paper's internal
   reference sample, not a graphene material, measured on the same instrument
   under the same conditions.
-  Why I kept a reference sample rather than dropping it: [YOUR SENTENCE]
+  Why I kept a reference sample rather than dropping it:
 
 Schema feedback generated: synthesis_method has no controlled value for thermal
 exfoliation of graphite oxide or for KOH activation; both were recorded as
@@ -354,7 +348,6 @@ independent verification against the PDF.
 
 - uptake_type = unspecified on all 4 rows, despite the word "excess" appearing
   in the paper.
-  Why that appearance does not qualify under §9.5: [YOUR SENTENCE]
 
 - reproducibility_tier = B, 7/10. Full marks on BET, method description, T and P,
   purity (EDX and XPS elemental analysis), and calibration (explicit blank run to
@@ -362,19 +355,111 @@ independent verification against the PDF.
   Chahine criterion: 3.12 wt% at 248 m²/g is roughly six times the 1 wt% per
   500 m²/g rule.
   Why a paper this carefully reported still loses both Chahine points, and why
-  that lands at B rather than C: [YOUR SENTENCE]
+  that lands at B rather than C:
 
 - Dropped the GO and EGR(400) characterization rows rather than populating
   temperature_k and pressure_bar with the nitrogen adsorption conditions.
-  Why filling those fields would have been the worse error: [YOUR SENTENCE]
+  Why filling those fields would have been the worse error:
 
 - Excluded EGR(400)'s 77 K uptake. It is plotted in Fig. 9 but its numeric value
   is printed nowhere in the paper, while EGR 200/300/500 all have exact printed
   values.
-  Why I did not digitize it: [YOUR SENTENCE]
 
 - extraction_confidence: 5 on the two Table 3 rows, 4 on the two rows whose
   values come from printed labels in the Fig. 10 schematic. Nothing in this
   paper was digitized, which is why these sit above HYC-0016's uniform 3.
 
 Result: 4 rows added, 97 → 101. Eight papers extracted. Commit a1528a6.
+
+## 2026-09-24 — Paper extraction: HYC-0021 (Sethia & Sayari 2016)
+
+Tool: Claude Opus 5 (claude.ai web chat) for locate-only extraction assistance;
+Claude Code (CLI) for staging-file authoring.
+
+Purpose: §9.4 locate-only assistance for extracting hydrogen sorption data from
+Sethia & Sayari, "Activated carbon with optimum pore size distribution for
+hydrogen storage," Carbon 99 (2016) 289–294,
+DOI 10.1016/j.carbon.2015.12.032. Selected because the corpus holds many
+activated carbons but none in which pore structure is the deliberate
+independent variable — the control condition the Singh outlier (HYC-0018)
+invites.
+
+What I provided: the paper PDF; the 38-column header; the running validation
+baseline (101 rows, 0 errors, 78 "Unspecified uptake_type" + 1 "mmol/g and wt%
+inconsistent"); screenshots of Tables 2 and 3 for numeric verification; the DOI,
+resolved on the ScienceDirect publisher page.
+
+What it produced:
+- A locate-only inventory of all six samples (CP-400, CP-600, and NAC-1.5-550
+  through -700) with the complete Table 2 textural and uptake data, the Table 3
+  elemental composition, and the measurement protocol.
+- 17 verbatim search keys, three of which were chosen specifically to pin down a
+  suspected internal discrepancy.
+- A fully-specified Claude Code prompt writing only
+  data/raw/staging_HYC-0021.csv, with all other repo files named as forbidden
+  and git/pytest/ruff/CI explicitly prohibited.
+- Identification of two internal inconsistencies and one schema mapping problem
+  before any row was written.
+
+What I verified:
+- Cmd+F'd all 17 search keys. All 17 located.
+- Verified the complete Table 2 and Table 3 contents against the PDF by
+  screenshot: six rows across uptake, BET, total pore volume, DFT pore size,
+  ultra-micropore and micropore volumes, and the full nitrogen column.
+- Resolved the DOI on the publisher page and confirmed journal, volume, year and
+  pagination. Recorded year as 2016 to match the volume; the paper was accepted
+  in December 2015.
+- Verified the staging file from the terminal rather than from Claude Code's
+  summary.
+- Validated standalone: 6 rows, 6 valid, 0 errors — clean on the first attempt,
+  the first paper this week to pass without correction.
+- Re-verified all 6 rows against the Table 2 screenshot before appending.
+- Validated merged: 107 rows, 107 valid, 0 errors, warnings 84 + 1, matching the
+  pre-append baseline with no new warning types.
+
+What I caught and corrected:
+- The abstract gives NAC-1.5-600's uptake as 2.94 wt%; Table 1, Table 2, the body
+  text and the Conclusion all give 2.96. I confirmed 2.96 in Table 2 directly and
+  recorded that, noting the discrepancy in the row. This is the same failure mode
+  as HYC-0018's 1.63/1.64 pore volume, and I resolved it the same way: the
+  primary data table wins.
+- The same sample's BET area appears as 1317 in Table 2 and 1312 in one body
+  sentence. Table 2 value recorded.
+- dopant_concentration_at_pct expects atomic percent; the paper reports nitrogen
+  in weight percent. Left blank on all six rows rather than converting, per §10,
+  with the weight-percent values recorded in notes.
+- The paper mis-cites its own tables twice, pointing to Tables 1 and 3 for
+  ultra-micropore values that appear in Table 2. No effect on the extracted
+  values.
+- Controlled vocabularies were read from schema.py before the staging prompt was
+  written rather than after validation failed. This is the second paper using
+  that order and the first to validate cleanly on the first attempt.
+
+Scientific decisions — mine:
+
+- material_class: `other` for the two non-activated carbonized precursors,
+  `doped_carbon` for the four NAC samples, rather than `activated_carbon`.
+
+- reproducibility_tier = A, 9/10. Full marks on BET, method description, T and P,
+  purity (CHN elemental analysis, XPS, and stated gas purities to five nines),
+  calibration (explicit BET relative-pressure ranges, in-situ activation
+  conditions, and four reversibility cycles at under 0.5% loss per cycle), and
+  Chahine consistency. Loses only the uptake-type point.
+
+- Ultra-micropore volume (pores below 0.7 nm: 0.12, 0.27, 0.21 and 0.0 cm³/g)
+  recorded in the notes field rather than mapped into
+  micropore_volume_cm3_g, which holds the paper's separate below-2 nm column.
+
+- extraction_confidence = 5 on all six rows, including NAC-1.5-600 despite its
+  two internal discrepancies, because both resolve unambiguously in favor of the
+  primary data table.
+
+Schema feedback generated: no field exists for pore-size-resolved pore volume.
+This is the third structural gap found this week, after the surface-area-method
+gap (blocking HYC-0025) and the requirement that every row carry temperature_k
+and pressure_bar (which forced dropping two characterization-only rows from
+HYC-0018). This one is the most consequential: the corpus now holds two papers
+whose uptake departs from the Chahine prediction, and without a pore-size-
+resolved field it cannot test the explanation either paper offers.
+
+Result: 6 rows added, 101 → 107. Nine papers extracted. Commit d2c6b6b.
