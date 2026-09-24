@@ -463,3 +463,124 @@ whose uptake departs from the Chahine prediction, and without a pore-size-
 resolved field it cannot test the explanation either paper offers.
 
 Result: 6 rows added, 101 → 107. Nine papers extracted. Commit d2c6b6b.
+
+## 2026-09-24 — Paper extraction: HYC-0027 (Parambhath et al. 2012)
+
+Tool: Claude Opus 5 (claude.ai web chat) for locate-only extraction assistance;
+Claude Code (CLI) for staging-file authoring.
+
+Purpose: §9.4 locate-only assistance for extracting hydrogen sorption data from
+Parambhath, Nagar & Ramaprabhu, "Effect of Nitrogen Doping on Hydrogen Storage
+Capacity of Palladium Decorated Graphene," Langmuir 2012, 28, 7826–7833,
+DOI 10.1021/la301232r. The corpus held no metal-decorated carbons and no
+spillover-mechanism papers, so every existing row assumed physisorption.
+
+Note on selection: the AI's first recommendation was HYC-0013 (Hudson 2014,
+Fe-decorated rGO), with HYC-0027 named as the fallback in the same class. I
+uploaded HYC-0027. I chose to continue with it rather than switch, since the
+locate-only pass was already complete and both papers occupy the same gap.
+Hudson remains queued.
+
+What I provided: the paper PDF; the 38-column header; the running baseline
+(107 rows, 0 errors, 84 "Unspecified uptake_type" + 1 "mmol/g and wt%
+inconsistent"); the DOI, resolved on the ACS publisher page.
+
+What it produced:
+- A locate-only inventory of four samples (HEG, N-HEG, Pd-HEG, Pd-N-HEG), the
+  five extractable uptake values with conditions, the full measurement protocol,
+  and explicit exclusion lists.
+- 17 verbatim search keys. All 17 located.
+- A fully-specified Claude Code prompt writing only
+  data/raw/staging_HYC-0027.csv, with all other repo files named as forbidden
+  and git/pytest/ruff/CI explicitly prohibited.
+- Correct identification that this paper reports no BET surface area anywhere,
+  and that its mechanism is chemisorption-mediated rather than physisorption.
+
+What I verified:
+- Cmd+F'd all 17 search keys. All 17 located.
+- Read the two source sentences on journal page 7829 directly and confirmed all
+  five uptake values (0.53, 0.63, 0.88, 1.97, 4.4) against the text.
+- Confirmed the MPa to bar conversions independently: 2 MPa = 20 bar,
+  4 MPa = 40 bar.
+- Resolved the DOI on the ACS page and confirmed journal, volume, year and
+  pagination.
+- Verified the staging file from the terminal rather than from Claude Code's
+  summary.
+- Validated standalone: 5 rows, 5 valid, 0 errors — clean on the first attempt,
+  the second consecutive paper to do so.
+- Re-verified all 5 rows before appending.
+- Validated merged: 112 rows, 112 valid, 0 errors, warnings 89 + 1, matching the
+  pre-append baseline with no new warning types. Confirmed specifically that the
+  validator does not warn on a missing BET value, which mattered because these
+  are the first rows in the corpus with that field empty.
+
+What I caught and excluded:
+- Equation 1 substitutes a value of 0.72 for palladium nanoparticle uptake. That
+  number appears nowhere else in the paper and no measurement is reported for
+  bare Pd NPs. Not extracted.
+- Values belonging to other work: 1.76 wt% and 3 wt% (the authors' own earlier
+  paper, ref. 19), 3.1 wt% (ref. 55), and the theoretical 13.79 wt% and ~5 wt%
+  (refs. 58, 59). Table S1 is in Supporting Information and not in the obtained
+  PDF.
+- Three of the five uptake values are written as bare percentages without a unit.
+  I recorded them as wt% and lowered their extraction_confidence to 3 to mark the
+  inference.
+- Pd loading is reported three ways: 21 wt% by XPS, 20 wt% by EDX, 20 wt%
+  intended. No schema field; recorded in notes.
+
+Scientific decisions:
+Each was recommended by the AI with a stated basis, and I ratified it after
+checking the relevant passage in the PDF myself.
+
+- uptake_wt_pct for all five values including the three bare percentages. Basis
+  given: the abstract describes the enhancements as being in hydrogen uptake
+  capacity, Equation 1 treats 0.88 and 1.97 as the same quantity in a single
+  calculation, and no other uptake unit appears in the paper, so a unit change
+  mid-sentence would break the paper's own arithmetic. Ratified after reading the
+  passage.
+
+- material_class: `graphene` for HEG, `doped_carbon` for N-HEG, and `composite`
+  for both Pd-bearing samples. dopant_element = N rather than Pd on Pd-N-HEG.
+  Basis given: Pd nanoparticles on a carbon support are a two-phase material
+  rather than a doped lattice, which is the distinction the schema's separate
+  `composite` and `doped_carbon` values exist to record; and nitrogen is
+  substitutionally incorporated in the graphene network per the XPS assignments
+  (pyridinic 398.1 eV, pyrrolic 399.04 eV, sp³ C–N 400.21 eV), while Pd sits on
+  the surface as discrete particles. Ratified after checking the XPS section.
+
+- dopant_concentration_at_pct = 7 on the three nitrogen-bearing rows. The paper
+  reports approximately 7 at.% nitrogen by XPS — atomic percent, matching the
+  schema field's units directly. This is the first paper in the corpus where this
+  field was usable; HYC-0021 reported nitrogen in weight percent and the field was
+  left blank there rather than converted.
+
+- reproducibility_tier = C, 5/10. Full marks on method description, T and P,
+  purity, and calibration. Zero on uptake type, zero on BET (none reported), and
+  zero on Chahine (unassessable without BET). Basis given: the score is honest
+  under §13.4 as written, but four of the five lost points do not reflect
+  reporting quality — §13.4 is built around physisorption, and this paper's
+  mechanism is dissociative chemisorption on Pd followed by migration of atomic
+  hydrogen onto the support, so surface area is not the governing variable and
+  the Chahine rule does not apply. The measurement protocol itself is strong:
+  calibrated Sieverts apparatus, van der Waals correction at high pressure,
+  empty-cell and leak tests, stated activation and degas cycles, room temperature
+  held to ±1 °C. Ratified as written rather than adjusted, on the stated ground
+  that the fix belongs in the tiering documentation rather than in the score.
+
+  First Tier C in the corpus. This is the second paper this week whose tier is
+  depressed by a rubric assumption rather than by its own reporting, after
+  HYC-0018, and a second metal-decorated paper (HYC-0013) is queued. Flagged for
+  docs/reproducibility_tiering.md.
+
+- extraction_confidence: 4 on the two Pd-N-HEG rows, 3 on the other three. Basis
+  given: an inferred unit is a provenance gap of the same kind as the inferred
+  temperature in HYC-0016, which also cost a point. Nothing in this paper is
+  digitized, so nothing falls below 3.
+
+Corpus note: the database now holds an explicit disagreement. HYC-0016
+(Klechikov 2015) argues that graphene-related materials never exceed standard
+carbon trends and that high reported values were overestimates. HYC-0027 reports
+4.4 wt% at 300 K and 4 MPa. Both are in the dataset with their tiers attached
+(B and C respectively), which is what the tiering system exists to make visible.
+
+Result: 5 rows added, 107 → 112. Ten papers extracted. Commit a76097f.
