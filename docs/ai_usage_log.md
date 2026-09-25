@@ -744,3 +744,123 @@ confirmed at `3a37957`. The work was delivered as a git bundle instead. Per
 3. Phase C — the twelve unextracted PDFs in §6.3 under the §3.2 dual-agent
    protocol, with the figure-only papers batched so all required crops are
    requested at once.
+
+## 2026-09-25 — Session: Phase B (schema v1.1)
+
+**Phase.** §18 Phase B — close the four gaps in §8.5 and the two cleanups in
+§8.6, in one migration.
+
+**Baseline at start.** Commit `ca737dc` on `origin/main`. 119 rows, 11 papers,
+38 columns, sha256 `55875a90…`, 0 errors, warnings `Unspecified uptake_type
+×96` and `mmol/g and wt% inconsistent ×1`. 394 tests.
+
+**State at end.** Commit `94d634c` on `origin/main`, confirmed by reading the
+remote rather than the push output. 121 rows, 11 papers, 40 columns, sha256
+`b75dd0d0…`, 0 errors, warnings `Unspecified uptake_type ×98` and `mmol/g and
+wt% inconsistent ×1`. 418 tests. Tier distribution 36 A / 77 B / 5 C / 3 D.
+
+**Pipeline.** Claude (this session) as Agent A for the three source
+extractions; an isolated agent as Agent B, given the papers and the candidate
+values only, with no access to Agent A's reasoning (§3.2). Migration and
+backfill applied by committed scripts (`scripts/migrate_v1_1.py`,
+`scripts/backfill_v1_1_sources.py`), each of which refuses to run twice.
+Both read and write raw CSV cells rather than going through pandas, so an
+unmodified cell is byte-identical by construction.
+
+**Verification.** 40 cells submitted to Agent B across three papers. Forty
+agreed. Agent B raised one DISAGREE, and it was correct: the list of
+HYC-0005 total pore volumes in the verification prompt held six values for
+seven samples, having dropped AX-21's 1.14, which made everything from AX-21
+onward appear misaligned. The dataset was right and the prompt was wrong.
+Recorded here because a verification protocol that only ever catches errors
+in the data is not being tested on its own inputs, and because the error was
+in a hand-written list — the same class of mistake the protocol exists to
+catch, arriving from an unexpected direction.
+
+**Source acquisition.** Three PDFs supplied by the author on request, batched
+into one list per §7.4 rather than requested one at a time.
+
+**Decisions and their basis.**
+
+- *Gap 3, what replaces the unconditional uptake requirement.* Temperature and
+  pressure are required exactly when a row reports any uptake value. A row
+  reporting no uptake must instead report at least one characterization value;
+  a row reporting neither asserts nothing and is rejected. The §8.2 rule that
+  an uptake-bearing row must carry uptake gravimetrically is preserved, scoped
+  to rows that report uptake.
+- *Gap 4, severity.* `ultramicropore ≤ micropore ≤ total` is an ERROR, checked
+  pairwise so a missing middle term cannot suppress the outer comparison.
+- *A manual/code mismatch resolved in the manual's favour (§0).* §11.2 has
+  always specified ERROR for `micropore_volume > total_pore_volume`; the v1.0
+  code raised it as a warning. It is now an ERROR. No row in the corpus
+  violates it, so the dataset is unaffected. §11.4's list of two behaviours
+  that look like bugs and are not does not include this one, so it was treated
+  as a genuine mismatch rather than a deliberate divergence.
+- *Column placement.* Both new columns appended at physical positions 39 and
+  40, matching how `measurement_id` and `uptake_ml_stp_g` were added, so the
+  §6.7 positional-append property survives.
+- *HYC-0016 relabelling scope.* Applied to rows whose `material_description`
+  literally begins "Reduced graphene oxide" — 11 rows. S13 reads "Thermally
+  exfoliated graphene oxide" instead. Thermal exfoliation does reduce GO, so
+  `reduced_graphene_oxide` is defensible, but it is an inference rather than a
+  reading, and the Klechikov paper was not in this batch. Left as `graphene`.
+
+**Premise corrections — both §8.6 suspicions confirmed, one more strongly than
+expected.** §8.6 asked whether HYC-0005's rows had a total surface area
+entered into the BET field. They did. Table 1's column is headed `TSA` and
+footnoted "TSA, total surface area", and the strings "BET" and "Brunauer"
+occur nowhere in the paper; its only method sentence names instruments and no
+model. All 25 rows had been asserting a determination the authors never
+claimed. `surface_area_method` is now `unspecified` and
+`extraction_confidence` drops 5 → 4. The values stay in
+`bet_surface_area_m2_g` because the schema has no generic surface-area field;
+gap 1's new field is what makes the disclosure possible.
+
+**Unplanned gain.** The same paper's `V_DR(CO2)` column is defined in text as
+"the narrowest micropores (i.e., pores size smaller than 0.7 nm)" — the same
+physical quantity as HYC-0021's ultra-micropore column, by a different method
+(Dubinin-Radushkevitch on a 273 K CO₂ isotherm rather than DFT). That put 25
+further rows into the new field. The corpus now holds 29 ultra-micropore
+values across two papers, both of which argue uptake tracks ultra-microporosity
+rather than total surface area. Until this migration neither claim could be
+tested against the other.
+
+**Source anomalies recorded.**
+
+- Sethia 2016: body text says BET 1312 m²/g where Table 2 says 1317 (primary
+  table wins, §3.7); abstract says 2.94 wt% where Tables 1 and 2 say 2.96; two
+  cross-references point at the wrong table number.
+- Singh 2020: abstract, highlights, body and conclusion all give EGR (300)'s
+  total pore volume as 1.64 cm³/g while Table 2 gives 1.63. The table wins.
+  The manual's §3.7 conflict table records this as "1.63 vs 1.64 wt%"; the
+  unit is cm³/g, not wt%. **The manual should be corrected.**
+- Singh 2020 naming trap: the paper uses "GO exfoliated at 300 °C" in prose to
+  mean the sample Table 2 calls EGR (300). An extractor matching on "GO" plus
+  a wt% will produce a false GO uptake of 3.12. Recorded in the GO row's notes.
+- Singh 2020: Fig. 9(c) and 9(f) mislabel samples as "EGO" rather than "EGR".
+
+**Schema and methodology notes.** A new limitation surfaced, of the same kind
+as §13.4's: the §13.3 tiering rubric scores the reporting quality of an uptake
+measurement, and has nothing to say about a characterization-only row. The two
+recovered HYC-0018 rows inherit their paper's tier rather than being scored
+independently, and their notes say so. This should be written up alongside
+§13.4 when that section is next touched.
+
+**What is still open.** HYC-0016-S13's material_class, pending the Klechikov
+paper. `average_pore_diameter_nm` is in Singh's Table 2 for the three
+pre-existing HYC-0018 rows and was not backfilled, being outside the
+migration's stated file scope. Nothing consumes a digitization archive's
+`status` field, so a `figure_digitized` row can still be appended without any
+check that its §3.4 gate passed — the natural fix is a `digitization_archive`
+field, and this migration was not the place to add one.
+
+**Where the pipeline was slow.** Delivery, not analysis. The executing session
+could read `origin` but not write to it, so every commit reached the
+repository as a git bundle applied by hand. Two rounds were lost to a glob
+matching a stale bundle in the Downloads folder and to two bundles built with
+different ref names. Bundles should carry a distinctive name and always be
+built from a named branch. Authorizing the repository for the session removes
+the whole class of problem.
+
+**Outcome.** Schema v1.1 complete. HYC-0025 unblocked. Commits `3ec8673` and
+`94d634c` on `origin/main`.
