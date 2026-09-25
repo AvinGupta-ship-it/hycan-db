@@ -4,6 +4,21 @@ All notable changes to HyCAN-DB will be documented in this file.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
+### Added — Phase C, first three papers under the §3.2 dual-agent protocol
+- HYC-0025 (Sawant 2021), 6 rows. Boron-doped MWCNTs, 0–8 at% B, 0.048–0.497 wt% at 303 K and 16 bar. The paper reports no surface area of any kind, so these are the corpus's first `surface_area_method = none` rows — representable only under schema v1.1, which is what gap 1 was for.
+- HYC-0012 (Liu 2010), 6 rows. Arc-discharge SWCNTs and CVD MWCNTs, 0.2–1.7 wt% at ~293 K and ~120 bar. This paper is its own authors' retraction of their 1999 *Science* result, which is already in the corpus as HYC-0002 at Tier D; the corpus now holds both the claim and the retraction, which is the point of tiering as disclosure.
+- HYC-0017 (Ma 2009), 2 rows. Chemically exfoliated graphene, 0.4 wt% at 77 K and 0.35 wt% at 87 K, both at 1 bar, on a stated BET area of 156 m²/g.
+- `docs/schema_v1_2_gaps.md` — the inventory of schema limitations Phase C has hit, written before any migration.
+### Verification
+- **First measured dispute rate: 0 disputes in 132 verified cells** (42/42, 64/64, 26/26). Each paper was extracted by one agent and every numeric and controlled-vocabulary cell independently re-derived from the PDF by a second agent holding the paper and the candidate values only. Free-text cells are not part of the count. Three papers is a small sample and the number should not be read as a validated error rate; `docs/ai_usage_log.md` says why, and lists what the verification pass did demonstrably catch.
+- Four internal contradictions in HYC-0025 and one sample-ordering trap in HYC-0012 were surfaced by verification and are recorded in row notes under §3.7 rather than resolved silently.
+### Dataset
+- 121 → 135 rows, 11 → 14 papers, 40 columns unchanged. 0 errors. Warning types unchanged: `Unspecified uptake_type` 98 → 112, `mmol/g and wt% inconsistent` 1 → 1. No new warning type at any of the three appends (§11.5). 418 tests passing, ruff clean.
+- 14 rows now carry `extractor = "HyCAN pipeline v2"` with `verified_by` and `verification_date` populated, per §8.4. The 121 v1.0 rows are untouched and remain single-reader; `docs/extraction_provenance.md` states the split plainly.
+### Outstanding
+- 35 further rows are extracted and verifiable but blocked on schema v1.2, not on evidence: HYC-0007 (10), HYC-0009 (20), HYC-0011 (5), HYC-0015 (2), and one HYC-0017 row. Six Phase C papers remain unread, so v1.2 is deliberately not started — v1.1 was executed as a single migration for the same reason.
+- HYC-0011's headline 8.0 wt% is arithmetically irreconcilable with the paper's own areal uptake, film mass and film area, which imply 0.84–1.26 wt%. Verified independently. Belongs in the corpus at Tier D with the discrepancy quoted, per the tiering doc's disclosure-not-deletion principle.
+
 ### Added — schema v1.1 (manual §8.5 gaps 1–4, §8.6 cleanups)
 - `surface_area_method` (controlled: `BET`, `Langmuir`, `geometric`, `DFT`, `unspecified`, `none`, default `unspecified`). Gap 1. Unblocks HYC-0025, which reports one unqualified "surface area" that previously had nowhere to go without asserting a method the paper never stated.
 - `ultramicropore_volume_cm3_g` (float, 0–2). Gap 4, the most consequential. The corpus holds two Chahine-deviating papers and could not test the explanation either offers, because the distinguishing quantity was stranded in free-text notes.

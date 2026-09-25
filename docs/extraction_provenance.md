@@ -9,23 +9,45 @@ and what you should check yourself before relying on any number here.
 It is written to be read by someone who has no connection to this project and
 no reason to trust it.
 
-Last updated 2026-09-24, against dataset `data/raw/measurements_v0.1.csv`
-(119 rows, 11 papers, sha256 `55875a906d565df37d3bae32e304fbb39b7d02c1d52b7a17c27df9f187f156d5`).
+Last updated 2026-09-25, against dataset `data/raw/measurements_v0.1.csv`
+(135 rows, 14 papers, sha256 `35bd60eab9263e5c01898eeb32de97a1d514f0de01d60beaf18d9cd6a53555bb`).
 
 ---
 
 ## 1. Summary, stated plainly
 
-**Every row currently in the dataset was extracted by a human reading the
-paper.** No row in this release was produced by the AI dual-agent pipeline,
-and no row has been through independent second-reader verification of any
-kind. The `verified_by` and `verification_date` columns are empty on all 119
-rows. Treat the dataset as single-reader extraction.
+**The dataset is now mixed, and the two halves are not equally verified.**
 
-The AI pipeline described in §3 below is built and tested but has not yet been
-run against any paper. When it is, the rows it produces will be distinguishable
-by their `extractor` value and this section will be rewritten with measured
-numbers rather than an absence.
+121 of the 135 rows (11 papers) were extracted by a human reading the paper,
+with no independent second reader of any kind. `verified_by` and
+`verification_date` are empty on all of them. Treat those rows as single-reader
+extraction.
+
+14 rows (3 papers: HYC-0012, HYC-0017, HYC-0025) were produced by the AI
+dual-agent pipeline described in §3 and carry `extractor = "HyCAN pipeline v2"`,
+with `verified_by` recording the verification outcome. Every numeric and
+controlled-vocabulary cell in those rows was extracted by one agent and then
+independently re-derived, from the PDF, by a second agent that had the paper
+and the candidate values only — no access to the first agent's reasoning,
+search keys, notes, or uncertainty flags.
+
+**Measured dispute rate, first three papers: 0 disputes in 132 verified cells**
+(HYC-0025 42/42, HYC-0012 64/64, HYC-0017 26/26). That number is small and
+should not be read as a validated error rate; see §3.4 for what it does and does
+not mean, and for the one case in the project's history where the verifier
+caught a real error — in a verification prompt rather than in the dataset.
+
+Free-text cells in v2 rows (`material_description`, `purification_method`,
+`functional_groups`, `notes`, `source_location`) were written by the
+adjudicating agent from the source text and are **not** part of the verified
+cell count. The verification protocol covers numeric values and controlled
+vocabularies.
+
+The v2 rows also carry substantially longer `notes` than the v1.0 rows, because
+the verification pass surfaces internal contradictions, traps and unstated
+conditions that the protocol requires be recorded rather than resolved
+silently. A v1.0 row with a short note is not better evidenced than a v2 row
+with a long one; the reverse is closer to true.
 
 ---
 
@@ -44,9 +66,29 @@ numbers rather than an absence.
 | HYC-0021 | 6 | v1.0 human | `Avin Gupta` | none | table_direct |
 | HYC-0023 | 23 | v1.0 human | `AG` | none | table_direct |
 | HYC-0027 | 5 | v1.0 human | `Avin Gupta` | none | text_direct |
+| HYC-0012 | 6 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 64/64 cells agreed** | table_direct |
+| HYC-0017 | 2 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 26/26 cells agreed** | text_direct |
+| HYC-0025 | 6 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 42/42 cells agreed** | table_direct |
 
-Totals: 87 `table_direct`, 17 `text_direct`, 15 `figure_digitized`. Tiers: 36
-A, 75 B, 5 C, 3 D.
+Totals: 101 `table_direct`, 19 `text_direct`, 15 `figure_digitized`. Tiers: 36
+A, 91 B, 5 C, 3 D.
+
+**Rows deliberately not written.** Three measurements that exist in these three
+papers are absent from the dataset by decision, not by oversight:
+
+- **HYC-0017, 290 K / 60 bar.** The paper reports only an upper bound — "the
+  hydrogen uptake is below 0.2 wt.% at 290 K" — with no point value anywhere and
+  no room-temperature isotherm to digitize. Writing `0.2` would convert a bound
+  into a measurement. The bound is recorded in the `notes` of both HYC-0017 rows.
+  The schema has no field for a censored value; see `docs/schema_v1_2_gaps.md`.
+- **HYC-0007 and HYC-0009**, extracted but held for the same reason class. See
+  `docs/schema_v1_2_gaps.md`.
+- **HYC-0011 and HYC-0015**, extracted and verifiable, but neither paper states
+  a numeric measurement temperature — only "room temperature" — and `temperature_k`
+  is required on any row carrying an uptake. Same document.
+
+None of these are dropped. All are extracted, and all are blocked on a schema
+change rather than on evidence.
 
 **A known blemish in this table.** The `extractor` field is spelled two ways —
 `AG` on 83 rows and `Avin Gupta` on 36 — because the convention changed

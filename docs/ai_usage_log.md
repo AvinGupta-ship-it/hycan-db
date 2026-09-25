@@ -864,3 +864,97 @@ the whole class of problem.
 
 **Outcome.** Schema v1.1 complete. HYC-0025 unblocked. Commits `3ec8673` and
 `94d634c` on `origin/main`.
+
+## 2026-09-25 — Phase C, first three papers under the dual-agent protocol
+Tool: Claude Opus 5 in a cloud session, executing the manual's §18 Phase C with
+isolated subagents as Agent A (extractor) and Agent B (verifier).
+Purpose: Extract the twelve remaining Phase C papers under §3.2, starting with
+HYC-0025 (unblocked by schema v1.1) and working through the batch.
+
+**What actually ran.** Six papers were extracted by six independent Agent A
+instances that each received only the PDF and the field specification — no
+access to each other, to the dataset, or to any prior extraction. Three papers
+were then verified by Agent B instances that received the PDF and the candidate
+rows **only**: no reasoning, no search keys, no uncertainty flags, no note that
+anything was doubtful. Three papers were appended.
+
+**Dispute rate, first measurement of it.** 132 cells verified, 0 disputed
+(HYC-0025 42/42, HYC-0012 64/64, HYC-0017 26/26). This is the first number the
+protocol has produced and it should be treated with suspicion, not satisfaction.
+Three papers is a small sample; two of the three were tabulated papers where the
+values are unambiguous; and the one historical case where a verifier caught
+something real, it caught an error in the *verification prompt*, not in the
+dataset. What the pass demonstrably did was surface internal contradictions and
+traps that a single reader would plausibly have written into the dataset:
+
+- **HYC-0025** — the abstract states 273 K where the Methods section, three
+  tables and two figure captions state 303 K; one sentence states 20 bar where
+  five other places state 16; one sentence transposes two samples' dopant
+  concentrations, contradicted by its own next sentence and five tables. Also
+  that Table 8's Langmuir Qm values (0.257–1.411 wt%) are fitted maxima 2.8–4.2×
+  the measured uptakes, and that the paper's Langmuir *isotherm* is not a
+  Langmuir *surface area* — `surface_area_method = none`, the corpus's first.
+- **HYC-0012** — the running text lists the samples in an order that reverses
+  Table 1's for the last two, so a reader mapping the text onto the table's value
+  column would swap the CO2-oxidized and KOH-activated results. Agent B
+  independently confirmed the table binding and reached the same resolution.
+- **HYC-0017** — the room-temperature result exists only as an upper bound.
+  Agent B independently arrived at the same conclusion the adjudicator had
+  reached, that writing `0.2` would convert a bound into a measurement, and
+  proposed the same fix (a boolean flag). That convergence is weak evidence of
+  correctness and is recorded as such.
+
+**What was verified from the artifact, not from a tool's self-report (§3.8).**
+Every append was re-read from disk by `scripts/append_paper.py` against a
+content-bound session baseline: 121 → 127 → 133 → 135 rows, 0 errors at each
+step, no new warning type at any step. 418 tests passing and `ruff` clean after.
+The 8.0 wt% arithmetic in HYC-0011 below was recomputed by the adjudicator
+rather than accepted from the extractor's report.
+
+**The substantive finding is not the three papers.** Four of the six papers read
+hit a schema limitation, and 35 of 43 extracted rows are blocked on the schema
+rather than on evidence. `docs/schema_v1_2_gaps.md` is the inventory: bounded
+uptake values have no representation; an uptake-bearing row cannot say that its
+paper never stated a temperature (HYC-0011, HYC-0015 and HYC-0009's TPD rows all
+need this); a paper reporting a micropore and an external surface area but no
+total has nowhere to put either (HYC-0007, eighteen measured values); and
+`validate.py` has no consistency check between `uptake_ml_stp_g` and
+`uptake_wt_pct`, which is why HYC-0009's mutually irreconcilable wt% and volume
+columns had to be caught by a reader instead of by the validator. The v1.1
+migration was executed as one batch for exactly this reason and v1.2 should be
+too, so nothing was implemented and six Phase C papers remain to be read.
+
+**A verified-but-unresolved scientific problem, recorded rather than resolved.**
+HYC-0011's headline 8.0 wt% cannot be reconciled with the paper's own numbers.
+Its areal uptake (6.3×10⁻⁶ g/cm²), its stated film mass (9.0 mg) and its two
+stated film areas (12 and 18 cm²) imply 0.84–1.26 wt%; reaching 8.0 wt% would
+require a film area of ~114 cm², nine times the largest area the paper states.
+The arithmetic was checked independently by the adjudicator and is correct. The
+paper gives no intermediate working, so the cause cannot be determined from the
+text, and no cause is asserted here. Under `docs/reproducibility_tiering.md`'s
+stated principle — "Tiering is disclosure, not deletion" — the row belongs in
+the corpus at Tier D with that discrepancy quoted verbatim in its `notes`, not
+dropped. It is currently blocked on gap 2, not on this.
+
+**One judgment call flagged rather than buried.** HYC-0025's §13.3 method score
+sits on the Tier B/C boundary: the paper describes its protocol (apparatus type,
+250 mg sample, degas at 423 K for 2–3 h under vacuum, ~100 s to equilibrium) but
+never identifies the instrument and describes no calibration or blank correction.
+Scored 2, giving 6 → Tier B; scored 1 it would be 5 → Tier C. The basis is in the
+row notes so the call can be reversed by anyone who disagrees with it.
+
+**One question left open on purpose.** HYC-0017's `material_class` stays
+`graphene` and `synthesis_method` stays `other`, on the paper's own words: it
+says only "a chemical exfoliation method" and never uses "oxide", "oxidation" or
+"reduction". Verification flagged that its XPS C/O ratio of 10.8–14.9 is more
+typical of well-reduced graphene oxide, and that its ref [10] (Wu et al., Carbon
+2008) would settle the route. That reference could not be retrieved — the
+publisher page returned nothing through this session's proxy and PubMed returned
+a CAPTCHA. The §8.6 HYC-0016 relabel was applied to rows whose own
+`material_description` read "Reduced graphene oxide"; relabelling here would rest
+on an inference from a C/O ratio instead, so it is recorded in the row notes for
+revisit rather than applied.
+
+**Outcome.** 135 rows, 14 papers, 0 errors, 418 tests. 14 rows now
+distinguishable as dual-agent-verified. Phase C is 3 of 12 papers appended, 6 of
+12 read, and gated on a v1.2 schema decision for the rest.
