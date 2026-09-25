@@ -606,3 +606,141 @@ Result: 5 rows added, 107 → 112. Ten papers extracted. Commit a76097f.
 **Schema and methodology notes.** No new schema gap surfaced. Fig. 4 reports pore-size distribution only as relative volume normalized to the saturated amount, so no absolute pore volume in cm³/g exists to record — this is adjacent to open schema gap #4 but is a reporting limitation of the paper, not a schema limitation. Two internal inconsistencies were recorded in row notes without affecting extracted fields: Fig. 9(b) text states the as-prepared TR-GO I_D/I_G as 0.946 while Table 2 assigns 0.946 to GO and 0.848 to TR-GO (Table 2 taken as authoritative per the primary-table rule, now the fourth such conflict in the corpus), and the Fig. 2 caption mislabels panel (d) as CR-GO where the figure and body text say Fe-GS. Table 1 (p. 8312) is a literature summary of other groups' data including Parambhath (already HYC-0027) and was excluded from extraction entirely.
 
 **Outcome.** 7 rows, Tier A, extraction_confidence 5, all table_direct. Dataset at 119 rows across 11 papers. Committed as d696dc3, pushed to origin/main.
+## 2026-09-24 — Session: Phase A (pipeline automation)
+
+**Phase.** §18 Phase A — the four helper scripts, with tests. No paper was
+extracted and no dataset row changed in this session.
+
+**Baseline at start.** Commit `3a37957` on `origin/main`. Dataset
+`data/raw/measurements_v0.1.csv`: 119 rows, 11 papers, sha256
+`55875a906d565df3…`, validation 0 errors, warning types `Unspecified
+uptake_type ×96` and `mmol/g and wt% inconsistent ×1`. Test suite as the
+manual recorded it: 82 tests.
+
+**§6 did not match the repository, and this was surfaced before any work
+began.** Three mismatches. The working tree was not clean: six untracked
+files existed, a previous session having begun Phase A without committing
+it. The test count was not 82 but 119, of which one was failing. Phase A was
+therefore roughly 40% done rather than not started, and only A.1 had any
+tests, so §18's "each with tests" was unmet. The untracked material was
+treated as unverified draft, on the ground that §3.8 applies to a previous
+session's output exactly as it applies to a subagent's.
+
+**Work completed.** All four scripts under `scripts/`, each with tests, in
+five commits (`4567286`, `9f10e12`, `55f5c44`, `70dab25`, `3d3fb57`):
+`validate_row_detail.py` (per-row validation detail), `inspect_columns.py`
+(column inspection CLI), `append_paper.py` (§9.1 steps 11–14 as one
+refusing command), `digitize_figure.py` (§3.4 programmatic digitization).
+394 tests pass; `ruff check --select E,F` is clean across `scripts/` and
+`tests/`. The dataset, `src/hycan/`, `references/`, and the pre-existing
+test modules are byte-identical to `3a37957`.
+
+**Verification architecture used on this session's own work.** Four
+isolated agents, none of which saw the reasoning behind the code they were
+judging. Two audited the first version, two re-audited after the fixes with
+instructions to be adversarial. Every defect below was demonstrated by
+execution, not inferred from reading.
+
+**Problems — what the audits found, stated without minimisation.**
+
+The first pair found 6 critical and 7 high defects in code that passed 239
+tests. Three mattered most. `append_paper.py` wrapped its rollback in
+`except CheckFailed`, but `verify_merged` reaches pandas, which raises
+`ParserError`; a staging file with 39 fields against a 38-column header was
+absorbed by pandas as an index, passed all eight preflight checks, and left
+the dataset unparseable with no rollback — taking `validate_data.py` and
+`validate_row_detail.py` down with it, so every recovery tool failed at
+once. The §11.5 new-warning-type stop condition was bypassable because
+`--baseline` never checked which dataset the baseline came from. And
+`digitize_figure.py` had no plot-area bound, so a legend sample in the
+series colour won the per-bin median: 4.88 wt% extracted as 0.82 wt%, an
+83% error across 11% of the x range, archived as data with exit 0.
+
+The second pair, given the fixed scripts, found that four of the ten fixes
+were incomplete and that the fixes had introduced problems of their own.
+Two produced silently wrong numbers. `load_rgb` called
+`Image.convert("RGB")`, which discards alpha rather than compositing it, so
+a semi-transparent fill under a curve matched the series colour at full
+strength and every extracted value came out at almost exactly half its true
+value — internally consistent, plausibly shaped, undetected by any check.
+And because two reference points fix a mapping exactly at those two points,
+a log axis read without `--log-x` is correct at both ends and wrong
+everywhere between; `check` cannot catch it, because it constrains y at an
+x the calibration pins, and papers state values at axis endpoints more
+often than mid-axis. One omitted flag produced pressure errors of 13× to
+398× in an archive marked `passed`.
+
+**A failure in this session's own method, recorded because §17.1 requires
+it.** After the first fixes, a mutation sweep was run against the four
+functions that had just been changed, all four mutations were caught, and
+that was taken as evidence about the test suite. It was evidence about four
+lines. An isolated auditor then ran 56 mutations across the whole suite and
+**41 of the first 42 survived**: the tests asserted that a code path had
+been taken, not what it computed. Disabling the backup hash verification
+entirely survived, because the test asserted the word "verified" appeared
+in the output and that word came from an unconditional `print`. One
+assertion, `assert "merged row count is" in out or "errors" in out`, was
+vacuous because the second disjunct is always true after preflight prints
+"0 errors". The tests were rewritten and every mutation an auditor used now
+fails the suite, including the eleven written against the second round of
+fixes.
+
+**Decisions made.**
+- Untracked Phase A material from the previous session treated as
+  unverified draft rather than as completed work (§3.8).
+- The failing test was judged correct and the implementation wrong: the
+  `n_rows + 2` tolerance for a trailing blank line also absorbs exactly one
+  newline inside a quoted field, which is the only thing the check exists
+  to detect. The same defect was then found in `append_paper.py`'s
+  `describe_file`, where it gated the safety of a byte-level append onto
+  the dataset and nothing tested it.
+- Refusal thresholds for multi-cluster detection were changed from a raw
+  count to a contiguous-run test after an audit showed the original refused
+  ordinary marker-and-line isotherms, error-bar caps and dash gaps.
+  Refusing correct extractions trains an operator into
+  `--allow-multimodal`, which disables the check that matters.
+- Baseline provenance was changed from a path comparison to a hash of the
+  row prefix the baseline described, after an audit defeated the path check
+  using file moves alone.
+- `ruff --fix` was run broadly at one point and modified
+  `tests/test_schema.py`, a pre-existing file §6.7 places off limits. It
+  was reverted immediately and confirmed byte-identical. The lesson is
+  §6.7's: a tool that edits in place needs its scope named explicitly.
+
+**Known limitations carried forward, not fixed here.** Nothing consumes a
+digitization archive's `status` field: no validator and no part of
+`append_paper.py` reads it, so a row carrying
+`extraction_method = figure_digitized` can still be appended without
+reference to any archive. Closing that belongs with Phase B's schema work.
+`check` verifies the points it is given and says so, but nothing enforces
+that every value a paper states from a figure has been checked. A staging
+cell containing a NUL byte is still accepted. The default region of
+interest is derived from the calibration reference pixels, which is the
+plot area only when those pixels are the extreme ticks; calibrating from
+interior ticks silently narrows the search, and the tool reports how many
+pixels it excluded so this is visible rather than silent.
+
+**Pipeline bottlenecks.** The two §18 named (summary-only validator output,
+ad-hoc pandas heredocs) are closed by A.1 and A.2. The bottleneck this
+session revealed is different: a test suite that passes is weak evidence
+that code is correct. Mutation testing found in minutes what 239 passing
+tests did not, and should be run against any new safety-critical check
+rather than only when something looks wrong.
+
+**State at end.** Branch `phase-a-pipeline-automation`, five commits ahead
+of `3a37957`. Dataset unchanged at 119 rows, 11 papers, 0 errors, warning
+types 96 + 1. 394 tests pass. **Not pushed:** the git proxy refuses writes
+to `AvinGupta-ship-it/hycan-db` because the repository is not in this
+session's authorized set. Reads succeed, which is how `origin/main` was
+confirmed at `3a37957`. The work was delivered as a git bundle instead. Per
+§2.4 this is recorded as not done rather than as done.
+
+**Next.**
+1. Authorize the repository for the session, or apply the bundle, so Phase
+   A is on `origin/main`.
+2. Phase B — schema v1.1: the four gaps in §8.5 and the two cleanups in
+   §8.6, in one migration, with the §13.4 limitation written into
+   `docs/reproducibility_tiering.md`.
+3. Phase C — the twelve unextracted PDFs in §6.3 under the §3.2 dual-agent
+   protocol, with the figure-only papers batched so all required crops are
+   requested at once.

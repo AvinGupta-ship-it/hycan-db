@@ -4,6 +4,17 @@ All notable changes to HyCAN-DB will be documented in this file.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
+### Added
+- Phase A pipeline automation (manual v2.0 §18), four command-line helpers under `scripts/`, each with tests:
+  - `validate_row_detail.py` — per-row validation detail: which row, which field, and that field's current value, where `validate_data.py` reports only counts by type.
+  - `inspect_columns.py` — column inspection CLI replacing ad-hoc pandas heredocs; reports the physical CSV column order against `schema.py`'s declaration order (§6.7) and warns on rows of differing width.
+  - `append_paper.py` — §9.1 steps 11–14 as one command that refuses on any check failure: verify staging from disk, validate standalone, back up, append positionally, re-verify the merged file against the session baseline, remove staging.
+  - `digitize_figure.py` — §3.4 programmatic figure digitization: axis calibration with an optional third verification tick, colour isolation bounded to the plot region, point extraction, JSON archival of every parameter, and a check subcommand that records its verdict in the archive.
+- 312 new tests (82 → 394 total).
+### Changed
+- Nothing in the dataset, the schema, the source modules, or the pre-existing tests. `data/raw/measurements_v0.1.csv` is byte-identical: 119 rows, 11 papers, 0 errors, warning types `Unspecified uptake_type ×96` and `mmol/g and wt% inconsistent ×1`.
+### Notes
+- The scripts were audited by four isolated agents that had not seen the reasoning behind the code. The defects they demonstrated — and the vacuous tests that had let those defects pass — are recorded in `docs/ai_usage_log.md` rather than summarised away.
 
 ## [v0.1-alpha] - 2026-07-09
 ### Added
