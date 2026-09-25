@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 
 import append_paper as ap
 import pandas as pd
@@ -807,7 +808,95 @@ def test_a_dataset_that_lost_rows_since_the_baseline_is_refused(
                      "--backup-dir", tmp_path / "bak"], capsys)
 
     assert code == 1
-    assert "Rows have been removed since the baseline" in out
+    assert "are not the rows this baseline was taken from" in out
+
+
+def test_a_dataset_edited_in_place_since_the_baseline_is_refused(
+    dataset, staging, baseline, tmp_path, capsys
+):
+    """Same row count, different content: only a content check catches this."""
+    edited = pd.read_csv(dataset)
+    edited.loc[0, "uptake_wt_pct"] = 9.9
+    edited.to_csv(dataset, index=False)
+
+    before = sha(dataset)
+    code, out = run([staging, "--dataset", dataset, "--baseline", baseline,
+                     "--backup-dir", tmp_path / "bak"], capsys)
+
+    assert code == 1
+    assert "are not the rows this baseline was taken from" in out
+    assert sha(dataset) == before
+
+
+def test_a_dataset_swapped_for_a_decoy_at_the_same_path_is_refused(
+    tmp_path, capsys
+):
+    """The path is the same, so a path-only check binds nothing.
+
+    An audit produced this with file moves alone, no JSON editing: take the
+    baseline while a decoy occupies the path, put the real dataset back, and a
+    staging row carrying a brand-new warning type appends with the run
+    reporting "new warn types: none".
+    """
+    real = write_csv(tmp_path / "ds.csv",
+                     [make_row(measurement_id="HYC-9001-M1")])
+    decoy = write_csv(tmp_path / "decoy.csv",
+                      [make_row(measurement_id="HYC-9001-M1",
+                                pressure_bar=250.0)])
+
+    parked = tmp_path / "parked.csv"
+    real.rename(parked)
+    decoy.rename(tmp_path / "ds.csv")
+
+    base = tmp_path / "b.json"
+    run(["--dataset", tmp_path / "ds.csv", "--write-baseline", base], capsys)
+    assert "Pressure above 200 bar" in json.loads(base.read_text())["warning_counts"]
+
+    (tmp_path / "ds.csv").rename(tmp_path / "decoy.csv")
+    parked.rename(tmp_path / "ds.csv")
+
+    stage = write_csv(tmp_path / "s.csv",
+                      [make_row(paper_id="HYC-9002", sample_id="HYC-9002-S1",
+                                measurement_id="HYC-9002-M1",
+                                doi="10.1016/j.carbon.2016.04.002",
+                                pressure_bar=250.0)])
+    before = sha(tmp_path / "ds.csv")
+
+    code, out = run([stage, "--dataset", tmp_path / "ds.csv",
+                     "--baseline", base, "--backup-dir", tmp_path / "bak"],
+                    capsys)
+
+    assert code == 1
+    assert "are not the rows this baseline was taken from" in out
+    assert sha(tmp_path / "ds.csv") == before
+
+
+def test_a_baseline_without_a_content_fingerprint_is_refused(
+    dataset, staging, tmp_path, capsys
+):
+    stale = tmp_path / "old.json"
+    stale.write_text(json.dumps({
+        "rows": 2, "error_counts": {}, "warning_counts": {},
+        "dataset": str(dataset.resolve()),
+    }), encoding="utf-8")
+
+    code, out = run([staging, "--dataset", dataset, "--baseline", stale], capsys)
+    assert code == 1
+    assert "predates content binding" in out
+
+
+def test_a_hardlink_alias_to_the_same_file_is_accepted(
+    dataset, staging, baseline, tmp_path, capsys
+):
+    """Binding is to the file, not to the spelling of its path."""
+    alias = tmp_path / "alias.csv"
+    os.link(dataset, alias)
+
+    code, out = run([staging, "--dataset", alias, "--baseline", baseline,
+                     "--backup-dir", tmp_path / "bak"], capsys)
+
+    assert code == 0, out
+    assert len(pd.read_csv(alias)) == 4
 
 
 def test_the_baseline_sha_messages_distinguish_matched_from_drifted(
@@ -1213,3 +1302,90 @@ def test_write_baseline_on_a_missing_dataset_exits_2(tmp_path, capsys):
                      "--write-baseline", tmp_path / "b.json"], capsys)
     assert code == 2
     assert "dataset not found" in out
+
+
+def test_a_partial_write_during_the_append_is_rolled_back(
+    dataset, staging, baseline, tmp_path, monkeypatch, capsys
+):
+    """ENOSPC mid-append leaves a state matching neither before nor after.
+
+    That is the one outcome with no safe recovery, so the write itself must be
+    inside the rollback guard, not before it.
+    """
+    real_append = ap.append_body
+
+    def partial(target, body):
+        real_append(target, body[:len(body) // 2])   # truncated mid-row
+        raise OSError(28, "No space left on device")
+
+    monkeypatch.setattr(ap, "append_body", partial)
+    before = sha(dataset)
+
+    code, out = run([staging, "--dataset", dataset, "--baseline", baseline,
+                     "--backup-dir", tmp_path / "bak"], capsys)
+
+    assert code == 1
+    assert "No space left on device" in out
+    assert "restored and verified byte-identical" in out
+    assert sha(dataset) == before
+    assert len(pd.read_csv(dataset)) == 2
+
+
+def test_an_oversized_field_is_a_refusal_not_a_traceback(
+    dataset, baseline, tmp_path, capsys
+):
+    """csv.reader caps a field at 128 KiB; every other tool reads such a file."""
+    big = write_csv(tmp_path / "big.csv",
+                    [make_row(paper_id="HYC-9002", sample_id="HYC-9002-S1",
+                              measurement_id="HYC-9002-M1",
+                              doi="10.1016/j.carbon.2016.04.002",
+                              notes="x" * 200_000)])
+
+    code, out = run([big, "--dataset", dataset, "--baseline", baseline], capsys)
+    assert code == 1
+    assert "cannot parse" in out
+    assert "Traceback" not in out
+
+
+def test_a_directory_passed_as_a_path_is_a_refusal_not_a_traceback(
+    dataset, tmp_path, capsys
+):
+    code, out = run([tmp_path, "--dataset", dataset], capsys)
+    assert code in (1, 2)
+    assert "Traceback" not in out
+
+
+def test_a_refused_baseline_is_not_left_on_disk(tmp_path, capsys):
+    """A refused baseline left behind is a usable baseline."""
+    broken = write_csv(tmp_path / "broken.csv",
+                       [make_row(measurement_id="HYC-9001-M1",
+                                 temperature_k=None)])
+    out_path = tmp_path / "baseline.json"
+
+    code, out = run(["--dataset", broken, "--write-baseline", out_path], capsys)
+
+    assert code == 1
+    assert not out_path.exists()
+    assert "removed" in out
+
+
+def test_the_baseline_records_a_content_fingerprint(tmp_path, dataset, capsys):
+    out_path = tmp_path / "b.json"
+    run(["--dataset", dataset, "--write-baseline", out_path], capsys)
+
+    stored = json.loads(out_path.read_text())
+    assert len(stored["prefix_sha256"]) == 64
+    assert stored["prefix_sha256"] == ap.prefix_sha256(str(dataset), stored["rows"])
+
+
+def test_the_fingerprint_covers_exactly_the_rows_the_baseline_described(
+    tmp_path, dataset, staging, baseline, capsys
+):
+    """Appending must not invalidate the baseline; editing a described row must."""
+    recorded = json.loads(baseline.read_text())["prefix_sha256"]
+
+    run([staging, "--dataset", dataset, "--baseline", baseline,
+         "--backup-dir", tmp_path / "bak"], capsys)
+
+    assert ap.prefix_sha256(str(dataset), 2) == recorded    # appends are fine
+    assert ap.prefix_sha256(str(dataset), 4) != recorded    # more rows, new hash

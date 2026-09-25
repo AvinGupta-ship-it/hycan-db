@@ -122,6 +122,10 @@ def read_csv(path: str) -> pd.DataFrame:
         ) from exc
     except UnicodeDecodeError as exc:
         raise CheckFailed(f"{path} is not valid UTF-8: {exc}") from exc
+    except OSError as exc:
+        # IsADirectoryError, PermissionError and friends. A bad path argument
+        # should be a refusal with an exit code, not a traceback.
+        raise CheckFailed(f"cannot read {path}: {exc}") from exc
 
 
 def field_counts(path: str) -> dict[int, list[int]]:
@@ -136,11 +140,19 @@ def field_counts(path: str) -> dict[int, list[int]]:
     malformed file into a clean-looking frame.
     """
     counts: dict[int, list[int]] = {}
-    with open(path, "r", encoding="utf-8", newline="") as handle:
-        for number, row in enumerate(csv.reader(handle), start=1):
-            if not row or (len(row) == 1 and not row[0].strip()):
-                continue
-            counts.setdefault(len(row), []).append(number)
+    try:
+        with open(path, "r", encoding="utf-8", newline="") as handle:
+            for number, row in enumerate(csv.reader(handle), start=1):
+                if not row or (len(row) == 1 and not row[0].strip()):
+                    continue
+                counts.setdefault(len(row), []).append(number)
+    except csv.Error as exc:
+        # csv.reader caps a single field at 128 KiB. A long notes cell would
+        # otherwise take --write-baseline and every append offline with a bare
+        # traceback, on a file every other tool in the repo reads happily.
+        raise CheckFailed(f"cannot parse {path} as CSV: {exc}") from exc
+    except (OSError, UnicodeDecodeError) as exc:
+        raise CheckFailed(f"cannot read {path}: {exc}") from exc
     return counts
 
 
@@ -210,6 +222,7 @@ def write_baseline(dataset: str, out_path: str) -> int:
         "created": datetime.now().isoformat(timespec="seconds"),
         "dataset": os.path.realpath(dataset),
         "sha256": info["sha256"],
+        "prefix_sha256": prefix_sha256(dataset, info["rows"]),
         **state,
     }
     try:
@@ -239,11 +252,37 @@ def write_baseline(dataset: str, out_path: str) -> int:
         print(f"    {name}: {count}")
 
     if sum(stored["error_counts"].values()):
+        # Remove it. A refused baseline left on disk is a usable baseline, and
+        # the next command that passes --baseline would anchor the session to
+        # the broken dataset this call just rejected.
+        try:
+            os.remove(out_path)
+            removed = f"{out_path} removed."
+        except OSError as exc:
+            removed = f"Could not remove {out_path}: {exc}. Delete it by hand."
         print("\nREFUSED: the baseline dataset has validation errors. A session "
               "anchored to a broken dataset cannot tell which errors it caused. "
-              "Fix the dataset, then take the baseline again.")
+              f"Fix the dataset, then take the baseline again. {removed}")
         return 1
     return 0
+
+
+def prefix_sha256(path: str, data_lines: int) -> str:
+    """Hash of the header plus the first *data_lines* data lines.
+
+    This is what binds a baseline to the dataset it was taken from. Comparing
+    paths alone binds nothing: the file at a path can be swapped, and comparing
+    whole-file hashes cannot work either, because the dataset legitimately
+    grows during a session. Hashing the prefix that must not change detects a
+    substitution while still permitting appends.
+    """
+    digest = hashlib.sha256()
+    with open(path, "rb") as handle:
+        for number, line in enumerate(handle):
+            if number > data_lines:
+                break
+            digest.update(line)
+    return digest.hexdigest()
 
 
 def load_baseline(path: str) -> dict:
@@ -279,12 +318,37 @@ def check_baseline_belongs_to(baseline: dict, path: str, dataset_path: str) -> N
             f"baseline {path} does not record which dataset it was taken from, "
             "so it cannot be matched to this one. Take a fresh baseline."
         )
-    if os.path.realpath(recorded) != os.path.realpath(dataset_path):
+    if os.path.realpath(recorded) != os.path.realpath(dataset_path) and (
+        not os.path.exists(recorded)
+        or not os.path.samefile(recorded, dataset_path)
+    ):
         raise CheckFailed(
             f"baseline {path} was taken from {recorded}, but this run targets "
             f"{os.path.realpath(dataset_path)}. A baseline from another file "
             "cannot police this one's warning types (§11.5). Take a baseline "
             "for the dataset you are appending to."
+        )
+
+    # The path can be made to point at a different file between the baseline
+    # and the append. Bind by content: the rows the baseline described must
+    # still be the rows at the head of this dataset. Appends are permitted,
+    # substitutions are not.
+    recorded_prefix = baseline.get("prefix_sha256")
+    if not recorded_prefix:
+        raise CheckFailed(
+            f"baseline {path} predates content binding (no prefix_sha256) and "
+            "cannot be verified against this dataset. Take a fresh baseline."
+        )
+    try:
+        actual_prefix = prefix_sha256(dataset_path, int(baseline["rows"]))
+    except (OSError, ValueError, TypeError) as exc:
+        raise CheckFailed(f"cannot fingerprint {dataset_path}: {exc}") from exc
+    if actual_prefix != recorded_prefix:
+        raise CheckFailed(
+            f"the first {baseline['rows']} row(s) of {dataset_path} are not the "
+            "rows this baseline was taken from. The file has been replaced, "
+            "reordered, or edited in place since then, so its warning types "
+            "cannot be trusted as a baseline (§11.5). Take a fresh one."
         )
 
 
@@ -392,14 +456,10 @@ def preflight(staging_path: str, dataset_path: str, baseline_path: str | None) -
         check_baseline_belongs_to(baseline, baseline_path, dataset_path)
         source = f"stored baseline {baseline_path}"
         if baseline.get("sha256") and baseline["sha256"] != dataset["sha256"]:
+            # Row loss cannot reach here: check_baseline_belongs_to hashes the
+            # baseline's whole row prefix, so a shortened dataset is refused
+            # there with a more specific message.
             grown = dataset_state["rows"] - baseline["rows"]
-            if grown < 0:
-                raise CheckFailed(
-                    f"the dataset has {dataset_state['rows']} rows but the "
-                    f"baseline recorded {baseline['rows']}. Rows have been "
-                    "removed since the baseline was taken. Investigate before "
-                    "appending."
-                )
             print(f"  8. dataset has changed since the baseline was taken: "
                   f"{baseline['rows']} -> {dataset_state['rows']} rows "
                   f"(+{grown}; expected if you have already appended today)")
@@ -634,16 +694,20 @@ def run_append(args) -> int:
         raise CheckFailed(f"backup {backup} does not match the dataset; aborting")
     print(f"Backup  {backup}  (sha {dataset['sha256'][:12]}, verified)")
 
-    # --- Append ---
-    append_body(args.dataset, body)
-    print(f"Append  {staging['rows']} rows appended positionally")
-
-    # --- Verify, rolling back on ANY failure ---
+    # --- Append and verify, rolling back on ANY failure ---
     #
-    # Not just CheckFailed. verify_merged reaches pandas, which raises
-    # ParserError and EmptyDataError; an uncaught one of those would leave the
-    # dataset appended-but-unverified, which is the worst state available.
+    # The write is inside the guarded block, not before it. A partial write —
+    # ENOSPC, a quota, a disconnected volume — leaves the dataset matching
+    # neither its before state nor its after state, and that is the one
+    # outcome with no safe recovery path. It must roll back like any other
+    # failure.
+    #
+    # The catch is Exception, not CheckFailed. verify_merged reaches pandas,
+    # which raises ParserError and EmptyDataError; an uncaught one of those
+    # would leave the dataset appended-but-unverified.
     try:
+        append_body(args.dataset, body)
+        print(f"Append  {staging['rows']} rows appended positionally")
         merged, merged_state = verify_merged(args.dataset, context)
     except Exception as exc:
         try:

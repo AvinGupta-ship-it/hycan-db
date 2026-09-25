@@ -367,6 +367,9 @@ def main(argv: list[str]) -> int:
     except UnicodeDecodeError as exc:
         print(f"Error: {args.csv} is not valid UTF-8: {exc}")
         return 2
+    except OSError as exc:
+        print(f"Error: cannot read {args.csv}: {exc}")
+        return 2
 
     if args.no_dataset_checks:
         results = [validate_row(r) for r in df.to_dict(orient="records")]

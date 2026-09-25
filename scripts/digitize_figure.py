@@ -90,21 +90,44 @@ TOOL_VERSION = "2.0"
 # generous --tolerance-pct cannot quietly turn the §3.4 gate into a formality.
 MAX_TOLERANCE_PCT = 25.0
 
+# An absolute tolerance is for values near zero. Beyond this fraction of the
+# series' own y range it stops being a check and becomes a way around one.
+MAX_TOLERANCE_ABS_FRACTION = 0.10
+
 
 # ---------------------------------------------------------------------------
 # Image loading
 # ---------------------------------------------------------------------------
 
 def load_rgb(path: str) -> np.ndarray:
-    """Load *path* as an (H, W, 3) uint8 array.
+    """Load *path* as an (H, W, 3) uint8 array, compositing alpha onto white.
 
-    The convert is load-bearing: real figure crops arrive as RGBA, as
-    palette-indexed PNGs, and as mode-L greyscale, and an (H, W, 4) array
-    would break the colour comparison by broadcasting.
+    ``Image.convert("RGB")`` alone DISCARDS the alpha channel rather than
+    flattening it, which is the opposite of what a digitizer needs. A
+    semi-transparent fill under a curve — matplotlib's ``fill_between(...,
+    alpha=0.25)``, or any figure saved with ``transparent=True`` — keeps its
+    full opaque RGB and therefore matches the series colour at full strength.
+    The fill is contiguous with the curve, so cluster detection sees one
+    cluster, and the per-bin median lands in the middle of the filled column:
+    every extracted value comes out at very close to half its true value,
+    internally consistent and plausibly shaped.
+
+    Compositing onto white is correct for a figure destined for a page. A
+    transparent background also becomes white rather than black, which matters
+    because black is what a dark series would be confused with.
     """
     from PIL import Image
 
     with Image.open(path) as image:
+        if image.mode in ("RGBA", "LA") or (
+            image.mode == "P" and "transparency" in image.info
+        ):
+            rgba = image.convert("RGBA")
+            background = Image.new("RGBA", rgba.size, (255, 255, 255, 255))
+            return np.asarray(
+                Image.alpha_composite(background, rgba).convert("RGB"),
+                dtype=np.uint8,
+            )
         return np.asarray(image.convert("RGB"), dtype=np.uint8)
 
 
@@ -171,6 +194,24 @@ class AxisCalibration:
     def span(self) -> tuple[float, float]:
         """The pixel interval between the two reference points, low first."""
         return (min(self.p1, self.p2), max(self.p1, self.p2))
+
+    def decades(self) -> float:
+        """How many powers of ten the two reference values span."""
+        if self.v1 == 0 or self.v2 == 0:
+            return 0.0
+        ratio = abs(self.v2 / self.v1)
+        return abs(math.log10(ratio)) if ratio > 0 else 0.0
+
+    def residual_at(self, pixel: float, value: float) -> tuple[float, float]:
+        """(predicted value, relative error) for a third, verification tick.
+
+        Two reference points fix a mapping exactly at those two points, so a
+        linear mapping and a log mapping AGREE there and disagree everywhere
+        between. A third tick is the only thing that can tell them apart.
+        """
+        predicted = float(self.to_data(pixel))
+        denominator = max(abs(value), 1e-12)
+        return predicted, abs(predicted - value) / denominator
 
     def data_range(self) -> tuple[float, float]:
         return (min(self.v1, self.v2), max(self.v1, self.v2))
@@ -252,6 +293,18 @@ def cluster(values: np.ndarray, max_gap: float) -> list[np.ndarray]:
     return np.split(ordered, breaks + 1)
 
 
+def longest_run(indices: list[int]) -> int:
+    """Length of the longest run of consecutive integers in *indices*."""
+    if not indices:
+        return 0
+    ordered = sorted(set(indices))
+    best = run = 1
+    for previous, current in zip(ordered, ordered[1:]):
+        run = run + 1 if current == previous + 1 else 1
+        best = max(best, run)
+    return best
+
+
 def extract_points(xs, ys, bin_width: int, min_pixels: int, max_gap: float = 5.0):
     """Collapse matched pixels to one point per x bin (median y within the bin).
 
@@ -278,7 +331,11 @@ def extract_points(xs, ys, bin_width: int, min_pixels: int, max_gap: float = 5.0
         groups = cluster(bin_ys, max_gap)
         if len(groups) > 1:
             multimodal.append({
+                "bin_index": int(bin_index),
                 "pixel_x": float(np.median(xs[mask])),
+                "separation_px": float(
+                    max(b.min() - a.max() for a, b in zip(groups, groups[1:]))
+                ),
                 "clusters": [
                     {"pixel_y_min": float(g.min()),
                      "pixel_y_max": float(g.max()),
@@ -337,6 +394,57 @@ def run_extract(args) -> int:
         print(f"Error: {exc}")
         return 2
 
+    # A third tick per axis, used only as a residual check.
+    #
+    # Two reference points fix a mapping exactly at those two points, so a
+    # linear reading of a log axis agrees with the truth at both ends and
+    # disagrees everywhere between. `check` cannot catch it either, because it
+    # constrains y at an x the calibration pins — and papers state values at
+    # axis endpoints far more often than mid-axis. An audit produced pressure
+    # errors of 13x to 398x from one omitted --log-x, certified "passed".
+    verifications = []
+    for axis, pixel, value in (
+        (x_axis, args.x_verify_px, args.x_verify_val),
+        (y_axis, args.y_verify_px, args.y_verify_val),
+    ):
+        if (pixel is None) != (value is None):
+            print(f"Error: --{axis.name}-verify-px and --{axis.name}-verify-val "
+                  "must be given together.")
+            return 2
+        if pixel is None:
+            if not axis.log and axis.decades() > 2 and not args.assume_linear:
+                print(
+                    f"Error: the {axis.name} axis is declared linear but its "
+                    f"reference values span {axis.decades():.1f} decades "
+                    f"({axis.v1:g} to {axis.v2:g}). That is the signature of a "
+                    f"log axis read without --log-{axis.name}, which agrees "
+                    "with the truth at both reference points and is wrong "
+                    "everywhere between.\nGive a third tick "
+                    f"(--{axis.name}-verify-px/--{axis.name}-verify-val) so "
+                    f"the mapping can be checked, add --log-{axis.name} if the "
+                    "axis is logarithmic, or pass --assume-linear if it really "
+                    "is linear across that range."
+                )
+                return 2
+            continue
+        predicted, error = axis.residual_at(pixel, value)
+        verifications.append({
+            "axis": axis.name, "pixel": float(pixel), "stated": float(value),
+            "predicted": predicted, "relative_error": error,
+        })
+        if error > args.verify_tolerance_pct / 100.0:
+            print(
+                f"Error: the {axis.name} calibration does not reproduce its "
+                f"verification tick.\n  at pixel {pixel:g} the axis states "
+                f"{value:g}, the calibration predicts {predicted:.6g} "
+                f"({100 * error:.2f}% off, tolerance "
+                f"{args.verify_tolerance_pct:g}%).\nThe two reference points "
+                f"are wrong, or the axis is "
+                f"{'linear' if axis.log else 'logarithmic'} rather than "
+                f"{'logarithmic' if axis.log else 'linear'}."
+            )
+            return 2
+
     rgb = load_rgb(args.image)
     height, width = rgb.shape[:2]
 
@@ -390,17 +498,40 @@ def run_extract(args) -> int:
               "widen the region with --roi.")
         return 1
 
-    points, multimodal = extract_points(
-        xs, ys, args.bin_width, args.min_pixels, args.max_gap
+    # The gap that counts as "two clusters" scales with the plot, not with a
+    # fixed pixel count. At 5 px a marker's upper and lower arc, an error-bar
+    # cap, and a dash gap on a steep segment all split, and an audit measured
+    # those false refusals on ordinary single-valued isotherms — which trains
+    # an operator to pass --allow-multimodal habitually, disabling the check
+    # that actually matters.
+    y_span_px = abs(y_axis.p2 - y_axis.p1)
+    max_gap = args.max_gap if args.max_gap is not None else max(
+        5.0, args.gap_pct_of_axis / 100.0 * y_span_px
     )
+
+    try:
+        points, multimodal = extract_points(
+            xs, ys, args.bin_width, args.min_pixels, max_gap
+        )
+    except ValueError as exc:
+        print(f"Error: {exc}")
+        return 2
     if not points:
         print(f"\nNo x bin held >= {args.min_pixels} pixels. Lower --min-pixels "
               "or raise --bin-width.")
         return 1
 
+    run = longest_run([entry["bin_index"] for entry in multimodal])
+    fraction = len(multimodal) / len(points)
+    # A hysteresis loop or a legend sample occupies a CONTIGUOUS stretch of x.
+    # A marker, an error bar or a dash gap produces isolated bins. Run length
+    # is what separates the two, so it, not the raw count, decides.
+    structural = run >= args.min_multimodal_run or fraction >= 0.5
+
     if multimodal:
         print(f"\n{len(multimodal)} of {len(points)} x bins hold more than one "
-              f"cluster of matched pixels (gap > {args.max_gap:g} px).")
+              f"cluster of matched pixels (gap > {max_gap:.1f} px, "
+              f"longest consecutive run {run}).")
         for entry in multimodal[:5]:
             spans = ", ".join(
                 f"y {c['pixel_y_min']:.0f}-{c['pixel_y_max']:.0f}"
@@ -409,22 +540,38 @@ def run_extract(args) -> int:
             print(f"    pixel_x {entry['pixel_x']:.0f}: {spans}")
         if len(multimodal) > 5:
             print(f"    ... and {len(multimodal) - 5} more")
-        if not args.allow_multimodal:
-            print("\nREFUSED. The usual causes are an adsorption/desorption "
-                  "hysteresis loop drawn in one colour, two series sharing a "
-                  "colour, or a stray element inside the region. A per-bin "
-                  "median across two branches lies on neither of them, so the "
-                  "extracted value would be a number that appears nowhere in "
-                  "the figure.\nCrop to one branch, narrow --roi, or pass "
-                  "--allow-multimodal if the split is an artefact.")
+
+        if structural and not args.allow_multimodal:
+            print(f"\nREFUSED. {run} consecutive bins is a structural split, "
+                  "not an artefact: the usual causes are an adsorption/"
+                  "desorption hysteresis loop drawn in one colour, a legend "
+                  "sample in the series colour, or two series sharing a "
+                  "colour. A per-bin median across two branches lies on "
+                  "neither of them, so the extracted value would be a number "
+                  "that appears nowhere in the figure.\nCrop to one branch, "
+                  "narrow --roi to exclude the legend, or pass "
+                  "--allow-multimodal if you have checked that the split is "
+                  "an artefact.")
             return 1
-        print("\nProceeding under --allow-multimodal. The affected bins are "
-              "recorded in the archive.")
+        if structural:
+            print("\nProceeding under --allow-multimodal despite a structural "
+                  "split. The affected bins are recorded in the archive.")
+        else:
+            print("\nScattered rather than contiguous, so these read as marker "
+                  "edges, error-bar caps or dash gaps rather than a second "
+                  "branch. Proceeding; the affected bins are recorded in the "
+                  "archive.")
 
     px = np.array([p[0] for p in points])
     py = np.array([p[1] for p in points])
     dx = x_axis.to_data(px)
     dy = y_axis.to_data(py)
+
+    # Points outside the calibrated axis range are extrapolations, not
+    # readings, and a consumer reading `series` must be able to tell which.
+    # An aggregate count cannot do that, so each point carries the flag.
+    x_lo, x_hi = x_axis.data_range()
+    y_lo, y_hi = y_axis.data_range()
 
     series = [
         {
@@ -433,17 +580,13 @@ def run_extract(args) -> int:
             "pixel_x": float(a),
             "pixel_y": float(b),
             "pixel_count": int(c),
+            "outside_axis_range": not (
+                x_lo <= float(x) <= x_hi and y_lo <= float(y) <= y_hi
+            ),
         }
         for x, y, (a, b, c) in zip(dx, dy, points)
     ]
-
-    # Points outside the calibrated axis range are extrapolations, not data.
-    x_lo, x_hi = x_axis.data_range()
-    y_lo, y_hi = y_axis.data_range()
-    outside = [
-        p for p in series
-        if not (x_lo <= p["x"] <= x_hi and y_lo <= p["y"] <= y_hi)
-    ]
+    outside = [p for p in series if p["outside_axis_range"]]
 
     archive = {
         "tool": TOOL,
@@ -460,8 +603,11 @@ def run_extract(args) -> int:
             "height_px": int(height),
         },
         "calibration": {
-            "x": {**x_axis.as_dict(), "label": args.x_label},
-            "y": {**y_axis.as_dict(), "label": args.y_label},
+            "x": {**x_axis.as_dict(), "label": args.x_label,
+                  "decades_spanned": x_axis.decades()},
+            "y": {**y_axis.as_dict(), "label": args.y_label,
+                  "decades_spanned": y_axis.decades()},
+            "verification_ticks": verifications,
         },
         "isolation": {
             "color_hex": to_hex(color),
@@ -475,7 +621,8 @@ def run_extract(args) -> int:
         "extraction": {
             "bin_width_px": int(args.bin_width),
             "min_pixels_per_bin": int(args.min_pixels),
-            "max_cluster_gap_px": float(args.max_gap),
+            "max_cluster_gap_px": float(max_gap),
+            "longest_multimodal_run": int(run),
             "aggregation": "median y of matched pixels within each x bin",
             "n_points": len(series),
             "multimodal_bins": multimodal,
@@ -556,6 +703,23 @@ def run_check(args) -> int:
               "--tolerance-abs with a stated physical basis.")
         return 2
 
+    y_values = [p["y"] for p in series]
+    y_range = max(y_values) - min(y_values)
+    if args.tolerance_abs is not None:
+        if args.tolerance_abs <= 0:
+            print("Error: --tolerance-abs must be positive.")
+            return 2
+        ceiling = MAX_TOLERANCE_ABS_FRACTION * y_range
+        if y_range > 0 and args.tolerance_abs > ceiling:
+            print(f"Error: --tolerance-abs {args.tolerance_abs:g} is "
+                  f"{100 * args.tolerance_abs / y_range:.0f}% of this series' "
+                  f"own y range ({y_range:.4g}), which is not a check. The "
+                  f"ceiling is {ceiling:.4g} "
+                  f"({100 * MAX_TOLERANCE_ABS_FRACTION:g}% of the range).\n"
+                  "An absolute tolerance is for values near zero, where a "
+                  "relative one is meaningless — not for widening the gate.")
+            return 2
+
     if len(args.at) != len(args.expect):
         print(f"Error: {len(args.at)} --at value(s) and {len(args.expect)} "
               "--expect value(s). They pair up, so give the same number.")
@@ -602,7 +766,8 @@ def run_check(args) -> int:
             return 2
 
         difference = got - expect
-        percent = 100.0 * abs(difference) / max(abs(expect), 1e-12)
+        percent = (None if expect == 0
+                   else 100.0 * abs(difference) / abs(expect))
 
         criteria = []
         passed = True
@@ -612,15 +777,23 @@ def run_check(args) -> int:
                             f"{'pass' if ok else 'FAIL'}")
             passed = passed and ok
         if args.tolerance_pct is not None:
-            ok = percent <= args.tolerance_pct
-            criteria.append(f"|diff| <= {args.tolerance_pct:g}% of stated: "
-                            f"{'pass' if ok else 'FAIL'}")
-            passed = passed and ok
+            if expect == 0:
+                # Every nonzero reading is infinitely far from zero in
+                # relative terms. Applying the percentage here would discard
+                # a correct digitization for being 0.03 wt% off a stated 0.
+                criteria.append("relative criterion not applicable at "
+                                "expect = 0; absolute criterion decides")
+            else:
+                ok = percent <= args.tolerance_pct
+                criteria.append(f"|diff| <= {args.tolerance_pct:g}% of stated: "
+                                f"{'pass' if ok else 'FAIL'}")
+                passed = passed and ok
 
         print(f"  at x = {at:g}")
         print(f"    paper states:     {expect:g}")
         print(f"    digitized series: {got:.6g}   (linear interpolation)")
-        print(f"    difference:       {difference:+.6g}  ({percent:.2f}%)")
+        shown = "n/a" if percent is None else f"{percent:.2f}%"
+        print(f"    difference:       {difference:+.6g}  ({shown})")
         for line in criteria:
             print(f"    {line}")
         print()
@@ -630,13 +803,24 @@ def run_check(args) -> int:
             "expected": float(expect),
             "got": float(got),
             "difference": float(difference),
-            "percent": float(percent),
+            "percent": None if percent is None else float(percent),
             "tolerance_pct": args.tolerance_pct,
             "tolerance_abs": args.tolerance_abs,
             "passed": bool(passed),
         })
 
-    every_passed = all(r["passed"] for r in results)
+    # The verdict covers every check ever recorded on this archive, not just
+    # this invocation. Otherwise a failed check is undone by re-running with an
+    # easier point, which is precisely the "adjust it until it fits" that §3.4
+    # forbids — and `extract` is already guarded against the same move.
+    prior = archive.get("checks", [])
+    prior_failures = [c for c in prior if not c.get("passed", False)]
+    every_passed = all(r["passed"] for r in results) and not prior_failures
+    if prior_failures and all(r["passed"] for r in results):
+        print(f"NOTE: {len(prior_failures)} earlier check(s) on this archive "
+              "failed. A later passing check does not undo them; the archive "
+              "stays discarded. Re-extract if the calibration has been "
+              "corrected.")
 
     # Record the outcome in the archive. Without this a failed archive is
     # byte-identical to a passed one, and "discard this digitization" is a
@@ -646,7 +830,15 @@ def run_check(args) -> int:
         for r in results
     ])
     archive["status"] = "passed" if every_passed else "discarded"
-    if not every_passed:
+    if every_passed:
+        archive["row_hint"] = dict(archive.get("row_hint") or {})
+        archive["row_hint"]["extraction_method"] = "figure_digitized"
+        archive["row_hint"].pop("notes", None)
+        archive["row_hint"]["notes"] = (
+            f"Digitized with {TOOL} v{TOOL_VERSION}; §3.4 step 6 check passed "
+            f"at {', '.join(str(r['at']) for r in results)}."
+        )
+    else:
         archive["row_hint"] = {
             "extraction_method": None,
             "notes": "DISCARDED by a failed §3.4 step 6 check. No row may be "
@@ -716,8 +908,16 @@ def build_parser() -> argparse.ArgumentParser:
     extract.add_argument("--roi-pad-pct", type=float, default=2.0)
     extract.add_argument("--bin-width", type=int, default=1)
     extract.add_argument("--min-pixels", type=int, default=1)
-    extract.add_argument("--max-gap", type=float, default=5.0)
+    extract.add_argument("--max-gap", type=float, default=None)
+    extract.add_argument("--gap-pct-of-axis", type=float, default=4.0)
+    extract.add_argument("--min-multimodal-run", type=int, default=8)
     extract.add_argument("--allow-multimodal", action="store_true")
+    extract.add_argument("--x-verify-px", type=float, default=None)
+    extract.add_argument("--x-verify-val", type=float, default=None)
+    extract.add_argument("--y-verify-px", type=float, default=None)
+    extract.add_argument("--y-verify-val", type=float, default=None)
+    extract.add_argument("--verify-tolerance-pct", type=float, default=2.0)
+    extract.add_argument("--assume-linear", action="store_true")
     extract.add_argument("--paper-id", default="")
     extract.add_argument("--figure", default="")
     extract.add_argument("--series-name", default="")

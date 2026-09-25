@@ -240,9 +240,16 @@ def apply_where(df: pd.DataFrame, clauses: list[str]) -> pd.DataFrame:
         mask = series.astype(str).str.strip() == value
 
         if value:
+            # Only the QUERY is coerced, never the column. Coercing the column
+            # too would turn the query into a value comparison rather than a
+            # literal one on text columns, so `--where code=1e2` would also
+            # select a cell reading "100" and `--where code=0077` would select
+            # "77.0" and " 77 ". Comparing the raw column to a number matches
+            # numeric columns, which is the case this exists for, and matches
+            # nothing on a string column, which is correct.
             wanted = pd.to_numeric(value, errors="coerce")
             if pd.notna(wanted):
-                mask = mask | (pd.to_numeric(series, errors="coerce") == wanted)
+                mask = mask | (series == wanted)
         else:
             mask = mask | series.isna()
 

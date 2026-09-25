@@ -530,3 +530,37 @@ def test_select_accepts_several_columns(clean_dataset, capsys):
     assert code == 0
     assert "measurement_id" in out and "pressure_bar" in out
     assert "material_class" not in out
+
+
+def test_numeric_matching_applies_only_to_numeric_columns(tmp_path, capsys):
+    """On a text column the query must be a literal, not a value comparison.
+
+    The sixth row is what makes the column text: with only numeric-looking
+    values pandas parses the whole column to float64 at read time and "0077",
+    "77.0" and "77" are already the same number before this code sees them.
+    A real code or ID column has non-numeric entries, and then the literal
+    must be honoured.
+    """
+    values = ["77", "0077", "77.0", "1e2", "100", "KOH 1:4"]
+    rows = [make_row(measurement_id=f"HYC-9001-M{n}", activation_method=v)
+            for n, v in enumerate(values, start=1)]
+    path = write_csv(tmp_path / "codes.csv", rows)
+
+    column = pd.read_csv(path)["activation_method"]
+    assert not pd.api.types.is_numeric_dtype(column)   # what the branch tests
+
+    for query in ("77", "0077", "77.0", "1e2", "100"):
+        code, out = run([str(path), "--where", f"activation_method={query}"],
+                        capsys)
+        assert code == 0
+        assert "-> 1 of 6 rows" in out, f"{query} over-matched"
+
+
+def test_numeric_matching_still_applies_to_numeric_columns(tmp_path, capsys):
+    rows = [make_row(measurement_id=f"HYC-9001-M{n}", temperature_k=t)
+            for n, t in enumerate([77.0, 298.0], start=1)]
+    path = write_csv(tmp_path / "t.csv", rows)
+
+    code, out = run([str(path), "--where", "temperature_k=77"], capsys)
+    assert code == 0
+    assert "-> 1 of 2 rows" in out

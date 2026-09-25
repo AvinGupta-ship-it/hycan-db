@@ -785,10 +785,83 @@ def test_both_tolerances_must_pass_when_both_are_given(extracted, capsys):
     """An absolute tolerance must not silently override a stricter relative one."""
     code, text = run(["check", "--digitization", extracted,
                       "--at", 50, "--expect", 2.6,
-                      "--tolerance-pct", 0.001, "--tolerance-abs", 99], capsys)
+                      "--tolerance-pct", 0.001, "--tolerance-abs", 0.4], capsys)
     assert code == 1
     assert "0.001% of stated: FAIL" in text
-    assert "99 absolute: pass" in text
+    assert "0.4 absolute: pass" in text
+    assert json.loads(extracted.read_text())["status"] == "discarded"
+
+
+def test_an_absolute_tolerance_wider_than_the_series_is_refused(extracted, capsys):
+    """--tolerance-abs was the unbounded, officially-advertised bypass."""
+    code, text = run(["check", "--digitization", extracted,
+                      "--at", 50, "--expect", 999, "--tolerance-abs", 1e9],
+                     capsys)
+    assert code == 2
+    assert "is not a check" in text
+    assert "ceiling is" in text
+    assert json.loads(extracted.read_text())["status"] == "unchecked"
+
+
+def test_an_absolute_tolerance_inside_the_ceiling_is_accepted(extracted, capsys):
+    code, _ = run(["check", "--digitization", extracted,
+                   "--at", 50, "--expect", 2.52, "--tolerance-abs", 0.1], capsys)
+    assert code == 0
+
+
+def test_a_negative_absolute_tolerance_is_refused(extracted, capsys):
+    code, text = run(["check", "--digitization", extracted,
+                      "--at", 50, "--expect", 2.5, "--tolerance-abs", -1], capsys)
+    assert code == 2
+    assert "must be positive" in text
+
+
+def test_a_discarded_archive_cannot_be_re_badged_by_an_easier_check(
+    extracted, capsys
+):
+    """Re-running check with a kinder point is 'adjust it until it fits'."""
+    code, _ = run(["check", "--digitization", extracted,
+                   "--at", 50, "--expect", 4.9, "--tolerance-pct", 5], capsys)
+    assert code == 1
+    assert json.loads(extracted.read_text())["status"] == "discarded"
+
+    code, text = run(["check", "--digitization", extracted,
+                      "--at", 50, "--expect", 2.5, "--tolerance-pct", 5], capsys)
+
+    assert code == 1
+    assert "earlier check(s) on this archive failed" in text
+    assert "does not undo them" in text
+
+    archive = json.loads(extracted.read_text())
+    assert archive["status"] == "discarded"
+    assert archive["row_hint"]["extraction_method"] is None
+    assert len(archive["checks"]) == 2
+
+
+def test_a_passing_archive_gets_a_consistent_row_hint(extracted, capsys):
+    """status and row_hint must never contradict each other."""
+    run(["check", "--digitization", extracted,
+         "--at", 50, "--expect", 2.5, "--tolerance-pct", 5], capsys)
+
+    archive = json.loads(extracted.read_text())
+    assert archive["status"] == "passed"
+    assert archive["row_hint"]["extraction_method"] == "figure_digitized"
+    assert "DISCARDED" not in archive["row_hint"]["notes"]
+    assert "check passed" in archive["row_hint"]["notes"]
+
+
+def test_expect_zero_with_both_tolerances_is_decided_by_the_absolute_one(
+    extracted, capsys
+):
+    """The relative criterion at expect=0 discarded correct digitizations."""
+    code, text = run(["check", "--digitization", extracted,
+                      "--at", 0, "--expect", 0,
+                      "--tolerance-abs", 0.1, "--tolerance-pct", 5], capsys)
+
+    assert code == 0
+    assert "not applicable at expect = 0" in text
+    assert "n/a" in text
+    assert json.loads(extracted.read_text())["checks"][0]["percent"] is None
 
 
 def test_a_tolerance_looser_than_the_cap_is_refused(extracted, capsys):
@@ -1043,3 +1116,267 @@ def test_a_reference_pixel_beyond_the_far_edge_is_rejected(
     assert code == 2
     assert "is outside the image height 300" in text
     assert not out.exists()
+
+
+# ---------------------------------------------------------------------------
+# Alpha compositing
+#
+# convert("RGB") DISCARDS alpha rather than flattening it, so a semi-transparent
+# fill under a curve keeps its full opaque RGB and matches at full strength.
+# The fill is contiguous with the curve, so nothing refuses, and every value
+# comes out at almost exactly half its true value.
+# ---------------------------------------------------------------------------
+
+@pytest.fixture
+def figure_with_alpha_fill(tmp_path):
+    from PIL import Image
+
+    canvas = np.full((300, 400, 4), 255, dtype=np.uint8)
+    for px in range(50, 351):
+        x_data = (px - X1_PX) / 3.0
+        py = int(round(250 - 20 * true_y(x_data)))
+        canvas[py:251, px] = (214, 39, 40, 64)      # 25% fill down to the axis
+        canvas[py - 1:py + 2, px] = (214, 39, 40, 255)
+
+    path = tmp_path / "alpha.png"
+    Image.fromarray(canvas, mode="RGBA").save(path)
+    return path
+
+
+def test_alpha_is_composited_onto_white_not_discarded(figure_with_alpha_fill):
+    rgb = dg.load_rgb(str(figure_with_alpha_fill))
+
+    fill = rgb[240, 340]        # inside the 25%-alpha band
+    curve_row = 250 - 20 * true_y((340 - X1_PX) / 3.0)
+    solid = rgb[int(round(curve_row)), 340]
+
+    assert tuple(solid) == RED
+    assert tuple(fill) != RED
+    assert all(c > 190 for c in fill), f"fill composited to {tuple(fill)}"
+
+
+def test_a_semi_transparent_fill_does_not_halve_every_value(
+    figure_with_alpha_fill, tmp_path, capsys
+):
+    out = tmp_path / "d.json"
+    code, text = _extract(figure_with_alpha_fill, out, capsys)
+    assert code == 0, text
+
+    series = json.loads(out.read_text())["series"]
+    worst = max(abs(p["y"] - true_y(p["x"])) for p in series)
+    assert worst < 0.05, f"worst y error {worst} wt%"
+
+    top = max(p["y"] for p in series)
+    assert top == pytest.approx(5.0, abs=0.05)
+    assert top > 4.0, "a discarded alpha channel halves this to about 2.5"
+
+
+def test_a_transparent_background_becomes_white_not_black(tmp_path):
+    from PIL import Image
+
+    canvas = np.zeros((10, 10, 4), dtype=np.uint8)       # fully transparent
+    path = tmp_path / "clear.png"
+    Image.fromarray(canvas, mode="RGBA").save(path)
+
+    rgb = dg.load_rgb(str(path))
+    assert (rgb == 255).all(), "a transparent background must not read as black"
+
+
+# ---------------------------------------------------------------------------
+# The log/linear trap
+#
+# Two reference points fix a mapping exactly at those two points, so a linear
+# reading of a log axis is correct at both ends and wrong everywhere between.
+# `check` constrains y at an x the calibration pins, so it cannot catch it, and
+# papers state values at axis endpoints more often than mid-axis. An audit
+# measured pressure errors of 13x to 398x from one omitted --log-x, certified
+# "passed".
+# ---------------------------------------------------------------------------
+
+def _log_extract(figure, out, capsys, *extra):
+    return run([
+        "extract", "--image", figure, "--out", out,
+        "--color", "#d62728", "--tolerance", 40,
+        "--x1-px", 50, "--x1-val", 0.01, "--x2-px", 350, "--x2-val", 100,
+        "--y1-px", Y1_PX, "--y1-val", Y1_VAL, "--y2-px", Y2_PX, "--y2-val", Y2_VAL,
+        *extra,
+    ], capsys)
+
+
+def test_a_wide_range_linear_axis_is_refused_without_a_third_tick(
+    figure, tmp_path, capsys
+):
+    out = tmp_path / "d.json"
+    code, text = _log_extract(figure, out, capsys)
+
+    assert code == 2
+    assert "declared linear but its reference values span" in text
+    assert "4.0 decades" in text
+    assert "--log-x" in text
+    assert not out.exists()
+
+
+def test_declaring_the_axis_log_resolves_it(figure, tmp_path, capsys):
+    out = tmp_path / "d.json"
+    code, text = _log_extract(figure, out, capsys, "--log-x")
+    assert code == 0, text
+    assert json.loads(out.read_text())["calibration"]["x"]["scale"] == "log10"
+
+
+def test_a_third_tick_that_agrees_resolves_it(figure, tmp_path, capsys):
+    """Pixel 200 is the geometric midpoint of 0.01..100, i.e. 1.0 on a log axis."""
+    out = tmp_path / "d.json"
+    code, text = _log_extract(figure, out, capsys, "--log-x",
+                              "--x-verify-px", 200, "--x-verify-val", 1.0)
+    assert code == 0, text
+    ticks = json.loads(out.read_text())["calibration"]["verification_ticks"]
+    assert len(ticks) == 1
+    assert ticks[0]["axis"] == "x"
+    assert ticks[0]["predicted"] == pytest.approx(1.0)
+
+
+def test_a_third_tick_catches_a_log_axis_read_as_linear(figure, tmp_path, capsys):
+    """The whole point: the residual at a third tick is what exposes it."""
+    out = tmp_path / "d.json"
+    code, text = _log_extract(figure, out, capsys, "--assume-linear",
+                              "--x-verify-px", 200, "--x-verify-val", 1.0)
+
+    assert code == 2
+    assert "does not reproduce its verification tick" in text
+    assert "the axis is logarithmic rather than linear" in text
+    assert not out.exists()
+
+
+def test_assume_linear_permits_a_genuinely_wide_linear_axis(
+    figure, tmp_path, capsys
+):
+    out = tmp_path / "d.json"
+    code, text = _log_extract(figure, out, capsys, "--assume-linear")
+    assert code == 0, text
+    assert json.loads(out.read_text())["calibration"]["x"]["scale"] == "linear"
+
+
+def test_an_ordinary_axis_range_needs_no_third_tick(extracted):
+    """0 to 100 bar spans no decades in this sense; nothing should be demanded."""
+    calibration = json.loads(extracted.read_text())["calibration"]
+    assert calibration["x"]["decades_spanned"] == 0.0
+
+
+def test_a_verification_tick_needs_both_halves(figure, tmp_path, capsys):
+    out = tmp_path / "d.json"
+    code, text = _extract(figure, out, capsys, "--x-verify-px", 200)
+    assert code == 2
+    assert "must be given together" in text
+
+
+def test_a_y_verification_tick_is_checked_too(figure, tmp_path, capsys):
+    out = tmp_path / "d.json"
+    code, text = _extract(figure, out, capsys,
+                          "--y-verify-px", 150, "--y-verify-val", 9.0)
+    assert code == 2
+    assert "the y calibration does not reproduce its verification tick" in text
+
+
+# ---------------------------------------------------------------------------
+# Multimodal detection must not refuse ordinary figures
+# ---------------------------------------------------------------------------
+
+@pytest.fixture
+def marker_and_line_figure(tmp_path):
+    """plot(p, n, 'o-') — the default isotherm style in this literature."""
+    from PIL import Image
+
+    canvas = np.full((300, 400, 3), 255, dtype=np.uint8)
+    for px in range(50, 351):
+        x_data = (px - X1_PX) / 3.0
+        py = int(round(250 - 20 * true_y(x_data)))
+        canvas[py - 1:py + 2, px] = RED
+
+    for px in range(60, 351, 40):                   # markers, radius 5
+        x_data = (px - X1_PX) / 3.0
+        cy = int(round(250 - 20 * true_y(x_data)))
+        yy, xx = np.ogrid[-5:6, -5:6]
+        disc = xx ** 2 + yy ** 2 <= 25
+        canvas[cy - 5:cy + 6, px - 5:px + 6][disc] = RED
+
+    path = tmp_path / "markers.png"
+    Image.fromarray(canvas).save(path)
+    return path
+
+
+def test_a_marker_and_line_isotherm_is_not_refused(
+    marker_and_line_figure, tmp_path, capsys
+):
+    out = tmp_path / "d.json"
+    code, text = _extract(marker_and_line_figure, out, capsys)
+
+    assert code == 0, text
+    assert "REFUSED" not in text
+    series = json.loads(out.read_text())["series"]
+    worst = max(abs(p["y"] - true_y(p["x"])) for p in series)
+    assert worst < 0.2, f"worst y error {worst} wt%"
+
+
+def test_scattered_splits_are_reported_but_not_refused(figure, tmp_path, capsys):
+    """Isolated bins read as artefacts; a contiguous run reads as structure."""
+    from PIL import Image
+
+    rgb = dg.load_rgb(str(figure)).copy()
+    for px in (120, 200, 280):                      # three isolated blobs
+        rgb[70:74, px] = RED
+    path = tmp_path / "specks.png"
+    Image.fromarray(rgb).save(path)
+
+    out = tmp_path / "d.json"
+    code, text = _extract(path, out, capsys)
+
+    assert code == 0, text
+    assert "Scattered rather than contiguous" in text
+    assert len(json.loads(out.read_text())["extraction"]["multimodal_bins"]) == 3
+
+
+def test_the_run_length_threshold_is_what_decides(figure, tmp_path, capsys):
+    """Lowering it turns the same scattered artefacts into a refusal."""
+    from PIL import Image
+
+    rgb = dg.load_rgb(str(figure)).copy()
+    rgb[70:74, 200:210] = RED                        # ten consecutive bins
+    path = tmp_path / "run.png"
+    Image.fromarray(rgb).save(path)
+
+    out = tmp_path / "d.json"
+    code, text = _extract(path, out, capsys)
+    assert code == 1
+    assert "consecutive bins is a structural split" in text
+
+    code, text = _extract(path, tmp_path / "e.json", capsys,
+                          "--min-multimodal-run", "50")
+    assert code == 0
+    assert "Scattered rather than contiguous" in text
+
+
+def test_the_cluster_gap_scales_with_the_axis_not_a_fixed_pixel_count(
+    marker_and_line_figure, tmp_path, capsys
+):
+    out = tmp_path / "d.json"
+    code, _ = _extract(marker_and_line_figure, out, capsys)
+    assert code == 0
+    gap = json.loads(out.read_text())["extraction"]["max_cluster_gap_px"]
+    assert gap == pytest.approx(0.04 * abs(Y2_PX - Y1_PX))
+    assert gap > 5.0
+
+
+def test_bin_width_zero_is_an_argument_error_not_a_traceback(
+    figure, tmp_path, capsys
+):
+    out = tmp_path / "d.json"
+    code, text = _extract(figure, out, capsys, "--bin-width", "0")
+    assert code == 2
+    assert "bin-width" in text
+    assert not out.exists()
+
+
+def test_every_point_declares_whether_it_is_an_extrapolation(extracted):
+    series = json.loads(extracted.read_text())["series"]
+    assert all("outside_axis_range" in p for p in series)
+    assert not any(p["outside_axis_range"] for p in series)
