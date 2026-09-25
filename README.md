@@ -126,12 +126,24 @@ criteria, the physics-override clause, and worked examples are documented in
 
 ---
 
-## AI assistance disclosure
+## How this dataset was built, and what that means for trusting it
 
-Code in `src/hycan/` and the analysis notebooks was drafted with AI assistance
-(Claude and Claude Code) under human review; all scientific decisions, data
-extraction, verification against source papers, tiering judgments, and analytical
-interpretations are the author's own. A contemporaneous log is maintained in
+Every row in this release was extracted by a human reading the paper. No row
+has been through independent second-reader verification: `verified_by` is
+empty on all 119 rows, so treat the dataset as single-reader extraction and
+open the paper for any number your conclusion depends on.
+
+[`docs/extraction_provenance.md`](docs/extraction_provenance.md) is the full
+account — which rows came from which process, the verification protocol that
+will produce future rows, the pipeline's known failure modes stated without
+minimisation, and a checklist of what to verify yourself before relying on the
+data.
+
+Code in `src/hycan/`, the helper scripts in `scripts/`, and the analysis
+notebooks were drafted with AI assistance under human review; all scientific
+decisions, data extraction, verification against source papers, tiering
+judgments, and analytical interpretations are the author's own. A
+contemporaneous log is maintained in
 [`docs/ai_usage_log.md`](docs/ai_usage_log.md).
 
 ---
