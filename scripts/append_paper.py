@@ -222,7 +222,8 @@ def write_baseline(dataset: str, out_path: str) -> int:
     # §3.8: the baseline anchors the whole session, so it is read back from
     # disk rather than reported from the dict that was just serialized.
     stored = load_baseline(out_path)
-    if stored["rows"] != state["rows"] or stored["warning_counts"] != state["warning_counts"]:
+    if (stored["rows"] != state["rows"]
+        or stored["warning_counts"] != state["warning_counts"]):
         raise CheckFailed(
             f"the baseline written to {out_path} does not read back as what was "
             "computed. Do not start a session on it."
@@ -325,7 +326,8 @@ def preflight(staging_path: str, dataset_path: str, baseline_path: str | None) -
         raise CheckFailed(
             "staging columns do not match the dataset (§6.7). " + "; ".join(detail)
         )
-    print(f"  3. column order matches dataset exactly ({len(dataset['columns'])} columns)")
+    print("  3. column order matches dataset exactly "
+          f"({len(dataset['columns'])} columns)")
 
     # 5. Non-empty.
     if staging["rows"] < 1:
@@ -667,7 +669,9 @@ def run_append(args) -> int:
 
     # Every number below is measured from the merged file, not restated from
     # what this run intended to write.
-    novel = sorted(set(merged_state["warning_counts"]) - set(baseline["warning_counts"]))
+    novel = sorted(
+        set(merged_state["warning_counts"]) - set(baseline["warning_counts"])
+    )
     print(f"Verify  merged file re-read from disk: {merged['rows']} rows, "
           f"{sum(merged_state['error_counts'].values())} errors, "
           f"{len(novel)} new warning types")
@@ -719,7 +723,8 @@ def run_append(args) -> int:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Verify, back up, append, and re-verify a staging file (§9.1 steps 11-14)."
+        description="Verify, back up, append, and re-verify a staging "
+                    "file (§9.1 steps 11-14)."
     )
     parser.add_argument("staging", nargs="?")
     parser.add_argument("--dataset", default=DEFAULT_DATASET)

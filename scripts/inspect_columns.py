@@ -113,7 +113,7 @@ def overview(df: pd.DataFrame) -> None:
         non_null = int(series.notna().sum())
         empty = len(df) - non_null
         unique = int(series.nunique(dropna=True))
-        print(f"{position:>3}  {column.ljust(width)}  {str(series.dtype):<10} "
+        print(f"{position:>3}  {column.ljust(width)}  {series.dtype!s:<10} "
               f"{non_null:>8} {empty:>6} {unique:>7}  {_example(series)}")
 
 
@@ -145,7 +145,8 @@ def order(df: pd.DataFrame) -> None:
 
     print()
     if only_csv or only_schema:
-        print("MISMATCH — the column sets differ. This is a defect, not the §6.7 offset:")
+        print("MISMATCH — the column sets differ. This is a defect, "
+              "not the §6.7 offset:")
         if only_csv:
             print(f"  in CSV only:      {', '.join(only_csv)}")
         if only_schema:
@@ -164,7 +165,8 @@ def order(df: pd.DataFrame) -> None:
     print("Same columns, different order — expected per §6.7. Positions that differ:")
     for column, csv_position, schema_position in moved:
         print(f"  {column}: CSV #{csv_position}, schema #{schema_position}")
-    print("\nA positional append (tail -n +2 staging >> dataset) must use the CSV order.")
+    print("\nA positional append (tail -n +2 staging >> dataset) must "
+          "use the CSV order.")
 
 
 def column_detail(df: pd.DataFrame, name: str, top: int) -> None:

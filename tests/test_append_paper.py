@@ -14,10 +14,9 @@ from __future__ import annotations
 import hashlib
 import json
 
+import append_paper as ap
 import pandas as pd
 import pytest
-
-import append_paper as ap
 from conftest import COLUMNS, make_row, write_csv
 
 
@@ -113,7 +112,9 @@ def test_describe_file_refuses_a_path_that_does_not_exist(tmp_path):
 # Baseline (§11.5)
 # ---------------------------------------------------------------------------
 
-def test_write_baseline_records_rows_errors_warnings_and_hash(tmp_path, dataset, capsys):
+def test_write_baseline_records_rows_errors_warnings_and_hash(
+    tmp_path, dataset, capsys
+):
     out_path = tmp_path / "baseline.json"
     code, out = run(["--dataset", dataset, "--write-baseline", out_path], capsys)
 
@@ -328,7 +329,9 @@ def test_dry_run_still_refuses_a_bad_staging_file(
 # The append
 # ---------------------------------------------------------------------------
 
-def test_a_successful_append_lands_on_disk(dataset, staging, baseline, tmp_path, capsys):
+def test_a_successful_append_lands_on_disk(
+    dataset, staging, baseline, tmp_path, capsys
+):
     before_rows = len(pd.read_csv(dataset))
 
     code, out = run([staging, "--dataset", dataset, "--baseline", baseline,

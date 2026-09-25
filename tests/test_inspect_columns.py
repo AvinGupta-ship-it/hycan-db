@@ -14,10 +14,9 @@ from __future__ import annotations
 import hashlib
 from pathlib import Path
 
+import inspect_columns as ic
 import pandas as pd
 import pytest
-
-import inspect_columns as ic
 from conftest import COLUMNS, make_row, write_csv
 
 REPO_ROOT = Path(__file__).resolve().parents[1]

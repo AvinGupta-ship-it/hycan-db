@@ -4,11 +4,10 @@ from __future__ import annotations
 
 import pandas as pd
 import pytest
-
 import validate_row_detail as detail
 from conftest import make_row, write_csv
-from hycan.validate import validate_dataset
 
+from hycan.validate import validate_dataset
 
 # ---------------------------------------------------------------------------
 # Message -> field mapping
