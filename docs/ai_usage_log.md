@@ -958,3 +958,93 @@ revisit rather than applied.
 **Outcome.** 135 rows, 14 papers, 0 errors, 418 tests. 14 rows now
 distinguishable as dual-agent-verified. Phase C is 3 of 12 papers appended, 6 of
 12 read, and gated on a v1.2 schema decision for the rest.
+
+## 2026-09-25 (continued) — Phase C completed to the schema boundary
+Tool: same session, same protocol. Five further papers extracted by isolated
+Agent A instances (HYC-0019, 0022, 0024, 0026, 0029), two of them verified and
+appended.
+
+**Dispute rate is no longer zero, and that is the useful result.** 308 cells
+verified across five papers, 304 agreed, **4 disputed — 1.3%**. All four were
+`synthesis_method` on HYC-0022. The extractor assigned `commercial` to all six
+samples because the carbon skeleton was bought. The verifier rejected that for
+the four samples the authors activated themselves, and its argument was better
+than the extractor's: the paper says "Both physical and chemical activations
+were performed in our study", and Table 1 reports a carbon yield — 62%, 49%,
+53%, 43% — for exactly those four samples and a dash for the as-received one. A
+sample with a burn-off yield was not purchased in that state. The disagreement
+was upheld.
+
+Two things worth recording about that dispute rather than just its outcome.
+First, it was a vocabulary-semantics judgement, not a misread number — which is
+the failure mode the isolation protocol is *least* obviously designed to catch,
+so it is a more interesting result than another clean sheet would have been.
+Second, it only existed because `synthesis_method` has no value for activation.
+A schema gap manufactured a disagreement between two careful readers. That is
+now gap 5 and it is the widest gap in the inventory: five of the twelve Phase C
+papers had to be forced on it.
+
+**Verification also caught two field-semantics errors that no validator would
+have.** On HYC-0022 the extractor filled `average_pore_diameter_nm` from the
+paper's BJH column. The verifier pointed out that the paper itself calls that
+column the *mesopore* size, that BJH desorption analysis is invalid for the
+type-I isotherms of the two best samples, and that every scientific claim in the
+paper rests on the *other* pore-size column, the HK median micropore size
+(0.59 and 0.67 nm). Storing 2.5 nm for the sample whose performance the paper
+attributes to 0.67 nm would have been worse than storing nothing, so the field is
+empty on all nine rows with both series recorded in `notes`. Same reasoning
+emptied `ultramicropore_volume_cm3_g`: that field is documented at a 0.7 nm
+cutoff and carries 0.7 nm values for two existing papers, while HYC-0022's
+column is cut at 1 nm. Mixing the cutoffs would have destroyed the one quantity
+schema v1.1 added specifically to make comparable across the corpus.
+
+The verifier also pinned the paper's wt% denominator independently, without the
+Supporting Information: 43.2 g/L = 610 g/L × 0.0708 exactly, so wt% is grams H2
+per 100 g of adsorbent rather than per total system mass.
+
+**Verified from the artifact, not from tool self-reports (§3.8).** Every append
+re-read from disk against a content-bound baseline: 135 → 147 → 156 rows, 0
+errors and no new warning type at each step. 418 tests passing and ruff clean
+after. `origin/main` confirmed at the pushed commit by reading the remote ref,
+not the push output.
+
+**Where Phase C actually ended.** Not at twelve papers appended — at the schema
+boundary. 133 rows extracted, 35 written, **98 held**, seven papers blocked, and
+no two blocked by the same limitation. `docs/schema_v1_2_gaps.md` is the
+complete inventory: ten gaps, each naming the papers it bites, each with a
+proposed fix, in a stated order. The three most consequential were invisible
+before this batch:
+
+- **HYC-0024 yields zero storable uptake values.** Eight samples measured at
+  293 K and 100 bar, and the paper's only tabulated hydrogen quantities are
+  volumetric densities in kg/m³ of micropore volume. Its wt% values exist solely
+  in a figure. A wt% could be computed as density × micropore volume, but the
+  paper reports two micropore volumes and never says which is the basis, so that
+  would be our arithmetic passed off as its measurement.
+- **HYC-0029's measurement is not isothermal.** Its thirteen uptakes are weight
+  differences across a 303 → 673 → 303 K cycle in flowing hydrogen at 1 atm.
+  Storing `temperature_k = 303` would assert an isothermal 303 K measurement that
+  did not happen, and those values are not commensurable with the rest of the
+  corpus. Appending them unflagged would have quietly corrupted every Chahine
+  comparison. This will recur in every TGA-cycling spillover paper.
+- **Metal loading in weight percent has no field**, which means *both* of the
+  corpus's spillover papers — HYC-0029's cobalt and the already-present
+  HYC-0027's palladium — cannot be analysed against the variable their authors
+  varied.
+
+**A correction to my own earlier reasoning.** The first half of this session
+recorded the gap inventory as four items after six papers. That was premature in
+a way worth noting: reading the remaining six papers took it from four gaps to
+ten, and three of the six new ones (9, 7, 10) are more consequential than
+anything in the original four. The decision to hold the v1.2 migration until all
+twelve were read was correct, but the earlier document's confident framing of
+"now complete" at the six-paper mark was not, and had I acted on it the migration
+would have shipped missing the gap that matters most.
+
+**What was not done, stated plainly.** Schema v1.2 is not started. The 98 held
+rows are not in the dataset. HYC-0017's `graphene` versus
+`reduced_graphene_oxide` question is still open — its ref [10] could not be
+retrieved through this session's proxy and PubMed returned a CAPTCHA.
+
+**Outcome.** 156 rows, 16 papers, 0 errors, 418 tests. 35 rows dual-agent
+verified. Phase C read complete; appending complete to the schema boundary.
