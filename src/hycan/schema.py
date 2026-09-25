@@ -52,9 +52,19 @@ SynthesisMethod = Literal[
     "pyrolysis",
     "template_synthesis",
     "carbonization",
+    "carbide_chlorination",
     "commercial",
     "unknown",
     "other",
+]
+
+SurfaceAreaMethod = Literal[
+    "BET",
+    "Langmuir",
+    "geometric",
+    "DFT",
+    "unspecified",
+    "none",
 ]
 
 UptakeType = Literal["excess", "absolute", "total", "unspecified"]
@@ -108,13 +118,15 @@ class MeasurementEntry(BaseModel):
     # --- Structural characterisation ---
     bet_surface_area_m2_g: Optional[float] = Field(default=None, ge=0, le=4000)
     langmuir_surface_area_m2_g: Optional[float] = Field(default=None, ge=0)
+    surface_area_method: SurfaceAreaMethod = "unspecified"
     micropore_volume_cm3_g: Optional[float] = Field(default=None, ge=0, le=2)
+    ultramicropore_volume_cm3_g: Optional[float] = Field(default=None, ge=0, le=2)
     total_pore_volume_cm3_g: Optional[float] = Field(default=None, ge=0, le=3)
     average_pore_diameter_nm: Optional[float] = Field(default=None, ge=0)
 
     # --- Measurement ---
-    temperature_k: float = Field(ge=50, le=500)
-    pressure_bar: float = Field(ge=0, le=200)
+    temperature_k: Optional[float] = Field(default=None, ge=50, le=500)
+    pressure_bar: Optional[float] = Field(default=None, ge=0, le=200)
     uptake_wt_pct: Optional[float] = Field(default=None, ge=0, le=20)
     uptake_mmol_g: Optional[float] = Field(default=None, ge=0)
     uptake_ml_stp_g: Optional[float] = Field(default=None, ge=0, le=2225)
@@ -134,12 +146,63 @@ class MeasurementEntry(BaseModel):
     verification_date: Optional[date] = None
 
     # --- Cross-field validation ---
+    _UPTAKE_FIELDS = ("uptake_wt_pct", "uptake_mmol_g", "uptake_ml_stp_g")
+    _CHARACTERIZATION_FIELDS = (
+        "bet_surface_area_m2_g",
+        "langmuir_surface_area_m2_g",
+        "micropore_volume_cm3_g",
+        "ultramicropore_volume_cm3_g",
+        "total_pore_volume_cm3_g",
+        "average_pore_diameter_nm",
+    )
+
+    def _reports_uptake(self) -> bool:
+        return any(getattr(self, f) is not None for f in self._UPTAKE_FIELDS)
+
+    def _reports_characterization(self) -> bool:
+        return any(getattr(self, f) is not None for f in self._CHARACTERIZATION_FIELDS)
+
+    @model_validator(mode="after")
+    def conditions_required_with_uptake(self) -> "MeasurementEntry":
+        """Temperature and pressure are required exactly when uptake is reported.
+
+        Schema v1.1 (§8.5 gap 3). An uptake value without its conditions is
+        uninterpretable: carbon physisorption at 77 K is roughly an order of
+        magnitude above the same material at 298 K. A sample whose BET and pore
+        data are published but whose uptake was never measured is a legitimate
+        row, and under v1.0 it could not be recorded at all — two such rows were
+        dropped from HYC-0018.
+        """
+        if self._reports_uptake():
+            missing = [
+                name for name in ("temperature_k", "pressure_bar")
+                if getattr(self, name) is None
+            ]
+            if missing:
+                raise ValueError(
+                    "Rows reporting uptake must state their conditions; missing: "
+                    + ", ".join(missing)
+                )
+        return self
+
     @model_validator(mode="after")
     def at_least_one_uptake(self) -> "MeasurementEntry":
-        """Require at least one of the two uptake fields to be non-null."""
-        if self.uptake_wt_pct is None and self.uptake_mmol_g is None:
+        """A row must report either an uptake measurement or characterization.
+
+        When uptake is reported, at least one of the two gravimetric fields must
+        carry it, so that a volumetric-only row cannot enter without a value the
+        analysis can use directly (§8.2, preserved from v1.0).
+        """
+        if self._reports_uptake():
+            if self.uptake_wt_pct is None and self.uptake_mmol_g is None:
+                raise ValueError(
+                    "At least one of 'uptake_wt_pct' or 'uptake_mmol_g' "
+                    "must be provided."
+                )
+        elif not self._reports_characterization():
             raise ValueError(
-                "At least one of 'uptake_wt_pct' or 'uptake_mmol_g' must be provided."
+                "A row must report at least one uptake value or at least one "
+                "characterization value; this row reports neither."
             )
         return self
 

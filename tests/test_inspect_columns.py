@@ -43,14 +43,14 @@ def test_quoted_comma_does_not_shift_columns(tmp_path, capsys):
     assert code == 0
     # measurement_id is the 37th physical column. A comma-split read would put
     # something else there; pandas puts the measurement_id there.
-    assert "physical position: 37 of 38" in out
+    assert "physical position: 37 of 40" in out
     assert "HYC-9001-M1" in out
 
 
 def test_a_field_holding_a_comma_stays_one_field(tmp_path):
     path = write_csv(tmp_path / "commas.csv", [make_row(notes="a, b, c")])
     df = pd.read_csv(path)
-    assert len(df.columns) == 38
+    assert len(df.columns) == 40
     assert df.loc[0, "notes"] == "a, b, c"
 
 
@@ -61,7 +61,7 @@ def test_a_field_holding_a_comma_stays_one_field(tmp_path):
 def test_overview_is_the_default_view(clean_dataset, capsys):
     code, out = run([str(clean_dataset)], capsys)
     assert code == 0
-    assert "3 rows x 38 columns" in out
+    assert "3 rows x 40 columns" in out
     assert "paper_id" in out and "measurement_id" in out
 
 
@@ -94,6 +94,8 @@ def test_order_reports_physical_order_first(clean_dataset, capsys):
     assert "  1  paper_id" in physical_block
     assert " 37  measurement_id" in physical_block
     assert " 38  uptake_ml_stp_g" in physical_block
+    assert " 39  surface_area_method" in physical_block
+    assert " 40  ultramicropore_volume_cm3_g" in physical_block
 
 
 def test_order_identifies_the_expected_offset_not_a_defect(clean_dataset, capsys):
@@ -412,13 +414,13 @@ def test_a_too_wide_row_is_diagnosed_before_pandas_gives_up(tmp_path, capsys):
     """pandas raises here; the operator still needs to know which line is bad."""
     header = ",".join(COLUMNS)
     path = tmp_path / "ragged.csv"
-    path.write_text(header + "\n" + ",".join(["x"] * 38) + "\n"
-                    + ",".join(["y"] * 40) + "\n", encoding="utf-8")
+    path.write_text(header + "\n" + ",".join(["x"] * 40) + "\n"
+                    + ",".join(["y"] * 42) + "\n", encoding="utf-8")
 
     code, out = run([str(path)], capsys)
     assert code == 2
     assert "rows of differing width" in out
-    assert "40 field(s) on line(s) [3]" in out
+    assert "42 field(s) on line(s) [3]" in out
     assert "which lines are at fault" in out
 
 
@@ -426,7 +428,7 @@ def test_a_too_narrow_row_is_warned_about_and_still_inspectable(tmp_path, capsys
     """pandas pads this one silently, which is the more dangerous case."""
     header = ",".join(COLUMNS)
     path = tmp_path / "short.csv"
-    path.write_text(header + "\n" + ",".join(["x"] * 38) + "\n"
+    path.write_text(header + "\n" + ",".join(["x"] * 40) + "\n"
                     + ",".join(["y"] * 35) + "\n", encoding="utf-8")
 
     code, out = run([str(path)], capsys)
@@ -434,7 +436,7 @@ def test_a_too_narrow_row_is_warned_about_and_still_inspectable(tmp_path, capsys
     assert "rows of differing width" in out
     assert "not reliable" in out
     assert "35 field(s) on line(s) [3]" in out
-    assert "2 rows x 38 columns" in out
+    assert "2 rows x 40 columns" in out
 
 
 def test_a_well_formed_csv_gets_no_width_warning(clean_dataset, capsys):
@@ -446,7 +448,7 @@ def test_a_well_formed_csv_gets_no_width_warning(clean_dataset, capsys):
 def test_field_counts_is_not_fooled_by_a_quoted_comma(tmp_path):
     path = write_csv(tmp_path / "commas.csv",
                      [make_row(notes="a, b, c, d, e")])
-    assert ic.field_counts(str(path)) == {38: [1, 2]}
+    assert ic.field_counts(str(path)) == {40: [1, 2]}
 
 
 def test_a_zero_byte_csv_exits_2(tmp_path, capsys):

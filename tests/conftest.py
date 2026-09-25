@@ -64,6 +64,9 @@ COLUMNS = [
     "verification_date",
     "measurement_id",
     "uptake_ml_stp_g",
+    # schema v1.1 (§8.5 gaps 1 and 4), appended at physical positions 39-40
+    "surface_area_method",
+    "ultramicropore_volume_cm3_g",
 ]
 
 # A row that validates with zero errors and zero warnings. Its `notes` field
@@ -108,6 +111,8 @@ BASE_ROW = {
     "verification_date": "2026-09-24",
     "measurement_id": "HYC-9001-M1",
     "uptake_ml_stp_g": None,
+    "surface_area_method": "BET",
+    "ultramicropore_volume_cm3_g": None,
 }
 
 

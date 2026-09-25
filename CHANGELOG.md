@@ -4,6 +4,24 @@ All notable changes to HyCAN-DB will be documented in this file.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
+### Added — schema v1.1 (manual §8.5 gaps 1–4, §8.6 cleanups)
+- `surface_area_method` (controlled: `BET`, `Langmuir`, `geometric`, `DFT`, `unspecified`, `none`, default `unspecified`). Gap 1. Unblocks HYC-0025, which reports one unqualified "surface area" that previously had nowhere to go without asserting a method the paper never stated.
+- `ultramicropore_volume_cm3_g` (float, 0–2). Gap 4, the most consequential. The corpus holds two Chahine-deviating papers and could not test the explanation either offers, because the distinguishing quantity was stranded in free-text notes.
+- `carbide_chlorination` added to the `synthesis_method` vocabulary. Gap 2.
+- Cross-field validation `ultramicropore ≤ micropore ≤ total_pore`, ERROR severity, checked pairwise so a missing middle term cannot suppress the outer comparison.
+- `scripts/migrate_v1_1.py` — the migration itself, committed and re-runnable, with `--dry-run`. It reads and writes raw CSV cells rather than going through pandas, so an unmodified cell is byte-identical by construction and the verification can assert exactly that.
+- `docs/migration_v1.1_plan.md` — the §6.7 plan, written before any protected file was touched.
+### Changed
+- `temperature_k` and `pressure_bar` are now conditionally required: mandatory when a row reports any uptake value, optional when it reports none. Gap 3. A sample whose BET and pore data are published but whose uptake was never measured is now a recordable row; under v1.0 it was not, and two such rows were dropped from HYC-0018.
+- `micropore_volume > total_pore_volume` is now an ERROR rather than a warning. §11.2 always specified ERROR and the v1.0 code raised a warning; the mismatch is resolved in the manual's favour per §0. No row in the corpus violates it, so nothing in the dataset changes.
+- HYC-0023: 23 rows `synthesis_method` `other` → `carbide_chlorination`.
+- HYC-0016: 11 rows `material_class` `graphene` → `reduced_graphene_oxide`, on rows whose `material_description` begins "Reduced graphene oxide".
+- `surface_area_method` populated as `BET` on the 109 rows carrying a `bet_surface_area_m2_g` value, `unspecified` on the other 10.
+### Dataset
+- 119 rows, 11 papers, unchanged in count. 38 → 40 columns, both appended at the end so positional appends still work (§6.7). Exactly 34 cells changed in the pre-existing 38 columns, all of them the two relabels above. Validation: 0 errors, warning types unchanged at `Unspecified uptake_type ×96` and `mmol/g and wt% inconsistent ×1`. 405 tests passing.
+### Outstanding
+- Three backfills need the source PDFs and are deferred to a second commit: `ultramicropore_volume_cm3_g` for HYC-0021 (Sethia 2016), the two recovered characterization-only rows for HYC-0018 (Singh 2020), and the §8.6 `extraction_confidence` reassessment for HYC-0005 (Texier-Mandoki 2004). HYC-0016-S13 ("Thermally exfoliated graphene oxide") is left as `graphene` pending the same batch rather than relabelled on inference.
+
 ### Added
 - Phase A pipeline automation (manual v2.0 §18), four command-line helpers under `scripts/`, each with tests:
   - `validate_row_detail.py` — per-row validation detail: which row, which field, and that field's current value, where `validate_data.py` reports only counts by type.

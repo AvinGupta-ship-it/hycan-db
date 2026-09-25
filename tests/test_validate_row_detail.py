@@ -273,7 +273,7 @@ def test_quoted_comma_survives_the_read(tmp_path, capsys):
         [make_row(notes="Reported as 1.5 wt%, see caption", temperature_k=600.0)],
     )
     frame = pd.read_csv(path)
-    assert len(frame.columns) == 38
+    assert len(frame.columns) == 40
     assert frame.loc[0, "notes"] == "Reported as 1.5 wt%, see caption"
     code, _ = run([str(path)], capsys)
     assert code == 1
@@ -404,9 +404,14 @@ def test_a_zero_byte_csv_exits_two(tmp_path, capsys):
 
 
 def test_the_uptake_pseudo_field_is_reported_usefully(tmp_path, capsys):
-    """'Missing required field: uptake' names no real column; say which apply."""
+    """'Missing required field: uptake' names no real column; say which apply.
+
+    uptake_ml_stp_g stays populated so the row still claims uptake: under
+    schema v1.1 a row with no uptake at all is a valid characterization-only
+    row, not an error (§8.5 gap 3).
+    """
     rows = [make_row(uptake_wt_pct=None, uptake_mmol_g=None,
-                     uptake_ml_stp_g=None)]
+                     uptake_ml_stp_g=230.0)]
     path = write_csv(tmp_path / "nouptake.csv", rows)
     code, out = _run([path], capsys)
 

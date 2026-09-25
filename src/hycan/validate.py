@@ -189,10 +189,29 @@ def validate_row(row: dict) -> ValidationResult:
     if clean.get("uptake_type") == "unspecified":
         _append_unique(warnings, "Unspecified uptake_type")
 
+    # Pore-volume nesting (§11.1 cross-field, §8.5 gap 4).
+    #
+    # Ultra-micropores (below ~0.7 nm) are a subset of micropores (below 2 nm),
+    # which are a subset of total pore volume. A violation is a transcription
+    # error or a misread column, not a physical result, so these are ERRORs —
+    # matching §11.2, which has always specified ERROR for the micropore/total
+    # pair even though the v1.0 code raised it as a warning. No row in the
+    # corpus violates any of the three, so the severity change affects nothing
+    # currently in the dataset.
+    #
+    # The pairs are checked independently so that a missing middle term does
+    # not suppress the outer comparison.
+    ultramicropore = _to_float(clean.get("ultramicropore_volume_cm3_g"))
     micropore = _to_float(clean.get("micropore_volume_cm3_g"))
     total_pore = _to_float(clean.get("total_pore_volume_cm3_g"))
-    if micropore is not None and total_pore is not None and micropore > total_pore:
-        _append_unique(warnings, "Micropore volume exceeds total pore volume")
+
+    for smaller, larger, label in (
+        (ultramicropore, micropore, "Ultramicropore volume exceeds micropore volume"),
+        (ultramicropore, total_pore, "Ultramicropore volume exceeds total pore volume"),
+        (micropore, total_pore, "Micropore volume exceeds total pore volume"),
+    ):
+        if smaller is not None and larger is not None and smaller > larger:
+            _append_unique(errors, label)
 
     material_class = clean.get("material_class")
     description = clean.get("material_description")

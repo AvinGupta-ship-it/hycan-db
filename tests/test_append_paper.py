@@ -646,7 +646,7 @@ def test_a_malformed_merged_file_is_a_refusal_not_a_traceback(
     real_append = ap.append_body
 
     def sabotage(target, body):
-        real_append(target, body + "a,b,c\n")   # 3 fields against 38 columns
+        real_append(target, body + "a,b,c\n")   # 3 fields against 40 columns
 
     monkeypatch.setattr(ap, "append_body", sabotage)
     before = sha(dataset)
@@ -979,8 +979,8 @@ def test_a_staging_row_with_more_fields_than_the_header_is_refused(
 
     assert code == 1
     assert "rows of differing width" in out
-    assert "38 field(s) on line(s) [1]" in out
-    assert "39 field(s) on line(s) [2]" in out
+    assert "40 field(s) on line(s) [1]" in out
+    assert "41 field(s) on line(s) [2]" in out
     assert sha(dataset) == before
     assert "Traceback" not in out
 
@@ -990,7 +990,7 @@ def test_a_staging_row_with_fewer_fields_than_the_header_is_refused(
 ):
     header = ",".join(COLUMNS)
     bad = tmp_path / "narrow.csv"
-    bad.write_text(header + "\n" + ",".join(["x"] * 37) + "\n", encoding="utf-8")
+    bad.write_text(header + "\n" + ",".join(["x"] * 39) + "\n", encoding="utf-8")
 
     code, out = run([bad, "--dataset", dataset, "--baseline", baseline], capsys)
     assert code == 1
@@ -1008,7 +1008,7 @@ def test_a_quoted_comma_is_not_counted_as_a_field_boundary(
                      source_location="Table 2, row 3, column 4")]
     path = write_csv(tmp_path / "commas.csv", rows)
 
-    assert ap.field_counts(str(path)) == {38: [1, 2]}
+    assert ap.field_counts(str(path)) == {40: [1, 2]}
 
     code, out = run([path, "--dataset", dataset, "--baseline", baseline,
                      "--backup-dir", tmp_path / "bak"], capsys)
@@ -1176,7 +1176,7 @@ def test_a_staging_file_rewritten_after_validation_is_refused(
     def preflight_then_tamper(staging_path, dataset_path, baseline_path):
         context = real_preflight(staging_path, dataset_path, baseline_path)
         with open(staging_path, "a", encoding="utf-8") as handle:
-            handle.write(",".join(["x"] * 38) + "\n")
+            handle.write(",".join(["x"] * 40) + "\n")
         return context
 
     monkeypatch.setattr(ap, "preflight", preflight_then_tamper)

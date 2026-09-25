@@ -169,7 +169,7 @@ Fields are grouped into five categories matching the curation spreadsheet column
 |---|---|
 | Type | Controlled vocabulary |
 | Required | If reported |
-| Allowed values | `arc_discharge`, `laser_ablation`, `cvd`, `hipco`, `comocat`, `chemical_oxidation`, `chemical_reduction`, `thermal_reduction`, `pyrolysis`, `template_synthesis`, `carbonization`, `commercial`, `unknown`, `other` |
+| Allowed values | `arc_discharge`, `laser_ablation`, `cvd`, `hipco`, `comocat`, `chemical_oxidation`, `chemical_reduction`, `thermal_reduction`, `pyrolysis`, `template_synthesis`, `carbonization`, `carbide_chlorination`, `commercial`, `unknown`, `other` |
 | Example | `hipco` |
 
 **Definition.** The primary method used to synthesise the raw carbon material.  
@@ -286,6 +286,20 @@ Fields are grouped into five categories matching the curation spreadsheet column
 
 ---
 
+### `surface_area_method`
+
+| Attribute | Value |
+|---|---|
+| Type | Controlled: `BET`, `Langmuir`, `geometric`, `DFT`, `unspecified`, `none` |
+| Required | Yes (defaults to `unspecified`) |
+| Example | `BET` |
+
+**Definition.** How the reported surface area was determined. Added in schema v1.1.
+**Scientific significance.** `bet_surface_area_m2_g` and `langmuir_surface_area_m2_g` are separate fields, which handles papers that name their method. It does not handle a paper reporting one unqualified "surface area" — those values previously had nowhere to go without asserting a method the paper never stated. This field records the absence as `unspecified` rather than guessing, and lets an analysis exclude unmethodded areas when comparing against the Chahine rule, which is defined on BET.
+**If missing.** `unspecified`. Use `none` only when the paper reports no surface area at all.
+
+---
+
 ### `micropore_volume_cm3_g`
 
 | Attribute | Value |
@@ -300,6 +314,23 @@ Fields are grouped into five categories matching the curation spreadsheet column
 **If missing.** Leave null.
 
 ---
+### `ultramicropore_volume_cm3_g`
+
+| Attribute | Value |
+|---|---|
+| Type | Float or null, 0–2 cm³/g |
+| Required | No |
+| Example | `0.27` |
+
+**Definition.** Pore volume in pores below roughly 0.7 nm, as reported by the source paper. Added in schema v1.1.
+**Units.** cm³/g
+**The cutoff is the paper's, not ours.** ~0.7 nm is the conventional ultra-micropore boundary, but papers place it differently and determine it by different methods (CO₂ adsorption at 273 K, DFT/NLDFT models, probe molecules of graded size). Record the value the paper reports and put its stated cutoff and method in `notes`. This field is deliberately not validated against a fixed cutoff, because doing so would silently exclude papers using a defensible alternative.
+**Scientific significance.** This is the field the corpus most needed. Two papers in the corpus deviate from the Chahine rule and the explanation each offers turns on pore size rather than total area — HYC-0021 (Sethia 2016) finds uptake tracks ultra-micropore volume, not BET. Without this field that claim cannot be tested across the corpus, and the distinguishing quantity is stranded in free-text notes.
+**Validation.** `ultramicropore ≤ micropore ≤ total_pore` is enforced as an ERROR, pairwise, so a missing middle term does not suppress the outer comparison.
+**If missing.** Leave null. Most papers do not report it.
+
+---
+
 
 ### `total_pore_volume_cm3_g`
 
@@ -338,7 +369,7 @@ Fields are grouped into five categories matching the curation spreadsheet column
 | Attribute | Value |
 |---|---|
 | Type | Float, 50–500 K |
-| Required | Yes |
+| Required | Conditional — required when the row reports any uptake value; optional on a characterization-only row |
 | Example | `77.0` |
 
 **Definition.** Temperature at which the H₂ uptake measurement was made.  
@@ -354,7 +385,7 @@ Fields are grouped into five categories matching the curation spreadsheet column
 | Attribute | Value |
 |---|---|
 | Type | Float, 0–200 bar |
-| Required | Yes |
+| Required | Conditional — required when the row reports any uptake value; optional on a characterization-only row |
 | Example | `1.0` |
 
 **Definition.** Gas pressure at which the reported uptake was measured.  

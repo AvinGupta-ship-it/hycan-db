@@ -135,10 +135,78 @@ def test_valid_mmol_g_only():
 # ---------------------------------------------------------------------------
 
 def test_both_uptakes_missing_fails():
-    row = _patch(PANELLA_2005, uptake_wt_pct=None, uptake_mmol_g=None)
+    """Schema v1.1: still an error, but now only when the row claims uptake.
+
+    uptake_ml_stp_g left populated, so the row reports uptake volumetrically
+    and must therefore carry it gravimetrically too (§8.2, preserved).
+    """
+    row = _patch(PANELLA_2005, uptake_wt_pct=None, uptake_mmol_g=None,
+                 uptake_ml_stp_g=230.0)
     ok, errors = validate_row(row)
     assert ok is False
     assert any("uptake" in e.lower() for e in errors)
+
+
+def test_a_characterization_only_row_is_valid_in_v1_1():
+    """§8.5 gap 3. Under v1.0 this row could not be recorded at all."""
+    row = _patch(PANELLA_2005, uptake_wt_pct=None, uptake_mmol_g=None,
+                 uptake_ml_stp_g=None, temperature_k=None, pressure_bar=None,
+                 bet_surface_area_m2_g=1830.0)
+    ok, errors = validate_row(row)
+    assert ok is True, errors
+
+
+def test_a_row_reporting_neither_uptake_nor_characterization_fails():
+    row = _patch(PANELLA_2005, uptake_wt_pct=None, uptake_mmol_g=None,
+                 uptake_ml_stp_g=None, temperature_k=None, pressure_bar=None,
+                 bet_surface_area_m2_g=None, langmuir_surface_area_m2_g=None,
+                 micropore_volume_cm3_g=None, total_pore_volume_cm3_g=None,
+                 average_pore_diameter_nm=None)
+    ok, errors = validate_row(row)
+    assert ok is False
+    assert any("neither" in e.lower() for e in errors)
+
+
+def test_uptake_without_conditions_fails():
+    """An uptake value without T and P is uninterpretable (§8.5 gap 3)."""
+    row = _patch(PANELLA_2005, temperature_k=None, pressure_bar=None)
+    ok, errors = validate_row(row)
+    assert ok is False
+    assert any("conditions" in e.lower() for e in errors)
+
+
+def test_carbide_chlorination_is_an_accepted_synthesis_method():
+    """§8.5 gap 2. HYC-0023 was forced to `other` before v1.1."""
+    ok, errors = validate_row(_patch(PANELLA_2005,
+                                     synthesis_method="carbide_chlorination"))
+    assert ok is True, errors
+
+
+def test_surface_area_method_is_controlled():
+    """§8.5 gap 1. Unblocks HYC-0025."""
+    for value in ("BET", "Langmuir", "geometric", "DFT", "unspecified", "none"):
+        ok, errors = validate_row(_patch(PANELLA_2005, surface_area_method=value))
+        assert ok is True, (value, errors)
+    ok, _ = validate_row(_patch(PANELLA_2005, surface_area_method="guessed"))
+    assert ok is False
+
+
+def test_surface_area_method_defaults_to_unspecified():
+    row = _patch(PANELLA_2005)
+    row.pop("surface_area_method", None)
+    ok, errors = validate_row(row)
+    assert ok is True, errors
+
+
+def test_ultramicropore_volume_is_bounded():
+    """§8.5 gap 4."""
+    ok, errors = validate_row(_patch(PANELLA_2005,
+                                     ultramicropore_volume_cm3_g=0.27))
+    assert ok is True, errors
+    ok, _ = validate_row(_patch(PANELLA_2005, ultramicropore_volume_cm3_g=-0.1))
+    assert ok is False
+    ok, _ = validate_row(_patch(PANELLA_2005, ultramicropore_volume_cm3_g=5.0))
+    assert ok is False
 
 
 # ---------------------------------------------------------------------------

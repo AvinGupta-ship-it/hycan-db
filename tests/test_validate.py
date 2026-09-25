@@ -131,12 +131,54 @@ def test_unspecified_uptake_type_warning():
     assert "Unspecified uptake_type" in res.warnings
 
 
-def test_micropore_exceeds_total_warning():
+def test_micropore_exceeds_total_is_an_error_in_v1_1():
+    """§11.2 always specified ERROR here; the v1.0 code raised a warning.
+
+    No row in the corpus violates it, so resolving the mismatch in the
+    manual's favour changes nothing in the dataset.
+    """
     res = validate_row(
         _patch(BASE, micropore_volume_cm3_g=1.0, total_pore_volume_cm3_g=0.5)
     )
+    assert res.is_valid is False
+    assert "Micropore volume exceeds total pore volume" in res.errors
+
+
+def test_ultramicropore_exceeding_micropore_is_an_error():
+    """§8.5 gap 4: ultramicropore <= micropore <= total."""
+    res = validate_row(
+        _patch(BASE, ultramicropore_volume_cm3_g=0.9,
+               micropore_volume_cm3_g=0.4, total_pore_volume_cm3_g=1.0)
+    )
+    assert res.is_valid is False
+    assert "Ultramicropore volume exceeds micropore volume" in res.errors
+
+
+def test_ultramicropore_exceeding_total_is_caught_without_a_micropore_value():
+    """The pairs are checked independently; a missing middle term must not hide it."""
+    res = validate_row(
+        _patch(BASE, ultramicropore_volume_cm3_g=1.5,
+               micropore_volume_cm3_g=None, total_pore_volume_cm3_g=1.0)
+    )
+    assert res.is_valid is False
+    assert "Ultramicropore volume exceeds total pore volume" in res.errors
+
+
+def test_properly_nested_pore_volumes_are_clean():
+    res = validate_row(
+        _patch(BASE, ultramicropore_volume_cm3_g=0.27,
+               micropore_volume_cm3_g=0.43, total_pore_volume_cm3_g=0.64)
+    )
     assert res.is_valid is True
-    assert "Micropore volume exceeds total pore volume" in res.warnings
+    assert not [w for w in res.warnings if "pore" in w.lower()]
+
+
+def test_equal_pore_volumes_are_not_a_violation():
+    res = validate_row(
+        _patch(BASE, ultramicropore_volume_cm3_g=0.4,
+               micropore_volume_cm3_g=0.4, total_pore_volume_cm3_g=0.4)
+    )
+    assert res.is_valid is True
 
 
 def test_swcnt_missing_single_walled_warning():
