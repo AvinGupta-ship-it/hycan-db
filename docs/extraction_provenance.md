@@ -176,7 +176,7 @@ twenty-two carry a measurement that is not isothermal. Both are recorded with
 flags rather than by imputing a convention: "room temperature" in a 2002 and a
 2016 laboratory are not the same number, and HYC-0029's uptakes are weight
 differences across a 303 → 673 → 303 K cycle whose reference state is a sample
-at 673 K still sitting in hydrogen. Those sixteen HYC-0029 rows and HYC-0011's
+at 673 K still sitting in hydrogen. Those fifteen temperature-cycle HYC-0029 rows (the paper's sixteenth row is characterization-only) and HYC-0011's
 third measurement must not enter a Chahine plot.
 
 Three of these are worth stating plainly, because they are the kind of thing a

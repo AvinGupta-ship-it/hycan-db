@@ -107,8 +107,9 @@ def detect_format(path: Path) -> tuple[str, bool]:
     """Return this file's line terminator and whether it ends with one.
 
     `references/paper_tracking.csv` is CRLF with **no** trailing newline. Writing
-    it back with csv.writer's defaults changed the bytes of all 30 lines while
-    leaving every cell value correct, which is precisely the kind of whole-file
+    it back with csv.writer's defaults changed the bytes of all 31 physical lines
+    (1-30 lost their CR, 31 gained a terminator) while leaving every cell value
+    correct, which is precisely the kind of whole-file
     rewrite the plan's "byte-identical by construction" guarantee exists to
     prevent. The cell-level check passed and the bytes were wrong, so the format
     is detected and reproduced rather than assumed.
