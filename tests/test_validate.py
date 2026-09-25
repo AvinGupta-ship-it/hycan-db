@@ -167,6 +167,7 @@ def test_ultramicropore_exceeding_total_is_caught_without_a_micropore_value():
 def test_properly_nested_pore_volumes_are_clean():
     res = validate_row(
         _patch(BASE, ultramicropore_volume_cm3_g=0.27,
+               ultramicropore_cutoff_nm=0.7,
                micropore_volume_cm3_g=0.43, total_pore_volume_cm3_g=0.64)
     )
     assert res.is_valid is True
@@ -176,6 +177,7 @@ def test_properly_nested_pore_volumes_are_clean():
 def test_equal_pore_volumes_are_not_a_violation():
     res = validate_row(
         _patch(BASE, ultramicropore_volume_cm3_g=0.4,
+               ultramicropore_cutoff_nm=0.7,
                micropore_volume_cm3_g=0.4, total_pore_volume_cm3_g=0.4)
     )
     assert res.is_valid is True

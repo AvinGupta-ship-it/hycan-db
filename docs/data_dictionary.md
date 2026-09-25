@@ -815,3 +815,239 @@ analysis) and surface (XPS) nitrogen contents that differ systematically — its
 own explicit finding, and a factor of two on one sample. A concentration without
 its technique is not comparable across papers.
 **If missing.** Leave null.
+
+---
+
+## Schema v1.3 Fields — Surface Area, Pore Method, and Volumetric Capacity
+
+Sixteen fields added in schema v1.3, at physical positions 52–67. They close the
+three gaps v1.2 left open: gap 3 (one surface-area field, named `bet_`), gap 6
+(pore fields had no method or cutoff), gap 10 (volumetric and areal capacity had
+no field). Each exists because a real paper could not be recorded without it, and
+the paper is named in each entry. The plan is `docs/migration_v1_3_plan.md`; the
+migration is `scripts/migrate_v1_3.py`.
+
+Every field is defaulted so that all 206 rows predating the migration remain
+valid unchanged. Unlike v1.2, this migration also **changed 53 existing cells**
+(`ultramicropore_cutoff_nm` on 29 rows and `surface_area_method` on 24), which is
+why it is a version bump rather than a fourth stage of v1.2.
+
+### `bet_surface_area_m2_g` — what it has always meant
+
+Not a new field, restated here because v1.3 makes the point checkable. **It is
+the paper's headline *total* specific surface area**, whatever method produced it;
+`surface_area_method` says which. It is *not* necessarily a BET value and has not
+been since v1.1 added `surface_area_method`. 31 of 206 rows carry a non-BET or
+unmethodded area in it (HYC-0005's 25 and HYC-0012's 6).
+
+The field is deliberately **not renamed.** A rename would break
+`src/hycan/plotting.py`, every machine-learning feature of that name, and every
+published reference to a row. Read the method, not the column name.
+
+### `micropore_surface_area_m2_g`, `external_surface_area_m2_g`
+
+Float, 0–4000 m²/g, optional. A paper may resolve its surface area into
+components instead of reporting a total.
+
+HYC-0007 (Takagi 2004) reports, per sample, a micropore surface area (320–2250
+m²/g) and an external surface area (20–590 m²/g) from an αs plot, **and no
+total.** Eighteen measured values had nowhere to go, and all of that paper's rows
+were held out of the corpus for it.
+
+**A caveat that travels with `external_surface_area_m2_g`.** It is not a
+geometric external surface. HYC-0007 defines its S_ext as *"the external surface
+containing the mesopore and macropore"*, so mesopore surface is folded into it and
+a mesopore surface area cannot be recovered from it. A paper reporting a genuinely
+geometric external area needs a `notes` entry saying so.
+
+When a row carries a micropore area, an external area **and** a total, the
+validator warns if the parts do not account for the whole — relative *and*
+absolute, 10% and 50 m²/g, both must be exceeded. HYC-0007 rounds its areas to the
+nearest 10 m²/g, so an absolute floor is required; a relative-only test is what
+produced v1.2's false-positive warning type.
+
+### `surface_area_method` — three values that mean three different things
+
+The vocabulary gains `alpha_s_plot` (HYC-0007's method), `t_plot` (HYC-0004's,
+already in the corpus), and `not_reported`. The three no-method values are now
+distinct and the distinction is **enforced, not merely documented**:
+
+| Value | Meaning | Area field |
+| --- | --- | --- |
+| `unspecified` | An area **is** reported, with no stated method | always populated |
+| `none` | The paper reports no surface area for **any** sample | always null |
+| `not_reported` | **This sample** has none, in a paper that reports areas for its others | always null |
+
+Before v1.3 all three collapsed onto `unspecified`, so 24 rows sat on it with
+nothing in the field — indistinguishable from a measured area whose method the
+paper omitted. `not_reported` covers HYC-0029's twelve Co-loaded samples,
+HYC-0016's S13 and HYC-0022's G212. `none` gained HYC-0002's and HYC-0027's 8
+rows, both papers verified against the source to report no area anywhere.
+
+Current distribution: 139 `BET`, 31 `unspecified`, 20 `none`, 16 `not_reported`.
+
+### `pore_volume_method`, `pore_volume_probe_gas`
+
+Controlled, default `unspecified`. How the row's pore volumes were determined.
+
+`pore_volume_method`: `DR`, `DFT`, `NLDFT`, `QSDFT`, `BJH`, `HK`, `t_plot`,
+`alpha_s_plot`, `other`, `unspecified`.
+`pore_volume_probe_gas`: `N2`, `CO2`, `Ar`, `He`, `other`, `unspecified`.
+
+`micropore_volume_cm3_g` was carrying incompatible quantities under one name:
+Dubinin–Radushkevich on CO2 at 273 K in HYC-0019 and HYC-0024, DR on N2 at 77 K in
+HYC-0024's other column, plain DR in HYC-0022 and HYC-0026, a DFT volume in
+HYC-0021, an αs-plot volume in HYC-0007. Those are not comparable numbers.
+
+The probe gas matters on its own. HYC-0019 measures surface area by N2 at 77 K and
+micropore volume by CO2 at 273 K **on the same row** — different probe molecules,
+which is why that paper's surface area falls while its micropore volume rises.
+That was unrecordable before v1.3.
+
+**One method/probe pair per row, not per field.** No corpus paper yet determines
+two of a single sample's pore volumes by different methods. Where a row's volumes
+do differ, `notes` records it and these fields carry the primary. Nine more
+columns for an unobserved distinction is the wrong trade; a paper that makes it is
+the trigger to revisit.
+
+The probe temperature is not a separate field: N2 physisorption is 77 K and CO2 is
+273 K throughout the corpus, so the gas carries the temperature. A paper that
+deviates gets a `notes` entry.
+
+### `micropore_volume_co2_cm3_g`
+
+Float, 0–2 cm³/g, optional. A second micropore volume, from CO2.
+
+HYC-0024 (de la Casa-Lillo 2002) reports **two** DR micropore volumes per sample —
+`DR volume N2` and `DR volume CO2` — and they are not interchangeable: 0.78
+against 0.57 cm³/g on ACFC50. Both are primary-table measurements and discarding
+either would lose data.
+
+Named by probe gas rather than by pore size on purpose. Calling the CO2-DR volume
+"ultramicropore" would assert a cutoff that HYC-0024 **explicitly never states**,
+even though CO2-DR is conventionally read as the narrow-micropore probe.
+
+### `mesopore_volume_cm3_g`
+
+Float, 0–3 cm³/g, optional. Reported by several corpus papers with nowhere to go.
+The validator checks that it nests inside `total_pore_volume_cm3_g` (an error) and
+warns if micropore + mesopore exceeds the total beyond 10% and 0.05 cm³/g — a
+warning rather than an error because papers round to two decimals and an
+unreported macropore class can make the parts fall short of the whole.
+
+### `ultramicropore_cutoff_nm`
+
+Float, 0–2 nm, optional, but **required whenever `ultramicropore_volume_cm3_g` is
+populated** — a populated volume with a null cutoff is a validation error.
+
+`ultramicropore_volume_cm3_g` was added in v1.1 for HYC-0021, whose central
+finding is that uptake tracks ultramicropore volume rather than total surface
+area. That comparison only works if every value shares a cutoff. The corpus's
+cutoffs do not agree: HYC-0005 and HYC-0021 are cut at **0.7 nm**, HYC-0022's
+V<1nm at **1 nm**, HYC-0024's DR-CO2 column at **no stated cutoff at all**. The
+last two were held out of the field rather than mixed in, which was the right call
+and cost real data — HYC-0022's paper concludes V<1nm predicts its 1 bar uptake
+better than the micropore fraction does.
+
+The cutoff is now stated per row instead of assumed from this document. All 29
+pre-v1.3 rows were backfilled to 0.7, which is what they were always measured at.
+Filter on the cutoff before comparing values.
+
+### `pore_diameter_method`
+
+Controlled, default `unspecified`: `BJH`, `DR_characteristic_energy`, `HK`,
+`stoeckli_L0`, `DFT`, `geometric_from_S_V`, `other`, `unspecified`.
+
+`average_pore_diameter_nm` would otherwise mix quantities that are not
+interchangeable: a BJH desorption average (which HYC-0022's own paper calls a
+*mesopore* size, and which is invalid for that sample's type-I isotherm anyway), a
+DR characteristic-energy slit width (HYC-0024), an HK median micropore size, and
+Stoeckli's L0 (HYC-0026).
+
+`geometric_from_S_V` is HYC-0007's `Wave`, back-calculated from S_micro and
+V_micro under an assumed pore shape — *"estimated from Smicro and Vmicro by
+assuming a cylinder-shaped pore"*. It is **not a pore-size-distribution model at
+all**, so recording it as BJH or DFT would misdescribe how the number was
+obtained.
+
+### `volumetric_capacity_kg_m3`, `volumetric_capacity_basis`, `volumetric_capacity_includes_compressed_gas`
+
+`volumetric_capacity_kg_m3`: float, 0–200 kg/m³, optional. Hydrogen stored per
+unit volume. **`volumetric_capacity_basis` is required whenever it is populated** —
+an unqualified volumetric figure is not interpretable, because per pore volume and
+per tank volume differ by more than a factor of two in HYC-0024's own table.
+
+`volumetric_capacity_basis`: `micropore_volume`, `total_pore_volume`,
+`packing_volume`, `tank_volume`, `other`.
+
+`volumetric_capacity_includes_compressed_gas`: bool, default `False`. HYC-0024's
+Ms *"is the total amount of hydrogen that can be stored per volume of the tank,
+**including the compressed hydrogen**"*, while its adsorbed-phase density excludes
+it. Without the flag the two are indistinguishable.
+
+HYC-0024's rows are the reason gap 10 existed: its only tabulated hydrogen
+quantities are volumetric, so the paper yielded **zero** storable uptake values
+and all eight rows were held. HYC-0022's 43.2 g/L is the other case.
+
+### `adsorbed_phase_density_kg_m3`
+
+Float, 0–200 kg/m³, optional. Hydrogen density **in the adsorbed phase**, per
+volume of pore, excluding compressed gas.
+
+A separate field from `volumetric_capacity_kg_m3` rather than a basis value on it,
+because HYC-0024 reports **both for the same sample at the same conditions**: an
+adsorbed density per micropore volume (9.26–16.34 kg/m³) and Ms per tank volume
+(6.3–11.8 kg/m³). One field plus a basis flag could hold only one of them, and
+choosing would discard a primary-table measurement.
+
+### `packing_density_g_cm3`, `skeletal_density_g_cm3`
+
+Float, 0–5 g/cm³, optional.
+
+`packing_density_g_cm3` is sample mass per volume of tank — the quantity that
+converts an adsorbed amount into a system-level capacity. HYC-0024 measures it
+under a 1000 kg load, which is a compacted density rather than a loose or tapped
+one; a paper reporting a tapped density should say so in `notes`.
+
+**`skeletal_density_g_cm3` is load-bearing, not decorative.** HYC-0024 calls it
+the helium density and uses it to subtract the compressed-gas contribution from
+the measured weight increase: *"the amount of hydrogen adsorbed is calculated
+using the weight of sample, the helium density of the carbon material, and the
+volume of the sample cell."* Without it, the excess/absolute basis of that paper's
+numbers cannot be reconstructed by a downstream user.
+
+### `areal_uptake_g_cm2`
+
+Float ≥ 0, optional. Hydrogen per unit area of a film or supported sample.
+
+HYC-0011 reports 6.3×10⁻⁶ g/cm² for its MWCNT film. That number is what makes the
+paper's headline 8.0 wt% **checkable** — and it does not check: combined with the
+paper's own film mass (9.0 mg) and its two stated film areas (12 and 18 cm²), it
+implies 0.84–1.26 wt%. Reaching 8.0 wt% would need ~114 cm², which is 9.52× the
+smaller stated area and 6.35× the larger. Recording the areal value is what lets a
+reader see that for themselves instead of taking the row's Tier D on trust.
+
+### `interlayer_spacing_nm`
+
+Float ≥ 0, optional. The d-spacing between graphene or graphitic layers, from XRD.
+HYC-0015's held row needs it; several graphene-family papers in the corpus report
+it with nowhere to put it.
+
+### A consequence for analysis: not every uptake converts to wt%
+
+v1.3 admits rows whose only uptake is volumetric or areal. Before it,
+`at_least_one_uptake` required a gravimetric value on any row reporting uptake,
+"so that a volumetric-only row cannot enter without a value the analysis can use
+directly" — a rule written when the only volumetric-looking field was
+`uptake_ml_stp_g`, which **does** convert to wt%.
+
+`volumetric_capacity_kg_m3` does not convert without a density the paper may not
+state. For HYC-0024 a wt% could be computed as adsorbed density × micropore
+volume, but the paper never says which of its two micropore volumes is the basis,
+so the result would be this project's arithmetic presented as the paper's
+measurement.
+
+So a row may now report uptake and carry a null `uptake_wt_pct`. **Any gravimetric
+analysis must filter on `uptake_wt_pct` presence rather than on "reports uptake",**
+because a null is dropped silently by a mean. `tests/test_dataset_invariants.py`
+enumerates every such row by `measurement_id` so one cannot appear unnoticed.

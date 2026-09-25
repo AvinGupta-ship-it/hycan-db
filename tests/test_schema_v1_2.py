@@ -344,9 +344,19 @@ def run_migration(*args, cwd) -> subprocess.CompletedProcess:
 
 @pytest.fixture
 def pre_migration_dataset(tmp_path):
-    """A 40-column dataset, i.e. the shape the migration expects to find."""
-    pre_columns = [c for c in COLUMNS if c not in _V1_2_COLUMNS]
-    assert len(pre_columns) == 40
+    """A 40-column dataset, i.e. the shape the v1.2 migration expects to find.
+
+    Strips both the v1.2 and the v1.3 columns from the current COLUMNS list.
+    Naming the later versions explicitly, rather than slicing a fixed count off
+    the end, is what keeps this fixture correct as the schema grows -- v1.3 added
+    16 more columns and a count-based strip silently left 56.
+    """
+    later = set(_V1_2_COLUMNS) | set(_V1_3_COLUMNS)
+    pre_columns = [c for c in COLUMNS if c not in later]
+    assert len(pre_columns) == 40, (
+        f"expected a 40-column pre-v1.2 image, got {len(pre_columns)}; a schema "
+        f"version was added without listing its columns in this file"
+    )
     path = tmp_path / "measurements.csv"
     row = make_row()
     with open(path, "w", encoding="utf-8", newline="") as handle:
@@ -365,6 +375,27 @@ _V1_2_COLUMNS = (
     "measurement_mode", "reference_temperature_k", "metal_element",
     "metal_loading_wt_pct", "residual_metal_element", "residual_metal_wt_pct",
     "dopant_concentration_wt_pct", "dopant_concentration_method",
+)
+
+# The v1.3 columns (gaps 3, 6, 10). Listed here only so the pre-v1.2 fixture
+# above can strip them; the v1.3 tests live in test_schema_v1_3.py.
+_V1_3_COLUMNS = (
+    "micropore_surface_area_m2_g",
+    "external_surface_area_m2_g",
+    "pore_volume_method",
+    "pore_volume_probe_gas",
+    "micropore_volume_co2_cm3_g",
+    "mesopore_volume_cm3_g",
+    "ultramicropore_cutoff_nm",
+    "pore_diameter_method",
+    "volumetric_capacity_kg_m3",
+    "volumetric_capacity_basis",
+    "volumetric_capacity_includes_compressed_gas",
+    "adsorbed_phase_density_kg_m3",
+    "packing_density_g_cm3",
+    "skeletal_density_g_cm3",
+    "areal_uptake_g_cm2",
+    "interlayer_spacing_nm",
 )
 
 

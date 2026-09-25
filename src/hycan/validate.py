@@ -129,6 +129,18 @@ def _append_unique(target: list[str], message: str) -> None:
 _UPTAKE_REL_TOLERANCE = 0.05
 _UPTAKE_ABS_TOLERANCE_WT_PCT = 0.02
 
+# v1.3 gaps 3 and 6. Same relative-AND-absolute discipline, for the same reason.
+# The absolute floors are set from how the corpus's papers actually round:
+# HYC-0007 reports surface areas to the nearest 10 m2/g, so 50 m2/g is five
+# rounding steps and a genuine parts-vs-whole disagreement is far larger than
+# that. Pore volumes are reported to two decimals, so 0.05 cm3/g is five steps.
+# Both are deliberately generous: these checks exist to catch a field holding the
+# wrong quantity, not to police a paper's arithmetic.
+_AREA_SUM_REL_TOLERANCE = 0.10
+_AREA_SUM_ABS_TOLERANCE_M2_G = 50.0
+_PORE_SUM_REL_TOLERANCE = 0.10
+_PORE_SUM_ABS_TOLERANCE_CM3_G = 0.05
+
 
 def _uptakes_disagree(left: float, right: float) -> bool:
     difference = abs(left - right)
@@ -223,13 +235,56 @@ def validate_row(row: dict) -> ValidationResult:
     micropore = _to_float(clean.get("micropore_volume_cm3_g"))
     total_pore = _to_float(clean.get("total_pore_volume_cm3_g"))
 
+    mesopore = _to_float(clean.get("mesopore_volume_cm3_g"))
+
     for smaller, larger, label in (
         (ultramicropore, micropore, "Ultramicropore volume exceeds micropore volume"),
         (ultramicropore, total_pore, "Ultramicropore volume exceeds total pore volume"),
         (micropore, total_pore, "Micropore volume exceeds total pore volume"),
+        # v1.3 gap 6. A mesopore volume nests inside the total the same way.
+        (mesopore, total_pore, "Mesopore volume exceeds total pore volume"),
     ):
         if smaller is not None and larger is not None and smaller > larger:
             _append_unique(errors, label)
+
+    # v1.3 gap 6. Micropore + mesopore must not exceed the total beyond rounding.
+    # A WARNING rather than an ERROR: papers round pore volumes to two decimals
+    # and a third pore class (macropore) may be unreported, so a small excess is
+    # a reporting artifact while a large one means the fields disagree.
+    if micropore is not None and mesopore is not None and total_pore is not None:
+        summed = micropore + mesopore
+        excess = summed - total_pore
+        if (
+            excess > _PORE_SUM_ABS_TOLERANCE_CM3_G
+            and excess / max(total_pore, 1e-9) > _PORE_SUM_REL_TOLERANCE
+        ):
+            _append_unique(
+                warnings, "Micropore plus mesopore volume exceeds total pore volume"
+            )
+
+    # v1.3 gap 3. When a paper reports a micropore and an external surface area
+    # AND a headline total, the parts should account for the whole. Relative AND
+    # absolute, both must be exceeded: relative-only was the false positive that
+    # produced v1.2's removed warning type, and HYC-0007 rounds its areas to the
+    # nearest 10 m2/g. No corpus row currently populates all three, checked
+    # before this was written, so this cannot fire today.
+    micropore_area = _to_float(clean.get("micropore_surface_area_m2_g"))
+    external_area = _to_float(clean.get("external_surface_area_m2_g"))
+    total_area = _to_float(clean.get("bet_surface_area_m2_g"))
+    if (
+        micropore_area is not None
+        and external_area is not None
+        and total_area is not None
+    ):
+        difference = abs((micropore_area + external_area) - total_area)
+        if (
+            difference > _AREA_SUM_ABS_TOLERANCE_M2_G
+            and difference / max(total_area, 1e-9) > _AREA_SUM_REL_TOLERANCE
+        ):
+            _append_unique(
+                warnings,
+                "Micropore plus external surface area inconsistent with total",
+            )
 
     material_class = clean.get("material_class")
     description = clean.get("material_description")
@@ -326,6 +381,67 @@ def validate_dataset(df: pd.DataFrame) -> DatasetValidationReport:
             for idx in idxs:
                 _append_unique(results[idx].errors, f"Duplicate measurement_id: {mid}")
                 results[idx].is_valid = False
+
+    # --- Dataset check 1b (v1.3 gap 3): surface_area_method used consistently.
+    #
+    # ERROR, and deliberately at dataset level rather than per row, because the
+    # distinction is not row-local:
+    #
+    #   unspecified  - an area IS reported, method not stated.
+    #   none         - the PAPER reports no area for any sample.
+    #   not_reported - THIS sample has none, in a paper that reports areas for
+    #                  its others.
+    #
+    # Whether a paper "reports areas for its others" is a fact about the paper's
+    # other rows, so a model validator on one row cannot check it at all. Before
+    # v1.3 all three collapsed onto `unspecified` and 24 rows sat there with an
+    # empty area field, indistinguishable from a measured area whose method the
+    # paper omitted. These checks are what stop that decaying back on the next
+    # append.
+    papers_with_any_area: set[str] = set()
+    for r in rows:
+        if _present(r.get("bet_surface_area_m2_g")) or _present(
+            r.get("micropore_surface_area_m2_g")
+        ) or _present(r.get("langmuir_surface_area_m2_g")) or _present(
+            r.get("external_surface_area_m2_g")
+        ):
+            papers_with_any_area.add(str(r.get("paper_id")))
+
+    for idx, r in enumerate(rows):
+        method = r.get("surface_area_method")
+        has_area = any(
+            _present(r.get(f))
+            for f in (
+                "bet_surface_area_m2_g",
+                "langmuir_surface_area_m2_g",
+                "micropore_surface_area_m2_g",
+                "external_surface_area_m2_g",
+            )
+        )
+        paper = str(r.get("paper_id"))
+        if method == "unspecified" and not has_area:
+            _append_unique(
+                results[idx].errors,
+                "surface_area_method is 'unspecified' with no area recorded; "
+                "use 'none' if the paper reports none at all, or "
+                "'not_reported' if only this sample lacks one",
+            )
+            results[idx].is_valid = False
+        elif method == "not_reported" and paper not in papers_with_any_area:
+            _append_unique(
+                results[idx].errors,
+                "surface_area_method is 'not_reported' but this paper reports no "
+                "surface area for any sample; 'none' is the correct value",
+            )
+            results[idx].is_valid = False
+        elif method == "none" and paper in papers_with_any_area:
+            _append_unique(
+                results[idx].errors,
+                "surface_area_method is 'none' but this paper does report a "
+                "surface area for another sample; 'not_reported' is the correct "
+                "value for a sample that lacks one",
+            )
+            results[idx].is_valid = False
 
     # --- Dataset check 2: DOI metadata conflict -> WARNING on every offending row.
     doi_groups: dict[str, list[int]] = {}

@@ -66,6 +66,20 @@ SurfaceAreaMethod = Literal[
     "Langmuir",
     "geometric",
     "DFT",
+    # v1.3 gap 3. alpha_s_plot is HYC-0007's method; t_plot is HYC-0004's, whose
+    # area is already in the corpus under `unspecified`.
+    "alpha_s_plot",
+    "t_plot",
+    # v1.3 gap 3. The three no-method values mean three different things and the
+    # distinction is checked, not merely documented:
+    #   unspecified   - an area IS reported, with no stated method.
+    #   none          - the paper reports no surface area for ANY sample.
+    #   not_reported  - this sample has none, in a paper that reports areas for
+    #                   its other samples (HYC-0029's 12 Co-loaded samples,
+    #                   HYC-0016's S13, HYC-0022's G212).
+    # Before v1.3 all three collapsed onto `unspecified`, which is why a reader
+    # could not tell "measured, method unknown" from "never measured".
+    "not_reported",
     "unspecified",
     "none",
 ]
@@ -107,6 +121,59 @@ MeasurementMode = Literal["isothermal", "temperature_cycle", "TPD", "flow"]
 # HYC-0026's explicit finding is that its bulk (elemental analysis) and surface
 # (XPS) nitrogen contents differ systematically.
 CompositionMethod = Literal["elemental_analysis", "XPS", "AAS", "ICP", "other"]
+
+# --- v1.3 gap 6: how a pore quantity was determined -------------------------
+# The same field name has been carrying incompatible quantities. micropore_volume
+# is Dubinin-Radushkevich on CO2 at 273 K in HYC-0019 and HYC-0024, DR on N2 at
+# 77 K in HYC-0024's other column, plain DR in HYC-0022 and HYC-0026, a DFT
+# volume in HYC-0021 and an alpha-s-plot volume in HYC-0007. Without the method
+# and the probe gas those are not comparable numbers.
+PoreVolumeMethod = Literal[
+    "DR",
+    "DFT",
+    "NLDFT",
+    "QSDFT",
+    "BJH",
+    "HK",
+    "t_plot",
+    "alpha_s_plot",
+    "other",
+    "unspecified",
+]
+
+# HYC-0019 measures surface area by N2 at 77 K and micropore volume by CO2 at
+# 273 K on the same row, which is why its area falls while its micropore volume
+# rises. That was unrecordable before v1.3.
+PoreVolumeProbeGas = Literal["N2", "CO2", "Ar", "He", "other", "unspecified"]
+
+# average_pore_diameter_nm would otherwise mix a BJH desorption average (which
+# HYC-0022's paper itself calls a *mesopore* size), a DR characteristic-energy
+# slit width (HYC-0024), an HK median and Stoeckli's L0 (HYC-0026).
+# geometric_from_S_V is HYC-0007's Wave, back-calculated from S_micro and
+# V_micro under an assumed pore shape -- not a pore-size-distribution model at
+# all, so calling it BJH or DFT would misdescribe it.
+PoreDiameterMethod = Literal[
+    "BJH",
+    "DR_characteristic_energy",
+    "HK",
+    "stoeckli_L0",
+    "DFT",
+    "geometric_from_S_V",
+    "other",
+    "unspecified",
+]
+
+# --- v1.3 gap 10: what a volumetric capacity is per ------------------------
+# HYC-0024 reports both per-micropore-volume and per-tank-volume figures for the
+# same sample at the same conditions, and they differ by more than 2x. A
+# volumetric capacity with no stated basis is not interpretable.
+VolumetricCapacityBasis = Literal[
+    "micropore_volume",
+    "total_pore_volume",
+    "packing_volume",
+    "tank_volume",
+    "other",
+]
 
 ExtractionMethod = Literal[
     "table_direct",
@@ -206,15 +273,119 @@ class MeasurementEntry(BaseModel):
     )
     dopant_concentration_method: Optional[CompositionMethod] = None
 
+    # --- v1.3 gap 3: a paper can report more than one surface area ---
+    # Physical CSV positions 52-53. HYC-0007 reports, per sample, a micropore
+    # surface area (320-2250 m2/g) and an external surface area (20-590 m2/g)
+    # from an alpha-s plot, and NO total -- eighteen measured values with nowhere
+    # to go, which held all of that paper's rows out of the corpus.
+    #
+    # bet_surface_area_m2_g is deliberately NOT renamed: renaming breaks
+    # plotting.py, every ML feature of that name and every published row
+    # reference. Its meaning is unchanged and is what it has been since v1.1 --
+    # the paper's headline TOTAL specific surface area, with the method given by
+    # surface_area_method.
+    #
+    # Caveat that travels with external_surface_area_m2_g: HYC-0007 defines its
+    # S_ext as "the external surface containing the mesopore and macropore", so
+    # this is not a geometric external surface and a mesopore surface area cannot
+    # be recovered from it.
+    micropore_surface_area_m2_g: Optional[float] = Field(
+        default=None, ge=0, le=4000
+    )
+    external_surface_area_m2_g: Optional[float] = Field(
+        default=None, ge=0, le=4000
+    )
+
+    # --- v1.3 gap 6: how each pore quantity was determined ---
+    # Physical CSV positions 54-59. One method/probe pair per row rather than per
+    # field: no corpus paper yet determines two of a single sample's pore volumes
+    # by different methods, and nine more columns to record an unobserved
+    # distinction is the wrong trade. Where a row's volumes do differ in method,
+    # `notes` records it and these fields carry the primary.
+    pore_volume_method: PoreVolumeMethod = "unspecified"
+    pore_volume_probe_gas: PoreVolumeProbeGas = "unspecified"
+    # HYC-0024 reports TWO DR micropore volumes per sample -- N2 at 77 K and CO2
+    # at 273 K -- which are not interchangeable (0.78 vs 0.57 cm3/g on ACFC50).
+    # The CO2-DR volume gets its own field, named by probe gas, because calling
+    # it "ultramicropore" would assert a cutoff that paper explicitly never
+    # states.
+    micropore_volume_co2_cm3_g: Optional[float] = Field(default=None, ge=0, le=2)
+    mesopore_volume_cm3_g: Optional[float] = Field(default=None, ge=0, le=3)
+    # The cutoff is now stated per row instead of assumed from the data
+    # dictionary. HYC-0005 and HYC-0021 are cut at 0.7 nm, HYC-0022's V<1nm at
+    # 1 nm, HYC-0024's DR-CO2 at no stated cutoff at all. Mixing them would
+    # destroy the one comparison v1.1 gap 4 added the field to make possible, so
+    # a populated volume with a null cutoff is an error (see below).
+    ultramicropore_cutoff_nm: Optional[float] = Field(default=None, ge=0, le=2)
+    pore_diameter_method: PoreDiameterMethod = "unspecified"
+
+    # --- v1.3 gap 10: volumetric, areal and structural quantities ---
+    # Physical CSV positions 60-66. Two volumetric fields rather than one with a
+    # basis flag, because HYC-0024 reports BOTH for the same sample at the same
+    # conditions: an adsorbed-phase density per micropore volume excluding
+    # compressed gas, and Ms per tank volume including it. One field could hold
+    # only one of them, and choosing would discard a primary-table measurement.
+    volumetric_capacity_kg_m3: Optional[float] = Field(default=None, ge=0, le=200)
+    volumetric_capacity_basis: Optional[VolumetricCapacityBasis] = None
+    volumetric_capacity_includes_compressed_gas: bool = False
+    adsorbed_phase_density_kg_m3: Optional[float] = Field(
+        default=None, ge=0, le=200
+    )
+    packing_density_g_cm3: Optional[float] = Field(default=None, ge=0, le=5)
+    # HYC-0024's helium density is load-bearing, not decorative: it is the
+    # quantity the paper uses to subtract the compressed-gas contribution from
+    # the measured weight increase, so without it the excess/absolute basis of
+    # its numbers cannot be reconstructed downstream.
+    skeletal_density_g_cm3: Optional[float] = Field(default=None, ge=0, le=5)
+    # HYC-0011's areal uptake (6.3e-6 g/cm2) is what makes its 8.0 wt% headline
+    # checkable -- and irreconcilable with its own film mass and area.
+    areal_uptake_g_cm2: Optional[float] = Field(default=None, ge=0)
+
+    # Physical CSV position 67. HYC-0015's held row.
+    interlayer_spacing_nm: Optional[float] = Field(default=None, ge=0)
+
     # --- Cross-field validation ---
-    _UPTAKE_FIELDS = ("uptake_wt_pct", "uptake_mmol_g", "uptake_ml_stp_g")
+    # Split in two at v1.3. The first three convert to a gravimetric figure
+    # through `normalize`; the last three do not without a density the paper may
+    # not state. See `at_least_one_uptake`.
+    _GRAVIMETRIC_UPTAKE_FIELDS = (
+        "uptake_wt_pct",
+        "uptake_mmol_g",
+        "uptake_ml_stp_g",
+    )
+    _NON_CONVERTIBLE_UPTAKE_FIELDS = (
+        "volumetric_capacity_kg_m3",
+        "adsorbed_phase_density_kg_m3",
+        "areal_uptake_g_cm2",
+    )
+    _SURFACE_AREA_FIELDS = (
+        "bet_surface_area_m2_g",
+        "langmuir_surface_area_m2_g",
+        "micropore_surface_area_m2_g",
+        "external_surface_area_m2_g",
+    )
+    _UPTAKE_FIELDS = (
+        "uptake_wt_pct",
+        "uptake_mmol_g",
+        "uptake_ml_stp_g",
+        "volumetric_capacity_kg_m3",
+        "adsorbed_phase_density_kg_m3",
+        "areal_uptake_g_cm2",
+    )
     _CHARACTERIZATION_FIELDS = (
         "bet_surface_area_m2_g",
         "langmuir_surface_area_m2_g",
+        "micropore_surface_area_m2_g",
+        "external_surface_area_m2_g",
         "micropore_volume_cm3_g",
+        "micropore_volume_co2_cm3_g",
         "ultramicropore_volume_cm3_g",
+        "mesopore_volume_cm3_g",
         "total_pore_volume_cm3_g",
         "average_pore_diameter_nm",
+        "packing_density_g_cm3",
+        "skeletal_density_g_cm3",
+        "interlayer_spacing_nm",
     )
 
     def _reports_uptake(self) -> bool:
@@ -276,20 +447,103 @@ class MeasurementEntry(BaseModel):
     def at_least_one_uptake(self) -> "MeasurementEntry":
         """A row must report either an uptake measurement or characterization.
 
-        When uptake is reported, at least one of the two gravimetric fields must
-        carry it, so that a volumetric-only row cannot enter without a value the
-        analysis can use directly (§8.2, preserved from v1.0).
+        v1.0-v1.2 required that when uptake is reported, at least one of the two
+        gravimetric fields carry it, "so that a volumetric-only row cannot enter
+        without a value the analysis can use directly."
+
+        **v1.3 narrows that rule rather than dropping it.** It was written when
+        the schema's only volumetric-looking field was `uptake_ml_stp_g` -- gas
+        volume per gram, which *is* convertible to wt% through
+        `normalize.ml_stp_per_g_to_wt_pct`. So "volumetric-only" then meant "a row
+        declining an arithmetic conversion it could have done", and refusing it
+        was right.
+
+        `volumetric_capacity_kg_m3` is a different kind of quantity: H2 mass per
+        unit volume of tank or of pore, convertible to a gravimetric figure only
+        with a density the paper may not state. HYC-0024's only tabulated hydrogen
+        quantities are of exactly this kind, and computing a wt% from them would
+        require choosing between two micropore volumes the paper never
+        distinguishes -- this project's arithmetic presented as the paper's
+        measurement, which §3.4 and §3.9 both forbid.
+
+        So: a row carrying a gravimetric-convertible value must still carry wt% or
+        mmol/g. A row whose only uptake is non-convertible is admitted, and it
+        still counts as reporting uptake, so its conditions are required and it is
+        not misfiled as characterization-only. `tests/test_dataset_invariants.py`
+        enumerates such rows by measurement_id so they cannot appear unnoticed --
+        a null wt% is dropped silently by a pandas mean, which is the §12.3
+        failure mode.
         """
-        if self._reports_uptake():
+        reports_gravimetric = any(
+            getattr(self, f) is not None for f in self._GRAVIMETRIC_UPTAKE_FIELDS
+        )
+        if reports_gravimetric:
             if self.uptake_wt_pct is None and self.uptake_mmol_g is None:
                 raise ValueError(
                     "At least one of 'uptake_wt_pct' or 'uptake_mmol_g' "
                     "must be provided."
                 )
-        elif not self._reports_characterization():
+        elif not self._reports_uptake() and not self._reports_characterization():
             raise ValueError(
                 "A row must report at least one uptake value or at least one "
                 "characterization value; this row reports neither."
+            )
+        return self
+
+    @model_validator(mode="after")
+    def pore_and_area_qualifiers_are_present_when_needed(self) -> "MeasurementEntry":
+        """Schema v1.3 (gaps 3, 6, 10). Four rules, each with a reason.
+
+        1. An ultramicropore volume needs its cutoff. The field exists to make one
+           quantity comparable across the corpus (v1.1 gap 4, added for HYC-0021's
+           central finding). A value whose cutoff nobody stated is not comparable
+           to one cut at 0.7 nm, and mixing them destroys exactly what the field
+           was for -- which is why HYC-0022's 1 nm value and HYC-0024's
+           no-cutoff value were held out rather than entered.
+
+        2. A volumetric capacity needs its basis. Per micropore volume and per
+           tank volume differ by more than a factor of two in HYC-0024's own
+           table, so an unqualified number is not interpretable.
+
+        3. `none` and `not_reported` must not carry an area. Both mean the sample
+           has no reported surface area; a value alongside either is a
+           contradiction.
+
+        The matching rule -- that `unspecified` must CARRY an area, and that
+        `not_reported` is used only where the paper reports areas for its other
+        samples -- is deliberately **not** here. It cannot be evaluated from one
+        row: "a paper that reports areas for its others" is a fact about the
+        paper's other rows. It lives in `validate.py` as a dataset-level check,
+        which can also verify the stronger property a row-local check cannot.
+        """
+        if (
+            self.ultramicropore_volume_cm3_g is not None
+            and self.ultramicropore_cutoff_nm is None
+        ):
+            raise ValueError(
+                "ultramicropore_volume_cm3_g is populated but "
+                "ultramicropore_cutoff_nm is null; an ultramicropore volume "
+                "whose cutoff is unstated is not comparable with one cut at "
+                "0.7 nm, and the field exists to be comparable"
+            )
+
+        if (
+            self.volumetric_capacity_kg_m3 is not None
+            and self.volumetric_capacity_basis is None
+        ):
+            raise ValueError(
+                "volumetric_capacity_kg_m3 is populated but "
+                "volumetric_capacity_basis is null; per pore volume and per tank "
+                "volume are not the same quantity"
+            )
+
+        areas_present = [
+            f for f in self._SURFACE_AREA_FIELDS if getattr(self, f) is not None
+        ]
+        if self.surface_area_method in ("none", "not_reported") and areas_present:
+            raise ValueError(
+                f"surface_area_method is '{self.surface_area_method}' but these "
+                f"surface-area fields are populated: {', '.join(areas_present)}"
             )
         return self
 

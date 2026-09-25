@@ -183,9 +183,27 @@ def test_carbide_chlorination_is_an_accepted_synthesis_method():
 
 
 def test_surface_area_method_is_controlled():
-    """§8.5 gap 1. Unblocks HYC-0025."""
-    for value in ("BET", "Langmuir", "geometric", "DFT", "unspecified", "none"):
+    """§8.5 gap 1 (unblocks HYC-0025), extended by v1.3 gap 3.
+
+    The values that assert an area WAS reported keep PANELLA_2005's area. The two
+    that assert none was -- `none` and `not_reported`, added in v1.3 -- must drop
+    it, because carrying an area alongside either is now a contradiction the model
+    rejects. That is the rule under test in test_schema_v1_3.py, not a limitation
+    here.
+    """
+    for value in ("BET", "Langmuir", "geometric", "DFT", "alpha_s_plot",
+                  "t_plot", "unspecified"):
         ok, errors = validate_row(_patch(PANELLA_2005, surface_area_method=value))
+        assert ok is True, (value, errors)
+    for value in ("none", "not_reported"):
+        ok, errors = validate_row(
+            _patch(
+                PANELLA_2005,
+                surface_area_method=value,
+                bet_surface_area_m2_g=None,
+                micropore_volume_cm3_g=0.4,
+            )
+        )
         assert ok is True, (value, errors)
     ok, _ = validate_row(_patch(PANELLA_2005, surface_area_method="guessed"))
     assert ok is False
@@ -200,8 +218,12 @@ def test_surface_area_method_defaults_to_unspecified():
 
 def test_ultramicropore_volume_is_bounded():
     """§8.5 gap 4."""
+    # v1.3 gap 6: a populated ultramicropore volume now requires its cutoff,
+    # because a value whose cutoff nobody stated is not comparable with one cut
+    # at 0.7 nm. The bounds under test here are unchanged.
     ok, errors = validate_row(_patch(PANELLA_2005,
-                                     ultramicropore_volume_cm3_g=0.27))
+                                     ultramicropore_volume_cm3_g=0.27,
+                                     ultramicropore_cutoff_nm=0.7))
     assert ok is True, errors
     ok, _ = validate_row(_patch(PANELLA_2005, ultramicropore_volume_cm3_g=-0.1))
     assert ok is False

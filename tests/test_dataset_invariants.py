@@ -91,10 +91,11 @@ def test_pore_volumes_nest(dataset):
 def test_physical_column_order_is_the_one_appends_rely_on(dataset):
     """§6.7. A positional append follows the CSV, not schema.py."""
     columns = list(dataset.columns)
-    assert len(columns) == 51
+    assert len(columns) == 67
     assert columns[0] == "paper_id"
-    # v1.1 appended 39-40; v1.2 appended 41-51. Both went on the end precisely
-    # so that positional appends keep working, and this pins that.
+    # v1.1 appended 39-40; v1.2 appended 41-51; v1.3 appended 52-67. Every one
+    # went on the end precisely so that positional appends keep working, and this
+    # pins that.
     assert columns[36:40] == [
         "measurement_id",
         "uptake_ml_stp_g",
@@ -114,6 +115,126 @@ def test_physical_column_order_is_the_one_appends_rely_on(dataset):
         "dopant_concentration_wt_pct",
         "dopant_concentration_method",
     ]
+    assert columns[51:67] == [
+        "micropore_surface_area_m2_g",
+        "external_surface_area_m2_g",
+        "pore_volume_method",
+        "pore_volume_probe_gas",
+        "micropore_volume_co2_cm3_g",
+        "mesopore_volume_cm3_g",
+        "ultramicropore_cutoff_nm",
+        "pore_diameter_method",
+        "volumetric_capacity_kg_m3",
+        "volumetric_capacity_basis",
+        "volumetric_capacity_includes_compressed_gas",
+        "adsorbed_phase_density_kg_m3",
+        "packing_density_g_cm3",
+        "skeletal_density_g_cm3",
+        "areal_uptake_g_cm2",
+        "interlayer_spacing_nm",
+    ]
+
+
+def test_surface_area_method_partitions_the_corpus_cleanly(dataset):
+    """v1.3 gap 3. The three no-area values mean three different things.
+
+    unspecified  -> an area IS reported, method not stated.
+    none         -> the paper reports no area for any sample.
+    not_reported -> this sample has none, in a paper that reports areas for
+                    its others.
+
+    Before v1.3 all three collapsed onto `unspecified` and 24 rows sat there with
+    an empty area field. validate.py enforces this at dataset level; this asserts
+    it against the real corpus so a regression shows up here too.
+    """
+    area_fields = [
+        "bet_surface_area_m2_g",
+        "langmuir_surface_area_m2_g",
+        "micropore_surface_area_m2_g",
+        "external_surface_area_m2_g",
+    ]
+    has_area = dataset[area_fields].notna().any(axis=1)
+
+    unspecified = dataset[dataset["surface_area_method"] == "unspecified"]
+    assert len(unspecified) > 0
+    assert has_area[unspecified.index].all(), (
+        "a row on 'unspecified' with no area: "
+        f"{unspecified[~has_area[unspecified.index]]['measurement_id'].tolist()}"
+    )
+
+    for value in ("none", "not_reported"):
+        rows = dataset[dataset["surface_area_method"] == value]
+        assert len(rows) > 0, value
+        assert not has_area[rows.index].any(), (
+            f"a row on '{value}' carrying an area: "
+            f"{rows[has_area[rows.index]]['measurement_id'].tolist()}"
+        )
+
+    papers_with_area = set(dataset[has_area]["paper_id"])
+    not_reported = dataset[dataset["surface_area_method"] == "not_reported"]
+    for paper in set(not_reported["paper_id"]):
+        assert paper in papers_with_area, (
+            f"{paper} uses 'not_reported' but reports no area for any sample; "
+            f"'none' is the correct value"
+        )
+    for paper in set(dataset[dataset["surface_area_method"] == "none"]["paper_id"]):
+        assert paper not in papers_with_area, (
+            f"{paper} uses 'none' but does report an area for another sample; "
+            f"'not_reported' is the correct value for the sample that lacks one"
+        )
+
+
+def test_every_ultramicropore_volume_states_its_cutoff(dataset):
+    """v1.3 gap 6. The field exists to be comparable; a cutoff makes it so.
+
+    HYC-0005 and HYC-0021 are cut at 0.7 nm. HYC-0022's V<1nm and HYC-0024's
+    no-cutoff DR-CO2 volume were held out rather than mixed in, and a future
+    append of either must carry its own cutoff rather than inheriting 0.7.
+    """
+    with_volume = dataset.dropna(subset=["ultramicropore_volume_cm3_g"])
+    assert len(with_volume) == 29
+    assert with_volume["ultramicropore_cutoff_nm"].notna().all(), (
+        with_volume[with_volume["ultramicropore_cutoff_nm"].isna()][
+            "measurement_id"
+        ].tolist()
+    )
+    assert set(with_volume["ultramicropore_cutoff_nm"]) == {0.7}
+    assert set(with_volume["paper_id"]) == {"HYC-0005", "HYC-0021"}
+
+
+def test_every_volumetric_capacity_states_its_basis(dataset):
+    """v1.3 gap 10. Per pore volume and per tank volume differ by over 2x."""
+    with_capacity = dataset.dropna(subset=["volumetric_capacity_kg_m3"])
+    assert with_capacity["volumetric_capacity_basis"].notna().all(), (
+        with_capacity[with_capacity["volumetric_capacity_basis"].isna()][
+            "measurement_id"
+        ].tolist()
+    )
+
+
+def test_rows_whose_uptake_does_not_convert_to_wt_pct_are_enumerated(dataset):
+    """v1.3 §4a. A null wt% is dropped silently by a mean, so name the rows.
+
+    v1.3 admits a row whose only uptake is volumetric or areal, because HYC-0024
+    reports nothing else and computing a wt% would be this project's arithmetic
+    rather than the paper's measurement. The hazard is that such a row passes a
+    "reports uptake" filter and then contributes nothing to a gravimetric
+    statistic. Enumerating them by id means one cannot appear unnoticed -- the
+    same discipline as the bounded-uptake test.
+
+    Empty today: HYC-0024's rows are still held pending its extraction. When they
+    land, add them here in the same commit.
+    """
+    non_convertible = dataset[
+        dataset["uptake_wt_pct"].isna()
+        & dataset["uptake_mmol_g"].isna()
+        & (
+            dataset["volumetric_capacity_kg_m3"].notna()
+            | dataset["adsorbed_phase_density_kg_m3"].notna()
+            | dataset["areal_uptake_g_cm2"].notna()
+        )
+    ]
+    assert set(non_convertible["measurement_id"]) == set()
 
 
 def test_figure_estimated_is_assigned_to_no_row(dataset):

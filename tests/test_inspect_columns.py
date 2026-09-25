@@ -43,14 +43,14 @@ def test_quoted_comma_does_not_shift_columns(tmp_path, capsys):
     assert code == 0
     # measurement_id is the 37th physical column. A comma-split read would put
     # something else there; pandas puts the measurement_id there.
-    assert "physical position: 37 of 51" in out
+    assert "physical position: 37 of 67" in out
     assert "HYC-9001-M1" in out
 
 
 def test_a_field_holding_a_comma_stays_one_field(tmp_path):
     path = write_csv(tmp_path / "commas.csv", [make_row(notes="a, b, c")])
     df = pd.read_csv(path)
-    assert len(df.columns) == 51
+    assert len(df.columns) == 67
     assert df.loc[0, "notes"] == "a, b, c"
 
 
@@ -61,7 +61,7 @@ def test_a_field_holding_a_comma_stays_one_field(tmp_path):
 def test_overview_is_the_default_view(clean_dataset, capsys):
     code, out = run([str(clean_dataset)], capsys)
     assert code == 0
-    assert "3 rows x 51 columns" in out
+    assert "3 rows x 67 columns" in out
     assert "paper_id" in out and "measurement_id" in out
 
 
@@ -415,15 +415,17 @@ def test_a_too_wide_row_is_diagnosed_before_pandas_gives_up(tmp_path, capsys):
     header = ",".join(COLUMNS)
     path = tmp_path / "ragged.csv"
     # The bad row must stay WIDER than the header, which is what this test is
-    # for. It was header + 2 when the header was 40 columns wide; keeping the
-    # +2 rather than the literal 42 preserves that as the schema grows.
-    path.write_text(header + "\n" + ",".join(["x"] * 51) + "\n"
-                    + ",".join(["y"] * 53) + "\n", encoding="utf-8")
+    # for. Derived from len(COLUMNS) rather than written as a literal, because a
+    # literal is what inverted this test during the v1.2 migration: 42 fields
+    # were wider than a 40-column header and narrower than a 51-column one.
+    wide = len(COLUMNS) + 2
+    path.write_text(header + "\n" + ",".join(["x"] * len(COLUMNS)) + "\n"
+                    + ",".join(["y"] * wide) + "\n", encoding="utf-8")
 
     code, out = run([str(path)], capsys)
     assert code == 2
     assert "rows of differing width" in out
-    assert "53 field(s) on line(s) [3]" in out
+    assert f"{wide} field(s) on line(s) [3]" in out
     assert "which lines are at fault" in out
 
 
@@ -431,15 +433,16 @@ def test_a_too_narrow_row_is_warned_about_and_still_inspectable(tmp_path, capsys
     """pandas pads this one silently, which is the more dangerous case."""
     header = ",".join(COLUMNS)
     path = tmp_path / "short.csv"
-    path.write_text(header + "\n" + ",".join(["x"] * 51) + "\n"
-                    + ",".join(["y"] * 35) + "\n", encoding="utf-8")
+    narrow = len(COLUMNS) - 16
+    path.write_text(header + "\n" + ",".join(["x"] * len(COLUMNS)) + "\n"
+                    + ",".join(["y"] * narrow) + "\n", encoding="utf-8")
 
     code, out = run([str(path)], capsys)
     assert code == 0
     assert "rows of differing width" in out
     assert "not reliable" in out
-    assert "35 field(s) on line(s) [3]" in out
-    assert "2 rows x 51 columns" in out
+    assert f"{narrow} field(s) on line(s) [3]" in out
+    assert f"2 rows x {len(COLUMNS)} columns" in out
 
 
 def test_a_well_formed_csv_gets_no_width_warning(clean_dataset, capsys):
@@ -451,7 +454,7 @@ def test_a_well_formed_csv_gets_no_width_warning(clean_dataset, capsys):
 def test_field_counts_is_not_fooled_by_a_quoted_comma(tmp_path):
     path = write_csv(tmp_path / "commas.csv",
                      [make_row(notes="a, b, c, d, e")])
-    assert ic.field_counts(str(path)) == {51: [1, 2]}
+    assert ic.field_counts(str(path)) == {len(COLUMNS): [1, 2]}
 
 
 def test_a_zero_byte_csv_exits_2(tmp_path, capsys):

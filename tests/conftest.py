@@ -79,6 +79,23 @@ COLUMNS = [
     "residual_metal_wt_pct",
     "dopant_concentration_wt_pct",
     "dopant_concentration_method",
+    # schema v1.3 (gaps 3, 6, 10), appended at physical positions 52-67
+    "micropore_surface_area_m2_g",
+    "external_surface_area_m2_g",
+    "pore_volume_method",
+    "pore_volume_probe_gas",
+    "micropore_volume_co2_cm3_g",
+    "mesopore_volume_cm3_g",
+    "ultramicropore_cutoff_nm",
+    "pore_diameter_method",
+    "volumetric_capacity_kg_m3",
+    "volumetric_capacity_basis",
+    "volumetric_capacity_includes_compressed_gas",
+    "adsorbed_phase_density_kg_m3",
+    "packing_density_g_cm3",
+    "skeletal_density_g_cm3",
+    "areal_uptake_g_cm2",
+    "interlayer_spacing_nm",
 ]
 
 # A row that validates with zero errors and zero warnings. Its `notes` field
@@ -138,6 +155,14 @@ BASE_ROW = {
     "uptake_ml_stp_g": None,
     "surface_area_method": "BET",
     "ultramicropore_volume_cm3_g": None,
+    # schema v1.3 (gaps 3, 6, 10). The three Literal fields and the boolean need
+    # explicit values here: a CSV fixture writes "" for a missing key, and "" is
+    # not a member of any Literal, so omitting them makes every fixture row
+    # invalid for a reason that has nothing to do with the test.
+    "pore_volume_method": "unspecified",
+    "pore_volume_probe_gas": "unspecified",
+    "pore_diameter_method": "unspecified",
+    "volumetric_capacity_includes_compressed_gas": False,
 }
 
 

@@ -8,7 +8,13 @@ execution manual §6.7.
 `data/raw/measurements_v0.1.csv`, `docs/data_dictionary.md`, `tests/` — and
 nothing else.
 
-Schema version: **v1.2 → v1.3**. Columns: **51 → 68**.
+Schema version: **v1.2 → v1.3**. Columns: **51 → 67** (16 new fields).
+
+*(Corrected 2026-09-25: this line first said "17 fields, 51 → 68". 2 + 6 + 8 = 16.
+The field tables in §1 were right; the summary line was not — the same class of
+error three audits found in the execution manual today, in the same place, a
+sentence restating a number computed correctly elsewhere. Counted from
+`MeasurementEntry.model_fields`.)*
 
 ---
 
@@ -29,7 +35,7 @@ version number and its own verification.
 HYC-0024's, plus one row each in HYC-0011 and HYC-0015. Target **~226 rows, 23
 papers**.
 
-## 1. The field list, and the paper that forces each one
+## 1. The field list (16), and the paper that forces each one
 
 Every field below is justified by a specific measured value in a specific paper
 that currently has nowhere to go. Nothing is added speculatively. Sources: the
@@ -217,6 +223,50 @@ thing, which is what lets §4's new check exist at all.
 6. Pore nesting extended: `mesopore_volume_cm3_g` + `micropore_volume_cm3_g`
    must not exceed `total_pore_volume_cm3_g` beyond tolerance.
 
+## 4a. Amendment — an existing validator blocks gap 10, and it has to change
+
+**Found while implementing, not while planning. Recorded here rather than done
+silently.**
+
+`schema.py`'s `at_least_one_uptake` validator currently reads:
+
+> When uptake is reported, at least one of the two gravimetric fields must carry
+> it, **so that a volumetric-only row cannot enter** without a value the analysis
+> can use directly.
+
+That rule rejects every HYC-0024 row. Its only tabulated hydrogen quantities are
+volumetric, and §2 forbids computing a wt% from them. So gap 10 cannot be closed
+without amending the rule — adding the fields is not sufficient.
+
+**The rule was right when written and is wrong now.** It dates from v1.0, when the
+schema's only volumetric-looking field was `uptake_ml_stp_g` — gas volume per gram,
+which *is* convertible to wt% through `normalize.ml_stp_per_g_to_wt_pct`. There was
+no non-convertible quantity in the schema, so "volumetric-only" meant "a row that
+declined to do an arithmetic conversion it could have done." `volumetric_capacity_kg_m3`
+is a different kind of thing: H2 mass per unit *volume of tank or pore*, convertible
+to a gravimetric figure only with a density the paper may not state.
+
+**The fix.** Split the uptake fields in two:
+
+- **Gravimetric-convertible:** `uptake_wt_pct`, `uptake_mmol_g`, `uptake_ml_stp_g`.
+  If any of these is populated, at least one of wt% or mmol/g must be — the
+  original rule, unchanged, for the case it was written for.
+- **Non-convertible:** `volumetric_capacity_kg_m3`, `adsorbed_phase_density_kg_m3`,
+  `areal_uptake_g_cm2`. A row carrying only these **is** an uptake row: its
+  conditions are required (HYC-0024 states 293 K and 10 MPa) and it counts as
+  reporting uptake, so it is not misfiled as characterization-only.
+
+`_reports_uptake()` covers both sets, so the §4 conditions rule applies unchanged.
+
+**The risk this creates, and the guard.** A row with volumetric uptake and no wt%
+passes a "has any uptake" filter and then contributes nothing to a gravimetric
+mean — `pandas` drops the null silently. This is the §12.3 failure mode exactly.
+Two mitigations: the analysis filter keys on `uptake_wt_pct` for gravimetric work,
+which §12.3 already does; and `tests/test_dataset_invariants.py` **enumerates by
+measurement_id** every row whose uptake is non-convertible, the way it already
+enumerates bounded uptakes, so such a row cannot appear without a deliberate test
+change. Manual §12.3's exclusion table gains this category.
+
 ## 5. Method and verification
 
 Per §6.7 and the v1.1/v1.2 precedent:
@@ -236,17 +286,17 @@ Per §6.7 and the v1.1/v1.2 precedent:
 Post-conditions, asserted by the script and independently by
 `tests/test_schema_v1_3.py`:
 
-1. Row count unchanged at **206**. Column count **51 → 68**. Physical line count
+1. Row count unchanged at **206**. Column count **51 → 67**. Physical line count
    unchanged.
 2. Exactly **53 cells changed**, all in `ultramicropore_cutoff_nm` (29, a new
    column) and `surface_area_method` (24). Columns 1–51 otherwise byte-identical;
-   the 17 new columns appended at physical positions 52–68.
+   the 16 new columns appended at physical positions 52–67.
 3. Zero validation errors. Warning baseline unchanged: `Unspecified uptake_type`
    ×183 and `Pre-2005 raw-CNT high uptake (Tier D)` ×1, and **no new type**.
 4. `surface_area_method` partitions as §3 states: 31 `unspecified` all with an
    area, 20 `none` and 16 `not_reported` all without.
 5. All 29 rows with an ultramicropore volume have cutoff 0.7.
-6. `docs/data_dictionary.md` documents all 17 fields **in this commit** — §8.7,
+6. `docs/data_dictionary.md` documents all 16 fields **in this commit** — §8.7,
    which the v1.2 commit violated by shipping eleven fields without it.
 
 ## 6. A scope finding that is not a schema gap
@@ -266,16 +316,16 @@ the append.
 ## 7. Sequencing
 
 1. This plan, committed. ✅ (the §6.7 gate)
-2. `schema.py`: 17 fields, 3 vocabulary extensions, 3 new Literals, the §4 error
+2. `schema.py`: 16 fields, 3 vocabulary values, 4 new Literals, the §4 error
    rules in the model validator.
 3. `validate.py`: the §4 warnings.
-4. `docs/data_dictionary.md`: all 17 fields, with the S_ext caveat and the
+4. `docs/data_dictionary.md`: all 16 fields, with the S_ext caveat and the
    cutoff-comparability note.
 5. `tests/test_schema_v1_3.py`: gap by gap, each guard carrying a `MUTATION:`
    marker naming what it would catch — and each mutation actually run.
 6. `scripts/migrate_v1_3.py` + its tests. Applied. Dataset re-read from disk and
    re-verified.
-7. `tests/test_dataset_invariants.py`: column count 51 → 68 with positions 52–68
+7. `tests/test_dataset_invariants.py`: column count 51 → 67 with positions 52–67
    enumerated, plus the §3 partition and cutoff invariants.
 8. Revalidate, full suite, ruff. Commit. Then the held rows (a separate commit,
    under the dual-agent protocol).
