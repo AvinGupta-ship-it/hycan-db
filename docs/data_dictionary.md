@@ -643,3 +643,175 @@ Fields are grouped into five categories matching the curation spreadsheet column
 **Units.** None.  
 **Scientific significance.** Enables detection of stale verifications if the row is later edited.  
 **If missing.** Leave null.
+
+---
+
+## Schema v1.2 Fields — Qualifiers on What a Row Asserts
+
+Eleven fields added in schema v1.2, at physical positions 41–51. Each exists
+because a real paper could not be recorded without it; the paper is named in
+each entry. Rationale and the fixes still outstanding are in
+`docs/schema_v1_2_gaps.md`; the migration is `scripts/migrate_v1_2.py`.
+
+Every one is defaulted so that all 156 rows predating the migration remain valid
+unchanged — a pre-v1.2 row does assert an exact, isothermal measurement with
+both conditions stated, which is what the defaults say.
+
+### `uptake_bound`
+
+| Attribute | Value |
+|---|---|
+| Type | Controlled: `exact`, `upper`, `lower`, `approximate` |
+| Required | Yes (defaults to `exact`) |
+| Example | `upper` |
+
+**Definition.** Whether the uptake fields hold a measured value or a bound on
+one. `upper` means the true uptake is *below* the recorded number; `lower` means
+above.
+**Scientific significance.** A paper reporting "below 0.2 wt.%" has no exact
+value. Before this field the only options were to write `0.2`, which turns a
+bound into a measured point that enters isotherm fits and Chahine comparisons,
+or to drop the measurement. Both are wrong, and the second is worse than it
+looks: null and bounded results are the corrective to this literature's
+optimistic publication bias. A database that can record 8.0 wt% but not "below
+0.2 wt%" systematically over-represents the field's successful tail.
+**Papers this exists for.** HYC-0017 (Ma 2009), whose room-temperature result —
+"the hydrogen uptake is below 0.2 wt.% at 290 K" — is the paper's headline
+*negative* finding and the reason it was published. HYC-0029 (Chen 2008), whose
+two high-temperature activated samples are reported only as "more than 1.0 wt.%".
+**Downstream contract.** Any row whose value is not `exact` must be excluded from
+isotherm fitting and from headline capacity statistics, and plotted as an arrow
+rather than a point.
+**If missing.** `exact`.
+
+---
+
+### `temperature_unstated` and `pressure_unstated`
+
+| Attribute | Value |
+|---|---|
+| Type | Boolean |
+| Required | Yes (default `false`) |
+| Example | `true` |
+
+**Definition.** That the source paper never stated this condition numerically,
+which is the only circumstance in which an uptake-bearing row may leave
+`temperature_k` or `pressure_bar` null.
+**Scientific significance.** Schema v1.1 made the conditions conditional —
+required with an uptake, optional without — which solved characterization-only
+rows. It did not solve a paper that reports an uptake without stating the
+conditions as numbers. Imputing a convention is not available here: "room
+temperature" in a 2002 Chinese laboratory and a 2016 Indian one are not the same
+number, the difference matters at these uptake levels, and substituting 298 K
+fabricates a measurement condition. The flag makes the absence explicit and
+filterable instead of leaving analysis to discover a null.
+**Papers these exist for.** HYC-0011 (Qikun 2002) and HYC-0015 (Rajaura 2016),
+both of which report uptakes at "room temperature" and give no number anywhere;
+HYC-0009's six TPD rows, which state an adsorption temperature but describe the
+gas only as "H2 (40 cc/min) for 1 h"; and HYC-0026 (Zhao 2013), whose uptake
+sentence states no pressure and every pressure in which belongs to a different
+quantity measured on a different instrument.
+**Validation.** A flag set `true` while its field is populated is an ERROR — a
+row cannot both state a condition and declare it unstated. The flag is the only
+way to get a null past the conditions check, so nulls cannot appear by accident.
+**If missing.** `false`.
+
+---
+
+### `measurement_mode`
+
+| Attribute | Value |
+|---|---|
+| Type | Controlled: `isothermal`, `temperature_cycle`, `TPD`, `flow` |
+| Required | Yes (defaults to `isothermal`) |
+| Example | `temperature_cycle` |
+
+**Definition.** What kind of measurement produced the uptake.
+**Scientific significance.** This is the field that stops the corpus quietly
+corrupting itself. HYC-0029 (Chen 2008) reports weight differences across a
+303 → 673 → 303 K cycle at ambient pressure in flowing hydrogen. Its numbers are
+not isothermal uptakes: nothing is measured at a single temperature, and the
+reference state is a sample at 673 K still sitting in 1 atm of hydrogen rather
+than a vacuum or zero-coverage baseline. Recording a single `temperature_k` for
+such a row asserts an isothermal measurement that did not happen. Sixteen rows
+of that paper, plus HYC-0011's third powder measurement, plus HYC-0009's six TPD
+rows, are non-isothermal and must be excluded from Chahine plots and isotherm
+fits.
+**Downstream contract.** Analysis restricts to `isothermal` by default.
+**If missing.** `isothermal`, which is true of every row predating v1.2.
+
+---
+
+### `reference_temperature_k`
+
+| Attribute | Value |
+|---|---|
+| Type | Float or null, 50–1500 K |
+| Required | No |
+| Example | `673` |
+
+**Definition.** The temperature of the state the uptake is referenced *against*,
+for a measurement that is not isothermal.
+**Units.** K
+**Why the range runs to 1500 K.** This is a desorption endpoint, not a
+measurement temperature, so `temperature_k`'s 50–500 K window does not apply.
+HYC-0029's is 673 K; HYC-0009's TPD integrals run to 723.15 K.
+**Scientific significance.** Without it a temperature-cycle uptake has no defined
+reference state and cannot be interpreted at all, let alone compared.
+**Validation.** Required on any non-isothermal row that reports an uptake.
+**If missing.** Leave null; meaningful only when `measurement_mode` is not
+`isothermal`.
+
+---
+
+### `metal_element`, `metal_loading_wt_pct`, `residual_metal_element`, `residual_metal_wt_pct`
+
+| Attribute | Value |
+|---|---|
+| Type | String or null; float or null, 0–100 wt% |
+| Required | No |
+| Example | `Co`, `14.62` |
+
+**Definition.** `metal_*` is an intentionally added supported metal and its
+loading by weight. `residual_metal_*` is leftover synthesis catalyst.
+**Units.** Weight percent.
+**Why these are separate from `dopant_*`.** A supported catalyst particle and a
+substitutional lattice heteroatom work by different mechanisms. HYC-0025's boron
+and HYC-0026's nitrogen are dopants; HYC-0029's cobalt and HYC-0027's palladium
+are impregnated metal. Collapsing them into `dopant_element` would make the
+spillover subset uninterpretable. `dopant_concentration_at_pct` is also atomic
+percent, and both spillover papers report weight percent.
+**Scientific significance.** Before v1.2 *both* of the corpus's spillover papers
+had their primary independent variable stranded in free text, so the spillover
+subset could not be analysed against metal loading at all — which is the one
+thing those papers are about.
+**Why residual metal matters separately.** Residual synthesis catalyst is the
+Hirscher-contamination class of problem: it decides whether an uptake is the
+carbon's at all. HYC-0029 reports 1.02, 0.16, 0.09 and 0.15 wt% residual cobalt
+by AAS alongside its intentional loadings.
+**If missing.** Leave null. Most papers have no supported metal.
+
+---
+
+### `dopant_concentration_wt_pct` and `dopant_concentration_method`
+
+| Attribute | Value |
+|---|---|
+| Type | Float or null, 0–100 wt%; controlled: `elemental_analysis`, `XPS`, `AAS`, `ICP`, `other` |
+| Required | No |
+| Example | `15.07`, `elemental_analysis` |
+
+**Definition.** Dopant concentration by weight, and the technique that measured
+it.
+**Units.** Weight percent. Use `dopant_concentration_at_pct` for atomic percent;
+never convert between them, since the conversion needs a composition the paper
+may not give.
+**Scientific significance.** HYC-0026 (Zhao 2013) reports nitrogen content only
+in weight percent, across 0.20–15.07 wt%, and that is the variable its title is
+about. With no field for it the paper's central result was unrecordable, and all
+seven of its rows were held out of the dataset.
+**Why the method field exists.** The same paper reports bulk (elemental
+analysis) and surface (XPS) nitrogen contents that differ systematically — its
+own explicit finding, and a factor of two on one sample. A concentration without
+its technique is not comparable across papers.
+**If missing.** Leave null.

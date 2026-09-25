@@ -32,8 +32,36 @@ Tier mapping:
 
 Categorical override: a value that is inconsistent with established physics (for example, room-temperature uptake far above the ~1 wt% physisorption bound) is Tier D regardless of the additive score. The additive score can only raise a paper; the physics-inconsistency clause can cap it at D.
 
-## Note on the current v0.1 corpus
-Every row extracted so far reports uptake_type as `unspecified`, so every current row forfeits the "uptake type explicitly stated" point. The maximum achievable score for any current row is therefore 9, and reaching Tier A additionally requires full marks on BET, method, purity, calibration, and Chahine-consistency. Treat Tier A as rare for this corpus until uptake_type is resolved from the sources.
+## Note on the current corpus
+
+*Updated 2026-09-25 against a 206-row, 21-paper corpus. The paragraph this replaces was written when every row in the dataset reported `uptake_type = unspecified` and is no longer true.*
+
+183 of 206 rows report `uptake_type = unspecified` and forfeit the "uptake type explicitly stated" point; the maximum achievable score for those rows is 9. 23 rows across the corpus do state a type (`excess`) and can reach 10. Tier A remains uncommon — 36 of 206 rows — and reaching it on an `unspecified` row requires full marks on BET, method, purity, calibration, and Chahine-consistency simultaneously.
+
+Current distribution: 36 A, 124 B, 38 C, 8 D.
+
+## Documented limitation — the rubric assumes physisorption
+
+**This limitation was specified in execution-manual v2.0 §13.4 and recorded there as written into this document. It was not written until v2.3. It is recorded here now, and the gap itself is disclosed because a limitation the project believed it had disclosed and had not is a worse failure than the limitation.**
+
+The seven criteria above are calibrated for physisorptive hydrogen uptake on porous carbons. Applied to metal-decorated, spillover, and non-isothermal systems, the rubric penalizes papers for not reporting quantities their mechanism does not depend on, and rewards them for reporting quantities that do not mean what the criterion assumes.
+
+Two cases in the corpus, of different shapes:
+
+**HYC-0027 (Parambhath et al. 2012)** — Pd-decorated reduced graphene oxide, hydrogen spillover. Its uptake is governed by catalyst dispersion and hydrogen migration from the metal to the carbon support, not by surface area. It is scored against BET consistency and Chahine agreement, neither of which is the operative physics. It landed at Tier C with four of its five lost points attributable to this rather than to any deficiency in its reporting.
+
+**HYC-0029 (Chen et al. 2008)** — Co-loaded carbon nanofibers. Its reported hydrogen quantities are not isotherm points at all; they are sample weight differences measured across a 303 → 673 → 303 K temperature cycle. The Chahine criterion has nothing to say about such a value. The temperature-and-pressure criterion awards its point for conditions that are stated clearly and that describe a cycle rather than an equilibrium. Its rows landed at Tier B and C by a rubric that was not measuring them.
+
+**The resolution is disclosure, not rescoring.** A tier is a statement about one specific kind of reproducibility. Rescoring spillover and non-isothermal papers upward — or downward — would make the letter mean two different things depending on the row, which is worse than a letter that means one thing imperfectly. The scores stand as assigned.
+
+Two options for a future schema revision, to be evaluated in Phase E when the meta-analysis makes the cost of the present approach visible:
+
+- a mechanism-aware second rubric, scored alongside the physisorption rubric; or
+- a `tier_basis` field recording which rubric a row's tier was assigned under.
+
+Neither is adopted yet. Until one is, any analysis that aggregates across mechanisms should report its result with and without the spillover and non-isothermal rows, and say which rows those are.
+
+**A related consequence, recorded separately because it is a code defect rather than a rubric limitation:** since schema v1.2 made `temperature_k` optional on rows whose paper never stated a temperature, `score_reproducibility` returns "cannot assess" (1 of 2 points) for the Chahine criterion on every such row. Fifteen rows across four papers carry a null condition, and the six with a null temperature collect that point for a check that never ran — including both of HYC-0011's rows, so its ordinary 0.26 wt% and its discredited 8.0 wt% receive identical Chahine scores. `suggest_tier` must not be used on a row where `temperature_unstated` or `pressure_unstated` is true; score those by hand. Manual §13.7 has the detail and the fix.
 
 ## suggest_tier is a suggestion only
 `suggest_tier(row)` in `src/hycan/validate.py` applies this rubric to the fields present in a row and returns a suggested letter. It is an approximate scorer and the human extractor makes the final call. It cannot see everything the rubric asks about:

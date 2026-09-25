@@ -433,7 +433,12 @@ def test_the_migration_refuses_a_file_of_the_wrong_column_count(tmp_path):
     path = tmp_path / "narrow.csv"
     path.write_text("a,b,c\n1,2,3\n", encoding="utf-8")
     result = run_migration(
-        "--dataset", str(path), "--backup-dir", str(tmp_path / "bk"), "--expected-rows", "-1",
+        "--dataset",
+        str(path),
+        "--backup-dir",
+        str(tmp_path / "bk"),
+        "--expected-rows",
+        "-1",
         cwd=tmp_path,
     )
     assert result.returncode != 0
