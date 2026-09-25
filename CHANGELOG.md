@@ -19,8 +19,18 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `surface_area_method` populated as `BET` on the 109 rows carrying a `bet_surface_area_m2_g` value, `unspecified` on the other 10.
 ### Dataset
 - 119 rows, 11 papers, unchanged in count. 38 → 40 columns, both appended at the end so positional appends still work (§6.7). Exactly 34 cells changed in the pre-existing 38 columns, all of them the two relabels above. Validation: 0 errors, warning types unchanged at `Unspecified uptake_type ×96` and `mmol/g and wt% inconsistent ×1`. 405 tests passing.
+### Added — source-backed backfills (second commit)
+- `ultramicropore_volume_cm3_g` backfilled for HYC-0021 (Sethia 2016, Table 2, pores below 0.7 nm) and HYC-0005 (Texier-Mandoki 2004, Table 1 V_DR(CO2), which the paper defines as pores below 0.7 nm). 29 rows across two papers now carry the quantity, which is what makes the deviation both papers report testable across the corpus.
+- HYC-0018: two characterization-only rows recovered (GO and EGR 400), representable only under v1.1's conditional temperature and pressure. Neither sample has a numeric hydrogen uptake in the paper's text or tables; EGR (400)'s exists only as plotted points in Fig. 9, so under §3.4 it awaits digitization and the row says so.
+- `tests/test_dataset_invariants.py` — invariants asserted against the real dataset rather than a fixture, including the §11.5 warning baseline and the pore-volume nesting.
+### Changed — HYC-0005 surface area
+- `surface_area_method` BET → `unspecified` and `extraction_confidence` 5 → 4 on all 25 rows. §8.6 asked whether a total surface area had been entered into the BET field. It had: Table 1's column is headed "TSA" and footnoted "total surface area", and the strings "BET" and "Brunauer" do not occur anywhere in the paper. The values stay in `bet_surface_area_m2_g` because the schema has no generic surface-area field; `surface_area_method` now carries the truth. The rows previously asserted a method the authors never claimed.
+### Dataset (after backfill)
+- 121 rows, 11 papers, 40 columns. 0 errors. Warning types unchanged; `Unspecified uptake_type` rises 96 → 98, which §11.5 permits as an increase in an existing type. 418 tests passing.
+### Verification
+- Every backfilled cell was extracted from the PDF and then independently re-derived by a second agent holding the papers and the candidate values only, with no access to the first agent's reasoning (§3.2). 40 cells checked, 40 agreed. The one disagreement it raised was against a transcription error in the verification prompt, not against the dataset, and is recorded in `docs/ai_usage_log.md`.
 ### Outstanding
-- Three backfills need the source PDFs and are deferred to a second commit: `ultramicropore_volume_cm3_g` for HYC-0021 (Sethia 2016), the two recovered characterization-only rows for HYC-0018 (Singh 2020), and the §8.6 `extraction_confidence` reassessment for HYC-0005 (Texier-Mandoki 2004). HYC-0016-S13 ("Thermally exfoliated graphene oxide") is left as `graphene` pending the same batch rather than relabelled on inference.
+- No backfill remains blocked on a source. Still open: `ultramicropore_volume_cm3_g` for HYC-0021 (Sethia 2016), the two recovered characterization-only rows for HYC-0018 (Singh 2020), and the §8.6 `extraction_confidence` reassessment for HYC-0005 (Texier-Mandoki 2004). HYC-0016-S13 ("Thermally exfoliated graphene oxide") is left as `graphene` pending the same batch rather than relabelled on inference.
 
 ### Added
 - Phase A pipeline automation (manual v2.0 §18), four command-line helpers under `scripts/`, each with tests:
