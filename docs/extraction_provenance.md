@@ -10,7 +10,7 @@ It is written to be read by someone who has no connection to this project and
 no reason to trust it.
 
 Last updated 2026-09-25, against dataset `data/raw/measurements_v0.1.csv`
-(156 rows, 16 papers, sha256 `b2092c2ce268315193d114746f7081953f8df3a1107085e66ecce6c7347ce60a`).
+(206 rows, 21 papers, sha256 `3ecc8b63d9a17ad6980602bc03c4da2150f0b3a4cbcb6335d7ed3ab5d1701676`).
 
 ---
 
@@ -18,47 +18,86 @@ Last updated 2026-09-25, against dataset `data/raw/measurements_v0.1.csv`
 
 **The dataset is now mixed, and the two halves are not equally verified.**
 
-121 of the 156 rows (11 papers) were extracted by a human reading the paper,
+121 of the 206 rows (11 papers) were extracted by a human reading the paper,
 with no independent second reader of any kind. `verified_by` and
 `verification_date` are empty on all of them. Treat those rows as single-reader
 extraction.
 
-35 rows (5 papers: HYC-0012, HYC-0017, HYC-0019, HYC-0022, HYC-0025) were
-produced by the AI dual-agent pipeline described in §3 and carry
-`extractor = "HyCAN pipeline v2"`, with `verified_by` recording the verification
-outcome. Every numeric and controlled-vocabulary cell in those rows was
-extracted by one agent and then independently re-derived, from the PDF, by a
+85 rows (10 papers) were produced by the AI dual-agent pipeline described in §3
+and carry `extractor = "HyCAN pipeline v2"`, with `verified_by` recording the
+verification outcome. Every numeric and controlled-vocabulary cell in those rows
+was extracted by one agent and then independently re-derived, from the PDF, by a
 second agent that had the paper and the candidate values only — no access to the
 first agent's reasoning, search keys, notes, or uncertainty flags.
 
-**Measured dispute rate: 4 disputed cells in 308 verified, 1.3%.**
+**Measured dispute rate: 31 cells disputed in 704 verified, 4.4% raised and
+3.3% upheld.**
 
-| Paper | Cells verified | Agreed | Disputed |
-| --- | --- | --- | --- |
-| HYC-0025 | 42 | 42 | 0 |
-| HYC-0012 | 64 | 64 | 0 |
-| HYC-0017 | 26 | 26 | 0 |
-| HYC-0019 | 78 | 78 | 0 |
-| HYC-0022 | 98 | 94 | **4** |
-| **Total** | **308** | **304** | **4** |
+| Paper | Cells | Agreed | Disputed, upheld | Disputed, dismissed |
+| --- | --- | --- | --- | --- |
+| HYC-0025 | 42 | 42 | 0 | 0 |
+| HYC-0012 | 64 | 64 | 0 | 0 |
+| HYC-0017 | 26 | 26 | 0 | 0 |
+| HYC-0019 | 78 | 78 | 0 | 0 |
+| HYC-0022 | 98 | 94 | **4** | 0 |
+| HYC-0009 | 65 | 65 | 0 | 0 |
+| HYC-0029 | 145 | 144 | **1** | 0 |
+| HYC-0026 | 102 | 86 | **16** | 0 |
+| HYC-0011 | 43 | 41 | **2** | 0 |
+| HYC-0015 | 41 | 33 | 0 | **8** |
+| **Total** | **704** | **673** | **23** | **8** |
 
-**All four disputes were in one field of one paper, and the verifier was
-right.** HYC-0022's `synthesis_method` was extracted as `commercial` on all six
-samples, on the ground that the carbon skeleton was purchased. The verifier
-rejected that for the four samples the authors activated themselves, citing the
-paper's own "Both physical and chemical activations were performed in our study"
-and the carbon yields — 62%, 49%, 53%, 43% — that its Table 1 reports for
-exactly those four samples and for no other. A sample with a burn-off yield was
-not bought in that state. The adjudicator upheld the disagreement and the rows
-carry `other`, since the vocabulary has no value for activation at all. The
-episode is recorded in those rows' `notes` and in `docs/ai_usage_log.md`.
+**What the verifier caught, paper by paper.** In every upheld case the verifier
+was right and the extractor was wrong, and in every case the error was one a
+single reader would plausibly have written into the dataset:
 
-Read that rate with care. 1.3% is not a validated error rate: five papers is a
-small sample, three of the five were tabulated papers where values are
-unambiguous, and the single dispute was a vocabulary-semantics judgement rather
-than a misread number. What the pass has demonstrably done, five papers in a
-row, is surface internal contradictions and traps that a single reader would
-plausibly have written into the dataset — §3.4 lists them.
+- **HYC-0022, 4 cells.** `synthesis_method` was `commercial` on all six samples
+  because the carbon skeleton was purchased. The verifier rejected that for the
+  four the authors activated themselves, citing the paper's own "Both physical
+  and chemical activations were performed in our study" and the carbon yields —
+  62%, 49%, 53%, 43% — that its Table 1 reports for exactly those four and no
+  other. A sample with a burn-off yield was not bought in that state.
+- **HYC-0029, 1 cell.** The 873 K sample was coded `measurement_method =
+  not_applicable`. The verifier pointed out the measurement *was* made — Fig. 9
+  plots it, and the paper states a trend across activation temperature that
+  requires all three — and only the number is unreported. `not_applicable`
+  asserts no measurement exists and would have foreclosed digitising Fig. 9.
+- **HYC-0026, 16 cells, the largest dispute so far.** Three separate errors.
+  `pressure_bar = 40` was inferred, and the verifier established that every
+  "4 MPa" in the paper that functions as a reporting pressure belongs to its
+  *excess* isotherms, measured on a different instrument, while the recorded
+  values are the *adsorbed* quantity — so the pressure is genuinely unstated.
+  `average_pore_diameter_nm` held the paper's L0, which §2.2.2 defines as the
+  average *micropore* diameter, on samples with 0.19–0.59 cm³/g of mesopore
+  volume. And a `dopant_concentration_wt_pct` had been recorded on three samples
+  that were never doped — that figure is the anthracite precursor's native
+  nitrogen.
+- **HYC-0011, 2 cells.** `measurement_method = other` understated a measurement
+  that has every defining element of a manometric one (a calibrated 49.30 mL
+  cell, quantity inferred from pressure decay, empty-cell blank runs), and its
+  third powder measurement was coded `isothermal` when its value comes from the
+  non-closure of a 295 → 353 → 295 K ramp.
+
+**The eight dismissed disputes are worth recording too, because the verifier was
+reading the wrong authority.** On HYC-0015 it reported that
+`temperature_unstated`, `measurement_mode` and `uptake_bound` "are not columns"
+and that a null temperature on an uptake row is an error. All three are columns,
+at physical positions 42, 44 and 41, and the null is exactly what schema v1.2
+gap 2 permits. The verifier had read `HyCANDB_Execution_Manual_v2.2.md`, which
+still documents a 40-column v1.1 schema, rather than `src/hycan/schema.py`. Two
+other verifiers checked the code and reported the same staleness as a finding.
+**The manual is the defect here, not the rows, and it is now the oldest
+outstanding item in this project.** Every substantive finding in that report was
+adopted, including its argument that the paper's 1.90 wt% at 80 bar and nominal
+room temperature warrants Tier D on the physics override.
+
+Read the rate with care. 704 cells across ten papers is a real sample now, and
+3.3% upheld is a more honest number than the 0% the first three papers
+suggested — but it is not an error rate for the corpus, because it measures
+disagreement between two readers of the same paper, not correctness. Four of the
+five papers in the second batch produced an upheld dispute; the first three
+produced none. The difference is that the second batch's papers are messier and
+the questions harder, not that the protocol changed.
 
 Free-text cells in v2 rows (`material_description`, `purification_method`,
 `functional_groups`, `notes`, `source_location`) were written by the
@@ -89,31 +128,56 @@ with a long one; the reverse is closer to true.
 | HYC-0021 | 6 | v1.0 human | `Avin Gupta` | none | table_direct |
 | HYC-0023 | 23 | v1.0 human | `AG` | none | table_direct |
 | HYC-0027 | 5 | v1.0 human | `Avin Gupta` | none | text_direct |
+| HYC-0009 | 20 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 65/65 cells agreed** | table_direct |
+| HYC-0011 | 4 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 41/43 agreed, 2 upheld** | text_direct |
 | HYC-0012 | 6 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 64/64 cells agreed** | table_direct |
-| HYC-0017 | 2 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 26/26 cells agreed** | text_direct |
+| HYC-0015 | 2 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 33/41 agreed, 8 dismissed** | text_direct |
+| HYC-0017 | 3 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 26/26 cells agreed** | text_direct |
 | HYC-0019 | 12 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 78/78 cells agreed** | table_direct |
-| HYC-0022 | 9 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 94/98 agreed, 4 disputed** | table_direct, text_direct |
+| HYC-0022 | 9 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 94/98 agreed, 4 upheld** | table_direct, text_direct |
 | HYC-0025 | 6 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 42/42 cells agreed** | table_direct |
+| HYC-0026 | 7 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 86/102 agreed, 16 upheld** | table_direct, text_direct |
+| HYC-0029 | 16 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 144/145 agreed, 1 upheld** | table_direct, text_direct |
 
-Totals: 115 `table_direct`, 26 `text_direct`, 15 `figure_digitized`. Tiers: 36
-A, 108 B, 7 C, 5 D.
+Totals: 151 `table_direct`, 39 `text_direct`, 15 `figure_digitized`. Tiers: 36
+A, 124 B, 37 C, 8 D.
 
-**Rows deliberately not written.** All twelve Phase C papers have been read. 105
-rows were extracted; 35 are in the dataset and **70 are held** -- none dropped,
-and not one held for lack of evidence. Every one is blocked on a schema
-limitation, each inventoried with its proposed fix in
-`docs/schema_v1_2_gaps.md`:
+**Rows deliberately not written.** All twelve Phase C papers have been read and
+schema v1.2 unblocked most of what was held. 105 rows were extracted; **85 are
+in the dataset and 20 are held**, none dropped and not one held for lack of
+evidence:
 
 | Paper | Extracted | Written | Held because |
 | --- | --- | --- | --- |
-| HYC-0007 | 10 | 0 | reports a micropore and an external surface area per sample and no total; 18 measured values have no field |
-| HYC-0009 | 20 | 0 | its own wt% and volumetric uptake columns disagree by 2.0-2.6x, and not by a constant factor (14 rows); its TPD rows state no pressure (6 rows) |
-| HYC-0011 | 5 | 0 | no numeric measurement temperature anywhere, only "room temperature" |
-| HYC-0015 | 2 | 0 | same |
-| HYC-0017 | 3 | 2 | its 290 K result is an upper bound, "below 0.2 wt.%", with no point value (1 row) |
-| HYC-0024 | 8 | 0 | its only tabulated hydrogen quantities are volumetric densities in kg/m3; its wt% values exist solely in a figure |
-| HYC-0026 | 7 | 0 | pressure is never stated in the sentence reporting the uptakes; nitrogen content is reported only in wt%, which has no field |
-| HYC-0029 | 16 | 0 | the measurement is a 303-673-303 K temperature cycle, not isothermal, so a single `temperature_k` would assert something false |
+| HYC-0007 | 10 | 0 | reports a micropore and an external surface area per sample and no total; 18 measured values have no field (gap 3b) |
+| HYC-0024 | 8 | 0 | its only tabulated hydrogen quantities are volumetric densities in kg/m3; its wt% values exist solely in a figure (gap 10) |
+| HYC-0011 | 5 | 4 | the iron-phthalocyanine film has an areal uptake in g/cm2 and no wt%, no mass and no characterisation (gap 10) |
+| HYC-0015 | 3 | 2 | pristine graphite has no uptake and no characterisation value any field can hold — only an XRD interlayer spacing |
+
+Both remaining papers and both remaining rows are blocked on **stage 4** of
+`docs/schema_v1_2_gaps.md` (gaps 3, 6 and 10), which is out of scope for v1.2
+because it redefines what three existing columns mean.
+
+**Seven rows in the dataset carry no uptake at all**, up from the two schema
+v1.1 recovered. HYC-0029's 873 K activated sample and HYC-0026's four
+nitrogen-doped samples are real materials whose uptake their papers plot without
+ever printing a number; under §3.4 those values await programmatic digitisation
+and each row says so.
+
+**Three rows carry a bound rather than a measurement**, which schema v1.2 gap 1
+made representable: HYC-0017's room-temperature result ("below 0.2 wt.%", its
+headline negative result and the reason the paper was published) and HYC-0029's
+two KOH-activated samples ("more than 1.0 wt.%"). All three are excluded from
+isotherm fitting and from headline capacity statistics by the `uptake_bound`
+flag.
+
+**Twenty-two rows carry conditions their papers never stated numerically**, and
+twenty-two carry a measurement that is not isothermal. Both are recorded with
+flags rather than by imputing a convention: "room temperature" in a 2002 and a
+2016 laboratory are not the same number, and HYC-0029's uptakes are weight
+differences across a 303 → 673 → 303 K cycle whose reference state is a sample
+at 673 K still sitting in hydrogen. Those sixteen HYC-0029 rows and HYC-0011's
+third measurement must not enter a Chahine plot.
 
 Three of these are worth stating plainly, because they are the kind of thing a
 database loses quietly:

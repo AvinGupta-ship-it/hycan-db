@@ -1048,3 +1048,99 @@ retrieved through this session's proxy and PubMed returned a CAPTCHA.
 
 **Outcome.** 156 rows, 16 papers, 0 errors, 418 tests. 35 rows dual-agent
 verified. Phase C read complete; appending complete to the schema boundary.
+
+## 2026-09-25 — Phase C appended: 206 rows, 21 papers
+Tool: same session. Five Agent B verification passes in parallel against the
+five papers schema v1.2 unblocked, then adjudication and append.
+
+**The dispute rate stopped being zero and became informative.** 704 cells
+verified across ten papers, 673 agreed, **23 disputed and upheld, 8 disputed and
+dismissed** — 4.4% raised, 3.3% upheld. Four of the five papers in this batch
+produced an upheld dispute where the first three had produced none. The protocol
+did not change; the papers got messier and the questions got harder, because the
+v1.2 flags gave the verifier something substantive to disagree about.
+
+**In every upheld dispute the verifier was right.** Worth recording what they
+were, because the pattern is not what I expected:
+
+- **HYC-0026, 16 cells, the largest so far and three separate errors.** The
+  pressure had been inferred as 40 bar; the verifier established that every
+  "4 MPa" in the paper that functions as a reporting pressure belongs to its
+  *excess* isotherms, measured on a different instrument, while the recorded
+  values are the *adsorbed* quantity — so the pressure is genuinely unstated and
+  assigning one asserted a condition that does not exist.
+  `average_pore_diameter_nm` held the paper's L0, which §2.2.2 defines as the
+  average *micropore* diameter, on samples carrying 0.19–0.59 cm³/g of mesopore
+  volume. And a dopant concentration had been recorded on three samples that
+  were never doped — that figure is the anthracite precursor's native nitrogen.
+- **HYC-0022, 4 cells.** `commercial` on four samples the authors activated
+  themselves, refuted by the carbon yields the paper's own Table 1 reports for
+  exactly those four.
+- **HYC-0011, 2 cells.** `other` understated a measurement with every defining
+  element of a manometric one; and a measurement whose value comes from the
+  non-closure of a 295 → 353 → 295 K ramp had been coded isothermal.
+- **HYC-0029, 1 cell.** `not_applicable` asserted that no measurement existed
+  for the 873 K sample when the paper plots it in Fig. 9 and states a trend
+  requiring all three to have been measured. That coding would have foreclosed
+  recovering the value later.
+
+Notice that none of these were misread numbers. Every numeric cell in all five
+papers agreed. What the isolation caught was **field semantics** — a value put
+in a field that means something slightly different from what the value is. That
+is a failure mode the protocol was not obviously designed for, and it is the
+second batch running where it has been the thing that mattered.
+
+**Eight disputes were dismissed, and the reason is now this project's oldest
+defect.** On HYC-0015 the verifier reported that `temperature_unstated`,
+`measurement_mode` and `uptake_bound` "are not columns" and that a null
+temperature on an uptake row is a schema error. All three are columns, at
+physical positions 42, 44 and 41, and the null is exactly what gap 2 permits. It
+had read `HyCANDB_Execution_Manual_v2.2.md`, which still documents a 40-column
+v1.1 schema and a 119-row corpus, instead of `src/hycan/schema.py`. Two other
+verifiers in the same batch flagged the same staleness as a finding and checked
+the code instead. **A stale manual manufactured eight false disagreements and
+will keep doing so.** Every substantive finding in that report was adopted,
+including its argument that HYC-0015's 1.90 wt% at 80 bar and nominal room
+temperature warrants Tier D on the physics override rather than the B first
+assigned.
+
+**A tooling gap the append surfaced.** HYC-0011's 8.0 wt% correctly trips
+`Pre-2005 raw-CNT high uptake (Tier D)`, a warning type new to the corpus, and
+§11.5 makes that a stop condition. The stop worked — and there was no way past
+it, which meant a *correct* new warning made a legitimate row unappendable. The
+fix is `--expect-new-warning`, which takes the exact type string so it cannot be
+passed by reflex, admits only the type named, and refuses a type that does not
+actually appear so it cannot be left behind as a standing exemption. The row is
+in at Tier D with the discrepancy quoted, per disclosure-not-deletion.
+
+**A factual error in my own documentation, found by a verifier reading it against
+the paper.** `docs/schema_v1_2_gaps.md` said reaching 8.0 wt% "would require a
+film area of ~114 cm², nine times the largest the paper states". 114 cm² is
+9.52× the *smaller* stated area and 6.35× the larger. The area figure was right
+and the multiplier attribution was wrong, in two files. Corrected in place with
+the correction noted. This is the second documentation arithmetic error this
+session — the first was the 133/98 row counts — and both were in summary
+sentences rather than in the per-item numbers they summarised. The lesson is
+specific: compute totals and ratios from the table rather than writing them
+alongside it.
+
+**Verified from the artifact, not from tool self-reports (§3.8).** Every append
+re-read from disk against a content-bound baseline: 156 → 176 → 192 → 199 → 201
+→ 205 → 206 rows, 0 errors at each step. Two appends were refused and both
+refusals were correct — a missing `measurement_id` on four characterization-only
+rows, which the HYC-0018 precedent requires, and the new warning type above.
+473 tests and ruff clean after.
+
+**What was not done.** Stage 4 is not started, so HYC-0007's 10 rows and
+HYC-0024's 8 remain held, along with one HYC-0011 row (an areal uptake in g/cm²)
+and one HYC-0015 row (an interlayer spacing). HYC-0027 is not backfilled with
+its palladium loading, so the spillover subset still cannot be analysed against
+metal loading. `score_reproducibility` now has a blind spot v1.2 created: with
+`temperature_k` null the Chahine branch returns "cannot assess", so every
+`temperature_unstated` row collects a free point and HYC-0011's ordinary
+0.26 wt% scores identically to its discredited 8.0 wt%. And the manual is still
+stale.
+
+**Outcome.** 206 rows, 21 papers, 0 errors, 473 tests. The 20-paper Phase 3
+milestone is cleared. 85 rows dual-agent verified across 10 papers, at a
+measured 3.3% upheld dispute rate.

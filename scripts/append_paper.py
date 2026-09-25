@@ -582,11 +582,35 @@ def verify_merged(target: str, context: dict) -> tuple[dict, dict]:
         raise CheckFailed(f"merged dataset has {merged_errors} errors ({detail})")
 
     novel = set(merged_state["warning_counts"]) - set(baseline["warning_counts"])
-    if novel:
+    # §11.5 makes a new warning type a stop condition -- it stops, the operator
+    # assesses, and if the warning is doing its job the type is admitted
+    # deliberately. Before this there was no way to admit one, which made a
+    # CORRECT new warning unappendable: HYC-0011's 8.0 wt% raw-CNT claim is
+    # precisely what "Pre-2005 raw-CNT high uptake (Tier D)" was written to
+    # flag, and that row belongs in the corpus at Tier D under the
+    # disclosure-not-deletion principle of docs/reproducibility_tiering.md.
+    # The override takes the exact type string so it cannot be passed by
+    # reflex, tolerates only the types named, and refuses a type that does not
+    # actually appear so it cannot be left behind as a standing exemption.
+    expected = set(context.get("expect_new_warnings") or ())
+    unexpected = novel - expected
+    if unexpected:
         raise CheckFailed(
-            f"new warning type(s) introduced by this append: {sorted(novel)}. "
-            "§11.5 makes a new warning type a stop condition."
+            f"new warning type(s) introduced by this append: "
+            f"{sorted(unexpected)}. §11.5 makes a new warning type a stop "
+            f"condition. If one is legitimate, name it with "
+            f"--expect-new-warning and record why in the row notes."
         )
+    stale = expected - novel
+    if stale:
+        raise CheckFailed(
+            f"--expect-new-warning named {sorted(stale)}, which this append "
+            f"does not introduce. Remove it rather than leaving a standing "
+            f"exemption in place."
+        )
+    if novel:
+        print(f"Admitted new warning type(s) by explicit request: "
+              f"{sorted(novel)}")
 
     merged_ids = set(merged["df"]["measurement_id"].dropna().astype(str).str.strip())
     staged_ids = set(staging["df"]["measurement_id"].astype(str).str.strip())
@@ -638,6 +662,7 @@ def unique_backup_path(backup_dir: str, dataset: str) -> str:
 
 def run_append(args) -> int:
     context = preflight(args.staging, args.dataset, args.baseline)
+    context["expect_new_warnings"] = tuple(args.expect_new_warning)
     dataset = context["dataset"]
     staging = context["staging"]
     baseline = context["baseline"]
@@ -797,6 +822,13 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--backup-dir", default=DEFAULT_BACKUP_DIR)
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--keep-staging", action="store_true")
+    parser.add_argument(
+        "--expect-new-warning", action="append", default=[], metavar="TYPE",
+        help=("admit one specific new warning type that §11.5 would otherwise "
+              "stop on; give the exact type string, repeatable. Refused if the "
+              "named type does not actually appear, so it cannot be left in "
+              "place as a standing exemption."),
+    )
     return parser
 
 

@@ -326,7 +326,11 @@ basis cannot be reconstructed downstream.
 **HYC-0011's headline 8.0 wt% is arithmetically irreconcilable with its own
 numbers.** Its areal uptake (6.3×10⁻⁶ g/cm²), film mass (9.0 mg) and two stated
 film areas (12 and 18 cm²) imply 0.84–1.26 wt%; reaching 8.0 wt% would require a
-film area of ~114 cm², nine times the largest the paper states. Recomputed
+film area of ~114 cm² — **nine and a half times the smaller stated area,
+or six and a third times the larger**. *(Corrected 2026-09-25: this read
+"nine times the largest", which was wrong — 114 cm² is 9.52× the 12 cm²
+film and 6.35× the 18 cm² one. Found by the verifier reading this file
+against the paper.)* Recomputed
 independently by the adjudicator. The paper gives no intermediate working, so the
 cause cannot be determined from the text and none is asserted.
 
