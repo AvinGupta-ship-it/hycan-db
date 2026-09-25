@@ -98,8 +98,8 @@ with a long one; the reverse is closer to true.
 Totals: 115 `table_direct`, 26 `text_direct`, 15 `figure_digitized`. Tiers: 36
 A, 108 B, 7 C, 5 D.
 
-**Rows deliberately not written.** All twelve Phase C papers have been read. 133
-rows were extracted; 35 are in the dataset and **98 are held** -- none dropped,
+**Rows deliberately not written.** All twelve Phase C papers have been read. 105
+rows were extracted; 35 are in the dataset and **70 are held** -- none dropped,
 and not one held for lack of evidence. Every one is blocked on a schema
 limitation, each inventoried with its proposed fix in
 `docs/schema_v1_2_gaps.md`:

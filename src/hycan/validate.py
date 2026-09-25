@@ -23,11 +23,12 @@ from __future__ import annotations
 
 import math
 from dataclasses import dataclass, field
+from itertools import combinations
 
 import pandas as pd
 from pydantic import ValidationError
 
-from hycan.normalize import mmol_per_g_to_wt_pct
+from hycan.normalize import ml_stp_per_g_to_wt_pct, mmol_per_g_to_wt_pct
 from hycan.schema import MeasurementEntry
 
 # Pydantic error ``type`` strings that correspond to numeric-range constraints.
@@ -119,6 +120,23 @@ def _append_unique(target: list[str], message: str) -> None:
 # ---------------------------------------------------------------------------
 # Schema-based checks (type / vocabulary / required-field presence only)
 # ---------------------------------------------------------------------------
+
+# Schema v1.2 (gap 4). Two reported uptakes disagree only if they differ by
+# more than 5% relatively AND more than 0.02 wt% absolutely. Either test alone
+# is wrong: relative-only fires on reporting rounding near zero (see the note
+# in validate_row), and absolute-only would miss a real disagreement between
+# two large values.
+_UPTAKE_REL_TOLERANCE = 0.05
+_UPTAKE_ABS_TOLERANCE_WT_PCT = 0.02
+
+
+def _uptakes_disagree(left: float, right: float) -> bool:
+    difference = abs(left - right)
+    if difference <= _UPTAKE_ABS_TOLERANCE_WT_PCT:
+        return False
+    denominator = max(abs(left), abs(right), 1e-9)
+    return difference / denominator > _UPTAKE_REL_TOLERANCE
+
 
 def _schema_errors(clean: dict) -> list[str]:
     """Run the Pydantic model and return only §11.3-relevant schema errors.
@@ -222,16 +240,50 @@ def validate_row(row: dict) -> ValidationResult:
     ):
         _append_unique(warnings, "SWCNT description missing 'single-walled'")
 
+    # Schema v1.2 (gap 4). A row may carry the same uptake in up to three
+    # units, and those values can contradict each other: HYC-0009 tabulates a
+    # wt% and a volumetric uptake per measurement that disagree by a factor of
+    # 2.0-2.6, not constant across rows. Before v1.2 only the wt%-vs-mmol/g
+    # pair was checked, so that contradiction had to be caught by a human
+    # reader instead of by this function. All three pairs are now compared.
+    #
+    # The tolerance is deliberately relative AND absolute. The pre-v1.2 check
+    # was relative-only, and the corpus's single
+    # "mmol/g and wt% inconsistent" warning was a false positive produced by
+    # that: HYC-0004-M2 reports 0.05 wt% and 0.268 mmol/g, and 0.268 mmol/g is
+    # 0.0540 wt%, which rounds to 0.05 at the paper's own precision. An
+    # absolute difference of 0.004 wt% is an 8% relative difference at that
+    # magnitude. Every row in the corpus carrying two uptake units agrees to
+    # better than 0.004 wt% absolute; only this row's values are small enough
+    # for that to clear 5% relative. Fixing it removes a warning type from the
+    # §11.5 baseline, which docs/migration_v1_2_plan.md §1 states explicitly.
+    #
+    # 0.02 wt% is an order of magnitude below the smallest uptake anyone would
+    # analyse and an order of magnitude above two-significant-figure rounding.
     mmol = _to_float(clean.get("uptake_mmol_g"))
-    if wt is not None and mmol is not None:
+    ml_stp = _to_float(clean.get("uptake_ml_stp_g"))
+
+    as_wt_pct: list[tuple[str, float]] = []
+    if wt is not None:
+        as_wt_pct.append(("wt%", wt))
+    if mmol is not None:
         try:
-            converted = mmol_per_g_to_wt_pct(mmol)
+            as_wt_pct.append(("mmol/g", mmol_per_g_to_wt_pct(mmol)))
         except ValueError:
-            converted = None
-        if converted is not None:
-            denom = max(abs(wt), 1e-9)
-            if abs(converted - wt) / denom > 0.05:
-                _append_unique(warnings, "mmol/g and wt% inconsistent")
+            pass
+    if ml_stp is not None:
+        try:
+            as_wt_pct.append(("mL(STP)/g", ml_stp_per_g_to_wt_pct(ml_stp)))
+        except ValueError:
+            pass
+
+    for (left_name, left), (right_name, right) in combinations(as_wt_pct, 2):
+        if _uptakes_disagree(left, right):
+            # Label orientation matches the pre-v1.2 string exactly so the
+            # existing §11.5 baseline entry is not renamed by accident.
+            _append_unique(
+                warnings, f"{right_name} and {left_name} inconsistent"
+            )
 
     year = _to_int(clean.get("year"))
     if (

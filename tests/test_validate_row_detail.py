@@ -273,7 +273,7 @@ def test_quoted_comma_survives_the_read(tmp_path, capsys):
         [make_row(notes="Reported as 1.5 wt%, see caption", temperature_k=600.0)],
     )
     frame = pd.read_csv(path)
-    assert len(frame.columns) == 40
+    assert len(frame.columns) == 51
     assert frame.loc[0, "notes"] == "Reported as 1.5 wt%, see caption"
     code, _ = run([str(path)], capsys)
     assert code == 1

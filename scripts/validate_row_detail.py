@@ -82,6 +82,9 @@ CATEGORY_FIELDS: dict[str, tuple[str, ...]] = {
         "material_description",
     ),
     "mmol/g and wt% inconsistent": ("uptake_wt_pct", "uptake_mmol_g"),
+    # v1.2 gap 4: the same check generalised to all three uptake pairs.
+    "mL(STP)/g and wt% inconsistent": ("uptake_wt_pct", "uptake_ml_stp_g"),
+    "mL(STP)/g and mmol/g inconsistent": ("uptake_mmol_g", "uptake_ml_stp_g"),
     "Pre-2005 raw-CNT high uptake (Tier D)": (
         "year",
         "material_class",

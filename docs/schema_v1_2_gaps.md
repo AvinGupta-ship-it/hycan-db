@@ -7,8 +7,16 @@ this as one migration rather than several; see *Sequencing*.
 Every gap below blocks real, already-extracted, already-verified rows or costs
 real reported values. None is hypothetical, and each names the papers it bites.
 
-**Scoreboard after Phase C extraction (2026-09-25).** Twelve papers read, 133
-rows extracted, 35 written, 98 held.
+**Scoreboard after Phase C extraction (2026-09-25).** Twelve papers read, 105
+rows extracted, 35 written, 70 held.
+
+*(Corrected 2026-09-25. This line first read "133 rows extracted … 98 held".
+Both figures were wrong: the per-paper counts in the table below were right, but
+the totals were not computed from them. Summing the table gives 105 and 70. The
+error was arithmetic in a summary line; no row, no per-paper count and no
+decision rested on it. It is flagged rather than silently amended because a
+public dataset's documentation is not a place to quietly change a number.
+`docs/migration_v1_2_plan.md` §0 records it too.)*
 
 | Paper | Extracted | Written | Held by |
 | --- | --- | --- | --- |
@@ -340,9 +348,12 @@ Order:
 4. **Gaps 3, 6, 10** last — these need a `docs/data_dictionary.md` rewrite and
    touch `plotting.py` and any ML feature list.
 
-Unblocking is worth roughly 98 rows across seven papers, taking the corpus from
-156 rows / 16 papers to about 254 rows / 23 papers — past the 20-paper Phase 3
-milestone.
+Unblocking is worth **70 rows across seven papers**, taking the corpus from 156
+rows / 16 papers to **226 rows / 23 papers** — past the 20-paper Phase 3
+milestone. Stages 1–3, which schema v1.2 implements, account for 52 of those 70
+rows and five of the seven papers (HYC-0009, HYC-0011, HYC-0015, HYC-0026,
+HYC-0029, plus one HYC-0017 row), reaching 208 rows and 21 papers. Stage 4 would
+add HYC-0007's 10 and HYC-0024's 8.
 
 A migration script per stage, each committed before it runs, each refusing to run
 twice, each reading and writing raw CSV cells so unmodified cells are

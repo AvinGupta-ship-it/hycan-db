@@ -173,9 +173,28 @@ reach a human reader instead of a validator.
    validator changes.
 4. `src/hycan/validate.py` — the generalised consistency check.
 5. `scripts/validate_row_detail.py` — field mappings for the new warning labels.
-6. New tests in new files. `tests/test_dataset_invariants.py` is the one
-   pre-existing test file this migration edits, for the baseline assertion in
-   §1, and that edit is the reason it is named here (§6.7).
+6. New tests in `tests/test_schema_v1_2.py`.
+
+   **This step was under-scoped as written, and the scope is corrected here
+   rather than widened silently (§6.7).** The plan named
+   `tests/test_dataset_invariants.py` as the only pre-existing test file the
+   migration would edit. In fact adding fields to `schema.py` invalidates every
+   fixture and assertion that enumerates or counts the schema's columns, which
+   turned out to be five files: `tests/conftest.py` (the shared `COLUMNS` list
+   and `BASE_ROW` defaults), `tests/test_dataset_invariants.py`,
+   `tests/test_inspect_columns.py`, `tests/test_validate_row_detail.py` and
+   `tests/test_append_paper.py`.
+
+   Every one of those edits is a mirror of the schema's true width -- `40`
+   becomes `51` -- and not one weakens an assertion. Two were not pure number
+   swaps and are called out: the baseline assertion in §1 above, and
+   `test_a_too_wide_row_is_diagnosed_before_pandas_gives_up`, whose "too wide"
+   row was 42 fields against a 40-column header and would have become *narrower*
+   than a 51-column header, quietly inverting what the test tested. It is now
+   53, preserving the header-plus-two relationship the test was written around.
+
+   `tests/test_digitize_figure.py` was deliberately left untouched: it contains
+   many literal `40`s that are colour tolerances, not column counts.
 7. Run the migration, verify from disk, run the full suite, `ruff check` only
    (**never** `ruff --fix` at repository scope — a broad `--fix` during Phase A
    modified a protected test file and had to be reverted).

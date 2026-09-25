@@ -34,10 +34,26 @@ def test_the_dataset_validates_with_zero_errors(report):
 
 
 def test_the_warning_baseline_holds(report):
-    """§11.5: a new warning type is a stop condition."""
+    """§11.5: a new warning type is a stop condition.
+
+    Schema v1.2 removed "mmol/g and wt% inconsistent" from this baseline, and
+    that removal is deliberate rather than a suppressed signal. The corpus's
+    only instance of it was a false positive: HYC-0004-M2 reports 0.05 wt% and
+    0.268 mmol/g, and 0.268 mmol/g is 0.0540 wt%, which rounds to 0.05 at the
+    paper's own precision. The check fired because its tolerance was
+    relative-only, and an absolute difference of 0.004 wt% is 8% relative at
+    that magnitude. The tolerance is now relative and absolute, so the pair is
+    correctly read as consistent. See docs/migration_v1_2_plan.md §1, which
+    states the baseline change before the code was touched.
+
+    The generalisation to all three uptake pairs also introduced two new
+    warning labels, "mL(STP)/g and wt% inconsistent" and "mL(STP)/g and mmol/g
+    inconsistent". Neither is in this baseline because neither fires on any row
+    in the corpus -- checked against all 24 rows carrying both a volumetric and
+    a gravimetric uptake before the check was written.
+    """
     assert set(report.warning_counts) == {
         "Unspecified uptake_type",
-        "mmol/g and wt% inconsistent",
     }, report.warning_counts
 
 
@@ -63,13 +79,28 @@ def test_pore_volumes_nest(dataset):
 def test_physical_column_order_is_the_one_appends_rely_on(dataset):
     """§6.7. A positional append follows the CSV, not schema.py."""
     columns = list(dataset.columns)
-    assert len(columns) == 40
+    assert len(columns) == 51
     assert columns[0] == "paper_id"
+    # v1.1 appended 39-40; v1.2 appended 41-51. Both went on the end precisely
+    # so that positional appends keep working, and this pins that.
     assert columns[36:40] == [
         "measurement_id",
         "uptake_ml_stp_g",
         "surface_area_method",
         "ultramicropore_volume_cm3_g",
+    ]
+    assert columns[40:51] == [
+        "uptake_bound",
+        "temperature_unstated",
+        "pressure_unstated",
+        "measurement_mode",
+        "reference_temperature_k",
+        "metal_element",
+        "metal_loading_wt_pct",
+        "residual_metal_element",
+        "residual_metal_wt_pct",
+        "dopant_concentration_wt_pct",
+        "dopant_concentration_method",
     ]
 
 

@@ -53,6 +53,9 @@ SynthesisMethod = Literal[
     "template_synthesis",
     "carbonization",
     "carbide_chlorination",
+    "physical_activation",
+    "chemical_activation",
+    "chemical_exfoliation",
     "commercial",
     "unknown",
     "other",
@@ -76,7 +79,34 @@ MeasurementMethod = Literal[
     "electrochemical",
     "other",
     "unknown",
+    # v1.2: for a characterization-only row, which records no measurement at
+    # all. Such rows previously had to claim "unknown", which asserts that a
+    # measurement happened by a method nobody identified.
+    "not_applicable",
 ]
+
+# --- v1.2 additions ---
+
+# Gap 1. A paper that reports "below 0.2 wt.%" has no exact value. Writing the
+# number bare would turn a bound into a measurement that enters isotherm fits
+# and Chahine comparisons as a point; writing nothing loses a real result, and
+# bounded and null results are the corrective to this literature's optimistic
+# publication bias. Anything other than "exact" must be excluded from isotherm
+# fitting and from headline capacity statistics.
+UptakeBound = Literal["exact", "upper", "lower", "approximate"]
+
+# Gap 9. HYC-0029 measures a weight difference across a 303 -> 673 -> 303 K
+# cycle at constant pressure in flowing hydrogen. Its uptake is referenced to
+# the desorbed state at 673 K, not to vacuum or zero coverage, so it is not
+# commensurable with an isothermal uptake and must not enter a Chahine plot.
+# Recording a single temperature_k for such a row asserts an isothermal
+# measurement that did not happen.
+MeasurementMode = Literal["isothermal", "temperature_cycle", "TPD", "flow"]
+
+# Gap 8. Composition is reported by different techniques that do not agree:
+# HYC-0026's explicit finding is that its bulk (elemental analysis) and surface
+# (XPS) nitrogen contents differ systematically.
+CompositionMethod = Literal["elemental_analysis", "XPS", "AAS", "ICP", "other"]
 
 ExtractionMethod = Literal[
     "table_direct",
@@ -145,6 +175,37 @@ class MeasurementEntry(BaseModel):
     verified_by: Optional[str] = None
     verification_date: Optional[date] = None
 
+    # --- v1.2: qualifiers on what the uptake and its conditions mean ---
+    # Physical CSV positions 41-51. All defaulted so that every pre-v1.2 row is
+    # valid unchanged: an existing row does assert an exact, isothermal
+    # measurement with both conditions stated, which is what the defaults say.
+    uptake_bound: UptakeBound = "exact"
+    temperature_unstated: bool = False
+    pressure_unstated: bool = False
+    measurement_mode: MeasurementMode = "isothermal"
+    # Not bounded by temperature_k's 50-500 K window: this is a desorption
+    # endpoint, not a measurement temperature.
+    reference_temperature_k: Optional[float] = Field(default=None, ge=50, le=1500)
+
+    # --- v1.2: supported metal, kept distinct from a lattice dopant ---
+    # An impregnated catalyst particle (HYC-0029's Co, HYC-0027's Pd) and a
+    # substitutional heteroatom (HYC-0025's B, HYC-0026's N) work by different
+    # mechanisms. Collapsing them into dopant_element would make the spillover
+    # subset uninterpretable. residual_* is synthesis-catalyst contamination,
+    # which decides whether an uptake is the carbon's at all.
+    metal_element: Optional[str] = None
+    metal_loading_wt_pct: Optional[float] = Field(default=None, ge=0, le=100)
+    residual_metal_element: Optional[str] = None
+    residual_metal_wt_pct: Optional[float] = Field(default=None, ge=0, le=100)
+
+    # --- v1.2: dopant concentration by weight, with its technique ---
+    # dopant_concentration_at_pct is atomic percent; papers reporting weight
+    # percent had nowhere to put it, which blocked HYC-0026 entirely.
+    dopant_concentration_wt_pct: Optional[float] = Field(
+        default=None, ge=0, le=100
+    )
+    dopant_concentration_method: Optional[CompositionMethod] = None
+
     # --- Cross-field validation ---
     _UPTAKE_FIELDS = ("uptake_wt_pct", "uptake_mmol_g", "uptake_ml_stp_g")
     _CHARACTERIZATION_FIELDS = (
@@ -172,16 +233,42 @@ class MeasurementEntry(BaseModel):
         data are published but whose uptake was never measured is a legitimate
         row, and under v1.0 it could not be recorded at all — two such rows were
         dropped from HYC-0018.
+
+        Schema v1.2 (gap 2) adds the only exception: a paper may report an
+        uptake without ever stating a condition numerically. HYC-0011 and
+        HYC-0015 give uptakes at "room temperature" and no number; HYC-0009's
+        TPD rows state no pressure. Imputing 298 K is not available -- "room
+        temperature" in a 2002 and a 2016 laboratory are not the same number,
+        the difference matters at these uptake levels, and substituting a
+        convention fabricates a measurement condition. So the field may be null
+        when the matching `*_unstated` flag says the paper is silent, and only
+        then. A flag set while its field is populated is a contradiction and an
+        error in its own right: a row cannot both state a condition and declare
+        it unstated.
         """
+        for field, flag in (
+            ("temperature_k", "temperature_unstated"),
+            ("pressure_bar", "pressure_unstated"),
+        ):
+            if getattr(self, flag) and getattr(self, field) is not None:
+                raise ValueError(
+                    f"{flag} is set but {field} is populated; a row cannot both "
+                    f"state a condition and declare it unstated"
+                )
+
         if self._reports_uptake():
             missing = [
-                name for name in ("temperature_k", "pressure_bar")
-                if getattr(self, name) is None
+                field
+                for field, flag in (
+                    ("temperature_k", "temperature_unstated"),
+                    ("pressure_bar", "pressure_unstated"),
+                )
+                if getattr(self, field) is None and not getattr(self, flag)
             ]
             if missing:
                 raise ValueError(
-                    "Rows reporting uptake must state their conditions; missing: "
-                    + ", ".join(missing)
+                    "Rows reporting uptake must state their conditions, or set "
+                    "the matching *_unstated flag; missing: " + ", ".join(missing)
                 )
         return self
 

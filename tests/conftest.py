@@ -67,6 +67,18 @@ COLUMNS = [
     # schema v1.1 (§8.5 gaps 1 and 4), appended at physical positions 39-40
     "surface_area_method",
     "ultramicropore_volume_cm3_g",
+    # schema v1.2 (gaps 1, 2, 7, 8, 9), appended at physical positions 41-51
+    "uptake_bound",
+    "temperature_unstated",
+    "pressure_unstated",
+    "measurement_mode",
+    "reference_temperature_k",
+    "metal_element",
+    "metal_loading_wt_pct",
+    "residual_metal_element",
+    "residual_metal_wt_pct",
+    "dopant_concentration_wt_pct",
+    "dopant_concentration_method",
 ]
 
 # A row that validates with zero errors and zero warnings. Its `notes` field
@@ -85,6 +97,19 @@ BASE_ROW = {
     "synthesis_method": "carbonization",
     "purification_method": "HCl reflux",
     "activation_method": "KOH 1:4",
+    # schema v1.2 defaults: an existing row does assert an exact, isothermal
+    # measurement with both conditions stated, which is what these say.
+    "uptake_bound": "exact",
+    "temperature_unstated": False,
+    "pressure_unstated": False,
+    "measurement_mode": "isothermal",
+    "reference_temperature_k": None,
+    "metal_element": None,
+    "metal_loading_wt_pct": None,
+    "residual_metal_element": None,
+    "residual_metal_wt_pct": None,
+    "dopant_concentration_wt_pct": None,
+    "dopant_concentration_method": None,
     "dopant_element": None,
     "dopant_concentration_at_pct": None,
     "functional_groups": None,
