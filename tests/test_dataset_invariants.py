@@ -222,8 +222,11 @@ def test_rows_whose_uptake_does_not_convert_to_wt_pct_are_enumerated(dataset):
     statistic. Enumerating them by id means one cannot appear unnoticed -- the
     same discipline as the bounded-uptake test.
 
-    Empty today: HYC-0024's rows are still held pending its extraction. When they
-    land, add them here in the same commit.
+    All ten are HYC-0024's: the paper's only tabulated hydrogen quantities are
+    volumetric, so nine rows carry Ms and/or an adsorbed-phase density with no
+    gravimetric value. Its tenth row, HYC-0024-M4, is NOT here -- that sample is
+    KUA1, for which the paper states "close to 1 wt %" in its abstract and
+    conclusions, recorded with uptake_bound = approximate.
     """
     non_convertible = dataset[
         dataset["uptake_wt_pct"].isna()
@@ -234,7 +237,18 @@ def test_rows_whose_uptake_does_not_convert_to_wt_pct_are_enumerated(dataset):
             | dataset["areal_uptake_g_cm2"].notna()
         )
     ]
-    assert set(non_convertible["measurement_id"]) == set()
+    assert set(non_convertible["measurement_id"]) == {
+        "HYC-0024-M1",
+        "HYC-0024-M2",
+        "HYC-0024-M3",
+        "HYC-0024-M5",
+        "HYC-0024-M6",
+        "HYC-0024-M7",
+        "HYC-0024-M8",
+        "HYC-0024-M9",
+        "HYC-0024-M10",
+        "HYC-0024-M11",
+    }
 
 
 def test_figure_estimated_is_assigned_to_no_row(dataset):
@@ -313,12 +327,17 @@ def test_bounded_uptakes_are_flagged_and_rare(dataset):
     # wt.%", and HYC-0017's room-temperature result, reported only as "below
     # 0.2 wt.%" -- that paper's headline negative result, and the row gap 1 was
     # written for.
+    # HYC-0024-M4 is the first `approximate`: its paper states "close to 1 wt %"
+    # in the abstract and conclusions and tabulates no per-sample wt% at all,
+    # so 1.0 is the paper's own rounded prose figure rather than a measurement.
     assert set(bounded["measurement_id"]) == {
-        "HYC-0029-M3", "HYC-0029-M4", "HYC-0017-M3",
+        "HYC-0029-M3", "HYC-0029-M4", "HYC-0017-M3", "HYC-0024-M4",
     }, sorted(bounded["measurement_id"])
-    assert set(bounded["uptake_bound"]) == {"lower", "upper"}
+    assert set(bounded["uptake_bound"]) == {"lower", "upper", "approximate"}
     upper = bounded[bounded["uptake_bound"] == "upper"]
     assert set(upper["measurement_id"]) == {"HYC-0017-M3"}
+    approximate = bounded[bounded["uptake_bound"] == "approximate"]
+    assert set(approximate["measurement_id"]) == {"HYC-0024-M4"}
 
 
 def test_metal_loading_is_not_confused_with_dopant_concentration(dataset):
@@ -337,21 +356,41 @@ def test_metal_loading_is_not_confused_with_dopant_concentration(dataset):
 def test_characterization_only_rows_carry_characterization(dataset):
     """Rows with no uptake must still carry something, and no conditions.
 
-    Seven now, up from the two HYC-0018 rows schema v1.1 recovered: HYC-0029's
-    873 K activated sample and HYC-0026's four nitrogen-doped samples, each a
-    real material whose uptake the paper plots without ever printing a number.
+    Eleven now, up from the two HYC-0018 rows schema v1.1 recovered: HYC-0029's
+    873 K activated sample, HYC-0026's four nitrogen-doped samples and HYC-0007's
+    four ACFs -- each a real material whose uptake the paper plots without ever
+    printing a number.
+
+    **"No uptake" must mean no uptake OF ANY KIND, not merely no gravimetric
+    value.** Before v1.3 those were the same thing. They are not any more:
+    HYC-0024's rows carry a volumetric capacity and an adsorbed-phase density
+    with no wt%, and they DO state conditions, so testing only the three
+    gravimetric fields would wrongly classify them as characterization-only and
+    then fail on the conditions assertions below.
     """
-    uptake = dataset[["uptake_wt_pct", "uptake_mmol_g", "uptake_ml_stp_g"]]
-    no_uptake = dataset[~uptake.notna().any(axis=1)]
+    gravimetric = ["uptake_wt_pct", "uptake_mmol_g", "uptake_ml_stp_g"]
+    non_convertible = [
+        "volumetric_capacity_kg_m3",
+        "adsorbed_phase_density_kg_m3",
+        "areal_uptake_g_cm2",
+    ]
+    any_uptake = dataset[gravimetric + non_convertible].notna().any(axis=1)
+    no_uptake = dataset[~any_uptake]
     assert set(no_uptake["measurement_id"]) == {
         "HYC-0018-M5", "HYC-0018-M6",
         "HYC-0029-M2",
         "HYC-0026-M2", "HYC-0026-M4", "HYC-0026-M5", "HYC-0026-M7",
+        "HYC-0007-M5", "HYC-0007-M6", "HYC-0007-M7", "HYC-0007-M8",
     }, sorted(no_uptake["measurement_id"])
 
+    # HYC-0007 reports no total surface area at all -- only a micropore and an
+    # external area from an alpha-s plot -- so the v1.3 component fields have to
+    # be in this list or its four rows would look uncharacterized.
     characterization = [
         "bet_surface_area_m2_g", "langmuir_surface_area_m2_g",
-        "micropore_volume_cm3_g", "ultramicropore_volume_cm3_g",
+        "micropore_surface_area_m2_g", "external_surface_area_m2_g",
+        "micropore_volume_cm3_g", "micropore_volume_co2_cm3_g",
+        "ultramicropore_volume_cm3_g", "mesopore_volume_cm3_g",
         "total_pore_volume_cm3_g", "average_pore_diameter_nm",
     ]
     assert no_uptake[characterization].notna().any(axis=1).all()

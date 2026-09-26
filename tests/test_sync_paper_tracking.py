@@ -40,7 +40,11 @@ TRACKING_HEADER = [
     "notes",
 ]
 
-DUAL_AGENT_PAPERS = {
+# The ten papers the v1.3-era migration moved to `verified`. Used ONLY to
+# reconstruct that migration's pre-image in the fixture below. The invariant
+# tests derive the current dual-agent set from the dataset instead, so a paper
+# appended later does not make them stale.
+MIGRATION_DUAL_AGENT_PAPERS = {
     "HYC-0009",
     "HYC-0011",
     "HYC-0012",
@@ -52,6 +56,17 @@ DUAL_AGENT_PAPERS = {
     "HYC-0026",
     "HYC-0029",
 }
+
+
+def dual_agent_papers() -> set[str]:
+    """Papers every one of whose rows was extracted by the v2 pipeline."""
+    by_paper: dict[str, set[str]] = {}
+    for r in dataset_rows():
+        by_paper.setdefault(r["paper_id"], set()).add(r["extractor"])
+    return {
+        paper for paper, extractors in by_paper.items()
+        if extractors == {"HyCAN pipeline v2"}
+    }
 
 
 def run_script(*args: str, cwd: Path) -> subprocess.CompletedProcess[str]:
@@ -133,17 +148,10 @@ def test_dual_agent_verified_papers_are_tracked_as_verified():
     disputes resolved. A paper whose every row carries
     extractor = "HyCAN pipeline v2" meets that definition by construction.
     """
-    by_paper: dict[str, set[str]] = {}
-    for row in dataset_rows():
-        by_paper.setdefault(row["paper_id"], set()).add(row["extractor"])
-    pipeline_papers = {
-        paper
-        for paper, extractors in by_paper.items()
-        if extractors == {"HyCAN pipeline v2"}
-    }
-    assert pipeline_papers == DUAL_AGENT_PAPERS, (
-        "the set of dual-agent papers in the dataset changed; update the "
-        "migration plan and this test together"
+    pipeline_papers = dual_agent_papers()
+    assert pipeline_papers >= MIGRATION_DUAL_AGENT_PAPERS, (
+        "a paper the migration marked verified is no longer fully dual-agent "
+        "extracted; that needs investigating, not a test change"
     )
     tracked = tracking_map()
     for paper in sorted(pipeline_papers):
@@ -201,18 +209,29 @@ def test_the_tracking_file_shape_is_pinned():
     assert not ragged, f"ragged rows at csv lines {ragged}"
 
 
-def test_the_status_counts_are_what_the_migration_plan_states():
-    """MUTATION: change any status -> this fails.
+def test_the_status_counts_account_for_every_row():
+    """MUTATION: introduce a status outside the vocabulary -> this fails.
 
-    Pinned so a status edit has to be deliberate, the same way the column
-    count is pinned in test_dataset_invariants.py.
+    Absolute counts were pinned here at first and that was wrong: every append
+    changes them, so the pin failed for reasons unrelated to what it was
+    guarding. What is actually invariant is the partition -- every row has a
+    known status, the extracted-or-verified rows are exactly the dataset's
+    papers, and `verified` is exactly the dual-agent set. Those are asserted
+    above and hold at any corpus size.
     """
+    tracked = tracking_map()
     counts: dict[str, int] = {}
-    for row in tracking_map().values():
+    for row in tracked.values():
         counts[row["extraction_status"]] = (
             counts.get(row["extraction_status"], 0) + 1
         )
-    assert counts == {"extracted": 11, "verified": 10, "not_started": 9}
+    assert set(counts) <= {"not_started", "in_progress", "extracted", "verified"}
+    assert sum(counts.values()) == len(tracked) == 30
+    assert counts.get("verified", 0) == len(dual_agent_papers())
+    assert (
+        counts.get("extracted", 0) + counts.get("verified", 0)
+        == len(dataset_papers())
+    )
 
 
 def test_every_dataset_paper_was_screened_in():
@@ -242,7 +261,7 @@ def sandbox(tmp_path: Path) -> Path:
         pid = row[idx["paper_id"]]
         if pid == "HYC-0009":
             row[idx["paper_id"]] = "HYC-009"
-        if pid in DUAL_AGENT_PAPERS:
+        if pid in MIGRATION_DUAL_AGENT_PAPERS:
             row[idx["extraction_status"]] = "not_started"
             row[idx["extraction_date"]] = ""
         if pid in {"HYC-0016", "HYC-0018", "HYC-0023"}:

@@ -1144,3 +1144,82 @@ stale.
 **Outcome.** 206 rows, 21 papers, 0 errors, 473 tests. The 20-paper Phase 3
 milestone is cleared. 85 rows dual-agent verified across 10 papers, at a
 measured 3.3% upheld dispute rate.
+
+## 2026-09-26 — Phase C.1: HYC-0007 and HYC-0024 under the dual-agent protocol
+
+**Pipeline.** Agent A (locate-only, one pass per paper, §9.2), Agent A row
+construction, Agent B verification (§3.2, one isolated pass per paper), Claude
+Code for the staging builder. Schema v1.3 shipped first (commit `3945d81`)
+because both papers were held on gaps it closes.
+
+**Source acquisition.** Both PDFs from the Project knowledge base. DOIs
+`10.1016/j.mseb.2003.10.095` and `10.1021/jp014543m`, both matching
+`references/paper_tracking.csv`.
+
+**Extraction.** HYC-0007: 9 samples in Table 1, of which 7 are carbon; 8 rows (4
+uptake, 4 characterization-only). HYC-0024: 8 samples; 11 rows (8 at 293 K /
+100 bar plus 3 for KUA1 at 50/150/200 bar from §3.2's text).
+
+**Verification.** 446 cells verified, 10 disputed, **0 numeric cells disputed.**
+- HYC-0024: 282 cells, 0 disputes. The verifier independently re-derived Table
+  1's ambiguous column alignment for three samples and reached the same
+  conclusion by four arguments, two of them new: significant figures (Ms prints
+  to one decimal, adsorbed density to two) and Ms/rho(H2) reproducing the
+  paper's stated ratio ordering.
+- HYC-0007: 164 cells, 10 disputes, all upheld — 4 incomplete
+  `source_location`, 4 `extraction_confidence` against the data-dictionary
+  rubric, 1 `measurement_method`, 1 field-meaning error
+  (`activation_method` → `functional_groups`).
+- Quote verification: every quoted sentence located.
+
+**Decisions and their basis.**
+- HYC-0007's H-YZ and H-ZSM-5 excluded: zeolites, not carbon (§7.2). LaNi5
+  excluded: apparatus-validation standard, not a sample.
+- `bet_surface_area_m2_g` null on all HYC-0007 rows: the paper reports no total
+  surface area, only S_micro and S_ext from an alpha-s plot. Summing them would
+  fabricate a total.
+- HYC-0007's 303 K `measurement_method = unknown`, against the extraction's
+  `other` and the verifier's `volumetric_sieverts`. The paper names no
+  technique; `other` asserts one outside the vocabulary and the verifier's
+  reading, though sound, is inference (§3.11).
+- HYC-0024 `uptake_type = unspecified` on all rows under §3.6: the words
+  "excess" and "absolute" appear nowhere, though the arithmetic is a Gibbs
+  surplus.
+- HYC-0024-M4 `uptake_wt_pct = 1.0`, `uptake_bound = approximate`: the paper's
+  own prose figure, stated in both the abstract and the conclusions. Not
+  tabulated, hence approximate.
+
+**Fields left deliberately empty.** `ultramicropore_volume_cm3_g` and
+`ultramicropore_cutoff_nm` on all HYC-0024 rows: the paper states no size cutoff
+for either DR volume, and filling the field would assert the 0.7 nm it is
+documented at. `packing_density_g_cm3` and `volumetric_capacity_kg_m3` on three
+HYC-0024 rows: blank in Table 1. `uptake_wt_pct` on ten HYC-0024 rows: the
+paper's per-sample wt% exists only in Figure 2, and deriving it would require
+choosing between two micropore volumes it never distinguishes. All uptake fields
+on four HYC-0007 rows: figure-only (§3.4).
+
+**Premise corrections.** The first extraction pass asserted that HYC-0024 states
+no gravimetric value outside a figure. It does, twice. Corrected.
+
+**Source anomalies.** HYC-0007: the abstract and conclusion both claim 77 K
+isotherms over 0-3.5 MPa where §2.2 restricts them to 0.1 MPa; W_ave = 2V/S is
+the slit width for the ACFs but the cylinder radius for the SWCNTs, so it is not
+a cylinder diameter for those samples. HYC-0024: Figure 4's caption gives Ms in
+g/cm3 against kg/m3 everywhere else; the CF sentence in §3.1 reads "small enough
+to obtain an acceptable" where the argument requires "too small"; the
+adsorbed-density denominator is unspecified; KUA1's micropore volume overshoots
+its own implied void volume by 24%.
+
+**Validation.** Baseline 206 rows / 0 errors / 2 warning types. After: 225 rows,
+0 errors, same 2 warning types, no new type. No `--expect-new-warning` needed.
+
+**Outcome.** 19 rows, Tier B throughout, confidence 4-5. 206 -> 225 rows,
+21 -> 23 papers. `paper_tracking.csv` set to `verified` for both.
+
+**Where the pipeline was slow.** Two places. Row construction is now the
+bottleneck rather than reading: a 67-column builder script with long `notes`
+strings took longer than either the locate pass or the verification. A staging
+helper that took per-sample values as a table and a shared note block would cut
+it. Second, the invariant tests that pin absolute counts had to be updated three
+times in one session; they should assert deltas and partitions, not totals, and
+that change has now been made where it bit.

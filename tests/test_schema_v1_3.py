@@ -528,6 +528,21 @@ def test_every_v1_3_field_defaults_so_a_pre_v1_3_row_stays_valid():
 
 
 def run_migration(*args: str, cwd: Path) -> subprocess.CompletedProcess[str]:
+    """Run the migration against a sandbox.
+
+    --expected-rows is passed from the sandbox file's own row count unless the
+    caller already set it. The script's default is 206, the count when v1.3 was
+    applied; the fixture rebuilds its pre-image from the LIVE dataset, which
+    grows with every append, so a hardcoded default would make these tests fail
+    on the next paper rather than on a real defect.
+    """
+    args = list(args)
+    if "--expected-rows" not in args:
+        dataset = cwd / "data" / "raw" / "measurements_v0.1.csv"
+        if dataset.exists():
+            with dataset.open(encoding="utf-8", newline="") as handle:
+                rows = sum(1 for _ in csv.reader(handle)) - 1
+            args = ["--expected-rows", str(rows), *args]
     return subprocess.run(
         [sys.executable, str(SCRIPT), *args],
         cwd=cwd,
@@ -691,9 +706,13 @@ def test_the_migration_refuses_a_wrong_row_count(pre_migration: Path):
     writer = csv.writer(buffer, lineterminator="\n")
     writer.writerows(rows + [rows[-1]])
     path.write_text(buffer.getvalue(), encoding="utf-8", newline="")
-    result = run_migration("--backup-dir", str(pre_migration / "bk"), cwd=pre_migration)
+    # Pass the pre-append count explicitly so the guard has something to catch.
+    result = run_migration(
+        "--expected-rows", str(len(rows) - 1),
+        "--backup-dir", str(pre_migration / "bk"), cwd=pre_migration,
+    )
     assert result.returncode != 0
-    assert "expected 206 data rows" in result.stdout + result.stderr
+    assert f"expected {len(rows) - 1} data rows" in result.stdout + result.stderr
 
 
 def test_the_migration_backs_up_before_writing(pre_migration: Path):

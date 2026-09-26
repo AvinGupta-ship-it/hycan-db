@@ -268,16 +268,33 @@ def verify(
                 f"{pid} is tracked as {status!r} but has no rows in the dataset"
             )
 
-    # Post-condition 6: the final counts.
-    counts: dict[str, int] = {}
-    for row in after:
-        counts[row[idx["extraction_status"]]] = (
-            counts.get(row[idx["extraction_status"]], 0) + 1
-        )
-    expected_counts = {"extracted": 11, "verified": 10, "not_started": 9}
-    if expected_changed_cells is not None and counts != expected_counts:
+    # Post-condition 6: the status DELTA, not absolute totals.
+    #
+    # Absolute totals were the first version of this check and they were wrong to
+    # pin: they were correct the day this migration ran and became false the next
+    # time a paper was appended, which made a passing test fail for a reason
+    # having nothing to do with this script. What this migration actually
+    # guarantees is a delta -- exactly the ten named papers move to `verified`
+    # and nothing else changes status.
+    def counts_of(rows: list[list[str]]) -> dict[str, int]:
+        out: dict[str, int] = {}
+        for r in rows:
+            out[r[idx["extraction_status"]]] = (
+                out.get(r[idx["extraction_status"]], 0) + 1
+            )
+        return out
+
+    before_counts, after_counts = counts_of(before), counts_of(after)
+    moved = len(DUAL_AGENT_VERIFIED)
+    expected_after = dict(before_counts)
+    expected_after["not_started"] = before_counts.get("not_started", 0) - moved
+    expected_after["verified"] = before_counts.get("verified", 0) + moved
+    expected_after = {k: v for k, v in expected_after.items() if v}
+    if expected_changed_cells is not None and after_counts != expected_after:
         raise MigrationError(
-            f"expected status counts {expected_counts}, found {counts}"
+            f"expected status counts {expected_after} (a delta of {moved} rows "
+            f"from 'not_started' to 'verified' against {before_counts}), found "
+            f"{after_counts}"
         )
 
 
