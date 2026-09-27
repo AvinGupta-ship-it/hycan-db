@@ -16,7 +16,8 @@ Design rules:
   (duplicate ``measurement_id`` -> error; conflicting DOI metadata -> warning).
   ``sample_id`` may repeat: one physical sample can be measured under many
   conditions, so it is no longer the dataset-level uniqueness key.
-- ``print_report`` renders the fixed report shape consumed by ``scripts/validate_data.py``.
+- ``print_report`` renders the fixed report shape that
+  ``scripts/validate_data.py`` consumes.
 """
 
 from __future__ import annotations
@@ -535,7 +536,8 @@ def _derive_wt_pct(row) -> float | None:
     elif _present(row.get("uptake_mmol_g")):
         return float(row["uptake_mmol_g"]) * 0.201588
     elif _present(row.get("uptake_ml_stp_g")):
-        return (float(row["uptake_ml_stp_g"]) / 22.414) * 0.201588  # project STP convention: 22.414 mL/mmol
+        # Project STP convention: 22.414 mL/mmol.
+        return (float(row["uptake_ml_stp_g"]) / 22.414) * 0.201588
     else:
         return None
 
@@ -606,7 +608,7 @@ def score_reproducibility(row: dict) -> dict:
 
 
 def suggest_tier(row: dict) -> str:
-    """Return a SUGGESTED reproducibility tier; the human extractor makes the final call.
+    """Return a SUGGESTED reproducibility tier; the extractor makes the final call.
 
     This is only a suggestion and cannot see everything the rubric requires. Its
     four blind spots: (1) it confirms a measurement method is recorded but cannot

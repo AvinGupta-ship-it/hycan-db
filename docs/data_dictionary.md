@@ -169,7 +169,7 @@ Fields are grouped into five categories matching the curation spreadsheet column
 |---|---|
 | Type | Controlled vocabulary |
 | Required | If reported |
-| Allowed values | `arc_discharge`, `laser_ablation`, `cvd`, `hipco`, `comocat`, `chemical_oxidation`, `chemical_reduction`, `thermal_reduction`, `pyrolysis`, `template_synthesis`, `carbonization`, `carbide_chlorination`, `commercial`, `unknown`, `other` |
+| Allowed values | `arc_discharge`, `laser_ablation`, `cvd`, `hipco`, `comocat`, `chemical_oxidation`, `chemical_reduction`, `thermal_reduction`, `pyrolysis`, `template_synthesis`, `carbonization`, `carbide_chlorination`, `physical_activation`, `chemical_activation`, `chemical_exfoliation`, `commercial`, `unknown`, `other` |
 | Example | `hipco` |
 
 **Definition.** The primary method used to synthesise the raw carbon material.  
@@ -290,7 +290,7 @@ Fields are grouped into five categories matching the curation spreadsheet column
 
 | Attribute | Value |
 |---|---|
-| Type | Controlled: `BET`, `Langmuir`, `geometric`, `DFT`, `unspecified`, `none` |
+| Type | Controlled: `BET`, `Langmuir`, `geometric`, `DFT`, `alpha_s_plot`, `t_plot`, `unspecified`, `none`, `not_reported` |
 | Required | Yes (defaults to `unspecified`) |
 | Example | `BET` |
 
@@ -469,7 +469,7 @@ Fields are grouped into five categories matching the curation spreadsheet column
 |---|---|
 | Type | Controlled vocabulary |
 | Required | Yes |
-| Allowed values | `volumetric_sieverts`, `gravimetric_microbalance`, `TPD`, `electrochemical`, `other`, `unknown` |
+| Allowed values | `volumetric_sieverts`, `gravimetric_microbalance`, `TPD`, `electrochemical`, `not_applicable`, `other`, `unknown` |
 | Example | `volumetric_sieverts` |
 
 **Definition.** Instrument/technique used to measure hydrogen uptake.  

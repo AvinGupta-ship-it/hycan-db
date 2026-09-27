@@ -341,15 +341,62 @@ def test_bounded_uptakes_are_flagged_and_rare(dataset):
 
 
 def test_metal_loading_is_not_confused_with_dopant_concentration(dataset):
-    """Schema v1.2 gaps 7 and 8 exist to keep these apart."""
+    """Schema v1.2 gaps 7 and 8 exist to keep these two quantities apart.
+
+    **This test previously asserted that they never co-occur on a row, and that
+    was wrong.** It read:
+
+        loaded = dataset[dataset["metal_loading_wt_pct"].notna()]
+        assert set(loaded["paper_id"]) == {"HYC-0029"}
+        assert loaded["dopant_concentration_at_pct"].isna().all()
+
+    Keeping the *fields* apart is the real requirement and is preserved below.
+    Asserting the two never appear on one row is a much stronger claim that the
+    fields were never given, and that the corpus satisfied only by accident:
+    HYC-0027's Pd-N-HEG is palladium metal on nitrogen-doped graphene, so a
+    metal loading and a dopant concentration are **both correct on the same
+    row**. It is the paper gaps 7 and 8 were added for, and it broke a test
+    written as though they were mutually exclusive. The lesson is §6.7's --
+    assert the property, not the corpus's current shape.
+
+    MUTATION: put a metal loading into `dopant_concentration_wt_pct`, or drop
+    `metal_element` from a loaded row -> the property assertions below fail. The
+    co-occurrence enumeration still catches an *accidental* co-occurrence while
+    letting the one deliberate case through.
+    """
     loaded = dataset[dataset["metal_loading_wt_pct"].notna()]
-    assert set(loaded["paper_id"]) == {"HYC-0029"}
-    assert loaded["dopant_concentration_at_pct"].isna().all()
-    assert loaded["dopant_concentration_wt_pct"].isna().all()
+    assert loaded["metal_element"].notna().all(), (
+        "a metal loading with no metal_element names no metal"
+    )
+
+    for column in ("dopant_concentration_at_pct", "dopant_concentration_wt_pct"):
+        doped = dataset[dataset[column].notna()]
+        assert doped["dopant_element"].notna().all(), (
+            f"{column} is populated on a row that names no dopant_element"
+        )
+        assert (doped["dopant_element"] != doped["metal_element"]).all(), (
+            f"{column} holds a concentration for the row's own metal_element, "
+            f"which is the confusion gaps 7 and 8 exist to prevent"
+        )
+
+    # Rows where a metal loading and a dopant concentration are both correct,
+    # enumerated so a new accidental one still fails here.
+    both = dataset[
+        dataset["metal_loading_wt_pct"].notna()
+        & (
+            dataset["dopant_concentration_at_pct"].notna()
+            | dataset["dopant_concentration_wt_pct"].notna()
+        )
+    ]
+    assert set(both["measurement_id"]) == {"HYC-0027-M4", "HYC-0027-M5"}, (
+        "Pd-N-HEG is the only material in the corpus carrying both a metal "
+        "loading and a dopant concentration"
+    )
+    assert set(both["metal_element"]) == {"Pd"}
+    assert set(both["dopant_element"]) == {"N"}
 
     by_weight = dataset[dataset["dopant_concentration_wt_pct"].notna()]
     assert set(by_weight["paper_id"]) == {"HYC-0026"}
-    assert by_weight["dopant_element"].notna().all()
     assert by_weight["dopant_concentration_method"].notna().all()
 
 

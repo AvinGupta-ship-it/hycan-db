@@ -2,7 +2,8 @@
 Pydantic v2 model for a single HyCAN-DB measurement row.
 
 Quick Pydantic v2 syntax notes used below:
-- `Field(ge=x, le=y)` – enforces x ≤ value ≤ y (ge = greater-or-equal, le = less-or-equal).
+- `Field(ge=x, le=y)` – enforces x ≤ value ≤ y (ge = greater-or-equal,
+  le = less-or-equal).
 - `Literal["a", "b"]` – only those exact strings are accepted; anything else raises a
   ValidationError. Equivalent to an enum but stays as a plain string at runtime.
 - `model_validator(mode="after")` – runs after all individual fields are validated;
@@ -190,7 +191,7 @@ ReproducibilityTier = Literal["A", "B", "C", "D"]
 # ---------------------------------------------------------------------------
 
 class MeasurementEntry(BaseModel):
-    """One row in the HyCAN-DB dataset, corresponding to a single (T, P, uptake) point."""
+    """One row in HyCAN-DB, corresponding to a single (T, P, uptake) point."""
 
     # --- Paper-level ---
     paper_id: str
