@@ -531,8 +531,8 @@ def test_the_discredited_row_and_the_ordinary_row_no_longer_score_alike():
 def test_the_three_unassessable_chahine_cases_partition_the_corpus():
     """Pinned as a partition, not as a total, per §6.7.
 
-    Six rows failed to report a temperature; eleven carry no uptake at all; ten
-    report uptake only volumetrically. Each gets a different basis and only the
+    Six rows failed to report a temperature; twelve carry no uptake at all; eleven
+    report uptake non-gravimetrically. Each gets a different basis and only the
     last two keep a point.
 
     Ten, not the eight the plan first said: that figure was taken from the count
@@ -550,8 +550,8 @@ def test_the_three_unassessable_chahine_cases_partition_the_corpus():
     non_grav = by_basis.get("not_assessable_non_gravimetric", [])
     unstated = by_basis.get("temperature_not_reported", [])
 
-    assert len(no_uptake) == 11
-    assert len(non_grav) == 10
+    assert len(no_uptake) == 12
+    assert len(non_grav) == 11
     assert sorted(unstated) == [
         "HYC-0011-M1",
         "HYC-0011-M2",
@@ -563,8 +563,11 @@ def test_the_three_unassessable_chahine_cases_partition_the_corpus():
     scored = _scored()
     assert all(scored[m]["chahine"] == 1 for m in no_uptake + non_grav)
     assert all(scored[m]["chahine"] == 0 for m in unstated)
-    # Every volumetric-only row belongs to the one paper that reports no wt%.
-    assert {m.rsplit("-", 1)[0] for m in non_grav} == {"HYC-0024"}
+    # Ten of the eleven belong to the one paper whose hydrogen is entirely
+    # volumetric; the eleventh is HYC-0011's areal row, where the film was never
+    # weighed so no wt% exists even in principle.
+    assert {m.rsplit("-", 1)[0] for m in non_grav} == {"HYC-0024", "HYC-0011"}
+    assert "HYC-0011-M5" in non_grav
 
 
 def test_a_volumetric_only_row_keeps_its_point_because_the_rule_is_gravimetric():
@@ -761,16 +764,28 @@ def test_no_assigned_tier_changed_and_the_scorer_still_returns_a_letter():
         for r in _corpus()
         if scored[r["measurement_id"]]["suggested_tier"] == r["reproducibility_tier"]
     )
-    # 140 of 225, DOWN from the old scorer's 144. Agreement with the assigned
-    # tiers is not the success metric -- if it were, the correct fix would be
-    # whatever reproduces the humans' choices, which destroys the only thing an
-    # independent scorer is for. The plan's §6 names the eight rows that moved
-    # away and why none of them is re-tiered here.
-    assert agree == 140
+    # 141 of 227. Agreement with the assigned tiers is NOT the success metric --
+    # if it were, the correct fix would be whatever reproduces the humans'
+    # choices, which destroys the only thing an independent scorer is for. The
+    # scorer's plan §6 names the rows that moved away and why none is re-tiered.
+    #
+    # Pinned as a total on purpose, unlike most counts in this suite: it is a
+    # statement about how far an independent scorer diverges from human judgment
+    # over the whole corpus, and that is only meaningful as a total. It must be
+    # updated deliberately whenever the corpus changes, which is the point.
+    assert agree == 141
 
 
-def test_the_eight_rows_now_in_tension_with_their_assigned_tier_are_named():
+def test_the_rows_in_tension_with_their_assigned_tier_are_named():
     """Plan §6. These are open questions, deliberately not resolved in code.
+
+    Eight when the scorer was fixed; **nine since HYC-0011-M5 was appended, and
+    the ninth has a different cause from the other eight.** M5's uptake is areal,
+    so `_derive_wt_pct` returns None and the Chahine criterion scores 1, "cannot
+    assess" -- a free point that lifts it to a suggested C against an assigned D.
+    That is the same shape of defect §13.7 fixed for a null temperature, surviving
+    in the non-gravimetric branch, and it is the argument for a `tier_basis` field
+    or a second mechanism-aware rubric rather than another patch to this one.
 
     MUTATION: quietly re-tier any of them in the dataset -> this fails, which is
     the point: the disagreement is published, per §13.6.
@@ -791,6 +806,7 @@ def test_the_eight_rows_now_in_tension_with_their_assigned_tier_are_named():
         "HYC-0011-M1",
         "HYC-0011-M2",
         "HYC-0011-M3",
+        "HYC-0011-M5",
     ]
 
 

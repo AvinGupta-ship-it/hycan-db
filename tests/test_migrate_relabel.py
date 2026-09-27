@@ -65,6 +65,19 @@ def run_script(*args: str, cwd: Path) -> subprocess.CompletedProcess[str]:
     )
 
 
+def corpus_row_count() -> int:
+    """The live row count, so these tests survive the next append.
+
+    `migrate_relabel.py`'s `--expected-rows` default is 225, the count it actually
+    ran against, and that is a historical record worth keeping. But these tests
+    build their fixture from the CURRENT dataset, so passing the default would
+    make every one of them fail the moment a row was appended -- which is exactly
+    what happened when HYC-0011-M5 and HYC-0015-M3 took the corpus to 227. §6.7:
+    a pinned total is a test that expires.
+    """
+    return len(read_dataset()[1])
+
+
 def build_pre_image(destination: Path) -> Path:
     """Write the dataset with this migration's changes undone.
 
@@ -131,7 +144,10 @@ def test_running_the_migration_on_its_pre_image_reproduces_the_committed_file(
     MUTATION: change any value in SYNTHESIS_RELABEL, METAL_LOADING_WT_PCT or any
     NOTES_EDITS replacement text -> the output diverges from the committed file.
     """
-    result = run_script("--dataset", str(pre_image), cwd=pre_image.parents[2])
+    result = run_script(
+        "--dataset", str(pre_image), "--expected-rows", str(corpus_row_count()),
+        cwd=pre_image.parents[2],
+    )
     assert result.returncode == 0, result.stdout + result.stderr
     assert pre_image.read_bytes() == DATASET.read_bytes()
 
@@ -150,10 +166,16 @@ def test_the_pre_image_is_actually_different_from_the_committed_file(
 def test_the_migration_refuses_to_run_twice(pre_image: Path) -> None:
     """MUTATION: drop the `already` precondition -> the second run appends every
     notes suffix a second time and this passes."""
-    first = run_script("--dataset", str(pre_image), cwd=pre_image.parents[2])
+    first = run_script(
+        "--dataset", str(pre_image), "--expected-rows", str(corpus_row_count()),
+        cwd=pre_image.parents[2],
+    )
     assert first.returncode == 0, first.stdout + first.stderr
     before = pre_image.read_bytes()
-    second = run_script("--dataset", str(pre_image), cwd=pre_image.parents[2])
+    second = run_script(
+        "--dataset", str(pre_image), "--expected-rows", str(corpus_row_count()),
+        cwd=pre_image.parents[2],
+    )
     assert second.returncode == 1
     assert "already been applied" in second.stderr
     assert pre_image.read_bytes() == before, "a refused run must write nothing"
@@ -163,7 +185,8 @@ def test_dry_run_writes_nothing(pre_image: Path) -> None:
     """MUTATION: move the write above the --dry-run return -> this fails."""
     before = pre_image.read_bytes()
     result = run_script(
-        "--dataset", str(pre_image), "--dry-run", cwd=pre_image.parents[2]
+        "--dataset", str(pre_image), "--dry-run",
+        "--expected-rows", str(corpus_row_count()), cwd=pre_image.parents[2]
     )
     assert result.returncode == 0, result.stdout + result.stderr
     assert pre_image.read_bytes() == before
@@ -193,6 +216,8 @@ def test_the_migration_refuses_a_changed_cell_count_it_does_not_expect(
     result = run_script(
         "--dataset",
         str(pre_image),
+        "--expected-rows",
+        str(corpus_row_count()),
         "--expected-changed-cells",
         "71",
         cwd=pre_image.parents[2],
@@ -214,7 +239,10 @@ def test_an_embedded_newline_is_caught_before_the_byte_check_runs(
     idx = header.index("notes")
     rows[0][idx] = rows[0][idx] + "\nsecond physical line"
     mr.write_rows(pre_image, header, rows, "\n", True)
-    result = run_script("--dataset", str(pre_image), cwd=pre_image.parents[2])
+    result = run_script(
+        "--dataset", str(pre_image), "--expected-rows", str(corpus_row_count()),
+        cwd=pre_image.parents[2],
+    )
     assert result.returncode == 1
     assert "embedded newline" in result.stderr
 
@@ -235,7 +263,10 @@ def test_a_notes_sentence_that_no_longer_matches_aborts_the_migration(
         if row[pid] == "HYC-0019":
             row[notes] = row[notes].replace(old, "paraphrased away")
     mr.write_rows(pre_image, header, rows, "\n", True)
-    result = run_script("--dataset", str(pre_image), cwd=pre_image.parents[2])
+    result = run_script(
+        "--dataset", str(pre_image), "--expected-rows", str(corpus_row_count()),
+        cwd=pre_image.parents[2],
+    )
     assert result.returncode == 1
     assert "occurs 0 time(s) in notes" in result.stderr
 

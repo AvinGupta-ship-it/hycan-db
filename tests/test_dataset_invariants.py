@@ -12,6 +12,7 @@ from pathlib import Path
 import pandas as pd
 import pytest
 
+from hycan.schema import MeasurementEntry
 from hycan.validate import validate_dataset
 
 DATASET = Path(__file__).resolve().parents[1] / "data" / "raw" / "measurements_v0.1.csv"
@@ -222,11 +223,17 @@ def test_rows_whose_uptake_does_not_convert_to_wt_pct_are_enumerated(dataset):
     statistic. Enumerating them by id means one cannot appear unnoticed -- the
     same discipline as the bounded-uptake test.
 
-    All ten are HYC-0024's: the paper's only tabulated hydrogen quantities are
-    volumetric, so nine rows carry Ms and/or an adsorbed-phase density with no
-    gravimetric value. Its tenth row, HYC-0024-M4, is NOT here -- that sample is
-    KUA1, for which the paper states "close to 1 wt %" in its abstract and
-    conclusions, recorded with uptake_bound = approximate.
+    Ten of the eleven are HYC-0024's: that paper's only tabulated hydrogen
+    quantities are volumetric, so ten rows carry Ms and/or an adsorbed-phase
+    density with no gravimetric value. Its eleventh row, HYC-0024-M4, is NOT here
+    -- that sample is KUA1, for which the paper states "close to 1 wt %" in its
+    abstract and conclusions, recorded with uptake_bound = approximate.
+
+    **The eleventh is HYC-0011-M5, and it is a different shape of the same
+    problem.** Its uptake is AREAL, in g/cm2, because the FePc film was never
+    weighed -- so no wt% can be formed even in principle, not merely "the paper
+    did not tabulate one". It is the corpus's only row carrying
+    `areal_uptake_g_cm2`.
     """
     non_convertible = dataset[
         dataset["uptake_wt_pct"].isna()
@@ -248,6 +255,7 @@ def test_rows_whose_uptake_does_not_convert_to_wt_pct_are_enumerated(dataset):
         "HYC-0024-M9",
         "HYC-0024-M10",
         "HYC-0024-M11",
+        "HYC-0011-M5",
     }
 
 
@@ -340,6 +348,33 @@ def test_bounded_uptakes_are_flagged_and_rare(dataset):
     assert set(approximate["measurement_id"]) == {"HYC-0024-M4"}
 
 
+def test_paper_level_fields_agree_across_every_row_of_a_paper(dataset):
+    """Every row of one paper must carry the same title, doi, author, year, journal.
+
+    **Added because a candidate row reached verification with another paper's
+    title.** HYC-0015-M3's `title` was typed from memory as "Structural and
+    surface modification of carbon nanotubes for enhanced hydrogen storage
+    density" -- a string that appears nowhere in that PDF, for a paper that
+    measures graphene oxide. Agent B caught it. Nothing else would have: these are
+    row-local fields, every value was individually well-formed, and no validator
+    compares one row against another row of the same paper.
+
+    The correct title was already in the corpus on that paper's two existing rows
+    and in references/bibliography.bib. This test is the cheap check that makes
+    copying it the path of least resistance.
+
+    MUTATION: change one row's `year` or `title` within a paper -> this fails and
+    names the paper and the field.
+    """
+    problems = []
+    for field in ("doi", "first_author", "year", "journal", "title"):
+        for paper_id, values in dataset.groupby("paper_id")[field]:
+            distinct = set(values.dropna())
+            if len(distinct) > 1:
+                problems.append(f"{paper_id}.{field}: {sorted(distinct)}")
+    assert problems == [], problems
+
+
 def test_metal_loading_is_not_confused_with_dopant_concentration(dataset):
     """Schema v1.2 gaps 7 and 8 exist to keep these two quantities apart.
 
@@ -428,19 +463,31 @@ def test_characterization_only_rows_carry_characterization(dataset):
         "HYC-0029-M2",
         "HYC-0026-M2", "HYC-0026-M4", "HYC-0026-M5", "HYC-0026-M7",
         "HYC-0007-M5", "HYC-0007-M6", "HYC-0007-M7", "HYC-0007-M8",
+        "HYC-0015-M3",
     }, sorted(no_uptake["measurement_id"])
 
-    # HYC-0007 reports no total surface area at all -- only a micropore and an
-    # external area from an alpha-s plot -- so the v1.3 component fields have to
-    # be in this list or its four rows would look uncharacterized.
-    characterization = [
-        "bet_surface_area_m2_g", "langmuir_surface_area_m2_g",
-        "micropore_surface_area_m2_g", "external_surface_area_m2_g",
-        "micropore_volume_cm3_g", "micropore_volume_co2_cm3_g",
-        "ultramicropore_volume_cm3_g", "mesopore_volume_cm3_g",
-        "total_pore_volume_cm3_g", "average_pore_diameter_nm",
-    ]
-    assert no_uptake[characterization].notna().any(axis=1).all()
+    # **The list is read off schema.py, not restated here.** This test used to
+    # carry its own copy of ten field names, and that copy went stale twice: it
+    # needed the v1.3 component-area fields or HYC-0007's four rows looked
+    # uncharacterized, and it omitted `interlayer_spacing_nm`, which would have
+    # rejected HYC-0015-M3 -- a row whose ONLY datum is an interlayer spacing and
+    # which the schema's own validator accepts. A duplicated list is a list that
+    # expires; §0 says schema.py is authoritative, so read it.
+    # Pydantic captures a leading-underscore class tuple as a private attribute,
+    # so the class attribute is a descriptor rather than the tuple; its default is
+    # where the value lives. Reaching through __private_attributes__ is worth the
+    # ugliness -- the alternative is a second copy of the list, which is what went
+    # stale twice.
+    characterization = list(
+        MeasurementEntry.__private_attributes__["_CHARACTERIZATION_FIELDS"].default
+    )
+    assert "interlayer_spacing_nm" in characterization
+    assert len(characterization) >= 13
+    assert no_uptake[characterization].notna().any(axis=1).all(), sorted(
+        no_uptake.loc[
+            ~no_uptake[characterization].notna().any(axis=1), "measurement_id"
+        ]
+    )
     assert no_uptake["temperature_k"].isna().all()
     assert no_uptake["pressure_bar"].isna().all()
 
