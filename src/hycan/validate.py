@@ -542,19 +542,150 @@ def _derive_wt_pct(row) -> float | None:
         return None
 
 
+_ANY_UPTAKE_FIELDS = (
+    "uptake_wt_pct",
+    "uptake_mmol_g",
+    "uptake_ml_stp_g",
+    "volumetric_capacity_kg_m3",
+    "adsorbed_phase_density_kg_m3",
+    "areal_uptake_g_cm2",
+)
+
+
+def _score_bet(row: dict) -> tuple[int, str]:
+    """Score "BET surface area reported and consistent with material class", 0-2.
+
+    The three-level scale is the one ``docs/reproducibility_tiering.md``'s second
+    worked example already specifies -- "BET 1 (surface area reported but not
+    BET)". The code awarded 2 for any positive area and 0 otherwise, which was
+    wrong in both directions: 0 for HYC-0007, which reports eighteen surface-area
+    values by a named method resolved into micropore and external components with
+    no total, and 2 for the 31 rows whose area §8.6 recorded as *not known to be
+    BET*.
+
+    A missing ``surface_area_method`` key is read as the schema default
+    ``unspecified``; a dataset row always carries the field.
+    """
+    area = row.get("bet_surface_area_m2_g")
+    has_area = _present(area) and float(area) > 0
+    method = row.get("surface_area_method") or "unspecified"
+    if has_area and method == "BET":
+        return 2, "bet_total"
+    if has_area:
+        return 1, f"area_by_{method}"
+    micro, ext = (
+        row.get("micropore_surface_area_m2_g"),
+        row.get("external_surface_area_m2_g"),
+    )
+    if _present(micro) and _present(ext):
+        return 1, "resolved_components"
+    langmuir = row.get("langmuir_surface_area_m2_g")
+    if _present(langmuir) and float(langmuir) > 0:
+        return 1, "langmuir_only"
+    return 0, "no_area"
+
+
+def _score_purity(row: dict) -> tuple[int, str]:
+    """Score "sample purity / impurity content reported", 0-1.
+
+    The criterion is about purity being *reported*, and the code tested whether
+    the sample had been *purified*. HYC-0007 shows the difference: its pristine
+    SWCNT scored 0 while the paper reports 11 wt% residual metal for it, and its
+    acid-treated sample scored 1 for having been treated. A reported residual
+    metal content is the strongest evidence and is checked first; the purification
+    proxy is kept, so this can only ever turn a 0 into a 1.
+    """
+    if _present(row.get("residual_metal_wt_pct")):
+        return 1, "residual_metal_measured"
+    if _present(row.get("residual_metal_element")):
+        return 1, "residual_metal_named"
+    if _present(row.get("purification_method")):
+        return 1, "purification_method"
+    return 0, "none"
+
+
+def _chahine_bounding_area(row: dict) -> tuple[float | None, str]:
+    """Return the surface area to bound uptake against, and where it came from.
+
+    Falls back to the sum of the resolved components, which is what an alpha-s
+    decomposition means and what this module's own dataset-level check already
+    assumes when it verifies that components sum to a stated total.
+
+    **A Langmuir area is deliberately NOT used here**, though it earns a point in
+    ``_score_bet``. A Langmuir fit systematically over-reads on a microporous
+    carbon, so using it would raise the expected value and loosen the bound --
+    hiding exactly the over-claims this criterion exists to catch. Erring toward
+    "cannot assess" is the safe direction.
+    """
+    area = row.get("bet_surface_area_m2_g")
+    if _present(area) and float(area) > 0:
+        return float(area), "bet_total"
+    micro, ext = (
+        row.get("micropore_surface_area_m2_g"),
+        row.get("external_surface_area_m2_g"),
+    )
+    if _present(micro) and _present(ext):
+        return float(micro) + float(ext), "component_sum"
+    return None, "no_area"
+
+
+def _score_chahine(row: dict) -> tuple[int, str]:
+    """Score "value within Chahine-consistent range for the stated conditions", 0-2.
+
+    **The un-assessable case is three cases, and only two of them deserve a
+    point.** The pre-v1.3 code collapsed them into one ``chahine = 1``, which
+    handed a free point to every row whose paper never stated a temperature --
+    §13.7. The consequence was concrete: HYC-0011's ordinary 0.26 wt% row and its
+    discredited 8.0 wt% row scored identically, so the one value the criterion
+    exists to catch was the one it could not see.
+
+    * No uptake of any kind -> 1. The criterion has no subject. Not a reporting
+      failure by the paper.
+    * Uptake present but not convertible to wt% (HYC-0024's volumetric-only rows)
+      -> 1. The Chahine rule is defined in wt%; this genuinely cannot be assessed.
+    * Uptake in wt% but no stated temperature -> **0**. The criterion reads "for
+      the stated conditions" and there are none. That is a reporting deficiency
+      and it scores as one.
+
+    Pressure is deliberately not penalized here: an unstated pressure already
+    costs the ``temp_pressure`` point, and the bound below is pressure-blind at
+    every temperature, so it does not prevent evaluation. See the plan's §7 for
+    why that pressure-blindness is itself a limitation.
+    """
+    t = row.get("temperature_k")
+    w = _derive_wt_pct(row)
+    if w is None:
+        any_uptake = any(_present(row.get(f)) for f in _ANY_UPTAKE_FIELDS)
+        if not any_uptake:
+            return 1, "not_applicable_no_uptake"
+        return 1, "not_assessable_non_gravimetric"
+    if not _present(t):
+        return 0, "temperature_not_reported"
+    if float(t) >= 273:
+        # room-temperature physisorption bound ~1 wt%
+        return (2 if w <= 1.0 else (1 if w <= 2.0 else 0)), "room_temp_bound"
+    if float(t) <= 100:
+        area, area_basis = _chahine_bounding_area(row)
+        if area is None:
+            return 1, "cryo_no_area"
+        expected = area / 500.0
+        points = 0 if w > 1.5 * expected else (1 if w > expected else 2)
+        return points, f"cryo_vs_{area_basis}"
+    return (0 if w > 6.0 else 2), "mid_temp_bound"
+
+
 def score_reproducibility(row: dict) -> dict:
     """Apply the 10-point reproducibility rubric to a row's present fields.
 
     Returns per-criterion points plus the derived wt%, the total, and the
     suggested tier. This is an approximate scorer; see :func:`suggest_tier`
     and ``docs/reproducibility_tiering.md`` for its blind spots.
+
+    Three criteria carry a ``*_basis`` string saying *why* they scored what they
+    did, so a suggestion can be audited without re-deriving it. Added with the
+    four fixes in ``docs/migration_score_reproducibility_plan.md``.
     """
-    bet = (
-        2
-        if _present(row.get("bet_surface_area_m2_g"))
-        and float(row["bet_surface_area_m2_g"]) > 0
-        else 0
-    )
+    bet, bet_basis = _score_bet(row)
     method = (
         2
         if row.get("measurement_method")
@@ -567,25 +698,10 @@ def score_reproducibility(row: dict) -> dict:
         else 0
     )
     uptake_type = 1 if row.get("uptake_type") in {"excess", "absolute", "total"} else 0
-    purity = 1 if _present(row.get("purification_method")) else 0
+    purity, purity_basis = _score_purity(row)
     calibration = 0  # no schema field; the human assesses this
-
-    t = row.get("temperature_k")
+    chahine, chahine_basis = _score_chahine(row)
     w = _derive_wt_pct(row)
-    bet_area = row.get("bet_surface_area_m2_g")
-    if not _present(t) or w is None:
-        chahine = 1  # cannot assess
-    elif float(t) >= 273:
-        # room-temperature physisorption bound ~1 wt%
-        chahine = 2 if w <= 1.0 else (1 if w <= 2.0 else 0)
-    elif float(t) <= 100:
-        if _present(bet_area) and float(bet_area) > 0:
-            expected = float(bet_area) / 500.0
-            chahine = 0 if w > 1.5 * expected else (1 if w > expected else 2)
-        else:
-            chahine = 1  # cryogenic but no surface area to bound against
-    else:
-        chahine = 0 if w > 6.0 else 2
 
     total = (
         bet + method + temp_pressure + uptake_type + purity + calibration + chahine
@@ -595,12 +711,15 @@ def score_reproducibility(row: dict) -> dict:
     )
     return {
         "bet": bet,
+        "bet_basis": bet_basis,
         "method": method,
         "temp_pressure": temp_pressure,
         "uptake_type": uptake_type,
         "purity": purity,
+        "purity_basis": purity_basis,
         "calibration": calibration,
         "chahine": chahine,
+        "chahine_basis": chahine_basis,
         "derived_wt_pct": w,
         "total": total,
         "suggested_tier": suggested_tier,
@@ -611,12 +730,28 @@ def suggest_tier(row: dict) -> str:
     """Return a SUGGESTED reproducibility tier; the extractor makes the final call.
 
     This is only a suggestion and cannot see everything the rubric requires. Its
-    four blind spots: (1) it confirms a measurement method is recorded but cannot
-    judge whether the paper *clearly described* the instrument and protocol
-    (downgrade for a named-only method); (2) "calibration or blank correction" has
-    no schema field, so it is always scored 0; (3) "sample purity" is proxied
-    weakly by the presence of a purification method; and (4) the Chahine check is a
-    coarse heuristic that cannot apply the categorical physics override. When this
-    suggestion and your rubric judgment disagree, your judgment governs.
+    remaining blind spots, after the four fixes in
+    ``docs/migration_score_reproducibility_plan.md``:
+
+    1. It confirms a measurement method is recorded but cannot judge whether the
+       paper *clearly described* the instrument and protocol. Both of the tiering
+       document's worked examples 2 and 3 score this 1 by hand where the code
+       scores 2; downgrade for a named-only method.
+    2. "Calibration or blank correction" has no schema field, so it is always 0.
+       **The code ceiling is therefore 9, not 10**, and no row with an
+       ``unspecified`` uptake type can be suggested Tier A.
+    3. The Chahine check cannot apply the categorical physics override, and its
+       77 K bound ignores pressure -- BET/500 is the rule's form at moderate
+       pressure, so a 1 bar row clears it trivially.
+    4. **A characterization-only row is scored as though it were a failed uptake
+       measurement.** The rubric grades the reporting quality of an uptake
+       measurement and these rows have none, so they collect points only for
+       characterization and land at Tier C or D however well reported they are.
+       HYC-0007's four such rows suggest D against an assigned B. They inherit
+       their paper's tier instead; see §6.9 and §13.4.
+    5. A surface area whose method the paper never stated is still accepted as a
+       Chahine bound, though §10.3 permits uptake-per-m² only for BET areas.
+
+    When this suggestion and your rubric judgment disagree, your judgment governs.
     """
     return score_reproducibility(row)["suggested_tier"]

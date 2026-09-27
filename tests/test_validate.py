@@ -1,5 +1,8 @@
 """Unit tests for src/hycan/validate.py and src/hycan/clean.py."""
 
+import csv
+from pathlib import Path
+
 import pandas as pd
 import pytest
 
@@ -389,8 +392,18 @@ def test_suggest_tier_returns_valid_letter():
 
 
 def test_full_report_row_scores_nine_tier_a():
+    """Worked example 1 of docs/reproducibility_tiering.md.
+
+    `surface_area_method` was absent from this fixture until the scorer learned to
+    tell a BET area from an area of unknown method. The example states "reports BET
+    ≈ 2600 m²/g", so the row was always meant to carry a BET area and the fixture
+    merely omitted the field that says so. Adding it completes the fixture; the
+    total is still 9 and the tier still A. §6.7: check what a field's absence
+    *means* before changing the assertion that depends on it.
+    """
     row = {
         "bet_surface_area_m2_g": 2600,
+        "surface_area_method": "BET",
         "measurement_method": "gravimetric_microbalance",
         "temperature_k": 77,
         "pressure_bar": 20,
@@ -401,6 +414,28 @@ def test_full_report_row_scores_nine_tier_a():
     # code ceiling is 9; calibration unscored
     assert score_reproducibility(row)["total"] == 9
     assert suggest_tier(row) == "A"
+
+
+def test_the_same_area_without_a_stated_method_scores_one_point_less():
+    """The one-line difference between worked examples 1 and 2.
+
+    MUTATION: collapse `_score_bet` back to "2 for any positive area" -> this
+    fails, and so does the corpus assertion that HYC-0005's 25 rows score 1.
+    """
+    row = {
+        "bet_surface_area_m2_g": 2600,
+        "surface_area_method": "unspecified",
+        "measurement_method": "gravimetric_microbalance",
+        "temperature_k": 77,
+        "pressure_bar": 20,
+        "uptake_type": "excess",
+        "purification_method": "HNO3 reflux",
+        "uptake_wt_pct": 4.8,
+    }
+    scored = score_reproducibility(row)
+    assert scored["bet"] == 1
+    assert scored["bet_basis"] == "area_by_unspecified"
+    assert scored["total"] == 8
 
 
 def test_missing_bet_room_temp_high_uptake_tier_c():
@@ -438,3 +473,329 @@ def test_derive_wt_pct_via_mmol():
     assert score_reproducibility(row)["derived_wt_pct"] == pytest.approx(
         2.01588, abs=1e-6
     )
+
+
+# ---------------------------------------------------------------------------
+# The four score_reproducibility fixes.
+# docs/migration_score_reproducibility_plan.md. Each guard carries a MUTATION:
+# line, and each was confirmed to fail against the mutation it names.
+# ---------------------------------------------------------------------------
+
+DATASET = Path(__file__).resolve().parents[1] / "data" / "raw" / "measurements_v0.1.csv"
+
+
+def _corpus() -> list[dict]:
+    with DATASET.open(encoding="utf-8", newline="") as handle:
+        return list(csv.DictReader(handle))
+
+
+def _scored() -> dict[str, dict]:
+    return {r["measurement_id"]: score_reproducibility(r) for r in _corpus()}
+
+
+# --- Defect 1: a null temperature no longer buys a free Chahine point -------
+
+
+def test_an_unstated_temperature_scores_zero_on_chahine_not_one():
+    """§13.7's prescribed fix. The criterion reads "for the stated conditions".
+
+    MUTATION: restore `if not _present(t) or w is None: chahine = 1` -> this
+    fails, and HYC-0011-M4 goes back to suggesting C.
+    """
+    row = {
+        "measurement_method": "volumetric_sieverts",
+        "uptake_wt_pct": 8.0,
+        "temperature_unstated": True,
+    }
+    scored = score_reproducibility(row)
+    assert scored["chahine"] == 0
+    assert scored["chahine_basis"] == "temperature_not_reported"
+
+
+def test_the_discredited_row_and_the_ordinary_row_no_longer_score_alike():
+    """The concrete consequence §13.7 names, asserted on the real rows.
+
+    HYC-0011-M4 is the 8.0 wt% film that carries the corpus's only
+    `Pre-2005 raw-CNT high uptake (Tier D)` warning; M1 is an ordinary 0.26 wt%
+    row from the same paper. Neither states a temperature. Under the old scorer
+    both totalled 3 and both suggested C -- the free point was the only thing
+    holding the 8.0 wt% row above D.
+
+    MUTATION: restore the free point -> M4 suggests C again and this fails.
+    """
+    scored = _scored()
+    assert scored["HYC-0011-M4"]["suggested_tier"] == "D"
+    assert scored["HYC-0011-M4"]["chahine_basis"] == "temperature_not_reported"
+
+
+def test_the_three_unassessable_chahine_cases_partition_the_corpus():
+    """Pinned as a partition, not as a total, per §6.7.
+
+    Six rows failed to report a temperature; eleven carry no uptake at all; ten
+    report uptake only volumetrically. Each gets a different basis and only the
+    last two keep a point.
+
+    Ten, not the eight the plan first said: that figure was taken from the count
+    of `volumetric_capacity_kg_m3` rather than computed from the rows whose uptake
+    does not convert to wt%. Three HYC-0024 rows carry only an adsorbed-phase
+    density and one carries an approximate wt% from the paper's abstract.
+
+    MUTATION: merge any two of the three branches -> the partition breaks.
+    """
+    by_basis: dict[str, list[str]] = {}
+    for mid, s in _scored().items():
+        by_basis.setdefault(s["chahine_basis"], []).append(mid)
+
+    no_uptake = by_basis.get("not_applicable_no_uptake", [])
+    non_grav = by_basis.get("not_assessable_non_gravimetric", [])
+    unstated = by_basis.get("temperature_not_reported", [])
+
+    assert len(no_uptake) == 11
+    assert len(non_grav) == 10
+    assert sorted(unstated) == [
+        "HYC-0011-M1",
+        "HYC-0011-M2",
+        "HYC-0011-M3",
+        "HYC-0011-M4",
+        "HYC-0015-M1",
+        "HYC-0015-M2",
+    ]
+    scored = _scored()
+    assert all(scored[m]["chahine"] == 1 for m in no_uptake + non_grav)
+    assert all(scored[m]["chahine"] == 0 for m in unstated)
+    # Every volumetric-only row belongs to the one paper that reports no wt%.
+    assert {m.rsplit("-", 1)[0] for m in non_grav} == {"HYC-0024"}
+
+
+def test_a_volumetric_only_row_keeps_its_point_because_the_rule_is_gravimetric():
+    """Distinguishes defect 1's fix from a blanket penalty.
+
+    MUTATION: score 0 whenever `_derive_wt_pct` is None -> this fails, and
+    HYC-0024's eight volumetric rows are penalised for the schema's limits
+    rather than the paper's reporting.
+    """
+    row = {
+        "measurement_method": "volumetric_sieverts",
+        "temperature_k": 293,
+        "pressure_bar": 100,
+        "volumetric_capacity_kg_m3": 30.0,
+        "volumetric_capacity_basis": "tank_volume",
+    }
+    scored = score_reproducibility(row)
+    assert scored["chahine"] == 1
+    assert scored["chahine_basis"] == "not_assessable_non_gravimetric"
+
+
+# --- Defect 2: the three-level BET scale the rubric already specified -------
+
+
+def test_resolved_component_areas_score_a_bet_point_instead_of_zero():
+    """HYC-0007 reports a micropore and an external area and no total.
+
+    MUTATION: drop the `resolved_components` branch -> all 8 HYC-0007 rows score
+    `bet = 0`, which asserts the paper reported no surface area.
+    """
+    row = {
+        "micropore_surface_area_m2_g": 1200,
+        "external_surface_area_m2_g": 300,
+        "surface_area_method": "alpha_s_plot",
+    }
+    scored = score_reproducibility(row)
+    assert scored["bet"] == 1
+    assert scored["bet_basis"] == "resolved_components"
+
+
+def test_the_bet_scale_is_pinned_across_the_corpus_by_paper():
+    """The 39 rows defect 2 moves, by id, so a silent re-collapse fails.
+
+    MUTATION: award 2 for any positive area -> HYC-0005 and HYC-0012 go back to
+    2 and this fails; drop the component branch -> HYC-0007 goes back to 0.
+    """
+    by_basis: dict[str, set[str]] = {}
+    for mid, s in _scored().items():
+        by_basis.setdefault(s["bet_basis"], set()).add(mid.rsplit("-", 1)[0])
+    assert by_basis["resolved_components"] == {"HYC-0007"}
+    assert by_basis["area_by_unspecified"] == {"HYC-0005", "HYC-0012"}
+    scored = _scored()
+    assert all(
+        s["bet"] == 1
+        for s in scored.values()
+        if s["bet_basis"] in {"resolved_components", "area_by_unspecified"}
+    )
+    assert all(s["bet"] == 2 for s in scored.values() if s["bet_basis"] == "bet_total")
+    assert all(s["bet"] == 0 for s in scored.values() if s["bet_basis"] == "no_area")
+
+
+# --- Defect 3: purity means purity REPORTED, not the sample PURIFIED --------
+
+
+def test_a_reported_residual_metal_scores_the_purity_point():
+    """HYC-0007's pristine SWCNT scored 0 while the paper reports 11 wt% metal.
+
+    MUTATION: restore `purity = 1 if purification_method` alone -> this fails.
+    """
+    row = {"residual_metal_element": "Ni", "residual_metal_wt_pct": 11.0}
+    scored = score_reproducibility(row)
+    assert scored["purity"] == 1
+    assert scored["purity_basis"] == "residual_metal_measured"
+
+
+def test_the_purity_fix_only_ever_turns_a_zero_into_a_one():
+    """It must not cost any row a point it already had.
+
+    MUTATION: reorder `_score_purity` so a named metal shadows a measured one, or
+    make any branch return 0 -> a row loses a point and this fails.
+    """
+    for row in _corpus():
+        if row.get("purification_method", "").strip():
+            assert score_reproducibility(row)["purity"] == 1, row["measurement_id"]
+
+
+# --- Defect 4: the Chahine bound can see a resolved area -------------------
+
+
+def test_the_chahine_bound_falls_back_to_the_component_sum():
+    """1200 + 300 = 1500 m²/g, so the expectation is 3.0 wt% and 1.0 clears it.
+
+    MUTATION: drop `_chahine_bounding_area`'s component branch -> the basis
+    becomes `cryo_no_area`, the score drops to 1, and this fails.
+    """
+    row = {
+        "micropore_surface_area_m2_g": 1200,
+        "external_surface_area_m2_g": 300,
+        "temperature_k": 77,
+        "pressure_bar": 1,
+        "uptake_wt_pct": 1.0,
+    }
+    scored = score_reproducibility(row)
+    assert scored["chahine"] == 2
+    assert scored["chahine_basis"] == "cryo_vs_component_sum"
+
+
+def test_a_langmuir_area_earns_a_bet_point_but_never_bounds_chahine():
+    """Deliberate asymmetry: Langmuir over-reads on microporous carbon, so using
+    it as a bound would loosen the check in the direction that hides an
+    over-claim.
+
+    MUTATION: add Langmuir to `_chahine_bounding_area` -> the basis becomes
+    `cryo_vs_...` and this fails.
+    """
+    row = {
+        "langmuir_surface_area_m2_g": 1800,
+        "temperature_k": 77,
+        "pressure_bar": 1,
+        "uptake_wt_pct": 2.0,
+    }
+    scored = score_reproducibility(row)
+    assert scored["bet"] == 1
+    assert scored["bet_basis"] == "langmuir_only"
+    assert scored["chahine_basis"] == "cryo_no_area"
+
+
+# --- The rubric's own worked examples, which are the real validation --------
+
+
+def test_worked_example_two_scores_its_bet_and_purity_points():
+    """docs/reproducibility_tiering.md example 2: a Langmuir area, 77 K / 1 bar,
+    no type, no purity, ~2 wt%. Hand-scored BET 1, purity 0, Chahine 2, Tier C.
+
+    The fix brings BET and purity onto the document's numbers. **Chahine does not
+    match and is not meant to:** the document awards 2 on physical plausibility --
+    2 wt% at 77 K / 1 bar is unremarkable -- which is a judgment the code has no
+    way to make. It returns 1, "cannot assess", because the only area present is
+    Langmuir and `_chahine_bounding_area` deliberately refuses to bound against
+    one. Two documented divergences are asserted here rather than hidden: this,
+    and `method` 2 where the document hand-scores 1 for a named-only protocol.
+    Both land on Tier C anyway, which the document itself states.
+    """
+    row = {
+        "langmuir_surface_area_m2_g": 1800,
+        "measurement_method": "volumetric_sieverts",
+        "temperature_k": 77,
+        "pressure_bar": 1,
+        "uptake_type": "unspecified",
+        "uptake_wt_pct": 2.0,
+    }
+    scored = score_reproducibility(row)
+    assert (scored["bet"], scored["purity"]) == (1, 0)
+    assert scored["chahine"] == 1, "the document awards 2 on plausibility"
+    assert scored["chahine_basis"] == "cryo_no_area"
+    assert scored["method"] == 2, "the document hand-scores this 1; the code cannot"
+    assert scored["suggested_tier"] == "C"
+
+
+def test_worked_example_three_scores_zero_on_bet_and_chahine():
+    """Example 3: no surface area, room temperature, an uptake far above the
+    ~1 wt% bound. Hand-scored BET 0, Chahine 0, Tier D under the physics clause.
+
+    The code reaches Tier C, which the document states explicitly -- it cannot
+    apply the categorical override and scores the method as recorded. Asserting
+    the C is asserting the documented blind spot, not endorsing it.
+    """
+    row = {
+        "measurement_method": "volumetric_sieverts",
+        "temperature_k": 298,
+        "pressure_bar": 100,
+        "uptake_type": "unspecified",
+        "uptake_wt_pct": 6.0,
+    }
+    scored = score_reproducibility(row)
+    assert (scored["bet"], scored["chahine"]) == (0, 0)
+    assert scored["suggested_tier"] == "C"
+
+
+# --- What the fix must not disturb -----------------------------------------
+
+
+def test_no_assigned_tier_changed_and_the_scorer_still_returns_a_letter():
+    """The plan's post-conditions 2 and 8.
+
+    MUTATION: make `suggest_tier` return the assigned tier -> the agreement
+    assertion below becomes 225 and this fails.
+    """
+    scored = _scored()
+    assert all(s["suggested_tier"] in {"A", "B", "C", "D"} for s in scored.values())
+    assert suggest_tier({}) in {"A", "B", "C", "D"}
+    agree = sum(
+        1
+        for r in _corpus()
+        if scored[r["measurement_id"]]["suggested_tier"] == r["reproducibility_tier"]
+    )
+    # 140 of 225, DOWN from the old scorer's 144. Agreement with the assigned
+    # tiers is not the success metric -- if it were, the correct fix would be
+    # whatever reproduces the humans' choices, which destroys the only thing an
+    # independent scorer is for. The plan's §6 names the eight rows that moved
+    # away and why none of them is re-tiered here.
+    assert agree == 140
+
+
+def test_the_eight_rows_now_in_tension_with_their_assigned_tier_are_named():
+    """Plan §6. These are open questions, deliberately not resolved in code.
+
+    MUTATION: quietly re-tier any of them in the dataset -> this fails, which is
+    the point: the disagreement is published, per §13.6.
+    """
+    scored = _scored()
+    tension = sorted(
+        r["measurement_id"]
+        for r in _corpus()
+        if scored[r["measurement_id"]]["suggested_tier"] != r["reproducibility_tier"]
+        and r["paper_id"] in {"HYC-0005", "HYC-0011"}
+    )
+    assert tension == [
+        "HYC-0005-M2",
+        "HYC-0005-M3",
+        "HYC-0005-M4",
+        "HYC-0005-M6",
+        "HYC-0005-M7",
+        "HYC-0011-M1",
+        "HYC-0011-M2",
+        "HYC-0011-M3",
+    ]
+
+
+def test_the_code_ceiling_is_still_nine_because_calibration_has_no_field():
+    """MUTATION: award calibration a point -> a row could suggest A on an
+    `unspecified` uptake type and this fails."""
+    assert max(s["total"] for s in _scored().values()) <= 9
+    assert all(s["calibration"] == 0 for s in _scored().values())

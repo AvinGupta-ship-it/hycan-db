@@ -50,7 +50,7 @@ the whole fix:
 | Situation | Rows | Honest score |
 | --- | --- | --- |
 | No uptake of any kind — a characterization-only row | 11 | **1.** The criterion has no subject. Not a reporting failure. |
-| Uptake present but not convertible to wt% — HYC-0024's volumetric-only rows | 8 | **1.** The Chahine rule is defined in wt%; this genuinely cannot be assessed. |
+| Uptake present but not convertible to wt% — HYC-0024's volumetric-only rows | 10 | **1.** The Chahine rule is defined in wt%; this genuinely cannot be assessed. |
 | Uptake in wt% but the paper never stated a temperature | 6 | **0.** The criterion reads "within Chahine-consistent range for **the stated conditions**". There are none. This is a reporting deficiency and scores as one. |
 
 The third row of that table is §13.7's prescribed fix, stated there as "the honest
@@ -129,7 +129,13 @@ consistently with a total wherever both are present.
 and record which was used.
 
 **Langmuir is deliberately not used as a Chahine bound**, though it does earn a
-BET point under §2. A Langmuir fit systematically over-reads on a microporous
+BET point under §2. This is the one place the fix does **not** reach the tiering
+document's worked example 2, which awards that row Chahine 2 on physical
+plausibility — a judgment the code has no way to make. It returns 1, "cannot
+assess". The divergence is asserted as a test rather than hidden, alongside the
+`method` point the same example hand-scores differently.
+
+A Langmuir fit systematically over-reads on a microporous
 carbon, so using it would raise the expected value and loosen the bound — it would
 hide exactly the over-claims the criterion exists to catch. Erring toward
 "cannot assess" is the safe direction; erring toward a generous bound is not.
@@ -272,8 +278,31 @@ Post-conditions:
 6. Exactly 6 rows score `chahine = 0` with basis `temperature_not_reported`, and
    they are the six carrying `temperature_unstated` with a derivable wt%.
 7. Exactly 11 rows score `chahine = 1` with basis `not_applicable_no_uptake` and
-   exactly 8 with `not_assessable_non_gravimetric` — so the three-way split is
+   exactly 10 with `not_assessable_non_gravimetric` — so the three-way split is
    pinned by partition, not by total.
+
+   **This figure was wrong in the first draft of this plan, as 8.** It was taken
+   from the count of rows carrying `volumetric_capacity_kg_m3` rather than
+   computed from the rows whose uptake does not convert to wt%: three HYC-0024
+   rows carry only an `adsorbed_phase_density_kg_m3`, and a fourth carries the
+   `approximate` wt% the verifier recovered from the paper's abstract. Caught by
+   the test that asserts the partition rather than the total, which is the
+   argument for pinning partitions — §2.4's error class, found by a check instead
+   of by rereading.
 8. `suggest_tier` still returns one of A/B/C/D for every row in the corpus and for
    an empty dict.
-9. Every new guard is mutated and confirmed to fail.
+9. Every new guard is mutated and confirmed to fail. **Eight mutations, and the
+   first run of all eight was worthless.** They were applied to a scratch copy of
+   the repository, but the package is installed editable, so `import hycan` in
+   that copy resolved back to `/home/claude/hycan-db/src/hycan/validate.py` — the
+   unmutated original. All eight "survived", which read exactly like eight
+   untested guards and was in fact a harness that tested nothing. §3.8 applies to
+   a mutation run as much as to a file write: *a test run's exit status is not
+   evidence about the code you think it ran.*
+
+   The fix is two lines and both are required: set `PYTHONPATH` to the scratch
+   copy's `src/`, **and assert inside each run that `hycan.validate.__file__`
+   points into the scratch copy** before trusting the result. With the import
+   verified, all eight mutations fail the tests that name them — 5, 2, 4, 3, 1, 2,
+   2 and 8 failures respectively. A mutation harness needs its own guard, because
+   a silent no-op is indistinguishable from a passing mutant.
