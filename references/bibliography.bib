@@ -1,0 +1,384 @@
+% references/bibliography.bib -- HyCAN-DB
+%
+% GENERATED FILE. Do not edit by hand.
+%   Source:    references/bibliography_sources.json
+%   Generator: scripts/build_bibliography.py
+%   Regenerate: python3 scripts/build_bibliography.py
+%   Verify:     python3 scripts/build_bibliography.py --check
+%
+% 30 entries: 27 screened in, 3 screened out. The
+% excluded papers are kept because PRISMA reporting has to cite what it excluded.
+% Every entry's key is its HyCAN-DB paper_id, so a citation in the manuscript
+% resolves directly to the rows it describes in data/raw/measurements_v0.1.csv.
+%
+% HOW THESE WERE RESOLVED (§3.5: a DOI or a citation recalled from model weights
+% is not a citation).
+%
+% 23 entries have their author list, title, journal, volume, pages and year
+% read off the article's OWN PAGES -- title block, byline, running header and
+% footer -- from the PDF held in the project. That is the primary record.
+% 7 entries have no PDF on hand and are resolved from metadata services,
+% cross-checked between OpenAlex and Semantic Scholar where both responded.
+% Per-field provenance is in the sources file.
+%
+% THREE THINGS A READER SHOULD KNOW, because each was a real error caught here.
+%
+% 1. `number` (ISSUE) IS THE WEAKEST FIELD IN THIS FILE. Only three of the 23
+%    PDFs print an issue number at all -- HYC-0002 in Science, HYC-0022 in JACS
+%    and HYC-0024 in J. Phys. Chem. B, whose citation lines carry it. Every
+%    Elsevier and Springer running head in this corpus carries volume, year and
+%    pages only, so 21 issue numbers come from OpenAlex and 6 are absent
+%    everywhere and omitted. An earlier draft of this header claimed no PDF
+%    printed one; a test against the sources file caught it.
+%
+% 2. OPENALEX REPORTS ELSEVIER'S ONLINE-FIRST YEAR, NOT THE ISSUE YEAR. Six
+%    entries would have carried a year one too low -- HYC-0009, HYC-0012,
+%    HYC-0018, HYC-0019, HYC-0021, HYC-0029. Every one of their PDFs prints both
+%    dates, and the `year` here is the issue year from the running head, which is
+%    what a citation means. Semantic Scholar agreed with the issue year on all
+%    five it could reach.
+%
+% 3. A METADATA SERVICE GAVE AN AUTHOR THE WRONG NAME. OpenAlex lists HYC-0002's
+%    fourth author as "Huai-Ping Cong"; the article prints "H. T. Cong", and
+%    Semantic Scholar expands it to "Hong-Tao Cong" -- a different person.
+%    OpenAlex also has ONE author for HYC-0011 where the article prints four.
+%    Author lists therefore come from the PDF wherever one is held.
+%
+% Journal names are normalised to their full published form; the house styling a
+% PDF happens to use ("CARBON", "int. j. hydrogen energy") is not preserved.
+% Titles are brace-protected to keep their capitalisation. Encoding is UTF-8.
+%
+
+@article{HYC-0001,
+  author       = {Panella, Barbara and Hirscher, Michael and Roth, Siegmar},
+  title        = {{Hydrogen adsorption in different carbon nanostructures}},
+  journal      = {Carbon},
+  volume       = {43},
+  number       = {10},
+  pages        = {2209-2214},
+  year         = {2005},
+  doi          = {10.1016/j.carbon.2005.03.037},
+}
+
+@article{HYC-0002,
+  author       = {Liu, C. and Fan, Y. Y. and Liu, M. and Cong, H. T. and Cheng, H. M. and Dresselhaus, M. S.},
+  title        = {{Hydrogen Storage in Single-Walled Carbon Nanotubes at Room Temperature}},
+  journal      = {Science},
+  volume       = {286},
+  number       = {5442},
+  pages        = {1127-1129},
+  year         = {1999},
+  doi          = {10.1126/science.286.5442.1127},
+  note         = {OpenAlex gives this paper's fourth author as "Huai-Ping Cong", a different person; the article prints "H. T. Cong". Author list taken from the article.},
+}
+
+@article{HYC-0003,
+  author       = {Yang, Ralph T},
+  title        = {{Hydrogen storage by alkali-doped carbon nanotubes–revisited}},
+  journal      = {Carbon},
+  volume       = {38},
+  number       = {4},
+  pages        = {623-626},
+  year         = {2000},
+  doi          = {10.1016/S0008-6223(99)00273-0},
+}
+
+@article{HYC-0004,
+  author       = {Nijkamp, M.G. and Raaymakers, J.E.M.J. and van Dillen, A. J. and de Jong, K. P.},
+  title        = {{Hydrogen storage using physisorption – materials demands}},
+  journal      = {Applied Physics A},
+  volume       = {72},
+  number       = {5},
+  pages        = {619-623},
+  year         = {2001},
+  doi          = {10.1007/s003390100847},
+}
+
+@article{HYC-0005,
+  author       = {Texier-Mandoki, N. and Dentzer, J. and Piquero, T. and Saadallah, S. and David, P. and Vix-Guterl, C.},
+  title        = {{Hydrogen storage in activated carbon materials: Role of the nanoporous texture}},
+  journal      = {Carbon},
+  volume       = {42},
+  number       = {12-13},
+  pages        = {2744-2747},
+  year         = {2004},
+  doi          = {10.1016/j.carbon.2004.05.018},
+}
+
+@incollection{HYC-0006,
+  author       = {Chahine, Richard and Bénard, Pierre},
+  title        = {{Adsorption Storage of Gaseous Hydrogen at Cryogenic Temperatures}},
+  booktitle    = {Advances in Cryogenic Engineering},
+  pages        = {1257-1264},
+  year         = {1998},
+  doi          = {10.1007/978-1-4757-9047-4_157},
+  note         = {A chapter in a volume of Advances in Cryogenic Engineering, not a journal article; emitted as @incollection with the volume title as booktitle. No PDF is held. This is the Chahine rule's source paper, cited throughout the project as its calibration anchor.},
+}
+
+@article{HYC-0007,
+  author       = {Takagi, H. and Hatori, H. and Soneda, Y. and Yoshizawa, N. and Yamada, Y.},
+  title        = {{Adsorptive hydrogen storage in carbon and porous materials}},
+  journal      = {Materials Science and Engineering: B},
+  volume       = {B108},
+  number       = {1-2},
+  pages        = {143-147},
+  year         = {2004},
+  doi          = {10.1016/j.mseb.2003.10.095},
+  note         = {Volume is printed as "B108", the series letter run into the number.},
+}
+
+@article{HYC-0008,
+  author       = {Elyassi, Mahrokh and Rashidi, Alimorad and Hantehzadeh, Mohammad Reza and Elahi, Seyed Mohammad},
+  title        = {{Hydrogen Storage Behaviors by Adsorption on Multi-Walled Carbon Nanotubes}},
+  journal      = {Journal of Inorganic and Organometallic Polymers and Materials},
+  volume       = {27},
+  number       = {1},
+  pages        = {285-295},
+  year         = {2016},
+  doi          = {10.1007/s10904-016-0471-y},
+}
+
+@article{HYC-0009,
+  author       = {Ioannatos, Gerasimos E. and Verykios, Xenophon E.},
+  title        = {{H2 storage on single- and multi-walled carbon nanotubes}},
+  journal      = {International Journal of Hydrogen Energy},
+  volume       = {35},
+  number       = {2},
+  pages        = {622-628},
+  year         = {2010},
+  doi          = {10.1016/j.ijhydene.2009.11.029},
+}
+
+@article{HYC-0010,
+  author       = {Züttel, Andreas and Sudan, Patrick and Mauron, Ph. and Kiyobayashi, Tetsu and Emmenegger, Ch. and Schlapbach, L.},
+  title        = {{Hydrogen storage in carbon nanostructures}},
+  journal      = {International Journal of Hydrogen Energy},
+  volume       = {27},
+  number       = {2},
+  pages        = {203-212},
+  year         = {2002},
+  doi          = {10.1016/S0360-3199(01)00108-2},
+}
+
+@article{HYC-0011,
+  author       = {{Wang Qikun} and {Zhu Changchun} and {Liu Weihua} and {Wu Ting}},
+  title        = {{Hydrogen storage by carbon nanotube and their %lms under ambient pressure}},
+  journal      = {International Journal of Hydrogen Energy},
+  volume       = {27},
+  number       = {5},
+  pages        = {497-500},
+  year         = {2002},
+  doi          = {10.1016/S0360-3199(01)00162-8},
+  note         = {Author names are brace-protected and left exactly as the title block prints them. The byline is family-name-first ("Wang Qikun") while the journal's own running head reads "W. Qikun et al.", so the two disagree about which part is the surname and this file asserts neither. OpenAlex lists only one author for this record. The printed title contains "%lms" for "films", the fi ligature having been lost.},
+}
+
+@article{HYC-0012,
+  author       = {Liu, Chang and Chen, Yong and Wu, Cheng-Zhang and Xu, Shi-Tao and Cheng, Hui-Ming},
+  title        = {{Hydrogen storage in carbon nanotubes revisited}},
+  journal      = {Carbon},
+  volume       = {48},
+  number       = {2},
+  pages        = {452-455},
+  year         = {2010},
+  doi          = {10.1016/j.carbon.2009.09.060},
+}
+
+@article{HYC-0013,
+  author       = {Hudson, M. Sterlin Leo and Raghubanshi, Himanshu and Awasthi, Seema and Sadhasivam, T. and Bhatnager, Ashish and Simizu, Satoru and Sankar, S.G. and Srivastava, O.N.},
+  title        = {{Hydrogen uptake of reduced graphene oxide and graphene sheets decorated with Fe nanoclusters}},
+  journal      = {International Journal of Hydrogen Energy},
+  volume       = {39},
+  number       = {16},
+  pages        = {8311-8320},
+  year         = {2014},
+  doi          = {10.1016/j.ijhydene.2014.03.118},
+  note         = {The article prints author 5 as "Ashish Bhatnager"; recorded as printed.},
+}
+
+@article{HYC-0014,
+  author       = {Aboutalebi, Seyed Hamed and Aminorroaya Yamini, Sima and Nevirkovets, Ivan P. and Konstantinov, Konstantin and Liu, Huan},
+  title        = {{Enhanced Hydrogen Storage in Graphene Oxide‐MWCNTs Composite at Room Temperature}},
+  journal      = {Advanced Energy Materials},
+  volume       = {2},
+  number       = {12},
+  pages        = {1439-1446},
+  year         = {2012},
+  doi          = {10.1002/aenm.201200154},
+}
+
+@article{HYC-0015,
+  author       = {Rajaura, Rajveer Singh and Srivastava, Subodh and Sharma, Vinay and Sharma, P.K. and Lal, C. and Singh, Mangej and Palsania, H.S. and Vijay, Y.K.},
+  title        = {{Role of interlayer spacing and functional group on the hydrogen storage properties of graphene oxide and reduced graphene oxide}},
+  journal      = {International Journal of Hydrogen Energy},
+  volume       = {41},
+  number       = {22},
+  pages        = {9454-9461},
+  year         = {2016},
+  doi          = {10.1016/j.ijhydene.2016.04.115},
+}
+
+@article{HYC-0016,
+  author       = {Klechikov, Alexey G. and Mercier, Guillaume and Merino, Pilar and Blanco, Santiago and Merino, Cesar and Talyzin, Alexandr V.},
+  title        = {{Hydrogen storage in bulk graphene-related materials}},
+  journal      = {Microporous and Mesoporous Materials},
+  volume       = {210},
+  pages        = {46-51},
+  year         = {2015},
+  doi          = {10.1016/j.micromeso.2015.02.017},
+}
+
+@article{HYC-0017,
+  author       = {Ma, Lai-Peng and Wu, Zhong-Shuai and Li, Jing and Wu, Er-Dong and Ren, Wen-Cai and Cheng, Hui-Ming},
+  title        = {{Hydrogen adsorption behavior of graphene above critical temperature}},
+  journal      = {International Journal of Hydrogen Energy},
+  volume       = {34},
+  number       = {5},
+  pages        = {2329-2332},
+  year         = {2009},
+  doi          = {10.1016/j.ijhydene.2008.12.079},
+}
+
+@article{HYC-0018,
+  author       = {Singh, Sohan Bir and De, Mahuya},
+  title        = {{Thermally exfoliated graphene oxide for hydrogen storage}},
+  journal      = {Materials Chemistry and Physics},
+  volume       = {239},
+  pages        = {122102},
+  year         = {2020},
+  doi          = {10.1016/j.matchemphys.2019.122102},
+  note         = {Page field is the article number; this journal does not paginate. The PDF prints issue year 2020 in every running head and online-first 2019 on page 1; 2020 is used.},
+}
+
+@article{HYC-0019,
+  author       = {Huang, Chen-Chia and Chen, Hsiu-Mei and Chen, Chien-Hung and Huang, Jhin-Cin},
+  title        = {{Effect of surface oxides on hydrogen storage of activated carbon}},
+  journal      = {Separation and Purification Technology},
+  volume       = {70},
+  number       = {3},
+  pages        = {291-295},
+  year         = {2010},
+  doi          = {10.1016/j.seppur.2009.10.009},
+  note         = {Year, volume, issue and pages all come from the metadata services, corroborated by HYC-0021's reference [32], which cites this paper as Sep. Purif. Technol. 70(3) (2010) 291-295. The PDF held for this paper is an unpaginated manuscript: it prints no volume, no page range, no running head and no issue year, only a 2009 copyright line. Its 2009 is the online-first year and is NOT the citation year. This is the one entry with a PDF whose citation fields have no primary-source backing.},
+}
+
+@article{HYC-0020,
+  author       = {Serafin, Jarosław and Dziejarski, Bartosz and Solis, Carlos and Ramírez de la Piscina, Pilar and Homs, Narcis},
+  title        = {{Medium-pressure hydrogen storage on activated carbon derived from biomass conversion}},
+  journal      = {Fuel},
+  volume       = {363},
+  pages        = {130975},
+  year         = {2024},
+  doi          = {10.1016/j.fuel.2024.130975},
+  note         = {Page field is the article number; this journal does not paginate.},
+}
+
+@article{HYC-0021,
+  author       = {Sethia, Govind and Sayari, Abdelhamid},
+  title        = {{Activated carbon with optimum pore size distribution for hydrogen storage}},
+  journal      = {Carbon},
+  volume       = {99},
+  pages        = {289-294},
+  year         = {2016},
+  doi          = {10.1016/j.carbon.2015.12.032},
+}
+
+@article{HYC-0022,
+  author       = {Wang, Huanlei and Gao, Qiuming and Hu, Juan},
+  title        = {{High Hydrogen Storage Capacity of Porous Carbons Prepared by Using Activated Carbon}},
+  journal      = {Journal of the American Chemical Society},
+  volume       = {131},
+  number       = {20},
+  pages        = {7016-7022},
+  year         = {2009},
+  doi          = {10.1021/ja8083225},
+}
+
+@article{HYC-0023,
+  author       = {Gogotsi, Yury and Portet, Cristelle and Osswald, Sebastian and Simmons, Jason M. and Yildirim, Taner and Laudisio, Giovanna and Fischer, John E.},
+  title        = {{Importance of pore size in high-pressure hydrogen storage by porous carbons}},
+  journal      = {International Journal of Hydrogen Energy},
+  volume       = {34},
+  number       = {15},
+  pages        = {6314-6319},
+  year         = {2009},
+  doi          = {10.1016/j.ijhydene.2009.05.073},
+  note         = {No PDF issue number is printed; Semantic Scholar could not be reached, so the issue rests on OpenAlex alone.},
+}
+
+@article{HYC-0024,
+  author       = {de la Casa-Lillo, M. A. and Lamari-Darkrim, F. and Cazorla-Amorós, D. and Linares-Solano, A.},
+  title        = {{Hydrogen Storage in Activated Carbons and Activated Carbon Fibers}},
+  journal      = {The Journal of Physical Chemistry B},
+  volume       = {106},
+  number       = {42},
+  pages        = {10930-10934},
+  year         = {2002},
+  doi          = {10.1021/jp014543m},
+}
+
+@article{HYC-0025,
+  author       = {Sawant, Shrilekha V. and Yadav, Manishkumar D. and Banerjee, Seemita and Patwardhan, Ashwin W. and Joshi, Jyeshtharaj B. and Dasgupta, Kinshuk},
+  title        = {{Hydrogen storage in boron-doped carbon nanotubes: Effect of dopant concentration}},
+  journal      = {International Journal of Hydrogen Energy},
+  volume       = {46},
+  number       = {79},
+  pages        = {39297-39314},
+  year         = {2021},
+  doi          = {10.1016/j.ijhydene.2021.09.183},
+}
+
+@article{HYC-0026,
+  author       = {Zhao, W. and Fierro, V. and Fernández-Huerta, N. and Izquierdo, M.T. and Celzard, A.},
+  title        = {{Hydrogen uptake of high surface area-activated carbons doped with nitrogen}},
+  journal      = {International Journal of Hydrogen Energy},
+  volume       = {38},
+  number       = {25},
+  pages        = {10453-10460},
+  year         = {2013},
+  doi          = {10.1016/j.ijhydene.2013.06.048},
+  note         = {The text layer renders author 3 with a detached acute accent ("Ferna´ndez-Huerta"); recorded as the printed form.},
+}
+
+@article{HYC-0027,
+  author       = {Parambhath, Vinayan Bhagavathi and Nagar, Rupali and Ramaprabhu, S.},
+  title        = {{Effect of Nitrogen Doping on Hydrogen Storage Capacity of Palladium Decorated Graphene}},
+  journal      = {Langmuir},
+  volume       = {28},
+  number       = {20},
+  pages        = {7826-7833},
+  year         = {2012},
+  doi          = {10.1021/la301232r},
+}
+
+@article{HYC-0028,
+  author       = {Chen, Feng and Zhang, Xinhui and Guan, Xiaoning and Gao, Shuli and Hao, Jinbo and Li, Long and Yuan, Yazhao and Zhang, Chunling and Chen, Wen and Lu, Pengfei},
+  title        = {{Nitrogen-doped or boron-doped twin T-graphene as advanced and reversible hydrogen storage media}},
+  journal      = {Applied Surface Science},
+  volume       = {622},
+  pages        = {156895},
+  year         = {2023},
+  doi          = {10.1016/j.apsusc.2023.156895},
+  note         = {Resolved from OpenAlex alone; Semantic Scholar could not be reached. No PDF is held and nothing in this entry is cross-checked.},
+}
+
+@article{HYC-0029,
+  author       = {Chen, Chien-Hung and Huang, Chen-Chia},
+  title        = {{Enhancement of hydrogen spillover onto carbon nanotubes with defect feature}},
+  journal      = {Microporous and Mesoporous Materials},
+  volume       = {109},
+  number       = {1-3},
+  pages        = {549-559},
+  year         = {2008},
+  doi          = {10.1016/j.micromeso.2007.06.003},
+}
+
+@article{HYC-0030,
+  author       = {Yang, Frances H. and Lachawiec, Anthony J. and Yang, Ralph T.},
+  title        = {{Adsorption of Spillover Hydrogen Atoms on Single-Wall Carbon Nanotubes}},
+  journal      = {The Journal of Physical Chemistry B},
+  volume       = {110},
+  number       = {12},
+  pages        = {6236-6244},
+  year         = {2006},
+  doi          = {10.1021/jp056461u},
+}
