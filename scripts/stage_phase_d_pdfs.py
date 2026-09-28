@@ -43,6 +43,25 @@ DEFAULT_OUT = Path.home() / "Desktop" / "hycan-upload"
 
 DOI_RE = re.compile(rb"10\.\d{4,9}/[-._;()/:A-Za-z0-9]+")
 
+# Keys a publisher writes its own DOI next to, in the Info dictionary or XMP.
+# `/doi` is deliberately NOT a bare member of this list: every `https://doi.org/`
+# in a reference list contains it, which leaked citations into the metadata
+# signal and defeated the whole point of that signal. A PDF dictionary key is
+# followed by its value, so it is matched separately with that requirement.
+META_KEYS = (b"prism:doi", b"dc:identifier", b"/subject",
+             b"citation_doi", b"xmp:identifier")
+# `/DOI (10...)` or `/DOI<...>`: the key as a real dictionary entry.
+META_DOI_KEY = re.compile(rb"/doi\s*[(<]", re.IGNORECASE)
+META_WINDOW = 200
+
+# A filename must share at least this many leading characters with a DOI's
+# normalised suffix before that counts as evidence. Two IJHE DOIs from the same
+# year share about twelve, so anything shorter is not discriminating.
+MIN_FILENAME_KEY = 12
+# A complete DOI suffix found in the name needs fewer characters than a leading
+# portion does, because it is a whole identifier rather than a shared stem.
+MIN_FILENAME_WHOLE = 8
+
 # Words too common in this field to identify a paper by.
 STOPWORDS = frozenset("""
 a an and the of for in on with by from to at as is are be its their this that
@@ -56,6 +75,12 @@ MIN_TITLE_TOKENS = 4
 # matcher has nothing to work with. The two scanned papers in the existing 23
 # recover fewer than 20; every born-digital paper recovers hundreds.
 MIN_TEXT_WORDS = 40
+
+# A refusal below this title score showed no sign of being a corpus paper at
+# all. Avin's Downloads folder held 1087 PDFs, of which about 30 were ours, so
+# listing every refusal buries the handful worth looking at.
+NEAR_MISS_SCORE = 0.5
+NO_EVIDENCE = "no corpus evidence"
 
 
 class StagingError(RuntimeError):
@@ -91,8 +116,31 @@ def _inflate_streams(data: bytes) -> list[bytes]:
 
 
 def _clean_doi(raw: bytes) -> str:
+    """Trim a DOI-shaped match back to the DOI.
+
+    The closing parenthesis is the awkward one. In PDF content a string literal
+    ends with `)`, so a DOI printed as `(10.1016/j.carbon.2005.03.037)` has to
+    stop there. But an older Elsevier DOI contains a balanced pair of its own --
+    `10.1016/S0008-6223(01)00051-3` -- and cutting at the first `)` silently
+    truncates it to `10.1016/s0008-6223(01`, which then matches nothing, or
+    worse matches as a prefix of some other paper. Both HYC-0051 and HYC-0052
+    are of that form. So parentheses are tracked, and only an unbalanced `)`
+    ends the DOI.
+    """
     text = raw.decode("latin-1")
-    text = re.split(r"[)\]>\s]", text)[0].rstrip(".,;:")
+    depth = 0
+    for i, ch in enumerate(text):
+        if ch == "(":
+            depth += 1
+        elif ch == ")":
+            if depth == 0:
+                text = text[:i]
+                break
+            depth -= 1
+        elif ch in "]> \t\r\n":
+            text = text[:i]
+            break
+    text = text.rstrip(".,;:")
     # A DOI captured out of running text can swallow the words that followed it.
     for junk in ("Get", "Downloaded", "http", "www", "Crossref", "PubMed"):
         cut = text.find(junk)
@@ -103,18 +151,67 @@ def _clean_doi(raw: bytes) -> str:
 
 def dois_in_pdf(path: Path) -> list[str]:
     """Every distinct DOI-shaped string in the file, raw bytes and streams."""
+    return list(doi_counts(path)[0])
+
+
+def doi_counts(path: Path) -> tuple[dict[str, int], set[str]]:
+    """Return how often each DOI appears, and which appear in PDF metadata.
+
+    Both are discriminators for the problem that broke the first version of
+    this script: **a paper in a coherent corpus cites the other papers in it.**
+    Five Phase D PDFs were refused as "ambiguous" because their reference lists
+    contain the DOIs of papers already extracted, which is not ambiguity, it is
+    the literature behaving normally.
+
+    Measured on the 23 corpus PDFs, against their known DOIs:
+
+    - A DOI sitting next to a metadata key is the paper's own in **13 of 13**
+      files that carry one. No false positives, so this is the primary signal.
+    - The paper's own DOI is strictly the most frequent in **19 of 20**. The
+      exception is a file where its own DOI and one citation each appear once,
+      which is a tie and must be refused rather than broken arbitrarily.
+
+    Byte offset was tried first and rejected: the own DOI's position ranges
+    from 0.003 to 0.915 of the file because a PDF's byte layout does not follow
+    page order, so "the earliest DOI is the paper's own" is false.
+    """
     data = path.read_bytes()
-    found = list(DOI_RE.findall(data))
-    for stream in _inflate_streams(data):
-        found.extend(DOI_RE.findall(stream))
-    seen: set[str] = set()
-    out: list[str] = []
-    for raw in found:
-        doi = _clean_doi(raw)
-        if 8 < len(doi) < 80 and doi not in seen:
-            seen.add(doi)
-            out.append(doi)
-    return out
+    counts: dict[str, int] = {}
+    blobs = [data] + _inflate_streams(data)
+
+    for blob in blobs:
+        for raw in DOI_RE.findall(blob):
+            doi = _clean_doi(raw)
+            if 8 < len(doi) < 80:
+                counts[doi] = counts.get(doi, 0) + 1
+
+    meta: set[str] = set()
+
+    def harvest(blob: bytes, at: int) -> None:
+        for raw in DOI_RE.findall(blob[at:at + META_WINDOW]):
+            doi = _clean_doi(raw)
+            if 8 < len(doi) < 80:
+                meta.add(doi)
+
+    for blob in blobs:
+        low = blob.lower()
+        for key in META_KEYS:
+            at = low.find(key)
+            while at >= 0:
+                harvest(blob, at)
+                at = low.find(key, at + 1)
+        for m in META_DOI_KEY.finditer(blob):
+            harvest(blob, m.start())
+    return counts, meta
+
+
+def filename_key(name: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "", name.lower())
+
+
+def doi_suffix_key(doi: str) -> str:
+    _, _, suffix = doi.partition("/")
+    return re.sub(r"[^a-z0-9]+", "", suffix.lower())
 
 
 def text_of_pdf(path: Path, limit: int = 400_000) -> str:
@@ -171,36 +268,94 @@ def target_name(entry: dict) -> str:
     return f"{entry['paper_id']}_{surname}{entry['year']}.pdf"
 
 
+def filename_matches_doi(stem: str, doi: str) -> bool:
+    """Does this filename contain enough of this DOI's suffix to identify it?
+
+    Publishers name a download after the DOI's suffix (`c6ra06620h.pdf`) or,
+    at Elsevier, after the PII, which for an older DOI is that suffix with the
+    punctuation removed (`1-s2.0-S0008622301000513-main.pdf` for
+    `10.1016/S0008-6223(01)00051-3`). Both are exact string matching against a
+    DOI already held, not an inference drawn from the name.
+
+    A leading portion counts too, because some filenames truncate
+    (`BioRes_14_4_9755_...` for `10.15376/biores.14.4.9755-9765`), but it must
+    be at least MIN_FILENAME_KEY characters: two IJHE DOIs from the same year
+    share about twelve, so anything shorter does not discriminate.
+    """
+    key = filename_key(stem)
+    suffix = doi_suffix_key(doi)
+    if not key or not suffix:
+        return False
+    # The WHOLE suffix present in the name is the strong case: an RSC code like
+    # `c6ra06620h` is only ten characters but it is a complete identifier, and
+    # a filename containing one by coincidence is not a thing that happens.
+    if len(suffix) >= MIN_FILENAME_WHOLE and suffix in key:
+        return True
+    # A leading portion is the weak case and needs more of it, because two IJHE
+    # DOIs from the same year share about twelve characters.
+    return len(suffix) > MIN_FILENAME_KEY and suffix[:MIN_FILENAME_KEY] in key
+
+
 def match_pdf(path: Path, papers: list[dict]) -> tuple[dict | None, str]:
-    """Return (entry, basis). entry is None when identification is not safe."""
+    """Return (entry, basis). entry is None when identification is not safe.
+
+    Evidence is tried strongest first. Each rule must resolve to exactly one
+    paper or it hands on to the next; a rule that resolves to several refuses
+    outright rather than guessing, because a PDF filed under the wrong
+    paper_id sends a verifier to the wrong source and every value it checks is
+    then wrong in a way nothing downstream can detect.
+    """
     by_doi = {p["doi"].strip().lower(): p for p in papers}
+    counts, meta = doi_counts(path)
+    known = {d: c for d, c in counts.items() if d in by_doi}
 
-    found = dois_in_pdf(path)
-    exact = [by_doi[d] for d in found if d in by_doi]
-    if exact:
-        ids = {p["paper_id"] for p in exact}
-        if len(ids) == 1:
-            return exact[0], "doi"
-        return None, f"ambiguous: DOIs for {sorted(ids)} all present"
+    # 1. The DOI the publisher wrote into the file's own metadata. 13/13 on the
+    #    corpus, no false positives.
+    meta_known = sorted(d for d in meta if d in by_doi)
+    if len(meta_known) == 1:
+        return by_doi[meta_known[0]], "doi-metadata"
 
-    # A truncated DOI is common when the string was split across PDF text runs.
+    # 2. The filename. Publishers name a download after the DOI's suffix or, at
+    #    Elsevier, after the PII, which for an older DOI *is* the suffix. This
+    #    is deterministic string matching against a DOI we already hold, not an
+    #    inference from the name.
+    named = sorted({
+        p["paper_id"] for p in papers
+        if filename_matches_doi(path.stem, p["doi"])
+    })
+    if len(named) == 1:
+        return next(p for p in papers if p["paper_id"] == named[0]), "filename"
+    if len(named) > 1:
+        return None, f"ambiguous: filename matches {named}"
+
+    # 3. DOIs printed in the body.
+    if len(known) == 1:
+        return by_doi[next(iter(known))], "doi"
+    if len(known) > 1:
+        ranked = sorted(known.items(), key=lambda kv: -kv[1])
+        (top, n_top), (_, n_next) = ranked[0], ranked[1]
+        # A paper prints its own DOI in a running head; it cites another once.
+        if n_top >= 2 and n_top >= 2 * n_next:
+            return by_doi[top], f"doi-frequency ({n_top} vs {n_next})"
+        return None, (
+            f"ambiguous: {len(known)} corpus DOIs present with no clear "
+            f"owner {[(d.split('/')[-1][:18], c) for d, c in ranked[:4]]}"
+        )
+
+    # 4. A DOI split across text runs leaves only a prefix.
     prefix_hits = {
         p["paper_id"]: p
-        for d in found
+        for d in counts
         for p in papers
-        if len(d) > 14 and p["doi"].strip().lower().startswith(d)
+        if len(d) > 18 and p["doi"].strip().lower().startswith(d)
     }
     if len(prefix_hits) == 1:
         return next(iter(prefix_hits.values())), "doi-prefix"
     if len(prefix_hits) > 1:
         return None, f"ambiguous: DOI prefix matches {sorted(prefix_hits)}"
 
+    # 5. Title, for a paper that prints no DOI its text layer preserves.
     blob = text_of_pdf(path)
-    # `blob` is never empty -- the PDF header alone survives as " pdf 1 7 eof" --
-    # so emptiness is the wrong test for a scan. Count real words instead. A
-    # paper with a text layer yields hundreds; an image-only scan yields a
-    # handful of structural tokens. An earlier draft tested `not blob.strip()`
-    # and was dead code that could never fire.
     words = sum(1 for tok in blob.split() if len(tok) >= 4 and tok.isalpha())
     if words < MIN_TEXT_WORDS:
         return None, (
@@ -227,6 +382,8 @@ def match_pdf(path: Path, papers: list[dict]) -> tuple[dict | None, str]:
             f"ambiguous: {best[1]['paper_id']} and {second[1]['paper_id']} "
             f"score {best[0]:.2f} and {second[0]:.2f}"
         )
+    if best[0] < NEAR_MISS_SCORE:
+        return None, NO_EVIDENCE
     return None, f"no confident match (best {best[1]['paper_id']} at {best[0]:.2f})"
 
 
@@ -281,9 +438,16 @@ def main(argv: list[str] | None = None) -> int:
         for pdf, entry, basis in matched:
             print(f"  {target_name(entry):44s} <- {pdf.name[:46]:46s} [{basis}]")
     if unmatched:
-        print(f"\nNOT IDENTIFIED ({len(unmatched)}) -- left alone:")
-        for pdf, why in unmatched:
-            print(f"  {pdf.name[:52]:52s} {why}")
+        near = [(f, w) for f, w in unmatched if w != NO_EVIDENCE]
+        none_at_all = len(unmatched) - len(near)
+        if near:
+            print(f"\nNOT IDENTIFIED, but look like corpus papers ({len(near)})"
+                  f" -- left alone:")
+            for pdf, why in near:
+                print(f"  {pdf.name[:52]:52s} {why}")
+        if none_at_all:
+            print(f"\n{none_at_all} other PDF(s) showed no sign of being a "
+                  f"corpus paper and are not listed.")
 
     still = [p["paper_id"] for p in papers if p["paper_id"] not in claimed]
     if still:
@@ -308,6 +472,8 @@ def main(argv: list[str] | None = None) -> int:
           + (f", {skipped} already there" if skipped else ""))
     if unmatched:
         print(f"{len(unmatched)} not identified and not copied.")
+    if still:
+        print(f"{len(still)} paper(s) still to find.")
     return 0
 
 

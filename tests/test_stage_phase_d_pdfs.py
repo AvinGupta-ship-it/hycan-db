@@ -223,7 +223,7 @@ def test_refuses_the_second_pdf_claiming_the_same_paper(bench, capsys):
     assert run(bench) == 0
     assert len(list(out.glob("*.pdf"))) == 1
     report = capsys.readouterr().out
-    assert "NOT IDENTIFIED (1)" in report
+    assert "NOT IDENTIFIED, but look like corpus papers (1)" in report
     assert "already matched by" in report
 
 
@@ -382,3 +382,218 @@ def test_refuses_two_papers_whose_titles_both_score_high(bench, capsys):
     assert run(bench) == 0
     assert not out.exists() or not list(out.glob("*.pdf"))
     assert "ambiguous" in capsys.readouterr().out
+
+
+# --- the corpus-cites-itself failure, and the evidence added to fix it -------
+
+def make_pdf_with_refs(path: Path, own_doi: str, cited: list[str], *,
+                       own_times: int = 6, meta: bool = False) -> None:
+    """A PDF shaped like a real paper: its own DOI in the running head several
+    times, other corpus DOIs once each in the reference list.
+
+    This is the shape that broke the first version. Five real Phase D PDFs
+    were refused as ambiguous because their reference lists cite papers
+    already in the corpus, which is what a coherent corpus looks like.
+    """
+    head = "".join(f"J. Testing 2020 https://doi.org/{own_doi} page {i}\n"
+                   for i in range(own_times))
+    refs = "References\n" + "".join(
+        f"[{i}] A. Author, J. Other {2000 + i}. https://doi.org/{d}\n"
+        for i, d in enumerate(cited))
+    blob = head + BODY_FILLER + refs
+    parts = [b"%PDF-1.7\n"]
+    if meta:
+        parts.append(b"<< /doi (" + own_doi.encode() + b") >>\n")
+    parts.append(b"stream\n" + zlib.compress(blob.encode("latin-1"))
+                 + b"\nendstream\n%%EOF")
+    path.write_bytes(b"".join(parts))
+
+
+def test_a_paper_citing_other_corpus_papers_is_still_identified(bench):
+    """THE regression test for the defect his run exposed.
+
+    MUTATION: refuse whenever more than one corpus DOI is present (the original
+    rule) -> this fails.
+    """
+    screening, src, out = bench
+    make_pdf_with_refs(src / "fchem-07-00864.pdf",
+                       PAPERS[1]["doi"], [PAPERS[0]["doi"], PAPERS[2]["doi"]])
+    assert run(bench) == 0
+    assert (out / "HYC-0034_wang2016.pdf").exists()
+
+
+def test_frequency_needs_a_clear_margin(bench, capsys):
+    """One occurrence each is a tie and must be refused, not broken.
+
+    Measured on the corpus: the own DOI is strictly most frequent in 19 of 20,
+    and the exception is exactly this tie.
+
+    MUTATION: accept the most frequent without the 2x margin -> this fails.
+    """
+    screening, src, out = bench
+    make_pdf_with_refs(src / "tie.pdf", PAPERS[1]["doi"], [PAPERS[0]["doi"]],
+                       own_times=1)
+    assert run(bench) == 0
+    assert not out.exists() or not list(out.glob("*.pdf"))
+    assert "no clear owner" in capsys.readouterr().out
+
+
+def test_metadata_doi_wins_over_a_more_frequent_citation(bench):
+    """The publisher's own metadata is the strongest signal: 13/13 on the corpus.
+
+    Here the cited DOI is deliberately the more frequent one, so only the
+    metadata rule can get this right.
+
+    MUTATION: drop the metadata rule -> this fails.
+    """
+    screening, src, out = bench
+    own, cited = PAPERS[2]["doi"], PAPERS[0]["doi"]
+    blob = ("References " + f"https://doi.org/{cited} " * 9
+            + f"https://doi.org/{own} " + BODY_FILLER)
+    (src / "x.pdf").write_bytes(
+        b"%PDF-1.7\n<< /doi (" + own.encode() + b") >>\n"
+        b"stream\n" + zlib.compress(blob.encode("latin-1")) + b"\nendstream\n")
+    assert run(bench) == 0
+    assert (out / "HYC-0051_tibbetts2001.pdf").exists()
+
+
+def test_filename_identifies_a_scan_with_no_doi_in_its_text(bench):
+    """HYC-0051 in his run: an old Carbon scan whose PII is its DOI suffix.
+
+    MUTATION: drop the filename rule -> this fails.
+    """
+    screening, src, out = bench
+    # No text layer at all, so only the name can identify it.
+    (src / "1-s2.0-S0008622301000513-main.pdf").write_bytes(
+        b"%PDF-1.4\n" + bytes(600) + b"\n%%EOF")
+    assert run(bench) == 0
+    assert (out / "HYC-0051_tibbetts2001.pdf").exists()
+
+
+def test_a_short_doi_suffix_still_matches_a_filename_whole():
+    """RSC codes are ten characters and are complete identifiers.
+
+    MUTATION: require MIN_FILENAME_KEY for the whole-suffix case too
+    -> this fails.
+    """
+    assert stage.filename_matches_doi("c6ra06620h", "10.1039/c6ra06620h")
+    assert stage.filename_matches_doi("d5ta00993f", "10.1039/d5ta00993f")
+
+
+def test_a_shared_doi_stem_never_resolves_to_one_paper():
+    """Several IJHE DOIs share a twelve-character stem, so a filename carrying
+    only that stem must resolve to several papers and therefore to none.
+
+    Asserted against the real 35 rather than the function alone: the pairwise
+    predicate deliberately admits a leading portion, and it is resolving to
+    exactly one paper that makes it evidence. This is the property that
+    matters, and it is the caller that enforces it.
+
+    MUTATION: lower MIN_FILENAME_KEY to 8, or accept the first filename match
+    instead of requiring a unique one -> this fails.
+    """
+    papers = stage.load_papers(_ROOT / "references" / "phase_d_screening.json")
+    hits = {p["paper_id"] for p in papers
+            if stage.filename_matches_doi("jijhydene2016", p["doi"])}
+    assert len(hits) > 1, hits
+
+
+def test_unrelated_personal_filenames_never_match():
+    """Checked against 861 real filenames from his Downloads: zero matches.
+
+    MUTATION: drop the length floors entirely -> this fails.
+    """
+    for stem in ("AG_Resume_V9", "15.6 Notes", "Avin Gupta - Scholar's Day Speech",
+                 "386377a0", "1207.2058v1", "CamScanner 9-12-25 16.17"):
+        for paper in PAPERS:
+            assert not stage.filename_matches_doi(stem, paper["doi"]), stem
+
+
+def test_doi_counts_reports_metadata_separately(tmp_path: Path):
+    """MUTATION: return the counts dict for both halves -> this fails."""
+    p = tmp_path / "m.pdf"
+    own = "10.1038/s41467-017-01633-x"
+    other = "10.1016/j.ijhydene.2016.03.023"
+    p.write_bytes(b"%PDF-1.7\n<< /prism:doi (" + own.encode() + b") >>\n"
+                  b"stream\n" + zlib.compress(
+                      f"body cites {other}".encode()) + b"\nendstream\n")
+    counts, meta = stage.doi_counts(p)
+    assert own in counts and other in counts
+    assert meta == {own}
+
+
+# --- the filename rule's two floors, and the prefix rule --------------------
+
+def test_a_very_short_doi_suffix_is_not_filename_evidence():
+    """`10.1/x9` in a name proves nothing; short strings collide with anything.
+
+    MUTATION: remove the MIN_FILENAME_WHOLE floor -> this fails.
+    """
+    assert not stage.filename_matches_doi("my notes x9 draft", "10.1/x9")
+    assert not stage.filename_matches_doi("AG_Resume_V9", "10.1/v9")
+    # and the real case that floor must still admit: an RSC code
+    assert stage.filename_matches_doi("c6ra06620h", "10.1039/c6ra06620h")
+
+
+def test_a_four_character_doi_stem_is_not_filename_evidence():
+    """A short leading portion matches unrelated documents by coincidence.
+
+    MUTATION: lower MIN_FILENAME_KEY to 4 -> this fails.
+    """
+    # 'scho' is the opening of this DOI's suffix and also sits inside a
+    # filename from Avin's own Downloads folder.
+    assert not stage.filename_matches_doi(
+        "Avin Gupta - Scholar's Day Speech", "10.1016/scholaraccess.2020.01.001")
+
+
+def test_a_doi_prefix_must_be_long_before_it_identifies_anything(bench, capsys):
+    """A truncated DOI is only evidence once it is past the shared stem.
+
+    A short prefix is the opening of every IJHE DOI in the corpus, which is
+    what produced a four-way ambiguity on Avin's first run. Here the fixture
+    holds a seventeen-character prefix that is unique to one fixture paper, so
+    a lower floor would accept it and name the file with confidence it has not
+    earned: the file could be any IJHE paper ever published.
+
+    MUTATION: lower the prefix floor from 18 back to 14 -> this fails.
+    """
+    screening, src, out = bench
+    make_pdf(src / "trunc.pdf", "see 10.1016/j.ijhyden " + BODY_FILLER,
+             compress=True)
+    assert run(bench) == 0
+    assert not out.exists() or not list(out.glob("*.pdf"))
+
+
+def test_a_near_miss_is_reported_and_not_folded_away(bench, capsys):
+    """The folded line must not swallow a file that nearly matched.
+
+    Folding exists because Avin's Downloads held 1087 PDFs and about 30 were
+    ours. A near miss is the one thing in that pile worth his attention, so
+    hiding it defeats the purpose.
+
+    MUTATION: fold every title-based refusal -> this fails.
+    """
+    screening, src, out = bench
+    # Half of one title's distinctive words: above the near-miss floor, below
+    # the acceptance threshold. ("nitrogen" also arrives via BODY_FILLER.)
+    make_pdf(src / "nearly.pdf", "doped carbons study " + BODY_FILLER,
+             compress=True)
+    assert run(bench) == 0
+    report = capsys.readouterr().out
+    assert "look like corpus papers" in report
+    assert "nearly.pdf" in report
+
+
+def test_a_wholly_unrelated_file_is_folded_away(bench, capsys):
+    """The other half of the same property.
+
+    MUTATION: report every refusal individually -> this fails.
+    """
+    screening, src, out = bench
+    make_pdf(src / "resume.pdf",
+             "curriculum vitae education awards activities " + BODY_FILLER,
+             compress=True)
+    assert run(bench) == 0
+    report = capsys.readouterr().out
+    assert "showed no sign of being a corpus paper" in report
+    assert "resume.pdf" not in report
