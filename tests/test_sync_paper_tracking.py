@@ -70,8 +70,23 @@ def dual_agent_papers() -> set[str]:
 
 
 def run_script(*args: str, cwd: Path) -> subprocess.CompletedProcess[str]:
+    """Run the migration against the sandbox at `cwd`.
+
+    `--expected-rows` is derived from the fixture unless the caller passes its
+    own. The script's default is 30, which was the tracking file's size when it
+    was written; the Phase D screening append took the real file to 65 and every
+    test that rebuilds its fixture from the real file then inherited the new
+    count and hit the refusal. Manual section 6.7: derive a count, do not pin it.
+    A caller that passes --expected-rows (including -1) still wins.
+    """
+    argv = list(args)
+    if "--expected-rows" not in argv:
+        fixture = cwd / "references" / "paper_tracking.csv"
+        if fixture.exists():
+            _, fixture_rows = read_tracking(fixture)
+            argv += ["--expected-rows", str(len(fixture_rows))]
     return subprocess.run(
-        [sys.executable, str(SCRIPT), *args],
+        [sys.executable, str(SCRIPT), *argv],
         cwd=cwd,
         capture_output=True,
         text=True,
@@ -204,9 +219,14 @@ def test_the_tracking_file_shape_is_pinned():
     """MUTATION: add, drop or reorder a column -> this fails."""
     header, rows = read_tracking()
     assert header == TRACKING_HEADER
-    assert len(rows) == 30
+    # No absolute row count is pinned: every append changes it, and the pin
+    # failed for reasons unrelated to what it guards when the Phase D screening
+    # append took the file from 30 rows to 65. What is invariant is the shape.
+    assert rows, "tracking file has no data rows"
     ragged = [i for i, row in enumerate(rows, start=2) if len(row) != len(header)]
     assert not ragged, f"ragged rows at csv lines {ragged}"
+    ids = [row[header.index("paper_id")] for row in rows]
+    assert len(set(ids)) == len(ids), "duplicate paper_id in the tracking file"
 
 
 def test_the_status_counts_account_for_every_row():
@@ -226,7 +246,7 @@ def test_the_status_counts_account_for_every_row():
             counts.get(row["extraction_status"], 0) + 1
         )
     assert set(counts) <= {"not_started", "in_progress", "extracted", "verified"}
-    assert sum(counts.values()) == len(tracked) == 30
+    assert sum(counts.values()) == len(tracked)
     assert counts.get("verified", 0) == len(dual_agent_papers())
     assert (
         counts.get("extracted", 0) + counts.get("verified", 0)
@@ -395,12 +415,22 @@ def _append_row(path: Path, cells: list[str]) -> None:
 
 
 def test_the_script_refuses_a_wrong_row_count(sandbox: Path):
-    """MUTATION: drop the row-count guard -> this fails."""
+    """MUTATION: drop the row-count guard -> this fails.
+
+    The expected count is passed explicitly and taken before the extra row is
+    appended, so the test states the mismatch it is testing rather than relying
+    on the script's built-in default of 30 -- a default that was correct only
+    while the tracking file had 30 rows, and which run_script now derives.
+    """
     path = sandbox / "references" / "paper_tracking.csv"
+    _, rows_before = read_tracking(path)
     _append_row(path, ["HYC-9999"] + [""] * 12)
-    result = run_script("--backup-dir", str(sandbox / "bk"), cwd=sandbox)
+    result = run_script(
+        "--expected-rows", str(len(rows_before)),
+        "--backup-dir", str(sandbox / "bk"), cwd=sandbox,
+    )
     assert result.returncode != 0
-    assert "expected 30 data rows" in result.stdout + result.stderr
+    assert f"expected {len(rows_before)} data rows" in result.stdout + result.stderr
 
 
 def test_the_script_refuses_a_ragged_file(sandbox: Path):

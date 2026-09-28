@@ -4,6 +4,38 @@ All notable changes to HyCAN-DB will be documented in this file.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
+### Added — Phase D screening: 35 verified candidates, and the corpus audit
+- **`docs/corpus_audit.md`** — the §18 Phase D deliverable, and the honest account of what the corpus over- and under-samples. Every number in it is re-derived from the dataset by a checker script, not carried over from prose. Its central finding is that **the corpus is larger than it is useful**: 97 of 227 rows (43%) belong to the 12 papers that contribute *nothing* to the 102-row modelling subset, and three papers supply 69 of the 102 that remain.
+- **`references/paper_tracking.csv`: 30 → 65 rows.** HYC-0031 … HYC-0065, all `include`, all `pdf_obtained = no`, all `not_started`. Applied by `scripts/migrate_phase_d_screening.py` under `docs/migration_phase_d_screening_plan.md`; **0 existing cells changed** and physical lines 1–31 byte-identical.
+- **`references/phase_d_screening.json`** — the 35 papers' verified metadata with per-record provenance, following the `bibliography_sources.json` pattern. Every title, author list, year and journal is the verbatim OpenAlex field for a confirmed DOI, not a search agent's recording of it.
+- **`docs/phase_d_screening_log.md`** — PRISMA counts, the 14 exclusions with reasons, and the 68 candidates carried forward but not yet decided. §7.4: a screening decision made and not recorded did not happen.
+- **`tests/test_migrate_phase_d_screening.py`, 27 tests.** 657 tests passing, up from 630.
+
+### Verification — no fabricated DOI survived, and that is a measurement rather than an assumption
+- **29 of 29 recorded DOIs resolved to the paper they claimed.** Verification was run by agents that had not performed the searches, comparing OpenAlex's returned title against the title the search agent had recorded.
+- **One search agent caught itself** writing a DOI it had not seen, during its own QA pass, and rebuilt its file programmatically rather than hand-editing it out.
+- **Six records carried an RSC article ID and no DOI**, the agents having correctly refused to convert one into the other by pattern. Resolved by *testing* `10.1039/<ID>` against the API and requiring the title to match — a confirmation, not a guess. All six confirmed.
+- **One OpenAlex record lists a single author for a 14-laboratory round robin** (HYC-0060). Same under-reporting that gave HYC-0011 one author where the article prints four. Recorded as returned; the author list must come from the PDF before that paper is cited.
+
+### Fixed — five stale claims in the execution manual, and one that was never true
+- §12.3, Appendix B.4 and Appendix C say **43 rows excluded**; the union is **45**. §12.3 states 227 in its own funnel table alongside 43 excluded and 182 kept, and 227 − 182 = 45. Also 11 characterization-only → **12**, and 15 unstated-condition → **16**.
+- §6.1 and §13.3 say tiers 36/143/38/**8 D**; the dataset says **10 D**. §6.1's `none` ×20 → **22**, `text_direct` 47 → **49**, `isothermal` 203 → **205**, pipeline-v2 rows 104 → **106**. §15 Figure 1's MWCNT 30 → **31** and Figure 5's bins 3/73/89/33/14/13 → **3/74/89/33/15/13**.
+- All of the above are stale by exactly the two held rows added on 2026-09-27. **One is not staleness:** §12.3 says the twelve filter survivors lacking `uptake_wt_pct` "are HYC-0024 rows whose only hydrogen quantity is volumetric or areal." **Ten are. Two are HYC-0020-M6 and M7, carrying `uptake_mmol_g` of 10.09 and 8.23** — gravimetric values that convert to wt% by the §10.2 factor, so they are recoverable into a wt%-based analysis while the HYC-0024 rows never can be.
+- **`tests/test_sync_paper_tracking.py` pinned the tracking file at 30 rows** and nine of its tests broke on the append — the §6.7 hazard, applied to the tracking file rather than the dataset. The helper now derives `--expected-rows` from the fixture and the absolute pin is gone; the delta pins (24 cell changes, 13 lines changed) are untouched. Four guards were mutated afterwards to confirm the edited file still kills them.
+
+### Fixed — an ordering defect the mutation round found in the new script
+- `dataset_sha_before` was computed **after** `render_new_lines`, so post-condition 7 would have hashed an already-corrupted dataset and compared it with itself. The baseline is now the first action in `main()`. Found by writing a test that made the guarded event actually occur, not by reading the code.
+
+### Disclosed
+- **Only 35 of 103 distinct candidates entered the tracking file**, because §3.5 means an unresolved DOI is not a DOI and this file is the source of truth. The other 68 are in the screening log with their evidence level. **No PDF has been obtained and nothing has been extracted** — Phase D is not finished.
+- **Three candidates are DOE annual progress reports, which are not peer-reviewed**, and §7.2's exclusion vocabulary has no value for gray literature. Recommended, not applied: add `not_peer_reviewed`.
+- **Three characterization-only rows assert a measurement method.** Twelve rows carry no uptake but only nine carry `measurement_method = not_applicable`; HYC-0018-M5 and M6 read `unknown` and **HYC-0029-M2 reads `gravimetric_microbalance`**, naming an instrument for a row that records no measurement. Not fixed: it edits a protected file and HYC-0029-M2 needs its PDF re-read first.
+- **Crossref remains unreachable and OpenAlex's search and filter endpoints were throttled throughout, while its single-DOI path endpoint succeeded on 35 of 35 first attempts.** That asymmetry is the reverse of what §3.5 assumes and is what made verification possible at all.
+- **Two documentation errors of my own, left in the record.** `docs/corpus_audit.md` §3.1 first read "106 of 227 rows (47%)" — 106 is the dual-agent row count from two sections away — and its §2 repeated the manual's HYC-0024 claim instead of evaluating it, which is how that defect went unnoticed for two manual revisions. The screening log's §7 named three wrong paper IDs, read off the working ranked list rather than the assigned identifiers. All three were caught by checker scripts that re-derive every claim from the artifacts, and those scripts are the reason to trust the rest.
+
+### Mutation testing
+- 13 mutations against `migrate_phase_d_screening.py`. **First round: 5 of 12 survived**, every one a test that passed for the wrong reason — a later guard caught what the mutated one no longer did, so the tests were measuring the outcome rather than the guard. After strengthening, **13 of 13 killed**. The harness asserts it is loading the scratch copy before running, per §6.7's record of a mutation run that tested nothing.
+
 ### Added — the last two held rows, and no row is held on a blocker any more
 - **HYC-0011-M5**, the FePc film's areal uptake, `2.5e-05 g/cm2`. The paper's third sample, and the only one whose uptake is reported per unit area: the film was never weighed, so no wt% exists even in principle and the paper can only deduce that its wt% "would be remarkable". This is the row `areal_uptake_g_cm2` was added for and the corpus's only row carrying it.
 - **HYC-0015-M3**, the pristine graphite's interlayer spacing, `0.339 nm`. Characterization-only: the paper reports no hydrogen uptake for the graphite, confirmed from Fig. 8's caption and from the hydrogen-storage section, which degasses and measures "the GO and rGO samples". It is the first row in the corpus carried by `interlayer_spacing_nm` alone.
