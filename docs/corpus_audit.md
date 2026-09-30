@@ -257,11 +257,53 @@ they previously were not.
 
 **5.4 Volumetric storage density.** Gap 10 added the fields; exactly one paper
 (HYC-0024, 8 rows) populates them, so `volumetric_capacity_basis` has been
-exercised by one paper's conventions only.
+exercised by one paper's conventions only. **Phase D screened in 5 papers for
+this target and obtained 2** — see §5.6. If this field is still thin when the
+data descriptor is written, the reason is retrieval, not the literature.
 
 **5.5 Activated carbons from 2016–2020, and CNTs with a BET area**, to break the
 two confounds in §3.4 and §3.5. This is the lowest-priority target and the easiest
 to satisfy incidentally.
+
+### 5.6 What Phase D screening actually bought, after retrieval
+
+Added 2026-09-30, when `pdf_obtained` was recorded. 35 papers were screened in;
+**30 full texts were obtained and 5 were not**, so the table below is what Phase D
+actually delivers to extraction, not what it selected.
+
+| target | screened in | obtained | not retrieved |
+| --- | --- | --- | --- |
+| `new_group` (§5.2) | 18 | 15 | HYC-0054, HYC-0055, HYC-0056 |
+| `77K_BET` (§5.2) | 16 | 14 | HYC-0035, HYC-0036 |
+| `doped_77K` (§5.1) | 11 | 9 | HYC-0035, HYC-0036 |
+| `low_uptake` (§5.3) | 7 | 7 | — |
+| `volumetric` (§5.4) | 5 | 2 | HYC-0054, HYC-0055, HYC-0056 |
+| `doped_other` | 4 | 4 | — |
+| `classic` (§5.3) | 3 | 3 | — |
+
+Tags are not exclusive, so the columns do not sum to 35. Counts are computed from
+`references/phase_d_screening.json` against the `pdf_obtained` column.
+
+**All five unretrieved papers are Royal Society of Chemistry titles.** That is not
+a random 14% of the set going missing; it is a systematic exclusion by publisher,
+and manual §7.4's bias guard is explicit that a corpus shaped by what was easy to
+obtain inherits a bias the meta-analysis will then report as a finding. The five
+are recorded in `references/paper_tracking.csv` as `screening_decision=include`,
+`pdf_obtained=no`, with the reason in `notes` — screened in and still wanted, not
+excluded. §7.5's PRISMA reporting must carry "full text not retrieved: 5" as its
+own number rather than folding them into the exclusions.
+
+**The loss is concentrated on the two targets ranked highest after doping.**
+`volumetric` is the visible one, going from 5 to 2. But the same three papers
+carried the `new_group` tag, so the candidate pool for §5.2 — the binding
+constraint on cross-validation, which is a count of groups and not of rows — drops
+from 18 to 15. Whether those three would have *become* groups in the 77 K + BET
+subset is unknown and unknowable without the full texts; Phase C.1 is the caution
+here, having added two papers tagged for that subset and moved the group count by
+zero. The honest statement is that 3 of 18 candidates were lost, not 3 groups.
+
+`doped_77K` survives at 9 of 11 and is no longer a blocker, which was the single
+thing Phase D most needed to clear.
 
 ---
 

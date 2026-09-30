@@ -61,15 +61,24 @@ analysis funnel, with the five §7.3 strings covered across them:
 | — resolved to a confirmed DOI, **included** | **35** |
 | — unresolved, no DOI obtainable | 7 |
 | Below the priority cut, resolution not attempted | 61 |
-| Full text retrieved | 0 |
+| Full text retrieved | **30** |
+| **Full text not retrieved** | **5** |
 | Extracted | 0 |
 
 Two of the three tracked-paper duplicates were already inside the 14 exclusions, so
 the distinct total is 123 − 14 − 1 − 5 = 103.
 
-**No PDF has been obtained and nothing has been extracted.** Every one of the 35 is
-`pdf_obtained = no`, `extraction_status = not_started`. That is the honest state and
-the reason Phase D is not finished.
+**Retrieval updated 2026-09-30**, when `scripts/migrate_pdf_obtained.py` recorded
+the outcome in `references/paper_tracking.csv`. 30 of the 35 are now
+`pdf_obtained = yes`; all 35 remain `extraction_status = not_started`.
+
+The 5 not retrieved are **HYC-0035, HYC-0036, HYC-0054, HYC-0055, HYC-0056**. They
+are a PRISMA line of their own and not an exclusion: `screening_decision` stays
+`include` and each row's `notes` records why the full text is absent. Folding them
+into the 14 screening exclusions would misreport a retrieval failure as an
+eligibility judgement. All five are Royal Society of Chemistry titles, which makes
+the loss systematic by publisher rather than random — §7 below, and
+`docs/corpus_audit.md` §5.6 for what it costs each funnel target.
 
 ## 3. Anti-fabrication measures, and what they caught
 
@@ -287,6 +296,20 @@ Seven of the 35 carry the `low_uptake` tag and three carry `classic`. That is a
 deliberate over-weighting relative to what the searches surfaced on their own, and it
 should be read as a correction rather than as what the literature looks like.
 
+**The bias-guard set survived retrieval intact** (added 2026-09-30). All five papers
+named above are `pdf_obtained = yes`, and both tags came through complete —
+`low_uptake` 7 of 7, `classic` 3 of 3. §7.4's counterweight is therefore the one
+part of Phase D that retrieval did not erode. The five losses fall on `volumetric`
+(3 of 5) and `doped_77K` (2 of 11) instead; `docs/corpus_audit.md` §5.6 has the
+per-target table and what it costs.
+
+That is a fortunate distribution, not a designed one. Nothing in the collection
+route protected the bias-guard papers; they happen to be in Elsevier and AAAS
+journals while the five losses are all RSC. Had the publisher gone the other way the
+guard itself would have been the casualty, and it would have been a much worse
+outcome for the same reason §7.4 exists. If Phase E collection is planned, securing
+access to RSC before screening rather than after is the lesson.
+
 
 ---
 
@@ -300,20 +323,43 @@ identified 23 on its first run and the remaining 7 after the matcher was correct
 
 | ID | Paper | Access | What its absence costs |
 | --- | --- | --- | --- |
-| HYC-0035 | Li 2016, *RSC Advances* | closed | one of eleven `doped_77K` |
-| HYC-0036 | Wang 2010, *Energy Environ. Sci.* | closed | one of eleven `doped_77K` |
-| HYC-0054 | Masika & Mokaya, *Energy Environ. Sci.* | **green** | one of five `volumetric` |
-| HYC-0055 | Wang 2012, *J. Mater. Chem.* | closed | one of five `volumetric` |
-| HYC-0056 | Balahmar & Mokaya, *J. Mater. Chem. A* | **green** | one of five `volumetric` |
+| HYC-0035 | Li 2016, *RSC Advances* | closed | `doped_77K`, `77K_BET` |
+| HYC-0036 | Wang 2010, *Energy Environ. Sci.* | closed | `doped_77K`, `77K_BET` |
+| HYC-0054 | Masika & Mokaya, *Energy Environ. Sci.* | **green** | `volumetric`, `new_group` |
+| HYC-0055 | Wang 2012, *J. Mater. Chem.* | closed | `volumetric`, `new_group` |
+| HYC-0056 | Balahmar & Mokaya, *J. Mater. Chem. A* | **green** | `volumetric`, `new_group` |
 
-Coverage by funnel target: `doped_77K` **9 of 11**, `77K_BET` 14 of 16, `classic`
-3 of 3, `low_uptake` 7 of 7, `volumetric` **2 of 5**.
+Coverage by funnel target: `new_group` **15 of 18**, `77K_BET` 14 of 16,
+`doped_77K` **9 of 11**, `low_uptake` 7 of 7, `volumetric` **2 of 5**,
+`doped_other` 4 of 4, `classic` 3 of 3.
+
+**The cost column and the coverage line above were both incomplete when first
+written** and were corrected 2026-09-30 after recomputing per-tag coverage from
+`references/phase_d_screening.json`. They credited each loss to a single tag and
+omitted `new_group` and `77K_BET` entirely. Every one of the five is tagged for two
+targets, not one, so the original figures understated the loss. Recorded here rather
+than silently amended.
 
 **The Figure 4 blocker is cleared and the volumetric gap is not.** §15 could not
 build Figure 4 on 4 doped rows from a single paper; nine doped papers at 77 K is a
 different situation entirely. Volumetric capacity remains the thinnest target: the
 schema's gap-10 fields were exercised by one paper's conventions, and three of the
 four papers meant to broaden that are the ones still missing.
+
+**`new_group` is the loss that was nearly missed.** The same three papers were the
+`new_group` candidates, so that pool drops from 18 to 15 — and `docs/corpus_audit.md`
+§5.2 ranks it second overall, because the binding constraint on cross-validation is
+the count of groups (11) and not of rows (102). It is stated as a candidate loss and
+not a group loss deliberately: whether those three would have reached the 77 K + BET
+subset cannot be known without the full texts, and Phase C.1 added two papers tagged
+for that subset and moved the group count by zero.
+
+**Recorded in the tracking file 2026-09-30** by
+`scripts/migrate_pdf_obtained.py`, under `docs/migration_pdf_obtained_plan.md`: the
+30 read `pdf_obtained = yes`, the 5 stay `no` and carry the reason in `notes`.
+Verified by diffing `references/paper_tracking.csv` against `HEAD` — 35 of 66
+physical lines changed, all inside the Phase D block, CRLF and the absent trailing
+newline preserved. All 35 remain `extraction_status = not_started`.
 
 ### 8.1 HYC-0054 carries a published correction
 
