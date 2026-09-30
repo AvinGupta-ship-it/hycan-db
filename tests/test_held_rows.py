@@ -37,6 +37,21 @@ def rows_by_id() -> dict[str, dict[str, str]]:
         return {r["measurement_id"]: r for r in csv.DictReader(handle)}
 
 
+def corpus_row_count() -> int:
+    """The live row count, so these tests survive the next append.
+
+    `backfill_interlayer_spacing.py`'s `--expected-rows` default is 227, the
+    count it actually ran against, and that is a historical record worth
+    keeping. But these tests build their fixture from the CURRENT dataset, so
+    passing the default makes every one of them fail the moment a row is
+    appended -- which is what HYC-0031's 32 rows did. Copied from
+    tests/test_migrate_relabel.py, which hit this first. §6.7: a pinned total
+    is a test that expires.
+    """
+    _, rows = bis.read_rows(DATASET)
+    return len(rows)
+
+
 def run_script(*args: str, cwd: Path) -> subprocess.CompletedProcess[str]:
     return subprocess.run(
         [sys.executable, str(SCRIPT), *args],
@@ -192,7 +207,8 @@ def test_running_the_backfill_on_its_pre_image_reproduces_the_committed_file(
     pre_image: Path,
 ) -> None:
     """MUTATION: change a value in BACKFILL or NOTES_APPEND -> the output diverges."""
-    result = run_script("--dataset", str(pre_image), cwd=pre_image.parents[2])
+    result = run_script("--dataset", str(pre_image), "--expected-rows",
+                        str(corpus_row_count()), cwd=pre_image.parents[2])
     assert result.returncode == 0, result.stdout + result.stderr
     assert pre_image.read_bytes() == DATASET.read_bytes()
 
@@ -206,10 +222,12 @@ def test_the_backfill_refuses_to_run_twice(pre_image: Path) -> None:
     """MUTATION: drop the `already` precondition -> the second run is still refused,
     by the notes-duplication check, and writes nothing. Both guards are asserted
     here so removing either one is visible."""
-    first = run_script("--dataset", str(pre_image), cwd=pre_image.parents[2])
+    first = run_script("--dataset", str(pre_image), "--expected-rows",
+                       str(corpus_row_count()), cwd=pre_image.parents[2])
     assert first.returncode == 0, first.stdout + first.stderr
     before = pre_image.read_bytes()
-    second = run_script("--dataset", str(pre_image), cwd=pre_image.parents[2])
+    second = run_script("--dataset", str(pre_image), "--expected-rows",
+                        str(corpus_row_count()), cwd=pre_image.parents[2])
     assert second.returncode == 1
     assert "already" in second.stderr.lower()
     assert pre_image.read_bytes() == before, "a refused run must write nothing"
@@ -219,7 +237,8 @@ def test_the_backfill_dry_run_writes_nothing(pre_image: Path) -> None:
     """MUTATION: move the write above the --dry-run return -> this fails."""
     before = pre_image.read_bytes()
     result = run_script(
-        "--dataset", str(pre_image), "--dry-run", cwd=pre_image.parents[2]
+        "--dataset", str(pre_image), "--expected-rows",
+        str(corpus_row_count()), "--dry-run", cwd=pre_image.parents[2]
     )
     assert result.returncode == 0, result.stdout + result.stderr
     assert pre_image.read_bytes() == before
@@ -241,7 +260,8 @@ def test_the_backfill_refuses_a_changed_cell_count_it_does_not_expect(
     """MUTATION: drop the changed-cell guard -> a widened BACKFILL map applies
     without anyone noticing."""
     result = run_script(
-        "--dataset", str(pre_image), "--expected-changed-cells", "9",
+        "--dataset", str(pre_image), "--expected-rows",
+        str(corpus_row_count()), "--expected-changed-cells", "9",
         cwd=pre_image.parents[2],
     )
     assert result.returncode == 1
@@ -259,7 +279,8 @@ def test_an_embedded_newline_stops_the_backfill_before_the_byte_check(
     header, rows = bis.read_rows(pre_image)
     rows[0][header.index("notes")] += "\nsecond physical line"
     bis.write_rows(pre_image, header, rows, "\n", True)
-    result = run_script("--dataset", str(pre_image), cwd=pre_image.parents[2])
+    result = run_script("--dataset", str(pre_image), "--expected-rows",
+                        str(corpus_row_count()), cwd=pre_image.parents[2])
     assert result.returncode == 1
     assert "embedded newline" in result.stderr
 

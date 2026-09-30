@@ -216,7 +216,9 @@ def test_author_lists_come_from_the_pdf_wherever_one_is_held():
     for r in sources():
         if r["pdf_held"]:
             assert r["provenance"]["authors"] == "pdf", r["paper_id"]
-    assert sum(1 for r in sources() if r["pdf_held"]) == 23
+    # 23 for the original corpus, plus HYC-0031, the first Phase D paper
+    # whose full text was obtained and extracted (2026-09-30).
+    assert sum(1 for r in sources() if r["pdf_held"]) == 24
 
 
 def test_the_issue_number_provenance_partition_is_pinned():
@@ -237,7 +239,11 @@ def test_the_issue_number_provenance_partition_is_pinned():
         by_prov.setdefault(r["provenance"]["number"], []).append(r["paper_id"])
     assert sorted(by_prov["pdf"]) == ["HYC-0002", "HYC-0022", "HYC-0024"]
     assert len(by_prov["openalex"]) == 21
-    assert len(by_prov["none"]) == 6
+    # 6 for the original corpus, plus HYC-0031 (2026-09-30). Nature
+    # Communications prints volume and article number in its running head and
+    # no issue, so claiming one would be invented -- which is what this
+    # partition exists to stop.
+    assert len(by_prov["none"]) == 7
     # Match the FIELD, not the word: two of these notes contain the phrase
     # "article number", which a substring test read as an issue field.
     field = re.compile(r"^\s*number\s*=", re.M)

@@ -773,7 +773,13 @@ def test_no_assigned_tier_changed_and_the_scorer_still_returns_a_letter():
     # statement about how far an independent scorer diverges from human judgment
     # over the whole corpus, and that is only meaningful as a total. It must be
     # updated deliberately whenever the corpus changes, which is the point.
-    assert agree == 141
+    # 141 of 227 before HYC-0031. Now 164 of 259: that paper contributes 23
+    # agreements and 9 disagreements, the 9 being the rows where the
+    # extractor overrode the scorer on its two documented blind spots -- a
+    # vacuous Chahine bound at 1 bar, and a `total` row scored against a
+    # bound defined for `excess`. Updated deliberately, per this pin's
+    # own instruction. No assigned tier changed.
+    assert agree == 164
 
 
 def test_the_rows_in_tension_with_their_assigned_tier_are_named():

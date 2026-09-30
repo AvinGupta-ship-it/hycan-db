@@ -69,6 +69,40 @@ def dual_agent_papers() -> set[str]:
     }
 
 
+def verified_by_papers() -> set[str]:
+    """Papers every one of whose rows carries a `verified_by` record.
+
+    This is the EVIDENCE for dual-agent verification. `dual_agent_papers()`
+    above is a proxy -- it reads `extractor`, which says who produced a row and
+    not whether an independent verifier checked it. The two sets differ, and
+    the difference is real; see VERIFIED_WITHOUT_ROW_EVIDENCE.
+    """
+    by_paper: dict[str, list[dict]] = {}
+    for r in dataset_rows():
+        by_paper.setdefault(r["paper_id"], []).append(r)
+    return {
+        paper for paper, rows in by_paper.items()
+        if all(r["verified_by"].strip() for r in rows)
+    }
+
+
+# Papers tracked `verified` whose dataset rows carry NO `verified_by`.
+#
+# Recorded rather than fixed, because changing a `verified` to `extracted` is a
+# claim about whether work happened and that is not a test's call. Both were the
+# §9.1 step-15 stragglers that `sync_paper_tracking.py` marked verified from the
+# `extractor` proxy, without row-level evidence. Enumerated so the set cannot
+# grow silently: a NEW unevidenced `verified` fails the test below.
+VERIFIED_WITHOUT_ROW_EVIDENCE = {"HYC-0007", "HYC-0024"}
+
+# Papers extracted by the v2 pipeline that are deliberately NOT `verified`.
+# HYC-0031: the dual-agent protocol ran and every dispute resolved, but two
+# resolutions turn on Supplementary Table 4 / Supplementary Fig. 11, which are
+# not in the obtained PDF, so `verified` would assert a completeness the record
+# does not have.
+V2_NOT_YET_VERIFIED = {"HYC-0031"}
+
+
 def run_script(*args: str, cwd: Path) -> subprocess.CompletedProcess[str]:
     """Run the migration against the sandbox at `cwd`.
 
@@ -169,10 +203,16 @@ def test_dual_agent_verified_papers_are_tracked_as_verified():
         "extracted; that needs investigating, not a test change"
     )
     tracked = tracking_map()
-    for paper in sorted(pipeline_papers):
+    for paper in sorted(pipeline_papers - V2_NOT_YET_VERIFIED):
         assert tracked[paper]["extraction_status"] == "verified", (
             f"{paper} is fully dual-agent extracted but tracked as "
             f"{tracked[paper]['extraction_status']!r}"
+        )
+    # The exceptions must still be extracted, not lost or downgraded further.
+    for paper in sorted(V2_NOT_YET_VERIFIED):
+        assert tracked[paper]["extraction_status"] == "extracted", (
+            f"{paper} is a declared not-yet-verified paper and should read "
+            f"'extracted', not {tracked[paper]['extraction_status']!r}"
         )
 
 
@@ -247,7 +287,22 @@ def test_the_status_counts_account_for_every_row():
         )
     assert set(counts) <= {"not_started", "in_progress", "extracted", "verified"}
     assert sum(counts.values()) == len(tracked)
-    assert counts.get("verified", 0) == len(dual_agent_papers())
+    # `verified` is a SUBSET of the v2-pipeline papers, not equal to it: a paper
+    # can be v2-extracted and legitimately still `extracted` (V2_NOT_YET_VERIFIED).
+    assert counts.get("verified", 0) == len(
+        dual_agent_papers() - V2_NOT_YET_VERIFIED
+    )
+    # Row-level evidence implies the status. The converse does not hold, and the
+    # gap is enumerated rather than absorbed.
+    tracked_verified = {p for p, r in tracked.items()
+                        if r["extraction_status"] == "verified"}
+    assert verified_by_papers() <= tracked_verified, (
+        "a paper whose every row carries verified_by is not tracked as verified"
+    )
+    assert tracked_verified - verified_by_papers() == VERIFIED_WITHOUT_ROW_EVIDENCE, (
+        "the set of papers tracked `verified` with no row-level verified_by "
+        "evidence has changed; a new one is a status asserted without evidence"
+    )
     assert (
         counts.get("extracted", 0) + counts.get("verified", 0)
         == len(dataset_papers())
