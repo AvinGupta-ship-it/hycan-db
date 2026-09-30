@@ -1223,3 +1223,247 @@ helper that took per-sample values as a table and a shared note block would cut
 it. Second, the invariant tests that pin absolute counts had to be updated three
 times in one session; they should assert deltas and partitions, not totals, and
 that change has now been made where it bit.
+
+---
+
+## HYC-0031 — Blankenship, Balahmar & Mokaya 2017, 2026-09-30
+
+**Paper.** *Oxygen-rich microporous carbons with exceptional hydrogen storage
+capacity*, Nature Communications 8:1545, doi `10.1038/s41467-017-01633-x`. First
+Phase D paper extracted. Table-driven; no digitization.
+
+**Correction check, done BEFORE extraction and closed.** The PDF's first page
+reads "There are amendments to this paper" and its last "© The Author(s) 2017,
+corrected publication 2021". HYC-0031 was one of the 32 Phase D papers the
+screening log §8.3 records as *unchecked* for corrections. The notice is
+`10.1038/s41467-021-26590-4`, October 2021, and it is **author-name only**: "the
+author name L. Scott Blankenship was incorrectly written as Troy Scott
+Blankenship II." No data changed. Crossref refused the WebFetch route (HTTP 429,
+the §8.3 hazard), so the notice was located by search and read from PMC. Both
+Agent A and Agent B independently flagged the amendment and named the two
+CA-4800 cells as its likeliest targets; the notice rules that out, which closed
+their largest residual uncertainty.
+
+**Screening tag corrected.** The paper was screened in under `doped_77K`. **It is
+not a doped carbon.** Its oxygen comes from the cellulose-acetate precursor, and
+the authors set their work explicitly against doping: "A question that has not
+been investigated is the effect of the level of oxygen content in porous
+carbons." `schema.py` settles it — `dopant_element` carries only deliberately
+introduced N, Fe and B, and no corpus row uses O, because every activated carbon
+contains oxygen. XPS finds "only oxygen and carbon … in detectable quantities".
+`material_class = activated_carbon`, `dopant_element` empty on all 32 rows. The
+`doped_77K` funnel target therefore drops from 9 of 11 obtained to **8 of 10**.
+The other ten `doped_77K` titles each name a real dopant, so this is one bad tag
+and not a systematic screening failure — but titles are weak evidence and only
+extraction confirms the rest.
+
+**Dual-agent record (§3.2).** Agent A locate-only, Agent B on the PDF, the
+candidate rows and `schema.py` with `notes`, `extraction_confidence` and
+`reproducibility_tier` stripped, Agent C on the two live disputes with neither
+prior reading attached.
+
+- Cells checked: **1920** (32 rows × 60 columns as handed to B).
+- AGREE 1814, DISAGREE 64, UNVERIFIABLE 42.
+- The 42 unverifiable are all AX21 texture cells needing Supplementary Table 4.
+- **Every cell carrying a hydrogen number agreed.** All 32 `uptake_wt_pct`, all
+  12 `volumetric_capacity_kg_m3`, all 26 texture values, all three packing
+  densities, every `uptake_type` and every unit reproduced. That is the §3.2
+  pattern holding for a thirteenth paper: disputes are field semantics and
+  provenance, not arithmetic.
+- The 64 disagreements were 6 distinct findings. **4 upheld, 2 dismissed.**
+
+**Upheld against the extraction:**
+
+1. **AX21's three cryogenic values do have a determinable temperature.** The
+   extraction set `temperature_unstated`. B and C both read 77 K and C's
+   argument governs: the paper states its uptake measurements were at −196 °C
+   **or** 25 °C, and separately reports AX21 excess at 20 bar and 25 °C as
+   0.3 wt%, so 4.7 wt% excess at 20 bar cannot be the 25 °C point. The flag
+   exists to stop a *convention* being substituted for a missing condition; it
+   does not cover resolving a disjunction the paper states using a contradiction
+   the paper supplies. The extraction was applying §3.5 too mechanically, and
+   three real benchmark points would have dropped out of every temperature-
+   filtered query and every Chahine comparison. `extraction_confidence` 4, not
+   5, because the temperature is deduced; the inference chain is in `notes`.
+2. **`uptake_bound` on the three room-temperature totals.** Marked `approximate`
+   off the authors' word "estimated". They are stated definitely and repeated in
+   the abstract, and every total in the paper is derived by the same eq. (1), so
+   flagging only three would exclude the paper's headline room-temperature
+   result from headline statistics while keeping the equally-derived 8.9 wt%.
+   Corrected to `exact`.
+3. **Three `source_location` page numbers.** The 20 bar room-temperature values
+   are printed on p. 8; the sentence completes on p. 9. Corrected to pp. 8–9.
+4. **No structured field carried the paper's own sample labels.** "AX21"
+   appeared nowhere a query could reach. `material_description` now leads with
+   the paper's label on all 32 rows.
+
+**Dismissed, 2-1 (A and C against B):**
+
+5. **`average_pore_diameter_nm` stays null.** B proposed 0.85 nm with method
+   `DFT`. Table 2's "Pore size" column is **three NLDFT distribution maxima** per
+   sample, not a central tendency, and the paper designates none as principal —
+   it calls the 6–7 Å feature "extra" relative to its comparator. Recording one
+   would assert a selection the authors never made; C's 4V/S check puts the
+   smallest mode about 3× below a geometric average. `pore_diameter_method` is
+   `unspecified`, the corpus convention on a null diameter. **The part of B's
+   objection that was right:** the numbers were being lost silently, and are now
+   recorded in `notes` per §11.4.
+
+**Three defects in the paper as published**, each confirmed by more than one
+reading and none of them touched by the 2021 correction:
+
+- **CA-4800 total pore volume.** Body p. 3 gives 1.54 cm³/g; Table 2 gives 1.32.
+  1.54 is CA-4700's *micropore* volume from the row above. 1.32 is stored, on two
+  independent grounds: the paper's own micropore proportion, "88% for both
+  CA-4700 and CA-4800", is satisfied by 1.17/1.32 = 88.6% and not by
+  1.17/1.54 = 76%; and — Agent B's addition, from a different direction — eq. (1)
+  with V_T = 1.32 reproduces both printed CA-4800 totals (6.83, 7.35 against
+  6.8, 7.3) while V_T = 1.54 gives 6.97 and 7.56 and reproduces neither.
+- **CA-4800 volumetric total at 20 bar.** Table 2 prints 41 g/L; the paper's own
+  eq. (3) with its packing density of 0.56 g/cm³ gives 38.1. 41 is exactly this
+  sample's 30 bar value. **The other 11 volumetric cells in Table 2 reproduce to
+  within 0.55 g/L**, so this is one cell and not a method disagreement. Stored
+  **as published**, with the arithmetic in `notes` and confidence 3: 38.1 is this
+  project's number, not the authors'. Found independently by the extractor, by
+  Agent A and by Agent B.
+- **Isosteric heat.** The abstract and Discussion both claim "above
+  10 kJ mol⁻¹" for the carbons; CA-4600 peaks at 9.5. True of CA-4700 and
+  CA-4800 only.
+
+**One trap worth recording for future extractions.** The abstract silently
+switches samples: its gravimetric figures (8.1 / 7.0 / 8.9 wt%) are CA-4700, its
+volumetric figures (44 / 48 g/L) are CA-4600, whose volumetric values are 37 and
+41. An extractor keying on the abstract attributes 44 g/L to CA-4700.
+
+**Text-layer hazard, new and severe.** This PDF replaces the hyphen with
+**U+0002 (STX)** at hyphenated line breaks: `CA\x024600`, `CA\x02hydrochar`,
+`micro\x02porous`. Searching the literal string `CA-4600` **silently misses
+occurrences, including the sentence carrying its BET surface area.** Any verifier
+keying on sample names in this paper will report false absences. Figure text
+layers are also interleaved with body prose, so no value is readable from any
+figure.
+
+**Fields left deliberately empty.** `average_pore_diameter_nm` and
+`pore_diameter_method` (finding 5 above). `uncertainty_wt_pct` on all 32: the
+paper's only stated spread is "within ±5%" for *surface area and pore volume* on
+repeated synthesis, which is a texture repeatability and not an uptake
+uncertainty — putting it in `uncertainty_wt_pct` would be the right word on the
+wrong quantity. `skeletal_density_g_cm3`: ρ_s appears only as a symbol in the
+alternative packing-density relation, with no value. `external_surface_area_m2_g`
+and `mesopore_volume_cm3_g`: obtainable only by subtracting the recorded
+micropore values from the recorded totals, which the paper never prints.
+`interlayer_spacing_nm`: the XRD feature at 2θ ≈ 22° belongs to the hydrochar,
+which is not one of these samples. All texture on the six AX21 rows:
+Supplementary Table 4, not obtained. `metal_*` and `residual_metal_*`: positively
+supported as absent, XPS finding only C and O after the HCl wash.
+
+**CA-hydrochar is deliberately not a row.** The main article gives it elemental
+composition only, and no quantity the schema can hold, so a row would carry no
+characterization at all.
+
+**Tiering (§13).** 12 A / 17 B / 3 C. Assigned by `score_reproducibility` with
+three recorded extractor adjustments:
+
+- `calibration = 0` on all rows. The paper describes **no buoyancy or blank
+  correction** — the dominant systematic for gravimetric H₂ at these capacities,
+  and the subject of Broom & Hirscher, which the paper itself cites as ref 74.
+  What it does describe is measuring a reference material (AX21) and comparing
+  to published values, which is inter-laboratory agreement and is already scored
+  under criterion 7 and §13.2's "Numerical" layer. Awarding criterion 6 for it
+  would score one piece of evidence twice, and the tiering document's Tier A
+  worked example explicitly includes "void-volume/blank correction", which this
+  paper has no counterpart to.
+- `chahine` capped at 1 at 1 bar. Blind spot 3: the BET/500 bound ignores
+  pressure and is vacuous at 1 bar. Capped rather than zeroed, because the values
+  are high and not impossible, and the paper says so itself.
+- **A `total` row inherits the `chahine` score of the `excess` row at the same
+  sample, temperature and pressure. This is a NEW blind spot**, never exercised
+  because the corpus held zero `total` rows until now. Chahine bounds *adsorbed*
+  uptake against surface area; a total legitimately exceeds it by the
+  compressed-gas term. The scorer gave CA-4600's 5.6 wt% excess row `chahine` 1
+  and its 6.2 wt% total row `chahine` 0, for one measurement expressed twice.
+
+Differs from `suggest_tier` on 9 of 32 rows, each with its reason recorded.
+
+**Two schema gaps this paper exposes, neither closed here:**
+
+- **Oxygen content has no home.** The paper's independent variable is reported
+  three ways that disagree — CHN bulk 22.8/17.9/20.6 wt%, XPS surface
+  14.3/13.8/14.8, TPD 22.3/18.5/21.2 — and the disagreement is an explicit
+  finding. It is not a dopant, so the dopant fields would be the field-meaning
+  violation §3.2 warns about. **HYC-0031's central claim, that oxygen content
+  raises uptake at matched porosity, is not queryable from the corpus.** A
+  `heteroatom_element` + `heteroatom_content_wt_pct` + method triple would close
+  it; `CompositionMethod` already exists to carry the bulk/surface split.
+- **Isosteric heat has no field at all.** Eight main-text values with their
+  coverages. This is the paper's third headline claim.
+
+Also noted: `PoreDiameterMethod` has no `NLDFT` member although
+`PoreVolumeMethod` does; and there is no field for a multimodal PSD.
+
+**A live analysis hazard this append introduces.** HYC-0031 is the **first paper
+in the corpus to report `uptake_type = total`**, and the first to carry paired
+total/excess rows at the same sample, temperature and pressure — 13 such pairs.
+Before this append, zero sample/T/P groups held more than one uptake type.
+`uptake_type` appears **nowhere** in `plotting.py` or `clean.py`, and none of
+§12.3's four filters excludes by it, so **any corpus-wide mean of
+`uptake_wt_pct` now double-counts this paper's measurements.** Not yet guarded;
+it needs a §12.3 filter and an enumerating invariant test, on the precedent of
+the null-wt% rows already enumerated by `measurement_id` in
+`tests/test_dataset_invariants.py`.
+
+**A defect in this session's own append, caught by a test and not by the
+tooling.** The staging file was written **CRLF** because the extractor had
+carefully detected `references/paper_tracking.csv`'s format and then assumed
+`data/raw/measurements_v0.1.csv` shared it. It does not — the dataset is **LF**.
+`append_paper.py` reported "0 errors, 0 new warning types" and printed "Verify
+merged file re-read from disk", because it checks cells and counts and **a
+cell-level check cannot see a line ending**. The file was left with 228 LF lines
+and 32 CRLF ones. Caught by
+`test_migrate_relabel.py::test_running_the_migration_on_its_pre_image_reproduces_the_committed_file`,
+whose byte-level replay is the only check in the suite that could see it. Fixed
+by rewriting the appended rows to LF, verified by re-running that replay and by
+asserting the committed prefix is byte-identical. **`append_paper.py` must learn
+to refuse a staging file whose terminator differs from the dataset's**; until it
+does, this recurs on any paper. This is the §6.7 failure class, committed by the
+very session that had just written two byte-level migration scripts against it.
+
+**A pre-existing defect found while amending the tests.** `dual_agent_papers()`
+defines dual-agent completion by the `extractor` column, which says who produced
+a row and not whether an independent verifier checked it. Against the
+evidence-bearing `verified_by` column, **HYC-0007 and HYC-0024 are tracked
+`verified` with no `verified_by` on any of their rows.** They were the §9.1
+step-15 stragglers and `sync_paper_tracking.py` marked them verified from the
+proxy. Recorded, not changed: whether their verification happened is a claim
+about work done, not a test's call. Both tests now assert the honest
+relationships and enumerate the gap by paper id, so a new unevidenced `verified`
+fails.
+
+**Validation.** Baseline 227 rows / 0 errors / 2 warning types
+(`Unspecified uptake_type` 204, `Pre-2005 raw-CNT high uptake (Tier D)` 1).
+After: 259 rows, 0 errors, same 2 types, `Unspecified uptake_type` 204 → 205 for
+AX21's 1 bar row, whose uptake type the paper does not state. No
+`--expect-new-warning` needed. Full suite 759 passed.
+
+**Outcome.** 32 rows, 227 → 259, 23 → 24 papers. Tracked `extracted`, **not
+`verified`**: the protocol ran and every dispute resolved, but two resolutions
+turn on Supplementary Table 4 and Supplementary Fig. 11, which are not in the
+obtained PDF, and `verified` would assert a completeness the record does not
+have. Obtaining the Supplementary Information is a one-file fetch and would close
+the AX21 temperature outright, its six rows' texture, and the −186 °C thread in
+the Q_st method.
+
+**New tooling.** `scripts/record_extraction.py` — the routine tool for §9.1 step
+15, the step this project has skipped more than any other (ten consecutive
+papers in Phase C, then HYC-0007 and HYC-0024 one commit after that was fixed).
+Every previous repair was a one-off migration, and `sync_paper_tracking.py`
+refuses to run twice by design, so after every extraction the project faced a
+protected file, a routine update and no routine tool. It refuses a paper excluded
+at screening, one whose `pdf_obtained` is not `yes`, one with no dataset rows,
+and `verified` without a `--verified-by` record. 27 tests, 16 mutations run
+against plan §6's twelve, all killed, with a passing control on the scratch tree.
+
+**Where the pipeline was slow.** Row construction again, as the HYC-0007/0024
+entry predicted — and the staging-helper it recommended was still not built, so
+the same 67-column builder script was written from scratch. Building it now would
+also be the natural place to put the terminator check §6.7 needs.
