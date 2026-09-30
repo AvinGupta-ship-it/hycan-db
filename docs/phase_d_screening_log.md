@@ -287,3 +287,81 @@ Seven of the 35 carry the `low_uptake` tag and three carry `classic`. That is a
 deliberate over-weighting relative to what the searches surfaced on their own, and it
 should be read as a correction rather than as what the literature looks like.
 
+
+---
+
+## 8. Collection outcome, 2026-09-30
+
+**30 of the 35 are in the Project.** Avin collected 30; `scripts/stage_phase_d_pdfs.py`
+identified 23 on its first run and the remaining 7 after the matcher was corrected
+(commit `743bac1`), which is what the "citing other corpus papers" defect cost.
+
+**The five not obtained are all Royal Society of Chemistry titles:**
+
+| ID | Paper | Access | What its absence costs |
+| --- | --- | --- | --- |
+| HYC-0035 | Li 2016, *RSC Advances* | closed | one of eleven `doped_77K` |
+| HYC-0036 | Wang 2010, *Energy Environ. Sci.* | closed | one of eleven `doped_77K` |
+| HYC-0054 | Masika & Mokaya, *Energy Environ. Sci.* | **green** | one of five `volumetric` |
+| HYC-0055 | Wang 2012, *J. Mater. Chem.* | closed | one of five `volumetric` |
+| HYC-0056 | Balahmar & Mokaya, *J. Mater. Chem. A* | **green** | one of five `volumetric` |
+
+Coverage by funnel target: `doped_77K` **9 of 11**, `77K_BET` 14 of 16, `classic`
+3 of 3, `low_uptake` 7 of 7, `volumetric` **2 of 5**.
+
+**The Figure 4 blocker is cleared and the volumetric gap is not.** §15 could not
+build Figure 4 on 4 doped rows from a single paper; nine doped papers at 77 K is a
+different situation entirely. Volumetric capacity remains the thinnest target: the
+schema's gap-10 fields were exercised by one paper's conventions, and three of the
+four papers meant to broaden that are the ones still missing.
+
+### 8.1 HYC-0054 carries a published correction
+
+**Crossref records `updated-by: correction, 10.1039/d1ee90006d`** — *Correction:
+Exceptional gravimetric and volumetric hydrogen storage for densified zeolite
+templated carbons with high mechanical stability*, *Energy Environ. Sci.*, 2021.
+The correction's content is paywalled and has not been read.
+
+**The correction must be obtained and read before that paper is extracted.** A
+corrected paper entering the corpus with its superseded values is the failure mode
+the whole verification protocol exists to prevent, and no validator downstream
+could detect it: the numbers would be internally consistent, correctly sourced to a
+real table, and wrong. The paper's headline claim is a volumetric storage figure,
+which is exactly the field it was selected to populate.
+
+**Nothing in the pipeline checks for this.** `paper_tracking.csv` has no column for
+a retraction or correction notice, and no step in the §9.1 per-paper pipeline
+consults one. This is a gap in the protocol rather than an oversight on one paper,
+and it applies to all 65 tracked papers, not only the 35 new ones.
+
+### 8.2 Three recorded years are the online-first year, not the issue year
+
+Every Phase D year came from OpenAlex's `publication_year`. Manual §7 already
+records that this reports Elsevier's online-first year on six bibliography entries;
+it does the same for RSC. Confirmed against Crossref's `published-print`:
+
+| ID | Recorded | Issue year | Evidence |
+| --- | --- | --- | --- |
+| HYC-0052 | 2003 | **2004** | `published-print [[2004,4]]`, vol 29(5) 475–479, `journal-issue` also 2004-04 |
+| HYC-0054 | 2013 | **2014** | `published-print [[2014]]`, vol 7(1) 427–434; RSC's own correction notice cites 2014 |
+| HYC-0061 | 2009 | **2010** | `published-print [[2010,3]]`, vol 48(3) 714–720; the PDF's running head reads `CARBON 48 (2010) 714 – 720` |
+
+**Not yet corrected in the data.** `references/paper_tracking.csv` is protected under
+§6.7 and a year change needs a migration plan; the staged PDF filenames for
+HYC-0052 and HYC-0061 also embed the old year, though harmlessly, since the
+`paper_id` prefix is what identifies a file.
+
+**The other 32 are not cleared.** Eight checked clean, four could not be read, and
+twenty were never attempted: Crossref refuses `curl` from this session at the egress
+proxy and the WebFetch route is rate-limited and needs per-URL approval. Those 32
+are **unknown**, not clean, for both the year and the correction check.
+
+### 8.3 Method note on the checks above
+
+Crossref was read through WebFetch, which passes the response through a summarising
+model, so a dropped `updated-by` would look exactly like an absent one. Two
+mitigations were used and both should be kept if this is resumed: every field had to
+be reported as `ABSENT` rather than omitted, and each prompt was validated against a
+control DOI with a *known* correction before any `ABSENT` elsewhere was believed.
+The summariser was still caught misreporting a present field twice. **A raw-JSON
+pass is still owed** before the eight clean rows are treated as verified.
