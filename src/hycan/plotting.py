@@ -132,17 +132,37 @@ def fig3_chahine(df, save_path):
     Overlays the Chahine rule (y = x / 500, i.e. ~1 wt% per 500 m2/g) and
     colors points by material_class. Rows with null BET are dropped; if
     nothing remains, an empty but labeled axes is saved with an annotation.
+
+    **`uptake_type = total` rows are excluded** (docs/migration_chahine_excess_only_plan.md).
+    The Chahine rule bounds ADSORBED hydrogen against surface area; a total
+    uptake is that plus the compressed gas filling the pore volume, so it
+    exceeds the bound by construction and is not the quantity the rule
+    describes. HYC-0031 introduced the corpus's first `total` rows and 9 of
+    them landed here, 3 above their own bound -- and because each is the paired
+    partner of an `excess` row at the same sample, temperature and pressure,
+    they were also a double count: 9 sample/T/P groups appeared twice where no
+    group had ever appeared more than once.
+
+    `unspecified` rows are KEPT. They are most of the corpus and §B.5 records
+    that as the field's normal state, not an extraction failure.
     """
     palette, ordered = _material_palette(df["material_class"].dropna().unique())
 
     sub = df[df["temperature_k"] == 77].dropna(
         subset=["bet_surface_area_m2_g", "uptake_wt_pct"]
     )
+    # After the 77 K and null filters, so the count reported is the number of
+    # rows the figure would otherwise have plotted.
+    n_total = int((sub["uptake_type"] == "total").sum())
+    if n_total:
+        sub = sub[sub["uptake_type"] != "total"]
+        print(f"fig3_chahine: excluded {n_total} total-uptake row(s); the "
+              f"Chahine rule bounds adsorbed uptake, not total")
 
     fig, ax = plt.subplots(figsize=(8, 5))
     ax.set_title("The Chahine rule across material classes")
     ax.set_xlabel("BET surface area (m$^2$/g)")
-    ax.set_ylabel("uptake (wt%)")
+    ax.set_ylabel("uptake (wt%, excess or unspecified)")
 
     if sub.empty:
         ax.text(

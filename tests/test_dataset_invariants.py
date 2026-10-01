@@ -538,3 +538,41 @@ def test_the_corpus_can_now_test_the_ultramicropore_hypothesis(dataset):
     with_ultra = dataset.dropna(subset=["ultramicropore_volume_cm3_g"])
     assert set(with_ultra["paper_id"]) >= {"HYC-0005", "HYC-0021"}
     assert len(with_ultra) >= 25
+
+def test_paired_total_and_excess_rows_are_enumerated(dataset):
+    """Rows reporting the SAME measurement twice, as total and as excess.
+
+    HYC-0031 is the first paper in the corpus to report `total` uptake, and it
+    reports total and excess at the same sample, temperature and pressure --
+    one measurement expressed two ways. Before it, NO sample/T/P group in the
+    corpus carried more than one `uptake_type`.
+
+    Any statistic that does not filter on `uptake_type` double-counts these.
+    Measured: the corpus-wide mean of `uptake_wt_pct` is 1.9966 excluding
+    `total` and 2.1560 including it, an 8% shift from 13 pairs. `fig3_chahine`
+    now excludes `total` for this reason and because the Chahine rule bounds
+    adsorbed uptake, not total
+    (docs/migration_chahine_excess_only_plan.md); there is still no canonical
+    §12.3 filter function in the code, so they are enumerated here on the
+    precedent of the non-convertible rows above -- a silent double count is the
+    §12.3 failure mode and this is what makes it loud.
+
+    MUTATION: append a paper reporting paired total/excess rows without
+    deciding how they are aggregated -> this fails and names them.
+    """
+    groups = dataset.groupby(["sample_id", "temperature_k", "pressure_bar"])
+    paired = [ids for _, grp in groups
+              if grp["uptake_type"].nunique() > 1
+              for ids in [set(grp["measurement_id"])]]
+    flat = sorted(i for s in paired for i in s)
+    assert flat == ['HYC-0031-M1', 'HYC-0031-M10', 'HYC-0031-M11', 'HYC-0031-M12', 'HYC-0031-M13', 'HYC-0031-M14', 'HYC-0031-M16', 'HYC-0031-M17', 'HYC-0031-M18', 'HYC-0031-M19', 'HYC-0031-M2', 'HYC-0031-M20', 'HYC-0031-M21', 'HYC-0031-M22', 'HYC-0031-M23', 'HYC-0031-M25', 'HYC-0031-M26', 'HYC-0031-M28', 'HYC-0031-M29', 'HYC-0031-M3', 'HYC-0031-M31', 'HYC-0031-M32', 'HYC-0031-M4', 'HYC-0031-M5', 'HYC-0031-M6', 'HYC-0031-M9'], (
+        "the set of rows reporting one measurement under two uptake types has "
+        "changed. Every corpus-wide statistic over uptake_wt_pct must filter "
+        "on uptake_type, or it double-counts these rows."
+    )
+    # Every pair must be exactly one total and one excess, not two of a kind.
+    for _, grp in groups:
+        if grp["uptake_type"].nunique() > 1:
+            assert sorted(grp["uptake_type"]) == ["excess", "total"], (
+                f"unexpected uptake_type pairing: {sorted(grp['uptake_type'])}"
+            )
