@@ -156,6 +156,92 @@ def field_counts(path: str) -> dict[int, list[int]]:
     return counts
 
 
+def line_terminators(path: str) -> dict:
+    """Which line terminators the file actually uses, and how it ends.
+
+    The append is a byte-level operation and every other check in this script
+    is a cell- or count-level check, none of which can see a line ending. On
+    HYC-0031 a CRLF staging file was appended to an LF dataset: every cell
+    parsed correctly, the row and field counts were right, validation reported
+    zero errors, and the merged file was left with two conventions. Only a
+    byte-level replay test in another module caught it, one commit later.
+
+    Returns the SET of terminators present, not a single dominant one: a file
+    that is already mixed must be visible as mixed rather than reported as
+    whichever form happens to be more common.
+    """
+    try:
+        with open(path, "rb") as handle:
+            raw = handle.read()
+    except OSError as exc:
+        # This check runs before any parsing, so it is the first thing to meet a
+        # path that is a directory, unreadable or gone. §3.8: a refusal, not a
+        # traceback.
+        raise CheckFailed(f"cannot read {path}: {exc}") from exc
+    crlf = raw.count(b"\r\n")
+    lone_lf = raw.count(b"\n") - crlf
+    lone_cr = raw.count(b"\r") - crlf
+    present = set()
+    if crlf:
+        present.add("\r\n")
+    if lone_lf:
+        present.add("\n")
+    if lone_cr:
+        present.add("\r")
+    return {
+        "present": present,
+        "crlf": crlf,
+        "lf": lone_lf,
+        "cr": lone_cr,
+        "size": len(raw),
+        "ends_with_newline": raw.endswith(b"\n"),
+    }
+
+
+def describe_terminators(info: dict) -> str:
+    """A human-readable account of a line_terminators() result."""
+    if not info["present"]:
+        return "no line terminator at all"
+    parts = []
+    if info["crlf"]:
+        parts.append(f"{info['crlf']} CRLF")
+    if info["lf"]:
+        parts.append(f"{info['lf']} lone LF")
+    if info["cr"]:
+        parts.append(f"{info['cr']} lone CR")
+    return ", ".join(parts)
+
+
+def check_terminators_match(staging: dict, dataset: dict) -> None:
+    """Refuse an append whose terminator convention differs from the dataset's.
+
+    Plan §8. Refuses rather than normalising: a staging builder writing the
+    wrong convention is a defect in the builder, and repairing its output here
+    would hide that for every later paper.
+    """
+    # An empty or terminator-less file's real problem is not its convention, and
+    # describe_file diagnoses it far better than a mismatch message would. Defer.
+    if not staging["size"] or not dataset["size"]:
+        return
+    for label, info in (("dataset", dataset), ("staging file", staging)):
+        if len(info["present"]) > 1:
+            raise CheckFailed(
+                f"{label} has MIXED line terminators "
+                f"({describe_terminators(info)}). A file whose lines do not use "
+                f"one convention is already broken, and an append to or from it "
+                f"cannot be verified line by line. Fix the file before appending."
+            )
+    if staging["present"] != dataset["present"]:
+        raise CheckFailed(
+            f"line terminator mismatch: the dataset uses "
+            f"{describe_terminators(dataset)} and the staging file uses "
+            f"{describe_terminators(staging)}. Appending would leave the dataset "
+            f"with two conventions, which every cell-level check in this script "
+            f"passes and no validator sees. Write the staging file with the "
+            f"dataset's terminator; this script will not convert it."
+        )
+
+
 def describe_file(path: str, label: str) -> dict:
     """Read *path* from disk and report what is actually in it (§3.8)."""
     if not os.path.exists(path):
@@ -360,12 +446,30 @@ def preflight(staging_path: str, dataset_path: str, baseline_path: str | None) -
     print("Preflight")
 
     # 1-3. Both files read from disk; line counts consistent with parsed rows.
+    # Plan §8. BEFORE parsing, because this is a byte-level check and it gives a
+    # far clearer diagnosis than the width check below, whose own message admits
+    # it gets misread ("The usual causes are ... a newline inside a quoted
+    # field"). A stray CR or LF presents there as "rows of differing width".
+    # This is how HYC-0031's CRLF staging file reached an LF dataset with every
+    # cell-level check passing.
+    for path, label in ((dataset_path, "dataset"), (staging_path, "staging file")):
+        if not os.path.exists(path):
+            raise CheckFailed(f"{label} does not exist: {path}")
+    dataset_terminators = line_terminators(dataset_path)
+    staging_terminators = line_terminators(staging_path)
+    check_terminators_match(staging_terminators, dataset_terminators)
+
     dataset = describe_file(dataset_path, "dataset")
     staging = describe_file(staging_path, "staging file")
+    dataset["terminators"] = dataset_terminators
+    staging["terminators"] = staging_terminators
     print(f"  1. dataset read from disk: {dataset['rows']} rows, "
           f"{dataset['lines']} lines, sha {dataset['sha256'][:12]}")
     print(f"  2. staging read from disk: {staging['rows']} rows, "
           f"{staging['lines']} lines, sha {staging['sha256'][:12]}")
+    print(f"     line terminators match: "
+          f"{describe_terminators(dataset['terminators'])} (dataset), "
+          f"{describe_terminators(staging['terminators'])} (staging)")
 
     # 4. Physical column order must match exactly (§6.7).
     if staging["columns"] != dataset["columns"]:
@@ -617,6 +721,34 @@ def verify_merged(target: str, context: dict) -> tuple[dict, dict]:
     absent = sorted(staged_ids - merged_ids)
     if absent:
         raise CheckFailed(f"appended rows not found in the merged file: {absent}")
+
+    # Plan §8. The preflight refusal covers the staging file; this covers the
+    # SEAM and any future rewrite of append_body that normalises or translates.
+    # Measured against the dataset as it was before the append, not against an
+    # assumption about what it should be.
+    merged["terminators"] = line_terminators(target)
+    before = dataset["terminators"]
+    after = merged["terminators"]
+    if after["present"] != before["present"]:
+        raise CheckFailed(
+            f"the append changed the dataset's line terminators: it used "
+            f"{describe_terminators(before)} and now uses "
+            f"{describe_terminators(after)}. Every cell-level check above "
+            f"passes on a mixed file, which is why this one reads bytes."
+        )
+    # NOT an equality check against `before`: a dataset that lacked a trailing
+    # newline legitimately gains one, because the appended body ends with the
+    # terminator. What must hold is that the file ends with EXACTLY one.
+    terminator = next(iter(after["present"])) if after["present"] else ""
+    if terminator:
+        with open(target, "rb") as handle:
+            tail = handle.read()[-2 * len(terminator):]
+        if tail == (terminator * 2).encode("utf-8"):
+            raise CheckFailed(
+                f"the merged dataset ends with a doubled line terminator "
+                f"({terminator!r} twice). A blank final line is invisible to "
+                f"pandas and breaks every later append's line-count check."
+            )
 
     return merged, merged_state
 

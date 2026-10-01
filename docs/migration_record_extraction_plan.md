@@ -171,4 +171,76 @@ counts and calls the result "verified", and it cannot see a line terminator.
 It must detect the dataset's terminator and refuse a staging file that differs,
 and it must assert the merged file's terminator and final-newline state are
 unchanged. Until it does, §7.1 can recur on any paper. Tracked as the next
-piece of work.
+piece of work. **Done — §8.**
+
+---
+
+## 8. Amendment — teach `append_paper.py` to see a line terminator
+
+**Written 2026-10-01, before the edits.** Closes §7.5. `tests/` is protected
+under §6.7; `scripts/append_paper.py` is not, but it is the pipeline's central
+tool and a change to it is planned like one.
+
+### 8.1 The defect, located
+
+`staging_body()` splits the staging file on `"\n"` and rejoins on `"\n"`. Its own
+docstring states the intent:
+
+> "Splitting on `\n` rather than str.splitlines keeps CRLF bytes intact and
+> avoids splitting on the exotic line boundaries splitlines() honours."
+
+Keeping the staging file's CRLF bytes intact is correct **only if the dataset is
+also CRLF.** When it is not, each appended line keeps a trailing `\r` and the
+merged file silently acquires two conventions. Nothing in `preflight` compares
+the two files' terminators, and nothing in `verify_merged` looks at the merged
+file's. The script's own report says "Verify  merged file re-read from disk",
+which is true and does not cover this.
+
+This is not hypothetical: it happened on HYC-0031, the first append after the
+check was known to be missing, and only a *different* module's byte-level replay
+test caught it.
+
+### 8.2 Scope
+
+Three additions. No behaviour change on a correctly-formatted staging file.
+
+1. A `line_terminators(path)` helper returning the set of terminators actually
+   present, plus whether the file ends with one.
+2. **A preflight refusal** when the staging file's terminator set differs from
+   the dataset's. Refuse rather than normalise: a staging builder writing the
+   wrong convention is a defect in the builder, and silently repairing its
+   output hides it. §11.5's principle — "a refusal is information, not an
+   obstacle".
+3. **A post-append assertion** that the merged file's terminator set and
+   final-newline state equal the dataset's as measured *before* the append.
+   This catches the seam as well as the body, and it catches a future rewrite of
+   `append_body` that normalises.
+
+A file with mixed terminators on either side is refused outright, naming the
+counts, because it is already broken and appending to it cannot be verified
+line by line.
+
+### 8.3 Why not normalise
+
+Considered and rejected. Normalising would have silently fixed HYC-0031 and left
+the staging builder wrong for every subsequent paper, and the next builder would
+have inherited the same assumption. The refusal is what makes the builder's bug
+visible at the moment it is introduced.
+
+### 8.4 Mutations the tests must kill
+
+1. Remove the terminator-mismatch refusal.
+2. Remove the post-append terminator assertion.
+3. Compare only the dominant terminator rather than the whole set, so a mixed
+   staging file passes.
+4. Let the refusal fire only when the dataset is CRLF and the staging LF, not
+   the reverse.
+5. Drop the final-newline-state check.
+6. Accept a dataset that is already mixed.
+
+### 8.5 Regression
+
+A test that reconstructs the HYC-0031 situation exactly — an LF dataset and a
+CRLF staging file with otherwise valid content — and requires a refusal before
+anything is written. That append is the one this check exists for, and it must
+be the one the suite demonstrates.

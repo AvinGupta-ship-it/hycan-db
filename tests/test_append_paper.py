@@ -16,6 +16,8 @@ import json
 import os
 
 import append_paper as ap
+import pathlib
+
 import pandas as pd
 import pytest
 from conftest import COLUMNS, make_row, write_csv
@@ -1139,7 +1141,26 @@ def test_a_whitespace_only_paper_id_is_refused(dataset, baseline, tmp_path, caps
     assert "Append" not in out
 
 
-def test_crlf_line_endings_round_trip(dataset, baseline, tmp_path, capsys):
+def test_a_crlf_staging_file_is_refused_against_an_lf_dataset(
+    dataset, baseline, tmp_path, capsys
+):
+    """THE HYC-0031 REGRESSION. Plan §8.5.
+
+    **This test previously asserted the opposite** -- that a CRLF staging file
+    appends cleanly to the LF `dataset` fixture -- and checked the result with
+    `pd.read_csv`, a cell-level check. It therefore blessed precisely the
+    operation that corrupted the real dataset on 2026-09-30, leaving 228 LF
+    lines and 32 CRLF ones with every cell correct, validation reporting zero
+    errors, and this script printing "Verify  merged file re-read from disk".
+    A byte-level replay test in another module caught it a commit later.
+
+    The capability that test was protecting is preserved by the CRLF-to-CRLF
+    test below; what is removed is the silent mixing.
+
+    MUTATION: remove check_terminators_match, or compare only the dominant
+    terminator -> this fails.
+    """
+    before = pathlib.Path(dataset).read_bytes()
     rows = [make_row(paper_id="HYC-9002", sample_id="HYC-9002-S1",
                      measurement_id="HYC-9002-M1",
                      doi="10.1016/j.carbon.2016.04.002")]
@@ -1149,10 +1170,155 @@ def test_crlf_line_endings_round_trip(dataset, baseline, tmp_path, capsys):
     code, out = run([path, "--dataset", dataset, "--baseline", baseline,
                      "--backup-dir", tmp_path / "bak"], capsys)
 
+    assert code != 0, out
+    assert "line terminator mismatch" in out
+    assert pathlib.Path(dataset).read_bytes() == before, (
+        "a refused append must leave the dataset untouched"
+    )
+
+
+def test_a_crlf_staging_file_round_trips_into_a_crlf_dataset(tmp_path, capsys):
+    """The genuine capability the old round-trip test was protecting.
+
+    A consistent CRLF pipeline still works end to end, and the merged file is
+    still pure CRLF afterwards -- asserted on bytes, not on parsed cells.
+
+    MUTATION: make check_terminators_match refuse any CRLF -> this fails.
+    """
+    ds = write_csv(tmp_path / "crlf_ds.csv", [make_row(measurement_id="HYC-9001-M1")])
+    ds.write_bytes(ds.read_text().replace("\n", "\r\n").encode("utf-8"))
+    st = write_csv(tmp_path / "crlf_st.csv",
+                   [make_row(paper_id="HYC-9002", sample_id="HYC-9002-S1",
+                             measurement_id="HYC-9002-M1",
+                             doi="10.1016/j.carbon.2016.04.002")])
+    st.write_bytes(st.read_text().replace("\n", "\r\n").encode("utf-8"))
+
+    code, out = run([st, "--dataset", ds, "--backup-dir", tmp_path / "bak"], capsys)
+
     assert code == 0, out
-    merged = pd.read_csv(dataset)
-    assert len(merged) == 3
-    assert "HYC-9002-M1" in set(merged["measurement_id"])
+    raw = ds.read_bytes()
+    assert raw.count(b"\n") == raw.count(b"\r\n"), "a lone LF appeared"
+    assert len(pd.read_csv(ds)) == 2
+    assert not raw.endswith(b"\r\n\r\n")
+
+
+def test_a_mixed_terminator_dataset_is_refused(dataset, staging, tmp_path, capsys):
+    """Plan §8.4 mutation 6. A file already holding two conventions cannot be
+    verified line by line, so it is refused rather than appended to.
+
+    MUTATION: drop the mixed-file branch of check_terminators_match -> fails.
+    """
+    p = pathlib.Path(dataset)
+    raw = p.read_bytes()
+    first = raw.index(b"\n")
+    p.write_bytes(raw[:first] + b"\r\n" + raw[first + 1:])
+
+    code, out = run([staging, "--dataset", p, "--backup-dir", tmp_path / "bak"],
+                    capsys)
+
+    assert code != 0, out
+    assert "MIXED line terminators" in out
+
+
+def test_an_lf_staging_file_is_refused_against_a_crlf_dataset(tmp_path, capsys):
+    """Plan §8.4 mutation 4: the refusal must fire in BOTH directions.
+
+    A check written only for "CRLF staging into LF dataset" would pass this.
+
+    MUTATION: make the comparison one-directional -> this fails.
+    """
+    ds = write_csv(tmp_path / "crlf_ds.csv", [make_row(measurement_id="HYC-9001-M1")])
+    ds.write_bytes(ds.read_text().replace("\n", "\r\n").encode("utf-8"))
+    before = ds.read_bytes()
+    st = write_csv(tmp_path / "lf_st.csv",
+                   [make_row(paper_id="HYC-9002", sample_id="HYC-9002-S1",
+                             measurement_id="HYC-9002-M1",
+                             doi="10.1016/j.carbon.2016.04.002")])
+
+    code, out = run([st, "--dataset", ds, "--backup-dir", tmp_path / "bak"], capsys)
+
+    assert code != 0, out
+    assert "line terminator mismatch" in out
+    assert ds.read_bytes() == before
+
+
+def test_a_doubled_final_terminator_is_refused(
+    dataset, staging, baseline, tmp_path, capsys, monkeypatch
+):
+    """Plan §8.4 mutation 5.
+
+    `append_body` already guarantees one newline at the seam, so this guard is
+    unreachable through normal operation -- which is exactly why it needs a test
+    that drives the failure it exists for. A blank final line is invisible to
+    pandas and breaks every later append's line-count check, so the guard is
+    kept rather than deleted as dead.
+
+    MUTATION: drop the doubled-final-terminator check in verify_merged -> this
+    fails, and a dataset with a blank last line is reported as verified.
+    """
+    real = ap.append_body
+
+    def append_twice_terminated(target, body):
+        return real(target, body + "\n")
+
+    monkeypatch.setattr(ap, "append_body", append_twice_terminated)
+    code, out = run([staging, "--dataset", dataset, "--baseline", baseline,
+                     "--backup-dir", tmp_path / "bak"], capsys)
+    assert code != 0, out
+    assert "doubled line terminator" in out
+
+
+def test_a_stray_bare_cr_makes_a_crlf_file_mixed(tmp_path, capsys):
+    """Plan §8.4 mutation 6.
+
+    A bare CR inside an otherwise clean CRLF file is the case that distinguishes
+    counting lone CRs from assuming every CR belongs to a CRLF. Without the
+    distinction the file reports as pure CRLF and the stray CR is never flagged,
+    though it will break a byte-level line split exactly as a lone LF does.
+
+    MUTATION: set lone_cr to 0, or derive `present` from CRLF and LF only ->
+    this fails.
+    """
+    ds = write_csv(tmp_path / "crlf_ds.csv", [make_row(measurement_id="HYC-9001-M1")])
+    raw = ds.read_text().replace("\n", "\r\n").encode("utf-8")
+    # One extra bare CR inside a field, not at a line boundary.
+    assert b"Carbon" in raw
+    ds.write_bytes(raw.replace(b"Carbon", b"Car\rbon", 1))
+
+    st = write_csv(tmp_path / "crlf_st.csv",
+                   [make_row(paper_id="HYC-9002", sample_id="HYC-9002-S1",
+                             measurement_id="HYC-9002-M1",
+                             doi="10.1016/j.carbon.2016.04.002")])
+    st.write_bytes(st.read_text().replace("\n", "\r\n").encode("utf-8"))
+
+    code, out = run([st, "--dataset", ds, "--backup-dir", tmp_path / "bak"], capsys)
+    assert code != 0, out
+    assert "MIXED line terminators" in out and "lone CR" in out
+
+
+def test_the_post_append_terminator_assertion_catches_a_normalising_writer(
+    dataset, staging, baseline, tmp_path, capsys, monkeypatch
+):
+    """Plan §8.4 mutation 2. The preflight covers the staging file; this covers
+    the seam and any future rewrite of append_body that translates.
+
+    Simulated by making append_body write CRLF into the LF dataset AFTER the
+    preflight has passed -- which is exactly what a `newline=""`-less open()
+    would do on some platforms.
+
+    MUTATION: remove the post-append terminator check in verify_merged -> this
+    fails, and a mixed file is reported as verified.
+    """
+    real = ap.append_body
+
+    def append_crlf(target, body):
+        return real(target, body.replace("\n", "\r\n"))
+
+    monkeypatch.setattr(ap, "append_body", append_crlf)
+    code, out = run([staging, "--dataset", dataset, "--baseline", baseline,
+                     "--backup-dir", tmp_path / "bak"], capsys)
+    assert code != 0, out
+    assert "changed the dataset's line terminators" in out
 
 
 # ---------------------------------------------------------------------------
