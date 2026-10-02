@@ -261,17 +261,47 @@ def check_rows(rows: list[dict], dataset: Path | None) -> None:
 
     # §9.1 step 7: the schema is the authority, and a staging file that cannot
     # validate must never reach disk.
+    #
+    # §11.4 exception: pressure_bar > 200 is a WARNING, not a rejection, so
+    # "high-pressure literature can enter the corpus flagged rather than be
+    # rejected". schema.py bounds the field at 200 (do not "fix" it) and
+    # validate.py downgrades the violation; this build gate must agree, or a
+    # high-pressure row never reaches the warning-based append. The downgrade is
+    # scoped to exactly the pressure_bar <= 200 bound: the row is re-validated
+    # with the pressure clamped so every other field check AND the model
+    # validators (conditions, uptake, pore qualifiers) still run strictly.
     errors = []
+    pressure_over_200 = []
     for r in rows:
         payload = {k: v for k, v in r.items() if v != ""}
         try:
             MeasurementEntry(**payload)
         except Exception as exc:  # pydantic ValidationError and anything else
-            errors.append(f"{r['measurement_id']}: {exc}")
+            errs = exc.errors() if hasattr(exc, "errors") else []
+            only_pressure = bool(errs) and all(
+                e.get("loc") == ("pressure_bar",)
+                and e.get("type") == "less_than_equal"
+                for e in errs
+            )
+            if only_pressure:
+                clamped = dict(payload)
+                clamped["pressure_bar"] = 200  # run the remaining checks strictly
+                try:
+                    MeasurementEntry(**clamped)
+                except Exception as exc2:
+                    errors.append(f"{r['measurement_id']}: {exc2}")
+                else:
+                    pressure_over_200.append(r["measurement_id"])
+            else:
+                errors.append(f"{r['measurement_id']}: {exc}")
     if errors:
         joined = "\n  ".join(errors[:10])
         more = f"\n  ... and {len(errors) - 10} more" if len(errors) > 10 else ""
         raise SpecError(f"{len(errors)} row(s) fail schema validation:\n  {joined}{more}")
+    if pressure_over_200:
+        print(f"  NOTE:      pressure > 200 bar on {pressure_over_200} -- §11.4 "
+              f"admits these flagged; append with --expect-new-warning "
+              f"'Pressure above 200 bar'")
 
 
 def render(rows: list[dict], columns: list[str], terminator: str) -> str:

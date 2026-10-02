@@ -380,6 +380,43 @@ def test_a_row_that_fails_the_schema_is_refused_and_nothing_is_written(
     assert not out.exists(), "a refused build must leave no file behind"
 
 
+def test_pressure_above_200_is_admitted_flagged(spec, pre_image, tmp_path, capsys):
+    """Manual §11.4: pressure_bar > 200 is a WARNING, not a rejection, so
+    high-pressure literature (e.g. HYC-0049's 30 MPa / 300 bar room-temperature
+    isotherms) can enter the corpus flagged. schema.py bounds the field at 200
+    and this build gate downgrades ONLY that bound, matching validate.py.
+
+    MUTATION: drop the pressure-downgrade branch (validate straight through
+    MeasurementEntry) -> this fails, and a real 30 MPa measurement is rejected
+    before it can reach the warning-based append.
+    """
+    edit(spec, lambda b: b["measurements"][0].update({"pressure_bar": 300}))
+    out = tmp_path / "s.csv"
+    assert run(spec, pre_image, out) == 0
+    assert out.exists(), "a pressure>200 row must be admitted, flagged"
+    assert "pressure > 200 bar" in capsys.readouterr().out
+    # the 300 bar value is written verbatim, not clamped
+    _, rows = dataset_rows(out)
+    assert any(r["pressure_bar"] in ("300", "300.0") for r in rows)
+
+
+def test_pressure_above_200_with_a_second_error_is_still_refused(
+    spec, pre_image, tmp_path, capsys
+):
+    """The §11.4 downgrade is scoped to the pressure bound alone. A row that is
+    over 200 bar AND violates another rule must still be refused -- the clamped
+    re-validation runs every other field and model check strictly.
+
+    MUTATION: admit on any error once pressure>200 is present -> this fails.
+    """
+    edit(spec, lambda b: b["measurements"][0].update(
+        {"pressure_bar": 300, "uptake_type": "not_a_vocabulary_value"}))
+    out = tmp_path / "s.csv"
+    assert run(spec, pre_image, out) == 1
+    assert "fail schema validation" in capsys.readouterr().err
+    assert not out.exists()
+
+
 def test_an_id_already_in_the_dataset_is_refused(spec, tmp_path, capsys):
     """Plan §7 mutation 6. A re-run must not collide with appended rows.
 
