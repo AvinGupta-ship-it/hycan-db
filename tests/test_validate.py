@@ -552,7 +552,9 @@ def test_the_three_unassessable_chahine_cases_partition_the_corpus():
 
     # 12 before the 2026-10-02 Phase D batch; +2 for HYC-0033's two
     # characterization-only boron-doped rows (its hydrogen uptake is figure-only).
-    assert len(no_uptake) == 14
+    # +5 for HYC-0044's five characterization-only PCF rows (the PCF_L series and
+    # PCF_H 0.5/0.1: Table 1 texture only, no anchorable H2). 14 + 5 = 19.
+    assert len(no_uptake) == 19
     assert len(non_grav) == 11
     assert sorted(unstated) == [
         "HYC-0011-M1",
@@ -797,7 +799,14 @@ def test_no_assigned_tier_changed_and_the_scorer_still_returns_a_letter():
     # assigned B). HYC-0043-M2: the 100-bar 4.51 wt% value (scorer B, assigned C)
     # because Fig 4b shows the excess maximum near ~25-30 bar, so the 100-bar pairing
     # is uncertain. All 22 are new rows; no existing assigned tier changed.
-    assert agree == 224
+    # Now 257 of 391 after the HYC-0044/0045/0046/0047/0048 Phase D batch: +33
+    # agreements and 15 documented hand-adjustments. HYC-0044's five characterization-
+    # only PCF rows (scorer C on texture-only, assigned B per the HYC-0007 table-
+    # characterization convention). HYC-0045's S1/S2/S5 and HYC-0047's nine 77 K rows
+    # take the by-hand calibration point the scorer cannot see (buoyancy correction for
+    # HYC-0045's IGA; ICMPE He void-volume + ICB experimental buoyancy corrections for
+    # HYC-0047) -- scorer B, assigned A. All 15 are new rows; no existing assigned tier changed.
+    assert agree == 257
 
 
 def test_the_rows_in_tension_with_their_assigned_tier_are_named():

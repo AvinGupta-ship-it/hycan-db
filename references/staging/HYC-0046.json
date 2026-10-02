@@ -1,0 +1,288 @@
+{
+  "paper": {
+    "paper_id": "HYC-0046",
+    "doi": "10.1021/cm062329a",
+    "first_author": "Kabbour",
+    "year": "2006",
+    "journal": "Chemistry of Materials",
+    "title": "Toward New Candidates for Hydrogen Storage: High-Surface-Area Carbon Aerogels"
+  },
+  "defaults": {
+    "extractor": "HyCAN pipeline v2",
+    "extraction_date": "2026-10-02",
+    "verification_date": "2026-10-02",
+    "uptake_bound": "exact",
+    "temperature_unstated": "False",
+    "pressure_unstated": "False",
+    "measurement_mode": "isothermal",
+    "measurement_method": "volumetric_sieverts",
+    "extraction_method": "table_direct",
+    "extraction_confidence": "5",
+    "uptake_type": "excess",
+    "verified_by": "Agent B (sonnet, independent re-extraction of Table 1 + text): 9 BET/wt% pairs, 0 numeric disputes (Ni 970/2.3 at 800 C and 1100/2.0 at 1050 C not transposed). Pressure confirmed: only the 3200 m2/g ACA has an explicit 30 bar; the other 8 are genuine surface-excess saturation values with pressure_unstated (the '~30 bar'/'~35 bar' statements are collective/literature, not per-sample). uptake_type=excess ('surface excess') confirmed. synthesis_method split confirmed: undoped ACAs CO2-activated (physical_activation), Ni/Co pyrolyzed only (pyrolysis); Co surface_area_method=not_reported confirmed. The 330 m2/g non-carbonized organic aerogel correctly excluded. material_class=composite for Ni/Co endorsed (discrete metal nanoparticles = two-phase, not lattice doping). No changes."
+  },
+  "notes": {
+    "type": "uptake_type=excess (exact-word rule): the paper reports 'hydrogen surface excess sorption' / 'H2 surface excess saturation value' throughout (abstract, Figs 1-2, Table 1)",
+    "sat": "the recorded value is the saturation maximum of the surface-excess isotherm at 77 K (Table 1 'H2 (wt%)'); it is the peak of the excess trace, not a fixed-pressure reading",
+    "p3200": "only the 3200 m2/g ACA has an explicit pressure: '5.3 wt% at 30 bar' (abstract, text); recorded at 30 bar",
+    "punstated": "for every sample except the 3200 m2/g ACA the per-sample saturation pressure is not stated: the text gives only a general '~30 bar for higher surface area materials' and the isotherms span 0-40 bar; imputing a per-sample pressure would fabricate a condition, so pressure_unstated=True (HYC-0011/0015 precedent)",
+    "method": "H2 adsorption/desorption excess sorption by a volumetric Sieverts apparatus; the paper states no H2 purity, no sample mass and describes no explicit void-volume/buoyancy correction, so no calibration point",
+    "aca": "undoped activated carbon aerogel: sol-gel polymerization of resorcinol-formaldehyde, supercritically dried, pyrolyzed, then CO2-activated at 950 C; class=carbon_aerogel, synthesis_method=physical_activation (CO2 activation); the sample is labelled by its BET surface area",
+    "metal": "Ni-/Co-modified carbon aerogels are metal-bearing -> class 'composite' with metal_element (HYC-0027/29/39/40 convention); these are pyrolyzed but NOT CO2-activated ('The undoped CAs were then activated with CO2'), so synthesis_method=pyrolysis; metal nanoparticles homogeneously distributed in the CA network; metal loading not quantified",
+    "cosa": "Co-modified CA: the paper reports no BET surface area for the Co samples (areas are given only for the undoped ACAs and the two Ni samples), so surface_area_method=not_reported",
+    "org": "the 330 m2/g organic aerogel (0.8 wt% at 20 bar) is explicitly 'not carbonized' / 'prior to carbonization' -- it is not a carbon material and is excluded",
+    "chahine": "77 K saturation excess; ACA 3200 at 30 bar gives 5.3 wt% ~ 3200/500=6.4 Chahine estimate, physically consistent (the paper's own point is the linear ~1 wt% per 500 m2/g law)"
+  },
+  "samples": {
+    "S1": {
+      "label": "ACA 1460",
+      "material_class": "carbon_aerogel",
+      "synthesis_method": "physical_activation",
+      "material_description": "activated carbon aerogel (resorcinol-formaldehyde sol-gel, supercritically dried, pyrolyzed, CO2-activated at 950 C), BET surface area 1460 m2/g",
+      "activation_method": "CO2 activation at 950 C",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1460.0",
+      "notes": [
+        "aca",
+        "type",
+        "sat",
+        "method",
+        "chahine",
+        "punstated"
+      ]
+    },
+    "S2": {
+      "label": "ACA 1700",
+      "material_class": "carbon_aerogel",
+      "synthesis_method": "physical_activation",
+      "material_description": "activated carbon aerogel (resorcinol-formaldehyde sol-gel, supercritically dried, pyrolyzed, CO2-activated at 950 C), BET surface area 1700 m2/g",
+      "activation_method": "CO2 activation at 950 C",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1700.0",
+      "notes": [
+        "aca",
+        "type",
+        "sat",
+        "method",
+        "chahine",
+        "punstated"
+      ]
+    },
+    "S3": {
+      "label": "ACA 2000",
+      "material_class": "carbon_aerogel",
+      "synthesis_method": "physical_activation",
+      "material_description": "activated carbon aerogel (resorcinol-formaldehyde sol-gel, supercritically dried, pyrolyzed, CO2-activated at 950 C), BET surface area 2000 m2/g",
+      "activation_method": "CO2 activation at 950 C",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "2000.0",
+      "notes": [
+        "aca",
+        "type",
+        "sat",
+        "method",
+        "chahine",
+        "punstated"
+      ]
+    },
+    "S4": {
+      "label": "ACA 2550",
+      "material_class": "carbon_aerogel",
+      "synthesis_method": "physical_activation",
+      "material_description": "activated carbon aerogel (resorcinol-formaldehyde sol-gel, supercritically dried, pyrolyzed, CO2-activated at 950 C), BET surface area 2550 m2/g",
+      "activation_method": "CO2 activation at 950 C",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "2550.0",
+      "notes": [
+        "aca",
+        "type",
+        "sat",
+        "method",
+        "chahine",
+        "punstated"
+      ]
+    },
+    "S5": {
+      "label": "ACA 3200",
+      "material_class": "carbon_aerogel",
+      "synthesis_method": "physical_activation",
+      "material_description": "activated carbon aerogel (resorcinol-formaldehyde sol-gel, supercritically dried, pyrolyzed, CO2-activated at 950 C), BET surface area 3200 m2/g",
+      "activation_method": "CO2 activation at 950 C",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "3200.0",
+      "notes": [
+        "aca",
+        "type",
+        "sat",
+        "method",
+        "chahine",
+        "p3200"
+      ]
+    },
+    "S6": {
+      "label": "Co-CA-800",
+      "material_class": "composite",
+      "synthesis_method": "pyrolysis",
+      "material_description": "cobalt-modified carbon aerogel (resorcinol-formaldehyde sol-gel, pyrolyzed; metal nanoparticles in the CA network), carbonized at 800 C",
+      "metal_element": "Co",
+      "notes": [
+        "metal",
+        "type",
+        "sat",
+        "method",
+        "punstated",
+        "cosa"
+      ],
+      "surface_area_method": "not_reported"
+    },
+    "S7": {
+      "label": "Co-CA-1050",
+      "material_class": "composite",
+      "synthesis_method": "pyrolysis",
+      "material_description": "cobalt-modified carbon aerogel (resorcinol-formaldehyde sol-gel, pyrolyzed; metal nanoparticles in the CA network), carbonized at 1050 C",
+      "metal_element": "Co",
+      "notes": [
+        "metal",
+        "type",
+        "sat",
+        "method",
+        "punstated",
+        "cosa"
+      ],
+      "surface_area_method": "not_reported"
+    },
+    "S8": {
+      "label": "Ni-CA-800",
+      "material_class": "composite",
+      "synthesis_method": "pyrolysis",
+      "material_description": "nickel-modified carbon aerogel (resorcinol-formaldehyde sol-gel, pyrolyzed; metal nanoparticles in the CA network), carbonized at 800 C",
+      "metal_element": "Ni",
+      "notes": [
+        "metal",
+        "type",
+        "sat",
+        "method",
+        "punstated"
+      ],
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "970.0"
+    },
+    "S9": {
+      "label": "Ni-CA-1050",
+      "material_class": "composite",
+      "synthesis_method": "pyrolysis",
+      "material_description": "nickel-modified carbon aerogel (resorcinol-formaldehyde sol-gel, pyrolyzed; metal nanoparticles in the CA network), carbonized at 1050 C",
+      "metal_element": "Ni",
+      "notes": [
+        "metal",
+        "type",
+        "sat",
+        "method",
+        "punstated"
+      ],
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1100.0"
+    }
+  },
+  "measurements": [
+    {
+      "sample": "S1",
+      "temperature_k": "77",
+      "uptake_wt_pct": "3.5",
+      "reproducibility_tier": "B",
+      "source_location": "Table 1 (differential enthalpy and H2 wt% saturation value at 77 K); abstract/body (3200 m2/g ACA at 30 bar); method 'volumetric Sieverts apparatus'",
+      "pressure_unstated": "True",
+      "notes": [
+        "punstated"
+      ]
+    },
+    {
+      "sample": "S2",
+      "temperature_k": "77",
+      "uptake_wt_pct": "3.6",
+      "reproducibility_tier": "B",
+      "source_location": "Table 1 (differential enthalpy and H2 wt% saturation value at 77 K); abstract/body (3200 m2/g ACA at 30 bar); method 'volumetric Sieverts apparatus'",
+      "pressure_unstated": "True",
+      "notes": [
+        "punstated"
+      ]
+    },
+    {
+      "sample": "S3",
+      "temperature_k": "77",
+      "uptake_wt_pct": "4.2",
+      "reproducibility_tier": "B",
+      "source_location": "Table 1 (differential enthalpy and H2 wt% saturation value at 77 K); abstract/body (3200 m2/g ACA at 30 bar); method 'volumetric Sieverts apparatus'",
+      "pressure_unstated": "True",
+      "notes": [
+        "punstated"
+      ]
+    },
+    {
+      "sample": "S4",
+      "temperature_k": "77",
+      "uptake_wt_pct": "5.0",
+      "reproducibility_tier": "B",
+      "source_location": "Table 1 (differential enthalpy and H2 wt% saturation value at 77 K); abstract/body (3200 m2/g ACA at 30 bar); method 'volumetric Sieverts apparatus'",
+      "pressure_unstated": "True",
+      "notes": [
+        "punstated"
+      ]
+    },
+    {
+      "sample": "S5",
+      "temperature_k": "77",
+      "uptake_wt_pct": "5.3",
+      "reproducibility_tier": "B",
+      "source_location": "Table 1 (differential enthalpy and H2 wt% saturation value at 77 K); abstract/body (3200 m2/g ACA at 30 bar); method 'volumetric Sieverts apparatus'",
+      "pressure_bar": "30",
+      "notes": [
+        "p3200"
+      ]
+    },
+    {
+      "sample": "S6",
+      "temperature_k": "77",
+      "uptake_wt_pct": "2.1",
+      "reproducibility_tier": "C",
+      "source_location": "Table 1 (differential enthalpy and H2 wt% saturation value at 77 K); abstract/body (3200 m2/g ACA at 30 bar); method 'volumetric Sieverts apparatus'",
+      "pressure_unstated": "True",
+      "notes": [
+        "punstated"
+      ]
+    },
+    {
+      "sample": "S7",
+      "temperature_k": "77",
+      "uptake_wt_pct": "2.1",
+      "reproducibility_tier": "C",
+      "source_location": "Table 1 (differential enthalpy and H2 wt% saturation value at 77 K); abstract/body (3200 m2/g ACA at 30 bar); method 'volumetric Sieverts apparatus'",
+      "pressure_unstated": "True",
+      "notes": [
+        "punstated"
+      ]
+    },
+    {
+      "sample": "S8",
+      "temperature_k": "77",
+      "uptake_wt_pct": "2.3",
+      "reproducibility_tier": "B",
+      "source_location": "Table 1 (differential enthalpy and H2 wt% saturation value at 77 K); abstract/body (3200 m2/g ACA at 30 bar); method 'volumetric Sieverts apparatus'",
+      "pressure_unstated": "True",
+      "notes": [
+        "punstated"
+      ]
+    },
+    {
+      "sample": "S9",
+      "temperature_k": "77",
+      "uptake_wt_pct": "2.0",
+      "reproducibility_tier": "B",
+      "source_location": "Table 1 (differential enthalpy and H2 wt% saturation value at 77 K); abstract/body (3200 m2/g ACA at 30 bar); method 'volumetric Sieverts apparatus'",
+      "pressure_unstated": "True",
+      "notes": [
+        "punstated"
+      ]
+    }
+  ]
+}

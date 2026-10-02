@@ -6,7 +6,7 @@
 %   Regenerate: python3 scripts/build_bibliography.py
 %   Verify:     python3 scripts/build_bibliography.py --check
 %
-% 41 entries: 37 screened in, 4 screened out. The
+% 46 entries: 42 screened in, 4 screened out. The
 % excluded papers are kept because PRISMA reporting has to cite what it excluded.
 % Every entry's key is its HyCAN-DB paper_id, so a citation in the manuscript
 % resolves directly to the rows it describes in data/raw/measurements_v0.1.csv.
@@ -14,7 +14,7 @@
 % HOW THESE WERE RESOLVED (§3.5: a DOI or a citation recalled from model weights
 % is not a citation).
 %
-% 34 entries have their author list, title, journal, volume, pages and year
+% 39 entries have their author list, title, journal, volume, pages and year
 % read off the article's OWN PAGES -- title block, byline, running header and
 % footer -- from the PDF held in the project. That is the primary record.
 % 7 entries have no PDF on hand and are resolved from metadata services,
@@ -502,4 +502,61 @@
   year         = {2019},
   doi          = {10.15376/biores.14.4.9755-9765},
   note         = {Issue number 4 is printed in the citation line (BioResources 14(4), 9755-9765).},
+}
+
+@article{HYC-0044,
+  author       = {Hwang, Sung-Ho and Kim, Young Kwang and Seo, Hye-Jin and Jeong, Soon Moon and Kim, Jongwon and Lim, Sang Kyoo},
+  title        = {{The Enhanced Hydrogen Storage Capacity of Carbon Fibers: The Effect of Hollow Porous Structure and Surface Modification}},
+  journal      = {Nanomaterials},
+  volume       = {11},
+  pages        = {1830},
+  year         = {2021},
+  doi          = {10.3390/nano11071830},
+  note         = {MDPI article-numbered (Nanomaterials 2021, 11, 1830); the running head prints volume and article number and no issue, so the issue is omitted pending an OpenAlex backfill. 'pages' is the article number.},
+}
+
+@article{HYC-0045,
+  author       = {Masika, Eric and Mokaya, Robert},
+  title        = {{Preparation of ultrahigh surface area porous carbons templated using zeolite 13X for enhanced hydrogen storage}},
+  journal      = {Progress in Natural Science: Materials International},
+  volume       = {23},
+  number       = {3},
+  pages        = {308-316},
+  year         = {2013},
+  doi          = {10.1016/j.pnsc.2013.04.007},
+  note         = {Issue number 3 is printed in the citation line (Prog. Nat. Sci.: Mater. Int. 2013;23(3):308-316).},
+}
+
+@article{HYC-0046,
+  author       = {Kabbour, Houria and Baumann, Theodore F. and Jr, Joe H. Satcher and Saulnier, Angelique and Ahn, Channing C.},
+  title        = {{Toward New Candidates for Hydrogen Storage: High-Surface-Area Carbon Aerogels}},
+  journal      = {Chemistry of Materials},
+  volume       = {18},
+  number       = {26},
+  pages        = {6085-6087},
+  year         = {2006},
+  doi          = {10.1021/cm062329a},
+  note         = {The held PDF is the LLNL preprint (UCRL-JRNL-227848, dated 2007-02-07), which prints the title, author list and target journal but no volume, issue, page range or publication year. Year, volume, issue and pages are the published values (Chem. Mater. 2006, 18(26), 6085-6087), read from the reference lists of two held PDFs that cite this paper -- HYC-0047 ref [42] (which prints 18(26):6085-7) and HYC-0044 ref [17] -- and corroborated by the publisher DOI record (verified via the Caltech authoritative record for doi 10.1021/cm062329a); the OpenAlex, Semantic Scholar and Crossref APIs were all unreachable from this session.},
+}
+
+@article{HYC-0047,
+  author       = {Fierro, V. and Szczurek, A. and Zlotea, C. and Marêché, J.F. and Izquierdo, M.T. and Albiniak, A. and Latroche, M. and Furdin, G. and Celzard, A.},
+  title        = {{Experimental evidence of an upper limit for hydrogen storage at 77 K on activated carbons}},
+  journal      = {Carbon},
+  volume       = {48},
+  pages        = {1902-1911},
+  year         = {2010},
+  doi          = {10.1016/j.carbon.2010.01.052},
+  note         = {Elsevier running head prints volume, year and pages only (Carbon 48 (2010) 1902-1911); no issue, so it is omitted pending an OpenAlex backfill. The PDF prints author initials only.},
+}
+
+@article{HYC-0048,
+  author       = {Kahilu, Gentil Mwengula and Bada, Samson and Mulopo, Jean},
+  title        = {{Systematic physicochemical characterization, carbon balance and cost of production analyses of activated carbons derived from (Co)-HTC of coal discards and sewage sludge for hydrogen storage applications}},
+  journal      = {Waste Disposal & Sustainable Energy},
+  volume       = {5},
+  pages        = {125-149},
+  year         = {2023},
+  doi          = {10.1007/s42768-023-00136-4},
+  note         = {Springer running head prints volume, year and pages only (Waste Dispos. Sustain. Energy (2023) 5:125-149); no issue, so it is omitted pending an OpenAlex backfill.},
 }

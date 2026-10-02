@@ -1,0 +1,210 @@
+{
+  "paper": {
+    "paper_id": "HYC-0045",
+    "doi": "10.1016/j.pnsc.2013.04.007",
+    "first_author": "Masika",
+    "year": "2013",
+    "journal": "Progress in Natural Science: Materials International",
+    "title": "Preparation of ultrahigh surface area porous carbons templated using zeolite 13X for enhanced hydrogen storage"
+  },
+  "defaults": {
+    "extractor": "HyCAN pipeline v2",
+    "extraction_date": "2026-10-02",
+    "verification_date": "2026-10-02",
+    "uptake_bound": "exact",
+    "temperature_unstated": "False",
+    "pressure_unstated": "False",
+    "measurement_mode": "isothermal",
+    "measurement_method": "gravimetric_microbalance",
+    "extraction_method": "table_direct",
+    "extraction_confidence": "5",
+    "uptake_type": "total",
+    "verified_by": "Agent B (sonnet, independent re-extraction of Tables 1-2 + text): 36 numeric cells, 0 disputes; micropore fractions re-derived (85-88% SA, 71-75% V) match the text. uptake_type by exact-word rule confirmed: the 7.3 wt% (FA-ZTC1, Table 1) is the 'total hydrogen uptake capacity' (Summary) and the extra FA-ZTC1 6.2 wt% is the 'excess hydrogen uptake'; the 9.22 wt% Langmuir extrapolation and the zeolite-13X template correctly excluded. total-excess=1.1 wt% matches the computed compressed-gas term (physical cross-check). Buoyancy correction confirmed described -> calibration point by hand -> all rows Tier A. No changes."
+  },
+  "notes": {
+    "type": "uptake_type=total (exact-word rule): the Summary states 'The templated carbons have a total hydrogen uptake capacity of up to 7.3 wt% at 20 bar and 77 K, excess hydrogen uptake of 6.2 wt%' -- the 7.3 (=FA-ZTC1, Table 1 column) is the total; so the Table 1/2 'H2 uptake' column is total for every sample",
+    "excessrow": "FA-ZTC1 additionally has a stated excess uptake of 6.2 wt% at 20 bar/77 K (section 3.5, Summary); recorded as a second row (uptake_type=excess), mirroring the HYC-0031 total/excess pairing",
+    "exclude": "the projected maximum TOTAL capacity of 9.22 wt% for FA-ZTC1 is a Langmuir extrapolation (section 3.5) and is excluded as modelled/extrapolated",
+    "method": "H2 by gravimetric analysis (IGA, Hiden); 99.9999% H2 further purified by a molecular-sieve filter; degassed 200 C at 1e-10 bar 4-6 h; uptake corrected for buoyancy of system and samples using carbon density 1.5 g/cm3 and adsorbed-H2 density 0.04 g/cm3 -> calibration point by hand (buoyancy correction described, tiering doc l.24)",
+    "sa": "surface_area_method=BET (P/P0 0.06-0.22); SBET and the parenthetic micropore surface area from Table 1/2; total pore volume from N2 adsorbed at P/P0=0.99 (single-point) with its parenthetic micropore volume; pore_volume_method=unspecified (single-point total; corpus convention for single-point totals)",
+    "psd": "pore size is a unimodal NLDFT PSD maximum at 1.2 nm (0.6/1.2 nm bimodal after compaction); recorded as a note not as average_pore_diameter (a PSD mode is not a mean; HYC-0042 ZTC precedent left pore diameter empty)",
+    "ztc": "zeolite-13X templated carbon by furfuryl-alcohol liquid impregnation + ethylene CVD at 700 C, then 900 C under Ar; zeolite removed by 10% HF 24 h then reflux in 36.5% HCl 6 h (purification); class=templated_carbon, synthesis_method=template_synthesis (HYC-0042 ZTC precedent)",
+    "compact": "C5-/C10-FA-ZTC3 are FA-ZTC3 after uniaxial compaction at 5 t (370 MPa) / 10 t (740 MPa); compaction is a post-synthesis mechanical treatment (not activation), noted in the description; textural/H2 data are the post-compaction values (Table 2)",
+    "chahine": "77 K, 20 bar (not 1 bar, so the saturation bound applies); FA-ZTC1 total 7.3 wt% at 3332 m2/g: the excess (6.2) is below the ~6.66 wt% Chahine estimate and the total exceeds it only by the compressed-gas term, so physically consistent (no physics override)"
+  },
+  "samples": {
+    "S1": {
+      "label": "FA-ZTC1",
+      "material_class": "templated_carbon",
+      "synthesis_method": "template_synthesis",
+      "material_description": "zeolite-13X templated carbon, furfuryl-alcohol LI + ethylene CVD, 5 C/min ramp",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "3332.0",
+      "micropore_surface_area_m2_g": "2837.0",
+      "total_pore_volume_cm3_g": "1.66",
+      "micropore_volume_cm3_g": "1.18",
+      "pore_volume_method": "unspecified",
+      "pore_volume_probe_gas": "N2",
+      "purification_method": "zeolite 13X template removed by 10% HF wash 24 h then reflux in 36.5% HCl 6 h; washed with deionised water",
+      "notes": [
+        "ztc",
+        "type",
+        "method",
+        "sa",
+        "psd",
+        "chahine",
+        "excessrow",
+        "exclude"
+      ]
+    },
+    "S2": {
+      "label": "FA-ZTC2",
+      "material_class": "templated_carbon",
+      "synthesis_method": "template_synthesis",
+      "material_description": "zeolite-13X templated carbon, 10 C/min heating ramp rate",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "3106.0",
+      "micropore_surface_area_m2_g": "2728.0",
+      "total_pore_volume_cm3_g": "1.50",
+      "micropore_volume_cm3_g": "1.13",
+      "pore_volume_method": "unspecified",
+      "pore_volume_probe_gas": "N2",
+      "purification_method": "zeolite 13X template removed by 10% HF wash 24 h then reflux in 36.5% HCl 6 h; washed with deionised water",
+      "notes": [
+        "ztc",
+        "type",
+        "method",
+        "sa",
+        "psd",
+        "chahine"
+      ]
+    },
+    "S3": {
+      "label": "FA-ZTC3",
+      "material_class": "templated_carbon",
+      "synthesis_method": "template_synthesis",
+      "material_description": "zeolite-13X templated carbon, 15 C/min heating ramp rate",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "3169.0",
+      "micropore_surface_area_m2_g": "2760.0",
+      "total_pore_volume_cm3_g": "1.55",
+      "micropore_volume_cm3_g": "1.15",
+      "pore_volume_method": "unspecified",
+      "pore_volume_probe_gas": "N2",
+      "purification_method": "zeolite 13X template removed by 10% HF wash 24 h then reflux in 36.5% HCl 6 h; washed with deionised water",
+      "notes": [
+        "ztc",
+        "type",
+        "method",
+        "sa",
+        "psd",
+        "chahine"
+      ]
+    },
+    "S4": {
+      "label": "C5-FA-ZTC3",
+      "material_class": "templated_carbon",
+      "synthesis_method": "template_synthesis",
+      "material_description": "FA-ZTC3 after uniaxial compaction at 5 t (370 MPa) for 10 min",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "3192.0",
+      "micropore_surface_area_m2_g": "2769.0",
+      "total_pore_volume_cm3_g": "1.60",
+      "micropore_volume_cm3_g": "1.15",
+      "pore_volume_method": "unspecified",
+      "pore_volume_probe_gas": "N2",
+      "purification_method": "zeolite 13X template removed by 10% HF wash 24 h then reflux in 36.5% HCl 6 h; washed with deionised water",
+      "notes": [
+        "ztc",
+        "type",
+        "method",
+        "sa",
+        "psd",
+        "chahine",
+        "compact"
+      ]
+    },
+    "S5": {
+      "label": "C10-FA-ZTC3",
+      "material_class": "templated_carbon",
+      "synthesis_method": "template_synthesis",
+      "material_description": "FA-ZTC3 after uniaxial compaction at 10 t (740 MPa) for 10 min",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "2782.0",
+      "micropore_surface_area_m2_g": "2430.0",
+      "total_pore_volume_cm3_g": "1.27",
+      "micropore_volume_cm3_g": "0.91",
+      "pore_volume_method": "unspecified",
+      "pore_volume_probe_gas": "N2",
+      "purification_method": "zeolite 13X template removed by 10% HF wash 24 h then reflux in 36.5% HCl 6 h; washed with deionised water",
+      "notes": [
+        "ztc",
+        "type",
+        "method",
+        "sa",
+        "psd",
+        "chahine",
+        "compact"
+      ]
+    }
+  },
+  "measurements": [
+    {
+      "sample": "S1",
+      "temperature_k": "77",
+      "pressure_bar": "20",
+      "uptake_wt_pct": "7.3",
+      "uptake_type": "total",
+      "reproducibility_tier": "A",
+      "source_location": "Table 1 (FA-ZTCn) / Table 2 (compacted): BET SSA (micropore in parens), pore volume (micropore in parens), NLDFT pore size, total H2 uptake at 77 K & 20 bar; method section 2.3"
+    },
+    {
+      "sample": "S2",
+      "temperature_k": "77",
+      "pressure_bar": "20",
+      "uptake_wt_pct": "6.6",
+      "uptake_type": "total",
+      "reproducibility_tier": "A",
+      "source_location": "Table 1 (FA-ZTCn) / Table 2 (compacted): BET SSA (micropore in parens), pore volume (micropore in parens), NLDFT pore size, total H2 uptake at 77 K & 20 bar; method section 2.3"
+    },
+    {
+      "sample": "S3",
+      "temperature_k": "77",
+      "pressure_bar": "20",
+      "uptake_wt_pct": "6.2",
+      "uptake_type": "total",
+      "reproducibility_tier": "A",
+      "source_location": "Table 1 (FA-ZTCn) / Table 2 (compacted): BET SSA (micropore in parens), pore volume (micropore in parens), NLDFT pore size, total H2 uptake at 77 K & 20 bar; method section 2.3"
+    },
+    {
+      "sample": "S4",
+      "temperature_k": "77",
+      "pressure_bar": "20",
+      "uptake_wt_pct": "6.3",
+      "uptake_type": "total",
+      "reproducibility_tier": "A",
+      "source_location": "Table 1 (FA-ZTCn) / Table 2 (compacted): BET SSA (micropore in parens), pore volume (micropore in parens), NLDFT pore size, total H2 uptake at 77 K & 20 bar; method section 2.3"
+    },
+    {
+      "sample": "S5",
+      "temperature_k": "77",
+      "pressure_bar": "20",
+      "uptake_wt_pct": "5.9",
+      "uptake_type": "total",
+      "reproducibility_tier": "A",
+      "source_location": "Table 1 (FA-ZTCn) / Table 2 (compacted): BET SSA (micropore in parens), pore volume (micropore in parens), NLDFT pore size, total H2 uptake at 77 K & 20 bar; method section 2.3"
+    },
+    {
+      "sample": "S1",
+      "temperature_k": "77",
+      "pressure_bar": "20",
+      "uptake_wt_pct": "6.2",
+      "uptake_type": "excess",
+      "reproducibility_tier": "A",
+      "source_location": "section 3.5 and Summary: FA-ZTC1 excess hydrogen uptake 6.2 wt% at 20 bar & 77 K",
+      "notes": [
+        "excessrow"
+      ]
+    }
+  ]
+}

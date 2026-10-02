@@ -1,0 +1,506 @@
+{
+  "paper": {
+    "paper_id": "HYC-0047",
+    "doi": "10.1016/j.carbon.2010.01.052",
+    "first_author": "Fierro",
+    "year": "2010",
+    "journal": "Carbon",
+    "title": "Experimental evidence of an upper limit for hydrogen storage at 77 K on activated carbons"
+  },
+  "defaults": {
+    "extractor": "HyCAN pipeline v2",
+    "extraction_date": "2026-10-02",
+    "verification_date": "2026-10-02",
+    "uptake_bound": "exact",
+    "temperature_unstated": "False",
+    "pressure_unstated": "False",
+    "measurement_mode": "isothermal",
+    "measurement_method": "volumetric_sieverts",
+    "extraction_method": "table_direct",
+    "extraction_confidence": "5",
+    "uptake_type": "excess",
+    "verified_by": "Agent B (sonnet, independent re-extraction of Tables 1-2): Table 1 texture 0 mismatches (9 samples x 6 params), all Table 2 uptake cells 0 mismatches; the 4 n.d. cells correctly handled; the 298 K/20 MPa 1.1 wt% across-samples maximum correctly excluded. uptake_type=excess confirmed. Agent C adjudications: (1) pressure_bar unit fix -- the paper states MPa, so 5 MPa->50 bar (298 K) and 4 MPa->40 bar (77 K) (Agent B caught the un-converted magnitudes); (2) pore_diameter_method DR_characteristic_energy->stoeckli_L0 (the paper uses Stoeckli's exact L0=10.8/(E0-11.4), cited to Stoeckli); (3) multi-device modelling -- collapsed to ONE excess row per (sample, T, P) (18 rows, not 32) so the corpus's one-point-per-sample/T/P plotting invariant holds; the parallel lab/method values (IJL/ICMPE volumetric at 298 K; ICMPE volumetric/ICB gravimetric at 77 K) are in each row's source_location. He void-volume (ICMPE) + experimental buoyancy (ICB) corrections -> calibration point -> all rows Tier A."
+  },
+  "notes": {
+    "type": "uptake_type=excess (exact-word rule): Table 2 is 'Hydrogen uptake (excess)' and the text reports 'H2 excess capacities' throughout",
+    "multidev": "Table 2 reports each sample measured by up to three independent labs/devices (IJL volumetric and ICMPE volumetric at 298 K/5 MPa; ICMPE volumetric and ICB gravimetric at 77 K/4 MPa) to demonstrate reproducibility. The corpus holds ONE excess row per (sample, T, P): recording each device as its own row would double-count every material in the Chahine / uptake-vs-area statistics (tests/test_plotting.py pins one point per sample/T/P). So the ICMPE value is recorded (it is reported for every sample at both temperatures) and source_location gives the parallel lab/method value(s), which agree within the stated +-0.1 wt% -- the paper's central claim. Where ICMPE is n.d. at 298 K the IJL volumetric value is recorded instead. measurement_method is volumetric_sieverts (the recorded ICMPE/IJL value); the ICB gravimetric cross-check is in source_location.",
+    "method": "three devices: IJL lab-made volumetric (298 K, to 20 MPa, Hemmes EoS, vessel-compression corrected); ICMPE volumetric PCI Sieverts (77 & 298 K, to 8 MPa, GASPAK EoS, He void correction, dry mass); ICB VTI gravimetric (77 K, to 8 MPa, experimental buoyancy correction). H2 purity >5N (IJL) / 6N (ICMPE). The He void-volume and buoyancy corrections -> calibration point by hand (tiering doc l.24)",
+    "sa": "surface_area_method=BET (high-resolution N2 at 77 K, P/P0 to 1e-7); total pore volume V0.99 (Gurvitch single-point at P/P0=0.99); micropore_volume = VDR,N2 (DR on N2); micropore_volume_co2 = VDR,CO2 (DR on CO2 at 273 K, pores <0.7 nm); pore_volume_method=DR (describes the DR micropore volumes), probe N2",
+    "l0": "average_pore_diameter = L0, the average pore width computed by the Stoeckli-Ballerini relation L0=10.8/(E0-11.4) (E0 the DR characteristic energy), cited to Stoeckli (ref 33); pore_diameter_method=stoeckli_L0 -- the paper uses Stoeckli's L0 formula explicitly, which the manual recognises as a category distinct from HYC-0024's 'DR characteristic-energy slit width' (Agent B HYC-0047 adjudication)",
+    "rho": "skeletal_density = qHe, the true density by He pycnometry (Table 1)",
+    "excl": "the 298 K / 20 MPa maximum excess of 1.1 wt% (conclusions) is a single across-samples maximum, not a per-sample tabulated value, and is not recorded; CO2 uptake (VDR,CO2) is a texture probe, not H2",
+    "chahine": "77 K, 4 MPa excess; the paper's own finding is an upper limit of 6.4 wt% at ~2630 m2/g (close to the 6.8 wt% theoretical), so the high 77 K values are physically bounded (no physics override)"
+  },
+  "samples": {
+    "S1": {
+      "label": "M1149",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "activated carbon from NaOH/KOH chemical activation of Moszczenica (Polish) anthracite; labelled by BET area 1149.0 m2/g",
+      "activation_method": "chemical activation with NaOH or KOH (XOH/anthracite 1-3), 973-1073 K 1 h under N2; washed with 1 M HCl then water",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1149.0",
+      "total_pore_volume_cm3_g": "0.45",
+      "micropore_volume_cm3_g": "0.44",
+      "micropore_volume_co2_cm3_g": "0.49",
+      "average_pore_diameter_nm": "0.49",
+      "pore_diameter_method": "stoeckli_L0",
+      "skeletal_density_g_cm3": "1.61",
+      "pore_volume_method": "DR",
+      "pore_volume_probe_gas": "N2",
+      "purification_method": "washed with 1 M HCl then distilled water until pH ~6",
+      "notes": [
+        "type",
+        "multidev",
+        "method",
+        "sa",
+        "l0",
+        "rho",
+        "excl",
+        "chahine"
+      ]
+    },
+    "S2": {
+      "label": "T1308",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "activated carbon from NaOH/KOH chemical activation of Taisi (Chinese) anthracite; labelled by BET area 1308.0 m2/g",
+      "activation_method": "chemical activation with NaOH or KOH (XOH/anthracite 1-3), 973-1073 K 1 h under N2; washed with 1 M HCl then water",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1308.0",
+      "total_pore_volume_cm3_g": "0.57",
+      "micropore_volume_cm3_g": "0.47",
+      "micropore_volume_co2_cm3_g": "0.32",
+      "average_pore_diameter_nm": "0.75",
+      "pore_diameter_method": "stoeckli_L0",
+      "skeletal_density_g_cm3": "1.83",
+      "pore_volume_method": "DR",
+      "pore_volume_probe_gas": "N2",
+      "purification_method": "washed with 1 M HCl then distilled water until pH ~6",
+      "notes": [
+        "type",
+        "multidev",
+        "method",
+        "sa",
+        "l0",
+        "rho",
+        "excl",
+        "chahine"
+      ]
+    },
+    "S3": {
+      "label": "M2029",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "activated carbon from NaOH/KOH chemical activation of Moszczenica (Polish) anthracite; labelled by BET area 2029.0 m2/g",
+      "activation_method": "chemical activation with NaOH or KOH (XOH/anthracite 1-3), 973-1073 K 1 h under N2; washed with 1 M HCl then water",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "2029.0",
+      "total_pore_volume_cm3_g": "0.83",
+      "micropore_volume_cm3_g": "0.75",
+      "micropore_volume_co2_cm3_g": "0.47",
+      "average_pore_diameter_nm": "0.93",
+      "pore_diameter_method": "stoeckli_L0",
+      "skeletal_density_g_cm3": "2.10",
+      "pore_volume_method": "DR",
+      "pore_volume_probe_gas": "N2",
+      "purification_method": "washed with 1 M HCl then distilled water until pH ~6",
+      "notes": [
+        "type",
+        "multidev",
+        "method",
+        "sa",
+        "l0",
+        "rho",
+        "excl",
+        "chahine"
+      ]
+    },
+    "S4": {
+      "label": "T2275",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "activated carbon from NaOH/KOH chemical activation of Taisi (Chinese) anthracite; labelled by BET area 2275.0 m2/g",
+      "activation_method": "chemical activation with NaOH or KOH (XOH/anthracite 1-3), 973-1073 K 1 h under N2; washed with 1 M HCl then water",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "2275.0",
+      "total_pore_volume_cm3_g": "1.03",
+      "micropore_volume_cm3_g": "0.79",
+      "micropore_volume_co2_cm3_g": "0.37",
+      "average_pore_diameter_nm": "1.03",
+      "pore_diameter_method": "stoeckli_L0",
+      "skeletal_density_g_cm3": "1.91",
+      "pore_volume_method": "DR",
+      "pore_volume_probe_gas": "N2",
+      "purification_method": "washed with 1 M HCl then distilled water until pH ~6",
+      "notes": [
+        "type",
+        "multidev",
+        "method",
+        "sa",
+        "l0",
+        "rho",
+        "excl",
+        "chahine"
+      ]
+    },
+    "S5": {
+      "label": "T2451",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "activated carbon from NaOH/KOH chemical activation of Taisi (Chinese) anthracite; labelled by BET area 2451.0 m2/g",
+      "activation_method": "chemical activation with NaOH or KOH (XOH/anthracite 1-3), 973-1073 K 1 h under N2; washed with 1 M HCl then water",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "2451.0",
+      "total_pore_volume_cm3_g": "1.14",
+      "micropore_volume_cm3_g": "0.87",
+      "micropore_volume_co2_cm3_g": "0.43",
+      "average_pore_diameter_nm": "1.09",
+      "pore_diameter_method": "stoeckli_L0",
+      "skeletal_density_g_cm3": "1.89",
+      "pore_volume_method": "DR",
+      "pore_volume_probe_gas": "N2",
+      "purification_method": "washed with 1 M HCl then distilled water until pH ~6",
+      "notes": [
+        "type",
+        "multidev",
+        "method",
+        "sa",
+        "l0",
+        "rho",
+        "excl",
+        "chahine"
+      ]
+    },
+    "S6": {
+      "label": "T2502",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "activated carbon from NaOH/KOH chemical activation of Taisi (Chinese) anthracite; labelled by BET area 2502.0 m2/g",
+      "activation_method": "chemical activation with NaOH or KOH (XOH/anthracite 1-3), 973-1073 K 1 h under N2; washed with 1 M HCl then water",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "2502.0",
+      "total_pore_volume_cm3_g": "1.11",
+      "micropore_volume_cm3_g": "0.83",
+      "micropore_volume_co2_cm3_g": "0.39",
+      "average_pore_diameter_nm": "1.01",
+      "pore_diameter_method": "stoeckli_L0",
+      "skeletal_density_g_cm3": "1.93",
+      "pore_volume_method": "DR",
+      "pore_volume_probe_gas": "N2",
+      "purification_method": "washed with 1 M HCl then distilled water until pH ~6",
+      "notes": [
+        "type",
+        "multidev",
+        "method",
+        "sa",
+        "l0",
+        "rho",
+        "excl",
+        "chahine"
+      ]
+    },
+    "S7": {
+      "label": "M2849",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "activated carbon from NaOH/KOH chemical activation of Moszczenica (Polish) anthracite; labelled by BET area 2849.0 m2/g",
+      "activation_method": "chemical activation with NaOH or KOH (XOH/anthracite 1-3), 973-1073 K 1 h under N2; washed with 1 M HCl then water",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "2849.0",
+      "total_pore_volume_cm3_g": "1.31",
+      "micropore_volume_cm3_g": "0.97",
+      "micropore_volume_co2_cm3_g": "0.45",
+      "average_pore_diameter_nm": "1.25",
+      "pore_diameter_method": "stoeckli_L0",
+      "skeletal_density_g_cm3": "2.06",
+      "pore_volume_method": "DR",
+      "pore_volume_probe_gas": "N2",
+      "purification_method": "washed with 1 M HCl then distilled water until pH ~6",
+      "notes": [
+        "type",
+        "multidev",
+        "method",
+        "sa",
+        "l0",
+        "rho",
+        "excl",
+        "chahine"
+      ]
+    },
+    "S8": {
+      "label": "T3073",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "activated carbon from NaOH/KOH chemical activation of Taisi (Chinese) anthracite; labelled by BET area 3073.0 m2/g",
+      "activation_method": "chemical activation with NaOH or KOH (XOH/anthracite 1-3), 973-1073 K 1 h under N2; washed with 1 M HCl then water",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "3073.0",
+      "total_pore_volume_cm3_g": "1.40",
+      "micropore_volume_cm3_g": "0.98",
+      "micropore_volume_co2_cm3_g": "0.41",
+      "average_pore_diameter_nm": "1.31",
+      "pore_diameter_method": "stoeckli_L0",
+      "skeletal_density_g_cm3": "2.07",
+      "pore_volume_method": "DR",
+      "pore_volume_probe_gas": "N2",
+      "purification_method": "washed with 1 M HCl then distilled water until pH ~6",
+      "notes": [
+        "type",
+        "multidev",
+        "method",
+        "sa",
+        "l0",
+        "rho",
+        "excl",
+        "chahine"
+      ]
+    },
+    "S9": {
+      "label": "T3220",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "activated carbon from NaOH/KOH chemical activation of Taisi (Chinese) anthracite; labelled by BET area 3220.0 m2/g",
+      "activation_method": "chemical activation with NaOH or KOH (XOH/anthracite 1-3), 973-1073 K 1 h under N2; washed with 1 M HCl then water",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "3220.0",
+      "total_pore_volume_cm3_g": "1.50",
+      "micropore_volume_cm3_g": "1.02",
+      "micropore_volume_co2_cm3_g": "0.49",
+      "average_pore_diameter_nm": "1.35",
+      "pore_diameter_method": "stoeckli_L0",
+      "skeletal_density_g_cm3": "1.96",
+      "pore_volume_method": "DR",
+      "pore_volume_probe_gas": "N2",
+      "purification_method": "washed with 1 M HCl then distilled water until pH ~6",
+      "notes": [
+        "type",
+        "multidev",
+        "method",
+        "sa",
+        "l0",
+        "rho",
+        "excl",
+        "chahine"
+      ]
+    }
+  },
+  "measurements": [
+    {
+      "sample": "S1",
+      "temperature_k": "298",
+      "pressure_bar": "50",
+      "uptake_wt_pct": "0.4",
+      "measurement_method": "volumetric_sieverts",
+      "reproducibility_tier": "A",
+      "source_location": "Table 2, 298 K & 5 MPa (=50 bar) excess: IJL volumetric=0.4, ICMPE volumetric=0.4 (recorded: ICMPE volumetric); Table 1 texture; method section 2.3",
+      "notes": [
+        "multidev"
+      ]
+    },
+    {
+      "sample": "S1",
+      "temperature_k": "77",
+      "pressure_bar": "40",
+      "uptake_wt_pct": "3.2",
+      "measurement_method": "volumetric_sieverts",
+      "reproducibility_tier": "A",
+      "source_location": "Table 2, 77 K & 4 MPa (=40 bar) excess: ICMPE volumetric=3.2, ICB gravimetric=3.2 (recorded: ICMPE volumetric); Table 1 texture; method section 2.3",
+      "notes": [
+        "multidev"
+      ]
+    },
+    {
+      "sample": "S2",
+      "temperature_k": "298",
+      "pressure_bar": "50",
+      "uptake_wt_pct": "0.3",
+      "measurement_method": "volumetric_sieverts",
+      "reproducibility_tier": "A",
+      "source_location": "Table 2, 298 K & 5 MPa (=50 bar) excess: IJL volumetric=0.4, ICMPE volumetric=0.3 (recorded: ICMPE volumetric); Table 1 texture; method section 2.3",
+      "notes": [
+        "multidev"
+      ]
+    },
+    {
+      "sample": "S2",
+      "temperature_k": "77",
+      "pressure_bar": "40",
+      "uptake_wt_pct": "3.1",
+      "measurement_method": "volumetric_sieverts",
+      "reproducibility_tier": "A",
+      "source_location": "Table 2, 77 K & 4 MPa (=40 bar) excess: ICMPE volumetric=3.1, ICB gravimetric=2.9 (recorded: ICMPE volumetric); Table 1 texture; method section 2.3",
+      "notes": [
+        "multidev"
+      ]
+    },
+    {
+      "sample": "S3",
+      "temperature_k": "298",
+      "pressure_bar": "50",
+      "uptake_wt_pct": "0.4",
+      "measurement_method": "volumetric_sieverts",
+      "reproducibility_tier": "A",
+      "source_location": "Table 2, 298 K & 5 MPa (=50 bar) excess: IJL volumetric=0.5, ICMPE volumetric=0.4 (recorded: ICMPE volumetric); Table 1 texture; method section 2.3",
+      "notes": [
+        "multidev"
+      ]
+    },
+    {
+      "sample": "S3",
+      "temperature_k": "77",
+      "pressure_bar": "40",
+      "uptake_wt_pct": "4.8",
+      "measurement_method": "volumetric_sieverts",
+      "reproducibility_tier": "A",
+      "source_location": "Table 2, 77 K & 4 MPa (=40 bar) excess: ICMPE volumetric=4.8, ICB gravimetric=4.9 (recorded: ICMPE volumetric); Table 1 texture; method section 2.3",
+      "notes": [
+        "multidev"
+      ]
+    },
+    {
+      "sample": "S4",
+      "temperature_k": "298",
+      "pressure_bar": "50",
+      "uptake_wt_pct": "0.5",
+      "measurement_method": "volumetric_sieverts",
+      "reproducibility_tier": "A",
+      "source_location": "Table 2, 298 K & 5 MPa (=50 bar) excess: IJL volumetric=0.5, ICMPE volumetric=0.5 (recorded: ICMPE volumetric); Table 1 texture; method section 2.3",
+      "notes": [
+        "multidev"
+      ]
+    },
+    {
+      "sample": "S4",
+      "temperature_k": "77",
+      "pressure_bar": "40",
+      "uptake_wt_pct": "5.6",
+      "measurement_method": "volumetric_sieverts",
+      "reproducibility_tier": "A",
+      "source_location": "Table 2, 77 K & 4 MPa (=40 bar) excess: ICMPE volumetric=5.6, ICB gravimetric=n.d. (recorded: ICMPE volumetric); Table 1 texture; method section 2.3",
+      "notes": [
+        "multidev"
+      ]
+    },
+    {
+      "sample": "S5",
+      "temperature_k": "298",
+      "pressure_bar": "50",
+      "uptake_wt_pct": "0.5",
+      "measurement_method": "volumetric_sieverts",
+      "reproducibility_tier": "A",
+      "source_location": "Table 2, 298 K & 5 MPa (=50 bar) excess: IJL volumetric=0.6, ICMPE volumetric=0.5 (recorded: ICMPE volumetric); Table 1 texture; method section 2.3",
+      "notes": [
+        "multidev"
+      ]
+    },
+    {
+      "sample": "S5",
+      "temperature_k": "77",
+      "pressure_bar": "40",
+      "uptake_wt_pct": "5.9",
+      "measurement_method": "volumetric_sieverts",
+      "reproducibility_tier": "A",
+      "source_location": "Table 2, 77 K & 4 MPa (=40 bar) excess: ICMPE volumetric=5.9, ICB gravimetric=5.8 (recorded: ICMPE volumetric); Table 1 texture; method section 2.3",
+      "notes": [
+        "multidev"
+      ]
+    },
+    {
+      "sample": "S6",
+      "temperature_k": "298",
+      "pressure_bar": "50",
+      "uptake_wt_pct": "0.5",
+      "measurement_method": "volumetric_sieverts",
+      "reproducibility_tier": "A",
+      "source_location": "Table 2, 298 K & 5 MPa (=50 bar) excess: IJL volumetric=0.5, ICMPE volumetric=0.5 (recorded: ICMPE volumetric); Table 1 texture; method section 2.3",
+      "notes": [
+        "multidev"
+      ]
+    },
+    {
+      "sample": "S6",
+      "temperature_k": "77",
+      "pressure_bar": "40",
+      "uptake_wt_pct": "5.7",
+      "measurement_method": "volumetric_sieverts",
+      "reproducibility_tier": "A",
+      "source_location": "Table 2, 77 K & 4 MPa (=40 bar) excess: ICMPE volumetric=5.7, ICB gravimetric=n.d. (recorded: ICMPE volumetric); Table 1 texture; method section 2.3",
+      "notes": [
+        "multidev"
+      ]
+    },
+    {
+      "sample": "S7",
+      "temperature_k": "298",
+      "pressure_bar": "50",
+      "uptake_wt_pct": "0.6",
+      "measurement_method": "volumetric_sieverts",
+      "reproducibility_tier": "A",
+      "source_location": "Table 2, 298 K & 5 MPa (=50 bar) excess: IJL volumetric=0.6, ICMPE volumetric=0.6 (recorded: ICMPE volumetric); Table 1 texture; method section 2.3",
+      "notes": [
+        "multidev"
+      ]
+    },
+    {
+      "sample": "S7",
+      "temperature_k": "77",
+      "pressure_bar": "40",
+      "uptake_wt_pct": "5.9",
+      "measurement_method": "volumetric_sieverts",
+      "reproducibility_tier": "A",
+      "source_location": "Table 2, 77 K & 4 MPa (=40 bar) excess: ICMPE volumetric=5.9, ICB gravimetric=6.0 (recorded: ICMPE volumetric); Table 1 texture; method section 2.3",
+      "notes": [
+        "multidev"
+      ]
+    },
+    {
+      "sample": "S8",
+      "temperature_k": "298",
+      "pressure_bar": "50",
+      "uptake_wt_pct": "0.6",
+      "measurement_method": "volumetric_sieverts",
+      "reproducibility_tier": "A",
+      "source_location": "Table 2, 298 K & 5 MPa (=50 bar) excess: IJL volumetric=0.6, ICMPE volumetric=n.d. (recorded: IJL volumetric (ICMPE n.d.)); Table 1 texture; method section 2.3",
+      "notes": [
+        "multidev"
+      ]
+    },
+    {
+      "sample": "S8",
+      "temperature_k": "77",
+      "pressure_bar": "40",
+      "uptake_wt_pct": "5.6",
+      "measurement_method": "volumetric_sieverts",
+      "reproducibility_tier": "A",
+      "source_location": "Table 2, 77 K & 4 MPa (=40 bar) excess: ICMPE volumetric=5.6, ICB gravimetric=5.7 (recorded: ICMPE volumetric); Table 1 texture; method section 2.3",
+      "notes": [
+        "multidev"
+      ]
+    },
+    {
+      "sample": "S9",
+      "temperature_k": "298",
+      "pressure_bar": "50",
+      "uptake_wt_pct": "0.6",
+      "measurement_method": "volumetric_sieverts",
+      "reproducibility_tier": "A",
+      "source_location": "Table 2, 298 K & 5 MPa (=50 bar) excess: IJL volumetric=0.6, ICMPE volumetric=n.d. (recorded: IJL volumetric (ICMPE n.d.)); Table 1 texture; method section 2.3",
+      "notes": [
+        "multidev"
+      ]
+    },
+    {
+      "sample": "S9",
+      "temperature_k": "77",
+      "pressure_bar": "40",
+      "uptake_wt_pct": "5.5",
+      "measurement_method": "volumetric_sieverts",
+      "reproducibility_tier": "A",
+      "source_location": "Table 2, 77 K & 4 MPa (=40 bar) excess: ICMPE volumetric=5.5, ICB gravimetric=5.7 (recorded: ICMPE volumetric); Table 1 texture; method section 2.3",
+      "notes": [
+        "multidev"
+      ]
+    }
+  ]
+}

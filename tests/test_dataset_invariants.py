@@ -302,13 +302,16 @@ def test_only_papers_that_never_state_a_condition_use_the_flags(dataset):
     HYC-0011 and HYC-0015 report uptakes at "room temperature" with no number.
     HYC-0009's TPD rows give a hydrogen flow rate and no pressure. HYC-0026's
     uptake sentence states no pressure, and every pressure the paper does state
-    belongs to a different quantity measured on a different instrument.
+    belongs to a different quantity measured on a different instrument. HYC-0046
+    reports 77 K surface-excess *saturation* values whose per-sample saturation
+    pressure is not stated (only the 3200 m2/g ACA has an explicit 30 bar), so its
+    other eight rows carry pressure_unstated.
     """
     flagged = dataset[
         _flag(dataset, "temperature_unstated") | _flag(dataset, "pressure_unstated")
     ]
     assert set(flagged["paper_id"]) == {
-        "HYC-0009", "HYC-0011", "HYC-0015", "HYC-0026",
+        "HYC-0009", "HYC-0011", "HYC-0015", "HYC-0026", "HYC-0046",
     }, sorted(set(flagged["paper_id"]))
 
 
@@ -472,6 +475,10 @@ def test_characterization_only_rows_carry_characterization(dataset):
         "HYC-0007-M5", "HYC-0007-M6", "HYC-0007-M7", "HYC-0007-M8",
         "HYC-0015-M3",
         "HYC-0033-M1", "HYC-0033-M2",
+        # HYC-0044's five characterization-only carbon fibres (the PCF_L series and
+        # PCF_H 0.5/0.1): Table 1 texture only, H2 never measured (any value is in the
+        # unavailable supplementary Fig S1).
+        "HYC-0044-M8", "HYC-0044-M9", "HYC-0044-M10", "HYC-0044-M11", "HYC-0044-M12",
     }, sorted(no_uptake["measurement_id"])
 
     # **The list is read off schema.py, not restated here.** This test used to
@@ -573,7 +580,9 @@ def test_paired_total_and_excess_rows_are_enumerated(dataset):
               if grp["uptake_type"].nunique() > 1
               for ids in [set(grp["measurement_id"])]]
     flat = sorted(i for s in paired for i in s)
-    assert flat == ['HYC-0031-M1', 'HYC-0031-M10', 'HYC-0031-M11', 'HYC-0031-M12', 'HYC-0031-M13', 'HYC-0031-M14', 'HYC-0031-M16', 'HYC-0031-M17', 'HYC-0031-M18', 'HYC-0031-M19', 'HYC-0031-M2', 'HYC-0031-M20', 'HYC-0031-M21', 'HYC-0031-M22', 'HYC-0031-M23', 'HYC-0031-M25', 'HYC-0031-M26', 'HYC-0031-M28', 'HYC-0031-M29', 'HYC-0031-M3', 'HYC-0031-M31', 'HYC-0031-M32', 'HYC-0031-M4', 'HYC-0031-M5', 'HYC-0031-M6', 'HYC-0031-M9'], (
+    # +HYC-0045-M1/M6: FA-ZTC1 reports a total (7.3 wt%) and an excess (6.2 wt%) at the
+    # same 77 K / 20 bar -- the second total/excess paper after HYC-0031.
+    assert flat == ['HYC-0031-M1', 'HYC-0031-M10', 'HYC-0031-M11', 'HYC-0031-M12', 'HYC-0031-M13', 'HYC-0031-M14', 'HYC-0031-M16', 'HYC-0031-M17', 'HYC-0031-M18', 'HYC-0031-M19', 'HYC-0031-M2', 'HYC-0031-M20', 'HYC-0031-M21', 'HYC-0031-M22', 'HYC-0031-M23', 'HYC-0031-M25', 'HYC-0031-M26', 'HYC-0031-M28', 'HYC-0031-M29', 'HYC-0031-M3', 'HYC-0031-M31', 'HYC-0031-M32', 'HYC-0031-M4', 'HYC-0031-M5', 'HYC-0031-M6', 'HYC-0031-M9', 'HYC-0045-M1', 'HYC-0045-M6'], (
         "the set of rows reporting one measurement under two uptake types has "
         "changed. Every corpus-wide statistic over uptake_wt_pct must filter "
         "on uptake_type, or it double-counts these rows."

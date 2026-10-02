@@ -198,7 +198,13 @@ def test_every_field_of_every_entry_records_where_it_came_from():
     resolved". A field with no recorded provenance is indistinguishable from one
     recalled from memory.
     """
-    allowed = {"pdf", "openalex", "semanticscholar", "openalex+semanticscholar", "none"}
+    # "citing_pdf": resolved from the reference list(s) of held PDFs that cite the work
+    # (and corroborated by the publisher DOI record). Added for HYC-0046, whose own held
+    # PDF is a preprint (UCRL-JRNL-227848) that prints no volume/issue/pages/year, and
+    # whose citation was read from HYC-0047 ref [42] and HYC-0044 ref [17] because the
+    # OpenAlex/Semantic Scholar/Crossref APIs were unreachable from the extraction session.
+    allowed = {"pdf", "openalex", "semanticscholar", "openalex+semanticscholar",
+               "citing_pdf", "none"}
     for r in sources():
         prov = r["provenance"]
         for field in ("authors", "title", "journal", "year", "number"):
@@ -224,8 +230,9 @@ def test_author_lists_come_from_the_pdf_wherever_one_is_held():
     # whose full text was obtained and extracted (2026-09-30); plus the
     # 2026-10-02 Phase D batch HYC-0032/0033/0034/0037, all PDF-held; plus the
     # HYC-0039/0040/0041/0042/0043 batch (5) and HYC-0038 (excluded but PDF-held),
-    # all PDF-held: 28 + 6 = 34.
-    assert sum(1 for r in sources() if r["pdf_held"]) == 34
+    # all PDF-held: 28 + 6 = 34. Plus the HYC-0044/0045/0046/0047/0048 batch (5), all
+    # PDF-held (HYC-0046's is the LLNL preprint): 34 + 5 = 39.
+    assert sum(1 for r in sources() if r["pdf_held"]) == 39
 
 
 def test_the_issue_number_provenance_partition_is_pinned():
@@ -246,8 +253,12 @@ def test_the_issue_number_provenance_partition_is_pinned():
         by_prov.setdefault(r["provenance"]["number"], []).append(r["paper_id"])
     # +HYC-0043: BioResources prints an issue number in its citation line
     # (14(4), 9755-9765), so its issue is PDF-sourced like Science/JACS/JPCB.
-    assert sorted(by_prov["pdf"]) == ["HYC-0002", "HYC-0022", "HYC-0024", "HYC-0043"]
+    # +HYC-0045: Prog. Nat. Sci.: Mater. Int. prints its issue (23(3)) in the citation line.
+    assert sorted(by_prov["pdf"]) == ["HYC-0002", "HYC-0022", "HYC-0024", "HYC-0043", "HYC-0045"]
     assert len(by_prov["openalex"]) == 21
+    # HYC-0046's issue (18(26)) is sourced from held citing PDFs + the DOI record (the
+    # services were unreachable), so it sits in its own provenance class.
+    assert by_prov["citing_pdf"] == ["HYC-0046"]
     # 6 for the original corpus, plus HYC-0031 (2026-09-30). Nature
     # Communications prints volume and article number in its running head and
     # no issue, so claiming one would be invented -- which is what this
@@ -261,13 +272,16 @@ def test_the_issue_number_provenance_partition_is_pinned():
     # all are MDPI/Elsevier/Frontiers article-number journals that print no issue, so
     # their issue is omitted. 11 + 5 = 16. (HYC-0043 is the batch's one exception; its
     # issue is PDF-sourced, counted under 'pdf' above.)
-    assert len(by_prov["none"]) == 16
+    # +3 for the HYC-0044/0047/0048 batch papers: MDPI (article-numbered), Elsevier and
+    # Springer running heads print no issue, so each is omitted pending an OpenAlex backfill.
+    # 16 + 3 = 19. (HYC-0045 is PDF-sourced; HYC-0046 is citing_pdf; both emit their issue.)
+    assert len(by_prov["none"]) == 19
     # Match the FIELD, not the word: two of these notes contain the phrase
     # "article number", which a substring test read as an issue field.
     field = re.compile(r"^\s*number\s*=", re.M)
     for pid in by_prov["none"]:
         assert not field.search(entries()[pid]), f"{pid} emits an issue it lacks"
-    for pid in by_prov["pdf"] + by_prov["openalex"]:
+    for pid in by_prov["pdf"] + by_prov["openalex"] + by_prov["citing_pdf"]:
         assert field.search(entries()[pid]), f"{pid} has an issue and does not emit it"
 
 

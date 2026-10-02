@@ -1,0 +1,136 @@
+{
+  "paper": {
+    "paper_id": "HYC-0048",
+    "doi": "10.1007/s42768-023-00136-4",
+    "first_author": "Kahilu",
+    "year": "2023",
+    "journal": "Waste Disposal & Sustainable Energy",
+    "title": "Systematic physicochemical characterization, carbon balance and cost of production analyses of activated carbons derived from (Co)-HTC of coal discards and sewage sludge for hydrogen storage applications"
+  },
+  "defaults": {
+    "extractor": "HyCAN pipeline v2",
+    "extraction_date": "2026-10-02",
+    "verification_date": "2026-10-02",
+    "uptake_bound": "exact",
+    "temperature_unstated": "False",
+    "pressure_unstated": "False",
+    "measurement_mode": "isothermal",
+    "measurement_method": "volumetric_sieverts",
+    "extraction_method": "table_direct",
+    "extraction_confidence": "5",
+    "uptake_type": "unspecified",
+    "verified_by": "Agent B (sonnet, independent re-extraction, 3 samples): BET SSA, total pore volume, skeletal density and H2 uptake (6.12/6.80/6.57 wt% at 35 bar & 77 K) all confirmed (triple-checked across tables/abstract/conclusion); dominant values chosen where the paper is internally inconsistent (AC-HCB SBET 2243.57 over 2242.63/2242.69). uptake_type=unspecified confirmed ('hydrogen adsorbed'/'maximum H2 uptake'; never excess/total). measurement_method=volumetric_sieverts with a cold/warm void-volume correction -> calibration point. 273 K isotherms correctly excluded (figure-only). Agent C adjudication: average_pore_diameter dropped -- Tables 4/6/8 give three irreconcilable values (30-40% spread) and AC-HCB's Table-6 value fails to reproduce from its own BET area and pore volume, so no reliable value exists."
+  },
+  "notes": {
+    "type": "uptake_type=unspecified (exact-word rule): the paper labels these 'hydrogen adsorbed'/'maximum H2 uptake'/'hydrogen adsorption capacity' (Table 7); neither 'excess' nor 'total' is used for the reported values",
+    "cond": "maximum H2 uptake at 35 bar (=3.5 MPa) and 77 K (Table 7, abstract, conclusions); 273 K isotherms (Figs 8-9) are figure-only and not recorded",
+    "method": "H2 by the high-pressure volumetric method (HPVA, Micromeritics) with a closed-cycle cryo refrigerator at 77 K; 1-35 bar; degassed 373 K; H2 baseline N5.0 (99.999%); cold+warm volume measurement to avoid He capture in narrow pores -> void-volume correction -> calibration point by hand (tiering doc l.24)",
+    "sa": "surface_area_method=BET; total pore volume is the BET-adsorption total pore volume (single-point), so pore_volume_method=unspecified (corpus convention for single-point totals), probe N2",
+    "dia": "average_pore_diameter is NOT recorded: the paper gives three mutually inconsistent sets of average pore diameter -- Table 6 'BJH 4V/A' 36.6/34.2/32.2 A (3.66/3.42/3.22 nm), Table 8 2.75/2.64/2.33 nm, Table 4 2.75/2.56 nm -- that it never reconciles (a 30-40% spread), and AC-HCB's Table-6 value does not even reproduce from its own BET area and pore volume (4V/S computes ~2.46 nm vs the printed 3.22). Recording any single value would assert a precision the paper does not support, so the field is left empty (Agent B HYC-0048 adjudication)",
+    "rho": "skeletal_density from the He-pycnometer 'skeletal (apparent) density': 2228.35/2346.72/2319.63 kg/m3 = 2.228/2.347/2.320 g/cm3 (Table 6)",
+    "ac": "activated carbon from KOH chemical activation (KOH/HC 4:1, 800-850 C, 135 min) of a hydrochar made by (Co-)hydrothermal carbonization of coal discards/sewage sludge; class=activated_carbon, synthesis_method=chemical_activation; HCl 0.5 N wash for residual-alkali removal (purification)",
+    "sbetnote": "AC-HCB SBET is 2243.57 in Tables 5/6/10 and 2242.63/2242.69 elsewhere; the Table-6 value 2243.57 is recorded",
+    "chahine": "77 K, 35 bar, unspecified type; 6.12-6.80 wt% at 2022-2299 m2/g sits at/above the simple excess Chahine estimate (~4.0-4.6 wt%) but near the established ~6.4-6.8 wt% 77 K ceiling for high-SA carbons (cf. HYC-0047), so recorded as reported and flagged, not physics-overridden"
+  },
+  "samples": {
+    "S1": {
+      "label": "AC-HCT",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "activated carbon from KOH activation of coal-tailing hydrochar (HTC of coal tailing)",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "2021.91",
+      "total_pore_volume_cm3_g": "1.77",
+      "skeletal_density_g_cm3": "2.228",
+      "pore_volume_method": "unspecified",
+      "pore_volume_probe_gas": "N2",
+      "activation_method": "KOH chemical activation (KOH/hydrochar 4:1, 800-850 C, 135 min, N2); hydrochar precursor from (co-)hydrothermal carbonization",
+      "purification_method": "washed with 0.5 N HCl for residual-alkali removal then distilled water (centrifuge) to pH ~6",
+      "notes": [
+        "ac",
+        "type",
+        "cond",
+        "method",
+        "sa",
+        "dia",
+        "rho",
+        "chahine"
+      ]
+    },
+    "S2": {
+      "label": "AC-HCS",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "activated carbon from KOH activation of coal-slurry hydrochar (HTC of coal slurry)",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "2299.25",
+      "total_pore_volume_cm3_g": "1.96",
+      "skeletal_density_g_cm3": "2.347",
+      "pore_volume_method": "unspecified",
+      "pore_volume_probe_gas": "N2",
+      "activation_method": "KOH chemical activation (KOH/hydrochar 4:1, 800-850 C, 135 min, N2); hydrochar precursor from (co-)hydrothermal carbonization",
+      "purification_method": "washed with 0.5 N HCl for residual-alkali removal then distilled water (centrifuge) to pH ~6",
+      "notes": [
+        "ac",
+        "type",
+        "cond",
+        "method",
+        "sa",
+        "dia",
+        "rho",
+        "chahine"
+      ]
+    },
+    "S3": {
+      "label": "AC-HCB",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "activated carbon from KOH activation of the blended hydrochar (Co-HTC of coal discard + sewage sludge, 80:20)",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "2243.57",
+      "total_pore_volume_cm3_g": "1.38",
+      "skeletal_density_g_cm3": "2.320",
+      "pore_volume_method": "unspecified",
+      "pore_volume_probe_gas": "N2",
+      "activation_method": "KOH chemical activation (KOH/hydrochar 4:1, 800-850 C, 135 min, N2); hydrochar precursor from (co-)hydrothermal carbonization",
+      "purification_method": "washed with 0.5 N HCl for residual-alkali removal then distilled water (centrifuge) to pH ~6",
+      "notes": [
+        "ac",
+        "type",
+        "cond",
+        "method",
+        "sa",
+        "dia",
+        "rho",
+        "chahine",
+        "sbetnote"
+      ]
+    }
+  },
+  "measurements": [
+    {
+      "sample": "S1",
+      "temperature_k": "77",
+      "pressure_bar": "35",
+      "uptake_wt_pct": "6.12",
+      "reproducibility_tier": "B",
+      "source_location": "Table 7 (maximum H2 uptake at 35 bar = 3.5 MPa & 77 K) + Table 6 (BET SSA, total pore vol, skeletal density); method 'Hydrogen adsorption'"
+    },
+    {
+      "sample": "S2",
+      "temperature_k": "77",
+      "pressure_bar": "35",
+      "uptake_wt_pct": "6.80",
+      "reproducibility_tier": "B",
+      "source_location": "Table 7 (maximum H2 uptake at 35 bar = 3.5 MPa & 77 K) + Table 6 (BET SSA, total pore vol, skeletal density); method 'Hydrogen adsorption'"
+    },
+    {
+      "sample": "S3",
+      "temperature_k": "77",
+      "pressure_bar": "35",
+      "uptake_wt_pct": "6.57",
+      "reproducibility_tier": "B",
+      "source_location": "Table 7 (maximum H2 uptake at 35 bar = 3.5 MPa & 77 K) + Table 6 (BET SSA, total pore vol, skeletal density); method 'Hydrogen adsorption'"
+    }
+  ]
+}

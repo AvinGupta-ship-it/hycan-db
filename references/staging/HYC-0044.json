@@ -1,0 +1,395 @@
+{
+  "paper": {
+    "paper_id": "HYC-0044",
+    "doi": "10.3390/nano11071830",
+    "first_author": "Hwang",
+    "year": "2021",
+    "journal": "Nanomaterials",
+    "title": "The Enhanced Hydrogen Storage Capacity of Carbon Fibers: The Effect of Hollow Porous Structure and Surface Modification"
+  },
+  "defaults": {
+    "extractor": "HyCAN pipeline v2",
+    "extraction_date": "2026-10-02",
+    "verification_date": "2026-10-02",
+    "uptake_bound": "exact",
+    "temperature_unstated": "False",
+    "pressure_unstated": "False",
+    "measurement_mode": "isothermal",
+    "measurement_method": "gravimetric_microbalance",
+    "extraction_method": "table_direct",
+    "extraction_confidence": "5",
+    "uptake_type": "unspecified",
+    "verified_by": "Agent B (sonnet, independent re-extraction of Tables 1-3): ~142 cells, 0 numeric disputes (Pd 0.5 Vp: Table value 1.43 used over the body-text 1.42, resolved to the table). material_class/synthesis_method/surface_area_method/metal_element and uptake_type=unspecified confirmed; 12 'This work' samples captured once each; the 5 literature rows and 2 calculated values (4.78/0.67 wt%) correctly excluded. Agent C adjudication: pore_diameter_method HK->other on the five Waverage rows (the Table 2 footnote attributes Waverage to the Saito-Foley method, distinct from the Horvath-Kawazoe used for the micropore volume; Saito-Foley is not a schema literal)."
+  },
+  "notes": {
+    "type": "uptake_type=unspecified (exact-word rule): the paper labels these 'hydrogen storage capacity'/'H2 uptake'/'hydrogen capacity'; neither 'excess' nor 'total' is used for any value",
+    "cond": "all H2 values are at 77 K and 10 MPa (=100 bar) (Table 2/Table 3 headers, abstract); isotherm saturates by ~2 MPa (section 3.2) but the reported capacity is the 100-bar value",
+    "method": "H2 by the gravimetric method at 77 K (ISOSORP-HyGrA, Waters); N2 sorption at 77 K (ASAP 2020) for texture; the paper states no H2 purity, no sample mass and describes no buoyancy/void-volume correction, so no calibration point",
+    "sa": "surface_area_method=BET; SBET from Table 1/2/3; total pore volume Vp is a single-point value at P/P0~0.99 (Table footnotes), so pore_volume_method is set to HK (the method stated for the micropore volume Vmicro) with the total noted as single-point; micropore volume Vmicro by Horvath-Kawazoe (HK)",
+    "wavg": "average_pore_diameter is Waverage, the average micropore width determined by the Saito-Foley method (Table 2 footnote); Saito-Foley is not a schema literal and is distinct from the Horvath-Kawazoe method used for the micropore VOLUME, so pore_diameter_method=other (Agent B HYC-0044 adjudication); reported only for the five Table-2 samples",
+    "cf": "CF is a non-porous (SBET 11) carbon fibre from carbonization of mono-component PAN; non-activated carbon fibre -> class 'other' (HYC-0024-S1 precedent); synthesis_method=carbonization",
+    "pcf": "PCF is a porous carbon fibre made by carbonization of the PVA-removed PAN fibre (no activation agent; porosity from sacrificial PVA removal), so it is a non-activated carbon fibre -> class 'other' (HYC-0024-S1 precedent), synthesis_method=carbonization",
+    "acf": "ACF/APCF are KOH-chemically-activated carbon fibres -> class 'activated_carbon' (HYC-0024-S2/S3 precedent), synthesis_method=chemical_activation",
+    "pd": "Pd-decorated APCF_H 0.3 is metal-bearing -> class 'composite' with metal_element=Pd (HYC-0027/29/39/40 convention); synthesis_method=chemical_activation (the carbon component's route); Pd electrodeposited from 0.1/0.5/1 mM PdCl2; the loading is given only as a supplementary atomic-% (Table S1, unavailable), so metal_loading is empty",
+    "charonly": "characterization-only row (Table 1 texture; this process-optimisation sample was not taken to H2 testing and any H2 is only in the unavailable supplementary Fig S1), so measurement_method=not_applicable and uptake is empty (HYC-0007/0033 precedent)",
+    "chahine": "Chahine note: 77 K, 100 bar; scored by the rubric against the BET bound"
+  },
+  "samples": {
+    "S1": {
+      "label": "CF",
+      "material_class": "other",
+      "synthesis_method": "carbonization",
+      "material_description": "carbon fibre from carbonization (1200 C, N2) of mono-component PAN wet-spun fibre; non-porous reference",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "11.0",
+      "pore_volume_method": "HK",
+      "pore_volume_probe_gas": "N2",
+      "total_pore_volume_cm3_g": "0.06",
+      "micropore_volume_cm3_g": "0.01",
+      "average_pore_diameter_nm": "1.81",
+      "pore_diameter_method": "other",
+      "notes": [
+        "cf",
+        "type",
+        "cond",
+        "wavg",
+        "chahine",
+        "sa",
+        "method"
+      ]
+    },
+    "S2": {
+      "label": "ACF",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "activated carbon fibre from KOH activation of carbonized mono-component PAN fibre",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "316.0",
+      "pore_volume_method": "HK",
+      "pore_volume_probe_gas": "N2",
+      "total_pore_volume_cm3_g": "0.21",
+      "micropore_volume_cm3_g": "0.12",
+      "average_pore_diameter_nm": "1.13",
+      "pore_diameter_method": "other",
+      "activation_method": "KOH chemical activation: PCF immersed in 8 M KOH 60 C 4 h, dried, calcined 900 C 1 h under N2, HCl wash to remove residual K",
+      "notes": [
+        "acf",
+        "type",
+        "cond",
+        "wavg",
+        "chahine",
+        "sa",
+        "method"
+      ]
+    },
+    "S3": {
+      "label": "PCF_H 0.3",
+      "material_class": "other",
+      "synthesis_method": "carbonization",
+      "material_description": "porous carbon fibre (PAN/PVA_H 7:3): PVA_H selectively removed from the wet-spun PAN/PVA bi-component fibre, then carbonized at 1200 C; not activated",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "889.0",
+      "pore_volume_method": "HK",
+      "pore_volume_probe_gas": "N2",
+      "total_pore_volume_cm3_g": "0.47",
+      "micropore_volume_cm3_g": "0.34",
+      "average_pore_diameter_nm": "1.12",
+      "pore_diameter_method": "other",
+      "notes": [
+        "pcf",
+        "type",
+        "cond",
+        "wavg",
+        "chahine",
+        "sa",
+        "method"
+      ]
+    },
+    "S4": {
+      "label": "APCF_H 0.3",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "activated porous carbon fibre: PCF_H 0.3 after KOH chemical activation",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "3058.0",
+      "pore_volume_method": "HK",
+      "pore_volume_probe_gas": "N2",
+      "total_pore_volume_cm3_g": "1.55",
+      "micropore_volume_cm3_g": "1.18",
+      "average_pore_diameter_nm": "1.05",
+      "pore_diameter_method": "other",
+      "activation_method": "KOH chemical activation: PCF immersed in 8 M KOH 60 C 4 h, dried, calcined 900 C 1 h under N2, HCl wash to remove residual K",
+      "notes": [
+        "acf",
+        "type",
+        "cond",
+        "wavg",
+        "chahine",
+        "sa",
+        "method"
+      ]
+    },
+    "S5": {
+      "label": "Pd 0.1/APCF_H 0.3",
+      "material_class": "composite",
+      "synthesis_method": "chemical_activation",
+      "material_description": "Pd-electrodeposited (0.1 mM PdCl2) activated porous carbon fibre APCF_H 0.3",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "2760.0",
+      "pore_volume_method": "HK",
+      "pore_volume_probe_gas": "N2",
+      "total_pore_volume_cm3_g": "1.44",
+      "micropore_volume_cm3_g": "1.05",
+      "activation_method": "KOH chemical activation: PCF immersed in 8 M KOH 60 C 4 h, dried, calcined 900 C 1 h under N2, HCl wash to remove residual K; then Pd electrodeposited from 0.1 mM PdCl2",
+      "metal_element": "Pd",
+      "notes": [
+        "pd",
+        "type",
+        "cond",
+        "chahine",
+        "sa",
+        "method"
+      ]
+    },
+    "S6": {
+      "label": "Pd 0.5/APCF_H 0.3",
+      "material_class": "composite",
+      "synthesis_method": "chemical_activation",
+      "material_description": "Pd-electrodeposited (0.5 mM PdCl2) activated porous carbon fibre APCF_H 0.3 (Pd NP ~41.7 nm)",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "2611.0",
+      "pore_volume_method": "HK",
+      "pore_volume_probe_gas": "N2",
+      "total_pore_volume_cm3_g": "1.43",
+      "micropore_volume_cm3_g": "1.03",
+      "average_pore_diameter_nm": "1.03",
+      "pore_diameter_method": "other",
+      "activation_method": "KOH chemical activation: PCF immersed in 8 M KOH 60 C 4 h, dried, calcined 900 C 1 h under N2, HCl wash to remove residual K; then Pd electrodeposited from 0.5 mM PdCl2",
+      "metal_element": "Pd",
+      "notes": [
+        "pd",
+        "type",
+        "cond",
+        "wavg",
+        "chahine",
+        "sa",
+        "method"
+      ]
+    },
+    "S7": {
+      "label": "Pd 1/APCF_H 0.3",
+      "material_class": "composite",
+      "synthesis_method": "chemical_activation",
+      "material_description": "Pd-electrodeposited (1 mM PdCl2) activated porous carbon fibre APCF_H 0.3",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "2503.0",
+      "pore_volume_method": "HK",
+      "pore_volume_probe_gas": "N2",
+      "total_pore_volume_cm3_g": "1.40",
+      "micropore_volume_cm3_g": "1.00",
+      "activation_method": "KOH chemical activation: PCF immersed in 8 M KOH 60 C 4 h, dried, calcined 900 C 1 h under N2, HCl wash to remove residual K; then Pd electrodeposited from 1 mM PdCl2",
+      "metal_element": "Pd",
+      "notes": [
+        "pd",
+        "type",
+        "cond",
+        "chahine",
+        "sa",
+        "method"
+      ]
+    },
+    "S8": {
+      "label": "PCF_L 0.5",
+      "material_class": "other",
+      "synthesis_method": "carbonization",
+      "material_description": "porous carbon fibre (PAN/PVA_L 5:5), low-MW PVA removed then carbonized; characterization-only",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "201.0",
+      "pore_volume_method": "HK",
+      "pore_volume_probe_gas": "N2",
+      "total_pore_volume_cm3_g": "0.25",
+      "micropore_volume_cm3_g": "0.12",
+      "notes": [
+        "charonly",
+        "pcf",
+        "sa",
+        "method"
+      ]
+    },
+    "S9": {
+      "label": "PCF_L 0.3",
+      "material_class": "other",
+      "synthesis_method": "carbonization",
+      "material_description": "porous carbon fibre (PAN/PVA_L 7:3), low-MW PVA removed then carbonized; characterization-only",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "424.0",
+      "pore_volume_method": "HK",
+      "pore_volume_probe_gas": "N2",
+      "total_pore_volume_cm3_g": "0.27",
+      "micropore_volume_cm3_g": "0.16",
+      "notes": [
+        "charonly",
+        "pcf",
+        "sa",
+        "method"
+      ]
+    },
+    "S10": {
+      "label": "PCF_L 0.1",
+      "material_class": "other",
+      "synthesis_method": "carbonization",
+      "material_description": "porous carbon fibre (PAN/PVA_L 9:1), low-MW PVA removed then carbonized; characterization-only",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "110.0",
+      "pore_volume_method": "HK",
+      "pore_volume_probe_gas": "N2",
+      "total_pore_volume_cm3_g": "0.06",
+      "micropore_volume_cm3_g": "0.02",
+      "notes": [
+        "charonly",
+        "pcf",
+        "sa",
+        "method"
+      ]
+    },
+    "S11": {
+      "label": "PCF_H 0.5",
+      "material_class": "other",
+      "synthesis_method": "carbonization",
+      "material_description": "porous carbon fibre (PAN/PVA_H 5:5), high-MW PVA removed then carbonized; characterization-only",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "377.0",
+      "pore_volume_method": "HK",
+      "pore_volume_probe_gas": "N2",
+      "total_pore_volume_cm3_g": "0.27",
+      "micropore_volume_cm3_g": "0.14",
+      "notes": [
+        "charonly",
+        "pcf",
+        "sa",
+        "method"
+      ]
+    },
+    "S12": {
+      "label": "PCF_H 0.1",
+      "material_class": "other",
+      "synthesis_method": "carbonization",
+      "material_description": "porous carbon fibre (PAN/PVA_H 9:1), high-MW PVA removed then carbonized; characterization-only",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "798.0",
+      "pore_volume_method": "HK",
+      "pore_volume_probe_gas": "N2",
+      "total_pore_volume_cm3_g": "0.46",
+      "micropore_volume_cm3_g": "0.25",
+      "notes": [
+        "charonly",
+        "pcf",
+        "sa",
+        "method"
+      ]
+    }
+  },
+  "measurements": [
+    {
+      "sample": "S1",
+      "temperature_k": "77",
+      "pressure_bar": "100",
+      "uptake_wt_pct": "0.07",
+      "reproducibility_tier": "C",
+      "source_location": "Table 2 (This work) (SBET, Vp, Vmicro, H2 at 77 K & 10 MPa); method section 2.5"
+    },
+    {
+      "sample": "S2",
+      "temperature_k": "77",
+      "pressure_bar": "100",
+      "uptake_wt_pct": "1.35",
+      "reproducibility_tier": "C",
+      "source_location": "Table 2 (This work) (SBET, Vp, Vmicro, H2 at 77 K & 10 MPa); method section 2.5"
+    },
+    {
+      "sample": "S3",
+      "temperature_k": "77",
+      "pressure_bar": "100",
+      "uptake_wt_pct": "2.87",
+      "reproducibility_tier": "C",
+      "source_location": "Table 2 (This work) (SBET, Vp, Vmicro, H2 at 77 K & 10 MPa); method section 2.5"
+    },
+    {
+      "sample": "S4",
+      "temperature_k": "77",
+      "pressure_bar": "100",
+      "uptake_wt_pct": "5.14",
+      "reproducibility_tier": "B",
+      "source_location": "Table 2/Table 3 (This work) (SBET, Vp, Vmicro, H2 at 77 K & 10 MPa); method section 2.5"
+    },
+    {
+      "sample": "S5",
+      "temperature_k": "77",
+      "pressure_bar": "100",
+      "uptake_wt_pct": "5.30",
+      "reproducibility_tier": "B",
+      "source_location": "Table 3 (SBET, Vp, Vmicro, H2 at 77 K & 10 MPa); method section 2.5"
+    },
+    {
+      "sample": "S6",
+      "temperature_k": "77",
+      "pressure_bar": "100",
+      "uptake_wt_pct": "5.45",
+      "reproducibility_tier": "B",
+      "source_location": "Table 2/Table 3 (SBET, Vp, Vmicro, H2 at 77 K & 10 MPa); method section 2.5"
+    },
+    {
+      "sample": "S7",
+      "temperature_k": "77",
+      "pressure_bar": "100",
+      "uptake_wt_pct": "5.17",
+      "reproducibility_tier": "B",
+      "source_location": "Table 3 (SBET, Vp, Vmicro, H2 at 77 K & 10 MPa); method section 2.5"
+    },
+    {
+      "sample": "S8",
+      "measurement_method": "not_applicable",
+      "reproducibility_tier": "B",
+      "extraction_confidence": "5",
+      "temperature_unstated": "False",
+      "pressure_unstated": "False",
+      "source_location": "Table 1 (SBET, Vp, Vmicro for this PAN/PVA ratio); no H2 measured"
+    },
+    {
+      "sample": "S9",
+      "measurement_method": "not_applicable",
+      "reproducibility_tier": "B",
+      "extraction_confidence": "5",
+      "temperature_unstated": "False",
+      "pressure_unstated": "False",
+      "source_location": "Table 1 (SBET, Vp, Vmicro for this PAN/PVA ratio); no H2 measured"
+    },
+    {
+      "sample": "S10",
+      "measurement_method": "not_applicable",
+      "reproducibility_tier": "B",
+      "extraction_confidence": "5",
+      "temperature_unstated": "False",
+      "pressure_unstated": "False",
+      "source_location": "Table 1 (SBET, Vp, Vmicro for this PAN/PVA ratio); no H2 measured"
+    },
+    {
+      "sample": "S11",
+      "measurement_method": "not_applicable",
+      "reproducibility_tier": "B",
+      "extraction_confidence": "5",
+      "temperature_unstated": "False",
+      "pressure_unstated": "False",
+      "source_location": "Table 1 (SBET, Vp, Vmicro for this PAN/PVA ratio); no H2 measured"
+    },
+    {
+      "sample": "S12",
+      "measurement_method": "not_applicable",
+      "reproducibility_tier": "B",
+      "extraction_confidence": "5",
+      "temperature_unstated": "False",
+      "pressure_unstated": "False",
+      "source_location": "Table 1 (SBET, Vp, Vmicro for this PAN/PVA ratio); no H2 measured"
+    }
+  ]
+}
