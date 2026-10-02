@@ -152,6 +152,11 @@ with a long one; the reverse is closer to true.
 | HYC-0046 | 9 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 0 numeric disputes; pressure_unstated split, composite class and 330 m2/g exclusion confirmed** | table_direct |
 | HYC-0047 | 18 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, texture + uptake 0 mismatches; MPa->bar pressure fix, stoeckli_L0, multi-device collapse to one row/condition** | table_direct |
 | HYC-0048 | 3 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 0 numeric disputes; average_pore_diameter dropped (irreconcilable Tables 4/6/8)** | table_direct |
+| HYC-0049 | 10 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 0 disputes; uptake_type=excess, He-void + background calibration, 300 bar admitted flagged (§11.4)** | table_direct |
+| HYC-0050 | 12 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 0 numeric disputes; 6 characterization-only; char-only extraction_method -> table_direct, Stoeckli back-calc micropore area not recorded** | table_direct, text_direct |
+| HYC-0051 | 11 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 0 numeric disputes; metal standards excluded, PCI/manual two-column pressure placement; +uncertainty, synthesis_method -> commercial (supplier only), FeNiCu activation cleared** | table_direct |
+| HYC-0052 | 8 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 0 numeric disputes (nAC/nNT ratio cross-check; 318 K not tabulated); AX-21 pore_volume_probe_gas N2 -> blank** | table_direct |
+| HYC-0053 | 16 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 0 numeric disputes; 16-sample inventory + pellet density/vol-capacity verified; ZIF-8 -> other/pyrolysis, S14 activation trimmed** | table_direct |
 
 **This table and the totals below are not yet complete.** HYC-0007 and HYC-0024
 (Phase C.1) and HYC-0031 (Phase D) are extracted and in the dataset but were never

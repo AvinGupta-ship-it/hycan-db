@@ -1798,3 +1798,73 @@ kind — because HYC-0044's carbon fibres are legitimately `carbonization`. 805 
 and a re-confirmation of HYC-0046's citation, plus the standing corpus-wide retraction pass
 — all blocked on `works/doi:` egress. Agent B found no correction/retraction notice in any
 of the five PDFs read.
+
+## 2026-10-02 (continued) — Phase D batch: HYC-0049–0053
+
+**Models.** Agent A (extraction/adjudication) Opus; Agent B (independent verification)
+five parallel Sonnet subagents, one per paper, each re-reading the PDF via the project
+store with no sight of Agent A's reasoning.
+
+**Batch.** HYC-0049 (Stadie 2012, zeolite-templated carbons + commercial ACs to 30 MPa),
+HYC-0050 (Zubizarreta 2008, commercial ACs/cloths/nanotubes), HYC-0051 (Tibbetts 2001,
+VGCF/filaments/nanotubes — the controversy-era low-result paper), HYC-0052 (Zhou 2004,
+AX-21 vs MWNT), HYC-0053 (Matsutaka 2025, cellulose-acetate carbon powders and pellets).
+57 rows, append 391 → 448, 38 → 43 papers, 0 errors. Tiers 10 A / 47 B.
+
+**One new warning type, admitted deliberately (§11.4/§11.5).** HYC-0049 reports room-
+temperature excess uptake to 30 MPa (300 bar), above the schema's 200 bar range bound.
+The manual makes that bound a WARNING, not an error, so high-pressure literature enters
+flagged rather than being excluded — but `scripts/build_staging.py` hard-rejected it (a
+latent gap: the manual said admit-flagged, the tooling said refuse). Per Avin's "go with
+your recommendation", `build_staging` was fixed to admit a >200 bar row flagged when every
+other field/model check passes strictly (re-validating with pressure clamped to 200 so no
+other error can slip through), and refuse it otherwise; `append_paper` required
+`--expect-new-warning "Pressure above 200 bar"` for HYC-0049, appended last so the four
+clean papers stayed clean against the 391-row baseline. The schema bound was NOT changed
+(manual §11.4: "Do not fix it"). Two build_staging tests pin the behaviour.
+
+**Agent B found 0 numeric transcription disputes in all five papers.** Every uptake, BET
+area, pore volume, T and P confirmed against the primary source (HYC-0052 cross-checked via
+the paper's own nAC/nNT ratio column; HYC-0053's 16-sample inventory and pellet
+density/volumetric-capacity pairs confirmed un-transposed). Adjudications were all
+field-semantics or provenance: HYC-0050 char-only rows `extraction_method` text_direct ->
+table_direct and `extraction_confidence` 5 -> 4 on the inferred Maxsorb 298 K row (the
+Stoeckli back-calculated micropore areas SmicN2/SmicCO2 were NOT recorded — a 2V/L
+derivation, not an independent measurement); HYC-0051 `uncertainty_wt_pct` added for the two
+Table-1 ± values (0.011/0.014) and `synthesis_method` arc_discharge/laser_ablation ->
+commercial (the paper names only the supplier, never the growth route), FeNiCu
+`activation_method` cleared (it described CVD growth); HYC-0052 AX-21 `pore_volume_probe_gas`
+N2 -> blank (the paper gives AX-21's pore volume with no gas/method; the only N2/77 K is
+MWNT's BET); HYC-0053 S14 `activation_method` trimmed to its KOH clause and one declined
+dispute — Agent B's conservative Tier C for HYC-0053-M1/M2 was overruled because validate.py
+grades the Chahine point to 1 within 1.5× the BET/500 bound and manual §13.5 credits the
+paper's stated narrow-micropore mechanism.
+
+**Tiering, grounded in §13.3.** The manual's rubric is an additive 10-point scale with no
+criterion individually mandatory; an earlier assumption that an `unspecified` uptake_type
+bars Tier A was a *code* artifact (the scorer can't award the by-hand calibration point,
+ceiling 9) and is contradicted by the corpus itself (36 Tier A rows, only 23 with a
+specified uptake_type). So HYC-0052's four MWNT rows (BET-measured, acid-purified, He-void
+calibrated, 9/10) are Tier A despite `unspecified`, and HYC-0049 earns 6 A on its He-
+pycnometry void-volume + empty-holder background subtraction. Calibration credit was read
+off each paper's methods: HYC-0049/0051/0052 all rows, HYC-0050 the 298 K gravimetric row
+only (He manifold + buoyancy described there, not for the 77 K volumetric), HYC-0053 none
+(the H2 apparatus detail is ESI-only).
+
+**Bibliography.** 46 → 51 entries, inserted in HYC-id order and re-dumped `ensure_ascii=False`
+(the existing array was already sorted, so every prior entry is byte-identical). All five are
+PDF-sourced; none prints an issue in its article citation line (ACS/Springer/Elsevier×2/RSC),
+so each `number` is `none` pending an OpenAlex backfill.
+
+**Pinned tests updated, deliberately.** `test_bibliography` pdf_held 39→44, issue `none`
+19→24. `test_validate` agreement 257→289 (+32 agreements, 25 hand-adjustments — HYC-0049's
+4 calibration-lifted A rows, HYC-0050's 6 characterization-only inherited-B rows, HYC-0051's
+11 calibration-lifted B rows, HYC-0052's 4 MWNT A rows), Chahine no-uptake 19→25,
+BET `area_by_unspecified` + HYC-0052 (AX-21's nominal "about 3000"). `test_dataset_invariants`
+warning baseline + "Pressure above 200 bar", flag papers + HYC-0049, bounded uptakes +
+HYC-0049's 5 approximate and HYC-0051's 3 upper, characterization-only + HYC-0050-M7…M12.
+807 tests passing.
+
+**Still owed.** The OpenAlex backfill now owes five more issue numbers (HYC-0049/0050/0051/
+0052/0053) on top of the prior debt, all blocked on `works/doi:` egress (403 at the proxy).
+Agent B found no correction/retraction notice in any of the five PDFs read.
