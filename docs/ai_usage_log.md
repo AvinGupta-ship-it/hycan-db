@@ -1641,3 +1641,101 @@ characterization-only and does not enter it. Tier distribution 48 A / 187 B /
 resolution and the corpus-wide retraction pass both need `works/doi:`, which this
 session could not reach; a session with that access should backfill the three
 issue numbers and run the owed Crossref/OpenAlex pass in one go.
+
+## 2026-10-02 (continued) — Phase D batch: HYC-0039–0043, and HYC-0038 excluded
+
+**Scope.** Five papers extracted under the dual-agent protocol (§3.2) and one
+excluded at full-text review, continuing §9.1 in `paper_id` order after the
+morning's HYC-0032/0033/0034/0037 batch.
+
+**Method.** The extractor read all six PDFs in full (via `project_read`) and
+assembled candidate rows; five isolated Agent B subagents (sonnet) then verified
+each paper independently, each given only the candidate values (my notes and
+reasoning stripped), the PDF (read independently), and `schema.py`. The extractor
+adjudicated the disputes as Agent C. Agent A and Agent B passes were fanned out
+concurrently.
+
+**Verification outcome — 0 numeric disputes across all five papers.** Every
+uptake, surface area, pore volume, dopant/metal loading, temperature and pressure
+transcription was confirmed against the primary source (Agent B checked ~536 /
+144 / 279 / ~60 / ~60 cells for 0039 / 0040 / 0041 / 0042 / 0043). Every dispute
+raised was field-semantics or provenance, not a wrong number. The adjudications:
+
+- **HYC-0039** (Aboud 2021, 14 samples × 2 = 28 rows; metal-decorated/ammonia-treated
+  Norit AC). Metal-decorated samples are `composite` with `metal_element` (HYC-0027/0029
+  convention); the ammonia-treated base is `doped_carbon`. Agent B caught an **inherited
+  N concentration**: 2.0 wt% N was measured on the ammonia-treated support only, so it
+  was nulled on the six metal+NH3 composites (kept on S2), `dopant_element=N` retained —
+  the HYC-0027-M3 "a presumption is not a measurement" precedent. A **calibration point**
+  was added by hand for the He skeletal-density void-volume correction (tiering doc l.24),
+  lifting the 14 cryogenic rows C→B. Metal impregnation removed from `activation_method`
+  (not a pore activation). No surface area is reported in this paper for any sample
+  (`surface_area_method=none`; the textural data are approximate and in ref 90).
+- **HYC-0040** (Flamina 2023, rGO/B-rGO/Ni-B-rGO, 3 × 3 = 9 rows). B-rGO kept
+  `reduced_graphene_oxide` + `dopant_element=B` (structure-preserving: HYC-0013's
+  Fe-decorated graphene stays graphene, and the doped-nanotube rule; HYC-0027's
+  N-graphene→doped_carbon noted as the competing precedent). Ni-B-rGO is `composite`
+  (Ni is catalytic-only per the paper, so `metal_element`). **Physics override:** the
+  three 77 K uptakes (9.8 / 8.2 / 6.9 wt% on ~900 m²/g, 4–5.5× the Chahine bound and
+  above record carbons) are Tier D (tiering doc l.33); the plausible 273/298 K rows are
+  B with a calibration point (LaNi5/basolite reference calibration). The paper's wt%
+  basis (m_H2/(m_sample+m_H2)) differs from the corpus dry-sample basis; recorded as
+  reported with a disclosing note (§3.9). The recalculated/DFT/literature values are
+  excluded; rGO at 298 K is a tabulated 0 (exact, noted as "negligible").
+- **HYC-0041** (Morande 2023, commercial Haycarb AC + N/B, 13 rows). 0 disputes of any
+  kind. `dopant_element="B, N"` for the two co-doped samples (the schema's one-dopant
+  field; comma-space delimiter; endorsed by Agent B as the first multi-element value, no
+  code filters it). DR micropore V0 and by-difference mesopore Vm recorded with a note;
+  the MDA-extrapolated Table 6 values excluded. `source_location` cites Table 2 only for
+  the seven XPS samples.
+- **HYC-0042** (Molefe 2019, ZTC + MOF/polymer composites, 3 rows). Scope: only the ZTC
+  and the two ZTC-containing composites (carbon present) are in; pristine UiO-66 (MOF),
+  PIM-1 (polymer) and PIM-1/UiO-66 (no carbon) are out. Composite `synthesis_method`
+  set to `template_synthesis` (the carbon component's route, per all 15 existing composite
+  rows); `pore_volume_method` `HK`→`unspecified` (single-point total at p/p0~0.99 per
+  footnote d); the ZTC HF/HCl purification propagated to the composites. Estimated
+  (mass-weighted) columns excluded.
+- **HYC-0043** (Ma 2019, wood-charcoal AC hollow fibers, 2 rows). Only WC-ACHF-1.0% is
+  text-anchored; the other four samples are figure-only and unanchorable (§3.4 step 6).
+  298 K in the conclusion is a typo for 77 K (four other locations). **Agent B digitized
+  Fig 4b** and found the excess maximum near ~25–30 bar with the ~100-bar point lower, so
+  the 100-bar/4.51 wt% row was downgraded to Tier C (confidence 4): the paper states the
+  pairing but it reflects the run window, not the peak pressure. N/P are incidental
+  (precursor-derived), so `dopant_element` is empty; `functional_groups` unit corrected to
+  at.% (Fig 2a).
+
+**HYC-0038 excluded** (Firlej 2021). Full-text review: all uptake isotherms are
+GCMC-simulated and the only experimental hydrogen result is an adsorption energy
+(no anchored (T, P, uptake)), so no row is extractable. `screening_decision=exclude`,
+`exclusion_reason=no_experimental_uptake`, applied by
+`scripts/migrate_exclude_hyc0038.py` (one row, three cells, rest byte-identical) under
+`docs/migration_exclude_hyc0038_plan.md`; the citation is kept for PRISMA and the §7.5
+line added to `docs/phase_d_screening_log.md` §5.2. Ratified by Avin.
+
+**A second `migrate_relabel` absolute pin, same §6.7 fix.** Post-condition 7 asserted
+`eligible == set(PD_ROWS)` — that HYC-0027's three Pd rows were the *only* metal-loading
+rows surviving the §12.3 filters. HYC-0039's 24 metal-loading rows legitimately break
+that; scoped to a subset (`set(PD_ROWS) <= eligible`), its test relaxed likewise, the
+delta check untouched. No dataset cell changed; the relabel output is byte-identical.
+`docs/migration_relabel_test_scope_plan.md` addendum. Mutation-checked: dropping the
+backfill still fails both the post-condition and the test.
+
+**Pinned tests updated, deliberately.** `test_bibliography` pdf_held 28→34, issue `none`
+partition 11→16, issue `pdf` partition +HYC-0043, excluded list +HYC-0038. `test_validate`
+scorer-vs-human agreement 191→224 (+33 agreements, 22 documented hand-adjustments: the
+HYC-0039 calibration lifts, the HYC-0040 physics override and calibration lifts, and the
+HYC-0043-M2 pressure downgrade). `test_dataset_invariants` `dopant_concentration_wt_pct`
+paper set +HYC-0039. `test_migrate_relabel` metal-loading eligibility `==`→`<=`.
+
+**Outcome.** 55 rows (28 + 9 + 13 + 3 + 2), **288 → 343, 28 → 33 papers**, 0 errors, no
+new warning type. All five `verified` with the dispute record in `verified_by` on every
+row. Tier distribution across the batch: 51 B, 1 C, 3 D (the HYC-0040 77 K over-claims).
+The 77 K + BET modelling subset gains HYC-0041 (13), HYC-0042 (3) and HYC-0043 (2) and
+rGO's 77 K row from HYC-0040 — more real doped/templated/commercial-AC groups against
+the "more groups, not more rows" target; HYC-0039 (no BET) does not enter it. Bibliography
+35 → 41 entries. 805 tests passing.
+
+**Where the pipeline was slow.** OpenAlex remained unreachable, so the three owed issue
+numbers (HYC-0032/0034/0037), HYC-0043's would-be corroboration, and the corpus-wide
+retraction pass are still owed to a session with `works/doi:` access. Per-PDF correction
+checks found none in the six papers read.

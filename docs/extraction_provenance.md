@@ -142,6 +142,11 @@ with a long one; the reverse is closer to true.
 | HYC-0033 | 2 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 44 cells agreed (characterization-only)** | text_direct |
 | HYC-0034 | 14 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 262 cells agreed** | table_direct |
 | HYC-0037 | 3 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 53 cells agreed** | table_direct |
+| HYC-0039 | 28 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 536 cells, 0 numeric disputes; 4 field-semantics adjudications upheld** | table_direct |
+| HYC-0040 | 9 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 144 cells, 0 numeric disputes; calibration + physics-override tiering adjudications** | table_direct |
+| HYC-0041 | 13 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 279 cells, 0 numeric/vocabulary/policy disputes** | table_direct |
+| HYC-0042 | 3 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, ~60 cells, 0 numeric disputes; scope + 3 convention adjudications** | table_direct |
+| HYC-0043 | 2 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, ~60 cells, 0 numeric disputes; 1 pressure-pairing tier downgrade** | text_direct |
 
 **This table and the totals below are not yet complete.** HYC-0007 and HYC-0024
 (Phase C.1) and HYC-0031 (Phase D) are extracted and in the dataset but were never
