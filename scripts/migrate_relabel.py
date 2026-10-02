@@ -554,17 +554,17 @@ def verify(
             f"{len(wrong)} wrong value {dict(list(wrong.items())[:3])}"
         )
 
-    # 5. physical_activation stops being an untested vocabulary value.
-    if strict and before_counts.get("physical_activation", 0) != 0:
-        raise MigrationError(
-            "physical_activation already had rows before this migration; the "
-            "plan's §1 claim that it was untested is false"
-        )
-    if after_counts.get("physical_activation", 0) != 2:
-        raise MigrationError(
-            f"expected 2 physical_activation rows after, found "
-            f"{after_counts.get('physical_activation', 0)}"
-        )
+    # 5. physical_activation gains exactly the two rows this migration relabels.
+    #    Verified as the +2 DELTA by the EXPECTED_SYNTHESIS_DELTAS check above,
+    #    not as an absolute total here. The earlier absolute form (0 before, 2
+    #    after) asserted the plan's §1 "untested vocabulary value" claim, which
+    #    was true at migration time but is a global post-condition a later append
+    #    invalidates -- §6.7: "a post-condition that a later append invalidates
+    #    was never testing this migration." HYC-0032's CO2-activated base carbons
+    #    (2026-10-02) are legitimately physical_activation and broke it. The +2
+    #    delta is this migration's own guarantee and is robust to corpus growth;
+    #    post-condition 4 already pins exactly which 36 cells changed and to what.
+    #    See docs/migration_relabel_test_scope_plan.md.
 
     # 6. carbonization is left on exactly the two control rows.
     survivors = {

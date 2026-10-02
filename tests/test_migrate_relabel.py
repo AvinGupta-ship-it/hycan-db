@@ -339,16 +339,23 @@ def test_every_relabelled_row_corroborates_its_value_in_activation_method(
 
 
 def test_physical_activation_is_no_longer_an_untested_vocabulary_value() -> None:
-    """The v1.2 addition had zero rows until this migration.
+    """The v1.2 addition had zero rows until this migration relabelled HYC-0022's
+    two CO2-gasified rows onto it.
 
-    MUTATION: drop HYC-0022's CO2 rows from the map -> back to zero.
+    MUTATION: drop HYC-0022's CO2 rows from the map -> those two rows are no
+    longer physical_activation and the subset below fails.
     """
     rows = rows_by_id()
     physical = {
         mid for mid, row in rows.items()
         if row["synthesis_method"] == "physical_activation"
     }
-    assert physical == {"HYC-0022-M2", "HYC-0022-M3"}
+    # A subset, not an equality: this migration's guarantee is that it moves
+    # HYC-0022's two rows onto physical_activation. The corpus can gain other
+    # physical_activation rows from later papers (HYC-0032's CO2-activated base
+    # carbons did, 2026-10-02) that this migration never touched, so pinning the
+    # global set to exactly these two is a post-condition a later append breaks.
+    assert {"HYC-0022-M2", "HYC-0022-M3"} <= physical
 
 
 def test_carbonization_now_means_carbonization_only() -> None:
