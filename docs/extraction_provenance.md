@@ -147,6 +147,11 @@ with a long one; the reverse is closer to true.
 | HYC-0041 | 13 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 279 cells, 0 numeric/vocabulary/policy disputes** | table_direct |
 | HYC-0042 | 3 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, ~60 cells, 0 numeric disputes; scope + 3 convention adjudications** | table_direct |
 | HYC-0043 | 2 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, ~60 cells, 0 numeric disputes; 1 pressure-pairing tier downgrade** | text_direct |
+| HYC-0044 | 12 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, ~142 cells, 0 numeric disputes; 1 pore-diameter-method adjudication (Saito-Foley -> other)** | table_direct |
+| HYC-0045 | 6 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, ~36 cells, 0 numeric disputes; total/excess exact-word labels confirmed** | table_direct |
+| HYC-0046 | 9 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 0 numeric disputes; pressure_unstated split, composite class and 330 m2/g exclusion confirmed** | table_direct |
+| HYC-0047 | 18 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, texture + uptake 0 mismatches; MPa->bar pressure fix, stoeckli_L0, multi-device collapse to one row/condition** | table_direct |
+| HYC-0048 | 3 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 0 numeric disputes; average_pore_diameter dropped (irreconcilable Tables 4/6/8)** | table_direct |
 
 **This table and the totals below are not yet complete.** HYC-0007 and HYC-0024
 (Phase C.1) and HYC-0031 (Phase D) are extracted and in the dataset but were never

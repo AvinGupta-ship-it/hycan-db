@@ -1739,3 +1739,62 @@ the "more groups, not more rows" target; HYC-0039 (no BET) does not enter it. Bi
 numbers (HYC-0032/0034/0037), HYC-0043's would-be corroboration, and the corpus-wide
 retraction pass are still owed to a session with `works/doi:` access. Per-PDF correction
 checks found none in the six papers read.
+
+## 2026-10-02 (continued) — Phase D batch: HYC-0044–0048
+
+**Models.** Agent A (extraction/adjudication) Opus; Agent B (independent verification)
+five parallel Sonnet subagents, one per paper, each re-reading the PDF via the project
+store with no sight of Agent A's reasoning.
+
+**Batch.** HYC-0044 (Hwang 2021, PVA/PAN carbon fibers + Pd), HYC-0045 (Masika 2013,
+zeolite-13X ZTC), HYC-0046 (Kabbour 2006, activated carbon aerogels + Ni/Co), HYC-0047
+(Fierro 2010, anthracite ACs, three labs/devices), HYC-0048 (Kahilu 2023, HTC coal/sewage
+ACs). 48 rows, `288`-style append 343 → 391, 33 → 38 papers, 0 errors, no new warning type.
+Tiers 38 A / 19 B / 5 C.
+
+**Agent B found 0 numeric transcription disputes in all five papers.** Every uptake, BET
+area, pore volume, T and P confirmed against the primary source. What it caught was a
+**unit error**, not a value error: HYC-0047's pressures were stored as the MPa magnitude
+(5, 4) rather than bar (50, 40). Fixed on all rows. The other adjudications were
+field-semantics: HYC-0044's Waverage is Saito-Foley, not the HK used for its micropore
+volume → `pore_diameter_method=other`; HYC-0047's L0 is Stoeckli's exact
+L0=10.8/(E0−11.4) → `stoeckli_L0` (not HYC-0024's DR-characteristic-energy slit width);
+HYC-0048's average pore diameter is irreconcilable across Tables 4/6/8 and AC-HCB's
+Table-6 value does not reproduce from its own area and volume, so the field was dropped.
+
+**The one modelling reversal.** HYC-0047 was first extracted as one row per lab × device ×
+condition (32 rows). That broke `test_plotting`'s pinned invariant that no sample/T/P is
+plotted twice at 77 K — the two 77 K devices (ICMPE volumetric, ICB gravimetric) double-
+counted each material in the Chahine subset. The corpus is designed around one excess
+point per (sample, T, P); the multi-lab values are provenance, not separate rows. Re-cut
+to 18 rows (ICMPE recorded, the IJL/ICB values in `source_location`). The dataset was
+`git checkout`-reverted to 343 and all five re-appended with the corrected HYC-0047 — the
+documented recovery pattern; the first three appends reproduced byte-identical shas.
+
+**Classification precedents checked against the corpus, not assumed.** Non-activated
+carbon fibre → `other` and activated carbon fibre → `activated_carbon` (HYC-0024, the
+corpus's one prior fibre paper). Every metal-bearing carbon in the corpus is `composite`
+(HYC-0027/0029/0039/0040), so Pd/APCF, Ni-CA and Co-CA follow; `carbon_aerogel` is a new
+class (HYC-0046 its first rows). Characterization-only rows (HYC-0044's five PCF process
+samples) follow HYC-0007: table-complete texture → Tier B by hand.
+
+**Bibliography.** 41 → 46 entries, appended by a full `ensure_ascii=False` re-dump that
+reproduced every existing entry byte-for-byte (verified before writing). HYC-0046 is the
+awkward one: its held PDF is the LLNL preprint with no volume/issue/pages/year, so those
+were read from the reference lists of two held PDFs that cite it (HYC-0047 ref [42] prints
+`18(26):6085-7`; HYC-0044 ref [17]) and the Caltech DOI record — a new `citing_pdf`
+provenance value, because OpenAlex, Semantic Scholar and Crossref were all 403 at the
+egress proxy this session.
+
+**Pinned tests updated, deliberately.** `test_bibliography` pdf_held 34→39, issue `none`
+16→19, issue `pdf` +HYC-0045, allowed-provenance +`citing_pdf`. `test_validate`
+agreement 224→257 (+33 agreements, 15 hand-adjustments), Chahine no-uptake 14→19.
+`test_dataset_invariants` no-uptake +HYC-0044-M8…M12, flag papers +HYC-0046, total/excess
+pairs +HYC-0045-M1/M6. `migrate_relabel` post-condition 6 (the carbonization survivor set)
+de-pinned from an absolute inventory to the migration's delta — the third §6.7 fix of this
+kind — because HYC-0044's carbon fibres are legitimately `carbonization`. 805 tests passing.
+
+**Still owed.** The OpenAlex backfill now owes three more issue numbers (HYC-0044/0047/0048)
+and a re-confirmation of HYC-0046's citation, plus the standing corpus-wide retraction pass
+— all blocked on `works/doi:` egress. Agent B found no correction/retraction notice in any
+of the five PDFs read.
