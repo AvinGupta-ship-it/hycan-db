@@ -1467,3 +1467,177 @@ against plan §6's twelve, all killed, with a passing control on the scratch tre
 entry predicted — and the staging-helper it recommended was still not built, so
 the same 67-column builder script was written from scratch. Building it now would
 also be the natural place to put the terminator check §6.7 needs.
+
+## 2026-10-02 — Phase D batch: HYC-0032, HYC-0033, HYC-0034, HYC-0037
+
+**Pipeline.** Agent A (extraction) and Agent B (verification) were run as four
+isolated pairs, one per paper, as concurrent Opus subagents; Agent B received only
+the candidate rows (numeric, vocabulary and source-location cells), the PDF, and
+`src/hycan/schema.py` — never Agent A's reasoning, notes, search keys or gap
+analysis. The orchestrator (Claude Code) built the staging specs, ran
+`build_staging.py` / `append_paper.py` / `record_extraction.py` /
+`build_bibliography.py`, assigned the controlled vocabularies and tiers, and
+adjudicated the one dispute from the primary source.
+
+**Source acquisition.** All four PDFs were in the Claude Project, filename stem →
+ID. The DOIs were resolved against OpenAlex during Phase D screening (2026-09-27,
+all 35 confirmed); they were **not** re-resolved this session because OpenAlex was
+unreachable from the container — `curl` 403s on CONNECT at the egress proxy and
+`WebFetch` is gated behind an interactive approval that no one was present to
+grant. Two consequences, both recorded below: the published-correction check was
+done by reading each PDF rather than by a Crossref/OpenAlex pass, and three issue
+numbers are unresolved in the bibliography.
+
+**Correction/retraction check.** Agent A read each PDF for a printed correction,
+erratum, corrigendum, retraction or expression-of-concern notice. **None found in
+any of the four** (HYC-0032 carries only a routine "Check for updates" badge). The
+corpus-wide raw-JSON Crossref pass §6.9 owes is still owed and now also wants the
+three issue numbers; it needs network access this session did not have.
+
+**Extraction and verification, per paper.** Across all four, **every numeric cell
+agreed** under independent verification — the protocol's measured pattern.
+
+- **HYC-0032** (Anuchitsakol 2023, *RSC Adv.* 13, 36009–36022), 10 rows, Tier B.
+  Five present-work samples (3 O/N co-doped `doped_carbon`, 2 unmodified
+  `activated_carbon`) × 77 K and 298 K at 1 bar, all from Table 1. Agent B: 178
+  cells, all numeric and vocabulary cells agreed. **One dispute upheld:** the
+  KOH:char mass ratio was written 1:2 in the three N-AC synthesis descriptions;
+  Agent B read the paper as 2:1. Adjudicated against the primary source — §2.1.1,
+  "a weight ratio of 1 g sample per 2 g KOH" = 2 g KOH per 1 g char — Agent B was
+  right; corrected in six descriptive cells. One vocabulary dispute **dismissed:**
+  Agent B recommended `pore_volume_method = other` for the single-point total pore
+  volume; kept `unspecified` to match the 31 existing corpus rows that record a
+  single-point total that way (a Gurvich reading applies no pore-size model), with
+  the single-point basis in `notes`. Table 1 is a mixed table; only the five
+  present-work rows were extracted, the rest being other authors' literature
+  (column "Year/ref."). The GCMC study (Figs 11–14) is of idealised slit-pore
+  models and no simulated value was recorded.
+
+- **HYC-0033** (Romanos 2019, *Sci. Rep.* 9:2971), 2 rows, Tier C,
+  **characterization-only.** Agent B: 44 cells, 0 disputes, and independently
+  confirmed the decision: the paper reports hydrogen uptake only in Figs 4–5 with
+  no value in any table or in the text, so it is figure-only **and unanchorable** —
+  §3.4 step 6 cannot be satisfied because there is no text value for a digitised
+  series to reproduce. Two BET rows recorded (3300 non-irradiated / 3100
+  irradiated m²/g, both rounded to the nearest hundred by the authors). Boron
+  content 1.4 wt% (PGNAA → `dopant_concentration_method = other`) is stated only
+  for the "resulting" post-etch sample, so it is on the irradiated row and null on
+  the non-irradiated one. Skeletal density 2.0 g/cm³ is **assumed**, not measured,
+  and was not recorded. `measurement_method = not_applicable` on both rows.
+
+- **HYC-0034** (Wang 2016, *IJHE* 41, 8489–8497), 14 rows, Tier B. Seven samples
+  (6 N-doped `doped_carbon` + 1 nitrogen-free `activated_carbon` reference) × 77 K
+  at 1 and 20 bar, all from Table 1. Agent B: 262 cells, 0 disputes — it
+  re-transcribed Table 1 independently with no swaps between the headline BET /
+  t-plot-micropore columns and confirmed the single-point vs t-plot pore-volume
+  split. The hydrochar precursor **HC** was correctly excluded (N content only, no
+  area/uptake). The abstract states SBET / pore-volume / N ranges that differ
+  slightly from Table 1 (e.g. SBET 1362–3009 vs 1394–2919; the body also carries
+  PC's total pore volume over from PC-2-600); Table 1 was used throughout (§3.7),
+  with the discrepancy noted.
+
+- **HYC-0037** (Chen 2013, *IJHE* 38, 3297–3303), 3 rows, Tier B,
+  **low-uptake (bias guard, §7.4).** One N-doped nanotube sample: 0.21 wt%
+  (1 bar/77 K), 1.21 wt% (7 bar/77 K), 0.17 wt% (19 bar/298 K), all in Table 1 and
+  the text. Agent B: 53 cells, 0 numeric disputes. `uptake_type` split confirmed
+  by the exact-word rule: `unspecified` for the 1 bar/77 K value (Fig 5a, not
+  labelled excess) and `excess` for the 7 bar/77 K (Fig 5b) and 298 K (Fig 5c)
+  isotherms. `measurement_method` split confirmed: volumetric Sieverts (ASAP
+  2020HD88) for the 1 bar value, gravimetric microbalance (IGA, Hiden) for the
+  other two. Table 1 is a literature-summary table; only column 1 ("this work")
+  was extracted. `residual_metal_element = Fe` from the FeCl₃ catalyst, not
+  quantified. `material_class = MWCNT`: the paper says "nitrogen-doped carbon
+  nanotubes" with a 10–20 nm wall thickness, which is multi-walled, and the corpus
+  files doped nanotubes by structural class (cf. HYC-0025, a boron-doped MWCNT).
+
+**Decisions and their basis.** `material_class`: doped activated carbons →
+`doped_carbon` (cf. HYC-0021, HYC-0026); doped nanotubes → their structural class
+(HYC-0037 → MWCNT, cf. HYC-0025); unmodified base carbons → `activated_carbon`
+with no `dopant_element` (their incidental biomass N/O is not a deliberate doping
+step — the oxygen-is-not-a-dopant convention, extended to incidental heteroatoms).
+`pore_volume_method = unspecified` for a single-point total pore volume (31-row
+precedent). Tiers were assigned from `score_reproducibility` with two documented
+hand-adjustments, both §5 blind spots: **HYC-0032-M9** (scorer C → B — the 1.78
+wt% at 1 bar exceeds the pressure-blind BET/500 Chahine bound, which is a
+saturation rule that does not apply at 1 bar; the value is within physical bounds)
+and **HYC-0037-M3** (scorer A → B — the residual Fe is unquantified and the paper
+credits it for part of the uptake, so the sample is not anchor-quality). Every
+other tier matches the scorer.
+
+**Fields left deliberately empty.** HYC-0033's uptake (figure-only, unanchorable)
+and its assumed skeletal density; the non-irradiated row's boron concentration
+(the paper states it only for the post-etch sample); `average_pore_diameter_nm` on
+HYC-0032 and HYC-0034 (the papers report multiple NLDFT PSD maxima, not a single
+average) and HYC-0037 (method stated, no value); the oxygen content of HYC-0032's
+co-doped samples (the schema holds one dopant; O is in the description and
+`functional_groups`); HYC-0034's N/C ratio (no field).
+
+**Premise correction — HYC-0038 (Firlej 2021, *Nanomaterials* 11, 2173).** Screened
+in with the caveat "confirm experimental data present, exclude if simulation-only."
+On reading, the only experimental hydrogen result is an adsorption **energy**
+(~9 kJ/mol, which has no schema field) and a figure-only amount-adsorbed axis with
+no stated pressure; every uptake isotherm in the paper is GCMC-simulated. The
+physical boron carbons are real (¹¹B/¹³C NMR, 5/11/19/23 wt% B), so the common
+"boron is simulation-only" trap does not apply — but there is no storable
+experimental (T, P, uptake) measurement. **Recommended EXCLUDE**, pending whether
+the Supplementary Information or a companion experimental dataset can be obtained;
+not yet actioned (a screening reversal is a protected-file migration + a §7.5
+PRISMA line). It yielded no rows and is left `include` / `not_started`.
+
+**Source anomalies.** HYC-0032's inverted KOH ratio (our error, caught by Agent
+B). HYC-0034's abstract/Table-1 range mismatch and PC total-pore-volume carryover.
+HYC-0037 prints "Hidden Isochem" for Hiden and "10⁻⁶ mbar" as "106 mbar" in the
+text layer. HYC-0033 omits the non-irradiated binding-energy value in the printed
+article itself.
+
+**Schema and methodology notes.** No new blocking gap. The known limitations these
+papers touch are already recorded: `PoreDiameterMethod` has no `NLDFT` member
+(HYC-0032/0034 PSDs), and the schema holds one dopant where HYC-0032 is O/N
+co-doped.
+
+**Validation.** Baseline 259 rows / 0 errors / 2 warning types
+(`Unspecified uptake_type` 205, `Pre-2005 raw-CNT high uptake (Tier D)` 1). After
+the four appends: 288 rows, 0 errors, same 2 types, `Unspecified uptake_type`
+205 → 232 (+27; HYC-0037's two `excess` rows correctly do not count). No new
+warning type, so no `--expect-new-warning`. Full suite **805 passed**.
+
+**Migration — `migrate_relabel` post-condition scoped to a delta.** HYC-0032's two
+CO2-activated base carbons are legitimately `physical_activation`, and the
+historical relabel migration asserted a global absolute count for that value
+(0 before, 2 after), which four of its own tests then failed against the larger
+dataset. Per §6.7 ("pin deltas and partitions, not absolute totals; a
+post-condition that a later append invalidates was never testing this migration")
+the redundant absolute check was removed — the `+2` delta is already verified by
+the `EXPECTED_SYNTHESIS_DELTAS` check, and post-condition 4 already pins the exact
+36 relabelled cells. The physical_activation test was scoped from a global
+equality to a subset. No dataset cell changed; the relabel output is byte-identical
+(the round-trip test proves it). Two mutations confirm the scoped guards still
+catch a bad relabel: corrupting a relabel target is caught by the delta check
+(+35 vs +34), and dropping a mapped row by the changed-cell-count check (69 vs 70).
+`docs/migration_relabel_test_scope_plan.md`.
+
+**Pinned tests updated, deliberately.** `test_bibliography` pdf_held 24 → 28 and
+the issue-number `none` partition 7 → 11; `test_validate` scorer-vs-human
+agreement 164 → 191 (+27 agreements, 2 disagreements = the two hand-adjustments
+above) and the Chahine `not_applicable_no_uptake` partition 12 → 14 (HYC-0033's two
+rows); `test_dataset_invariants` the no-uptake enumeration (+HYC-0033-M1/M2) and
+the `dopant_concentration_wt_pct` paper set (+HYC-0032/0033/0034).
+
+**Bibliography.** Four entries added, all PDF-sourced for authors/title/
+journal/volume/pages/year (pdf_held 28). HYC-0033 is a genuine `none` (Scientific
+Reports is article-numbered). HYC-0032/0034/0037 print no issue on the article and
+OpenAlex was unreachable, so their issue is omitted with a disclosing note and
+will move to `openalex` once retrievable.
+
+**Outcome.** 29 rows (10 + 2 + 14 + 3), 259 → 288, 24 → 28 papers. All four tracked
+`verified`, with the dispute record in `verified_by` on every row — the first
+Phase D papers to carry it. The 77 K BET modelling subset the gate in §14.1 turns
+on gained **3 groups (11 → 14)** — HYC-0032/0034/0037, all doped carbons —
+directly against the "more groups, not more rows" target; HYC-0033 is
+characterization-only and does not enter it. Tier distribution 48 A / 187 B /
+43 C / 10 D.
+
+**Where the pipeline was slow.** The OpenAlex egress gate. The issue-number
+resolution and the corpus-wide retraction pass both need `works/doi:`, which this
+session could not reach; a session with that access should backfill the three
+issue numbers and run the owed Crossref/OpenAlex pass in one go.

@@ -138,9 +138,23 @@ with a long one; the reverse is closer to true.
 | HYC-0025 | 6 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 42/42 cells agreed** | table_direct |
 | HYC-0026 | 7 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 86/102 agreed, 16 upheld** | table_direct, text_direct |
 | HYC-0029 | 16 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 144/145 agreed, 1 upheld** | table_direct, text_direct |
+| HYC-0032 | 10 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 178 cells agreed, 1 upheld** | table_direct |
+| HYC-0033 | 2 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 44 cells agreed (characterization-only)** | text_direct |
+| HYC-0034 | 14 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 262 cells agreed** | table_direct |
+| HYC-0037 | 3 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 53 cells agreed** | table_direct |
 
-Totals: 151 `table_direct`, 39 `text_direct`, 15 `figure_digitized`. Tiers: 36
-A, 124 B, 37 C, 8 D.
+**This table and the totals below are not yet complete.** HYC-0007 and HYC-0024
+(Phase C.1) and HYC-0031 (Phase D) are extracted and in the dataset but were never
+added here — a documentation gap that predates the 2026-10-02 Phase D batch above.
+The totals line and §1's aggregate dispute figures are a pre-Phase-C.1 snapshot
+(85 rows / 704 cells); they do **not** include HYC-0007/0024/0031 or the
+2026-10-02 batch, and a future session should recompute the dual-agent aggregates
+across every `verified_by`-bearing paper in one pass (and resolve the three
+OpenAlex issue numbers at the same time). The per-paper rows in this table are
+accurate; only the aggregates are stale.
+
+Totals (pre-Phase-C.1 snapshot, stale — see the note above): 151 `table_direct`,
+39 `text_direct`, 15 `figure_digitized`. Tiers: 36 A, 124 B, 37 C, 8 D.
 
 **Rows deliberately not written.** All twelve Phase C papers have been read and
 schema v1.2 unblocked most of what was held. 105 rows were extracted; **85 are

@@ -4,6 +4,23 @@ All notable changes to HyCAN-DB will be documented in this file.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
+### Added — Phase D extraction batch: HYC-0032/0033/0034/0037, 29 rows, dual-agent verified
+- **`data/raw/measurements_v0.1.csv`: 259 → 288 rows, 24 → 28 papers**, 0 errors, no new warning type. HYC-0032 (10, O/N co-doped AC), HYC-0033 (2, characterization-only — its uptake is figure-only and unanchorable under §3.4 step 6), HYC-0034 (14, N-doped porous carbon), HYC-0037 (3, N-doped MWCNT, low-uptake bias guard). All four `verified`, with the dispute record in `verified_by` on **every row** — the first Phase D papers to carry it. Tiers 48 A / 187 B / 43 C / 10 D.
+- **The 77 K BET modelling subset (§14.1) gained 3 groups, 11 → 14** — HYC-0032/0034/0037, all doped carbons — which is the "more groups, not more rows" target the gate turns on. HYC-0007 and HYC-0024 had added zero to it.
+- **`references/bibliography_sources.json`: 31 → 35 entries**, all PDF-sourced for authors/title/journal/volume/pages/year. HYC-0033 is a genuine `none` issue (article-numbered); HYC-0032/0034/0037 omit the issue with a disclosing note (OpenAlex was unreachable this session to resolve it).
+- **`references/staging/HYC-0032|0033|0034|0037.json`** — the per-paper extraction specs, committed with the appends.
+- Every numeric cell agreed under independent Agent-B verification. One dispute upheld (HYC-0032's KOH:char ratio, inverted in our text, corrected against the primary source to 2 g KOH per 1 g char); the rest dismissed by convention or resolved under §3.7.
+
+### Fixed — a `migrate_relabel` post-condition that a later append invalidated
+- `scripts/migrate_relabel.py` asserted a **global absolute** `physical_activation` count (0 before, 2 after). HYC-0032's two CO2-activated base carbons are legitimately `physical_activation` and broke it — the §6.7 fragility exactly. Scoped to the `+2` **delta** (already verified by the `EXPECTED_SYNTHESIS_DELTAS` check; the absolute form was a redundant cross-check), and the physical_activation test from a global equality to a subset. **No dataset cell changed**; the relabel output is byte-identical. `docs/migration_relabel_test_scope_plan.md`. Mutation-verified: the delta check (+35 vs +34) and the changed-cell check (69 vs 70) still catch a bad relabel.
+
+### Fixed — pinned test counts updated for the Phase D batch
+- `test_bibliography`: pdf_held 24 → 28; issue `none` partition 7 → 11. `test_validate`: scorer-vs-human 164 → 191 (+27 agreements, 2 documented hand-adjustments — HYC-0032-M9's 1-bar Chahine cap and HYC-0037-M3's unquantified-Fe downgrade); Chahine `not_applicable_no_uptake` 12 → 14. `test_dataset_invariants`: no-uptake enumeration +HYC-0033-M1/M2; `dopant_concentration_wt_pct` paper set +HYC-0032/0033/0034. **805 tests passing.**
+
+### Disclosed
+- **HYC-0038 (Firlej 2021) recommended for exclusion, not yet applied.** Its only experimental hydrogen result is an adsorption energy (no schema field); every uptake isotherm is GCMC-simulated and the measured loading is a figure-only axis with no stated pressure. The boron carbons are physically real, so SI or a companion experimental dataset could rescue it; the screening reversal is a protected-file migration plus a §7.5 PRISMA line, awaiting that decision. Left `include` / `not_started`; it yielded no rows.
+- **Three issue numbers (HYC-0032/0034/0037) and the owed corpus-wide retraction check are unresolved** — OpenAlex is unreachable from the container (curl 403 at the egress proxy; WebFetch gated behind an interactive approval). Agent A found no printed correction/retraction notice in any of the four PDFs. A session with `works/doi:` access should backfill both in one pass.
+
 ### Added — Phase D screening: 35 verified candidates, and the corpus audit
 - **`docs/corpus_audit.md`** — the §18 Phase D deliverable, and the honest account of what the corpus over- and under-samples. Every number in it is re-derived from the dataset by a checker script, not carried over from prose. Its central finding is that **the corpus is larger than it is useful**: 97 of 227 rows (43%) belong to the 12 papers that contribute *nothing* to the 102-row modelling subset, and three papers supply 69 of the 102 that remain.
 - **`references/paper_tracking.csv`: 30 → 65 rows.** HYC-0031 … HYC-0065, all `include`, all `pdf_obtained = no`, all `not_started`. Applied by `scripts/migrate_phase_d_screening.py` under `docs/migration_phase_d_screening_plan.md`; **0 existing cells changed** and physical lines 1–31 byte-identical.
