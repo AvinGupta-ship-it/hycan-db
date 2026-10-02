@@ -1,0 +1,65 @@
+{
+  "paper": {
+    "paper_id": "HYC-0033",
+    "doi": "10.1038/s41598-019-39417-6",
+    "first_author": "Romanos",
+    "year": "2019",
+    "journal": "Scientific Reports",
+    "title": "Boron-neutron Capture on Activated Carbon for Hydrogen Storage"
+  },
+  "defaults": {
+    "material_class": "doped_carbon",
+    "measurement_method": "not_applicable",
+    "extraction_method": "text_direct",
+    "extractor": "HyCAN pipeline v2",
+    "extraction_date": "2026-10-02",
+    "verified_by": "Agent B: 44 cells verified, 0 disputes; characterization-only, figure-only uptake independently confirmed (no numeric uptake in any table or text)",
+    "verification_date": "2026-10-02",
+    "extraction_confidence": "4",
+    "reproducibility_tier": "C",
+    "uptake_type": "unspecified",
+    "uptake_bound": "exact",
+    "temperature_unstated": "False",
+    "pressure_unstated": "False",
+    "measurement_mode": "isothermal",
+    "surface_area_method": "BET",
+    "pore_volume_method": "unspecified",
+    "pore_volume_probe_gas": "unspecified",
+    "dopant_element": "B",
+    "synthesis_method": "chemical_activation"
+  },
+  "notes": {
+    "matclass": "material_class doped_carbon: a boron-doped activated carbon (cf. HYC-0021, a nitrogen-doped activated carbon, also doped_carbon)",
+    "bet": "BET surface area by N2 at 77 K (P/Po 0.01-0.03); the paper rounds areas above 1000 m2/g to the nearest hundred (3300 non-irradiated, 3100 irradiated); no numeric total pore volume is printed (porosity 0.79/0.78 is dimensionless and has no schema field); PSD main peak ~7.5 A by QSDFT is a distribution mode, not an average, so no pore diameter is recorded",
+    "figuptake": "the paper reports hydrogen uptake only in Figs 4-5 (excess and total amount stored, 80 K, 1-100 bar, g H2/kg carbon) with no numeric value in any table or in the text; those values are figure-only and, because the paper states no uptake value in text, cannot be validated by the figure-digitization text-value check (manual section 3.4 step 6), so no uptake row is recorded for this paper",
+    "boronmeth": "boron introduced by decaborane vapor deposition before neutron irradiation; boron content 1.4 wt% by PGNAA (prompt-gamma neutron activation analysis; dopant_concentration_method=other), stated for the resulting post-etch (irradiated) sample",
+    "tier": "characterization-only rows (no uptake); tier C assigned by hand per manual sections 13.4 and 6.9 (the rubric scores uptake reporting, which these rows lack), reflecting the BET area rounded to the nearest hundred, the absence of any numeric pore volume, and that the paper's hydrogen uptake is figure-only and unanchorable",
+    "synth": "activated carbon from corncob by two-step chemical activation (phosphoric acid, charred 480 C under N2; then KOH at 790 C, KOH:carbon 3:1), washed to pH 7; measurements on a Hiden HTP-1 volumetric analyser at 80 K, 1-100 bar"
+  },
+  "samples": {
+    "S1": {
+      "label": "B-doped (non-irradiated)",
+      "material_description": "Boron-doped activated carbon from corncob (two-step chemical activation), non-irradiated; boron deposited by decaborane vapor deposition",
+      "activation_method": "two-step chemical: phosphoric acid (charred 480 C, N2), then KOH at 790 C (KOH:carbon 3:1)",
+      "purification_method": "washed with hot water to pH 7 after each activation",
+      "bet_surface_area_m2_g": "3300.0",
+      "notes": ["matclass", "bet", "figuptake", "synth", "tier"],
+      "note_extra": "non-irradiated B-doped state; boron deposited by decaborane, content not separately quantified for this state (the 1.4 wt% PGNAA value is stated for the post-etch irradiated sample)"
+    },
+    "S2": {
+      "label": "B-doped + 1 min irradiation",
+      "material_description": "Boron-doped activated carbon from corncob, neutron-irradiated 1 min at MURR, then H2O2-etched and vacuum-annealed; boron 1.4 wt% (PGNAA)",
+      "activation_method": "two-step chemical (phosphoric acid; KOH 790 C 3:1); after 1-min neutron irradiation, etched with 30% H2O2 at 750 C 1 h, then vacuum-annealed 600 C 15 h",
+      "purification_method": "washed with hot water to pH 7 after each activation",
+      "dopant_concentration_wt_pct": "1.4",
+      "dopant_concentration_method": "other",
+      "bet_surface_area_m2_g": "3100.0",
+      "notes": ["matclass", "bet", "boronmeth", "figuptake", "synth", "tier"],
+      "note_extra": "neutron-irradiated 1 min at MURR, then etched (30% H2O2, 750 C 1 h) and vacuum-annealed (600 C 15 h); boron 1.4 wt% by PGNAA"
+    }
+  },
+  "measurements": [
+    {"sample": "S1", "source_location": "p. 4 Results (specific surface 3300 m2/g before irradiation); N2 BET method, P/Po 0.01-0.03, and rounding-to-nearest-hundred rule p. 3; sample preparation p. 3", "note_extra": "characterization-only row (BET area); the paper's H2 uptake for this sample is figure-only (Figs 4-5) and not recorded"},
+    {"sample": "S2", "source_location": "p. 4 Results (specific surface 3100 m2/g after irradiation); N2 BET method, P/Po 0.01-0.03, and rounding rule p. 3; boron 1.4 wt% PGNAA and post-irradiation treatment p. 3", "note_extra": "characterization-only row (BET area); the paper's H2 uptake for this sample is figure-only (Figs 4-5) and not recorded"}
+  ]
+}

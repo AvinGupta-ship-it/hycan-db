@@ -431,17 +431,20 @@ def test_metal_loading_is_not_confused_with_dopant_concentration(dataset):
     assert set(both["dopant_element"]) == {"N"}
 
     by_weight = dataset[dataset["dopant_concentration_wt_pct"].notna()]
-    assert set(by_weight["paper_id"]) == {"HYC-0026"}
+    assert set(by_weight["paper_id"]) == {
+        "HYC-0026", "HYC-0032", "HYC-0033", "HYC-0034"
+    }
     assert by_weight["dopant_concentration_method"].notna().all()
 
 
 def test_characterization_only_rows_carry_characterization(dataset):
     """Rows with no uptake must still carry something, and no conditions.
 
-    Eleven now, up from the two HYC-0018 rows schema v1.1 recovered: HYC-0029's
-    873 K activated sample, HYC-0026's four nitrogen-doped samples and HYC-0007's
-    four ACFs -- each a real material whose uptake the paper plots without ever
-    printing a number.
+    Fourteen now, up from the two HYC-0018 rows schema v1.1 recovered: HYC-0029's
+    873 K activated sample, HYC-0026's four nitrogen-doped samples, HYC-0007's
+    four ACFs, HYC-0015's pristine graphite, and HYC-0033's two boron-doped
+    characterization rows -- each a real material whose uptake the paper either
+    does not measure or plots without ever printing a number.
 
     **"No uptake" must mean no uptake OF ANY KIND, not merely no gravimetric
     value.** Before v1.3 those were the same thing. They are not any more:
@@ -464,6 +467,7 @@ def test_characterization_only_rows_carry_characterization(dataset):
         "HYC-0026-M2", "HYC-0026-M4", "HYC-0026-M5", "HYC-0026-M7",
         "HYC-0007-M5", "HYC-0007-M6", "HYC-0007-M7", "HYC-0007-M8",
         "HYC-0015-M3",
+        "HYC-0033-M1", "HYC-0033-M2",
     }, sorted(no_uptake["measurement_id"])
 
     # **The list is read off schema.py, not restated here.** This test used to

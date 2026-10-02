@@ -217,8 +217,9 @@ def test_author_lists_come_from_the_pdf_wherever_one_is_held():
         if r["pdf_held"]:
             assert r["provenance"]["authors"] == "pdf", r["paper_id"]
     # 23 for the original corpus, plus HYC-0031, the first Phase D paper
-    # whose full text was obtained and extracted (2026-09-30).
-    assert sum(1 for r in sources() if r["pdf_held"]) == 24
+    # whose full text was obtained and extracted (2026-09-30); plus the
+    # 2026-10-02 Phase D batch HYC-0032/0033/0034/0037, all PDF-held.
+    assert sum(1 for r in sources() if r["pdf_held"]) == 28
 
 
 def test_the_issue_number_provenance_partition_is_pinned():
@@ -242,8 +243,13 @@ def test_the_issue_number_provenance_partition_is_pinned():
     # 6 for the original corpus, plus HYC-0031 (2026-09-30). Nature
     # Communications prints volume and article number in its running head and
     # no issue, so claiming one would be invented -- which is what this
-    # partition exists to stop.
-    assert len(by_prov["none"]) == 7
+    # partition exists to stop. +4 for the 2026-10-02 Phase D batch: HYC-0033
+    # is article-numbered (Scientific Reports, genuinely no issue), while
+    # HYC-0032/0034/0037 print no issue on the article and OpenAlex was
+    # unreachable from the extraction session, so their issue is omitted
+    # pending an OpenAlex backfill (each entry's note says so, and it moves to
+    # 'openalex' once the issue is retrieved).
+    assert len(by_prov["none"]) == 11
     # Match the FIELD, not the word: two of these notes contain the phrase
     # "article number", which a substring test read as an issue field.
     field = re.compile(r"^\s*number\s*=", re.M)

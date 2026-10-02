@@ -550,7 +550,9 @@ def test_the_three_unassessable_chahine_cases_partition_the_corpus():
     non_grav = by_basis.get("not_assessable_non_gravimetric", [])
     unstated = by_basis.get("temperature_not_reported", [])
 
-    assert len(no_uptake) == 12
+    # 12 before the 2026-10-02 Phase D batch; +2 for HYC-0033's two
+    # characterization-only boron-doped rows (its hydrogen uptake is figure-only).
+    assert len(no_uptake) == 14
     assert len(non_grav) == 11
     assert sorted(unstated) == [
         "HYC-0011-M1",
@@ -773,13 +775,18 @@ def test_no_assigned_tier_changed_and_the_scorer_still_returns_a_letter():
     # statement about how far an independent scorer diverges from human judgment
     # over the whole corpus, and that is only meaningful as a total. It must be
     # updated deliberately whenever the corpus changes, which is the point.
-    # 141 of 227 before HYC-0031. Now 164 of 259: that paper contributes 23
-    # agreements and 9 disagreements, the 9 being the rows where the
-    # extractor overrode the scorer on its two documented blind spots -- a
-    # vacuous Chahine bound at 1 bar, and a `total` row scored against a
-    # bound defined for `excess`. Updated deliberately, per this pin's
+    # 141 of 227 before HYC-0031. 164 of 259 after HYC-0031: that paper
+    # contributes 23 agreements and 9 disagreements, the 9 being the rows where
+    # the extractor overrode the scorer on its two documented blind spots -- a
+    # vacuous Chahine bound at 1 bar, and a `total` row scored against a bound
+    # defined for `excess`. Now 191 of 288 after the 2026-10-02 Phase D batch
+    # (HYC-0032/0033/0034/0037): +27 agreements and exactly 2 disagreements --
+    # HYC-0032-M9 (scorer C, assigned B: the pressure-blind Chahine bound at
+    # 1 bar) and HYC-0037-M3 (scorer A, assigned B: residual Fe is unquantified
+    # and the paper credits it for part of the uptake, so not anchor-quality).
+    # Both are documented hand-adjustments. Updated deliberately, per this pin's
     # own instruction. No assigned tier changed.
-    assert agree == 164
+    assert agree == 191
 
 
 def test_the_rows_in_tension_with_their_assigned_tier_are_named():

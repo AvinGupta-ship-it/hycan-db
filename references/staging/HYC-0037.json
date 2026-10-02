@@ -1,0 +1,59 @@
+{
+  "paper": {
+    "paper_id": "HYC-0037",
+    "doi": "10.1016/j.ijhydene.2013.01.055",
+    "first_author": "Chen",
+    "year": "2013",
+    "journal": "International Journal of Hydrogen Energy",
+    "title": "Facile synthesis and hydrogen storage application of nitrogen-doped carbon nanotubes with bamboo-like structure"
+  },
+  "defaults": {
+    "extraction_method": "table_direct",
+    "extractor": "HyCAN pipeline v2",
+    "extraction_date": "2026-10-02",
+    "verified_by": "Agent B: 53 cells verified, 0 numeric disputes; 2 judgment calls resolved (pore_volume_method unspecified kept by convention; uptake_bound exact per primary table)",
+    "verification_date": "2026-10-02",
+    "extraction_confidence": "5",
+    "reproducibility_tier": "B",
+    "uptake_bound": "exact",
+    "temperature_unstated": "False",
+    "pressure_unstated": "False",
+    "measurement_mode": "isothermal",
+    "surface_area_method": "BET",
+    "pore_volume_method": "unspecified",
+    "pore_volume_probe_gas": "N2",
+    "dopant_concentration_method": "XPS"
+  },
+  "notes": {
+    "matclass": "material_class MWCNT: the paper calls these nitrogen-doped carbon nanotubes without stating wall number, but the reported 10-20 nm wall thickness is multi-walled and the corpus files doped nanotubes by structural class (cf. HYC-0025, a boron-doped MWCNT)",
+    "dopant": "nitrogen doping 1.5 at% by XPS (N1s/C1s intensities), confirmed by combustion elemental analysis (N/C atomic ratio ~0.015); residual_metal_element=Fe from the FeCl3 growth catalyst, not quantified by the paper (only a small amount), and the paper attributes part of the uptake to this residual iron",
+    "porevol": "total_pore_volume_cm3_g is a single-point value from the N2 adsorption volume at P/Po = 0.99; no average pore diameter value is reported (only the method), so pore_volume_method is unspecified and no diameter is recorded",
+    "littab": "Table 1 is a literature-summary table (hydrogen storage capacities for representative nitrogen-doped carbon materials); only column 1, N-doped CNTs (this work), is this paper's own data and is extracted; its other columns are cited other-author results and are excluded",
+    "type1": "uptake_type unspecified (exact-word rule): the low-pressure 77 K isotherm (Fig 5a) that yields this value is not labelled excess; only the Fig 5b and Fig 5c isotherms are",
+    "type2": "uptake_type excess: the high-pressure 77 K isotherm (Fig 5b) is reported as excess uptake",
+    "type3": "uptake_type excess: the 298 K isotherm (Fig 5c) is the excess hydrogen adsorption isotherm",
+    "method1": "measured by a volumetric method (Micromeritics ASAP 2020HD88, 0-800 mmHg, 77 K); sample evacuated at 573 K before measurement; sample mass and blank/calibration not stated",
+    "methodhp": "high-pressure uptake by an intelligent gravimetric analyser (IGA, Hiden Isochem) in static mode, 0-19 bar; degassed in ultrahigh vacuum (1e-6 mbar) at 573 K for 10 h; H2 99.999%; sample mass and buoyancy/blank correction not stated"
+  },
+  "samples": {
+    "S1": {
+      "label": "N-doped CNTs",
+      "material_class": "MWCNT",
+      "material_description": "Nitrogen-doped carbon nanotubes with bamboo-like structure (thin compartment layers); nanotube diameter 50-400 nm, wall thickness 10-20 nm; synthesised by catalysed pyrolysis of melamine with FeCl3",
+      "synthesis_method": "pyrolysis",
+      "activation_method": "none (no activation step; degassed/evacuated before measurement)",
+      "purification_method": "0.5 M hydrochloric acid for 24 h to remove catalyst residue, then washed with deionised water several times, dried",
+      "dopant_element": "N",
+      "dopant_concentration_at_pct": "1.5",
+      "residual_metal_element": "Fe",
+      "bet_surface_area_m2_g": "135.0",
+      "total_pore_volume_cm3_g": "0.38",
+      "notes": ["matclass", "dopant", "porevol", "littab"]
+    }
+  },
+  "measurements": [
+    {"sample": "S1", "temperature_k": "77",  "pressure_bar": "1",  "uptake_wt_pct": "0.21", "uptake_type": "unspecified", "measurement_method": "volumetric_sieverts",     "source_location": "Table 1 column 'N-doped CNTs (this work)', p. 3301 (0.21 at 1 bar); text p. 3301; abstract; isotherm Fig 5a; BET 135 m2/g and Vt 0.38 cm3/g p. 3301; method p. 3298", "note_extra": "77 K, 1 bar; the body hedges about 0.21 wt% but Table 1 and the abstract state 0.21 without a qualifier and Table 1 reserves ca. for its literature columns, so uptake_bound is exact per the primary-table rule", "notes": ["type1", "method1"]},
+    {"sample": "S1", "temperature_k": "77",  "pressure_bar": "7",  "uptake_wt_pct": "1.21", "uptake_type": "excess",      "measurement_method": "gravimetric_microbalance", "source_location": "Table 1 column 'N-doped CNTs (this work)', p. 3301 (1.21 at 7 bar); text p. 3301 (maximum H2 uptake of 1.21 wt% at 7 bar); abstract; conclusions; excess isotherm Fig 5b; method p. 3298", "note_extra": "77 K, 7 bar; stated maximum", "notes": ["type2", "methodhp"]},
+    {"sample": "S1", "temperature_k": "298", "pressure_bar": "19", "uptake_wt_pct": "0.17", "uptake_type": "excess",      "measurement_method": "gravimetric_microbalance", "source_location": "Table 1 column 'N-doped CNTs (this work)', p. 3301 (0.17 at 19 bar); text p. 3301 (highest uptake 0.17 wt% at 19 bar); abstract; conclusions; excess isotherm Fig 5c; method p. 3298", "note_extra": "298 K, 19 bar", "notes": ["type3", "methodhp"]}
+  ]
+}
