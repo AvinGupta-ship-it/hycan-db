@@ -65,3 +65,24 @@ testing this migration."*
   (the `+2` is now `+1`). The delta check still catches a bad relabel.
 - Mutation check 2: drop `HYC-0022-M2` from `SYNTHESIS_RELABEL` → the scoped test
   fails (the subset no longer holds) **and** the delta check fails.
+
+## Addendum 2026-10-02: the metal_loading post-condition, same fix
+
+Post-condition 7 had a second absolute pin next to the physical_activation one.
+After the delta check (metal_loading gains exactly the three Pd rows), the script
+also asserted `eligible == set(PD_ROWS)` -- that the Pd rows are the *only*
+metal-loading rows surviving the four §12.3 filters. The HYC-0039 batch
+(metal-decorated activated carbons: Pt/Pd/Ni/Rh/Ir/Ru on AC and on NH3-treated AC)
+legitimately adds 24 metal-loading rows, many of which survive the filters, so the
+absolute check refused and the migration's round-trip/idempotency tests failed.
+
+Fix (identical in spirit to the physical_activation one): assert the migration's
+own guarantee -- that the three Pd rows it backfills all survive the filters --
+as a subset, `set(PD_ROWS) <= eligible`, not equality. The delta check
+(`loaded_after - loaded_before == set(PD_ROWS)`) is untouched and still proves the
+migration adds metal_loading to exactly those three rows.
+`tests/test_migrate_relabel.py::test_the_metal_loading_field_finally_has_analysis_eligible_rows`
+is likewise relaxed from `==` to `<=`, with its reason recorded in the docstring.
+
+Mutation check: drop the HYC-0027 backfill -> the Pd rows are not eligible, the
+subset no longer holds, and both the script post-condition and the test fail.

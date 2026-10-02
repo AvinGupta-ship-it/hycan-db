@@ -605,10 +605,18 @@ def verify(
         if row[idx["metal_loading_wt_pct"]].strip()
         and survives_analysis_filters(row, idx)
     }
-    if eligible != set(PD_ROWS):
+    # §6.7: assert the property this migration guarantees -- that the three Pd rows
+    # it adds a metal loading to all survive the §12.3 filters -- not the absolute
+    # inventory of every metal-loading row that does. A later Phase D batch
+    # (HYC-0039's metal-decorated activated carbons) legitimately adds more
+    # metal-loading rows that also survive the filters; that is not this migration's
+    # concern and must not break its re-run. Same fix as the physical_activation
+    # post-condition (docs/migration_relabel_test_scope_plan.md).
+    missing = set(PD_ROWS) - eligible
+    if missing:
         raise MigrationError(
-            f"expected exactly {sorted(PD_ROWS)} to carry a metal loading and "
-            f"survive the §12.3 filters, found {sorted(eligible)}"
+            f"expected the Pd rows {sorted(PD_ROWS)} to carry a metal loading and "
+            f"survive the §12.3 filters; these do not: {sorted(missing)}"
         )
 
     # 8. The nitrogen removal hits one row and nothing else.

@@ -436,7 +436,14 @@ def test_the_metal_loading_field_finally_has_analysis_eligible_rows() -> None:
     excluded by §12.3 as `temperature_cycle`, so the field had zero rows any
     analysis could see.
 
-    MUTATION: drop the HYC-0027 backfill -> zero eligible rows and this fails.
+    Pinned as a SUBSET, not equality (§6.7): the migration's guarantee is that the
+    three Pd rows it backfills all survive the §12.3 filters, not that they are the
+    only metal-loading rows that ever will. The 2026-10-02 Phase D batch added
+    HYC-0039's metal-decorated activated carbons (24 metal-loading rows, which also
+    survive the filters); those are legitimate later data and do not undo this
+    backfill's property.
+
+    MUTATION: drop the HYC-0027 backfill -> the Pd rows are not eligible and this fails.
     """
     header, raw = read_dataset()
     idx = {name: header.index(name) for name in header}
@@ -446,7 +453,7 @@ def test_the_metal_loading_field_finally_has_analysis_eligible_rows() -> None:
         if row[idx["metal_loading_wt_pct"]].strip()
         and mr.survives_analysis_filters(row, idx)
     }
-    assert eligible == set(mr.PD_ROWS)
+    assert set(mr.PD_ROWS) <= eligible
 
 
 def test_the_nitrogen_content_is_gone_from_n_heg_and_only_from_n_heg() -> None:
