@@ -566,16 +566,34 @@ def verify(
     #    post-condition 4 already pins exactly which 36 cells changed and to what.
     #    See docs/migration_relabel_test_scope_plan.md.
 
-    # 6. carbonization is left on exactly the two control rows.
-    survivors = {
+    # 6. carbonization survives on the two control rows, and the migration adds
+    #    it nowhere. The earlier absolute form (survivors == exactly {M1, M2}) was
+    #    a global post-condition a later append invalidates -- §6.7, exactly as
+    #    post-condition 5 above. HYC-0044's non-activated carbon fibres (2026-10-02:
+    #    CF and the PCF series are carbonized, not activated) are legitimately
+    #    carbonization and broke the absolute form. This migration's own guarantee
+    #    is scoped to its rows: the controls keep carbonization, and the migration
+    #    creates no new carbonization. The -23 removal is pinned by
+    #    EXPECTED_SYNTHESIS_DELTAS and post-condition 4 (which cells changed).
+    survivors_before = {
+        row[idx["measurement_id"]]
+        for row in before
+        if row[idx["synthesis_method"]] == "carbonization"
+    }
+    survivors_after = {
         row[idx["measurement_id"]]
         for row in after
         if row[idx["synthesis_method"]] == "carbonization"
     }
-    if strict and survivors != set(CARBONIZATION_SURVIVORS):
+    if strict and not set(CARBONIZATION_SURVIVORS) <= survivors_after:
         raise MigrationError(
-            f"carbonization should be left on exactly "
-            f"{sorted(CARBONIZATION_SURVIVORS)}, found {sorted(survivors)}"
+            f"the carbonization control rows {sorted(CARBONIZATION_SURVIVORS)} must "
+            f"keep carbonization; missing {sorted(set(CARBONIZATION_SURVIVORS) - survivors_after)}"
+        )
+    if strict and (survivors_after - survivors_before):
+        raise MigrationError(
+            f"the migration must not add carbonization; it added "
+            f"{sorted(survivors_after - survivors_before)}"
         )
 
     # 7. metal_loading_wt_pct gains exactly the three Pd rows, all of which

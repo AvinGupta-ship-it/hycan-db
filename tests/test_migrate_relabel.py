@@ -366,14 +366,20 @@ def test_carbonization_now_means_carbonization_only() -> None:
     labelled `carbonization` would have taken these two with it.
 
     MUTATION: add HYC-0021-M1/M2 to the relabel map -> this fails.
+
+    Scoped to HYC-0021 (the migration's control paper): other papers may
+    legitimately carry carbonization -- HYC-0044's non-activated carbon fibres
+    (CF and the PCF series) do -- and an absolute corpus-wide assertion here would
+    be a §6.7 global pin a later append invalidates, exactly as post-condition 6
+    of the migration itself was.
     """
     rows = rows_by_id()
-    carbonization = {
+    carbonization_in_control = {
         mid for mid, row in rows.items()
-        if row["synthesis_method"] == "carbonization"
+        if row["synthesis_method"] == "carbonization" and mid.startswith("HYC-0021-")
     }
-    assert carbonization == {"HYC-0021-M1", "HYC-0021-M2"}
-    for mid in carbonization:
+    assert carbonization_in_control == {"HYC-0021-M1", "HYC-0021-M2"}
+    for mid in carbonization_in_control:
         assert rows[mid]["activation_method"] == "none"
         assert "Non-activated" in rows[mid]["notes"]
 
