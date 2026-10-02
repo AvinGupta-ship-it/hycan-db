@@ -554,7 +554,10 @@ def test_the_three_unassessable_chahine_cases_partition_the_corpus():
     # characterization-only boron-doped rows (its hydrogen uptake is figure-only).
     # +5 for HYC-0044's five characterization-only PCF rows (the PCF_L series and
     # PCF_H 0.5/0.1: Table 1 texture only, no anchorable H2). 14 + 5 = 19.
-    assert len(no_uptake) == 19
+    # +6 for HYC-0050's six figure-only samples (ACC15/ACC20/WKL20 cloths and the
+    # SWNT/MWNT/MWNT2 nanotubes: Table 1 texture only, H2 plotted but not tabulated).
+    # 19 + 6 = 25.
+    assert len(no_uptake) == 25
     assert len(non_grav) == 11
     assert sorted(unstated) == [
         "HYC-0011-M1",
@@ -622,7 +625,10 @@ def test_the_bet_scale_is_pinned_across_the_corpus_by_paper():
     for mid, s in _scored().items():
         by_basis.setdefault(s["bet_basis"], set()).add(mid.rsplit("-", 1)[0])
     assert by_basis["resolved_components"] == {"HYC-0007"}
-    assert by_basis["area_by_unspecified"] == {"HYC-0005", "HYC-0012"}
+    # +HYC-0052: AX-21's area is the paper's nominal "about 3000 m2/g" with no stated
+    # method (surface_area_method=unspecified), so it earns 1, not 2 -- the same
+    # scale as HYC-0005/HYC-0012. (MWNT's 137 m2/g is BET-stated -> bet_total.)
+    assert by_basis["area_by_unspecified"] == {"HYC-0005", "HYC-0012", "HYC-0052"}
     scored = _scored()
     assert all(
         s["bet"] == 1
@@ -806,7 +812,16 @@ def test_no_assigned_tier_changed_and_the_scorer_still_returns_a_letter():
     # take the by-hand calibration point the scorer cannot see (buoyancy correction for
     # HYC-0045's IGA; ICMPE He void-volume + ICB experimental buoyancy corrections for
     # HYC-0047) -- scorer B, assigned A. All 15 are new rows; no existing assigned tier changed.
-    assert agree == 257
+    # Now 289 of 448 after the HYC-0049/0050/0051/0052/0053 Phase D batch: +32
+    # agreements and 25 documented hand-adjustments. HYC-0049's M2/M7/M8/M10 take the
+    # by-hand He-pycnometry void-volume + empty-holder background-subtraction calibration
+    # point (scorer B, assigned A). HYC-0050's six characterization-only figure rows
+    # (scorer C on texture-only, assigned B by paper-tier inheritance). HYC-0051's 11 rows
+    # take the calibration point (He void + Van der Waals non-ideality + empty-chamber PCI
+    # subtraction + LaNi5/Nd2Fe14B standard verification; scorer C, assigned B). HYC-0052's
+    # four MWNT rows take the He void-expansion calibration point (scorer B, assigned A).
+    # All 25 are new rows; no existing assigned tier changed.
+    assert agree == 289
 
 
 def test_the_rows_in_tension_with_their_assigned_tier_are_named():

@@ -1,0 +1,133 @@
+{
+  "paper": {
+    "paper_id": "HYC-0052",
+    "doi": "10.1016/S0360-3199(03)00092-2",
+    "first_author": "Zhou",
+    "year": "2004",
+    "journal": "International Journal of Hydrogen Energy",
+    "title": "A comparative study of hydrogen adsorption on superactivated carbon versus carbon nanotubes"
+  },
+  "defaults": {
+    "extractor": "HyCAN pipeline v2",
+    "extraction_date": "2026-10-02",
+    "verification_date": "2026-10-02",
+    "uptake_bound": "exact",
+    "temperature_unstated": "False",
+    "pressure_unstated": "False",
+    "measurement_mode": "isothermal",
+    "measurement_method": "volumetric_sieverts",
+    "extraction_method": "table_direct",
+    "extraction_confidence": "5",
+    "uptake_type": "unspecified",
+    "verified_by": "Agent B (sonnet, independent re-derivation of Table 1): 8 rows, 0 numeric disputes (every wt% at 6 MPa/60 bar cross-checked against the paper's own nAC/nNT ratio column; the 318 K isotherm is not tabulated and was correctly not added). AX-21 (activated_carbon/commercial, BET ~3000 surface_area_method=unspecified) vs MWNT (MWCNT/cvd, BET 137 from N2/77 K, acid-purified). uptake_type=unspecified; He void-space-expansion calibration earned. Tiers: AX-21 M1-M4 Tier B; MWNT M5-M8 Tier A (9/10 -- unspecified uptake_type does not bar Tier A under S13.3). Agent C: pore_volume_probe_gas N2->blank on the AX-21 rows (the paper gives AX-21's pore volume with no gas/method; the only 'N2 at 77 K' is MWNT's BET, a different sample)."
+  },
+  "notes": {
+    "type": "uptake_type=unspecified (exact-word rule): the paper says 'amount of H2 adsorbed'/'weight percentage'; neither 'excess' nor 'total' is used",
+    "method": "H2 by the volumetric method (reference cell + adsorption cell); void volume by He expansion; compressibility-corrected -> measurement_method=volumetric_sieverts, calibration point by hand (He void determination)",
+    "ax21": "AX-21 superactivated carbon: the paper gives 'about 3000 m2/g' and pore volume 'about 1.3 cm3/g' without a method, so surface_area_method=unspecified and the values are recorded as the stated approximates; class=activated_carbon, commercial",
+    "mwnt": "MWNT by catalytic decomposition of acetylene over LaCoO3, purified (toluene/methanol, HCl/HNO3, CO2 oxidation); BET 137 m2/g (N2, 77 K); class=MWCNT, synthesis_method=cvd",
+    "temps": "isotherms at 233/253/273/298 K, all read at 6 MPa (=60 bar) from Table 1",
+    "heat": "isosteric heat of adsorption (AX-21 -6.4, MWNT -1.7 kJ/mol) has no schema field and is noted here only"
+  },
+  "samples": {
+    "S1": {
+      "label": "AX-21",
+      "material_class": "activated_carbon",
+      "synthesis_method": "commercial",
+      "material_description": "commercial superactivated carbon AX-21 (~3000 m2/g, pore volume ~1.3 cm3/g)",
+      "surface_area_method": "unspecified",
+      "bet_surface_area_m2_g": "3000.0",
+      "total_pore_volume_cm3_g": "1.3",
+      "pore_volume_method": "unspecified",
+      "notes": [
+        "type",
+        "method",
+        "ax21",
+        "temps",
+        "heat"
+      ]
+    },
+    "S2": {
+      "label": "MWNT",
+      "material_class": "MWCNT",
+      "synthesis_method": "cvd",
+      "material_description": "multiwalled carbon nanotubes by catalytic decomposition of acetylene over LaCoO3, purified; wall thickness and inner diameter ~10 nm",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "137.0",
+      "purification_method": "washed in toluene/methanol then HCl/HNO3; amorphous carbon removed by CO2 oxidation",
+      "notes": [
+        "type",
+        "method",
+        "mwnt",
+        "temps",
+        "heat"
+      ]
+    }
+  },
+  "measurements": [
+    {
+      "sample": "S1",
+      "temperature_k": "298",
+      "pressure_bar": "60",
+      "uptake_wt_pct": "0.50",
+      "reproducibility_tier": "B",
+      "source_location": "Table 1 (wt% H2 adsorbed at 6 MPa, 298 K)"
+    },
+    {
+      "sample": "S1",
+      "temperature_k": "273",
+      "pressure_bar": "60",
+      "uptake_wt_pct": "0.59",
+      "reproducibility_tier": "B",
+      "source_location": "Table 1 (wt% H2 adsorbed at 6 MPa, 273 K)"
+    },
+    {
+      "sample": "S1",
+      "temperature_k": "253",
+      "pressure_bar": "60",
+      "uptake_wt_pct": "0.71",
+      "reproducibility_tier": "B",
+      "source_location": "Table 1 (wt% H2 adsorbed at 6 MPa, 253 K)"
+    },
+    {
+      "sample": "S1",
+      "temperature_k": "233",
+      "pressure_bar": "60",
+      "uptake_wt_pct": "0.89",
+      "reproducibility_tier": "B",
+      "source_location": "Table 1 (wt% H2 adsorbed at 6 MPa, 233 K)"
+    },
+    {
+      "sample": "S2",
+      "temperature_k": "298",
+      "pressure_bar": "60",
+      "uptake_wt_pct": "0.14",
+      "reproducibility_tier": "A",
+      "source_location": "Table 1 (wt% H2 adsorbed at 6 MPa, 298 K)"
+    },
+    {
+      "sample": "S2",
+      "temperature_k": "273",
+      "pressure_bar": "60",
+      "uptake_wt_pct": "0.16",
+      "reproducibility_tier": "A",
+      "source_location": "Table 1 (wt% H2 adsorbed at 6 MPa, 273 K)"
+    },
+    {
+      "sample": "S2",
+      "temperature_k": "253",
+      "pressure_bar": "60",
+      "uptake_wt_pct": "0.17",
+      "reproducibility_tier": "A",
+      "source_location": "Table 1 (wt% H2 adsorbed at 6 MPa, 253 K)"
+    },
+    {
+      "sample": "S2",
+      "temperature_k": "233",
+      "pressure_bar": "60",
+      "uptake_wt_pct": "0.175",
+      "reproducibility_tier": "A",
+      "source_location": "Table 1 (wt% H2 adsorbed at 6 MPa, 233 K)"
+    }
+  ]
+}

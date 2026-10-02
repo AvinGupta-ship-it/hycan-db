@@ -1,0 +1,244 @@
+{
+  "paper": {
+    "paper_id": "HYC-0049",
+    "doi": "10.1021/la302050m",
+    "first_author": "Stadie",
+    "year": "2012",
+    "journal": "Langmuir",
+    "title": "Zeolite-Templated Carbon Materials for High-Pressure Hydrogen Storage"
+  },
+  "defaults": {
+    "extractor": "HyCAN pipeline v2",
+    "extraction_date": "2026-10-02",
+    "verification_date": "2026-10-02",
+    "uptake_bound": "exact",
+    "temperature_unstated": "False",
+    "pressure_unstated": "False",
+    "measurement_mode": "isothermal",
+    "measurement_method": "volumetric_sieverts",
+    "extraction_method": "table_direct",
+    "extraction_confidence": "5",
+    "uptake_type": "excess",
+    "verified_by": "Agent B (sonnet, independent re-derivation of Table 1 + methods): 10 rows, 0 disputes. BET (1095/3244/1691/2964/3591), the 77 K Gibbs-excess maxima and the 298 K/30 MPa high-P uptakes, and skeletal densities all confirmed against Table 1 ('from this study' values used, literature rows excluded). uptake_type=excess ('Gibbs's excess') and uptake_bound (exact at 77 K; approximate for the extrapolated 30 MPa values) confirmed. pressure_unstated correct on the four 77 K maxima with no stated peak pressure (only ZTC-3 states 2.4 MPa/24 bar). Calibration point earned by hand (He-pycnometry skeletal-density void correction + empty-holder background subtraction on both apparatus; commercial-standard verification); all 10 tiers reproduced exactly (M1-M10 = B,A,B,B,B,A,A,A,A,A). The 5 room-temperature rows admitted at 300 bar flagged under manual S11.4. No changes."
+  },
+  "notes": {
+    "type": "uptake_type=excess (exact-word rule): the paper reports 'Gibbs's excess uptake' throughout and Table 1 is excess capacity",
+    "mmol": "uptake recorded as uptake_mmol_g (the paper's unit); uptake_wt_pct is filled only where the paper prints it (ZTC-3: 5.5 wt% at 77 K, 1.6 wt% at 298 K) to avoid a basis conversion",
+    "max77": "the 77 K value is the Gibbs surface-excess MAXIMUM, reached between 1 and 4 MPa; only ZTC-3's maximum pressure is stated (2.4 MPa = 24 bar), so the other four 77 K rows carry pressure_unstated",
+    "p298": "the 298 K value is the excess uptake at 30 MPa (=300 bar), calculated by extrapolation of the measured 0-30 MPa isotherm to 30 MPa; uptake_bound=approximate, and >200 bar is admitted flagged (manual S11.4)",
+    "method": "H2 excess by custom volumetric Sieverts apparatus (77 K to 10 MPa, 298 K to 70 MPa); background subtracted with an empty-holder run; sample true volume from He-pycnometry skeletal density -> He void-volume correction -> calibration point by hand (tiering doc)",
+    "ztc": "zeolite-templated carbon: furfuryl-alcohol impregnation of zeolite (NaY or NHbeta), propylene CVD at 700 C, carbonization 900 C, HF dissolution of the template; class=templated_carbon, synthesis_method=template_synthesis (HYC-0042/0045)",
+    "ref": "commercial reference carbon measured in this study (not a literature value): class=activated_carbon, synthesis_method=commercial",
+    "excl": "the Table 1 literature rows (CNS-201, MSC-30, MSC-30, P7(2)-H from refs 5 and 16) are other papers' values and are excluded; DR micropore volumes are in the unavailable SI",
+    "bet": "surface_area_method=BET, calculated to 'point B' with a per-material P/P0 range; skeletal_density by He pycnometry (Table 1)"
+  },
+  "samples": {
+    "S1": {
+      "label": "CNS-201",
+      "material_class": "activated_carbon",
+      "synthesis_method": "commercial",
+      "material_description": "commercial activated carbon CNS-201 (A.C. Carbons Canada), measured in this study",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1095.0",
+      "skeletal_density_g_cm3": "2.1",
+      "notes": [
+        "ref",
+        "type",
+        "mmol",
+        "method",
+        "bet",
+        "excl"
+      ]
+    },
+    "S2": {
+      "label": "MSC-30",
+      "material_class": "activated_carbon",
+      "synthesis_method": "commercial",
+      "material_description": "commercial superactivated carbon Maxsorb MSC-30 (Kansai Coke), measured in this study",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "3244.0",
+      "skeletal_density_g_cm3": "2.1",
+      "notes": [
+        "ref",
+        "type",
+        "mmol",
+        "method",
+        "bet",
+        "excl"
+      ]
+    },
+    "S3": {
+      "label": "ZTC-1",
+      "material_class": "templated_carbon",
+      "synthesis_method": "template_synthesis",
+      "material_description": "zeolite-templated carbon from zeolite NHbeta (furfuryl alcohol + propylene CVD, 900 C, HF)",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1691.0",
+      "skeletal_density_g_cm3": "1.9",
+      "notes": [
+        "ztc",
+        "type",
+        "mmol",
+        "method",
+        "bet",
+        "excl"
+      ],
+      "purification_method": "HF dissolution of the zeolite template, repeated until no zeolite XRD peak remained"
+    },
+    "S4": {
+      "label": "ZTC-2",
+      "material_class": "templated_carbon",
+      "synthesis_method": "template_synthesis",
+      "material_description": "zeolite-templated carbon from zeolite NaY (furfuryl alcohol + propylene CVD, 900 C, HF)",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "2964.0",
+      "skeletal_density_g_cm3": "1.9",
+      "notes": [
+        "ztc",
+        "type",
+        "mmol",
+        "method",
+        "bet",
+        "excl"
+      ],
+      "purification_method": "HF dissolution of the zeolite template, repeated until no zeolite XRD peak remained"
+    },
+    "S5": {
+      "label": "ZTC-3",
+      "material_class": "templated_carbon",
+      "synthesis_method": "template_synthesis",
+      "material_description": "high-fidelity zeolite-templated carbon from zeolite NaY (improved inert handling; furfuryl alcohol + propylene CVD, 900 C, HF)",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "3591.0",
+      "skeletal_density_g_cm3": "1.8",
+      "notes": [
+        "ztc",
+        "type",
+        "mmol",
+        "method",
+        "bet",
+        "excl"
+      ],
+      "purification_method": "HF dissolution of the zeolite template, repeated until no zeolite XRD peak remained"
+    }
+  },
+  "measurements": [
+    {
+      "sample": "S1",
+      "temperature_k": "77",
+      "uptake_mmol_g": "12.7",
+      "reproducibility_tier": "B",
+      "notes": [
+        "max77"
+      ],
+      "source_location": "Table 1 (H2 capacity: 77 K Gibbs excess surface maximum, mmol/g); method section 2.4",
+      "pressure_unstated": "True"
+    },
+    {
+      "sample": "S1",
+      "temperature_k": "298",
+      "pressure_bar": "300",
+      "uptake_mmol_g": "2.48",
+      "uptake_bound": "approximate",
+      "reproducibility_tier": "A",
+      "notes": [
+        "p298"
+      ],
+      "source_location": "Table 1 (high P H2 uptake: 298 K, 30 MPa, mmol/g, by extrapolation of the measured isotherm to 30 MPa); method section 2.5"
+    },
+    {
+      "sample": "S2",
+      "temperature_k": "77",
+      "uptake_mmol_g": "27.9",
+      "reproducibility_tier": "B",
+      "notes": [
+        "max77"
+      ],
+      "source_location": "Table 1 (H2 capacity: 77 K Gibbs excess surface maximum, mmol/g); method section 2.4",
+      "pressure_unstated": "True"
+    },
+    {
+      "sample": "S2",
+      "temperature_k": "298",
+      "pressure_bar": "300",
+      "uptake_mmol_g": "7.66",
+      "uptake_bound": "approximate",
+      "reproducibility_tier": "B",
+      "notes": [
+        "p298"
+      ],
+      "source_location": "Table 1 (high P H2 uptake: 298 K, 30 MPa, mmol/g, by extrapolation of the measured isotherm to 30 MPa); method section 2.5"
+    },
+    {
+      "sample": "S3",
+      "temperature_k": "77",
+      "uptake_mmol_g": "18.5",
+      "reproducibility_tier": "B",
+      "notes": [
+        "max77"
+      ],
+      "source_location": "Table 1 (H2 capacity: 77 K Gibbs excess surface maximum, mmol/g); method section 2.4",
+      "pressure_unstated": "True"
+    },
+    {
+      "sample": "S3",
+      "temperature_k": "298",
+      "pressure_bar": "300",
+      "uptake_mmol_g": "3.99",
+      "uptake_bound": "approximate",
+      "reproducibility_tier": "A",
+      "notes": [
+        "p298"
+      ],
+      "source_location": "Table 1 (high P H2 uptake: 298 K, 30 MPa, mmol/g, by extrapolation of the measured isotherm to 30 MPa); method section 2.5"
+    },
+    {
+      "sample": "S4",
+      "temperature_k": "77",
+      "uptake_mmol_g": "26.1",
+      "reproducibility_tier": "A",
+      "notes": [
+        "max77"
+      ],
+      "source_location": "Table 1 (H2 capacity: 77 K Gibbs excess surface maximum, mmol/g); method section 2.4",
+      "pressure_unstated": "True"
+    },
+    {
+      "sample": "S4",
+      "temperature_k": "298",
+      "pressure_bar": "300",
+      "uptake_mmol_g": "6.45",
+      "uptake_bound": "approximate",
+      "reproducibility_tier": "A",
+      "notes": [
+        "p298"
+      ],
+      "source_location": "Table 1 (high P H2 uptake: 298 K, 30 MPa, mmol/g, by extrapolation of the measured isotherm to 30 MPa); method section 2.5"
+    },
+    {
+      "sample": "S5",
+      "temperature_k": "77",
+      "uptake_mmol_g": "28.6",
+      "reproducibility_tier": "A",
+      "notes": [
+        "max77"
+      ],
+      "source_location": "Table 1 (H2 capacity: 77 K Gibbs excess surface maximum, mmol/g); method section 2.4",
+      "pressure_bar": "24",
+      "uptake_wt_pct": "5.5"
+    },
+    {
+      "sample": "S5",
+      "temperature_k": "298",
+      "pressure_bar": "300",
+      "uptake_mmol_g": "8.27",
+      "uptake_bound": "approximate",
+      "reproducibility_tier": "A",
+      "notes": [
+        "p298"
+      ],
+      "source_location": "Table 1 (high P H2 uptake: 298 K, 30 MPa, mmol/g, by extrapolation of the measured isotherm to 30 MPa); method section 2.5",
+      "uptake_wt_pct": "1.6"
+    }
+  ]
+}

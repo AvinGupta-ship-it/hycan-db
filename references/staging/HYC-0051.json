@@ -1,0 +1,296 @@
+{
+  "paper": {
+    "paper_id": "HYC-0051",
+    "doi": "10.1016/S0008-6223(01)00051-3",
+    "first_author": "Tibbetts",
+    "year": "2001",
+    "journal": "Carbon",
+    "title": "Hydrogen storage capacity of carbon nanotubes, filaments, and vapor-grown fibers"
+  },
+  "defaults": {
+    "extractor": "HyCAN pipeline v2",
+    "extraction_date": "2026-10-02",
+    "verification_date": "2026-10-02",
+    "uptake_bound": "exact",
+    "temperature_unstated": "False",
+    "pressure_unstated": "False",
+    "measurement_mode": "isothermal",
+    "measurement_method": "volumetric_sieverts",
+    "extraction_method": "table_direct",
+    "extraction_confidence": "5",
+    "uptake_type": "unspecified",
+    "verified_by": "Agent B (sonnet, independent re-derivation of Table 1 + apparatus): 11 carbon rows; metal standards (LaNi5/La0.93Ni5/Nd2Fe14B) correctly excluded. Two-column placement verified -- PCI point values at 3.59 MPa/35.9 bar, high-pressure-manual upper limits at 11 MPa/110 bar (<0.7/<0.5/<0.2 -> uptake_bound=upper). All PCI magnitudes confirmed; T=23 C/296 K; uptake_type=unspecified; surface_area_method=none (the ~700 m2/g for Norit is nominal, not measured here). Calibration earned (He void-volume + Van der Waals non-ideality + empty-chamber PCI background subtraction + LaNi5/Nd2Fe14B standard verification) -> all 11 Tier B. Agent C: M1/M2 uncertainty_wt_pct added (0.011/0.014, the Table 1 +/- values); M3/M4 synthesis_method arc_discharge/laser_ablation->commercial (the paper names only the supplier, not the growth route); M11 (FeNiCu) activation_method cleared (it described the CVD growth, not an activation treatment). material_class MWCNT (MER)/SWCNT (Rice)/carbon_nanofiber (VGCF, filaments)/other (graphite) confirmed."
+  },
+  "notes": {
+    "type": "uptake_type=unspecified (exact-word rule): the paper says 'hydrogen sorption/storage capacity'; neither 'excess' nor 'total' is used",
+    "cond": "all capacities are at 23 C (296 K); the PCI (Gas Reaction Controller) values are at 3.59 MPa (=35.9 bar); the high-pressure manual-system values are UPPER LIMITS at 11 MPa (=110 bar), from pressure drops not unambiguous sorption",
+    "upper": "the manual-system values are reported as '<x' upper limits (not clear sorption events), so uptake_bound=upper",
+    "sa": "surface_area_method=none: the paper tabulates no surface area; it mentions only an approximate ~700 m2/g for the Norit Darco AC and that the VGCF are ~70x lower, which are asides, not a characterization table",
+    "method": "both devices are volumetric (a manual high-pressure sorption apparatus to 11 MPa and a Gas Reaction Controller PCI to ~4 MPa); empty-chamber PCI subtraction, He leak/volume calibration, temperature-drift correction and LaNi5/Nd2Fe14B reference checks -> measurement_method=volumetric_sieverts, calibration point by hand",
+    "excl": "the LaNi5 / La0.93Ni5 and Nd2Fe14B samples are metal hydrides used for calibration, not carbon, and are excluded",
+    "vgcf": "vapor-grown carbon fibre / catalytic carbon filament -> class=carbon_nanofiber, synthesis_method=cvd (HYC-0004 CNF precedent); etch/graphitization treatments noted in activation_method",
+    "graphite": "flake graphite is non-porous graphite -> class=other (HYC-0004-S1 precedent)",
+    "nullvalue": "a deliberately-recorded near-zero/upper-bound result: the paper's thesis is that carbon H2 sorption at room temperature is <~0.1 wt%, so these are genuine low-uptake data (bias guard)"
+  },
+  "samples": {
+    "S1": {
+      "label": "Graphite flakes",
+      "material_class": "other",
+      "synthesis_method": "commercial",
+      "material_description": "flake graphite (Johnson Matthey), average flake size a few microns",
+      "surface_area_method": "none",
+      "notes": [
+        "graphite",
+        "type",
+        "cond",
+        "method",
+        "sa",
+        "excl",
+        "nullvalue"
+      ]
+    },
+    "S2": {
+      "label": "Norit Darco AC",
+      "material_class": "activated_carbon",
+      "synthesis_method": "commercial",
+      "material_description": "Norit Darco activated carbon G-60 (wood-based), ~700 m2/g",
+      "surface_area_method": "none",
+      "notes": [
+        "type",
+        "cond",
+        "method",
+        "sa",
+        "excl",
+        "nullvalue"
+      ]
+    },
+    "S3": {
+      "label": "MER nanotubes",
+      "material_class": "MWCNT",
+      "synthesis_method": "commercial",
+      "material_description": "carbon nanotubes from MER Corporation (ball-milled; assessed as multi-walled despite a nominal 10-15% SWNT spec)",
+      "surface_area_method": "none",
+      "notes": [
+        "type",
+        "cond",
+        "method",
+        "sa",
+        "excl",
+        "nullvalue"
+      ]
+    },
+    "S4": {
+      "label": "Rice nanotubes",
+      "material_class": "SWCNT",
+      "synthesis_method": "commercial",
+      "material_description": "single-walled carbon nanotube bundles from Tubes@Rice (~14 nm bundle diameter)",
+      "surface_area_method": "none",
+      "notes": [
+        "type",
+        "cond",
+        "method",
+        "sa",
+        "excl",
+        "nullvalue"
+      ]
+    },
+    "S5": {
+      "label": "Graphitized PYROGRAF",
+      "material_class": "carbon_nanofiber",
+      "synthesis_method": "cvd",
+      "material_description": "PYROGRAF vapor-grown carbon fibre (Applied Sciences), heat-treated to 3000 C to graphitize",
+      "surface_area_method": "none",
+      "notes": [
+        "vgcf",
+        "type",
+        "cond",
+        "method",
+        "sa",
+        "excl",
+        "nullvalue"
+      ],
+      "activation_method": "graphitization at 3000 C"
+    },
+    "S6": {
+      "label": "Air-etched PYROGRAF",
+      "material_class": "carbon_nanofiber",
+      "synthesis_method": "cvd",
+      "material_description": "PYROGRAF vapor-grown carbon fibre, air-etched at 450 C for 15 min (opens fibre ends)",
+      "surface_area_method": "none",
+      "notes": [
+        "vgcf",
+        "type",
+        "cond",
+        "method",
+        "sa",
+        "excl",
+        "nullvalue"
+      ],
+      "activation_method": "air etch at 450 C, 15 min"
+    },
+    "S7": {
+      "label": "CO2-etched PYROGRAF",
+      "material_class": "carbon_nanofiber",
+      "synthesis_method": "cvd",
+      "material_description": "PYROGRAF vapor-grown carbon fibre, CO2-etched at 950 C for 15 min (removes the CVD layer, exposes the herringbone core)",
+      "surface_area_method": "none",
+      "notes": [
+        "vgcf",
+        "type",
+        "cond",
+        "method",
+        "sa",
+        "excl",
+        "nullvalue"
+      ],
+      "activation_method": "CO2 etch at 950 C, 15 min"
+    },
+    "S8": {
+      "label": "Showa Denko VGCF",
+      "material_class": "carbon_nanofiber",
+      "synthesis_method": "cvd",
+      "material_description": "vapor-grown carbon fibre from Showa Denko KK (~200 nm diameter, graphitized)",
+      "surface_area_method": "none",
+      "notes": [
+        "vgcf",
+        "type",
+        "cond",
+        "method",
+        "sa",
+        "excl",
+        "nullvalue"
+      ]
+    },
+    "S9": {
+      "label": "FeNiCu filaments",
+      "material_class": "carbon_nanofiber",
+      "synthesis_method": "cvd",
+      "material_description": "carbon filaments grown from a Fe:Ni:Cu 85:10:5 catalyst in ethylene at 600 C (herringbone structure)",
+      "surface_area_method": "none",
+      "notes": [
+        "vgcf",
+        "type",
+        "cond",
+        "method",
+        "sa",
+        "excl",
+        "nullvalue"
+      ]
+    }
+  },
+  "measurements": [
+    {
+      "sample": "S1",
+      "temperature_k": "296",
+      "pressure_bar": "35.9",
+      "uptake_wt_pct": "0.018",
+      "reproducibility_tier": "B",
+      "extraction_method": "table_direct",
+      "source_location": "Table 1 (PCI system, 3.59 MPa, 23 C)",
+      "uncertainty_wt_pct": 0.011
+    },
+    {
+      "sample": "S2",
+      "temperature_k": "296",
+      "pressure_bar": "35.9",
+      "uptake_wt_pct": "0.041",
+      "reproducibility_tier": "B",
+      "extraction_method": "table_direct",
+      "source_location": "Table 1 (PCI system, 3.59 MPa, 23 C)",
+      "uncertainty_wt_pct": 0.014
+    },
+    {
+      "sample": "S3",
+      "temperature_k": "296",
+      "pressure_bar": "35.9",
+      "uptake_wt_pct": "0.028",
+      "reproducibility_tier": "B",
+      "extraction_method": "table_direct",
+      "source_location": "Table 1 (PCI system, 3.59 MPa, 23 C)"
+    },
+    {
+      "sample": "S4",
+      "temperature_k": "296",
+      "pressure_bar": "35.9",
+      "uptake_wt_pct": "0.050",
+      "reproducibility_tier": "B",
+      "extraction_method": "table_direct",
+      "source_location": "Table 1 (PCI system, 3.59 MPa, 23 C)"
+    },
+    {
+      "sample": "S5",
+      "temperature_k": "296",
+      "pressure_bar": "35.9",
+      "uptake_wt_pct": "0.020",
+      "reproducibility_tier": "B",
+      "extraction_method": "table_direct",
+      "source_location": "Table 1 (PCI system, 3.59 MPa, 23 C)"
+    },
+    {
+      "sample": "S5",
+      "temperature_k": "296",
+      "pressure_bar": "110",
+      "uptake_wt_pct": "0.7",
+      "uptake_bound": "upper",
+      "reproducibility_tier": "B",
+      "extraction_method": "table_direct",
+      "notes": [
+        "upper"
+      ],
+      "source_location": "Table 1 (high-pressure manual system, 11 MPa, 23 C; reported as an upper limit '<x')"
+    },
+    {
+      "sample": "S6",
+      "temperature_k": "296",
+      "pressure_bar": "35.9",
+      "uptake_wt_pct": "0.070",
+      "reproducibility_tier": "B",
+      "extraction_method": "table_direct",
+      "source_location": "Table 1 (PCI system, 3.59 MPa, 23 C)"
+    },
+    {
+      "sample": "S6",
+      "temperature_k": "296",
+      "pressure_bar": "110",
+      "uptake_wt_pct": "0.5",
+      "uptake_bound": "upper",
+      "reproducibility_tier": "B",
+      "extraction_method": "table_direct",
+      "notes": [
+        "upper"
+      ],
+      "source_location": "Table 1 (high-pressure manual system, 11 MPa, 23 C; reported as an upper limit '<x')"
+    },
+    {
+      "sample": "S7",
+      "temperature_k": "296",
+      "pressure_bar": "110",
+      "uptake_wt_pct": "0.2",
+      "uptake_bound": "upper",
+      "reproducibility_tier": "B",
+      "extraction_method": "table_direct",
+      "notes": [
+        "upper"
+      ],
+      "source_location": "Table 1 (high-pressure manual system, 11 MPa, 23 C; reported as an upper limit '<x')"
+    },
+    {
+      "sample": "S8",
+      "temperature_k": "296",
+      "pressure_bar": "35.9",
+      "uptake_wt_pct": "0.042",
+      "reproducibility_tier": "B",
+      "extraction_method": "table_direct",
+      "source_location": "Table 1 (PCI system, 3.59 MPa, 23 C)"
+    },
+    {
+      "sample": "S9",
+      "temperature_k": "296",
+      "pressure_bar": "35.9",
+      "uptake_wt_pct": "0.066",
+      "reproducibility_tier": "B",
+      "extraction_method": "table_direct",
+      "source_location": "Table 1 (PCI system, 3.59 MPa, 23 C)"
+    }
+  ]
+}

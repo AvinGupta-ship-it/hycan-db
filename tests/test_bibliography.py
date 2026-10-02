@@ -231,8 +231,9 @@ def test_author_lists_come_from_the_pdf_wherever_one_is_held():
     # 2026-10-02 Phase D batch HYC-0032/0033/0034/0037, all PDF-held; plus the
     # HYC-0039/0040/0041/0042/0043 batch (5) and HYC-0038 (excluded but PDF-held),
     # all PDF-held: 28 + 6 = 34. Plus the HYC-0044/0045/0046/0047/0048 batch (5), all
-    # PDF-held (HYC-0046's is the LLNL preprint): 34 + 5 = 39.
-    assert sum(1 for r in sources() if r["pdf_held"]) == 39
+    # PDF-held (HYC-0046's is the LLNL preprint): 34 + 5 = 39. Plus the
+    # HYC-0049/0050/0051/0052/0053 batch (5), all PDF-held: 39 + 5 = 44.
+    assert sum(1 for r in sources() if r["pdf_held"]) == 44
 
 
 def test_the_issue_number_provenance_partition_is_pinned():
@@ -275,7 +276,10 @@ def test_the_issue_number_provenance_partition_is_pinned():
     # +3 for the HYC-0044/0047/0048 batch papers: MDPI (article-numbered), Elsevier and
     # Springer running heads print no issue, so each is omitted pending an OpenAlex backfill.
     # 16 + 3 = 19. (HYC-0045 is PDF-sourced; HYC-0046 is citing_pdf; both emit their issue.)
-    assert len(by_prov["none"]) == 19
+    # +5 for the HYC-0049/0050/0051/0052/0053 batch: ACS Langmuir, Springer Adsorption,
+    # Elsevier Carbon and IJHE, and RSC J. Mater. Chem. A all print no issue in the article
+    # citation line, so each is omitted pending an OpenAlex backfill. 19 + 5 = 24.
+    assert len(by_prov["none"]) == 24
     # Match the FIELD, not the word: two of these notes contain the phrase
     # "article number", which a substring test read as an issue field.
     field = re.compile(r"^\s*number\s*=", re.M)

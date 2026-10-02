@@ -1,0 +1,375 @@
+{
+  "paper": {
+    "paper_id": "HYC-0050",
+    "doi": "10.1007/s10450-008-9116-y",
+    "first_author": "Zubizarreta",
+    "year": "2008",
+    "journal": "Adsorption",
+    "title": "H2 storage in carbon materials"
+  },
+  "defaults": {
+    "extractor": "HyCAN pipeline v2",
+    "extraction_date": "2026-10-02",
+    "verification_date": "2026-10-02",
+    "uptake_bound": "exact",
+    "temperature_unstated": "False",
+    "pressure_unstated": "False",
+    "measurement_mode": "isothermal",
+    "measurement_method": "volumetric_sieverts",
+    "extraction_method": "text_direct",
+    "extraction_confidence": "5",
+    "uptake_type": "unspecified",
+    "verified_by": "Agent B (sonnet, independent re-derivation of Table 1 + text): 12 rows, 0 numeric disputes (SBET/VN2/VCO2 and the 6 text-anchored wt% confirmed; Super50=PER50/Supra50=PRA50 and the Fig 7 order verified). uptake_type=unspecified (exact-word). Measurement vs characterization-only split correct (6 measured: Maxsorb x2, ACC10, PICA, PER50, PRA50; 6 figure-only texture rows -> not_applicable). Calibration earned only on the 298 K gravimetric row (He manifold-volume + buoyancy); 77 K volumetric rows no credit -> all rows Tier B (char-only inherit the paper tier B). Agent C: extraction_method text_direct->table_direct on the 6 char-only rows (their data is Table 1); M6 extraction_confidence 5->4 (Maxsorb 0.5 wt% assigned by inference). micropore_surface_area (SmicN2/SmicCO2) deliberately NOT recorded -- Stoeckli back-calculation (Smic=2V/L), not an independent measurement."
+  },
+  "notes": {
+    "type": "uptake_type=unspecified (exact-word rule): the paper says 'H2 storage/adsorption capacity' and 'amount of hydrogen adsorbed'; neither 'excess' nor 'total' is used",
+    "figonly": "the per-sample H2 values are in Figs 5-8 only; just six are text-anchored (Maxsorb 2.9 wt% at 77 K/1 bar and 0.5 wt% at 298 K/90 bar; ACC10 2.0, PICA 2.1, PER50 1.98, PRA50 2.1 wt% at 77 K/1 bar). Samples whose H2 is figure-only are characterization-only rows (HYC-0033/0044 precedent)",
+    "tex": "bet_surface_area=SBET (N2 BET); micropore_volume=VN2 (DR on N2, 'total micropore volume'); micropore_volume_co2=VCO2 (DR on CO2, 'narrow micropore volume'); pore_volume_method=DR, probe N2; the DR-Stoeckli micropore SURFACE areas (SmicN2/SmicCO2) are derived (Smic=2V/L) and not recorded",
+    "m77": "77 K isotherms to ~1 bar on an automatic volumetric apparatus -> measurement_method=volumetric_sieverts",
+    "m298": "298 K isotherms to 90 bar on a high-pressure gravimetric analyser; manifold volume and buoyancy corrected with He isotherms -> measurement_method=gravimetric_microbalance; the He correction -> calibration point by hand",
+    "cloth": "activated carbon cloth (fabric) -> class=activated_carbon (HYC-0024 'fabric' precedent); commercial",
+    "onebar": "Chahine caveat: the 77 K/1 bar rows are near 1 bar where the saturation bound is inapplicable; chahine scored a by-hand 1 (tiering doc); Tier B either way",
+    "cnt": "commercial carbon nanotubes from Nanoledge (SWNT, MWNT); MWNT2 is CRMD-synthesised by catalytic decomposition of acetylene over Co -> synthesis_method=cvd"
+  },
+  "samples": {
+    "S1": {
+      "label": "Maxsorb",
+      "material_class": "activated_carbon",
+      "synthesis_method": "commercial",
+      "material_description": "commercial superactivated carbon Maxsorb (Kansai Coke)",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "2558.0",
+      "micropore_volume_cm3_g": "1.35",
+      "micropore_volume_co2_cm3_g": "0.29",
+      "pore_volume_method": "DR",
+      "pore_volume_probe_gas": "N2",
+      "notes": [
+        "type",
+        "tex",
+        "figonly",
+        "onebar"
+      ]
+    },
+    "S2": {
+      "label": "ACC10",
+      "material_class": "activated_carbon",
+      "synthesis_method": "commercial",
+      "material_description": "commercial activated carbon cloth ACC-507-10 (Kynol)",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1052.0",
+      "micropore_volume_cm3_g": "0.40",
+      "micropore_volume_co2_cm3_g": "0.40",
+      "pore_volume_method": "DR",
+      "pore_volume_probe_gas": "N2",
+      "notes": [
+        "type",
+        "tex",
+        "figonly",
+        "cloth",
+        "onebar"
+      ]
+    },
+    "S3": {
+      "label": "PICA",
+      "material_class": "activated_carbon",
+      "synthesis_method": "commercial",
+      "material_description": "commercial activated carbon PICATIF SC (Pica)",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1271.0",
+      "micropore_volume_cm3_g": "0.75",
+      "micropore_volume_co2_cm3_g": "0.27",
+      "pore_volume_method": "DR",
+      "pore_volume_probe_gas": "N2",
+      "notes": [
+        "type",
+        "tex",
+        "figonly",
+        "onebar"
+      ]
+    },
+    "S4": {
+      "label": "PER50",
+      "material_class": "activated_carbon",
+      "synthesis_method": "commercial",
+      "material_description": "commercial activated carbon Norit DLC Super 50",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1501.0",
+      "micropore_volume_cm3_g": "0.62",
+      "micropore_volume_co2_cm3_g": "0.29",
+      "pore_volume_method": "DR",
+      "pore_volume_probe_gas": "N2",
+      "notes": [
+        "type",
+        "tex",
+        "figonly",
+        "onebar"
+      ]
+    },
+    "S5": {
+      "label": "PRA50",
+      "material_class": "activated_carbon",
+      "synthesis_method": "commercial",
+      "material_description": "commercial activated carbon Norit DLC Supra 50",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1730.0",
+      "micropore_volume_cm3_g": "0.72",
+      "micropore_volume_co2_cm3_g": "0.27",
+      "pore_volume_method": "DR",
+      "pore_volume_probe_gas": "N2",
+      "notes": [
+        "type",
+        "tex",
+        "figonly",
+        "onebar"
+      ]
+    },
+    "S6": {
+      "label": "ACC15",
+      "material_class": "activated_carbon",
+      "synthesis_method": "commercial",
+      "material_description": "commercial activated carbon cloth ACC-507-15 (Kynol)",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1639.0",
+      "micropore_volume_cm3_g": "0.67",
+      "micropore_volume_co2_cm3_g": "0.44",
+      "pore_volume_method": "DR",
+      "pore_volume_probe_gas": "N2",
+      "notes": [
+        "type",
+        "tex",
+        "figonly",
+        "cloth"
+      ]
+    },
+    "S7": {
+      "label": "ACC20",
+      "material_class": "activated_carbon",
+      "synthesis_method": "commercial",
+      "material_description": "commercial activated carbon cloth ACC-507-20 (Kynol)",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1670.0",
+      "micropore_volume_cm3_g": "0.79",
+      "micropore_volume_co2_cm3_g": "0.50",
+      "pore_volume_method": "DR",
+      "pore_volume_probe_gas": "N2",
+      "notes": [
+        "type",
+        "tex",
+        "figonly",
+        "cloth"
+      ]
+    },
+    "S8": {
+      "label": "WKL20",
+      "material_class": "activated_carbon",
+      "synthesis_method": "commercial",
+      "material_description": "commercial activated carbon cloth WKL20 (Actitex)",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1049.0",
+      "micropore_volume_cm3_g": "0.39",
+      "micropore_volume_co2_cm3_g": "0.36",
+      "pore_volume_method": "DR",
+      "pore_volume_probe_gas": "N2",
+      "notes": [
+        "type",
+        "tex",
+        "figonly",
+        "cloth"
+      ]
+    },
+    "S9": {
+      "label": "SWNT",
+      "material_class": "SWCNT",
+      "synthesis_method": "commercial",
+      "material_description": "commercial high-grade single-walled carbon nanotubes (Nanoledge)",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "340.0",
+      "micropore_volume_cm3_g": "0.12",
+      "micropore_volume_co2_cm3_g": "0.06",
+      "pore_volume_method": "DR",
+      "pore_volume_probe_gas": "N2",
+      "notes": [
+        "type",
+        "tex",
+        "figonly",
+        "cnt"
+      ]
+    },
+    "S10": {
+      "label": "MWNT",
+      "material_class": "MWCNT",
+      "synthesis_method": "commercial",
+      "material_description": "commercial multi-wall carbon nanotubes (Nanoledge)",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "260.0",
+      "micropore_volume_cm3_g": "0.08",
+      "micropore_volume_co2_cm3_g": "0.02",
+      "pore_volume_method": "DR",
+      "pore_volume_probe_gas": "N2",
+      "notes": [
+        "type",
+        "tex",
+        "figonly",
+        "cnt"
+      ]
+    },
+    "S11": {
+      "label": "MWNT2",
+      "material_class": "MWCNT",
+      "synthesis_method": "cvd",
+      "material_description": "multi-wall carbon nanotubes synthesised by CRMD (catalytic decomposition of acetylene over Co)",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "246.0",
+      "micropore_volume_cm3_g": "0.10",
+      "micropore_volume_co2_cm3_g": "0.03",
+      "pore_volume_method": "DR",
+      "pore_volume_probe_gas": "N2",
+      "notes": [
+        "type",
+        "tex",
+        "figonly",
+        "cnt"
+      ]
+    }
+  },
+  "measurements": [
+    {
+      "sample": "S1",
+      "temperature_k": "77",
+      "pressure_bar": "1",
+      "uptake_wt_pct": "2.9",
+      "measurement_method": "volumetric_sieverts",
+      "reproducibility_tier": "B",
+      "notes": [
+        "m77",
+        "onebar"
+      ],
+      "source_location": "body (highest 2.9 wt% at 77 K/1 bar for Maxsorb; ACC10 2.0, PICA 2.1, PER50 1.98, PRA50 2.1 wt%) and Fig 5/7; Table 1 texture"
+    },
+    {
+      "sample": "S2",
+      "temperature_k": "77",
+      "pressure_bar": "1",
+      "uptake_wt_pct": "2.0",
+      "measurement_method": "volumetric_sieverts",
+      "reproducibility_tier": "B",
+      "notes": [
+        "m77",
+        "onebar"
+      ],
+      "source_location": "body (highest 2.9 wt% at 77 K/1 bar for Maxsorb; ACC10 2.0, PICA 2.1, PER50 1.98, PRA50 2.1 wt%) and Fig 5/7; Table 1 texture"
+    },
+    {
+      "sample": "S3",
+      "temperature_k": "77",
+      "pressure_bar": "1",
+      "uptake_wt_pct": "2.1",
+      "measurement_method": "volumetric_sieverts",
+      "reproducibility_tier": "B",
+      "notes": [
+        "m77",
+        "onebar"
+      ],
+      "source_location": "body (highest 2.9 wt% at 77 K/1 bar for Maxsorb; ACC10 2.0, PICA 2.1, PER50 1.98, PRA50 2.1 wt%) and Fig 5/7; Table 1 texture"
+    },
+    {
+      "sample": "S4",
+      "temperature_k": "77",
+      "pressure_bar": "1",
+      "uptake_wt_pct": "1.98",
+      "measurement_method": "volumetric_sieverts",
+      "reproducibility_tier": "B",
+      "notes": [
+        "m77",
+        "onebar"
+      ],
+      "source_location": "body (highest 2.9 wt% at 77 K/1 bar for Maxsorb; ACC10 2.0, PICA 2.1, PER50 1.98, PRA50 2.1 wt%) and Fig 5/7; Table 1 texture"
+    },
+    {
+      "sample": "S5",
+      "temperature_k": "77",
+      "pressure_bar": "1",
+      "uptake_wt_pct": "2.1",
+      "measurement_method": "volumetric_sieverts",
+      "reproducibility_tier": "B",
+      "notes": [
+        "m77",
+        "onebar"
+      ],
+      "source_location": "body (highest 2.9 wt% at 77 K/1 bar for Maxsorb; ACC10 2.0, PICA 2.1, PER50 1.98, PRA50 2.1 wt%) and Fig 5/7; Table 1 texture"
+    },
+    {
+      "sample": "S1",
+      "temperature_k": "298",
+      "pressure_bar": "90",
+      "uptake_wt_pct": "0.5",
+      "measurement_method": "gravimetric_microbalance",
+      "reproducibility_tier": "B",
+      "notes": [
+        "m298"
+      ],
+      "source_location": "body (highest H2 storage at 298 K/90 bar was 0.5 wt%, Maxsorb) and Fig 6; Table 1 texture",
+      "extraction_confidence": 4
+    },
+    {
+      "sample": "S6",
+      "measurement_method": "not_applicable",
+      "reproducibility_tier": "B",
+      "extraction_confidence": "5",
+      "temperature_unstated": "False",
+      "pressure_unstated": "False",
+      "source_location": "Table 1 (SBET, VN2, VCO2); H2 is figure-only (Figs 5-8) and not text-anchored",
+      "extraction_method": "table_direct"
+    },
+    {
+      "sample": "S7",
+      "measurement_method": "not_applicable",
+      "reproducibility_tier": "B",
+      "extraction_confidence": "5",
+      "temperature_unstated": "False",
+      "pressure_unstated": "False",
+      "source_location": "Table 1 (SBET, VN2, VCO2); H2 is figure-only (Figs 5-8) and not text-anchored",
+      "extraction_method": "table_direct"
+    },
+    {
+      "sample": "S8",
+      "measurement_method": "not_applicable",
+      "reproducibility_tier": "B",
+      "extraction_confidence": "5",
+      "temperature_unstated": "False",
+      "pressure_unstated": "False",
+      "source_location": "Table 1 (SBET, VN2, VCO2); H2 is figure-only (Figs 5-8) and not text-anchored",
+      "extraction_method": "table_direct"
+    },
+    {
+      "sample": "S9",
+      "measurement_method": "not_applicable",
+      "reproducibility_tier": "B",
+      "extraction_confidence": "5",
+      "temperature_unstated": "False",
+      "pressure_unstated": "False",
+      "source_location": "Table 1 (SBET, VN2, VCO2); H2 is figure-only (Figs 5-8) and not text-anchored",
+      "extraction_method": "table_direct"
+    },
+    {
+      "sample": "S10",
+      "measurement_method": "not_applicable",
+      "reproducibility_tier": "B",
+      "extraction_confidence": "5",
+      "temperature_unstated": "False",
+      "pressure_unstated": "False",
+      "source_location": "Table 1 (SBET, VN2, VCO2); H2 is figure-only (Figs 5-8) and not text-anchored",
+      "extraction_method": "table_direct"
+    },
+    {
+      "sample": "S11",
+      "measurement_method": "not_applicable",
+      "reproducibility_tier": "B",
+      "extraction_confidence": "5",
+      "temperature_unstated": "False",
+      "pressure_unstated": "False",
+      "source_location": "Table 1 (SBET, VN2, VCO2); H2 is figure-only (Figs 5-8) and not text-anchored",
+      "extraction_method": "table_direct"
+    }
+  ]
+}

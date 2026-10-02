@@ -1,0 +1,524 @@
+{
+  "paper": {
+    "paper_id": "HYC-0053",
+    "doi": "10.1039/d5ta00993f",
+    "first_author": "Matsutaka",
+    "year": "2025",
+    "journal": "Journal of Materials Chemistry A",
+    "title": "Densification of cellulose acetate-derived porous carbons for enhanced volumetric hydrogen adsorption performance"
+  },
+  "defaults": {
+    "extractor": "HyCAN pipeline v2",
+    "extraction_date": "2026-10-02",
+    "verification_date": "2026-10-02",
+    "uptake_bound": "exact",
+    "temperature_unstated": "False",
+    "pressure_unstated": "False",
+    "measurement_mode": "isothermal",
+    "measurement_method": "volumetric_sieverts",
+    "extraction_method": "table_direct",
+    "extraction_confidence": "5",
+    "uptake_type": "unspecified",
+    "verified_by": "Agent B (sonnet, independent re-derivation of Tables 1-3): 16 rows, 0 numeric disputes. Inventory confirmed (7 Char/KOH ratios + 5 heating times + CA powder/pellet + ZIF-8 powder/pellet); the Table 3 CA feedstock (2.55 wt%) is kept separate from the Table 1 1:2 optimum (2.80 wt%), no conflation. Parenthetical micropore vs primary total pore volumes not swapped; pellet density/volumetric-capacity pairs not transposed (CA 0.80 g/cm3 & 20.3 g-H2/L; ZIF-8 0.54 & 11.6); g-H2/L->kg/m3 carried 1:1. CA-derived=activated_carbon/chemical_activation; ZIF-8-derived=other/pyrolysis; uptake_type=unspecified (the Table 4 'total' superscript applies only to the ref-14 comparison values, not this work's 20.3). All 77 K/1 bar. Agent C: S14 activation_method trimmed to the KOH-activation clause (die-compaction is densification, already in material_description); all 16 Tier B upheld -- Agent B's conservative C for M1/M2 declined because validate.py grades the Chahine point to 1 (within 1.5x expected) and S13.5 credits the paper's stated narrow-micropore mechanism; the H2 apparatus is described in the ESI."
+  },
+  "notes": {
+    "type": "uptake_type=unspecified (exact-word rule): the paper says 'hydrogen adsorption'/'H2 uptake'/'gravimetric H2 storage density'; neither 'excess' nor 'total' is used for its values",
+    "cond": "all H2 values are at -196 C (77 K) and 1 bar",
+    "tex": "bet_surface_area=SBET (BET, P/P0 0.05-0.3); total_pore_volume=Vtotal (single-point at P/P0=0.96); micropore_volume=Vmicro (QSDFT cumulative, the parenthetic value); pore_volume_method=QSDFT (describes Vmicro), probe N2",
+    "ca": "cellulose-acetate-derived char, KOH chemical activation -> class=activated_carbon, synthesis_method=chemical_activation; precursor is a hydrothermal char of cellulose acetate",
+    "zif": "ZIF-8(MOF)-derived carbon, prepared by carbonization of the ZIF-8 framework (comparison material); class=other (a MOF-derived carbon, not matching activated/templated), synthesis_method=pyrolysis",
+    "pellet": "the pellet is the powder compacted at 800 MPa with ~10 wt% PVA binder (die molding); still the same carbon (binder is a processing aid), recorded with packing_density and volumetric_capacity (per packed volume)",
+    "vol": "volumetric_capacity_kg_m3 = the volumetric H2 density in g-H2/L (=kg/m3): CA pellet 20.3, ZIF-8 pellet 11.6; volumetric_capacity_basis=packing_volume (per pellet bulk volume)",
+    "method": "H2 adsorption isotherms at -196 C (gas sorption analyser; the specific instrument is in the unavailable ESI) -> measurement_method=volumetric_sieverts",
+    "onebar": "Chahine caveat: 77 K/1 bar, below the saturation-bound regime; chahine scored a by-hand 1 (tiering doc); Tier B/C by the rubric otherwise",
+    "series": "an activation-optimisation series: Table 1 varies the Char/KOH ratio (at 700 C) and Table 2 varies the heating time (at 600 C, Char/KOH 1:2); all are distinct CA-derived activated carbons"
+  },
+  "samples": {
+    "S1": {
+      "label": "CA 1:0.3",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "CA-derived activated carbon, Char/KOH 1:0.3",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "745.0",
+      "total_pore_volume_cm3_g": "0.38",
+      "micropore_volume_cm3_g": "0.33",
+      "pore_volume_method": "QSDFT",
+      "pore_volume_probe_gas": "N2",
+      "activation_method": "KOH chemical activation of a hydrothermal cellulose-acetate char",
+      "notes": [
+        "ca",
+        "type",
+        "cond",
+        "tex",
+        "method",
+        "onebar",
+        "series"
+      ]
+    },
+    "S2": {
+      "label": "CA 1:0.5",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "CA-derived activated carbon, Char/KOH 1:0.5",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "963.0",
+      "total_pore_volume_cm3_g": "0.49",
+      "micropore_volume_cm3_g": "0.43",
+      "pore_volume_method": "QSDFT",
+      "pore_volume_probe_gas": "N2",
+      "activation_method": "KOH chemical activation of a hydrothermal cellulose-acetate char",
+      "notes": [
+        "ca",
+        "type",
+        "cond",
+        "tex",
+        "method",
+        "onebar",
+        "series"
+      ]
+    },
+    "S3": {
+      "label": "CA 1:1",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "CA-derived activated carbon, Char/KOH 1:1",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1506.0",
+      "total_pore_volume_cm3_g": "0.87",
+      "micropore_volume_cm3_g": "0.65",
+      "pore_volume_method": "QSDFT",
+      "pore_volume_probe_gas": "N2",
+      "activation_method": "KOH chemical activation of a hydrothermal cellulose-acetate char",
+      "notes": [
+        "ca",
+        "type",
+        "cond",
+        "tex",
+        "method",
+        "onebar",
+        "series"
+      ]
+    },
+    "S4": {
+      "label": "CA 1:1.5",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "CA-derived activated carbon, Char/KOH 1:1.5",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1879.0",
+      "total_pore_volume_cm3_g": "1.01",
+      "micropore_volume_cm3_g": "0.80",
+      "pore_volume_method": "QSDFT",
+      "pore_volume_probe_gas": "N2",
+      "activation_method": "KOH chemical activation of a hydrothermal cellulose-acetate char",
+      "notes": [
+        "ca",
+        "type",
+        "cond",
+        "tex",
+        "method",
+        "onebar",
+        "series"
+      ]
+    },
+    "S5": {
+      "label": "CA 1:2",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "CA-derived activated carbon, Char/KOH 1:2",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "2013.0",
+      "total_pore_volume_cm3_g": "1.01",
+      "micropore_volume_cm3_g": "0.86",
+      "pore_volume_method": "QSDFT",
+      "pore_volume_probe_gas": "N2",
+      "activation_method": "KOH chemical activation of a hydrothermal cellulose-acetate char",
+      "notes": [
+        "ca",
+        "type",
+        "cond",
+        "tex",
+        "method",
+        "onebar",
+        "series"
+      ]
+    },
+    "S6": {
+      "label": "CA 1:3",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "CA-derived activated carbon, Char/KOH 1:3",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "2400.0",
+      "total_pore_volume_cm3_g": "1.21",
+      "micropore_volume_cm3_g": "1.02",
+      "pore_volume_method": "QSDFT",
+      "pore_volume_probe_gas": "N2",
+      "activation_method": "KOH chemical activation of a hydrothermal cellulose-acetate char",
+      "notes": [
+        "ca",
+        "type",
+        "cond",
+        "tex",
+        "method",
+        "onebar",
+        "series"
+      ]
+    },
+    "S7": {
+      "label": "CA 1:4",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "CA-derived activated carbon, Char/KOH 1:4",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "2157.0",
+      "total_pore_volume_cm3_g": "1.13",
+      "micropore_volume_cm3_g": "0.92",
+      "pore_volume_method": "QSDFT",
+      "pore_volume_probe_gas": "N2",
+      "activation_method": "KOH chemical activation of a hydrothermal cellulose-acetate char",
+      "notes": [
+        "ca",
+        "type",
+        "cond",
+        "tex",
+        "method",
+        "onebar",
+        "series"
+      ]
+    },
+    "S8": {
+      "label": "CA 600C 0.5h",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "CA-derived activated carbon, 600 C 0.5 h, Char/KOH 1:2",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1300.0",
+      "total_pore_volume_cm3_g": "0.68",
+      "micropore_volume_cm3_g": "0.51",
+      "pore_volume_method": "QSDFT",
+      "pore_volume_probe_gas": "N2",
+      "activation_method": "KOH chemical activation of a hydrothermal cellulose-acetate char",
+      "notes": [
+        "ca",
+        "type",
+        "cond",
+        "tex",
+        "method",
+        "onebar",
+        "series"
+      ]
+    },
+    "S9": {
+      "label": "CA 600C 2h",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "CA-derived activated carbon, 600 C 2 h, Char/KOH 1:2",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1569.0",
+      "total_pore_volume_cm3_g": "0.84",
+      "micropore_volume_cm3_g": "0.58",
+      "pore_volume_method": "QSDFT",
+      "pore_volume_probe_gas": "N2",
+      "activation_method": "KOH chemical activation of a hydrothermal cellulose-acetate char",
+      "notes": [
+        "ca",
+        "type",
+        "cond",
+        "tex",
+        "method",
+        "onebar",
+        "series"
+      ]
+    },
+    "S10": {
+      "label": "CA 600C 4h",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "CA-derived activated carbon, 600 C 4 h, Char/KOH 1:2",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1812.0",
+      "total_pore_volume_cm3_g": "0.93",
+      "micropore_volume_cm3_g": "0.74",
+      "pore_volume_method": "QSDFT",
+      "pore_volume_probe_gas": "N2",
+      "activation_method": "KOH chemical activation of a hydrothermal cellulose-acetate char",
+      "notes": [
+        "ca",
+        "type",
+        "cond",
+        "tex",
+        "method",
+        "onebar",
+        "series"
+      ]
+    },
+    "S11": {
+      "label": "CA 600C 8h",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "CA-derived activated carbon, 600 C 8 h, Char/KOH 1:2",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "2055.0",
+      "total_pore_volume_cm3_g": "1.05",
+      "micropore_volume_cm3_g": "0.79",
+      "pore_volume_method": "QSDFT",
+      "pore_volume_probe_gas": "N2",
+      "activation_method": "KOH chemical activation of a hydrothermal cellulose-acetate char",
+      "notes": [
+        "ca",
+        "type",
+        "cond",
+        "tex",
+        "method",
+        "onebar",
+        "series"
+      ]
+    },
+    "S12": {
+      "label": "CA 600C 12h",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "CA-derived activated carbon, 600 C 12 h, Char/KOH 1:2",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "2202.0",
+      "total_pore_volume_cm3_g": "1.13",
+      "micropore_volume_cm3_g": "0.88",
+      "pore_volume_method": "QSDFT",
+      "pore_volume_probe_gas": "N2",
+      "activation_method": "KOH chemical activation of a hydrothermal cellulose-acetate char",
+      "notes": [
+        "ca",
+        "type",
+        "cond",
+        "tex",
+        "method",
+        "onebar",
+        "series"
+      ]
+    },
+    "S13": {
+      "label": "CA carbon powder",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "optimised CA-derived activated carbon powder (used for pelletising)",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "2312.0",
+      "total_pore_volume_cm3_g": "1.17",
+      "micropore_volume_cm3_g": "0.93",
+      "pore_volume_method": "QSDFT",
+      "pore_volume_probe_gas": "N2",
+      "activation_method": "KOH chemical activation of a hydrothermal cellulose-acetate char",
+      "notes": [
+        "ca",
+        "type",
+        "cond",
+        "tex",
+        "method",
+        "onebar"
+      ]
+    },
+    "S14": {
+      "label": "CA carbon pellet",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "CA-derived activated carbon pellet: the powder compacted at 800 MPa with ~10 wt% PVA binder (bulk density 0.80 g/cm3)",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1724.0",
+      "total_pore_volume_cm3_g": "0.96",
+      "micropore_volume_cm3_g": "0.60",
+      "pore_volume_method": "QSDFT",
+      "pore_volume_probe_gas": "N2",
+      "packing_density_g_cm3": "0.80",
+      "activation_method": "KOH chemical activation of a hydrothermal cellulose-acetate char",
+      "notes": [
+        "ca",
+        "type",
+        "cond",
+        "tex",
+        "method",
+        "pellet",
+        "vol",
+        "onebar"
+      ]
+    },
+    "S15": {
+      "label": "ZIF-8 carbon powder",
+      "material_class": "other",
+      "synthesis_method": "pyrolysis",
+      "material_description": "MOF(ZIF-8)-derived carbon powder (comparison material), by carbonization of ZIF-8",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "3008.0",
+      "total_pore_volume_cm3_g": "1.65",
+      "micropore_volume_cm3_g": "1.12",
+      "pore_volume_method": "QSDFT",
+      "pore_volume_probe_gas": "N2",
+      "notes": [
+        "zif",
+        "type",
+        "cond",
+        "tex",
+        "method",
+        "onebar"
+      ]
+    },
+    "S16": {
+      "label": "ZIF-8 carbon pellet",
+      "material_class": "other",
+      "synthesis_method": "pyrolysis",
+      "material_description": "MOF(ZIF-8)-derived carbon pellet: the powder compacted at 800 MPa with ~10 wt% PVA binder (bulk density 0.54 g/cm3)",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "2051.0",
+      "total_pore_volume_cm3_g": "1.27",
+      "micropore_volume_cm3_g": "0.73",
+      "pore_volume_method": "QSDFT",
+      "pore_volume_probe_gas": "N2",
+      "packing_density_g_cm3": "0.54",
+      "notes": [
+        "zif",
+        "type",
+        "cond",
+        "tex",
+        "method",
+        "pellet",
+        "vol",
+        "onebar"
+      ]
+    }
+  },
+  "measurements": [
+    {
+      "sample": "S1",
+      "temperature_k": "77",
+      "pressure_bar": "1",
+      "uptake_wt_pct": "1.84",
+      "reproducibility_tier": "B",
+      "source_location": "Table 1 (SBET, Vtotal, QSDFT Vmicro, H2 uptake at -196 C/1 bar)"
+    },
+    {
+      "sample": "S2",
+      "temperature_k": "77",
+      "pressure_bar": "1",
+      "uptake_wt_pct": "2.17",
+      "reproducibility_tier": "B",
+      "source_location": "Table 1 (SBET, Vtotal, QSDFT Vmicro, H2 uptake at -196 C/1 bar)"
+    },
+    {
+      "sample": "S3",
+      "temperature_k": "77",
+      "pressure_bar": "1",
+      "uptake_wt_pct": "2.58",
+      "reproducibility_tier": "B",
+      "source_location": "Table 1 (SBET, Vtotal, QSDFT Vmicro, H2 uptake at -196 C/1 bar)"
+    },
+    {
+      "sample": "S4",
+      "temperature_k": "77",
+      "pressure_bar": "1",
+      "uptake_wt_pct": "2.65",
+      "reproducibility_tier": "B",
+      "source_location": "Table 1 (SBET, Vtotal, QSDFT Vmicro, H2 uptake at -196 C/1 bar)"
+    },
+    {
+      "sample": "S5",
+      "temperature_k": "77",
+      "pressure_bar": "1",
+      "uptake_wt_pct": "2.80",
+      "reproducibility_tier": "B",
+      "source_location": "Table 1 (SBET, Vtotal, QSDFT Vmicro, H2 uptake at -196 C/1 bar)"
+    },
+    {
+      "sample": "S6",
+      "temperature_k": "77",
+      "pressure_bar": "1",
+      "uptake_wt_pct": "2.66",
+      "reproducibility_tier": "B",
+      "source_location": "Table 1 (SBET, Vtotal, QSDFT Vmicro, H2 uptake at -196 C/1 bar)"
+    },
+    {
+      "sample": "S7",
+      "temperature_k": "77",
+      "pressure_bar": "1",
+      "uptake_wt_pct": "2.37",
+      "reproducibility_tier": "B",
+      "source_location": "Table 1 (SBET, Vtotal, QSDFT Vmicro, H2 uptake at -196 C/1 bar)"
+    },
+    {
+      "sample": "S8",
+      "temperature_k": "77",
+      "pressure_bar": "1",
+      "uptake_wt_pct": "2.40",
+      "reproducibility_tier": "B",
+      "source_location": "Table 2 (SBET, Vtotal, QSDFT Vmicro, H2 uptake at -196 C/1 bar)"
+    },
+    {
+      "sample": "S9",
+      "temperature_k": "77",
+      "pressure_bar": "1",
+      "uptake_wt_pct": "2.65",
+      "reproducibility_tier": "B",
+      "source_location": "Table 2 (SBET, Vtotal, QSDFT Vmicro, H2 uptake at -196 C/1 bar)"
+    },
+    {
+      "sample": "S10",
+      "temperature_k": "77",
+      "pressure_bar": "1",
+      "uptake_wt_pct": "2.57",
+      "reproducibility_tier": "B",
+      "source_location": "Table 2 (SBET, Vtotal, QSDFT Vmicro, H2 uptake at -196 C/1 bar)"
+    },
+    {
+      "sample": "S11",
+      "temperature_k": "77",
+      "pressure_bar": "1",
+      "uptake_wt_pct": "2.54",
+      "reproducibility_tier": "B",
+      "source_location": "Table 2 (SBET, Vtotal, QSDFT Vmicro, H2 uptake at -196 C/1 bar)"
+    },
+    {
+      "sample": "S12",
+      "temperature_k": "77",
+      "pressure_bar": "1",
+      "uptake_wt_pct": "2.38",
+      "reproducibility_tier": "B",
+      "source_location": "Table 2 (SBET, Vtotal, QSDFT Vmicro, H2 uptake at -196 C/1 bar)"
+    },
+    {
+      "sample": "S13",
+      "temperature_k": "77",
+      "pressure_bar": "1",
+      "uptake_wt_pct": "2.55",
+      "reproducibility_tier": "B",
+      "source_location": "Table 3 (SBET, Vtotal, QSDFT Vmicro, gravimetric and volumetric H2 at -196 C/1 bar)"
+    },
+    {
+      "sample": "S14",
+      "temperature_k": "77",
+      "pressure_bar": "1",
+      "uptake_wt_pct": "2.53",
+      "reproducibility_tier": "B",
+      "source_location": "Table 3 (SBET, Vtotal, QSDFT Vmicro, gravimetric and volumetric H2 at -196 C/1 bar)",
+      "volumetric_capacity_kg_m3": "20.3",
+      "volumetric_capacity_basis": "packing_volume"
+    },
+    {
+      "sample": "S15",
+      "temperature_k": "77",
+      "pressure_bar": "1",
+      "uptake_wt_pct": "2.54",
+      "reproducibility_tier": "B",
+      "source_location": "Table 3 (SBET, Vtotal, QSDFT Vmicro, gravimetric and volumetric H2 at -196 C/1 bar)"
+    },
+    {
+      "sample": "S16",
+      "temperature_k": "77",
+      "pressure_bar": "1",
+      "uptake_wt_pct": "2.15",
+      "reproducibility_tier": "B",
+      "source_location": "Table 3 (SBET, Vtotal, QSDFT Vmicro, gravimetric and volumetric H2 at -196 C/1 bar)",
+      "volumetric_capacity_kg_m3": "11.6",
+      "volumetric_capacity_basis": "packing_volume"
+    }
+  ]
+}

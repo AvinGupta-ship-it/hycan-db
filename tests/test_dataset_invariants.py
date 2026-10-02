@@ -63,10 +63,19 @@ def test_the_warning_baseline_holds(report):
     which is the check working. That row's `notes` records that the 8.0 wt% is
     arithmetically irreconcilable with the paper's own areal uptake, film mass
     and film area, which imply 0.84-1.26 wt%.
+
+    `Pressure above 200 bar` enters the baseline with the HYC-0049/.../0053 batch
+    (2026-10-02): Stadie 2012 (HYC-0049) reports room-temperature excess uptake to
+    30 MPa (300 bar), above the schema's 200 bar range bound. Manual §11.4 makes
+    that bound a deliberate WARNING, not an error, so high-pressure literature
+    enters flagged rather than being excluded; `scripts/build_staging.py` admits
+    the row and `append_paper.py` required `--expect-new-warning` for it. Five
+    HYC-0049 room-temperature rows carry it.
     """
     assert set(report.warning_counts) == {
         "Unspecified uptake_type",
         "Pre-2005 raw-CNT high uptake (Tier D)",
+        "Pressure above 200 bar",
     }, report.warning_counts
 
 
@@ -305,13 +314,15 @@ def test_only_papers_that_never_state_a_condition_use_the_flags(dataset):
     belongs to a different quantity measured on a different instrument. HYC-0046
     reports 77 K surface-excess *saturation* values whose per-sample saturation
     pressure is not stated (only the 3200 m2/g ACA has an explicit 30 bar), so its
-    other eight rows carry pressure_unstated.
+    other eight rows carry pressure_unstated. HYC-0049 (Stadie 2012) reports its
+    77 K Gibbs surface-excess *maxima*, whose per-sample peak pressure is stated
+    only for ZTC-3 (2.4 MPa); the other four 77 K rows carry pressure_unstated.
     """
     flagged = dataset[
         _flag(dataset, "temperature_unstated") | _flag(dataset, "pressure_unstated")
     ]
     assert set(flagged["paper_id"]) == {
-        "HYC-0009", "HYC-0011", "HYC-0015", "HYC-0026", "HYC-0046",
+        "HYC-0009", "HYC-0011", "HYC-0015", "HYC-0026", "HYC-0046", "HYC-0049",
     }, sorted(set(flagged["paper_id"]))
 
 
@@ -341,14 +352,26 @@ def test_bounded_uptakes_are_flagged_and_rare(dataset):
     # HYC-0024-M4 is the first `approximate`: its paper states "close to 1 wt %"
     # in the abstract and conclusions and tabulates no per-sample wt% at all,
     # so 1.0 is the paper's own rounded prose figure rather than a measurement.
+    # The HYC-0049/.../0053 batch (2026-10-02) adds eight: HYC-0049's five
+    # room-temperature rows are the paper's 30 MPa excess uptakes, each calculated
+    # by extrapolation of the measured 0-30 MPa isotherm (approximate), and
+    # HYC-0051's three PYROGRAF upper limits (<0.7/<0.5/<0.2 wt%, set by pressure
+    # drift over time, not a sorption event) are `upper`.
     assert set(bounded["measurement_id"]) == {
         "HYC-0029-M3", "HYC-0029-M4", "HYC-0017-M3", "HYC-0024-M4",
+        "HYC-0049-M2", "HYC-0049-M4", "HYC-0049-M6", "HYC-0049-M8", "HYC-0049-M10",
+        "HYC-0051-M6", "HYC-0051-M8", "HYC-0051-M9",
     }, sorted(bounded["measurement_id"])
     assert set(bounded["uptake_bound"]) == {"lower", "upper", "approximate"}
     upper = bounded[bounded["uptake_bound"] == "upper"]
-    assert set(upper["measurement_id"]) == {"HYC-0017-M3"}
+    assert set(upper["measurement_id"]) == {
+        "HYC-0017-M3", "HYC-0051-M6", "HYC-0051-M8", "HYC-0051-M9",
+    }
     approximate = bounded[bounded["uptake_bound"] == "approximate"]
-    assert set(approximate["measurement_id"]) == {"HYC-0024-M4"}
+    assert set(approximate["measurement_id"]) == {
+        "HYC-0024-M4",
+        "HYC-0049-M2", "HYC-0049-M4", "HYC-0049-M6", "HYC-0049-M8", "HYC-0049-M10",
+    }
 
 
 def test_paper_level_fields_agree_across_every_row_of_a_paper(dataset):
@@ -447,11 +470,12 @@ def test_metal_loading_is_not_confused_with_dopant_concentration(dataset):
 def test_characterization_only_rows_carry_characterization(dataset):
     """Rows with no uptake must still carry something, and no conditions.
 
-    Fourteen now, up from the two HYC-0018 rows schema v1.1 recovered: HYC-0029's
+    Twenty-five now, up from the two HYC-0018 rows schema v1.1 recovered: HYC-0029's
     873 K activated sample, HYC-0026's four nitrogen-doped samples, HYC-0007's
-    four ACFs, HYC-0015's pristine graphite, and HYC-0033's two boron-doped
-    characterization rows -- each a real material whose uptake the paper either
-    does not measure or plots without ever printing a number.
+    four ACFs, HYC-0015's pristine graphite, HYC-0033's two boron-doped rows,
+    HYC-0044's five characterization-only carbon fibres, and HYC-0050's six
+    figure-only cloths and nanotubes -- each a real material whose uptake the paper
+    either does not measure or plots without ever printing a number.
 
     **"No uptake" must mean no uptake OF ANY KIND, not merely no gravimetric
     value.** Before v1.3 those were the same thing. They are not any more:
@@ -479,6 +503,12 @@ def test_characterization_only_rows_carry_characterization(dataset):
         # PCF_H 0.5/0.1): Table 1 texture only, H2 never measured (any value is in the
         # unavailable supplementary Fig S1).
         "HYC-0044-M8", "HYC-0044-M9", "HYC-0044-M10", "HYC-0044-M11", "HYC-0044-M12",
+        # HYC-0050's six figure-only samples (Zubizarreta 2008): ACC15/ACC20/WKL20
+        # carbon cloths and the SWNT/MWNT/MWNT2 nanotubes carry Table 1 texture only;
+        # the paper plots H2 for them but tabulates a wt% for only the six anchored
+        # samples, so these are characterization-only.
+        "HYC-0050-M7", "HYC-0050-M8", "HYC-0050-M9",
+        "HYC-0050-M10", "HYC-0050-M11", "HYC-0050-M12",
     }, sorted(no_uptake["measurement_id"])
 
     # **The list is read off schema.py, not restated here.** This test used to
