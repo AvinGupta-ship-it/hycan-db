@@ -1,0 +1,486 @@
+{
+  "paper": {
+    "paper_id": "HYC-0041",
+    "doi": "10.1016/j.est.2023.107193",
+    "first_author": "Morande",
+    "year": "2023",
+    "journal": "Journal of Energy Storage",
+    "title": "Modification of a commercial activated carbon with nitrogen and boron: Hydrogen storage application"
+  },
+  "defaults": {
+    "extractor": "HyCAN pipeline v2",
+    "extraction_date": "2026-10-02",
+    "verification_date": "2026-10-02",
+    "uptake_bound": "exact",
+    "temperature_unstated": "False",
+    "pressure_unstated": "False",
+    "measurement_mode": "isothermal",
+    "measurement_method": "volumetric_sieverts",
+    "extraction_method": "table_direct",
+    "verified_by": "Agent B (sonnet): 279 cells, 0 numeric disputes, 0 vocabulary/policy violations; all 13 uptakes, BET, DR V0, mesopore Vm and XPS at.% confirmed, modelled/MDA values confirmed excluded. Agent C adjudication: per-sample source_location (Table 2 cited only on XPS samples); co-doped dopant_element='B, N' endorsed (first multi-element value; comma-space delimiter; no code filters the field); notes record that Vm is a by-difference value from a single-point total and that BET carries +-10%. All 13 rows Tier B.",
+    "extraction_confidence": "5",
+    "uptake_type": "excess"
+  },
+  "notes": {
+    "type": "uptake_type=excess (exact-word rule): Fig 3 and Table 5 are headed 'hydrogen excess adsorption'",
+    "sa": "bet_surface_area_m2_g is BET with the Rouquerol criterion (Table 1, carries +-10%); micropore_volume_cm3_g is the DR micropore volume V0; mesopore_volume_cm3_g is Vm, a by-difference value (total pore volume at p/p0=0.99 minus V0, Table 1 footnote c); pore_volume_method=DR/N2 describes V0; the total pore volume VT is not tabulated separately and is not reconstructed (arithmetic avoided)",
+    "psd": "Horvath-Kawazoe micropore distribution is bimodal (~0.68 and ~0.80 nm), not a single average, so no average pore diameter is recorded",
+    "mda": "the Dubinin-Astakhov (MDA) extrapolations in Table 6 (5.11/5.69/6.65 wt% at 10/15/30 bar; the 1-bar values in parentheses; the 7.86 wt% system figure, which is total adsorbed+compressed) are modelled, not measured, and are not extracted",
+    "method": "H2 excess adsorption on a Micromeritics 3Flex (static volumetric), -196 C, 0 to 0.93 bar; degassed under vacuum; He pycnometry gives the skeletal density used for the volumetric-density calc; H2 purity and sample mass not stated",
+    "base": "base carbon is a commercial coconut-shell granular activated carbon (Haycarb USA); synthesis_method=commercial for every sample; modifications (He thermal treatment, NH3 doping, borax-decahydrate B impregnation) are in activation_method",
+    "codope": "co-doped (N and B): the schema holds one dopant field, so dopant_element records 'B, N' (comma-space) and the concentration is left empty; XPS was not reported for the two co-doped samples",
+    "noxps": "XPS surface composition is reported only for AC, AC-He400, AC-N500, AC-He400-N500, AC-B, AC-B-He400, AC-He400-B-He400 (Table 2); dopant concentration is left empty for the other doped samples",
+    "ncon_native": "the reported surface N includes the carbon's native N (~0.6-0.7 at.% in the undoped AC), not only the ammonia-added N",
+    "bcon": "the reported surface B is total B; XPS B 1s resolves into BCO2 (in-matrix) and B-O (Na2B4O7/B2O3) fractions (Table 3)",
+    "onebar": "Chahine caveat (section 5): a 0.93-bar cryogenic row is near 1 bar, where the BET/500 saturation bound does not apply; the chahine point is a by-hand 1 (within physical bounds, not a saturation test). Tier B either way"
+  },
+  "samples": {
+    "S1": {
+      "label": "AC",
+      "material_class": "activated_carbon",
+      "material_description": "commercial coconut-shell granular activated carbon (Haycarb USA), as received",
+      "synthesis_method": "commercial",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1678.0",
+      "micropore_volume_cm3_g": "0.70",
+      "mesopore_volume_cm3_g": "0.03",
+      "pore_volume_method": "DR",
+      "pore_volume_probe_gas": "N2",
+      "notes": [
+        "base",
+        "sa",
+        "psd",
+        "type",
+        "mda",
+        "method"
+      ]
+    },
+    "S2": {
+      "label": "AC-He200",
+      "material_class": "activated_carbon",
+      "material_description": "Haycarb AC, He thermal treatment at 200 C 1 h",
+      "synthesis_method": "commercial",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1512.0",
+      "micropore_volume_cm3_g": "0.63",
+      "mesopore_volume_cm3_g": "0.01",
+      "pore_volume_method": "DR",
+      "pore_volume_probe_gas": "N2",
+      "activation_method": "He thermal treatment 200 C 1 h",
+      "notes": [
+        "base",
+        "sa",
+        "psd",
+        "type",
+        "mda",
+        "method"
+      ]
+    },
+    "S3": {
+      "label": "AC-He400",
+      "material_class": "activated_carbon",
+      "material_description": "Haycarb AC, He thermal treatment at 400 C 1 h",
+      "synthesis_method": "commercial",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1572.0",
+      "micropore_volume_cm3_g": "0.66",
+      "mesopore_volume_cm3_g": "0.01",
+      "pore_volume_method": "DR",
+      "pore_volume_probe_gas": "N2",
+      "activation_method": "He thermal treatment 400 C 1 h",
+      "notes": [
+        "base",
+        "sa",
+        "psd",
+        "type",
+        "mda",
+        "method"
+      ]
+    },
+    "S4": {
+      "label": "AC-N500",
+      "material_class": "doped_carbon",
+      "material_description": "Haycarb AC, NH3 doping at 500 C 3 h (nitrogen-doped)",
+      "synthesis_method": "commercial",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1646.0",
+      "micropore_volume_cm3_g": "0.70",
+      "mesopore_volume_cm3_g": "0.02",
+      "pore_volume_method": "DR",
+      "pore_volume_probe_gas": "N2",
+      "activation_method": "NH3 doping 500 C 3 h",
+      "dopant_element": "N",
+      "dopant_concentration_at_pct": "1.6",
+      "dopant_concentration_method": "XPS",
+      "notes": [
+        "base",
+        "sa",
+        "psd",
+        "type",
+        "mda",
+        "method",
+        "ncon_native"
+      ]
+    },
+    "S5": {
+      "label": "AC-He400-N400",
+      "material_class": "doped_carbon",
+      "material_description": "Haycarb AC, He 400 C then NH3 doping at 400 C (nitrogen-doped)",
+      "synthesis_method": "commercial",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1554.0",
+      "micropore_volume_cm3_g": "0.64",
+      "mesopore_volume_cm3_g": "0.02",
+      "pore_volume_method": "DR",
+      "pore_volume_probe_gas": "N2",
+      "activation_method": "He 400 C 1 h, then NH3 doping 400 C 3 h",
+      "dopant_element": "N",
+      "notes": [
+        "base",
+        "sa",
+        "psd",
+        "type",
+        "mda",
+        "method",
+        "noxps"
+      ]
+    },
+    "S6": {
+      "label": "AC-He400-N500",
+      "material_class": "doped_carbon",
+      "material_description": "Haycarb AC, He 400 C then NH3 doping at 500 C (nitrogen-doped; best H2 sample)",
+      "synthesis_method": "commercial",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1554.0",
+      "micropore_volume_cm3_g": "0.65",
+      "mesopore_volume_cm3_g": "0.02",
+      "pore_volume_method": "DR",
+      "pore_volume_probe_gas": "N2",
+      "activation_method": "He 400 C 1 h, then NH3 doping 500 C 3 h",
+      "dopant_element": "N",
+      "dopant_concentration_at_pct": "1.1",
+      "dopant_concentration_method": "XPS",
+      "notes": [
+        "base",
+        "sa",
+        "psd",
+        "type",
+        "mda",
+        "method",
+        "ncon_native"
+      ]
+    },
+    "S7": {
+      "label": "AC-He400-N600",
+      "material_class": "doped_carbon",
+      "material_description": "Haycarb AC, He 400 C then NH3 doping at 600 C (nitrogen-doped)",
+      "synthesis_method": "commercial",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1514.0",
+      "micropore_volume_cm3_g": "0.64",
+      "mesopore_volume_cm3_g": "0.01",
+      "pore_volume_method": "DR",
+      "pore_volume_probe_gas": "N2",
+      "activation_method": "He 400 C 1 h, then NH3 doping 600 C 3 h",
+      "dopant_element": "N",
+      "notes": [
+        "base",
+        "sa",
+        "psd",
+        "type",
+        "mda",
+        "method",
+        "noxps"
+      ]
+    },
+    "S8": {
+      "label": "AC-B",
+      "material_class": "doped_carbon",
+      "material_description": "Haycarb AC, borax-decahydrate incipient-wetness impregnation at 5 wt% B target (boron-doped)",
+      "synthesis_method": "commercial",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1407.0",
+      "micropore_volume_cm3_g": "0.57",
+      "mesopore_volume_cm3_g": "0.02",
+      "pore_volume_method": "DR",
+      "pore_volume_probe_gas": "N2",
+      "activation_method": "borax-decahydrate incipient-wetness impregnation, 5 wt% B target, dried 80 C",
+      "dopant_element": "B",
+      "dopant_concentration_at_pct": "4.4",
+      "dopant_concentration_method": "XPS",
+      "notes": [
+        "base",
+        "sa",
+        "psd",
+        "type",
+        "mda",
+        "method",
+        "bcon"
+      ]
+    },
+    "S9": {
+      "label": "AC-B-He400",
+      "material_class": "doped_carbon",
+      "material_description": "Haycarb AC, borax B impregnation then He 400 C (boron-doped)",
+      "synthesis_method": "commercial",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1100.0",
+      "micropore_volume_cm3_g": "0.45",
+      "mesopore_volume_cm3_g": "0.01",
+      "pore_volume_method": "DR",
+      "pore_volume_probe_gas": "N2",
+      "activation_method": "borax B impregnation (5 wt% B), then He 400 C 1 h",
+      "dopant_element": "B",
+      "dopant_concentration_at_pct": "6.0",
+      "dopant_concentration_method": "XPS",
+      "notes": [
+        "base",
+        "sa",
+        "psd",
+        "type",
+        "mda",
+        "method",
+        "bcon"
+      ]
+    },
+    "S10": {
+      "label": "AC-He400-B",
+      "material_class": "doped_carbon",
+      "material_description": "Haycarb AC, He 400 C then borax B impregnation (boron-doped)",
+      "synthesis_method": "commercial",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1047.0",
+      "micropore_volume_cm3_g": "0.43",
+      "mesopore_volume_cm3_g": "0.01",
+      "pore_volume_method": "DR",
+      "pore_volume_probe_gas": "N2",
+      "activation_method": "He 400 C 1 h, then borax B impregnation (5 wt% B)",
+      "dopant_element": "B",
+      "notes": [
+        "base",
+        "sa",
+        "psd",
+        "type",
+        "mda",
+        "method",
+        "noxps"
+      ]
+    },
+    "S11": {
+      "label": "AC-He400-B-He400",
+      "material_class": "doped_carbon",
+      "material_description": "Haycarb AC, He 400 C, borax B impregnation, He 400 C (boron-doped)",
+      "synthesis_method": "commercial",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1003.0",
+      "micropore_volume_cm3_g": "0.41",
+      "mesopore_volume_cm3_g": "0.01",
+      "pore_volume_method": "DR",
+      "pore_volume_probe_gas": "N2",
+      "activation_method": "He 400 C, borax B impregnation (5 wt% B), He 400 C",
+      "dopant_element": "B",
+      "dopant_concentration_at_pct": "4.3",
+      "dopant_concentration_method": "XPS",
+      "notes": [
+        "base",
+        "sa",
+        "psd",
+        "type",
+        "mda",
+        "method",
+        "bcon"
+      ]
+    },
+    "S12": {
+      "label": "AC-He400-B-N500",
+      "material_class": "doped_carbon",
+      "material_description": "Haycarb AC, He 400 C, borax B impregnation, NH3 500 C (co-doped B and N)",
+      "synthesis_method": "commercial",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "853.0",
+      "micropore_volume_cm3_g": "0.35",
+      "mesopore_volume_cm3_g": "0.00",
+      "pore_volume_method": "DR",
+      "pore_volume_probe_gas": "N2",
+      "activation_method": "He 400 C, borax B impregnation (5 wt% B), NH3 500 C 3 h",
+      "dopant_element": "B, N",
+      "notes": [
+        "base",
+        "sa",
+        "psd",
+        "type",
+        "mda",
+        "method",
+        "codope"
+      ]
+    },
+    "S13": {
+      "label": "AC-He400-N500-B",
+      "material_class": "doped_carbon",
+      "material_description": "Haycarb AC, He 400 C, NH3 500 C, borax B impregnation (co-doped N and B)",
+      "synthesis_method": "commercial",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1108.0",
+      "micropore_volume_cm3_g": "0.45",
+      "mesopore_volume_cm3_g": "0.02",
+      "pore_volume_method": "DR",
+      "pore_volume_probe_gas": "N2",
+      "activation_method": "He 400 C, NH3 500 C 3 h, borax B impregnation (5 wt% B)",
+      "dopant_element": "B, N",
+      "notes": [
+        "base",
+        "sa",
+        "psd",
+        "type",
+        "mda",
+        "method",
+        "codope"
+      ]
+    }
+  },
+  "measurements": [
+    {
+      "sample": "S1",
+      "temperature_k": "77",
+      "pressure_bar": "0.93",
+      "uptake_wt_pct": "1.98",
+      "reproducibility_tier": "B",
+      "source_location": "Table 5 (H2 excess adsorption at -196 C, 0.93 bar); Table 1 (BET-Rouquerol SSA, DR micropore V0, mesopore Vm); method section 2.4",
+      "notes": [
+        "onebar"
+      ]
+    },
+    {
+      "sample": "S2",
+      "temperature_k": "77",
+      "pressure_bar": "0.93",
+      "uptake_wt_pct": "1.81",
+      "reproducibility_tier": "B",
+      "source_location": "Table 5 (H2 excess adsorption at -196 C, 0.93 bar); Table 1 (BET-Rouquerol SSA, DR micropore V0, mesopore Vm); method section 2.4",
+      "notes": [
+        "onebar"
+      ]
+    },
+    {
+      "sample": "S3",
+      "temperature_k": "77",
+      "pressure_bar": "0.93",
+      "uptake_wt_pct": "1.81",
+      "reproducibility_tier": "B",
+      "source_location": "Table 5 (H2 excess adsorption at -196 C, 0.93 bar); Table 1 (BET-Rouquerol SSA, DR micropore V0, mesopore Vm); method section 2.4",
+      "notes": [
+        "onebar"
+      ]
+    },
+    {
+      "sample": "S4",
+      "temperature_k": "77",
+      "pressure_bar": "0.93",
+      "uptake_wt_pct": "2.14",
+      "reproducibility_tier": "B",
+      "source_location": "Table 5 (H2 excess adsorption at -196 C, 0.93 bar); Table 1 (BET-Rouquerol SSA, DR micropore V0, mesopore Vm); Table 2 (XPS at.%); method section 2.4",
+      "notes": [
+        "onebar"
+      ]
+    },
+    {
+      "sample": "S5",
+      "temperature_k": "77",
+      "pressure_bar": "0.93",
+      "uptake_wt_pct": "2.10",
+      "reproducibility_tier": "B",
+      "source_location": "Table 5 (H2 excess adsorption at -196 C, 0.93 bar); Table 1 (BET-Rouquerol SSA, DR micropore V0, mesopore Vm); method section 2.4",
+      "notes": [
+        "onebar"
+      ]
+    },
+    {
+      "sample": "S6",
+      "temperature_k": "77",
+      "pressure_bar": "0.93",
+      "uptake_wt_pct": "2.34",
+      "reproducibility_tier": "B",
+      "source_location": "Table 5 (H2 excess adsorption at -196 C, 0.93 bar); Table 1 (BET-Rouquerol SSA, DR micropore V0, mesopore Vm); Table 2 (XPS at.%); method section 2.4",
+      "notes": [
+        "onebar"
+      ]
+    },
+    {
+      "sample": "S7",
+      "temperature_k": "77",
+      "pressure_bar": "0.93",
+      "uptake_wt_pct": "1.90",
+      "reproducibility_tier": "B",
+      "source_location": "Table 5 (H2 excess adsorption at -196 C, 0.93 bar); Table 1 (BET-Rouquerol SSA, DR micropore V0, mesopore Vm); method section 2.4",
+      "notes": [
+        "onebar"
+      ]
+    },
+    {
+      "sample": "S8",
+      "temperature_k": "77",
+      "pressure_bar": "0.93",
+      "uptake_wt_pct": "1.68",
+      "reproducibility_tier": "B",
+      "source_location": "Table 5 (H2 excess adsorption at -196 C, 0.93 bar); Table 1 (BET-Rouquerol SSA, DR micropore V0, mesopore Vm); Table 2 (XPS at.%); method section 2.4",
+      "notes": [
+        "onebar"
+      ]
+    },
+    {
+      "sample": "S9",
+      "temperature_k": "77",
+      "pressure_bar": "0.93",
+      "uptake_wt_pct": "1.88",
+      "reproducibility_tier": "B",
+      "source_location": "Table 5 (H2 excess adsorption at -196 C, 0.93 bar); Table 1 (BET-Rouquerol SSA, DR micropore V0, mesopore Vm); Table 2 (XPS at.%); method section 2.4",
+      "notes": [
+        "onebar"
+      ]
+    },
+    {
+      "sample": "S10",
+      "temperature_k": "77",
+      "pressure_bar": "0.93",
+      "uptake_wt_pct": "1.40",
+      "reproducibility_tier": "B",
+      "source_location": "Table 5 (H2 excess adsorption at -196 C, 0.93 bar); Table 1 (BET-Rouquerol SSA, DR micropore V0, mesopore Vm); method section 2.4",
+      "notes": [
+        "onebar"
+      ]
+    },
+    {
+      "sample": "S11",
+      "temperature_k": "77",
+      "pressure_bar": "0.93",
+      "uptake_wt_pct": "1.74",
+      "reproducibility_tier": "B",
+      "source_location": "Table 5 (H2 excess adsorption at -196 C, 0.93 bar); Table 1 (BET-Rouquerol SSA, DR micropore V0, mesopore Vm); Table 2 (XPS at.%); method section 2.4",
+      "notes": [
+        "onebar"
+      ]
+    },
+    {
+      "sample": "S12",
+      "temperature_k": "77",
+      "pressure_bar": "0.93",
+      "uptake_wt_pct": "1.33",
+      "reproducibility_tier": "B",
+      "source_location": "Table 5 (H2 excess adsorption at -196 C, 0.93 bar); Table 1 (BET-Rouquerol SSA, DR micropore V0, mesopore Vm); method section 2.4",
+      "notes": [
+        "onebar"
+      ]
+    },
+    {
+      "sample": "S13",
+      "temperature_k": "77",
+      "pressure_bar": "0.93",
+      "uptake_wt_pct": "1.69",
+      "reproducibility_tier": "B",
+      "source_location": "Table 5 (H2 excess adsorption at -196 C, 0.93 bar); Table 1 (BET-Rouquerol SSA, DR micropore V0, mesopore Vm); method section 2.4",
+      "notes": [
+        "onebar"
+      ]
+    }
+  ]
+}

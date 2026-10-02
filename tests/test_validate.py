@@ -786,7 +786,18 @@ def test_no_assigned_tier_changed_and_the_scorer_still_returns_a_letter():
     # and the paper credits it for part of the uptake, so not anchor-quality).
     # Both are documented hand-adjustments. Updated deliberately, per this pin's
     # own instruction. No assigned tier changed.
-    assert agree == 191
+    # Now 224 of 343 after the HYC-0039/0040/0041/0042/0043 Phase D batch: +33
+    # agreements and 22 documented hand-adjustments where the assigned tier diverges
+    # from the scorer. HYC-0039's 14 cryogenic (77 K) rows: the calibration point is
+    # added by hand for the He skeletal-density void-volume correction the scorer
+    # cannot see (scorer C, assigned B). HYC-0040's three 77 K rows: the categorical
+    # physics override -- 9.8/8.2/6.9 wt% on ~900 m2/g is inconsistent with
+    # physisorption (scorer C, assigned D) -- and four of its 273/298 K rows take the
+    # calibration point for the LaNi5/basolite reference-sample calibration (scorer C,
+    # assigned B). HYC-0043-M2: the 100-bar 4.51 wt% value (scorer B, assigned C)
+    # because Fig 4b shows the excess maximum near ~25-30 bar, so the 100-bar pairing
+    # is uncertain. All 22 are new rows; no existing assigned tier changed.
+    assert agree == 224
 
 
 def test_the_rows_in_tension_with_their_assigned_tier_are_named():

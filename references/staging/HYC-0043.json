@@ -1,0 +1,94 @@
+{
+  "paper": {
+    "paper_id": "HYC-0043",
+    "doi": "10.15376/biores.14.4.9755-9765",
+    "first_author": "Ma",
+    "year": "2019",
+    "journal": "BioResources",
+    "title": "Preparation and Adsorption of CO2 and H2 by Activated Carbon Hollow Fibers from Rubber Wood (Hevea brasiliensis)"
+  },
+  "defaults": {
+    "extractor": "HyCAN pipeline v2",
+    "extraction_date": "2026-10-02",
+    "verification_date": "2026-10-02",
+    "uptake_bound": "exact",
+    "temperature_unstated": "False",
+    "pressure_unstated": "False",
+    "measurement_mode": "isothermal",
+    "measurement_method": "volumetric_sieverts",
+    "extraction_method": "text_direct",
+    "verified_by": "Agent B (sonnet): ~60 cells, 0 numeric disputes; the single-sample scope (only WC-ACHF-1.0% is text-anchored; the other four samples are figure-only), the 77 K temperature (298 K in the conclusion is a typo), the CO2 exclusion, uptake_type=unspecified and empty dopant_element (incidental N/P) all confirmed. Agent C adjudication: (1) the 100-bar row (4.51 wt%) downgraded to Tier C and confidence 4 -- Fig 4b shows the excess maximum near ~25-30 bar and the ~100-bar point slightly lower, so '4.51 at 100 bar' pairs the run-window pressure with the curve maximum (the paper states this pairing in text, recorded with the caveat); (2) functional_groups unit corrected to at.% (Fig 2a XPS [at.%]: C 91.26, N 1.06, O 7.34, P 0.35).",
+    "extraction_confidence": "5",
+    "uptake_type": "unspecified"
+  },
+  "notes": {
+    "type": "uptake_type=unspecified (exact-word rule): the paper labels these 'hydrogen storage'/'H2 adsorption storage'; the only 'excess' strings are 'excessive' about charcoal powder",
+    "onlyone": "only WC-ACHF-1.0% has text-anchored values; the other four samples (0, 0.5, 2.0, 3.0%) have only figure-only per-sample uptakes (Fig 4 insets) and figure-only textural parameters (Fig 3 inset), which are unanchorable (section 3.4 step 6) and are not recorded",
+    "assign": "the 77 K/1 bar value 2.24 wt% is the maximum of the stated 2.06-2.24 wt% range and WC-ACHF-1.0% is stated to be the highest sample at both 1 and 100 bar, so 2.24 is assigned to it (slight inference; extraction_confidence 4; WA-2.0 is only ~0.01 wt% lower)",
+    "pmax": "Fig 4b shows the WC-ACHF-1.0% 77 K excess isotherm peaking near ~25-30 bar with the ~100-bar point slightly lower; the abstract/body state '4.51 wt% at 77 K and 100 bar', so 4.51 is the curve maximum reported against the 0-100 bar run window, not necessarily the 100-bar value; recorded at 100 bar per the text with Tier C and confidence 4",
+    "typo": "the conclusion prints '4.51 wt% at 298 K and 100 bar'; the abstract, Fig 4b and the methods all give 77 K, and H2 was measured 0-100 bar at 77 K, so 298 K is a typo and temperature_k=77 is recorded",
+    "co2": "CO2 adsorption (273 K; 4.76-7.13 mmol/g) is a different gas and is not extracted",
+    "porevol": "total_pore_volume_cm3_g 0.860 is the text value for WC-ACHF-1.0%; per-sample micropore (t-plot) and mesopore (BJH) volumes are figure-only (Fig 3 inset); pore_volume_method=unspecified (single total value)",
+    "psd": "the porosity is bimodal ultramicropores at ~0.50 and ~0.56 nm, not a single average, so no average pore diameter is recorded",
+    "hetero": "N (1.06 at.% by XPS for WC-ACHF-1.0%), O and P are incidental, from the wood-liquefaction precursor (H3PO4 activation, hexamethylenetetramine), not deliberate heteroatom doping, so dopant_element is left empty (incidental-heteroatom convention); 'doping' in the title refers to the 1 wt% wood-charcoal carbon additive",
+    "charcoal": "WC-ACHF-1.0% is an activated carbon hollow fiber from rubber-wood liquefaction doped with 1.0 wt% wood charcoal powder (based on wood liquefaction) in the spinning solution, steam-activated at 800 C",
+    "bet": "surface_area_method=BET: the 1902 m2/g value is text-anchored ('specific surface area ... 1902 m2 g-1') and labelled BET in the Fig 3 inset and Fig 4d axis",
+    "method": "H2 adsorption/desorption 0-100 bar and 0-1 bar at 77 K on an Automated Sievert's apparatus (Advanced Material Corp.); fully reversible; N2 flow 100 mL/min during activation; sample mass and blank/calibration not stated"
+  },
+  "samples": {
+    "S1": {
+      "label": "WC-ACHF-1.0%",
+      "material_class": "activated_carbon",
+      "material_description": "wood-charcoal-doped activated carbon hollow fiber (WC-ACHF-1.0%) from rubber-wood (Hevea brasiliensis) liquefaction, melt-spun, steam-activated at 800 C; 1.0 wt% wood charcoal powder additive (based on wood liquefaction)",
+      "synthesis_method": "physical_activation",
+      "activation_method": "steam activation at 800 C, 1 h, 10 g/min steam, N2 flow 100 mL/min; precursor from H3PO4 wood liquefaction, melt spinning, half-curing",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1902.0",
+      "total_pore_volume_cm3_g": "0.860",
+      "pore_volume_method": "unspecified",
+      "pore_volume_probe_gas": "N2",
+      "functional_groups": "incidental N (1.06 at.% by XPS), O (7.34 at.%) and P (0.35 at.%) from the wood-liquefaction precursor (C 91.26 at.%, Fig 2a); not deliberate doping",
+      "notes": [
+        "type",
+        "onlyone",
+        "porevol",
+        "psd",
+        "hetero",
+        "charcoal",
+        "bet",
+        "method",
+        "co2"
+      ]
+    }
+  },
+  "measurements": [
+    {
+      "sample": "S1",
+      "temperature_k": "77",
+      "pressure_bar": "1",
+      "uptake_wt_pct": "2.24",
+      "reproducibility_tier": "B",
+      "extraction_confidence": "4",
+      "extraction_method": "text_direct",
+      "source_location": "body 'Hydrogen Adsorption Performance' (1-bar range 2.06-2.24 wt%, WC-ACHF-1.0% highest; Fig 4a inset); BET 1902 m2/g and total pore vol 0.860 cm3/g body; method 'Methods'",
+      "notes": [
+        "assign"
+      ],
+      "note_extra": "1-bar cryogenic row: chahine scored a by-hand 1 (section 5); Tier B either way"
+    },
+    {
+      "sample": "S1",
+      "temperature_k": "77",
+      "pressure_bar": "100",
+      "uptake_wt_pct": "4.51",
+      "reproducibility_tier": "C",
+      "extraction_confidence": "4",
+      "extraction_method": "text_direct",
+      "source_location": "abstract and body (highest H2 uptake 4.51 wt% at 77 K, 100 bar for WC-ACHF-1.0%; Fig 4b inset); method 'Methods' (Automated Sievert's, 0-100 bar, 77 K)",
+      "notes": [
+        "pmax",
+        "typo"
+      ]
+    }
+  ]
+}

@@ -63,7 +63,8 @@ analysis funnel, with the five §7.3 strings covered across them:
 | Below the priority cut, resolution not attempted | 61 |
 | Full text retrieved | **30** |
 | **Full text not retrieved** | **5** |
-| Extracted | 0 |
+| — of the retrieved, excluded at full-text review | **1** (HYC-0038; see §5.2) |
+| Extracted | 0 at search time (since grown; tracked in `references/paper_tracking.csv` and `docs/ai_usage_log.md`) |
 
 Two of the three tracked-paper duplicates were already inside the 14 exclusions, so
 the distinct total is 123 − 14 − 1 − 5 = 103.
@@ -183,6 +184,17 @@ so they sit in the table below as unresolved rather than carrying a reason.
 **Recommendation, not applied here:** add `not_peer_reviewed` to the exclusion
 vocabulary. Several of these reports correspond to peer-reviewed papers by the same
 groups, which are the things worth chasing instead.
+
+### 5.2 Excluded at full-text review (1)
+
+This is a distinct PRISMA stage from the 14 title/abstract exclusions above: the
+paper was screened **in**, its full text was retrieved, and only on reading it did
+it fail the eligibility criteria. Keeping it separate stops a full-text exclusion
+being miscounted as a title/abstract one.
+
+| paper | reason | why |
+|---|---|---|
+| HYC-0038 | no_experimental_uptake | Firlej et al. 2021, *Nanomaterials* 11, 2173. A review plus GCMC study: every hydrogen **uptake** isotherm is simulated; the only experimental hydrogen result is an **adsorption energy** (~9 kJ/mol, Fig 6d, from 77 K/87 K isotherms), with no pressure axis and no anchored (T, P, uptake) triple. Per §7.2 ("exclude only when the *value* cannot be determined") no row is extractable. Ratified 2026-10-02; `screening_decision=exclude` in `paper_tracking.csv`, citation kept in `bibliography_sources.json` for PRISMA. The boron carbons are physically real, so the SI could rescue it later. See `docs/migration_exclude_hyc0038_plan.md`.
 
 ## 6. Carried forward, not yet decided (68)
 

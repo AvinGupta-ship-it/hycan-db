@@ -431,8 +431,12 @@ def test_metal_loading_is_not_confused_with_dopant_concentration(dataset):
     assert set(both["dopant_element"]) == {"N"}
 
     by_weight = dataset[dataset["dopant_concentration_wt_pct"].notna()]
+    # +HYC-0039: its ammonia-treated AC (S2) carries 2.0 wt% N by CHNS; the
+    # metal-decorated ammonia-treated composites keep dopant_element=N but no
+    # concentration (the 2.0 wt% was measured on the support, not re-measured on
+    # the composite), so only S2 is by-weight here.
     assert set(by_weight["paper_id"]) == {
-        "HYC-0026", "HYC-0032", "HYC-0033", "HYC-0034"
+        "HYC-0026", "HYC-0032", "HYC-0033", "HYC-0034", "HYC-0039"
     }
     assert by_weight["dopant_concentration_method"].notna().all()
 

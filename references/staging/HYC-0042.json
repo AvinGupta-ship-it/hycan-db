@@ -1,0 +1,127 @@
+{
+  "paper": {
+    "paper_id": "HYC-0042",
+    "doi": "10.3389/fchem.2019.00864",
+    "first_author": "Molefe",
+    "year": "2019",
+    "journal": "Frontiers in Chemistry",
+    "title": "Polymer-Based Shaping Strategy for Zeolite Templated Carbons (ZTC) and Their Metal Organic Framework (MOF) Composites for Improved Hydrogen Storage Properties"
+  },
+  "defaults": {
+    "extractor": "HyCAN pipeline v2",
+    "extraction_date": "2026-10-02",
+    "verification_date": "2026-10-02",
+    "uptake_bound": "exact",
+    "temperature_unstated": "False",
+    "pressure_unstated": "False",
+    "measurement_mode": "isothermal",
+    "measurement_method": "volumetric_sieverts",
+    "extraction_method": "table_direct",
+    "verified_by": "Agent B (sonnet): ~60 cells, 0 numeric disputes; the scope selection (ZTC + two ZTC-composites in; pure MOF, pure polymer, polymer+MOF out) and the exclusion of the mass-weighted Estimated columns confirmed. Agent C adjudication: (1) composite synthesis_method 'other' -> 'template_synthesis' (corpus convention: a composite carries its carbon component's route; all 15 existing composite rows do); (2) pore_volume_method 'HK' -> 'unspecified' (the total pore volume is a single-point value at p/p0~0.99 per footnote d; corpus convention HYC-0032/0037); (3) ZTC HF/HCl purification added to the two composites (HYC-0029 precedent). All 3 rows Tier B.",
+    "extraction_confidence": "5",
+    "uptake_type": "unspecified"
+  },
+  "notes": {
+    "type": "uptake_type=unspecified (exact-word rule): the paper labels these 'H2 uptake'/'H2 adsorbed at 77 K and 1 bar'; 'excess' appears only as 'excess furfuryl alcohol' and 'Total' only in 'Total pore vol.'",
+    "porevol": "total_pore_volume_cm3_g is a single-point total at p/p0~0.99 (Table 1 footnote d: 'Total pore volume determined from H-K analysis by uptake at p/p ~0.99'); Horvath-Kawazoe is a micropore-size model and does not yield a 0.99 total, so pore_volume_method=unspecified (corpus convention for single-point totals); micropore_surface_area_m2_g is the t-plot micropore area (footnote c)",
+    "estimated": "the Table 1 'Estimated BET SSA' and 'Estimated H2 uptake' columns are mass-weighted predictions from the pristine components, not measurements, and are not extracted",
+    "method": "N2 and H2 sorption to 1 bar on a Micromeritics ASAP 2020 HD (static volumetric) at 77 K; degassed 8 h at 200 C under vacuum; measurement_method=volumetric_sieverts by instrument identity (HYC-0022 precedent); sample mass and blank/calibration not stated",
+    "scope": "pristine UiO-66(Zr) (a MOF), pristine PIM-1 (a polymer) and PIM-1/80 wt% UiO-66(Zr) (polymer+MOF, no carbon) are not carbon nanomaterials and are excluded; the ZTC and the two ZTC-containing composites are in scope",
+    "composite": "a ZTC-containing composite is class=composite (corpus convention): it holds the zeolite-templated carbon plus a PIM-1 binder (and UiO-66 MOF in the three-filler composite); synthesis_method is template_synthesis after the ZTC route; material_description gives the component fractions",
+    "ztc": "zeolite-13X-templated carbon by furfuryl-alcohol impregnation and ethylene CVD, carbonised 900 C; HF then HCl washing removes the zeolite template (purification)",
+    "ternary": "the three-filler composite (40 wt% ZTC) is a borderline carbon/MOF composite, included under manual section 7.2 (tag and include borderline carbon-MOF composites)",
+    "onebar": "Chahine caveat (section 5): 1-bar cryogenic rows score a by-hand chahine 1 (saturation bound inapplicable at 1 bar); Tier B either way"
+  },
+  "samples": {
+    "S1": {
+      "label": "ZTC",
+      "material_class": "templated_carbon",
+      "material_description": "pristine zeolite-13X-templated carbon (ZTC): furfuryl-alcohol impregnation, ethylene CVD, carbonised 900 C, zeolite removed by HF/HCl",
+      "synthesis_method": "template_synthesis",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "3206.0",
+      "micropore_surface_area_m2_g": "3004.0",
+      "total_pore_volume_cm3_g": "1.54",
+      "pore_volume_method": "unspecified",
+      "pore_volume_probe_gas": "N2",
+      "purification_method": "HF (10%) wash 24 h then reflux in HCl (10%) 24 h to remove the zeolite 13X template",
+      "notes": [
+        "type",
+        "porevol",
+        "method",
+        "scope",
+        "ztc",
+        "onebar"
+      ]
+    },
+    "S2": {
+      "label": "PIM-1/80 wt% ZTC",
+      "material_class": "composite",
+      "material_description": "shaped composite monolith of 80 wt% ZTC and 20 wt% PIM-1 polymer binder (solvent blending in TCE)",
+      "synthesis_method": "template_synthesis",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "2433.0",
+      "micropore_surface_area_m2_g": "2262.0",
+      "total_pore_volume_cm3_g": "1.18",
+      "pore_volume_method": "unspecified",
+      "pore_volume_probe_gas": "N2",
+      "purification_method": "the ZTC filler was purified by HF (10%) wash 24 h then reflux in HCl (10%) 24 h to remove the zeolite 13X template",
+      "notes": [
+        "type",
+        "porevol",
+        "estimated",
+        "method",
+        "composite",
+        "onebar"
+      ]
+    },
+    "S3": {
+      "label": "PIM-1/UiO-66(Zr)/ZTC (80 wt%)",
+      "material_class": "composite",
+      "material_description": "shaped composite monolith of 20 wt% PIM-1, 40 wt% ZTC and 40 wt% UiO-66(Zr) MOF (solvent blending in TCE)",
+      "synthesis_method": "template_synthesis",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1767.0",
+      "micropore_surface_area_m2_g": "1668.0",
+      "total_pore_volume_cm3_g": "0.83",
+      "pore_volume_method": "unspecified",
+      "pore_volume_probe_gas": "N2",
+      "purification_method": "the ZTC filler was purified by HF (10%) wash 24 h then reflux in HCl (10%) 24 h to remove the zeolite 13X template",
+      "notes": [
+        "type",
+        "porevol",
+        "estimated",
+        "method",
+        "composite",
+        "ternary",
+        "onebar"
+      ]
+    }
+  },
+  "measurements": [
+    {
+      "sample": "S1",
+      "temperature_k": "77",
+      "pressure_bar": "1",
+      "uptake_wt_pct": "2.38",
+      "reproducibility_tier": "B",
+      "source_location": "Table 1 (measured BET SSA, t-plot micropore area, single-point total pore volume, measured H2 uptake at 77 K, 1 bar); Fig 6 (H2 isotherms); method 'Sample Characterization'"
+    },
+    {
+      "sample": "S2",
+      "temperature_k": "77",
+      "pressure_bar": "1",
+      "uptake_wt_pct": "1.87",
+      "reproducibility_tier": "B",
+      "source_location": "Table 1 (measured BET SSA, t-plot micropore area, single-point total pore volume, measured H2 uptake at 77 K, 1 bar); Fig 6 (H2 isotherms); method 'Sample Characterization'"
+    },
+    {
+      "sample": "S3",
+      "temperature_k": "77",
+      "pressure_bar": "1",
+      "uptake_wt_pct": "1.65",
+      "reproducibility_tier": "B",
+      "source_location": "Table 1 (measured BET SSA, t-plot micropore area, single-point total pore volume, measured H2 uptake at 77 K, 1 bar); Fig 6 (H2 isotherms); method 'Sample Characterization'"
+    }
+  ]
+}

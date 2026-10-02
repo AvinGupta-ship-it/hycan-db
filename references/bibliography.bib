@@ -6,7 +6,7 @@
 %   Regenerate: python3 scripts/build_bibliography.py
 %   Verify:     python3 scripts/build_bibliography.py --check
 %
-% 35 entries: 32 screened in, 3 screened out. The
+% 41 entries: 37 screened in, 4 screened out. The
 % excluded papers are kept because PRISMA reporting has to cite what it excluded.
 % Every entry's key is its HyCAN-DB paper_id, so a citation in the manuscript
 % resolves directly to the rows it describes in data/raw/measurements_v0.1.csv.
@@ -14,7 +14,7 @@
 % HOW THESE WERE RESOLVED (§3.5: a DOI or a citation recalled from model weights
 % is not a citation).
 %
-% 28 entries have their author list, title, journal, volume, pages and year
+% 34 entries have their author list, title, journal, volume, pages and year
 % read off the article's OWN PAGES -- title block, byline, running header and
 % footer -- from the PDF held in the project. That is the primary record.
 % 7 entries have no PDF on hand and are resolved from metadata services,
@@ -435,4 +435,71 @@
   year         = {2013},
   doi          = {10.1016/j.ijhydene.2013.01.055},
   note         = {issue number not resolved: not printed on the article and OpenAlex was unreachable from the extraction session; to be backfilled from OpenAlex (provenance will become openalex once retrieved)},
+}
+
+@article{HYC-0038,
+  author       = {Firlej, Lucyna and Kuchta, Bogdan and Walczak, Katarzyna and Journet, Catherine},
+  title        = {{Hydrogen Storage in Pure and Boron-Substituted Nanoporous Carbons—Numerical and Experimental Perspective}},
+  journal      = {Nanomaterials},
+  volume       = {11},
+  pages        = {2173},
+  year         = {2021},
+  doi          = {10.3390/nano11092173},
+  note         = {Excluded at full-text review 2026-10-02: all uptake isotherms are GCMC-simulated and the only experimental H2 result is an adsorption energy (Fig 6d), so no (T, P, uptake) value is extractable. Kept for PRISMA (manual 7.5). Page field is the article number; MDPI uses article numbers, no issue.},
+}
+
+@article{HYC-0039,
+  author       = {Aboud, Mohamed F. Aly and ALOthman, Zeid A. and Bagabas, Abdulaziz A.},
+  title        = {{Hydrogen Storage in Untreated/Ammonia-Treated and Transition Metal-Decorated (Pt, Pd, Ni, Rh, Ir and Ru) Activated Carbons}},
+  journal      = {Applied Sciences},
+  volume       = {11},
+  pages        = {6604},
+  year         = {2021},
+  doi          = {10.3390/app11146604},
+  note         = {Page field is the article number; MDPI (Appl. Sci.) uses article numbers, no issue.},
+}
+
+@article{HYC-0040,
+  author       = {Flamina, A. and Raghavendra, R. M. and Gupta, Anshul and Subramaniam, Anandh},
+  title        = {{Hydrogen storage in Nickel dispersed boron doped reduced graphene oxide}},
+  journal      = {Applied Surface Science Advances},
+  volume       = {13},
+  pages        = {100371},
+  year         = {2023},
+  doi          = {10.1016/j.apsadv.2023.100371},
+  note         = {Page field is the article number; no issue printed. The byline prints 'A. Flamina'; reference [11] prints the same author as 'Flamina Amaladasse'.},
+}
+
+@article{HYC-0041,
+  author       = {Morande, Arturo and Lillo, Patricio and Blanco, Elodie and Pazo, César and Dongil, Ana Belén and Zarate, Ximena and Saavedra-Torres, Mario and Schott, Eduardo and Canales, Roberto and Videla, Alvaro and Escalona, Néstor},
+  title        = {{Modification of a commercial activated carbon with nitrogen and boron: Hydrogen storage application}},
+  journal      = {Journal of Energy Storage},
+  volume       = {64},
+  pages        = {107193},
+  year         = {2023},
+  doi          = {10.1016/j.est.2023.107193},
+  note         = {Page field is the article number; no issue printed. The first author's surname is printed with an acute accent ('Morandé'); recorded here without the accent to match the dataset's text-layer form.},
+}
+
+@article{HYC-0042,
+  author       = {Molefe, Lerato Y. and Musyoka, Nicholas M. and Ren, Jianwei and Langmi, Henrietta W. and Mathe, Mkhulu and Ndungu, Patrick G.},
+  title        = {{Polymer-Based Shaping Strategy for Zeolite Templated Carbons (ZTC) and Their Metal Organic Framework (MOF) Composites for Improved Hydrogen Storage Properties}},
+  journal      = {Frontiers in Chemistry},
+  volume       = {7},
+  pages        = {864},
+  year         = {2019},
+  doi          = {10.3389/fchem.2019.00864},
+  note         = {Page field is the article number (Frontiers); no issue.},
+}
+
+@article{HYC-0043,
+  author       = {Ma, Liyan and Li, Jianing and Ma, Xiaojun},
+  title        = {{Preparation and Adsorption of CO2 and H2 by Activated Carbon Hollow Fibers from Rubber Wood (Hevea brasiliensis)}},
+  journal      = {BioResources},
+  volume       = {14},
+  number       = {4},
+  pages        = {9755-9765},
+  year         = {2019},
+  doi          = {10.15376/biores.14.4.9755-9765},
+  note         = {Issue number 4 is printed in the citation line (BioResources 14(4), 9755-9765).},
 }

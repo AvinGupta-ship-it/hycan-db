@@ -1,0 +1,183 @@
+{
+  "paper": {
+    "paper_id": "HYC-0040",
+    "doi": "10.1016/j.apsadv.2023.100371",
+    "first_author": "Flamina",
+    "year": "2023",
+    "journal": "Applied Surface Science Advances",
+    "title": "Hydrogen storage in Nickel dispersed boron doped reduced graphene oxide"
+  },
+  "defaults": {
+    "extractor": "HyCAN pipeline v2",
+    "extraction_date": "2026-10-02",
+    "verification_date": "2026-10-02",
+    "uptake_bound": "exact",
+    "temperature_unstated": "False",
+    "pressure_unstated": "False",
+    "measurement_mode": "isothermal",
+    "measurement_method": "volumetric_sieverts",
+    "extraction_method": "table_direct",
+    "verified_by": "Agent B (sonnet): 144 cells, 0 numeric disputes; all 9 experimental uptakes, rGO BET 897 m2/g and the exclusion of the recalculated/DFT/literature rows confirmed. Agent C adjudication: (1) calibration point added (LaNi5 and basolite C-300 reference-sample calibration, section 'Experimental'); (2) categorical physics override -> the three 77 K uptakes (9.8/8.2/6.9 wt% on ~900 m2/g, 4-5.5x the Chahine bound and above record carbons) are Tier D (tiering doc l.33); the plausible 273/298 K rows are B; (3) B-rGO kept as reduced_graphene_oxide + dopant B (structure-preserving, HYC-0013 Fe-decorated-graphene precedent and the doped-nanotube rule; HYC-0027 N-graphene->doped_carbon noted as the competing precedent); (4) wt% basis note added (paper uses m_H2/(m_sample+m_H2), section 'Results', vs the corpus dry-sample basis); (5) rGO 298 K recorded 0.0 with uptake_bound=approximate ('negligible').",
+    "extraction_confidence": "5",
+    "uptake_type": "unspecified"
+  },
+  "notes": {
+    "type": "uptake_type=unspecified (exact-word rule): the paper labels these 'hydrogen storage capacity'/'hydrogen uptake'; '(excess)'/'(total)' on p.2 describe Blankenship's values and 'in excess to that reported by Blankenship' is a comparison, not an excess-type label",
+    "sa": "only the rGO BET area (897 m2/g) is given in the main text; B-rGO and Ni-B-rGO BET areas are in the supplementary Table S2, which is not available, so their surface_area_method=not_reported (the paper does report an area for rGO)",
+    "recalc": "the Table 1 'recalculated negating the weight of B/Ni' rows (B-rGO 11.38/0.80/0.33; Ni-B-rGO 8.41/0.50/0.19) are the authors' re-normalisation arithmetic, not measurements, and are not extracted; the DFT and literature-comparison values in the introduction are likewise excluded",
+    "method": "PCI by a Gas Reaction Controller Sievert-type volumetric apparatus at 77 K, 273 K and 298 K to 20 bar (the method text says 20 atm, results say 20 bar; 20 bar recorded); ~200 mg sample; degassed 12 h; 99.99% H2; calibrated with LaNi5 and basolite C-300 at 298 and 77 K",
+    "basis": "wt% basis differs from the corpus: the paper defines wt%H = m_H2/(m_sample+m_H2) (Eq. 2), a total-system basis, whereas HyCAN-DB uses m_H2/m_sample; values are recorded as reported (no conversion, section 3.9); on a dry basis the 77 K values would be ~10.9/8.9/7.4 wt%, the 273/298 K values essentially unchanged",
+    "dopeb": "boron doped via boric acid added at a 1:16 ratio (the paper states only '1:16', no order or basis), freeze-dried, calcined 800 C 3 h in Ar; B content is not given in the main text (supplementary only), so dopant_concentration is left empty",
+    "ni": "Ni dispersed by hydrothermal reduction of NiCl2.6H2O; the paper states Ni is purely catalytic and stores no hydrogen, so Ni is a supported metal (metal_element), not a dopant, and the sample is class=composite; Ni content not in the main text",
+    "implaus": "the 77 K/20 bar uptakes (rGO 9.8, B-rGO 8.2, Ni-B-rGO 6.9 wt%) are far above a Chahine estimate for ~900 m2/g (~1.8 wt%) and exceed record high-surface-area carbons, so they fall under the categorical physics override and are Tier D; recorded as reported per the bias guard, flagged here",
+    "rgo298": "Table 1 experimental value is 0 at 298 K; the text calls it negligible and the abstract and Fig 8 caption omit it; recorded as 0.0 with uptake_bound=exact (the table prints a literal 0; HYC-0004-M1 precedent for a printed zero), with this note",
+    "class": "rGO is reduced_graphene_oxide; B-rGO keeps reduced_graphene_oxide with dopant_element=B (structure-preserving: HYC-0013's Fe-decorated graphene stays graphene and the doped-nanotube rule keeps the class; HYC-0027's N-doped graphene -> doped_carbon is the competing precedent); Ni-B-rGO is composite (metal-bearing)"
+  },
+  "samples": {
+    "S1": {
+      "label": "rGO",
+      "material_class": "reduced_graphene_oxide",
+      "material_description": "reduced graphene oxide from modified Hummers GO, thermally reduced at 400 C for 2 h",
+      "synthesis_method": "thermal_reduction",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "897.0",
+      "notes": [
+        "type",
+        "sa",
+        "method",
+        "basis",
+        "implaus",
+        "class"
+      ]
+    },
+    "S2": {
+      "label": "B-rGO",
+      "material_class": "reduced_graphene_oxide",
+      "material_description": "boron-doped reduced graphene oxide (B-rGO) from rGO + boric acid (1:16), freeze-dried and calcined at 800 C in Ar",
+      "synthesis_method": "thermal_reduction",
+      "surface_area_method": "not_reported",
+      "dopant_element": "B",
+      "activation_method": "boron doping: boric acid at 1:16, freeze-dry, 800 C 3 h Ar",
+      "notes": [
+        "type",
+        "sa",
+        "dopeb",
+        "recalc",
+        "method",
+        "basis",
+        "implaus",
+        "class"
+      ]
+    },
+    "S3": {
+      "label": "Ni-B-rGO",
+      "material_class": "composite",
+      "material_description": "nickel-dispersed boron-doped reduced graphene oxide (Ni-B-rGO); Ni nanoparticles (~1-2 nm) hydrothermally dispersed on B-rGO; Ni is catalytic only",
+      "synthesis_method": "thermal_reduction",
+      "surface_area_method": "not_reported",
+      "dopant_element": "B",
+      "metal_element": "Ni",
+      "activation_method": "B-rGO then hydrothermal Ni dispersion (NiCl2.6H2O, hydrazine, 120 C 12 h)",
+      "notes": [
+        "type",
+        "sa",
+        "dopeb",
+        "ni",
+        "recalc",
+        "method",
+        "basis",
+        "implaus",
+        "class"
+      ]
+    }
+  },
+  "measurements": [
+    {
+      "sample": "S1",
+      "temperature_k": "77",
+      "pressure_bar": "20",
+      "uptake_wt_pct": "9.8",
+      "reproducibility_tier": "D",
+      "source_location": "Table 1 (rGO experimental) and body 'Results' (9.8 wt% at 77 K, 20 bar); rGO BET 897 m2/g body; method 'Experimental methodology'",
+      "note_extra": "77 K value under the physics override -> Tier D (see notes)",
+      "notes": [
+        "implaus"
+      ]
+    },
+    {
+      "sample": "S1",
+      "temperature_k": "273",
+      "pressure_bar": "20",
+      "uptake_wt_pct": "0.35",
+      "reproducibility_tier": "B",
+      "source_location": "Table 1 (rGO experimental) and body/Fig 8 caption (0.35 wt% at 273 K, 20 bar); method 'Experimental methodology'"
+    },
+    {
+      "sample": "S1",
+      "temperature_k": "298",
+      "pressure_bar": "20",
+      "uptake_wt_pct": "0.0",
+      "reproducibility_tier": "B",
+      "source_location": "Table 1 (rGO experimental, value 0 at 298 K); method 'Experimental methodology'",
+      "notes": [
+        "rgo298"
+      ]
+    },
+    {
+      "sample": "S2",
+      "temperature_k": "77",
+      "pressure_bar": "20",
+      "uptake_wt_pct": "8.2",
+      "reproducibility_tier": "D",
+      "source_location": "Table 1 (B-rGO experimental) and body/Fig 8 caption (8.2 wt% at 77 K, 20 bar); method 'Experimental methodology'",
+      "note_extra": "77 K value under the physics override -> Tier D (see notes)",
+      "notes": [
+        "implaus"
+      ]
+    },
+    {
+      "sample": "S2",
+      "temperature_k": "273",
+      "pressure_bar": "20",
+      "uptake_wt_pct": "0.58",
+      "reproducibility_tier": "B",
+      "source_location": "Table 1 (B-rGO experimental) and body/Fig 8 caption (0.58 wt% at 273 K, 20 bar)"
+    },
+    {
+      "sample": "S2",
+      "temperature_k": "298",
+      "pressure_bar": "20",
+      "uptake_wt_pct": "0.24",
+      "reproducibility_tier": "B",
+      "source_location": "Table 1 (B-rGO experimental) and body/abstract (0.24 wt% at 298 K, 20 bar)"
+    },
+    {
+      "sample": "S3",
+      "temperature_k": "77",
+      "pressure_bar": "20",
+      "uptake_wt_pct": "6.9",
+      "reproducibility_tier": "D",
+      "source_location": "Table 1 (Ni-B-rGO experimental) and body/Fig 8 caption (6.9 wt% at 77 K, 20 bar)",
+      "note_extra": "77 K value under the physics override -> Tier D (see notes)",
+      "notes": [
+        "implaus"
+      ]
+    },
+    {
+      "sample": "S3",
+      "temperature_k": "273",
+      "pressure_bar": "20",
+      "uptake_wt_pct": "0.41",
+      "reproducibility_tier": "B",
+      "source_location": "Table 1 (Ni-B-rGO experimental) and body/Fig 8 caption (0.41 wt% at 273 K, 20 bar)"
+    },
+    {
+      "sample": "S3",
+      "temperature_k": "298",
+      "pressure_bar": "20",
+      "uptake_wt_pct": "0.16",
+      "reproducibility_tier": "B",
+      "source_location": "Table 1 (Ni-B-rGO experimental) and body/abstract (0.16 wt% at 298 K, 20 bar)"
+    }
+  ]
+}

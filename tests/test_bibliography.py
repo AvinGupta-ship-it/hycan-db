@@ -115,7 +115,11 @@ def test_the_screened_out_papers_are_kept_because_prisma_needs_them():
     excluded = sorted(
         r["paper_id"] for r in sources() if r["screening_decision"] != "include"
     )
-    assert excluded == ["HYC-0010", "HYC-0028", "HYC-0030"]
+    # +HYC-0038: screened in at title/abstract, full text obtained, then excluded at
+    # full-text review (all uptake isotherms are GCMC-simulated; the only experimental
+    # result is an adsorption energy, so no (T, P, uptake) value is extractable). Kept
+    # here because PRISMA needs its citation. See docs/migration_exclude_hyc0038_plan.md.
+    assert excluded == ["HYC-0010", "HYC-0028", "HYC-0030", "HYC-0038"]
     for pid in excluded:
         assert pid in entries()
         assert pid not in corpus_papers()
@@ -218,8 +222,10 @@ def test_author_lists_come_from_the_pdf_wherever_one_is_held():
             assert r["provenance"]["authors"] == "pdf", r["paper_id"]
     # 23 for the original corpus, plus HYC-0031, the first Phase D paper
     # whose full text was obtained and extracted (2026-09-30); plus the
-    # 2026-10-02 Phase D batch HYC-0032/0033/0034/0037, all PDF-held.
-    assert sum(1 for r in sources() if r["pdf_held"]) == 28
+    # 2026-10-02 Phase D batch HYC-0032/0033/0034/0037, all PDF-held; plus the
+    # HYC-0039/0040/0041/0042/0043 batch (5) and HYC-0038 (excluded but PDF-held),
+    # all PDF-held: 28 + 6 = 34.
+    assert sum(1 for r in sources() if r["pdf_held"]) == 34
 
 
 def test_the_issue_number_provenance_partition_is_pinned():
@@ -238,7 +244,9 @@ def test_the_issue_number_provenance_partition_is_pinned():
     by_prov: dict[str, list[str]] = {}
     for r in sources():
         by_prov.setdefault(r["provenance"]["number"], []).append(r["paper_id"])
-    assert sorted(by_prov["pdf"]) == ["HYC-0002", "HYC-0022", "HYC-0024"]
+    # +HYC-0043: BioResources prints an issue number in its citation line
+    # (14(4), 9755-9765), so its issue is PDF-sourced like Science/JACS/JPCB.
+    assert sorted(by_prov["pdf"]) == ["HYC-0002", "HYC-0022", "HYC-0024", "HYC-0043"]
     assert len(by_prov["openalex"]) == 21
     # 6 for the original corpus, plus HYC-0031 (2026-09-30). Nature
     # Communications prints volume and article number in its running head and
@@ -249,7 +257,11 @@ def test_the_issue_number_provenance_partition_is_pinned():
     # unreachable from the extraction session, so their issue is omitted
     # pending an OpenAlex backfill (each entry's note says so, and it moves to
     # 'openalex' once the issue is retrieved).
-    assert len(by_prov["none"]) == 11
+    # +5 for the HYC-0039/0040/0041/0042 included papers and HYC-0038 (excluded):
+    # all are MDPI/Elsevier/Frontiers article-number journals that print no issue, so
+    # their issue is omitted. 11 + 5 = 16. (HYC-0043 is the batch's one exception; its
+    # issue is PDF-sourced, counted under 'pdf' above.)
+    assert len(by_prov["none"]) == 16
     # Match the FIELD, not the word: two of these notes contain the phrase
     # "article number", which a substring test read as an issue field.
     field = re.compile(r"^\s*number\s*=", re.M)

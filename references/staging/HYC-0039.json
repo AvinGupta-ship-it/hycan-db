@@ -1,0 +1,588 @@
+{
+  "paper": {
+    "paper_id": "HYC-0039",
+    "doi": "10.3390/app11146604",
+    "first_author": "Aboud",
+    "year": "2021",
+    "journal": "Applied Sciences",
+    "title": "Hydrogen Storage in Untreated/Ammonia-Treated and Transition Metal-Decorated (Pt, Pd, Ni, Rh, Ir and Ru) Activated Carbons"
+  },
+  "defaults": {
+    "extractor": "HyCAN pipeline v2",
+    "extraction_date": "2026-10-02",
+    "verification_date": "2026-10-02",
+    "uptake_bound": "exact",
+    "temperature_unstated": "False",
+    "pressure_unstated": "False",
+    "measurement_mode": "isothermal",
+    "measurement_method": "volumetric_sieverts",
+    "extraction_method": "table_direct",
+    "verified_by": "Agent B (sonnet): 536 cells, 0 numeric disputes, all 28 Table-2 uptakes/uncertainties/temperatures confirmed and column alignment re-derived. Agent C adjudication: (1) N content 2.0 wt% nulled on the 6 metal-decorated ammonia-treated composites (measured on the ammonia-treated support only, section 3.1; not re-measured on the composite; HYC-0027-M3 precedent), kept only on S2; (2) calibration point added by hand (He skeletal-density void-volume correction, section 2) per tiering doc, lifting the 77 K rows C->B so all 28 rows are B; (3) metal impregnation removed from activation_method (not a pore-activation; HYC-0027 precedent).",
+    "extraction_confidence": "5",
+    "uptake_type": "excess"
+  },
+  "notes": {
+    "sa": "this paper reports no numerical surface area for any sample; the textural data (a BET area improvement, an average micropore volume ~0.4 cm3/g that is ~half of a total pore volume ~0.8 cm3/g, and a ~2 nm micropore width) are approximate, given only in aggregate and cross-referenced to the authors' prior paper ref 90 (section 3.2), so surface_area_method=none and no pore volume is recorded",
+    "metalload": "metal decoration at a nominal 5.0 wt% target by ultrasound-assisted impregnation (section 2); the loading is the synthesis target, not independently quantified. EDX shows a platinum signal in every sample because platinum sputter-coating was used to remove surface charge (a preparation artifact), so EDX cannot confirm decorated-metal content",
+    "ncon_support": "the ammonia-treated AC support contains 2.0 wt% N by CHNS (section 3.1); on this metal composite the N content was not separately measured, so dopant_concentration is left empty while dopant_element=N records the ammonia-derived nitrogen",
+    "ncon": "nitrogen introduced by ammonia-gas treatment; 2.0 wt% N by CHNS elemental analysis (section 3.1); the ammonia also mildly erodes meso/macropores while leaving micropores unchanged",
+    "type": "uptake_type=excess (exact-word rule): all uptakes are evaluated as excess (Gibbs) gas adsorption quantities and Table 2 is headed 'excess hydrogen storage capacities'",
+    "press": "pressures are nominal: the 77 K value is the saturation maximum reached at ~7 bar (the excess isotherm declines with further pressure; several 298 K isotherms end near 90 bar) and the 298 K value is at ~100 bar (Table 2 column headers; 'from ambient to 100 bars', section 2); recorded as 7 and 100 bar",
+    "incr": "the Table 2 'Incremental wt.%' columns are percentage changes relative to the untreated/undecorated sample, not uptake values, and are not extracted",
+    "method": "excess H2 by volumetric Sievert method (HPVA-II, Micromeritics, to 200 bar); degassed 12 h at 200 C under vacuum, degassed mass used; specimen volume He-corrected via skeletal density (void-volume correction); 6N H2; sample mass >= 2.0 g; PCI curves repeated for repeatability; the \u00b1 values are identical across samples (0.1 at 77 K, 0.01 at 298 K) and the paper does not define them",
+    "base": "base carbon is commercial Norit RX 1.5 Extra activated carbon (CABOT); synthesis_method=commercial for every sample",
+    "class": "metal-decorated samples are class=composite with metal_element set (corpus convention HYC-0027/HYC-0029: a metal-bearing carbon is a composite); the undecorated base is activated_carbon and the undecorated ammonia-treated base is doped_carbon",
+    "cal": "calibration point awarded by hand (tiering doc l.24/l.73): section 2 describes the He skeletal-density void-volume correction"
+  },
+  "samples": {
+    "S1": {
+      "label": "AC",
+      "material_class": "activated_carbon",
+      "material_description": "Norit RX 1.5 Extra commercial activated carbon (CABOT), untreated base carbon",
+      "synthesis_method": "commercial",
+      "surface_area_method": "none",
+      "notes": [
+        "base",
+        "sa",
+        "type",
+        "press",
+        "incr",
+        "method",
+        "cal"
+      ]
+    },
+    "S2": {
+      "label": "NH3-AC",
+      "material_class": "doped_carbon",
+      "material_description": "ammonia-treated Norit RX 1.5 Extra activated carbon; nitrogen-doped by NH3 gas (2.0 wt% N, CHNS)",
+      "synthesis_method": "commercial",
+      "surface_area_method": "none",
+      "notes": [
+        "base",
+        "ncon",
+        "sa",
+        "type",
+        "press",
+        "incr",
+        "method",
+        "cal"
+      ],
+      "dopant_element": "N",
+      "dopant_concentration_wt_pct": "2.0",
+      "dopant_concentration_method": "elemental_analysis",
+      "activation_method": "ammonia-gas (NH3) treatment for nitrogen doping"
+    },
+    "S3": {
+      "label": "Pt-AC",
+      "material_class": "composite",
+      "material_description": "platinum-decorated Norit RX 1.5 Extra activated carbon (nominal 5.0 wt% Pt by ultrasound-assisted impregnation)",
+      "synthesis_method": "commercial",
+      "surface_area_method": "none",
+      "notes": [
+        "base",
+        "class",
+        "metalload",
+        "sa",
+        "type",
+        "press",
+        "incr",
+        "method",
+        "cal"
+      ],
+      "metal_element": "Pt",
+      "metal_loading_wt_pct": "5.0"
+    },
+    "S4": {
+      "label": "Pt-NH3-AC",
+      "material_class": "composite",
+      "material_description": "platinum-decorated, ammonia-treated (N-doped) Norit RX 1.5 Extra activated carbon (nominal 5.0 wt% Pt; N from NH3 treatment of the support)",
+      "synthesis_method": "commercial",
+      "surface_area_method": "none",
+      "notes": [
+        "base",
+        "class",
+        "metalload",
+        "ncon_support",
+        "sa",
+        "type",
+        "press",
+        "incr",
+        "method",
+        "cal"
+      ],
+      "dopant_element": "N",
+      "activation_method": "ammonia-gas (NH3) treatment for nitrogen doping",
+      "metal_element": "Pt",
+      "metal_loading_wt_pct": "5.0"
+    },
+    "S5": {
+      "label": "Pd-AC",
+      "material_class": "composite",
+      "material_description": "palladium-decorated Norit RX 1.5 Extra activated carbon (nominal 5.0 wt% Pd by ultrasound-assisted impregnation)",
+      "synthesis_method": "commercial",
+      "surface_area_method": "none",
+      "notes": [
+        "base",
+        "class",
+        "metalload",
+        "sa",
+        "type",
+        "press",
+        "incr",
+        "method",
+        "cal"
+      ],
+      "metal_element": "Pd",
+      "metal_loading_wt_pct": "5.0"
+    },
+    "S6": {
+      "label": "Pd-NH3-AC",
+      "material_class": "composite",
+      "material_description": "palladium-decorated, ammonia-treated (N-doped) Norit RX 1.5 Extra activated carbon (nominal 5.0 wt% Pd; N from NH3 treatment of the support)",
+      "synthesis_method": "commercial",
+      "surface_area_method": "none",
+      "notes": [
+        "base",
+        "class",
+        "metalload",
+        "ncon_support",
+        "sa",
+        "type",
+        "press",
+        "incr",
+        "method",
+        "cal"
+      ],
+      "dopant_element": "N",
+      "activation_method": "ammonia-gas (NH3) treatment for nitrogen doping",
+      "metal_element": "Pd",
+      "metal_loading_wt_pct": "5.0"
+    },
+    "S7": {
+      "label": "Ni-AC",
+      "material_class": "composite",
+      "material_description": "nickel-decorated Norit RX 1.5 Extra activated carbon (nominal 5.0 wt% Ni by ultrasound-assisted impregnation)",
+      "synthesis_method": "commercial",
+      "surface_area_method": "none",
+      "notes": [
+        "base",
+        "class",
+        "metalload",
+        "sa",
+        "type",
+        "press",
+        "incr",
+        "method",
+        "cal"
+      ],
+      "metal_element": "Ni",
+      "metal_loading_wt_pct": "5.0"
+    },
+    "S8": {
+      "label": "Ni-NH3-AC",
+      "material_class": "composite",
+      "material_description": "nickel-decorated, ammonia-treated (N-doped) Norit RX 1.5 Extra activated carbon (nominal 5.0 wt% Ni; N from NH3 treatment of the support)",
+      "synthesis_method": "commercial",
+      "surface_area_method": "none",
+      "notes": [
+        "base",
+        "class",
+        "metalload",
+        "ncon_support",
+        "sa",
+        "type",
+        "press",
+        "incr",
+        "method",
+        "cal"
+      ],
+      "dopant_element": "N",
+      "activation_method": "ammonia-gas (NH3) treatment for nitrogen doping",
+      "metal_element": "Ni",
+      "metal_loading_wt_pct": "5.0"
+    },
+    "S9": {
+      "label": "Rh-AC",
+      "material_class": "composite",
+      "material_description": "rhodium-decorated Norit RX 1.5 Extra activated carbon (nominal 5.0 wt% Rh by ultrasound-assisted impregnation)",
+      "synthesis_method": "commercial",
+      "surface_area_method": "none",
+      "notes": [
+        "base",
+        "class",
+        "metalload",
+        "sa",
+        "type",
+        "press",
+        "incr",
+        "method",
+        "cal"
+      ],
+      "metal_element": "Rh",
+      "metal_loading_wt_pct": "5.0"
+    },
+    "S10": {
+      "label": "Rh-NH3-AC",
+      "material_class": "composite",
+      "material_description": "rhodium-decorated, ammonia-treated (N-doped) Norit RX 1.5 Extra activated carbon (nominal 5.0 wt% Rh; N from NH3 treatment of the support)",
+      "synthesis_method": "commercial",
+      "surface_area_method": "none",
+      "notes": [
+        "base",
+        "class",
+        "metalload",
+        "ncon_support",
+        "sa",
+        "type",
+        "press",
+        "incr",
+        "method",
+        "cal"
+      ],
+      "dopant_element": "N",
+      "activation_method": "ammonia-gas (NH3) treatment for nitrogen doping",
+      "metal_element": "Rh",
+      "metal_loading_wt_pct": "5.0"
+    },
+    "S11": {
+      "label": "Ir-AC",
+      "material_class": "composite",
+      "material_description": "iridium-decorated Norit RX 1.5 Extra activated carbon (nominal 5.0 wt% Ir by ultrasound-assisted impregnation)",
+      "synthesis_method": "commercial",
+      "surface_area_method": "none",
+      "notes": [
+        "base",
+        "class",
+        "metalload",
+        "sa",
+        "type",
+        "press",
+        "incr",
+        "method",
+        "cal"
+      ],
+      "metal_element": "Ir",
+      "metal_loading_wt_pct": "5.0"
+    },
+    "S12": {
+      "label": "Ir-NH3-AC",
+      "material_class": "composite",
+      "material_description": "iridium-decorated, ammonia-treated (N-doped) Norit RX 1.5 Extra activated carbon (nominal 5.0 wt% Ir; N from NH3 treatment of the support)",
+      "synthesis_method": "commercial",
+      "surface_area_method": "none",
+      "notes": [
+        "base",
+        "class",
+        "metalload",
+        "ncon_support",
+        "sa",
+        "type",
+        "press",
+        "incr",
+        "method",
+        "cal"
+      ],
+      "dopant_element": "N",
+      "activation_method": "ammonia-gas (NH3) treatment for nitrogen doping",
+      "metal_element": "Ir",
+      "metal_loading_wt_pct": "5.0"
+    },
+    "S13": {
+      "label": "Ru-AC",
+      "material_class": "composite",
+      "material_description": "ruthenium-decorated Norit RX 1.5 Extra activated carbon (nominal 5.0 wt% Ru by ultrasound-assisted impregnation)",
+      "synthesis_method": "commercial",
+      "surface_area_method": "none",
+      "notes": [
+        "base",
+        "class",
+        "metalload",
+        "sa",
+        "type",
+        "press",
+        "incr",
+        "method",
+        "cal"
+      ],
+      "metal_element": "Ru",
+      "metal_loading_wt_pct": "5.0"
+    },
+    "S14": {
+      "label": "Ru-NH3-AC",
+      "material_class": "composite",
+      "material_description": "ruthenium-decorated, ammonia-treated (N-doped) Norit RX 1.5 Extra activated carbon (nominal 5.0 wt% Ru; N from NH3 treatment of the support)",
+      "synthesis_method": "commercial",
+      "surface_area_method": "none",
+      "notes": [
+        "base",
+        "class",
+        "metalload",
+        "ncon_support",
+        "sa",
+        "type",
+        "press",
+        "incr",
+        "method",
+        "cal"
+      ],
+      "dopant_element": "N",
+      "activation_method": "ammonia-gas (NH3) treatment for nitrogen doping",
+      "metal_element": "Ru",
+      "metal_loading_wt_pct": "5.0"
+    }
+  },
+  "measurements": [
+    {
+      "sample": "S1",
+      "temperature_k": "77",
+      "pressure_bar": "7",
+      "uptake_wt_pct": "2.5",
+      "uncertainty_wt_pct": "0.1",
+      "reproducibility_tier": "B",
+      "source_location": "Table 2 (excess H2 capacity at ~7 bar & 77 K); H2 method section 2"
+    },
+    {
+      "sample": "S1",
+      "temperature_k": "298",
+      "pressure_bar": "100",
+      "uptake_wt_pct": "0.21",
+      "uncertainty_wt_pct": "0.01",
+      "reproducibility_tier": "B",
+      "source_location": "Table 2 (excess H2 capacity at ~100 bar & 298 K); H2 method section 2"
+    },
+    {
+      "sample": "S2",
+      "temperature_k": "77",
+      "pressure_bar": "7",
+      "uptake_wt_pct": "2.6",
+      "uncertainty_wt_pct": "0.1",
+      "reproducibility_tier": "B",
+      "source_location": "Table 2 (excess H2 capacity at ~7 bar & 77 K); H2 method section 2"
+    },
+    {
+      "sample": "S2",
+      "temperature_k": "298",
+      "pressure_bar": "100",
+      "uptake_wt_pct": "0.33",
+      "uncertainty_wt_pct": "0.01",
+      "reproducibility_tier": "B",
+      "source_location": "Table 2 (excess H2 capacity at ~100 bar & 298 K); H2 method section 2"
+    },
+    {
+      "sample": "S3",
+      "temperature_k": "77",
+      "pressure_bar": "7",
+      "uptake_wt_pct": "2.3",
+      "uncertainty_wt_pct": "0.1",
+      "reproducibility_tier": "B",
+      "source_location": "Table 2 (excess H2 capacity at ~7 bar & 77 K); H2 method section 2"
+    },
+    {
+      "sample": "S3",
+      "temperature_k": "298",
+      "pressure_bar": "100",
+      "uptake_wt_pct": "0.26",
+      "uncertainty_wt_pct": "0.01",
+      "reproducibility_tier": "B",
+      "source_location": "Table 2 (excess H2 capacity at ~100 bar & 298 K); H2 method section 2"
+    },
+    {
+      "sample": "S4",
+      "temperature_k": "77",
+      "pressure_bar": "7",
+      "uptake_wt_pct": "2.4",
+      "uncertainty_wt_pct": "0.1",
+      "reproducibility_tier": "B",
+      "source_location": "Table 2 (excess H2 capacity at ~7 bar & 77 K); H2 method section 2"
+    },
+    {
+      "sample": "S4",
+      "temperature_k": "298",
+      "pressure_bar": "100",
+      "uptake_wt_pct": "0.37",
+      "uncertainty_wt_pct": "0.01",
+      "reproducibility_tier": "B",
+      "source_location": "Table 2 (excess H2 capacity at ~100 bar & 298 K); H2 method section 2"
+    },
+    {
+      "sample": "S5",
+      "temperature_k": "77",
+      "pressure_bar": "7",
+      "uptake_wt_pct": "2.5",
+      "uncertainty_wt_pct": "0.1",
+      "reproducibility_tier": "B",
+      "source_location": "Table 2 (excess H2 capacity at ~7 bar & 77 K); H2 method section 2"
+    },
+    {
+      "sample": "S5",
+      "temperature_k": "298",
+      "pressure_bar": "100",
+      "uptake_wt_pct": "0.41",
+      "uncertainty_wt_pct": "0.01",
+      "reproducibility_tier": "B",
+      "source_location": "Table 2 (excess H2 capacity at ~100 bar & 298 K); H2 method section 2"
+    },
+    {
+      "sample": "S6",
+      "temperature_k": "77",
+      "pressure_bar": "7",
+      "uptake_wt_pct": "2.6",
+      "uncertainty_wt_pct": "0.1",
+      "reproducibility_tier": "B",
+      "source_location": "Table 2 (excess H2 capacity at ~7 bar & 77 K); H2 method section 2"
+    },
+    {
+      "sample": "S6",
+      "temperature_k": "298",
+      "pressure_bar": "100",
+      "uptake_wt_pct": "0.49",
+      "uncertainty_wt_pct": "0.01",
+      "reproducibility_tier": "B",
+      "source_location": "Table 2 (excess H2 capacity at ~100 bar & 298 K); H2 method section 2"
+    },
+    {
+      "sample": "S7",
+      "temperature_k": "77",
+      "pressure_bar": "7",
+      "uptake_wt_pct": "2.4",
+      "uncertainty_wt_pct": "0.1",
+      "reproducibility_tier": "B",
+      "source_location": "Table 2 (excess H2 capacity at ~7 bar & 77 K); H2 method section 2"
+    },
+    {
+      "sample": "S7",
+      "temperature_k": "298",
+      "pressure_bar": "100",
+      "uptake_wt_pct": "0.39",
+      "uncertainty_wt_pct": "0.01",
+      "reproducibility_tier": "B",
+      "source_location": "Table 2 (excess H2 capacity at ~100 bar & 298 K); H2 method section 2"
+    },
+    {
+      "sample": "S8",
+      "temperature_k": "77",
+      "pressure_bar": "7",
+      "uptake_wt_pct": "2.5",
+      "uncertainty_wt_pct": "0.1",
+      "reproducibility_tier": "B",
+      "source_location": "Table 2 (excess H2 capacity at ~7 bar & 77 K); H2 method section 2"
+    },
+    {
+      "sample": "S8",
+      "temperature_k": "298",
+      "pressure_bar": "100",
+      "uptake_wt_pct": "0.43",
+      "uncertainty_wt_pct": "0.01",
+      "reproducibility_tier": "B",
+      "source_location": "Table 2 (excess H2 capacity at ~100 bar & 298 K); H2 method section 2"
+    },
+    {
+      "sample": "S9",
+      "temperature_k": "77",
+      "pressure_bar": "7",
+      "uptake_wt_pct": "2.3",
+      "uncertainty_wt_pct": "0.1",
+      "reproducibility_tier": "B",
+      "source_location": "Table 2 (excess H2 capacity at ~7 bar & 77 K); H2 method section 2"
+    },
+    {
+      "sample": "S9",
+      "temperature_k": "298",
+      "pressure_bar": "100",
+      "uptake_wt_pct": "0.36",
+      "uncertainty_wt_pct": "0.01",
+      "reproducibility_tier": "B",
+      "source_location": "Table 2 (excess H2 capacity at ~100 bar & 298 K); H2 method section 2"
+    },
+    {
+      "sample": "S10",
+      "temperature_k": "77",
+      "pressure_bar": "7",
+      "uptake_wt_pct": "2.4",
+      "uncertainty_wt_pct": "0.1",
+      "reproducibility_tier": "B",
+      "source_location": "Table 2 (excess H2 capacity at ~7 bar & 77 K); H2 method section 2"
+    },
+    {
+      "sample": "S10",
+      "temperature_k": "298",
+      "pressure_bar": "100",
+      "uptake_wt_pct": "0.40",
+      "uncertainty_wt_pct": "0.01",
+      "reproducibility_tier": "B",
+      "source_location": "Table 2 (excess H2 capacity at ~100 bar & 298 K); H2 method section 2"
+    },
+    {
+      "sample": "S11",
+      "temperature_k": "77",
+      "pressure_bar": "7",
+      "uptake_wt_pct": "2.3",
+      "uncertainty_wt_pct": "0.1",
+      "reproducibility_tier": "B",
+      "source_location": "Table 2 (excess H2 capacity at ~7 bar & 77 K); H2 method section 2"
+    },
+    {
+      "sample": "S11",
+      "temperature_k": "298",
+      "pressure_bar": "100",
+      "uptake_wt_pct": "0.43",
+      "uncertainty_wt_pct": "0.01",
+      "reproducibility_tier": "B",
+      "source_location": "Table 2 (excess H2 capacity at ~100 bar & 298 K); H2 method section 2"
+    },
+    {
+      "sample": "S12",
+      "temperature_k": "77",
+      "pressure_bar": "7",
+      "uptake_wt_pct": "2.4",
+      "uncertainty_wt_pct": "0.1",
+      "reproducibility_tier": "B",
+      "source_location": "Table 2 (excess H2 capacity at ~7 bar & 77 K); H2 method section 2"
+    },
+    {
+      "sample": "S12",
+      "temperature_k": "298",
+      "pressure_bar": "100",
+      "uptake_wt_pct": "0.48",
+      "uncertainty_wt_pct": "0.01",
+      "reproducibility_tier": "B",
+      "source_location": "Table 2 (excess H2 capacity at ~100 bar & 298 K); H2 method section 2"
+    },
+    {
+      "sample": "S13",
+      "temperature_k": "77",
+      "pressure_bar": "7",
+      "uptake_wt_pct": "2.3",
+      "uncertainty_wt_pct": "0.1",
+      "reproducibility_tier": "B",
+      "source_location": "Table 2 (excess H2 capacity at ~7 bar & 77 K); H2 method section 2"
+    },
+    {
+      "sample": "S13",
+      "temperature_k": "298",
+      "pressure_bar": "100",
+      "uptake_wt_pct": "0.39",
+      "uncertainty_wt_pct": "0.01",
+      "reproducibility_tier": "B",
+      "source_location": "Table 2 (excess H2 capacity at ~100 bar & 298 K); H2 method section 2"
+    },
+    {
+      "sample": "S14",
+      "temperature_k": "77",
+      "pressure_bar": "7",
+      "uptake_wt_pct": "2.4",
+      "uncertainty_wt_pct": "0.1",
+      "reproducibility_tier": "B",
+      "source_location": "Table 2 (excess H2 capacity at ~7 bar & 77 K); H2 method section 2"
+    },
+    {
+      "sample": "S14",
+      "temperature_k": "298",
+      "pressure_bar": "100",
+      "uptake_wt_pct": "0.42",
+      "uncertainty_wt_pct": "0.01",
+      "reproducibility_tier": "B",
+      "source_location": "Table 2 (excess H2 capacity at ~100 bar & 298 K); H2 method section 2"
+    }
+  ]
+}
