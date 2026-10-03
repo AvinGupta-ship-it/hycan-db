@@ -157,6 +157,10 @@ with a long one; the reverse is closer to true.
 | HYC-0051 | 11 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 0 numeric disputes; metal standards excluded, PCI/manual two-column pressure placement; +uncertainty, synthesis_method -> commercial (supplier only), FeNiCu activation cleared** | table_direct |
 | HYC-0052 | 8 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 0 numeric disputes (nAC/nNT ratio cross-check; 318 K not tabulated); AX-21 pore_volume_probe_gas N2 -> blank** | table_direct |
 | HYC-0053 | 16 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 0 numeric disputes; 16-sample inventory + pellet density/vol-capacity verified; ZIF-8 -> other/pyrolysis, S14 activation trimmed** | table_direct |
+| HYC-0057 | 25 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 0 numeric disputes; Langmuir areas populated on the 7 templated carbons; HF template-removal purity point kept (HYC-0049 precedent); 7 A / 18 B** | table_direct |
+| HYC-0058 | 2 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 0 numeric disputes; extraction_method -> text_direct, dopant_concentration_method=elemental_analysis; purity point withheld (HYC-0053/0057 precedent), both Tier B** | text_direct |
+| HYC-0060 | 3 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 0 numeric disputes; 14-lab Round Robin consensus, one row/condition; 77 K Chahine=2 by §13.5, all Tier A** | text_direct |
+| HYC-0061 | 10 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 1 numeric dispute upheld (ambient GNF/GO transposition, fixed); non-AC surface_area_method -> not_reported, extraction_method -> text_direct; 6 B / 4 C** | text_direct |
 
 **This table and the totals below are not yet complete.** HYC-0007 and HYC-0024
 (Phase C.1) and HYC-0031 (Phase D) are extracted and in the dataset but were never

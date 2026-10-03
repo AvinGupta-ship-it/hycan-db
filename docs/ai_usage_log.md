@@ -1868,3 +1868,71 @@ HYC-0049's 5 approximate and HYC-0051's 3 upper, characterization-only + HYC-005
 **Still owed.** The OpenAlex backfill now owes five more issue numbers (HYC-0049/0050/0051/
 0052/0053) on top of the prior debt, all blocked on `works/doi:` egress (403 at the proxy).
 Agent B found no correction/retraction notice in any of the five PDFs read.
+
+## 2026-10-02 (continued) — Phase D batch: HYC-0057/0058/0060/0061
+
+**Models.** Agent A (extraction/adjudication) Opus; Agent B (independent verification) four
+parallel Sonnet subagents, one per paper, each re-reading the PDF via the project store with
+no sight of Agent A's reasoning.
+
+**Batch.** HYC-0057 (Meisner 2009, aerosol-templated silica carbons + KOH-activated phenol-
+formaldehyde carbons, 77 K), HYC-0058 (Rosas 2024, S-doped *Sargassum* biocarbon at 318 K —
+a low-result bias-guard paper), HYC-0060 (Zlotea 2009, NESSHY 14-lab Round Robin consensus on
+Takeda CMS 4A), HYC-0061 (Chen 2010, sample-cell physisorption correction study, 295 K + 77 K).
+40 rows, append 448 → 488, 43 → 47 papers, 0 errors, no new warning type (batch max 75 bar).
+Tiers 10 A / 26 B / 4 C. The 448-row baseline was re-anchored with `append_paper --write-baseline`
+before the batch; all four appended cleanly against it in sequence.
+
+**Agent B found one numeric dispute, and it was correct.** HYC-0061's ambient GNF/GO pair was
+transposed in the candidate rows — the paper reads "0.35, 0.2, 0.1 wt% for SWCNTs, GO, GNFs
+respectively", so GNF→0.1 and GO→0.2 (fixed and re-verified). HYC-0057 (all 25 Table-1/Table-2
+values), HYC-0058 and HYC-0060 had 0 numeric disputes. Field-semantics/provenance adjudications:
+HYC-0057 `langmuir_surface_area_m2_g` populated on the seven templated carbons (the field
+exists; the values had been in `material_description` text only); HYC-0058 `extraction_method`
+table_direct → text_direct (the 0.33/0.40 wt% uptakes are from Fig 7/§3.6, not a table) and S2
+`dopant_concentration_method` = `elemental_analysis`; HYC-0061 the four non-AC samples'
+`surface_area_method` none → `not_reported` (§8.8/§11.1 partition — the paper reports the AC's
+BET area) and `extraction_method` → text_direct. Two Agent-B points declined and documented:
+HYC-0057's HF template-removal etch kept as `purification_method` (HYC-0049 ZTC precedent; the
+broader "is template-etch purification?" convention question logged for a future pass), and
+HYC-0061's four non-AC 77 K upper-bound rows kept at Tier C (no BET area → the cryogenic Chahine
+bound is unassessable).
+
+**Tiering, grounded in §13.3.** HYC-0057 Table-1 templated carbons Tier A at 9/10 (HF purity +
+Chahine), Table-2 activated carbons Tier B (no purity, calibration withheld — methods give only
+"calibrated volumes"). HYC-0058 both rows Tier B: the purity point was **withheld** — CHNS
+reports the sulfur dopant level, not an HYC-0007-sense residual impurity, consistent with the
+HYC-0053/0057 KOH-carbon precedent. An adjudication-pass B→A on a CHNS purity point was reversed
+as unfounded against that precedent, grounded in the original extraction note. HYC-0060 all three
+rows Tier A: the two 298 K rows by the room-temperature bound, the 77 K row by a §13.5 by-hand
+Chahine=2 (narrow-micropore CMS 4A, paper correlates uptake to micropore volume; 1.65× BET/500
+deviation, far inside the HYC-0013 precedent that scored 2 at 2.8–5.7×). Calibration credit read
+off each paper's methods: HYC-0058/0060/0061 all rows, HYC-0057 none.
+
+**HYC-0059 holds the wrong PDF — exclusion NOT executed.** A prior-session plan to exclude
+HYC-0059 as a review article was dropped on verifying the artifacts. `HYC-0059_guo2023.pdf` and
+`paper_tracking.csv` both name HYC-0059 as Guo et al. 2023, *Mater. Today Chem.* 30, 101508 — an
+experimental g-C₃N₄/MWCNT comparison with extractable data (it is ref [94] inside the held PDF).
+The held PDF's bytes, however, are Harisankar et al. 2025, *Korean J. Chem. Eng.* 42:13–42, a
+CNT **review** with no original data — almost certainly the wrong file uploaded under Guo's name.
+Excluding HYC-0059 as a review would act on that corrupted premise, so it was left untouched
+(`include`, `not_started`, not in the dataset or bibliography) and escalated to Avin to decide
+which paper HYC-0059 is and, if Guo, to obtain the correct PDF.
+
+**Bibliography.** 51 → 55 entries, inserted in HYC-id order and re-dumped `ensure_ascii=False`
+(existing array byte-identical). All four PDF-sourced; IOP Nanotechnology and MDPI Processes are
+article-numbered and Elsevier IJHE/Carbon print no issue, so each `number` is `none` pending an
+OpenAlex backfill. HYC-0060's byline is the three JRC/Demokritos authors (the 14 labs are
+acknowledged, not co-authors). HYC-0061 `year` = 2010 (the Carbon print/issue year the dataset
+carries); `paper_tracking` holds the 2009 online-first year, a stale one-cell fix now owed.
+
+**Pinned tests updated, deliberately.** `test_bibliography` pdf_held 44→48, issue `none` 24→28.
+`test_validate` agreement 289→321 (+32 agreements, 8 hand-adjustments — HYC-0060's 3 calibration-
+lifted A rows, one also §13.5 Chahine-lifted; HYC-0061's 5 calibration-lifted B rows).
+`test_dataset_invariants` flag papers + HYC-0061, bounded uptakes + HYC-0061's 1 approximate and
+4 upper, dopant-by-weight + HYC-0058. 807 tests passing.
+
+**Still owed.** The OpenAlex backfill owes four more issue numbers (HYC-0057/0058/0060/0061). The
+HYC-0059 PDF/metadata mismatch and the HYC-0061 tracking-year cell both await Avin. Agent B found
+no correction/retraction notice in any of the four PDFs read. The corpus-wide retraction pass
+remains owed, blocked on the same egress.
