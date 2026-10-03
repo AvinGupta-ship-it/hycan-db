@@ -1,0 +1,728 @@
+{
+  "paper": {
+    "paper_id": "HYC-0057",
+    "doi": "10.1088/0957-4484/20/20/204023",
+    "first_author": "Meisner",
+    "year": "2009",
+    "journal": "Nanotechnology",
+    "title": "High surface area microporous carbon materials for cryogenic hydrogen storage synthesized using new template-based and activation-based approaches"
+  },
+  "defaults": {
+    "extractor": "HyCAN pipeline v2",
+    "extraction_date": "2026-10-02",
+    "verification_date": "2026-10-02",
+    "uptake_bound": "exact",
+    "temperature_unstated": "False",
+    "pressure_unstated": "False",
+    "measurement_mode": "isothermal",
+    "measurement_method": "volumetric_sieverts",
+    "extraction_method": "table_direct",
+    "extraction_confidence": "5",
+    "uptake_type": "excess",
+    "verified_by": "Agent B (sonnet, independent re-derivation of Tables 1-2 + methods): 25 rows, 0 numeric disputes. Table 1 (7 silica-templated carbons N-C-1..4 / B-C-1..3 at 77 K, 1.13 bar): BET (1363/1995/1900/1329/1654/1510/1497), Langmuir, micropore area, total and micropore pore volumes, and H2 wt% (1.42/2.01/1.93/1.39/1.62/1.45/1.32) all confirmed. Table 2 (18 KOH-activated carbons C-1..C-18 at 77 K, 40 bar): BET and excess H2 wt% confirmed. uptake_type=excess. Calibration WITHHELD ('calibrated volumes of H2', UHP H2/He, but no explicit void-volume or blank-correction described -- thinner than HYC-0049's He-pycnometry + background subtraction). Tiers: Table 1 rows A (9/10 = BET&class 2 + method 2 + T&P 1 + uptake_type 1 + purity 1 (HF template-removal etch) + Chahine 2); Table 2 rows B (7-8/10, no purity credit, no calibration). Agent C: populated langmuir_surface_area_m2_g on S1-S7 (1902/2711/2666/1815/2217/2043/2012 -- the field exists; the values had been recorded only in material_description text) and corrected the t1tex note that claimed 'no schema field'. HF-etch purification_method KEPT on the templated carbons (template removal = purification, consistent with the committed HYC-0049 ZTC precedent); Agent B's objection that template-etch is not sample purification is a legitimate corpus-wide convention question, logged for a future pass rather than applied to one paper. Final: 7 A / 18 B."
+  },
+  "notes": {
+    "type": "uptake_type=excess ('excess hydrogen adsorption/absorption' throughout, Tables 1-2)",
+    "method": "volumetric method: low-P on a Micromeritics ASAP 2010 (H2), high-P/77 K on a cryostat-attached PCTPro-2000; 'calibrated volumes of hydrogen gas', UHP H2 and He. No explicit void-volume or blank-correction description -> calibration point WITHHELD (thinner than HYC-0049's He-pycnometry+background subtraction) [flag Agent B]",
+    "t1": "Table 1 aerosol-assisted one-step template method: TEOS (+colloidal silica for bimodal) silica template, sucrose carbonised 900 C, 10% HF etch of the silica -> templated_carbon / template_synthesis; HF = purification_method (HYC-0049 ZTC precedent). Measured at 77 K and 1.13 bar (low-pressure point, not the saturation max).",
+    "t1tex": "bet_surface_area=BET; Langmuir area also reported (langmuir_surface_area_m2_g); micropore_surface_area=micropore area col; total_pore_volume (P/P0>0.97 single point) and micropore_volume both recorded with pore_volume_method=unspecified (paper states BJH/DFT for pore SIZES, not explicitly for the volumes), probe N2",
+    "t2": "Table 2 chemical activation: phenol-formaldehyde oligomer + KOH (ratio/temp/time varied), carbonised/activated, HCl+DI wash (activation workup, NOT purification) -> activated_carbon / chemical_activation. Measured at 77 K and 40 bar (saturation).",
+    "t2tex": "Table 2 reports only BET + excess H2 at 77 K/40 bar (no pore volume column)."
+  },
+  "samples": {
+    "S1": {
+      "label": "N-C-1",
+      "material_class": "templated_carbon",
+      "synthesis_method": "template_synthesis",
+      "material_description": "aerosol-assisted one-step silica-templated carbon N-C-1 (sucrose + TEOS, carbonised 900 C, HF etch); Langmuir area 1902 m2/g",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1363",
+      "micropore_surface_area_m2_g": "660",
+      "total_pore_volume_cm3_g": "0.82",
+      "micropore_volume_cm3_g": "0.29",
+      "pore_volume_method": "unspecified",
+      "pore_volume_probe_gas": "N2",
+      "purification_method": "10% HF etch to dissolve the silica template",
+      "notes": [
+        "type",
+        "method",
+        "t1",
+        "t1tex"
+      ],
+      "langmuir_surface_area_m2_g": "1902"
+    },
+    "S2": {
+      "label": "N-C-2",
+      "material_class": "templated_carbon",
+      "synthesis_method": "template_synthesis",
+      "material_description": "aerosol-assisted one-step silica-templated carbon N-C-2 (sucrose + TEOS, carbonised 900 C, HF etch); Langmuir area 2711 m2/g",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1995",
+      "micropore_surface_area_m2_g": "875",
+      "total_pore_volume_cm3_g": "0.87",
+      "micropore_volume_cm3_g": "0.38",
+      "pore_volume_method": "unspecified",
+      "pore_volume_probe_gas": "N2",
+      "purification_method": "10% HF etch to dissolve the silica template",
+      "notes": [
+        "type",
+        "method",
+        "t1",
+        "t1tex"
+      ],
+      "langmuir_surface_area_m2_g": "2711"
+    },
+    "S3": {
+      "label": "N-C-3",
+      "material_class": "templated_carbon",
+      "synthesis_method": "template_synthesis",
+      "material_description": "aerosol-assisted one-step silica-templated carbon N-C-3 (sucrose + TEOS, carbonised 900 C, HF etch); Langmuir area 2666 m2/g",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1900",
+      "micropore_surface_area_m2_g": "679",
+      "total_pore_volume_cm3_g": "0.80",
+      "micropore_volume_cm3_g": "0.36",
+      "pore_volume_method": "unspecified",
+      "pore_volume_probe_gas": "N2",
+      "purification_method": "10% HF etch to dissolve the silica template",
+      "notes": [
+        "type",
+        "method",
+        "t1",
+        "t1tex"
+      ],
+      "langmuir_surface_area_m2_g": "2666"
+    },
+    "S4": {
+      "label": "N-C-4",
+      "material_class": "templated_carbon",
+      "synthesis_method": "template_synthesis",
+      "material_description": "aerosol-assisted one-step silica-templated carbon N-C-4 (sucrose + TEOS, carbonised 900 C, HF etch); Langmuir area 1815 m2/g",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1329",
+      "micropore_surface_area_m2_g": "652",
+      "total_pore_volume_cm3_g": "0.69",
+      "micropore_volume_cm3_g": "0.29",
+      "pore_volume_method": "unspecified",
+      "pore_volume_probe_gas": "N2",
+      "purification_method": "10% HF etch to dissolve the silica template",
+      "notes": [
+        "type",
+        "method",
+        "t1",
+        "t1tex"
+      ],
+      "langmuir_surface_area_m2_g": "1815"
+    },
+    "S5": {
+      "label": "B-C-1",
+      "material_class": "templated_carbon",
+      "synthesis_method": "template_synthesis",
+      "material_description": "aerosol-assisted one-step silica-templated carbon B-C-1 (sucrose + TEOS/colloidal silica, carbonised 900 C, HF etch); Langmuir area 2217 m2/g",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1654",
+      "micropore_surface_area_m2_g": "864",
+      "total_pore_volume_cm3_g": "0.87",
+      "micropore_volume_cm3_g": "0.36",
+      "pore_volume_method": "unspecified",
+      "pore_volume_probe_gas": "N2",
+      "purification_method": "10% HF etch to dissolve the silica template",
+      "notes": [
+        "type",
+        "method",
+        "t1",
+        "t1tex"
+      ],
+      "langmuir_surface_area_m2_g": "2217"
+    },
+    "S6": {
+      "label": "B-C-2",
+      "material_class": "templated_carbon",
+      "synthesis_method": "template_synthesis",
+      "material_description": "aerosol-assisted one-step silica-templated carbon B-C-2 (sucrose + TEOS/colloidal silica, carbonised 900 C, HF etch); Langmuir area 2043 m2/g",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1510",
+      "micropore_surface_area_m2_g": "834",
+      "total_pore_volume_cm3_g": "0.89",
+      "micropore_volume_cm3_g": "0.35",
+      "pore_volume_method": "unspecified",
+      "pore_volume_probe_gas": "N2",
+      "purification_method": "10% HF etch to dissolve the silica template",
+      "notes": [
+        "type",
+        "method",
+        "t1",
+        "t1tex"
+      ],
+      "langmuir_surface_area_m2_g": "2043"
+    },
+    "S7": {
+      "label": "B-C-3",
+      "material_class": "templated_carbon",
+      "synthesis_method": "template_synthesis",
+      "material_description": "aerosol-assisted one-step silica-templated carbon B-C-3 (sucrose + TEOS/colloidal silica, carbonised 900 C, HF etch); Langmuir area 2012 m2/g",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1497",
+      "micropore_surface_area_m2_g": "764",
+      "total_pore_volume_cm3_g": "1.03",
+      "micropore_volume_cm3_g": "0.30",
+      "pore_volume_method": "unspecified",
+      "pore_volume_probe_gas": "N2",
+      "purification_method": "10% HF etch to dissolve the silica template",
+      "notes": [
+        "type",
+        "method",
+        "t1",
+        "t1tex"
+      ],
+      "langmuir_surface_area_m2_g": "2012"
+    },
+    "S8": {
+      "label": "C-1",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "phenol-formaldehyde oligomer KOH-activated carbon C-1 (KOH:oligomer 1, 700 C, 4 h), HCl/DI washed",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1424",
+      "activation_method": "KOH chemical activation, KOH:oligomer weight ratio 1, 700 C, 4 h",
+      "notes": [
+        "type",
+        "method",
+        "t2",
+        "t2tex"
+      ]
+    },
+    "S9": {
+      "label": "C-2",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "phenol-formaldehyde oligomer KOH-activated carbon C-2 (KOH:oligomer 1.5, 700 C, 4 h), HCl/DI washed",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1662",
+      "activation_method": "KOH chemical activation, KOH:oligomer weight ratio 1.5, 700 C, 4 h",
+      "notes": [
+        "type",
+        "method",
+        "t2",
+        "t2tex"
+      ]
+    },
+    "S10": {
+      "label": "C-3",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "phenol-formaldehyde oligomer KOH-activated carbon C-3 (KOH:oligomer 2, 700 C, 4 h), HCl/DI washed",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "2711",
+      "activation_method": "KOH chemical activation, KOH:oligomer weight ratio 2, 700 C, 4 h",
+      "notes": [
+        "type",
+        "method",
+        "t2",
+        "t2tex"
+      ]
+    },
+    "S11": {
+      "label": "C-4",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "phenol-formaldehyde oligomer KOH-activated carbon C-4 (KOH:oligomer 2.2, 700 C, 4 h), HCl/DI washed",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "2811",
+      "activation_method": "KOH chemical activation, KOH:oligomer weight ratio 2.2, 700 C, 4 h",
+      "notes": [
+        "type",
+        "method",
+        "t2",
+        "t2tex"
+      ]
+    },
+    "S12": {
+      "label": "C-5",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "phenol-formaldehyde oligomer KOH-activated carbon C-5 (KOH:oligomer 2.25, 700 C, 4 h), HCl/DI washed",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "2943",
+      "activation_method": "KOH chemical activation, KOH:oligomer weight ratio 2.25, 700 C, 4 h",
+      "notes": [
+        "type",
+        "method",
+        "t2",
+        "t2tex"
+      ]
+    },
+    "S13": {
+      "label": "C-6",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "phenol-formaldehyde oligomer KOH-activated carbon C-6 (KOH:oligomer 2.5, 700 C, 4 h), HCl/DI washed",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "2466",
+      "activation_method": "KOH chemical activation, KOH:oligomer weight ratio 2.5, 700 C, 4 h",
+      "notes": [
+        "type",
+        "method",
+        "t2",
+        "t2tex"
+      ]
+    },
+    "S14": {
+      "label": "C-7",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "phenol-formaldehyde oligomer KOH-activated carbon C-7 (KOH:oligomer 1, 800 C, 4 h), HCl/DI washed",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1587",
+      "activation_method": "KOH chemical activation, KOH:oligomer weight ratio 1, 800 C, 4 h",
+      "notes": [
+        "type",
+        "method",
+        "t2",
+        "t2tex"
+      ]
+    },
+    "S15": {
+      "label": "C-8",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "phenol-formaldehyde oligomer KOH-activated carbon C-8 (KOH:oligomer 1.5, 800 C, 4 h), HCl/DI washed",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "2075",
+      "activation_method": "KOH chemical activation, KOH:oligomer weight ratio 1.5, 800 C, 4 h",
+      "notes": [
+        "type",
+        "method",
+        "t2",
+        "t2tex"
+      ]
+    },
+    "S16": {
+      "label": "C-9",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "phenol-formaldehyde oligomer KOH-activated carbon C-9 (KOH:oligomer 2, 800 C, 4 h), HCl/DI washed",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "2698",
+      "activation_method": "KOH chemical activation, KOH:oligomer weight ratio 2, 800 C, 4 h",
+      "notes": [
+        "type",
+        "method",
+        "t2",
+        "t2tex"
+      ]
+    },
+    "S17": {
+      "label": "C-10",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "phenol-formaldehyde oligomer KOH-activated carbon C-10 (KOH:oligomer 2.25, 800 C, 4 h), HCl/DI washed",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "2441",
+      "activation_method": "KOH chemical activation, KOH:oligomer weight ratio 2.25, 800 C, 4 h",
+      "notes": [
+        "type",
+        "method",
+        "t2",
+        "t2tex"
+      ]
+    },
+    "S18": {
+      "label": "C-11",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "phenol-formaldehyde oligomer KOH-activated carbon C-11 (KOH:oligomer 2.5, 800 C, 4 h), HCl/DI washed",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1992",
+      "activation_method": "KOH chemical activation, KOH:oligomer weight ratio 2.5, 800 C, 4 h",
+      "notes": [
+        "type",
+        "method",
+        "t2",
+        "t2tex"
+      ]
+    },
+    "S19": {
+      "label": "C-12",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "phenol-formaldehyde oligomer KOH-activated carbon C-12 (KOH:oligomer 2, 700 C, 0.5 h), HCl/DI washed",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1627",
+      "activation_method": "KOH chemical activation, KOH:oligomer weight ratio 2, 700 C, 0.5 h",
+      "notes": [
+        "type",
+        "method",
+        "t2",
+        "t2tex"
+      ]
+    },
+    "S20": {
+      "label": "C-13",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "phenol-formaldehyde oligomer KOH-activated carbon C-13 (KOH:oligomer 2, 700 C, 1 h), HCl/DI washed",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1752",
+      "activation_method": "KOH chemical activation, KOH:oligomer weight ratio 2, 700 C, 1 h",
+      "notes": [
+        "type",
+        "method",
+        "t2",
+        "t2tex"
+      ]
+    },
+    "S21": {
+      "label": "C-14",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "phenol-formaldehyde oligomer KOH-activated carbon C-14 (KOH:oligomer 2, 700 C, 2 h), HCl/DI washed",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "2438",
+      "activation_method": "KOH chemical activation, KOH:oligomer weight ratio 2, 700 C, 2 h",
+      "notes": [
+        "type",
+        "method",
+        "t2",
+        "t2tex"
+      ]
+    },
+    "S22": {
+      "label": "C-15",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "phenol-formaldehyde oligomer KOH-activated carbon C-15 (KOH:oligomer 2, 700 C, 8 h), HCl/DI washed",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "2625",
+      "activation_method": "KOH chemical activation, KOH:oligomer weight ratio 2, 700 C, 8 h",
+      "notes": [
+        "type",
+        "method",
+        "t2",
+        "t2tex"
+      ]
+    },
+    "S23": {
+      "label": "C-16",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "phenol-formaldehyde oligomer KOH-activated carbon C-16 (KOH:oligomer 2, 500 C, 4 h), HCl/DI washed",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1627",
+      "activation_method": "KOH chemical activation, KOH:oligomer weight ratio 2, 500 C, 4 h",
+      "notes": [
+        "type",
+        "method",
+        "t2",
+        "t2tex"
+      ]
+    },
+    "S24": {
+      "label": "C-17",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "phenol-formaldehyde oligomer KOH-activated carbon C-17 (KOH:oligomer 2, 600 C, 4 h), HCl/DI washed",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "2228",
+      "activation_method": "KOH chemical activation, KOH:oligomer weight ratio 2, 600 C, 4 h",
+      "notes": [
+        "type",
+        "method",
+        "t2",
+        "t2tex"
+      ]
+    },
+    "S25": {
+      "label": "C-18",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "phenol-formaldehyde oligomer KOH-activated carbon C-18 (KOH:oligomer 2, 900 C, 4 h), HCl/DI washed",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "2545",
+      "activation_method": "KOH chemical activation, KOH:oligomer weight ratio 2, 900 C, 4 h",
+      "notes": [
+        "type",
+        "method",
+        "t2",
+        "t2tex"
+      ]
+    }
+  },
+  "measurements": [
+    {
+      "sample": "S1",
+      "temperature_k": "77",
+      "pressure_bar": "1.13",
+      "uptake_wt_pct": "1.42",
+      "reproducibility_tier": "A",
+      "notes": [
+        "t1"
+      ],
+      "source_location": "Table 1 (H2 adsorption capacity at 77 K and 1.13 bar, wt%)"
+    },
+    {
+      "sample": "S2",
+      "temperature_k": "77",
+      "pressure_bar": "1.13",
+      "uptake_wt_pct": "2.01",
+      "reproducibility_tier": "A",
+      "notes": [
+        "t1"
+      ],
+      "source_location": "Table 1 (H2 adsorption capacity at 77 K and 1.13 bar, wt%)"
+    },
+    {
+      "sample": "S3",
+      "temperature_k": "77",
+      "pressure_bar": "1.13",
+      "uptake_wt_pct": "1.93",
+      "reproducibility_tier": "A",
+      "notes": [
+        "t1"
+      ],
+      "source_location": "Table 1 (H2 adsorption capacity at 77 K and 1.13 bar, wt%)"
+    },
+    {
+      "sample": "S4",
+      "temperature_k": "77",
+      "pressure_bar": "1.13",
+      "uptake_wt_pct": "1.39",
+      "reproducibility_tier": "A",
+      "notes": [
+        "t1"
+      ],
+      "source_location": "Table 1 (H2 adsorption capacity at 77 K and 1.13 bar, wt%)"
+    },
+    {
+      "sample": "S5",
+      "temperature_k": "77",
+      "pressure_bar": "1.13",
+      "uptake_wt_pct": "1.62",
+      "reproducibility_tier": "A",
+      "notes": [
+        "t1"
+      ],
+      "source_location": "Table 1 (H2 adsorption capacity at 77 K and 1.13 bar, wt%)"
+    },
+    {
+      "sample": "S6",
+      "temperature_k": "77",
+      "pressure_bar": "1.13",
+      "uptake_wt_pct": "1.45",
+      "reproducibility_tier": "A",
+      "notes": [
+        "t1"
+      ],
+      "source_location": "Table 1 (H2 adsorption capacity at 77 K and 1.13 bar, wt%)"
+    },
+    {
+      "sample": "S7",
+      "temperature_k": "77",
+      "pressure_bar": "1.13",
+      "uptake_wt_pct": "1.32",
+      "reproducibility_tier": "A",
+      "notes": [
+        "t1"
+      ],
+      "source_location": "Table 1 (H2 adsorption capacity at 77 K and 1.13 bar, wt%)"
+    },
+    {
+      "sample": "S8",
+      "temperature_k": "77",
+      "pressure_bar": "40",
+      "uptake_wt_pct": "2.81",
+      "reproducibility_tier": "B",
+      "notes": [
+        "t2"
+      ],
+      "source_location": "Table 2 (excess hydrogen absorption at 77 K and 40 bar, wt%)"
+    },
+    {
+      "sample": "S9",
+      "temperature_k": "77",
+      "pressure_bar": "40",
+      "uptake_wt_pct": "3.69",
+      "reproducibility_tier": "B",
+      "notes": [
+        "t2"
+      ],
+      "source_location": "Table 2 (excess hydrogen absorption at 77 K and 40 bar, wt%)"
+    },
+    {
+      "sample": "S10",
+      "temperature_k": "77",
+      "pressure_bar": "40",
+      "uptake_wt_pct": "5.25",
+      "reproducibility_tier": "B",
+      "notes": [
+        "t2"
+      ],
+      "source_location": "Table 2 (excess hydrogen absorption at 77 K and 40 bar, wt%)"
+    },
+    {
+      "sample": "S11",
+      "temperature_k": "77",
+      "pressure_bar": "40",
+      "uptake_wt_pct": "5.68",
+      "reproducibility_tier": "B",
+      "notes": [
+        "t2"
+      ],
+      "source_location": "Table 2 (excess hydrogen absorption at 77 K and 40 bar, wt%)"
+    },
+    {
+      "sample": "S12",
+      "temperature_k": "77",
+      "pressure_bar": "40",
+      "uptake_wt_pct": "5.75",
+      "reproducibility_tier": "B",
+      "notes": [
+        "t2"
+      ],
+      "source_location": "Table 2 (excess hydrogen absorption at 77 K and 40 bar, wt%)"
+    },
+    {
+      "sample": "S13",
+      "temperature_k": "77",
+      "pressure_bar": "40",
+      "uptake_wt_pct": "4.86",
+      "reproducibility_tier": "B",
+      "notes": [
+        "t2"
+      ],
+      "source_location": "Table 2 (excess hydrogen absorption at 77 K and 40 bar, wt%)"
+    },
+    {
+      "sample": "S14",
+      "temperature_k": "77",
+      "pressure_bar": "40",
+      "uptake_wt_pct": "3.30",
+      "reproducibility_tier": "B",
+      "notes": [
+        "t2"
+      ],
+      "source_location": "Table 2 (excess hydrogen absorption at 77 K and 40 bar, wt%)"
+    },
+    {
+      "sample": "S15",
+      "temperature_k": "77",
+      "pressure_bar": "40",
+      "uptake_wt_pct": "3.91",
+      "reproducibility_tier": "B",
+      "notes": [
+        "t2"
+      ],
+      "source_location": "Table 2 (excess hydrogen absorption at 77 K and 40 bar, wt%)"
+    },
+    {
+      "sample": "S16",
+      "temperature_k": "77",
+      "pressure_bar": "40",
+      "uptake_wt_pct": "5.02",
+      "reproducibility_tier": "B",
+      "notes": [
+        "t2"
+      ],
+      "source_location": "Table 2 (excess hydrogen absorption at 77 K and 40 bar, wt%)"
+    },
+    {
+      "sample": "S17",
+      "temperature_k": "77",
+      "pressure_bar": "40",
+      "uptake_wt_pct": "4.84",
+      "reproducibility_tier": "B",
+      "notes": [
+        "t2"
+      ],
+      "source_location": "Table 2 (excess hydrogen absorption at 77 K and 40 bar, wt%)"
+    },
+    {
+      "sample": "S18",
+      "temperature_k": "77",
+      "pressure_bar": "40",
+      "uptake_wt_pct": "3.33",
+      "reproducibility_tier": "B",
+      "notes": [
+        "t2"
+      ],
+      "source_location": "Table 2 (excess hydrogen absorption at 77 K and 40 bar, wt%)"
+    },
+    {
+      "sample": "S19",
+      "temperature_k": "77",
+      "pressure_bar": "40",
+      "uptake_wt_pct": "3.05",
+      "reproducibility_tier": "B",
+      "notes": [
+        "t2"
+      ],
+      "source_location": "Table 2 (excess hydrogen absorption at 77 K and 40 bar, wt%)"
+    },
+    {
+      "sample": "S20",
+      "temperature_k": "77",
+      "pressure_bar": "40",
+      "uptake_wt_pct": "3.32",
+      "reproducibility_tier": "B",
+      "notes": [
+        "t2"
+      ],
+      "source_location": "Table 2 (excess hydrogen absorption at 77 K and 40 bar, wt%)"
+    },
+    {
+      "sample": "S21",
+      "temperature_k": "77",
+      "pressure_bar": "40",
+      "uptake_wt_pct": "4.30",
+      "reproducibility_tier": "B",
+      "notes": [
+        "t2"
+      ],
+      "source_location": "Table 2 (excess hydrogen absorption at 77 K and 40 bar, wt%)"
+    },
+    {
+      "sample": "S22",
+      "temperature_k": "77",
+      "pressure_bar": "40",
+      "uptake_wt_pct": "4.51",
+      "reproducibility_tier": "B",
+      "notes": [
+        "t2"
+      ],
+      "source_location": "Table 2 (excess hydrogen absorption at 77 K and 40 bar, wt%)"
+    },
+    {
+      "sample": "S23",
+      "temperature_k": "77",
+      "pressure_bar": "40",
+      "uptake_wt_pct": "3.50",
+      "reproducibility_tier": "B",
+      "notes": [
+        "t2"
+      ],
+      "source_location": "Table 2 (excess hydrogen absorption at 77 K and 40 bar, wt%)"
+    },
+    {
+      "sample": "S24",
+      "temperature_k": "77",
+      "pressure_bar": "40",
+      "uptake_wt_pct": "4.36",
+      "reproducibility_tier": "B",
+      "notes": [
+        "t2"
+      ],
+      "source_location": "Table 2 (excess hydrogen absorption at 77 K and 40 bar, wt%)"
+    },
+    {
+      "sample": "S25",
+      "temperature_k": "77",
+      "pressure_bar": "40",
+      "uptake_wt_pct": "4.61",
+      "reproducibility_tier": "B",
+      "notes": [
+        "t2"
+      ],
+      "source_location": "Table 2 (excess hydrogen absorption at 77 K and 40 bar, wt%)"
+    }
+  ]
+}

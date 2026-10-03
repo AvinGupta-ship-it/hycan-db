@@ -6,7 +6,7 @@
 %   Regenerate: python3 scripts/build_bibliography.py
 %   Verify:     python3 scripts/build_bibliography.py --check
 %
-% 51 entries: 47 screened in, 4 screened out. The
+% 55 entries: 51 screened in, 4 screened out. The
 % excluded papers are kept because PRISMA reporting has to cite what it excluded.
 % Every entry's key is its HyCAN-DB paper_id, so a citation in the manuscript
 % resolves directly to the rows it describes in data/raw/measurements_v0.1.csv.
@@ -14,7 +14,7 @@
 % HOW THESE WERE RESOLVED (§3.5: a DOI or a citation recalled from model weights
 % is not a citation).
 %
-% 44 entries have their author list, title, journal, volume, pages and year
+% 48 entries have their author list, title, journal, volume, pages and year
 % read off the article's OWN PAGES -- title block, byline, running header and
 % footer -- from the PDF held in the project. That is the primary record.
 % 7 entries have no PDF on hand and are resolved from metadata services,
@@ -614,4 +614,48 @@
   year         = {2025},
   doi          = {10.1039/d5ta00993f},
   note         = {RSC J. Mater. Chem. A citation line prints volume, year and first page (2025, 13, 22392); issue omitted pending an OpenAlex backfill.},
+}
+
+@article{HYC-0057,
+  author       = {Meisner, Gregory P. and Hu, Qingyuan},
+  title        = {{High surface area microporous carbon materials for cryogenic hydrogen storage synthesized using new template-based and activation-based approaches}},
+  journal      = {Nanotechnology},
+  volume       = {20},
+  pages        = {204023},
+  year         = {2009},
+  doi          = {10.1088/0957-4484/20/20/204023},
+  note         = {IOP Nanotechnology prints volume, year and the six-digit article number (20 (2009) 204023) in its citation line; the article number stands in for the page range and no issue is printed, so number is omitted pending an OpenAlex backfill.},
+}
+
+@article{HYC-0058,
+  author       = {Rosas-Medellín, D. and Escobar, Beatriz and Suárez-Alclántara, Karina and Pacheco, Carlos and Barbosa, Romeli},
+  title        = {{Functional Sulfur-Doped Biocarbon for Hydrogen Storage: Development of Nanomaterials for Energy Applications}},
+  journal      = {Processes},
+  volume       = {12},
+  pages        = {2715},
+  year         = {2024},
+  doi          = {10.3390/pr12122715},
+  note         = {MDPI Processes prints volume, year and the article number (2024, 12, 2715) in its citation line; the article number stands in for the page range and no issue is printed, so number is omitted pending an OpenAlex backfill.},
+}
+
+@article{HYC-0060,
+  author       = {Zlotea, Claudia and Moretto, Pietro and Steriotis, Theodore},
+  title        = {{A Round Robin characterisation of the hydrogen sorption properties of a carbon based material}},
+  journal      = {International Journal of Hydrogen Energy},
+  volume       = {34},
+  pages        = {3044-3057},
+  year         = {2009},
+  doi          = {10.1016/j.ijhydene.2009.01.079},
+  note         = {Elsevier IJHE running head prints volume, year and pages (34 (2009) 3044-3057); no issue, omitted pending an OpenAlex backfill. The 14 participating laboratories are acknowledged, not co-authors; the byline is the three JRC/Demokritos authors.},
+}
+
+@article{HYC-0061,
+  author       = {Chen, Yuanzhen and Liu, Qing and Yan, Yisheng and Cheng, Xiaohua and Liu, Yongning},
+  title        = {{Influence of sample cell physisorption on measurements of hydrogen storage of carbon materials using a Sieverts apparatus}},
+  journal      = {Carbon},
+  volume       = {48},
+  pages        = {714-720},
+  year         = {2010},
+  doi          = {10.1016/j.carbon.2009.10.016},
+  note         = {Elsevier Carbon running head prints volume, year and pages (48 (2010) 714-720); no issue, omitted pending an OpenAlex backfill. year=2010 is the print/issue year (what a citation means and what the dataset carries); the DOI slug and paper_tracking carry the 2009 online-first year.},
 }

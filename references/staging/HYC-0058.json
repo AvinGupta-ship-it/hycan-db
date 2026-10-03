@@ -1,0 +1,98 @@
+{
+  "paper": {
+    "paper_id": "HYC-0058",
+    "doi": "10.3390/pr12122715",
+    "first_author": "Rosas",
+    "year": "2024",
+    "journal": "Processes",
+    "title": "Functional Sulfur-Doped Biocarbon for Hydrogen Storage: Development of Nanomaterials for Energy Applications"
+  },
+  "defaults": {
+    "extractor": "HyCAN pipeline v2",
+    "extraction_date": "2026-10-02",
+    "verification_date": "2026-10-02",
+    "uptake_bound": "exact",
+    "temperature_unstated": "False",
+    "pressure_unstated": "False",
+    "measurement_mode": "isothermal",
+    "measurement_method": "volumetric_sieverts",
+    "extraction_method": "text_direct",
+    "extraction_confidence": "5",
+    "uptake_type": "unspecified",
+    "verified_by": "Agent B (sonnet, independent re-derivation of Table 1 + text): 2 rows, 0 numeric disputes. SKPT = KOH-activated Sargassum biocarbon (pyrolysis 700 C, HCl wash to remove KOH) -> activated_carbon / chemical_activation; SSKTP = SKPT then S-doped with commercial sulfur (1:1), re-activated -> doped_carbon, dopant_element=S, dopant_concentration_wt_pct=17.45 (CHNS/XPS). BET 1670 for SKPT (Table 1 and section 3.1) is used; the abstract/conclusion state 1620 -- an internal inconsistency, noted. 318 K (45 C), 50 bar; 0.33 and 0.40 wt%. uptake_type=unspecified ('hydrogen storage capacity', no excess/absolute/total). measurement_method=volumetric_sieverts (Quantachrome Isorb-100 PCI); He void-volume calibration explicit -> calibration point earned. Agent C: extraction_method table_direct->text_direct (the uptakes are from Figure 7 / section 3.6, not a numeric table; Table 1 is textural only); S2 dopant_concentration_method=elemental_analysis. Purity point WITHHELD -- CHNS reports the sulfur dopant level, not a residual impurity in the HYC-0007 sense, consistent with the HYC-0053/0057 KOH-carbon precedent (the HCl wash is a KOH-removal workup, not purification). Both rows Tier B (8/10). An adjudication-pass B->A on a CHNS purity point was reversed as unfounded against that precedent. doped_carbon class for SSKTP (Agent B flag) upheld."
+  },
+  "notes": {
+    "type": "uptake_type=unspecified: PCI 'hydrogen storage capacity'; no excess/absolute/total word",
+    "cond": "45 C = 318 K, 50 bar; Quantachrome Isorb-100 PCI (volumetric). Void volume calibrated with ultrahigh-purity He -> calibration point by hand",
+    "skpt": "SKPT = KOH-activated Sargassum biocarbon (pyrolysis 700 C, HCl wash to remove KOH) -> activated_carbon / chemical_activation; 0.85 wt% S is natural/trace (not a dopant)",
+    "sskpt": "SSKTP = SKPT then S-doped with commercial sulfur (1:1), re-activated -> doped_carbon, dopant_element=S, dopant_concentration_wt_pct=17.45 (CHNS/XPS) [class flag Agent B]",
+    "bet": "SKPT BET 1670 (Table 1 and section 3.1); the abstract/conclusion say 1620 -- internal inconsistency, Table 1 value used [flag Agent B]. total_pore_volume single-point, pore_volume_method unspecified, probe N2. N not detected."
+  },
+  "samples": {
+    "S1": {
+      "label": "SKPT",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "KOH-activated biocarbon from Sargassum spp. (pyrolysis 700 C, HCl wash); 0.85 wt% natural S",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1670",
+      "average_pore_diameter_nm": "1.904",
+      "total_pore_volume_cm3_g": "0.795",
+      "pore_volume_method": "unspecified",
+      "pore_volume_probe_gas": "N2",
+      "activation_method": "KOH chemical activation of Sargassum biocarbon, 2:1 KOH:precursor, pyrolysis 700 C",
+      "notes": [
+        "type",
+        "cond",
+        "skpt",
+        "bet"
+      ]
+    },
+    "S2": {
+      "label": "SSKTP",
+      "material_class": "doped_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "sulfur-doped KOH-activated Sargassum biocarbon (commercial S 1:1, re-activated)",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "2377",
+      "average_pore_diameter_nm": "2.519",
+      "total_pore_volume_cm3_g": "1.078",
+      "pore_volume_method": "unspecified",
+      "pore_volume_probe_gas": "N2",
+      "dopant_element": "S",
+      "dopant_concentration_wt_pct": "17.45",
+      "activation_method": "KOH chemical activation then sulfur doping (commercial S 1:1), re-activated, pyrolysis 700 C",
+      "notes": [
+        "type",
+        "cond",
+        "sskpt",
+        "bet"
+      ],
+      "dopant_concentration_method": "elemental_analysis"
+    }
+  },
+  "measurements": [
+    {
+      "sample": "S1",
+      "temperature_k": "318",
+      "pressure_bar": "50",
+      "uptake_wt_pct": "0.33",
+      "reproducibility_tier": "B",
+      "notes": [
+        "cond"
+      ],
+      "source_location": "Abstract/Section 3.6/Figure 7 (0.33 wt% at 45 C, 50 bar)"
+    },
+    {
+      "sample": "S2",
+      "temperature_k": "318",
+      "pressure_bar": "50",
+      "uptake_wt_pct": "0.40",
+      "reproducibility_tier": "B",
+      "notes": [
+        "cond"
+      ],
+      "source_location": "Abstract/Section 3.6/Figure 7 (0.40 wt% at 45 C, 50 bar)"
+    }
+  ]
+}

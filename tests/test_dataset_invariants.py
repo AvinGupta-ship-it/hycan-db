@@ -317,12 +317,16 @@ def test_only_papers_that_never_state_a_condition_use_the_flags(dataset):
     other eight rows carry pressure_unstated. HYC-0049 (Stadie 2012) reports its
     77 K Gibbs surface-excess *maxima*, whose per-sample peak pressure is stated
     only for ZTC-3 (2.4 MPa); the other four 77 K rows carry pressure_unstated.
+    HYC-0061 (Chen 2010) reports the activated carbon's 77 K supercritical maximum
+    (~4 wt%, Fig 11) with no stated peak pressure, so that one row carries
+    pressure_unstated; its other rows state 75 bar.
     """
     flagged = dataset[
         _flag(dataset, "temperature_unstated") | _flag(dataset, "pressure_unstated")
     ]
     assert set(flagged["paper_id"]) == {
         "HYC-0009", "HYC-0011", "HYC-0015", "HYC-0026", "HYC-0046", "HYC-0049",
+        "HYC-0061",
     }, sorted(set(flagged["paper_id"]))
 
 
@@ -357,20 +361,27 @@ def test_bounded_uptakes_are_flagged_and_rare(dataset):
     # by extrapolation of the measured 0-30 MPa isotherm (approximate), and
     # HYC-0051's three PYROGRAF upper limits (<0.7/<0.5/<0.2 wt%, set by pressure
     # drift over time, not a sorption event) are `upper`.
+    # The HYC-0057/0058/0060/0061 batch (2026-10-02) adds five, all in HYC-0061
+    # (Chen 2010): the activated carbon's 77 K supercritical maximum is figure-read
+    # as ~4 wt% (M6, approximate), and the four non-AC carbons at 77 K are reported
+    # collectively as "less than 1 wt%" (M7-M10, upper).
     assert set(bounded["measurement_id"]) == {
         "HYC-0029-M3", "HYC-0029-M4", "HYC-0017-M3", "HYC-0024-M4",
         "HYC-0049-M2", "HYC-0049-M4", "HYC-0049-M6", "HYC-0049-M8", "HYC-0049-M10",
         "HYC-0051-M6", "HYC-0051-M8", "HYC-0051-M9",
+        "HYC-0061-M6", "HYC-0061-M7", "HYC-0061-M8", "HYC-0061-M9", "HYC-0061-M10",
     }, sorted(bounded["measurement_id"])
     assert set(bounded["uptake_bound"]) == {"lower", "upper", "approximate"}
     upper = bounded[bounded["uptake_bound"] == "upper"]
     assert set(upper["measurement_id"]) == {
         "HYC-0017-M3", "HYC-0051-M6", "HYC-0051-M8", "HYC-0051-M9",
+        "HYC-0061-M7", "HYC-0061-M8", "HYC-0061-M9", "HYC-0061-M10",
     }
     approximate = bounded[bounded["uptake_bound"] == "approximate"]
     assert set(approximate["measurement_id"]) == {
         "HYC-0024-M4",
         "HYC-0049-M2", "HYC-0049-M4", "HYC-0049-M6", "HYC-0049-M8", "HYC-0049-M10",
+        "HYC-0061-M6",
     }
 
 
@@ -461,8 +472,11 @@ def test_metal_loading_is_not_confused_with_dopant_concentration(dataset):
     # metal-decorated ammonia-treated composites keep dopant_element=N but no
     # concentration (the 2.0 wt% was measured on the support, not re-measured on
     # the composite), so only S2 is by-weight here.
+    # +HYC-0058: its SSKTP sample (S2) is sulfur-doped to 17.45 wt% S, measured by
+    # CHNS/XPS elemental analysis; dopant_element=S, so this is a dopant weight
+    # fraction, not a metal loading.
     assert set(by_weight["paper_id"]) == {
-        "HYC-0026", "HYC-0032", "HYC-0033", "HYC-0034", "HYC-0039"
+        "HYC-0026", "HYC-0032", "HYC-0033", "HYC-0034", "HYC-0039", "HYC-0058"
     }
     assert by_weight["dopant_concentration_method"].notna().all()
 

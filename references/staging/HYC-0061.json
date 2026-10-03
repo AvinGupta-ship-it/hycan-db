@@ -1,0 +1,224 @@
+{
+  "paper": {
+    "paper_id": "HYC-0061",
+    "doi": "10.1016/j.carbon.2009.10.016",
+    "first_author": "Chen",
+    "year": "2010",
+    "journal": "Carbon",
+    "title": "Influence of sample cell physisorption on measurements of hydrogen storage of carbon materials using a Sieverts apparatus"
+  },
+  "defaults": {
+    "extractor": "HyCAN pipeline v2",
+    "extraction_date": "2026-10-02",
+    "verification_date": "2026-10-02",
+    "uptake_bound": "exact",
+    "temperature_unstated": "False",
+    "pressure_unstated": "False",
+    "measurement_mode": "isothermal",
+    "measurement_method": "volumetric_sieverts",
+    "extraction_method": "text_direct",
+    "extraction_confidence": "4",
+    "uptake_type": "unspecified",
+    "verified_by": "Agent B (sonnet, independent re-derivation of Figures 9-12 + apparatus): 10 rows. Five carbons: AC (commercial activated carbon, Fuzhou Yihuan, BET >1900 recorded as 1900), MWCNT, SWCNT, GNF (graphite nanofibers), GO (graphite oxide, ref 18); LaNi5 (metal hydride) and stainless-steel powder (non-carbon) correctly excluded. Ambient 295 K and 77 K, 7.5 MPa = 75 bar; values are AFTER sample-cell physisorption correction. uptake_type=unspecified. Calibration earned (He dead-volume + Benedict-Webb-Rubin EOS Z-correction + empty-cell physisorption subtraction + LaNi5 verification). AC 77 K ~4 wt% is a figure-read supercritical maximum (Fig 11) with peak pressure not stated -> pressure_unstated + uptake_bound=approximate. The non-AC carbons at 77 K are collectively 'less than 1 wt%' (Fig 12) -> uptake_bound=upper, 1.0. Agent B caught a numeric swap on the ambient row pair: the paper reads '0.35, 0.2, 0.1 wt% for SWCNTs, GO, GNFs respectively', so GO=0.2 and GNF=0.1; the generator had them transposed. Agent C ACCEPTED: GNF 0.2->0.1, GO 0.1->0.2. Agent C also: surface_area_method none->not_reported on the four non-AC samples (the paper reports AC's BET area, so the others are 'not reported for this sample' under the S8.8/S11.1 partition, not 'none'); extraction_method table_direct->text_direct (figure-read, no uptake table). Tiers: the five ambient rows and the AC 77 K row Tier B (6/10); the four non-AC 77 K upper-bound rows Tier C (5/10) -- with no BET area the cryogenic Chahine bound cannot be assessed (scorer cryo_no_area=1). Agent B argued those four should be B; Agent C declined and kept C, because there is no area against which to grade the 77 K value. Final: 6 B / 4 C."
+  },
+  "notes": {
+    "type": "uptake_type=unspecified ('hydrogen adsorption'; 'total adsorption' = sum over steps, not a basis)",
+    "cond": "ambient = 295 K (Tref=Tcell=295 K stated); 77 K. All at 7.5 MPa = 75 bar.",
+    "cal": "Sieverts; He dead-volume calibration + Benedict-Webb-Rubin EOS (Z correction) + empty-cell physisorption subtraction + LaNi5 verification -> calibration point by hand. Values are AFTER sample-cell physisorption correction.",
+    "excl": "LaNi5 (metal hydride) and stainless-steel powder (non-carbon) excluded (section 7.2 non-carbon rule)",
+    "ac": "AC = commercial activated carbon (Fuzhou Yihuan), BET >1900 m2/g (lower bound; recorded as 1900)",
+    "ac77": "AC 77 K ~4 wt% is the figure-read supercritical maximum (Fig 11), peak pressure not stated -> pressure_unstated + uptake_bound=approximate",
+    "cnt": "MWCNT/SWCNT/GNF commercial (Chengdu, purity >95%); GO = graphite oxide (ref 18) -> graphene_oxide / chemical_oxidation. No BET measured for these -> surface_area_method=not_reported (paper reports AC's BET area, so these are 'not reported for this sample', S8.8/S11.1 partition)",
+    "up77": "at 77 K the paper states the non-AC carbons are 'less than 1 wt%' (collective, Fig 12) -> uptake_bound=upper, 1.0 wt% [flag Agent B]"
+  },
+  "samples": {
+    "S1": {
+      "label": "AC",
+      "material_class": "activated_carbon",
+      "synthesis_method": "commercial",
+      "material_description": "commercial activated carbon (Fuzhou Yihuan), BET surface area >1900 m2/g",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1900",
+      "notes": [
+        "type",
+        "cond",
+        "cal",
+        "ac"
+      ]
+    },
+    "S2": {
+      "label": "MWCNT",
+      "material_class": "MWCNT",
+      "synthesis_method": "commercial",
+      "material_description": "commercial multi-walled carbon nanotubes (Chengdu, purity >95%, 30-50 nm)",
+      "surface_area_method": "not_reported",
+      "notes": [
+        "type",
+        "cond",
+        "cal",
+        "cnt"
+      ]
+    },
+    "S3": {
+      "label": "SWCNT",
+      "material_class": "SWCNT",
+      "synthesis_method": "commercial",
+      "material_description": "commercial single-walled carbon nanotubes (Chengdu, purity >95%, 1-2 nm)",
+      "surface_area_method": "not_reported",
+      "notes": [
+        "type",
+        "cond",
+        "cal",
+        "cnt"
+      ]
+    },
+    "S4": {
+      "label": "GNF",
+      "material_class": "carbon_nanofiber",
+      "synthesis_method": "commercial",
+      "material_description": "commercial graphite nanofibers (Chengdu, purity >95%, 200-600 nm)",
+      "surface_area_method": "not_reported",
+      "notes": [
+        "type",
+        "cond",
+        "cal",
+        "cnt"
+      ]
+    },
+    "S5": {
+      "label": "GO",
+      "material_class": "graphene_oxide",
+      "synthesis_method": "chemical_oxidation",
+      "material_description": "graphite oxide prepared per ref [18]",
+      "surface_area_method": "not_reported",
+      "notes": [
+        "type",
+        "cond",
+        "cal",
+        "cnt"
+      ]
+    }
+  },
+  "measurements": [
+    {
+      "sample": "S1",
+      "temperature_k": "295",
+      "pressure_bar": "75",
+      "uptake_wt_pct": "0.47",
+      "reproducibility_tier": "B",
+      "notes": [
+        "cond",
+        "cal"
+      ],
+      "source_location": "Figs 9-10/text (corrected ambient-temperature adsorption, 7.5 MPa)"
+    },
+    {
+      "sample": "S2",
+      "temperature_k": "295",
+      "pressure_bar": "75",
+      "uptake_wt_pct": "0.15",
+      "reproducibility_tier": "B",
+      "notes": [
+        "cond",
+        "cal"
+      ],
+      "source_location": "Figs 9-10/text (corrected ambient-temperature adsorption, 7.5 MPa)"
+    },
+    {
+      "sample": "S3",
+      "temperature_k": "295",
+      "pressure_bar": "75",
+      "uptake_wt_pct": "0.35",
+      "reproducibility_tier": "B",
+      "notes": [
+        "cond",
+        "cal"
+      ],
+      "source_location": "Figs 9-10/text (corrected ambient-temperature adsorption, 7.5 MPa)"
+    },
+    {
+      "sample": "S4",
+      "temperature_k": "295",
+      "pressure_bar": "75",
+      "uptake_wt_pct": "0.1",
+      "reproducibility_tier": "B",
+      "notes": [
+        "cond",
+        "cal"
+      ],
+      "source_location": "Figs 9-10/text (corrected ambient-temperature adsorption, 7.5 MPa)"
+    },
+    {
+      "sample": "S5",
+      "temperature_k": "295",
+      "pressure_bar": "75",
+      "uptake_wt_pct": "0.2",
+      "reproducibility_tier": "B",
+      "notes": [
+        "cond",
+        "cal"
+      ],
+      "source_location": "Figs 9-10/text (corrected ambient-temperature adsorption, 7.5 MPa)"
+    },
+    {
+      "sample": "S1",
+      "temperature_k": "77",
+      "pressure_unstated": "True",
+      "uptake_wt_pct": "4.0",
+      "uptake_bound": "approximate",
+      "reproducibility_tier": "B",
+      "notes": [
+        "ac77"
+      ],
+      "source_location": "Fig 11 (supercritical max ~4 wt% at 77 K; peak pressure not stated)"
+    },
+    {
+      "sample": "S2",
+      "temperature_k": "77",
+      "pressure_bar": "75",
+      "uptake_wt_pct": "1.0",
+      "uptake_bound": "upper",
+      "reproducibility_tier": "C",
+      "notes": [
+        "up77"
+      ],
+      "source_location": "Fig 12/text ('less than 1 wt%' at 77 K, 7.5 MPa)"
+    },
+    {
+      "sample": "S3",
+      "temperature_k": "77",
+      "pressure_bar": "75",
+      "uptake_wt_pct": "1.0",
+      "uptake_bound": "upper",
+      "reproducibility_tier": "C",
+      "notes": [
+        "up77"
+      ],
+      "source_location": "Fig 12/text ('less than 1 wt%' at 77 K, 7.5 MPa)"
+    },
+    {
+      "sample": "S4",
+      "temperature_k": "77",
+      "pressure_bar": "75",
+      "uptake_wt_pct": "1.0",
+      "uptake_bound": "upper",
+      "reproducibility_tier": "C",
+      "notes": [
+        "up77"
+      ],
+      "source_location": "Fig 12/text ('less than 1 wt%' at 77 K, 7.5 MPa)"
+    },
+    {
+      "sample": "S5",
+      "temperature_k": "77",
+      "pressure_bar": "75",
+      "uptake_wt_pct": "1.0",
+      "uptake_bound": "upper",
+      "reproducibility_tier": "C",
+      "notes": [
+        "up77"
+      ],
+      "source_location": "Fig 12/text ('less than 1 wt%' at 77 K, 7.5 MPa)"
+    }
+  ]
+}

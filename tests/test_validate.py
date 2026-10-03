@@ -821,7 +821,14 @@ def test_no_assigned_tier_changed_and_the_scorer_still_returns_a_letter():
     # subtraction + LaNi5/Nd2Fe14B standard verification; scorer C, assigned B). HYC-0052's
     # four MWNT rows take the He void-expansion calibration point (scorer B, assigned A).
     # All 25 are new rows; no existing assigned tier changed.
-    assert agree == 289
+    # Now 321 of 488 after the HYC-0057/0058/0060/0061 Phase D batch: +32 agreements
+    # and 8 documented hand-adjustments. HYC-0060's three consensus rows take the
+    # by-hand calibration point (dead-volume/He + buoyancy + Pd/LaNi5 standards; scorer
+    # B, assigned A), and its 77 K row additionally takes the §13.5 narrow-micropore
+    # Chahine override. HYC-0061's five ambient/AC-77K rows take the calibration point
+    # (He dead-volume + BWR EOS + empty-cell physisorption subtraction + LaNi5; scorer
+    # C, assigned B). All 8 are new rows; no existing assigned tier changed.
+    assert agree == 321
 
 
 def test_the_rows_in_tension_with_their_assigned_tier_are_named():
