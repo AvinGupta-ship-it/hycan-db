@@ -176,6 +176,16 @@ across every `verified_by`-bearing paper in one pass (and resolve the three
 OpenAlex issue numbers at the same time). The per-paper rows in this table are
 accurate; only the aggregates are stale.
 
+**2026-10-05 -- corpus-wide OpenAlex pass complete.** All 59 bibliography entries
+were checked against OpenAlex `is_retracted` (over WebFetch; shell `curl` to the
+API is egress-blocked): **none is retracted** (clean as of 2026-10-05). The same
+pass resolved the owed issue-number backfill -- 20 issues moved from `none` to
+`openalex` in `references/bibliography_sources.json` (`openalex` 21 -> 41, `none`
+31 -> 11), leaving 11 genuinely absent (9 with no issue in OpenAlex either, plus
+the two Nature-family nominal-issue journals HYC-0031/0033). The dual-agent
+aggregate recompute noted above remains owed; this pass touched only issue
+provenance and the retraction check.
+
 Totals (pre-Phase-C.1 snapshot, stale — see the note above): 151 `table_direct`,
 39 `text_direct`, 15 `figure_digitized`. Tiers: 36 A, 124 B, 37 C, 8 D.
 

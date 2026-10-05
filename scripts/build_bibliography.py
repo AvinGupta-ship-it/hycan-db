@@ -139,6 +139,11 @@ def header(records: list[dict]) -> str:
     n_api = len(records) - n_pdf
     included = sum(1 for r in records if r.get("screening_decision") == "include")
     excluded = len(records) - included
+    n_issue_pdf = sum(1 for r in records if r["provenance"].get("number") == "pdf")
+    n_issue_openalex = sum(
+        1 for r in records if r["provenance"].get("number") == "openalex"
+    )
+    n_issue_none = sum(1 for r in records if r["provenance"].get("number") == "none")
     return f"""% references/bibliography.bib -- HyCAN-DB
 %
 % GENERATED FILE. Do not edit by hand.
@@ -164,13 +169,14 @@ def header(records: list[dict]) -> str:
 %
 % THREE THINGS A READER SHOULD KNOW, because each was a real error caught here.
 %
-% 1. `number` (ISSUE) IS THE WEAKEST FIELD IN THIS FILE. Only three of the 23
-%    PDFs print an issue number at all -- HYC-0002 in Science, HYC-0022 in JACS
-%    and HYC-0024 in J. Phys. Chem. B, whose citation lines carry it. Every
-%    Elsevier and Springer running head in this corpus carries volume, year and
-%    pages only, so 21 issue numbers come from OpenAlex and 6 are absent
-%    everywhere and omitted. An earlier draft of this header claimed no PDF
-%    printed one; a test against the sources file caught it.
+% 1. `number` (ISSUE) IS THE WEAKEST FIELD IN THIS FILE. {n_issue_pdf} entries
+%    take their issue from a PDF's own citation line (Science, JACS and J. Phys.
+%    Chem. B among them); every Elsevier and Springer running head in this corpus
+%    carries volume, year and pages only, so {n_issue_openalex} issue numbers come
+%    from OpenAlex and {n_issue_none} are absent everywhere and omitted. A
+%    corpus-wide OpenAlex backfill (2026-10-05) retrieved the issues that the
+%    articles themselves do not print. An earlier draft of this header claimed no
+%    PDF printed one; a test against the sources file caught it.
 %
 % 2. OPENALEX REPORTS ELSEVIER'S ONLINE-FIRST YEAR, NOT THE ISSUE YEAR. Six
 %    entries would have carried a year one too low -- HYC-0009, HYC-0012,

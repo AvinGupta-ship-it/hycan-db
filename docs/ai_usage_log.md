@@ -1999,3 +1999,13 @@ PDF-sourced). The corpus-wide retraction pass remains owed (egress-blocked); Age
 correction notice in the four PDFs, and HYC-0062 is itself the documented refutation case. Phase D
 extraction is complete through HYC-0065; what remains are the not-retrieved (HYC-0035/0036/0054/0055/
 0056/0059) and no-PDF screened-in (HYC-0003/0006/0008/0014) sets.
+
+## 2026-10-05 (continued) — Corpus-wide OpenAlex sweep: issue backfill + retraction check
+
+**Tools.** Main agent (Opus) + WebFetch; no subagents (a mechanical metadata lookup, not an extraction, so the dual-agent protocol does not apply). Shell `curl` to `api.openalex.org` is egress-blocked (403 at the proxy), so each DOI was fetched over WebFetch (`/works/doi:<DOI>?select=doi,biblio,is_retracted`), which reaches OpenAlex.
+
+**What was done.** All 59 bibliography entries fetched. (a) **Retraction:** `is_retracted` is false for all 59 -- the corpus-wide retraction pass, previously egress-blocked and owed, is complete and clean. (b) **Issue backfill:** 20 of the 31 `none`-provenance entries had an OpenAlex issue and were moved to `openalex` (`openalex` 21 -> 41, `none` 31 -> 11). The 8 issue numbers recorded but never applied by the earlier 2026-10-05 Phase D session were re-fetched and confirmed from OpenAlex before applying. A cross-check of the 28 entries that already carried an issue found zero discrepancies with OpenAlex.
+
+**Judgment calls.** HYC-0031 (Nat. Commun.) and HYC-0033 (Sci. Rep.) kept `none`: OpenAlex reports a nominal single-issue-per-volume "issue 1" for each, which these online-only article-numbered journals do not meaningfully have (matches the existing "genuinely no issue" determination for HYC-0033). HYC-0038/0039 (MDPI) notes said "no issue" but MDPI assigns real monthly issues and the corpus already treats other MDPI journals as issue-bearing; both were backfilled and the notes corrected.
+
+**807 tests passing.** `test_bibliography` issue pins updated (`openalex` 21 -> 41, `none` 31 -> 11); the generated .bib header's provenance counts made computed.

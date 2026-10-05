@@ -4,6 +4,18 @@ All notable changes to HyCAN-DB will be documented in this file.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
+### Changed — Corpus-wide OpenAlex sweep: issue backfill (2026-10-05)
+- **`references/bibliography_sources.json`: 20 issue numbers backfilled from OpenAlex** (`provenance.number` `none` -> `openalex`): HYC-0032/0034/0037/0038/0039/0044/0047/0048/0049/0050/0051/0052/0053/0057/0058/0060/0061/0063/0064/0065. This clears the backfill prior batches recorded as owed. Issue provenance **`openalex` 21 -> 41, `none` 31 -> 11**; `pdf` (6) and `citing_pdf` (1) unchanged.
+- **HYC-0038 / HYC-0039 (both MDPI) notes corrected.** They read "no issue"; MDPI assigns real monthly issues (9 and 14 here), and the corpus already treats other MDPI journals (HYC-0044, 0058) as issue-bearing, so these were inconsistent. Backfilled and the notes rewritten.
+- **HYC-0031 (Nat. Commun.) and HYC-0033 (Sci. Rep.) kept `none`.** OpenAlex reports a nominal `issue 1` for each -- the single-issue-per-volume placeholder these online-only, article-numbered journals use. Recording it would invent an issue the journal does not have; this matches the existing determination that HYC-0033 has "genuinely no issue." Each entry now carries a note documenting why, so a future re-sweep does not re-add it.
+- **`references/bibliography.bib` regenerated.** The generated header's issue-provenance counts (PDF / OpenAlex / absent) are now **computed from the sources file** rather than hardcoded -- the hardcoded "21 ... 6" had already gone stale.
+
+### Fixed — pinned test counts for the OpenAlex backfill
+- `test_bibliography`: issue `openalex` 21 -> 41, `none` 31 -> 11, and the per-batch partition comment replaced with the post-sweep breakdown. **807 tests passing.**
+
+### Disclosed — corpus-wide OpenAlex retraction check: CLEAN
+- **All 59 bibliography entries were checked against OpenAlex `is_retracted` on 2026-10-05; none is retracted.** This clears the standing corpus-wide retraction pass prior sessions recorded as owed. Shell `curl` to `api.openalex.org` is still egress-blocked (403), so the pass ran over WebFetch, which reaches OpenAlex. Per-PDF correction/retraction checks remain as recorded in earlier batches; no `is_retracted` flag was raised, so no Tier-D/controversy change follows.
+
 ### Added — Phase D extraction batch: HYC-0062/0063/0064/0065, 33 rows, dual-agent verified (final Phase D batch)
 - **`data/raw/measurements_v0.1.csv`: 488 → 521 rows, 47 → 51 papers**, 0 errors, **one new warning type** (`Uptake above 10 wt%`, admitted deliberately — see below). HYC-0062 (5: Chen 1999 *Science*, the discredited alkali-doped-CNT controversy paper), HYC-0063 (6: corn grain-based carbon monoliths, Balathanigaimani 2009), HYC-0064 (7: Zhundong-coal activated carbon, Cheng 2025), HYC-0065 (15: Pd-decorated mesoporous hollow carbon spheres, Baca 2017, at 20/30/45 bar). All four `verified` with the dual-agent dispute record in `verified_by` on **every row**. Batch tiers: **28 B, 1 C, 4 D**. This is the last Phase D extraction batch: every screened Phase D paper with a retrievable primary PDF is now extracted; the remainder are the full-text-not-retrieved set (HYC-0035/0036/0054/0055/0056/0059) and the no-PDF screened-in set (HYC-0003/0006/0008/0014).
 - **Independent Agent-B verification (four parallel Sonnet subagents) found 0 numeric transcription disputes across all four papers** — every uptake, area, pore volume, T and P confirmed against the primary source. The disputes were all classification / tiering / field-semantics / scope, and the substantive ones were upheld by Agent C:
