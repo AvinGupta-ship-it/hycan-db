@@ -1,0 +1,350 @@
+{
+  "paper": {
+    "paper_id": "HYC-0065",
+    "doi": "10.1016/j.ijhydene.2017.10.146",
+    "first_author": "Baca",
+    "year": "2017",
+    "journal": "International Journal of Hydrogen Energy",
+    "title": "Effect of Pd loading on hydrogen storage properties of disordered mesoporous hollow carbon spheres"
+  },
+  "defaults": {
+    "extractor": "HyCAN pipeline v2",
+    "extraction_date": "2026-10-05",
+    "verification_date": "2026-10-05",
+    "uptake_bound": "exact",
+    "temperature_unstated": "False",
+    "pressure_unstated": "False",
+    "measurement_mode": "isothermal",
+    "measurement_method": "volumetric_sieverts",
+    "extraction_method": "text_direct",
+    "extraction_confidence": "5",
+    "uptake_type": "unspecified",
+    "verified_by": "Agent B (sonnet, independent re-derivation of Tables 1-3 + Figs 6/8 + methods): every numeric cell on all samples confirmed. 313 K (40 C); IMI Hiden Isochema volumetric Sieverts. DMHCS = templated_carbon/template_synthesis (silica-templated CVD, ethylene); Pd@C = composite + metal_element=Pd + metal_loading_wt_pct (30/59/75/34 by TGA, HYC-0027 precedent). Agent C accepted Agent B's dispute to ADD the 20 and 30 bar tabulated points (Table 3; S10.3/HYC-0024 multi-pressure precedent) alongside the 45 bar values (Fig 8A/text): three pressures x five samples = 15 rows (table_direct for 20/30 bar read as wt% per the Fig 8A axis; text_direct for 45 bar). Table 3's carbon-share/Pd-share partition columns NOT recorded. Pd@C_120 excluded (reflux 120 h destroyed the morphology, no storable value); 3-Pd@C_24 cycling (0.61->0.50->0.48 wt%) kept in notes, not as rows. Calibration WITHHELD (no void/blank/buoyancy/He procedure); the purity point Agent B recommended is tier-neutral (uptake_type unspecified and no calibration cap the score at 8), so it is left as scored. All 15 Tier B."
+  },
+  "notes": {
+    "type": "uptake_type=unspecified. ALL at 313 K (40 C). measurement_method=volumetric_sieverts (IMI Hiden Isochema Sievert-type).",
+    "mat": "DMHCS = disordered mesoporous hollow carbon spheres (silica-templated CVD, ethylene) -> templated_carbon / template_synthesis. Pd@C = Pd-decorated DMHCS (reflux, Pd(NO3)2) -> composite + metal_element=Pd + metal_loading_wt_pct (TGA residue) [HYC-0027 precedent].",
+    "tex": "SBET by BET (ASAP 2010M, N2/77K); total_pore_volume single-point at p/p0 0.989; micropore_volume by DR (probe gas not named; N2 inferred).",
+    "press": "three tabulated pressures per sample: 20 & 30 bar (Table 3, table_direct) and 45 bar (Fig 8A/text). Table 3 header '% H2' read as wt% (Fig 8A axis is [%wt]). Table 3's carbon-share / Pd-share columns are the authors' partition, NOT recorded.",
+    "cw": "calibration WITHHELD (no void/He/blank/buoyancy procedure). purity point moot (tier B regardless: uptake_type unspecified and no calibration cap the score at 8). Pd@C_120 excluded (reflux 120 h destroyed morphology, no H2 data).",
+    "cyc": "3-Pd@C_24 cycling: 0.61 (cycle 1) -> 0.50 (after 2) -> 0.48 (after 4) at 45 bar; the later cycles are not separate rows (same sample/T/P)."
+  },
+  "samples": {
+    "S1": {
+      "label": "DMHCS",
+      "material_class": "templated_carbon",
+      "synthesis_method": "template_synthesis",
+      "material_description": "disordered mesoporous hollow carbon spheres (silica-templated CVD, ethylene; 360-420 nm, ~50 nm mesoporous shell)",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1378",
+      "total_pore_volume_cm3_g": "0.7371",
+      "micropore_volume_cm3_g": "0.3123",
+      "pore_volume_method": "DR",
+      "pore_volume_probe_gas": "N2",
+      "notes": [
+        "type",
+        "mat",
+        "tex",
+        "press",
+        "cw"
+      ]
+    },
+    "S2": {
+      "label": "Pd@C_24",
+      "material_class": "composite",
+      "synthesis_method": "template_synthesis",
+      "material_description": "Pd-decorated disordered mesoporous hollow carbon spheres (30 wt% Pd by TGA, avg Pd crystallite 4.6 nm; reflux Pd(NO3)2)",
+      "metal_element": "Pd",
+      "metal_loading_wt_pct": "30",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "573",
+      "total_pore_volume_cm3_g": "0.6777",
+      "micropore_volume_cm3_g": "0.2688",
+      "pore_volume_method": "DR",
+      "pore_volume_probe_gas": "N2",
+      "notes": [
+        "type",
+        "mat",
+        "tex",
+        "press",
+        "cw"
+      ]
+    },
+    "S3": {
+      "label": "2-Pd@C_24",
+      "material_class": "composite",
+      "synthesis_method": "template_synthesis",
+      "material_description": "Pd-decorated disordered mesoporous hollow carbon spheres (59 wt% Pd by TGA, avg Pd crystallite 5.3 nm; reflux Pd(NO3)2)",
+      "metal_element": "Pd",
+      "metal_loading_wt_pct": "59",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "282",
+      "total_pore_volume_cm3_g": "0.4109",
+      "micropore_volume_cm3_g": "0.1318",
+      "pore_volume_method": "DR",
+      "pore_volume_probe_gas": "N2",
+      "notes": [
+        "type",
+        "mat",
+        "tex",
+        "press",
+        "cw"
+      ]
+    },
+    "S4": {
+      "label": "3-Pd@C_24",
+      "material_class": "composite",
+      "synthesis_method": "template_synthesis",
+      "material_description": "Pd-decorated disordered mesoporous hollow carbon spheres (75 wt% Pd by TGA, avg Pd crystallite 7.3 nm; reflux Pd(NO3)2) -- cycling 0.61->0.50->0.48 wt% over 4 cycles",
+      "metal_element": "Pd",
+      "metal_loading_wt_pct": "75",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "166",
+      "total_pore_volume_cm3_g": "0.2638",
+      "micropore_volume_cm3_g": "0.0773",
+      "pore_volume_method": "DR",
+      "pore_volume_probe_gas": "N2",
+      "notes": [
+        "type",
+        "mat",
+        "tex",
+        "press",
+        "cw",
+        "cyc"
+      ]
+    },
+    "S5": {
+      "label": "Pd@C_72",
+      "material_class": "composite",
+      "synthesis_method": "template_synthesis",
+      "material_description": "Pd-decorated disordered mesoporous hollow carbon spheres (34 wt% Pd by TGA, avg Pd crystallite 4.8 nm; reflux Pd(NO3)2)",
+      "metal_element": "Pd",
+      "metal_loading_wt_pct": "34",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "564",
+      "total_pore_volume_cm3_g": "0.5773",
+      "micropore_volume_cm3_g": "0.2628",
+      "pore_volume_method": "DR",
+      "pore_volume_probe_gas": "N2",
+      "notes": [
+        "type",
+        "mat",
+        "tex",
+        "press",
+        "cw"
+      ]
+    }
+  },
+  "measurements": [
+    {
+      "sample": "S1",
+      "temperature_k": "313",
+      "pressure_bar": "20",
+      "uptake_wt_pct": "0.1",
+      "extraction_method": "table_direct",
+      "extraction_confidence": "4",
+      "reproducibility_tier": "B",
+      "notes": [
+        "type",
+        "press"
+      ],
+      "source_location": "Table 3 (20 bar, wt%)"
+    },
+    {
+      "sample": "S1",
+      "temperature_k": "313",
+      "pressure_bar": "30",
+      "uptake_wt_pct": "0.13",
+      "extraction_method": "table_direct",
+      "extraction_confidence": "4",
+      "reproducibility_tier": "B",
+      "notes": [
+        "type",
+        "press"
+      ],
+      "source_location": "Table 3 (30 bar, wt%)"
+    },
+    {
+      "sample": "S1",
+      "temperature_k": "313",
+      "pressure_bar": "45",
+      "uptake_wt_pct": "0.17",
+      "extraction_method": "text_direct",
+      "extraction_confidence": "5",
+      "reproducibility_tier": "B",
+      "notes": [
+        "type",
+        "press"
+      ],
+      "source_location": "Fig 8A/text (45 bar, wt%)"
+    },
+    {
+      "sample": "S2",
+      "temperature_k": "313",
+      "pressure_bar": "20",
+      "uptake_wt_pct": "0.36",
+      "extraction_method": "table_direct",
+      "extraction_confidence": "4",
+      "reproducibility_tier": "B",
+      "notes": [
+        "type",
+        "press"
+      ],
+      "source_location": "Table 3 (20 bar, wt%)"
+    },
+    {
+      "sample": "S2",
+      "temperature_k": "313",
+      "pressure_bar": "30",
+      "uptake_wt_pct": "0.415",
+      "extraction_method": "table_direct",
+      "extraction_confidence": "4",
+      "reproducibility_tier": "B",
+      "notes": [
+        "type",
+        "press"
+      ],
+      "source_location": "Table 3 (30 bar, wt%)"
+    },
+    {
+      "sample": "S2",
+      "temperature_k": "313",
+      "pressure_bar": "45",
+      "uptake_wt_pct": "0.51",
+      "extraction_method": "text_direct",
+      "extraction_confidence": "5",
+      "reproducibility_tier": "B",
+      "notes": [
+        "type",
+        "press"
+      ],
+      "source_location": "Fig 8A/text (45 bar, wt%)"
+    },
+    {
+      "sample": "S3",
+      "temperature_k": "313",
+      "pressure_bar": "20",
+      "uptake_wt_pct": "0.43",
+      "extraction_method": "table_direct",
+      "extraction_confidence": "4",
+      "reproducibility_tier": "B",
+      "notes": [
+        "type",
+        "press"
+      ],
+      "source_location": "Table 3 (20 bar, wt%)"
+    },
+    {
+      "sample": "S3",
+      "temperature_k": "313",
+      "pressure_bar": "30",
+      "uptake_wt_pct": "0.47",
+      "extraction_method": "table_direct",
+      "extraction_confidence": "4",
+      "reproducibility_tier": "B",
+      "notes": [
+        "type",
+        "press"
+      ],
+      "source_location": "Table 3 (30 bar, wt%)"
+    },
+    {
+      "sample": "S3",
+      "temperature_k": "313",
+      "pressure_bar": "45",
+      "uptake_wt_pct": "0.53",
+      "extraction_method": "text_direct",
+      "extraction_confidence": "5",
+      "reproducibility_tier": "B",
+      "notes": [
+        "type",
+        "press"
+      ],
+      "source_location": "Fig 8A/text (45 bar, wt%)"
+    },
+    {
+      "sample": "S4",
+      "temperature_k": "313",
+      "pressure_bar": "20",
+      "uptake_wt_pct": "0.55",
+      "extraction_method": "table_direct",
+      "extraction_confidence": "4",
+      "reproducibility_tier": "B",
+      "notes": [
+        "type",
+        "press"
+      ],
+      "source_location": "Table 3 (20 bar, wt%)"
+    },
+    {
+      "sample": "S4",
+      "temperature_k": "313",
+      "pressure_bar": "30",
+      "uptake_wt_pct": "0.59",
+      "extraction_method": "table_direct",
+      "extraction_confidence": "4",
+      "reproducibility_tier": "B",
+      "notes": [
+        "type",
+        "press"
+      ],
+      "source_location": "Table 3 (30 bar, wt%)"
+    },
+    {
+      "sample": "S4",
+      "temperature_k": "313",
+      "pressure_bar": "45",
+      "uptake_wt_pct": "0.61",
+      "extraction_method": "text_direct",
+      "extraction_confidence": "5",
+      "reproducibility_tier": "B",
+      "notes": [
+        "type",
+        "press"
+      ],
+      "source_location": "Fig 8A/text (45 bar, wt%)"
+    },
+    {
+      "sample": "S5",
+      "temperature_k": "313",
+      "pressure_bar": "20",
+      "uptake_wt_pct": "0.33",
+      "extraction_method": "table_direct",
+      "extraction_confidence": "4",
+      "reproducibility_tier": "B",
+      "notes": [
+        "type",
+        "press"
+      ],
+      "source_location": "Table 3 (20 bar, wt%)"
+    },
+    {
+      "sample": "S5",
+      "temperature_k": "313",
+      "pressure_bar": "30",
+      "uptake_wt_pct": "0.4",
+      "extraction_method": "table_direct",
+      "extraction_confidence": "4",
+      "reproducibility_tier": "B",
+      "notes": [
+        "type",
+        "press"
+      ],
+      "source_location": "Table 3 (30 bar, wt%)"
+    },
+    {
+      "sample": "S5",
+      "temperature_k": "313",
+      "pressure_bar": "45",
+      "uptake_wt_pct": "0.50",
+      "extraction_method": "text_direct",
+      "extraction_confidence": "5",
+      "reproducibility_tier": "B",
+      "notes": [
+        "type",
+        "press"
+      ],
+      "source_location": "Fig 8A/text (45 bar, wt%)"
+    }
+  ]
+}

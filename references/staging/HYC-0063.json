@@ -1,0 +1,177 @@
+{
+  "paper": {
+    "paper_id": "HYC-0063",
+    "doi": "10.1016/j.cattod.2009.02.025",
+    "first_author": "Balathanigaimani",
+    "year": "2009",
+    "journal": "Catalysis Today",
+    "title": "Hydrogen storage on highly porous novel corn grain-based carbon monoliths"
+  },
+  "defaults": {
+    "extractor": "HyCAN pipeline v2",
+    "extraction_date": "2026-10-05",
+    "verification_date": "2026-10-05",
+    "uptake_bound": "exact",
+    "temperature_unstated": "False",
+    "pressure_unstated": "False",
+    "measurement_mode": "isothermal",
+    "measurement_method": "volumetric_sieverts",
+    "extraction_method": "text_direct",
+    "extraction_confidence": "5",
+    "uptake_type": "unspecified",
+    "verified_by": "Agent B (sonnet, independent re-derivation of Table 1 + methods): 6 rows, 50/55 cells confirmed, 5 disputes all accepted by Agent C. 298 K/50 bar per-sample uptakes (MR-1/2 0.40, MR-1/3 0.41, MR-1/4 0.46; gravimetric magnetic-suspension microbalance) text-explicit; BET (2147/2541/2647), pore volumes and 4VT/SBET pore widths confirmed against Table 1. Accepted: synthesis_method chemical_activation->unknown (the paper names only 'carbonized char and activating agent' and defers the route to refs [17-19]; the agent is never named -- HYC-0024/0007 'assign only when stated' precedent); the 77 K per-sample uptakes are figure-only (the paper states only the collective max 2.39-2.45 wt%), so MR-1/2 = 2.39 anchored via its stated volumetric 10.01 g/L / piece density 0.420 (=2.38), and MR-1/3 & MR-1/4 = 2.45 as uptake_bound=upper (true value <=2.45); their extraction_method figure_estimated->text_direct (figure_estimated is banned for new rows, test_dataset_invariants). +micropore_volume_co2 (VDR CO2 0.508/0.422/0.515). Calibration WITHHELD (magnetic-suspension balance named, no buoyancy/void/blank procedure; the +/-0.0067 is an uncertainty). All 6 Tier B."
+  },
+  "notes": {
+    "type": "uptake_type=unspecified (no excess/absolute/total word; paper says 'mass basis').",
+    "mat": "corn-grain activated carbon compressed with CMC-Na binder into monoliths. activated_carbon. synthesis_method=unknown: the paper names only 'carbonized char and activating agent' at char:agent 1:2/1:3/1:4 and defers the route to refs [17-19]; the activating agent is NOT named (HYC-0024/0007 precedent: assign chemical_activation only when stated).",
+    "tex": "SBET by BET (N2, 77 K, P/P0 0.01-0.05, ASAP 2020). total_pore_volume single-point at P/P0 0.99; micropore_volume = VDR(N2) (DR, probe N2); micropore_volume_co2 = VDR(CO2); average_pore_diameter = 4VT/SBET (geometric_from_S_V). piece density (no schema field) 0.420/0.323/0.292 g/cm3.",
+    "m298": "298 K / 50 bar: gravimetric magnetic-suspension microbalance (Rubotherm); per-sample EXPLICIT (0.40/0.41/0.46, Sec 3.3). measurement error +/-0.0067 wt%.",
+    "m77": "77 K / 1 bar: volumetric adsorption analyzer (ref [22]). Collective max 2.39-2.45 wt% (Fig 3, per-sample figure-only). MR-1/2 = 2.39 anchored (volumetric 10.01 g/L / piece density 0.420 = 2.38). MR-1/3, MR-1/4: per-sample 77 K not stated -> uptake_bound=upper at the 2.45 collective max (true value <=2.45).",
+    "cal": "calibration WITHHELD (magnetic-suspension balance named; no buoyancy/void/blank procedure; the +/-0.0067 is an uncertainty, not a calibration)."
+  },
+  "samples": {
+    "S1": {
+      "label": "MR-1/2",
+      "material_class": "activated_carbon",
+      "synthesis_method": "unknown",
+      "material_description": "corn grain-based activated carbon monolith MR-1/2 (CMC-Na binder; char:activating-agent 1:2, agent not named in paper); piece density 0.420 g/cm3",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "2147",
+      "total_pore_volume_cm3_g": "0.894",
+      "micropore_volume_cm3_g": "0.762",
+      "micropore_volume_co2_cm3_g": "0.508",
+      "pore_volume_method": "DR",
+      "pore_volume_probe_gas": "N2",
+      "average_pore_diameter_nm": "1.67",
+      "pore_diameter_method": "geometric_from_S_V",
+      "notes": [
+        "type",
+        "mat",
+        "tex",
+        "cal"
+      ]
+    },
+    "S2": {
+      "label": "MR-1/3",
+      "material_class": "activated_carbon",
+      "synthesis_method": "unknown",
+      "material_description": "corn grain-based activated carbon monolith MR-1/3 (CMC-Na binder; char:activating-agent 1:3, agent not named in paper); piece density 0.323 g/cm3",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "2541",
+      "total_pore_volume_cm3_g": "1.258",
+      "micropore_volume_cm3_g": "0.896",
+      "micropore_volume_co2_cm3_g": "0.422",
+      "pore_volume_method": "DR",
+      "pore_volume_probe_gas": "N2",
+      "average_pore_diameter_nm": "1.98",
+      "pore_diameter_method": "geometric_from_S_V",
+      "notes": [
+        "type",
+        "mat",
+        "tex",
+        "cal"
+      ]
+    },
+    "S3": {
+      "label": "MR-1/4",
+      "material_class": "activated_carbon",
+      "synthesis_method": "unknown",
+      "material_description": "corn grain-based activated carbon monolith MR-1/4 (CMC-Na binder; char:activating-agent 1:4, agent not named in paper); piece density 0.292 g/cm3",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "2647",
+      "total_pore_volume_cm3_g": "1.512",
+      "micropore_volume_cm3_g": "0.955",
+      "micropore_volume_co2_cm3_g": "0.515",
+      "pore_volume_method": "DR",
+      "pore_volume_probe_gas": "N2",
+      "average_pore_diameter_nm": "2.30",
+      "pore_diameter_method": "geometric_from_S_V",
+      "notes": [
+        "type",
+        "mat",
+        "tex",
+        "cal"
+      ]
+    }
+  },
+  "measurements": [
+    {
+      "sample": "S1",
+      "temperature_k": "298",
+      "pressure_bar": "50",
+      "uptake_wt_pct": "0.40",
+      "measurement_method": "gravimetric_microbalance",
+      "uncertainty_wt_pct": "0.0067",
+      "reproducibility_tier": "B",
+      "notes": [
+        "m298"
+      ],
+      "source_location": "Section 3.3/Conclusions (298 K, 50 bar, wt%)"
+    },
+    {
+      "sample": "S1",
+      "temperature_k": "77",
+      "pressure_bar": "1",
+      "uptake_wt_pct": "2.39",
+      "uptake_bound": "exact",
+      "extraction_confidence": "4",
+      "reproducibility_tier": "B",
+      "notes": [
+        "m77"
+      ],
+      "source_location": "Section 3.2/Conclusions (77 K, 1 bar; collective max 2.39-2.45 wt%)"
+    },
+    {
+      "sample": "S2",
+      "temperature_k": "298",
+      "pressure_bar": "50",
+      "uptake_wt_pct": "0.41",
+      "measurement_method": "gravimetric_microbalance",
+      "uncertainty_wt_pct": "0.0067",
+      "reproducibility_tier": "B",
+      "notes": [
+        "m298"
+      ],
+      "source_location": "Section 3.3/Conclusions (298 K, 50 bar, wt%)"
+    },
+    {
+      "sample": "S2",
+      "temperature_k": "77",
+      "pressure_bar": "1",
+      "uptake_wt_pct": "2.45",
+      "uptake_bound": "upper",
+      "extraction_confidence": "3",
+      "reproducibility_tier": "B",
+      "notes": [
+        "m77"
+      ],
+      "source_location": "Section 3.2/Conclusions (77 K, 1 bar; collective max 2.39-2.45 wt%)"
+    },
+    {
+      "sample": "S3",
+      "temperature_k": "298",
+      "pressure_bar": "50",
+      "uptake_wt_pct": "0.46",
+      "measurement_method": "gravimetric_microbalance",
+      "uncertainty_wt_pct": "0.0067",
+      "reproducibility_tier": "B",
+      "notes": [
+        "m298"
+      ],
+      "source_location": "Section 3.3/Conclusions (298 K, 50 bar, wt%)"
+    },
+    {
+      "sample": "S3",
+      "temperature_k": "77",
+      "pressure_bar": "1",
+      "uptake_wt_pct": "2.45",
+      "uptake_bound": "upper",
+      "extraction_confidence": "3",
+      "reproducibility_tier": "B",
+      "notes": [
+        "m77"
+      ],
+      "source_location": "Section 3.2/Conclusions (77 K, 1 bar; collective max 2.39-2.45 wt%)"
+    }
+  ]
+}

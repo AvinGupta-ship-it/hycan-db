@@ -1,0 +1,314 @@
+{
+  "paper": {
+    "paper_id": "HYC-0064",
+    "doi": "10.1007/s40789-025-00811-3",
+    "first_author": "Cheng",
+    "year": "2025",
+    "journal": "International Journal of Coal Science & Technology",
+    "title": "Synthesis of activated carbon from Zhundong coal and its hydrogen storage application"
+  },
+  "defaults": {
+    "extractor": "HyCAN pipeline v2",
+    "extraction_date": "2026-10-05",
+    "verification_date": "2026-10-05",
+    "uptake_bound": "exact",
+    "temperature_unstated": "False",
+    "pressure_unstated": "False",
+    "measurement_mode": "isothermal",
+    "measurement_method": "volumetric_sieverts",
+    "extraction_method": "table_direct",
+    "extraction_confidence": "5",
+    "uptake_type": "unspecified",
+    "verified_by": "Agent B (sonnet, independent re-derivation of Tables 1-7 + methods): 7 unique samples (ZD-HK-AC in Table 4 == ZD-HK3-AC in Table 5, deduplicated), all 56 numeric cells confirmed. 303 K (Table 7), 80 bar; H-Sorb 2600T static volumetric. The 0.91 wt% headline (abstract/conclusion/Tables 4/5/7) used over the one-off Fig-4a '1.26'. Agent C accepted Agent B's decisive dispute: the calibration point is WITHHELD -- the paper states only 'calibrate the volume'/'sample volume calibration' + a leak check, with no He/blank/buoyancy/EOS/reference procedure, which is no stronger than HYC-0057 (withheld) and HYC-0015/0017 (scored 0). This drops the six acid-treated samples from Tier A to B, so all 7 rows are Tier B (code 7 for ZD-AC, 8 for the six with the HCl-demineralization purity point). Also accepted: ZD-AC and ZD-H-AC synthesis_method pyrolysis->carbonization (the paper's own 'directly carbonized' term; other+carbonization precedent, HYC-0021/0044); the 'alkali-carbon ratio' direction is undefined in the paper, recorded as labelled; pore_diameter_method=other. Purity point KEPT on the six acid-treated samples (5 M HCl demineralization of the raw coal + residual mineral content by XRF, Table 3; NOT the post-activation wash, excluded per HYC-0053/0057/0058). ZD-AC/ZD-H-AC classed 'other' (unactivated carbonized coal). M3 (ZD-HNa-AC) printed dp 2.66 nm vs 4V/A ~1.1 nm and a physically low Vtotal are source anomalies (S3.7): transcription matches Table 4, kept as printed with a note."
+  },
+  "notes": {
+    "type": "uptake_type=unspecified. ALL at 303 K (Table 7), 80 bar. measurement_method=volumetric_sieverts (H-Sorb 2600T static volumetric; m1/m2 weigh = sample mass only).",
+    "cal": "calibration WITHHELD: the paper states only 'calibrate the volume' / 'sample volume calibration' + a leak check -- no He, empty-cell blank, buoyancy, EOS or reference material. Same wording as HYC-0057 (withheld) and HYC-0015/0017 (scored 0). All 7 Tier B.",
+    "pur": "purity point KEPT: 5 M HCl demineralization of the raw coal (Sec 2.2) with residual mineral content by XRF (Table 3) -> purification_method on acid-treated samples. ZD-AC (no acid) -> purity 0. (Table 3 is a stage series, not per-sample, so residual-metal fields are left empty.)",
+    "tex": "SBET by BET (ASAP-2460, N2/77K); Slang = langmuir; Smic = micropore_surface_area (t-plot); Vtotal @ P/P0 0.99 = total_pore_volume; Vmic (t-plot) = micropore_volume; Vmeso = Vtotal-Vmic = mesopore_volume; dp = average pore width of adsorption (pore_diameter_method=other). M3 (ZD-HNa-AC) anomaly: printed dp 2.66 nm vs 4V/A ~1.1 nm, and Vtotal 0.18 < BET monolayer equivalent -- transcription matches the table, kept as printed (S3.7).",
+    "dup": "ZD-HK-AC (Table 4) == ZD-HK3-AC (Table 5) -> recorded ONCE as ZD-HK3-AC.",
+    "incon": "the Fig-4a narrative says ZD-HK-AC '1.26 wt%' but the abstract, conclusion and Tables 4/5/7 all say 0.91 -> 0.91 used.",
+    "ratio": "'alkali-carbon ratio' X (ZD-HK{X}-AC, X=1-4); the paper does not define the ratio direction (its 'excessive KOH' wording suggests KOH:coal = X:1), recorded as labelled."
+  },
+  "samples": {
+    "S1": {
+      "label": "ZD-AC",
+      "material_class": "other",
+      "synthesis_method": "carbonization",
+      "material_description": "Zhundong-coal carbon ZD-AC (direct carbonization, unactivated)",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "47",
+      "langmuir_surface_area_m2_g": "52",
+      "micropore_surface_area_m2_g": "39",
+      "total_pore_volume_cm3_g": "0.05",
+      "micropore_volume_cm3_g": "0.01",
+      "mesopore_volume_cm3_g": "0.04",
+      "pore_volume_method": "t_plot",
+      "pore_volume_probe_gas": "N2",
+      "average_pore_diameter_nm": "3.87",
+      "pore_diameter_method": "other",
+      "notes": [
+        "type",
+        "cal",
+        "pur",
+        "tex",
+        "dup",
+        "incon",
+        "ratio"
+      ]
+    },
+    "S2": {
+      "label": "ZD-H-AC",
+      "material_class": "other",
+      "synthesis_method": "carbonization",
+      "material_description": "Zhundong-coal carbon ZD-H-AC (HCl-pretreated then directly carbonized, unactivated)",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "392",
+      "langmuir_surface_area_m2_g": "452",
+      "micropore_surface_area_m2_g": "316",
+      "total_pore_volume_cm3_g": "0.22",
+      "micropore_volume_cm3_g": "0.08",
+      "mesopore_volume_cm3_g": "0.14",
+      "pore_volume_method": "t_plot",
+      "pore_volume_probe_gas": "N2",
+      "average_pore_diameter_nm": "2.19",
+      "pore_diameter_method": "other",
+      "notes": [
+        "type",
+        "cal",
+        "pur",
+        "tex",
+        "dup",
+        "incon",
+        "ratio"
+      ],
+      "purification_method": "5 M HCl demineralization of raw coal (Sec 2.2); residual mineral content by XRF (Table 3)"
+    },
+    "S3": {
+      "label": "ZD-HNa-AC",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "Zhundong-coal carbon ZD-HNa-AC (KOH/NaOH-activated, alkali-carbon ratio per label; ratio direction not defined in paper)",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "657",
+      "langmuir_surface_area_m2_g": "803",
+      "micropore_surface_area_m2_g": "405",
+      "total_pore_volume_cm3_g": "0.18",
+      "micropore_volume_cm3_g": "0.12",
+      "mesopore_volume_cm3_g": "0.06",
+      "pore_volume_method": "t_plot",
+      "pore_volume_probe_gas": "N2",
+      "average_pore_diameter_nm": "2.66",
+      "pore_diameter_method": "other",
+      "notes": [
+        "type",
+        "cal",
+        "pur",
+        "tex",
+        "dup",
+        "incon",
+        "ratio"
+      ],
+      "purification_method": "5 M HCl demineralization of raw coal (Sec 2.2); residual mineral content by XRF (Table 3)",
+      "activation_method": "NaOH activation + CO2/N2 (100/200 mL/min) physical activation; HCl pre/post demineralization"
+    },
+    "S4": {
+      "label": "ZD-HK1-AC",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "Zhundong-coal carbon ZD-HK1-AC (KOH/NaOH-activated, alkali-carbon ratio per label; ratio direction not defined in paper)",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1192",
+      "langmuir_surface_area_m2_g": "1309",
+      "micropore_surface_area_m2_g": "1083",
+      "total_pore_volume_cm3_g": "0.52",
+      "micropore_volume_cm3_g": "0.22",
+      "mesopore_volume_cm3_g": "0.30",
+      "pore_volume_method": "t_plot",
+      "pore_volume_probe_gas": "N2",
+      "average_pore_diameter_nm": "1.74",
+      "pore_diameter_method": "other",
+      "notes": [
+        "type",
+        "cal",
+        "pur",
+        "tex",
+        "dup",
+        "incon",
+        "ratio"
+      ],
+      "purification_method": "5 M HCl demineralization of raw coal (Sec 2.2); residual mineral content by XRF (Table 3)",
+      "activation_method": "KOH activation (alkali-carbon ratio 1) + CO2/N2 physical activation; HCl pre/post"
+    },
+    "S5": {
+      "label": "ZD-HK2-AC",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "Zhundong-coal carbon ZD-HK2-AC (KOH/NaOH-activated, alkali-carbon ratio per label; ratio direction not defined in paper)",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1555",
+      "langmuir_surface_area_m2_g": "1803",
+      "micropore_surface_area_m2_g": "1085",
+      "total_pore_volume_cm3_g": "0.68",
+      "micropore_volume_cm3_g": "0.41",
+      "mesopore_volume_cm3_g": "0.27",
+      "pore_volume_method": "t_plot",
+      "pore_volume_probe_gas": "N2",
+      "average_pore_diameter_nm": "1.77",
+      "pore_diameter_method": "other",
+      "notes": [
+        "type",
+        "cal",
+        "pur",
+        "tex",
+        "dup",
+        "incon",
+        "ratio"
+      ],
+      "purification_method": "5 M HCl demineralization of raw coal (Sec 2.2); residual mineral content by XRF (Table 3)",
+      "activation_method": "KOH activation (alkali-carbon ratio 2) + CO2/N2 physical activation; HCl pre/post"
+    },
+    "S6": {
+      "label": "ZD-HK3-AC",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "Zhundong-coal carbon ZD-HK3-AC (KOH/NaOH-activated, alkali-carbon ratio per label; ratio direction not defined in paper)",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1980",
+      "langmuir_surface_area_m2_g": "2311",
+      "micropore_surface_area_m2_g": "1069",
+      "total_pore_volume_cm3_g": "1.02",
+      "micropore_volume_cm3_g": "0.50",
+      "mesopore_volume_cm3_g": "0.52",
+      "pore_volume_method": "t_plot",
+      "pore_volume_probe_gas": "N2",
+      "average_pore_diameter_nm": "1.96",
+      "pore_diameter_method": "other",
+      "notes": [
+        "type",
+        "cal",
+        "pur",
+        "tex",
+        "dup",
+        "incon",
+        "ratio"
+      ],
+      "purification_method": "5 M HCl demineralization of raw coal (Sec 2.2); residual mineral content by XRF (Table 3)",
+      "activation_method": "KOH activation (alkali-carbon ratio 3) + CO2/N2 physical activation; HCl pre/post"
+    },
+    "S7": {
+      "label": "ZD-HK4-AC",
+      "material_class": "activated_carbon",
+      "synthesis_method": "chemical_activation",
+      "material_description": "Zhundong-coal carbon ZD-HK4-AC (KOH/NaOH-activated, alkali-carbon ratio per label; ratio direction not defined in paper)",
+      "surface_area_method": "BET",
+      "bet_surface_area_m2_g": "1776",
+      "langmuir_surface_area_m2_g": "2244",
+      "micropore_surface_area_m2_g": "770",
+      "total_pore_volume_cm3_g": "0.90",
+      "micropore_volume_cm3_g": "0.32",
+      "mesopore_volume_cm3_g": "0.58",
+      "pore_volume_method": "t_plot",
+      "pore_volume_probe_gas": "N2",
+      "average_pore_diameter_nm": "1.93",
+      "pore_diameter_method": "other",
+      "notes": [
+        "type",
+        "cal",
+        "pur",
+        "tex",
+        "dup",
+        "incon",
+        "ratio"
+      ],
+      "purification_method": "5 M HCl demineralization of raw coal (Sec 2.2); residual mineral content by XRF (Table 3)",
+      "activation_method": "KOH activation (alkali-carbon ratio 4) + CO2/N2 physical activation; HCl pre/post"
+    }
+  },
+  "measurements": [
+    {
+      "sample": "S1",
+      "temperature_k": "303",
+      "pressure_bar": "80",
+      "uptake_wt_pct": "0.04",
+      "reproducibility_tier": "B",
+      "notes": [
+        "type",
+        "cal"
+      ],
+      "source_location": "Tables 4/5 (303 K, 80 bar, gravimetric H2 wt%)"
+    },
+    {
+      "sample": "S2",
+      "temperature_k": "303",
+      "pressure_bar": "80",
+      "uptake_wt_pct": "0.18",
+      "reproducibility_tier": "B",
+      "notes": [
+        "type",
+        "cal"
+      ],
+      "source_location": "Tables 4/5 (303 K, 80 bar, gravimetric H2 wt%)"
+    },
+    {
+      "sample": "S3",
+      "temperature_k": "303",
+      "pressure_bar": "80",
+      "uptake_wt_pct": "0.38",
+      "reproducibility_tier": "B",
+      "notes": [
+        "type",
+        "cal"
+      ],
+      "source_location": "Tables 4/5 (303 K, 80 bar, gravimetric H2 wt%)"
+    },
+    {
+      "sample": "S4",
+      "temperature_k": "303",
+      "pressure_bar": "80",
+      "uptake_wt_pct": "0.56",
+      "reproducibility_tier": "B",
+      "notes": [
+        "type",
+        "cal"
+      ],
+      "source_location": "Tables 4/5 (303 K, 80 bar, gravimetric H2 wt%)"
+    },
+    {
+      "sample": "S5",
+      "temperature_k": "303",
+      "pressure_bar": "80",
+      "uptake_wt_pct": "0.77",
+      "reproducibility_tier": "B",
+      "notes": [
+        "type",
+        "cal"
+      ],
+      "source_location": "Tables 4/5 (303 K, 80 bar, gravimetric H2 wt%)"
+    },
+    {
+      "sample": "S6",
+      "temperature_k": "303",
+      "pressure_bar": "80",
+      "uptake_wt_pct": "0.91",
+      "reproducibility_tier": "B",
+      "notes": [
+        "type",
+        "cal"
+      ],
+      "source_location": "Tables 4/5 (303 K, 80 bar, gravimetric H2 wt%)"
+    },
+    {
+      "sample": "S7",
+      "temperature_k": "303",
+      "pressure_bar": "80",
+      "uptake_wt_pct": "0.64",
+      "reproducibility_tier": "B",
+      "notes": [
+        "type",
+        "cal"
+      ],
+      "source_location": "Tables 4/5 (303 K, 80 bar, gravimetric H2 wt%)"
+    }
+  ]
+}

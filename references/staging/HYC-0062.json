@@ -1,0 +1,187 @@
+{
+  "paper": {
+    "paper_id": "HYC-0062",
+    "doi": "10.1126/science.285.5424.91",
+    "first_author": "Chen",
+    "year": "1999",
+    "journal": "Science",
+    "title": "High H2 Uptake by Alkali-Doped Carbon Nanotubes Under Ambient Pressure and Moderate Temperatures"
+  },
+  "defaults": {
+    "extractor": "HyCAN pipeline v2",
+    "extraction_date": "2026-10-05",
+    "verification_date": "2026-10-05",
+    "uptake_bound": "exact",
+    "temperature_unstated": "False",
+    "pressure_unstated": "False",
+    "measurement_mode": "isothermal",
+    "measurement_method": "gravimetric_microbalance",
+    "extraction_method": "table_direct",
+    "extraction_confidence": "5",
+    "uptake_type": "unspecified",
+    "verified_by": "Agent B (sonnet, independent re-derivation of Table 1 + Figs 1A/1B + schema): 5 rows. The four discredited uptakes (Li-CNT 20.0, Li-graphite 14.0, K-CNT 14.0, K-graphite 5.0 wt%) and the undoped-CNT 0.4 wt% baseline all confirmed against Table 1, with the two 14.0s correctly separated and the energy column (wt% x 33.3 kWh/kg) cross-checking. This is the CONTROVERSY paper (Chen 1999 Science): Yang 2000 (Carbon 38:623) showed the TGA weight gain was largely moisture, dry H2 ~2 wt%, so the four doped rows are retained at Tier D with the discrepancy per S13.6 (HYC-0011 precedent). measurement_method=gravimetric_microbalance (TGA); measurement_mode=temperature_cycle with reference_temperature_k = complete-desorption T (Li 823 K, K 773 K); the 653 K Li absorption exceeds temperature_k's 500 K cap so temperature_unstated=True (653 K in source_location). Agent C accepted Agent B's disputes: doped CNT material_class doped_carbon->MWCNT (a doped nanotube keeps its structural class + dopant_element, HYC-0025/0037 precedent; also correctly fires the pre-2005-raw-CNT warning the earlier call lost); doped graphite doped_carbon->other (no graphite class); pressure 1 atm 1.01->1.01325 bar (HYC-0029 convention). Agent C added the undoped-CNT 0.4 wt% baseline row per Agent B (S3.2/S7.4 null result), at Tier C (scorer; a baseline, not a discredited claim) rather than the hand D. The 14.5 wt% 673 K ramp transient was declined as a separate row (explicitly non-equilibrium, same sample) and kept in notes. Comparison rows (FeTi-H, NiMg-H, cryoadsorption, isooctane) and the Vi density column excluded. Introduces one new warning type, 'Uptake above 10 wt%' (3 rows)."
+  },
+  "notes": {
+    "disc": "DISCREDITED boom-bust claim (controversy set S6.7). Yang 2000 (Carbon 38:623) showed the TGA weight gain was largely moisture/H2O in the purge gas; dry H2 gave ~2 wt% (~7-10x lower). Retained at Tier D with the discrepancy per S13.6 (HYC-0011 precedent). Values are the paper's own Table 1 / text figures.",
+    "method": "TGA thermobalance under flowing purified H2 (>99.99%), confirmed by TPD; in-situ FTIR shows dissociative hydrogenation (C-H, Li-H, Li2C2) -- chemisorption. measurement_method=gravimetric_microbalance. No sample mass / blank / buoyancy / calibration / uncertainty reported (only >99.99% gas purity).",
+    "cycle": "weight gain over a thermal ramp/hold in flowing H2 -> measurement_mode=temperature_cycle (HYC-0029): absorption T = temperature_k, complete-desorption T = reference_temperature_k. Li: absorb 653 K / desorb 823 K; 653 K exceeds the 500 K temperature_k cap, so temperature_unstated=True (653 K stated in source_location). Li-CNT also reached 14.5 wt% at 673 K on the 5 K/min ramp (NON-equilibrium; not recorded as a row). K: absorb 298 K / desorb 773 K. ambient pressure 1 atm = 1.01325 bar.",
+    "class": "doped nanotube keeps its structural class -> MWCNT + dopant_element (HYC-0025/0037); doped graphite -> other (no graphite class) + dopant_element. base CNT from CH4 CVD (>90% MWCNT, 25-35 nm, interplanar 0.347 nm, SSA 130); base graphite Merck 50 um, SSA 8.6. Li/C or K/C ~1/15 (atomic ratio) by XPS. bet_surface_area is the UNDOPED host SSA; surface_area_method=unspecified.",
+    "base": "undoped CNT baseline 0.4 wt% (Table 1 'CNT' row, attrib. ref 9; 'or no H2 absorption' so possibly <=0.4) over a 298-773 K scan -> no single T (temperature_unstated), Tier C (a baseline, not a discredited claim). Undoped graphite 'no absorption' (no number) -> note only.",
+    "excl": "Table 1 comparison rows (FeTi-H, NiMg-H, cryoadsorption, isooctane) and intro Dillon/Chambers/Ye values excluded (non-carbon / not this work). Vi density column not recorded (180/12.6/280 g/L internally inconsistent, S3.7)."
+  },
+  "samples": {
+    "S1": {
+      "label": "Li-doped CNT",
+      "material_class": "MWCNT",
+      "synthesis_method": "cvd",
+      "material_description": "Li-doped multiwalled carbon nanotubes (CH4 CVD) (solid-state reaction with Li carbonate/nitrate, Li/C ~1/15 by XPS; host SSA 130 m2/g)",
+      "surface_area_method": "unspecified",
+      "bet_surface_area_m2_g": "130",
+      "notes": [
+        "disc",
+        "method",
+        "cycle",
+        "class"
+      ],
+      "dopant_element": "Li"
+    },
+    "S2": {
+      "label": "Li-doped graphite",
+      "material_class": "other",
+      "synthesis_method": "commercial",
+      "material_description": "Li-doped Merck graphite (~50 um) (solid-state reaction with Li carbonate/nitrate, Li/C ~1/15 by XPS; host SSA 8.6 m2/g)",
+      "surface_area_method": "unspecified",
+      "bet_surface_area_m2_g": "8.6",
+      "notes": [
+        "disc",
+        "method",
+        "cycle",
+        "class"
+      ],
+      "dopant_element": "Li"
+    },
+    "S3": {
+      "label": "K-doped CNT",
+      "material_class": "MWCNT",
+      "synthesis_method": "cvd",
+      "material_description": "K-doped multiwalled carbon nanotubes (CH4 CVD) (solid-state reaction with K carbonate/nitrate, K/C ~1/15 by XPS; host SSA 130 m2/g)",
+      "surface_area_method": "unspecified",
+      "bet_surface_area_m2_g": "130",
+      "notes": [
+        "disc",
+        "method",
+        "cycle",
+        "class"
+      ],
+      "dopant_element": "K"
+    },
+    "S4": {
+      "label": "K-doped graphite",
+      "material_class": "other",
+      "synthesis_method": "commercial",
+      "material_description": "K-doped Merck graphite (~50 um) (solid-state reaction with K carbonate/nitrate, K/C ~1/15 by XPS; host SSA 8.6 m2/g)",
+      "surface_area_method": "unspecified",
+      "bet_surface_area_m2_g": "8.6",
+      "notes": [
+        "disc",
+        "method",
+        "cycle",
+        "class"
+      ],
+      "dopant_element": "K"
+    },
+    "S5": {
+      "label": "CNT (undoped)",
+      "material_class": "MWCNT",
+      "synthesis_method": "cvd",
+      "material_description": "undoped multiwalled carbon nanotubes (CH4 CVD, >90% MWCNT, 25-35 nm); baseline, 0.4 wt% or no absorption over a 298-773 K scan",
+      "surface_area_method": "unspecified",
+      "bet_surface_area_m2_g": "130",
+      "notes": [
+        "disc",
+        "method",
+        "cycle",
+        "class",
+        "base"
+      ]
+    }
+  },
+  "measurements": [
+    {
+      "sample": "S1",
+      "pressure_bar": "1.01325",
+      "uptake_wt_pct": "20.0",
+      "measurement_mode": "temperature_cycle",
+      "reference_temperature_k": "823",
+      "extraction_confidence": "5",
+      "reproducibility_tier": "D",
+      "notes": [
+        "disc",
+        "cycle"
+      ],
+      "source_location": "Table 1 + text (TGA, absorption at 653 K, ambient pressure)",
+      "temperature_unstated": "True"
+    },
+    {
+      "sample": "S2",
+      "pressure_bar": "1.01325",
+      "uptake_wt_pct": "14.0",
+      "measurement_mode": "temperature_cycle",
+      "reference_temperature_k": "823",
+      "extraction_confidence": "4",
+      "reproducibility_tier": "D",
+      "notes": [
+        "disc",
+        "cycle"
+      ],
+      "source_location": "Table 1 + text (TGA, absorption at 653 K, ambient pressure)",
+      "temperature_unstated": "True"
+    },
+    {
+      "sample": "S3",
+      "pressure_bar": "1.01325",
+      "uptake_wt_pct": "14.0",
+      "measurement_mode": "temperature_cycle",
+      "reference_temperature_k": "773",
+      "extraction_confidence": "5",
+      "reproducibility_tier": "D",
+      "notes": [
+        "disc",
+        "cycle"
+      ],
+      "source_location": "Table 1 + text (TGA, absorption at 298 K, ambient pressure)",
+      "temperature_k": "298"
+    },
+    {
+      "sample": "S4",
+      "pressure_bar": "1.01325",
+      "uptake_wt_pct": "5.0",
+      "measurement_mode": "temperature_cycle",
+      "reference_temperature_k": "773",
+      "extraction_confidence": "4",
+      "reproducibility_tier": "D",
+      "notes": [
+        "disc",
+        "cycle"
+      ],
+      "source_location": "Table 1 + text (TGA, absorption at 298 K, ambient pressure)",
+      "temperature_k": "298"
+    },
+    {
+      "sample": "S5",
+      "pressure_bar": "1.01325",
+      "uptake_wt_pct": "0.4",
+      "measurement_mode": "temperature_cycle",
+      "reference_temperature_k": "773",
+      "extraction_confidence": "4",
+      "reproducibility_tier": "C",
+      "notes": [
+        "disc",
+        "cycle",
+        "base"
+      ],
+      "source_location": "Table 1 'CNT' row (undoped baseline, 298-773 K scan, ambient)",
+      "temperature_unstated": "True"
+    }
+  ]
+}

@@ -709,6 +709,17 @@ def test_real_tracking_file_records_the_collection_outcome():
     notes = header.index("notes")
 
     for pid in mig.OBTAINED:
+        if pid == "HYC-0059":
+            # Obtained in the Phase-D migration (2026-09-30), but the held file was later
+            # found to be a MISFILE -- its bytes are the Harisankar 2025 review, not the
+            # Guo 2023 paper HYC-0059 names -- so it was reclassified full-text-not-retrieved
+            # on 2026-10-05 (scripts/migrate_hyc0059_not_retrieved.py). The Phase-D OBTAINED
+            # record stands as history; the live file reflects the correction.
+            assert by_id[pid][pdf] == "no", f"{pid} should be reclassified not-retrieved"
+            assert "not retrieved" in by_id[pid][notes].lower(), (
+                f"{pid} is not obtained and carries no record of why"
+            )
+            continue
         assert by_id[pid][pdf] == "yes", f"{pid} is not recorded as obtained"
     for pid in mig.NOT_OBTAINED:
         assert by_id[pid][pdf] == "no", f"{pid} is recorded as obtained"

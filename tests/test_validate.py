@@ -559,6 +559,10 @@ def test_the_three_unassessable_chahine_cases_partition_the_corpus():
     # 19 + 6 = 25.
     assert len(no_uptake) == 25
     assert len(non_grav) == 11
+    # +3 for HYC-0062 (Chen 1999): its TGA rows are temperature_cycle with no single
+    # temperature_k -- the Li-doped M1/M2 absorb at 653 K (above the 500 K cap) and the
+    # undoped-CNT M5 spans a 298-773 K scan, so all three report no temperature and the
+    # Chahine criterion has no stated conditions to assess.
     assert sorted(unstated) == [
         "HYC-0011-M1",
         "HYC-0011-M2",
@@ -566,6 +570,9 @@ def test_the_three_unassessable_chahine_cases_partition_the_corpus():
         "HYC-0011-M4",
         "HYC-0015-M1",
         "HYC-0015-M2",
+        "HYC-0062-M1",
+        "HYC-0062-M2",
+        "HYC-0062-M5",
     ]
     scored = _scored()
     assert all(scored[m]["chahine"] == 1 for m in no_uptake + non_grav)
@@ -628,7 +635,9 @@ def test_the_bet_scale_is_pinned_across_the_corpus_by_paper():
     # +HYC-0052: AX-21's area is the paper's nominal "about 3000 m2/g" with no stated
     # method (surface_area_method=unspecified), so it earns 1, not 2 -- the same
     # scale as HYC-0005/HYC-0012. (MWNT's 137 m2/g is BET-stated -> bet_total.)
-    assert by_basis["area_by_unspecified"] == {"HYC-0005", "HYC-0012", "HYC-0052"}
+    # +HYC-0062: the alkali-doped CNT/graphite rows carry the undoped host SSA (130 and
+    # 8.6 m2/g) with surface_area_method=unspecified, so they earn 1, not 2.
+    assert by_basis["area_by_unspecified"] == {"HYC-0005", "HYC-0012", "HYC-0052", "HYC-0062"}
     scored = _scored()
     assert all(
         s["bet"] == 1
@@ -828,7 +837,12 @@ def test_no_assigned_tier_changed_and_the_scorer_still_returns_a_letter():
     # Chahine override. HYC-0061's five ambient/AC-77K rows take the calibration point
     # (He dead-volume + BWR EOS + empty-cell physisorption subtraction + LaNi5; scorer
     # C, assigned B). All 8 are new rows; no existing assigned tier changed.
-    assert agree == 321
+    # Now 350 of 521 after the HYC-0057/.../0065 batch: +29 agreements and 4 documented
+    # hand-adjustments, all in HYC-0062 (Chen 1999, controversy): its four discredited
+    # alkali-doped rows are hand-set to Tier D (scorer C) per §13.6; the undoped-CNT
+    # baseline (M5) keeps its scorer tier C, and HYC-0063/0064/0065 (28 rows) all agree
+    # at B. All 33 are new rows; no existing assigned tier changed.
+    assert agree == 350
 
 
 def test_the_rows_in_tension_with_their_assigned_tier_are_named():

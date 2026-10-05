@@ -71,11 +71,19 @@ def test_the_warning_baseline_holds(report):
     enters flagged rather than being excluded; `scripts/build_staging.py` admits
     the row and `append_paper.py` required `--expect-new-warning` for it. Five
     HYC-0049 room-temperature rows carry it.
+
+    `Uptake above 10 wt%` enters the baseline with the HYC-0057/.../0065 batch
+    (2026-10-05): Chen 1999 (HYC-0062), the discredited alkali-doped-CNT controversy
+    paper, reports Li-CNT 20.0, Li-graphite 14.0 and K-CNT 14.0 wt% by TGA. These are
+    retained at Tier D under §13.6 (Yang 2000 showed the weight gain was largely
+    moisture), so the §11.5 stop condition is admitted deliberately with
+    `--expect-new-warning` rather than keeping the rows out. Three rows carry it.
     """
     assert set(report.warning_counts) == {
         "Unspecified uptake_type",
         "Pre-2005 raw-CNT high uptake (Tier D)",
         "Pressure above 200 bar",
+        "Uptake above 10 wt%",
     }, report.warning_counts
 
 
@@ -320,13 +328,17 @@ def test_only_papers_that_never_state_a_condition_use_the_flags(dataset):
     HYC-0061 (Chen 2010) reports the activated carbon's 77 K supercritical maximum
     (~4 wt%, Fig 11) with no stated peak pressure, so that one row carries
     pressure_unstated; its other rows state 75 bar.
+    HYC-0062 (Chen 1999) absorbs at 653 K for its Li-doped rows, above the 500 K
+    temperature_k cap, so those carry temperature_unstated with 653 K in the
+    source_location; the undoped-CNT baseline spans a 298-773 K scan with no single
+    temperature, so it too carries temperature_unstated.
     """
     flagged = dataset[
         _flag(dataset, "temperature_unstated") | _flag(dataset, "pressure_unstated")
     ]
     assert set(flagged["paper_id"]) == {
         "HYC-0009", "HYC-0011", "HYC-0015", "HYC-0026", "HYC-0046", "HYC-0049",
-        "HYC-0061",
+        "HYC-0061", "HYC-0062",
     }, sorted(set(flagged["paper_id"]))
 
 
@@ -365,17 +377,23 @@ def test_bounded_uptakes_are_flagged_and_rare(dataset):
     # (Chen 2010): the activated carbon's 77 K supercritical maximum is figure-read
     # as ~4 wt% (M6, approximate), and the four non-AC carbons at 77 K are reported
     # collectively as "less than 1 wt%" (M7-M10, upper).
+    # The HYC-0057/.../0065 batch (2026-10-05) adds two, in HYC-0063 (corn-grain
+    # monoliths): the 77 K per-sample uptakes are figure-only, the paper states only
+    # a collective max 2.39-2.45 wt%, so MR-1/3 and MR-1/4 (M4, M6) are recorded at
+    # the 2.45 ceiling as upper bounds.
     assert set(bounded["measurement_id"]) == {
         "HYC-0029-M3", "HYC-0029-M4", "HYC-0017-M3", "HYC-0024-M4",
         "HYC-0049-M2", "HYC-0049-M4", "HYC-0049-M6", "HYC-0049-M8", "HYC-0049-M10",
         "HYC-0051-M6", "HYC-0051-M8", "HYC-0051-M9",
         "HYC-0061-M6", "HYC-0061-M7", "HYC-0061-M8", "HYC-0061-M9", "HYC-0061-M10",
+        "HYC-0063-M4", "HYC-0063-M6",
     }, sorted(bounded["measurement_id"])
     assert set(bounded["uptake_bound"]) == {"lower", "upper", "approximate"}
     upper = bounded[bounded["uptake_bound"] == "upper"]
     assert set(upper["measurement_id"]) == {
         "HYC-0017-M3", "HYC-0051-M6", "HYC-0051-M8", "HYC-0051-M9",
         "HYC-0061-M7", "HYC-0061-M8", "HYC-0061-M9", "HYC-0061-M10",
+        "HYC-0063-M4", "HYC-0063-M6",
     }
     approximate = bounded[bounded["uptake_bound"] == "approximate"]
     assert set(approximate["measurement_id"]) == {

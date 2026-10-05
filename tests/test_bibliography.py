@@ -233,8 +233,9 @@ def test_author_lists_come_from_the_pdf_wherever_one_is_held():
     # all PDF-held: 28 + 6 = 34. Plus the HYC-0044/0045/0046/0047/0048 batch (5), all
     # PDF-held (HYC-0046's is the LLNL preprint): 34 + 5 = 39. Plus the
     # HYC-0049/0050/0051/0052/0053 batch (5), all PDF-held: 39 + 5 = 44. Plus the
-    # HYC-0057/0058/0060/0061 batch (4), all PDF-held: 44 + 4 = 48.
-    assert sum(1 for r in sources() if r["pdf_held"]) == 48
+    # HYC-0057/0058/0060/0061 batch (4), all PDF-held: 44 + 4 = 48. Plus the
+    # HYC-0062/0063/0064/0065 batch (4), all PDF-held: 48 + 4 = 52.
+    assert sum(1 for r in sources() if r["pdf_held"]) == 52
 
 
 def test_the_issue_number_provenance_partition_is_pinned():
@@ -256,7 +257,9 @@ def test_the_issue_number_provenance_partition_is_pinned():
     # +HYC-0043: BioResources prints an issue number in its citation line
     # (14(4), 9755-9765), so its issue is PDF-sourced like Science/JACS/JPCB.
     # +HYC-0045: Prog. Nat. Sci.: Mater. Int. prints its issue (23(3)) in the citation line.
-    assert sorted(by_prov["pdf"]) == ["HYC-0002", "HYC-0022", "HYC-0024", "HYC-0043", "HYC-0045"]
+    # +HYC-0062: Science prints the issue number (285 (5424)) in its citation line, so
+    # its issue is PDF-sourced like Science/JACS/JPCB.
+    assert sorted(by_prov["pdf"]) == ["HYC-0002", "HYC-0022", "HYC-0024", "HYC-0043", "HYC-0045", "HYC-0062"]
     assert len(by_prov["openalex"]) == 21
     # HYC-0046's issue (18(26)) is sourced from held citing PDFs + the DOI record (the
     # services were unreachable), so it sits in its own provenance class.
@@ -283,7 +286,10 @@ def test_the_issue_number_provenance_partition_is_pinned():
     # +4 for the HYC-0057/0058/0060/0061 batch: IOP Nanotechnology and MDPI Processes are
     # article-numbered (no issue), Elsevier IJHE and Carbon running heads print no issue,
     # so each is omitted pending an OpenAlex backfill. 24 + 4 = 28.
-    assert len(by_prov["none"]) == 28
+    # +3 for the HYC-0062/0063/0064/0065 batch: Elsevier Catalysis Today and IJHE print no
+    # issue, Springer Int. J. Coal Sci. Technol. is article-numbered; HYC-0062 (Science) is
+    # the batch's one exception, its issue PDF-sourced (counted under 'pdf' above). 28 + 3 = 31.
+    assert len(by_prov["none"]) == 31
     # Match the FIELD, not the word: two of these notes contain the phrase
     # "article number", which a substring test read as an issue field.
     field = re.compile(r"^\s*number\s*=", re.M)
