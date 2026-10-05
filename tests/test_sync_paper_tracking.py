@@ -216,11 +216,15 @@ def test_dual_agent_verified_papers_are_tracked_as_verified():
         )
 
 
-def test_single_reader_papers_are_not_claimed_as_verified():
-    """MUTATION: mark a v1.0 paper `verified` -> this fails.
+def test_single_reader_papers_carry_dual_agent_evidence_when_verified():
+    """The v1.0 (human single-reader) papers were dual-agent verified 2026-10-05.
 
-    The 121 v1.0 rows have an empty verified_by. Calling them verified would
-    assert a second reading that never happened — the decision in plan §2.
+    Each now carries a verified_by record (Agent B + Agent C, the second reading)
+    on every row and is tracked `verified`. A v1.0 paper WITHOUT a verified_by
+    record must still be tracked `extracted`: verification asserts that a second
+    reading happened, so it may not be claimed without the row-level evidence.
+
+    MUTATION: mark a v1.0 paper `verified` without populating verified_by -> fails.
     """
     by_paper: dict[str, set[str]] = {}
     verified_by: dict[str, set[str]] = {}
@@ -233,13 +237,12 @@ def test_single_reader_papers_are_not_claimed_as_verified():
     for paper, extractors in sorted(by_paper.items()):
         if "HyCAN pipeline v2" in extractors:
             continue
-        assert verified_by[paper] == {""}, (
-            f"{paper} is a v1.0 paper with a populated verified_by; the "
-            f"premise of this test no longer holds"
-        )
-        assert tracked[paper]["extraction_status"] == "extracted", (
-            f"{paper} was read once by one reader but is tracked as "
-            f"{tracked[paper]['extraction_status']!r}"
+        has_evidence = "" not in verified_by[paper]
+        expected = "verified" if has_evidence else "extracted"
+        assert tracked[paper]["extraction_status"] == expected, (
+            f"{paper} is a v1.0 paper with "
+            f"{'a complete' if has_evidence else 'no'} verified_by record but is "
+            f"tracked {tracked[paper]['extraction_status']!r}, not {expected!r}"
         )
 
 
@@ -287,10 +290,13 @@ def test_the_status_counts_account_for_every_row():
         )
     assert set(counts) <= {"not_started", "in_progress", "extracted", "verified"}
     assert sum(counts.values()) == len(tracked)
-    # `verified` is a SUBSET of the v2-pipeline papers, not equal to it: a paper
-    # can be v2-extracted and legitimately still `extracted` (V2_NOT_YET_VERIFIED).
+    # `verified` == papers with a complete row-level verified_by record, plus the
+    # two VERIFIED_WITHOUT_ROW_EVIDENCE stragglers. After the 2026-10-05 dual-agent
+    # verification of the v1.0 papers this spans both the v2-pipeline papers and
+    # those v1.0 papers, so it is no longer a subset of the v2-pipeline set
+    # (dual_agent_papers()).
     assert counts.get("verified", 0) == len(
-        dual_agent_papers() - V2_NOT_YET_VERIFIED
+        verified_by_papers() | VERIFIED_WITHOUT_ROW_EVIDENCE
     )
     # Row-level evidence implies the status. The converse does not hold, and the
     # gap is enumerated rather than absorbed.

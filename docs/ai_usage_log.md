@@ -2009,3 +2009,13 @@ extraction is complete through HYC-0065; what remains are the not-retrieved (HYC
 **Judgment calls.** HYC-0031 (Nat. Commun.) and HYC-0033 (Sci. Rep.) kept `none`: OpenAlex reports a nominal single-issue-per-volume "issue 1" for each, which these online-only article-numbered journals do not meaningfully have (matches the existing "genuinely no issue" determination for HYC-0033). HYC-0038/0039 (MDPI) notes said "no issue" but MDPI assigns real monthly issues and the corpus already treats other MDPI journals as issue-bearing; both were backfilled and the notes corrected.
 
 **807 tests passing.** `test_bibliography` issue pins updated (`openalex` 21 -> 41, `none` 31 -> 11); the generated .bib header's provenance counts made computed.
+
+## 2026-10-05 (continued) — Dual-agent verification of the 11 v1.0 extracted papers
+
+**Models/agents.** Agent A/C: main (Opus). Agent B: 12 isolated Sonnet subagents, one per paper (HYC-0001/0002/0004/0005/0013/0016/0018/0020/0021/0023/0027/0031), each blind to Agent A -- given only the paper PDF, the candidate dataset rows and schema.py, and instructed to re-read the PDF and verify every value. Agent C (main) adjudicated each.
+
+**Result.** Every hydrogen value (uptake, area, pore volume, T, P) confirmed across all papers -- 0 numeric transcription disputes. Agent B's disputes were all qualifier/identity fields and notes; the substantive ones were upheld and applied (see CHANGELOG). 11 papers moved extracted->verified with verified_by on every row; HYC-0031 left extracted (3 AX21 rows' temperature is SI-gated).
+
+**Notable adjudications.** HYC-0001 SWCNT-II 2.52 wt% retained (Agent C re-read Fig 3: within figure-read precision; Agent B's 2.43 an equally valid read). HYC-0013 Fe moved dopant->metal. HYC-0018 GO synthesis corrected to chemical_oxidation. HYC-0016 M5 mislabel (the AC reference coded as rGO/KOH) flagged for a dedicated relabel migration rather than corrected here (migrate_relabel.py count pins). HYC-0031: the oxygen content previously assumed SI-only is in the main PDF (Table 1/XPS/TPD); only the AX21 cryogenic temperature is SI-gated.
+
+**807 tests passing.** test_sync_paper_tracking updated to define verified by a complete row-level verified_by record.

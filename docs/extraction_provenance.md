@@ -186,6 +186,14 @@ the two Nature-family nominal-issue journals HYC-0031/0033). The dual-agent
 aggregate recompute noted above remains owed; this pass touched only issue
 provenance and the retraction check.
 
+**2026-10-05 -- the 11 v1.0 single-reader papers dual-agent verified.**
+HYC-0001/0002/0004/0005/0013/0016/0018/0020/0021/0023/0027 were re-read under the
+dual-agent protocol (one blind Sonnet Agent B per paper, Agent C adjudication) and
+moved extracted->verified with verified_by on every row; every measured value
+confirmed, 0 numeric disputes. HYC-0031 remains extracted (3 SI-gated AX21 rows).
+The per-paper dual-agent aggregate dispute totals in this file still owe the
+recompute noted above.
+
 Totals (pre-Phase-C.1 snapshot, stale — see the note above): 151 `table_direct`,
 39 `text_direct`, 15 `figure_digitized`. Tiers: 36 A, 124 B, 37 C, 8 D.
 
