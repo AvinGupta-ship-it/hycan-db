@@ -161,6 +161,10 @@ with a long one; the reverse is closer to true.
 | HYC-0058 | 2 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 0 numeric disputes; extraction_method -> text_direct, dopant_concentration_method=elemental_analysis; purity point withheld (HYC-0053/0057 precedent), both Tier B** | text_direct |
 | HYC-0060 | 3 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 0 numeric disputes; 14-lab Round Robin consensus, one row/condition; 77 K Chahine=2 by §13.5, all Tier A** | text_direct |
 | HYC-0061 | 10 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 1 numeric dispute upheld (ambient GNF/GO transposition, fixed); non-AC surface_area_method -> not_reported, extraction_method -> text_direct; 6 B / 4 C** | text_direct |
+| HYC-0062 | 5 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 0 numeric disputes; CONTROVERSY paper (Chen 1999 Science, alkali-doped CNT, Yang-2000 moisture artifact) -> 4 Tier D + 1 undoped baseline C; doped CNT=MWCNT+dopant, graphite=other; TGA temperature_cycle; new warning Uptake>10wt%** | table_direct |
+| HYC-0063 | 6 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 0 numeric disputes; synthesis_method=unknown (agent unnamed); 77 K per-sample figure-only -> MR-1/3,MR-1/4 upper-bound, MR-1/2 anchored via volumetric; all B** | text_direct, gravimetric |
+| HYC-0064 | 7 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 0 numeric disputes; calibration point WITHHELD (bare volume-calibration, HYC-0057 precedent) -> all B, no Tier A; purity kept (HCl demineralization+XRF); ZD-HK-AC==ZD-HK3-AC dedup; 0.91 not 1.26** | table_direct |
+| HYC-0065 | 15 | **v2.0 dual-agent** | `HyCAN pipeline v2` | **yes, 0 numeric disputes; 20/30/45 bar (Table 3 points added, S10.3); DMHCS=templated_carbon, Pd@C=composite+metal_loading; Pd@C_120 excluded; all B** | table_direct, text_direct |
 
 **This table and the totals below are not yet complete.** HYC-0007 and HYC-0024
 (Phase C.1) and HYC-0031 (Phase D) are extracted and in the dataset but were never

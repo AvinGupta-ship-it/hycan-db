@@ -1936,3 +1936,66 @@ lifted A rows, one also §13.5 Chahine-lifted; HYC-0061's 5 calibration-lifted B
 HYC-0059 PDF/metadata mismatch and the HYC-0061 tracking-year cell both await Avin. Agent B found
 no correction/retraction notice in any of the four PDFs read. The corpus-wide retraction pass
 remains owed, blocked on the same egress.
+
+## 2026-10-05 — Phase D batch: HYC-0062/0063/0064/0065 (final Phase D batch) + HYC-0059 reclassified
+
+**Models.** Agent A (extraction/adjudication) Opus; Agent B (independent verification) four parallel
+Sonnet subagents, one per paper, each re-reading the PDF via the project store (several also rendered
+pages) with no sight of Agent A's reasoning.
+
+**Batch.** HYC-0062 (Chen 1999, Science, alkali-doped CNT -- the discredited controversy paper),
+HYC-0063 (Balathanigaimani 2009, Catalysis Today, corn-grain carbon monoliths), HYC-0064 (Cheng 2025,
+Int. J. Coal Sci. Technol., Zhundong-coal AC), HYC-0065 (Baca 2017, IJHE, Pd@mesoporous hollow carbon
+spheres at 20/30/45 bar). 33 rows, append 488 -> 521, 47 -> 51 papers, 0 errors. Tiers 28 B / 1 C / 4 D.
+This is the LAST Phase D extraction batch: every screened Phase D paper with a retrievable primary PDF
+is now extracted. The 488-row baseline was re-anchored before the batch; the three clean papers appended
+against it, then HYC-0062 last with --expect-new-warning "Uptake above 10 wt%".
+
+**Agent B found 0 numeric transcription disputes in all four papers.** Every uptake, area, pore volume,
+T and P confirmed against the primary source. The disputes were classification / tiering / field-
+semantics / scope, and Agent C upheld the substantive ones:
+- HYC-0062 (controversy S6.7/S13.6): Yang 2000 showed the TGA weight gain was largely moisture, so the
+  four discredited alkali-doped rows (20/14/14/5 wt%) stay Tier D with the discrepancy. Doped CNT ->
+  MWCNT + dopant_element (HYC-0025/0037; keeps the structural class and fires the pre-2005-raw-CNT
+  warning), doped graphite -> other + dopant_element. TGA = temperature_cycle with reference_temperature_k
+  = desorption T; the 653 K Li absorption exceeds the 500 K temperature_k cap so temperature_unstated=True
+  (653 K in source_location). The undoped-CNT 0.4 wt% baseline was ADDED per Agent B (S3.2/S7.4) at Tier C
+  (a baseline, not a discredited claim); the 14.5 wt% ramp transient was declined (non-equilibrium, same
+  sample). 1 atm -> 1.01325 bar.
+- HYC-0063: synthesis_method chemical_activation -> unknown (the agent is never named; HYC-0024/0007
+  precedent). 77 K per-sample uptakes are figure-only (collective max 2.39-2.45 wt%), so MR-1/2 = 2.39
+  anchored via its stated volumetric (10.01 g/L / 0.420), and MR-1/3, MR-1/4 = 2.45 as uptake_bound=upper;
+  extraction_method figure_estimated -> text_direct (figure_estimated is banned for new rows). +VDR(CO2).
+- HYC-0064: the DECISIVE call -- calibration point WITHHELD. The paper states only "sample volume
+  calibration" + a leak check, no He/blank/buoyancy/EOS/reference procedure, no stronger than HYC-0057
+  (withheld) or HYC-0015/0017 (scored 0). So the six acid-treated samples do NOT reach Tier A; all 7 rows
+  are Tier B. Purity point kept (5 M HCl demineralization + XRF residual content). ZD-AC/ZD-H-AC ->
+  other/carbonization (unactivated). 0.91 (not the one-off 1.26); ZD-HK-AC == ZD-HK3-AC deduplicated.
+- HYC-0065: ADDED the 20 and 30 bar tabulated points (Table 3; S10.3/HYC-0024 multi-pressure precedent)
+  alongside 45 bar -> 3 pressures x 5 samples = 15 rows. DMHCS = templated_carbon; Pd@C = composite +
+  metal_element=Pd + metal_loading_wt_pct. Pd@C_120 excluded (morphology destroyed). All 15 Tier B.
+
+**HYC-0059 reclassified full-text-not-retrieved.** The file held as HYC-0059_guo2023.pdf is a MISFILE --
+its bytes are the Harisankar et al. 2025 CNT review (Korean J. Chem. Eng. 42:13-42), not Guo et al. 2023
+(Mater. Today Chem. 30, 101508) which the ID and filename name, and UNT has no access to the Guo full
+text. pdf_obtained yes -> no, screening_decision kept include; HYC-0059 joins the PRISMA "reports not
+retrieved" line (HYC-0035/0036/0054/0055/0056, manual S7.5). Applied by scripts/migrate_hyc0059_not_
+retrieved.py (one row, two cells, byte-preserving). A prior-session plan to exclude it "as a review" was
+dropped -- that would have acted on the misfiled PDF rather than the paper HYC-0059 is.
+
+**Bibliography.** 55 -> 59 entries. HYC-0062 (Science) prints its issue (285 (5424)) -> PDF-sourced;
+Elsevier Catalysis Today / IJHE and Springer Int. J. Coal Sci. Technol. (article-numbered) print no
+issue, each omitted pending an OpenAlex backfill.
+
+**Pinned tests updated, deliberately.** test_bibliography pdf_held 48->52, issue none 28->31, issue pdf
++HYC-0062. test_validate agreement 321->350 (+29 agreements, 4 HYC-0062 hand-D adjustments), Chahine
+temperature_not_reported +HYC-0062-M1/M2/M5, BET area_by_unspecified +HYC-0062. test_dataset_invariants
+warning baseline + "Uptake above 10 wt%", flag papers + HYC-0062, bounded uptakes + HYC-0063-M4/M6.
+test_migrate_pdf_obtained real-artifact check special-cases HYC-0059 (obtained then reclassified). 807
+tests passing.
+
+**Still owed.** The OpenAlex backfill owes three more issue numbers (HYC-0063/0064/0065; HYC-0062's is
+PDF-sourced). The corpus-wide retraction pass remains owed (egress-blocked); Agent B found no printed
+correction notice in the four PDFs, and HYC-0062 is itself the documented refutation case. Phase D
+extraction is complete through HYC-0065; what remains are the not-retrieved (HYC-0035/0036/0054/0055/
+0056/0059) and no-PDF screened-in (HYC-0003/0006/0008/0014) sets.
