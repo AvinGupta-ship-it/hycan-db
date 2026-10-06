@@ -93,7 +93,12 @@ def verified_by_papers() -> set[str]:
 # §9.1 step-15 stragglers that `sync_paper_tracking.py` marked verified from the
 # `extractor` proxy, without row-level evidence. Enumerated so the set cannot
 # grow silently: a NEW unevidenced `verified` fails the test below.
-VERIFIED_WITHOUT_ROW_EVIDENCE = {"HYC-0007", "HYC-0024"}
+# Empty since 2026-10-06: HYC-0007 and HYC-0024 were tracked `verified` with no
+# row-level `verified_by` (the §9.1 step-15 cell stamp was skipped in Phase C.1),
+# and their rows were backfilled from the Phase C.1 verification log. Every paper
+# tracked `verified` now carries a complete row-level record, so this set is empty
+# and a NEW member would be a status asserted without evidence.
+VERIFIED_WITHOUT_ROW_EVIDENCE: set[str] = set()
 
 # Papers extracted by the v2 pipeline that are deliberately NOT `verified`.
 # HYC-0031: the dual-agent protocol ran and every dispute resolved, but two
