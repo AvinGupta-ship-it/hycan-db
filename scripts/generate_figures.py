@@ -217,9 +217,9 @@ def fig4_doping(df: pd.DataFrame, out_dir: Path) -> dict:
     w["uptake_wt_pct"] = pd.to_numeric(w["uptake_wt_pct"], errors="coerce")
     w["per_area"] = w["uptake_wt_pct"] / (w["bet"] / 1000.0)  # wt% per 1000 m2/g
     w["temp"] = pd.to_numeric(w["temperature_k"], errors="coerce")
+    _dop = w["dopant_element"].astype(str).str.strip()
     w["doped"] = np.where(
-        w["dopant_element"].notna() & (w["dopant_element"].astype(str).str.strip() != ""),
-        "doped", "undoped",
+        w["dopant_element"].notna() & (_dop != ""), "doped", "undoped",
     )
     regimes = [("77 K (cryogenic)", 77), ("298 K (ambient)", 298)]
     present = [(lab, t) for lab, t in regimes if (w["temp"] == t).any()]
@@ -269,7 +269,11 @@ def fig5_tier_by_year(df: pd.DataFrame, out_dir: Path) -> dict:
     bins = [1994, 2000, 2005, 2010, 2015, 2020, 2026]
     labels = ["95–00", "01–05", "06–10", "11–15", "16–20", "21–"]
     w["bin"] = pd.cut(w["year"], bins=bins, labels=labels)
-    grp = w.groupby(["bin", "reproducibility_tier"], observed=True)["uptake_wt_pct"].mean().unstack()
+    grp = (
+        w.groupby(["bin", "reproducibility_tier"], observed=True)["uptake_wt_pct"]
+        .mean()
+        .unstack()
+    )
     tier_colors = {"A": sns.color_palette("colorblind")[2],
                    "B": sns.color_palette("colorblind")[0],
                    "C": sns.color_palette("colorblind")[1],

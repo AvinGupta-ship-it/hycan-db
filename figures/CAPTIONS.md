@@ -31,12 +31,14 @@ Excludes, via §12.3: non-isothermal, non-exact, and unstated-condition rows;
 and, specifically here, rows whose area is not method-confirmed BET (§10.3) and
 the 14 `total`-uptake rows (the rule bounds adsorbed, not total, uptake).
 `unspecified`-type rows are kept (the corpus norm, §B.5).
-**Takeaway:** uptake scales with BET area roughly as the Chahine rule predicts,
-but the corpus-wide slope is **≈1 wt% per 580 m²/g** (0.00173 wt%·g/m²; Tier A/B
-only, ≈1 per 592), about 14% below the canonical 1/500 — the rule holds in form
-across material classes while overstating the level the literature actually
-achieves. The formal slope with its confidence interval is in
-`notebooks/04_meta_analysis.ipynb`.
+**Takeaway:** uptake scales with BET area roughly as the Chahine rule predicts in
+form, but the corpus falls short of its level. The authoritative estimate is the
+hierarchical (paper-random-effects) through-origin fit in
+`notebooks/04_meta_analysis.ipynb`: **≈0.72 wt% per 500 m²/g (95% CI 0.62–0.81),
+i.e. 1 wt% per ~700 m²/g, about 30% below the canonical 1/500**, with the CI
+excluding the rule's value. A naive through-origin OLS on this same cloud gives a
+steeper ~0.86 per 500; the gap is the within-paper correlation the hierarchical
+model removes, and it is why the dashed 1/500 line sits visibly above the bulk.
 
 ## Figure 4 — Doping effect on area-normalised uptake
 Area-normalised uptake (wt% per 1000 m²/g) for doped versus undoped samples,

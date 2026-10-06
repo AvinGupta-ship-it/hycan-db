@@ -103,4 +103,5 @@ def test_confirmed_bet_area_masks_non_bet_methods():
     non_bet = df["surface_area_method"] != "BET"
     assert area[non_bet].isna().all()
     bet_rows = df["surface_area_method"] == "BET"
-    assert (area[bet_rows].notna() == df.loc[bet_rows, "bet_surface_area_m2_g"].notna()).all()
+    src_bet = df.loc[bet_rows, "bet_surface_area_m2_g"].notna()
+    assert (area[bet_rows].notna() == src_bet).all()
