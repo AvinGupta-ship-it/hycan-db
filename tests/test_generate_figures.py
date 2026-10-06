@@ -41,12 +41,18 @@ def test_each_figure_writes_png_and_pdf():
     mod.fig3_chahine(df, out)
     mod.fig4_doping(df, out)
     mod.fig5_tier_by_year(df, out)
+    mod.fig6_pred_vs_measured(df, out)
+    mod.fig7_shap(df, out)
+    mod.fig8_pareto(df, out)
     for stem in (
         "fig1_corpus_map",
         "fig2_condition_space",
         "fig3_chahine",
         "fig4_doping",
         "fig5_tier_by_year",
+        "fig6_pred_vs_measured",
+        "fig7_shap",
+        "fig8_pareto",
     ):
         assert (out / f"{stem}.png").exists(), stem
         assert (out / f"{stem}.pdf").exists(), stem

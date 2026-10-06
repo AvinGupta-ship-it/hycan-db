@@ -43,6 +43,8 @@ import pandas as pd  # noqa: E402
 import seaborn as sns  # noqa: E402
 
 from hycan.load import analysis_subset, confirmed_bet_area, load_dataset  # noqa: E402
+from hycan import features as _features  # noqa: E402
+from hycan import ml as _ml  # noqa: E402
 
 FIG_DIR = Path("figures")
 
@@ -297,6 +299,105 @@ def fig5_tier_by_year(df: pd.DataFrame, out_dir: Path) -> dict:
     return {"bin_counts": {str(k): int(v) for k, v in bin_counts.items()}}
 
 
+def fig6_pred_vs_measured(df: pd.DataFrame, out_dir: Path) -> dict:
+    """Out-of-fold predicted vs measured uptake, colored by tier (the KEY figure).
+
+    Each point is predicted by an XGBoost model that did **not** train on that
+    point's paper (grouped CV), so the scatter is an honest generalization
+    picture, not a memorized fit. No lab-sample overlay: the Perez lab's own
+    samples are Raman/XPS-characterized and carry no H2 uptake measurement to
+    place here (that overlay, manual §15 Fig 6, is left for when such data exist).
+    """
+    frame = _features.feature_frame(df)
+    X, y, groups = _features.design_matrix(frame)
+    pred = _ml.out_of_fold_predictions(X, y, groups, model_name="XGBoost")
+    tier = frame["reproducibility_tier"].to_numpy()
+    tier_colors = {"A": sns.color_palette("colorblind")[2],
+                   "B": sns.color_palette("colorblind")[0]}
+    fig, ax = plt.subplots(figsize=(7, 7))
+    for t in ("B", "A"):
+        mask = tier == t
+        ax.scatter(y[mask], pred[mask], s=40, alpha=0.8, edgecolor="white",
+                   linewidth=0.4, color=tier_colors[t], label=f"Tier {t}")
+    lim = float(max(y.max(), pred.max())) * 1.05
+    ax.plot([0, lim], [0, lim], color="0.3", ls="--", lw=1.5, label="y = x")
+    ax.set_xlim(0, lim)
+    ax.set_ylim(0, lim)
+    ax.set_aspect("equal")
+    ax.set_title("Predicted vs measured H$_2$ uptake (grouped CV, XGBoost)")
+    ax.set_xlabel("measured uptake (wt%)")
+    ax.set_ylabel("predicted uptake (wt%)")
+    ax.legend()
+    fig.tight_layout()
+    _save(fig, "fig6_pred_vs_measured", out_dir)
+    from sklearn.metrics import mean_absolute_error, r2_score
+    return {"n_rows": int(len(y)), "n_papers": int(len(set(groups))),
+            "oof_r2": float(r2_score(y, pred)),
+            "oof_mae": float(mean_absolute_error(y, pred))}
+
+
+def fig7_shap(df: pd.DataFrame, out_dir: Path) -> dict:
+    """SHAP mean-|value| feature importance for the XGBoost model."""
+    frame = _features.feature_frame(df)
+    X, y, _ = _features.design_matrix(frame)
+    model = _ml.fit_full(X, y, "XGBoost")
+    importance, _ = _ml.shap_summary(model, X)
+    top = importance.head(10)[::-1]
+    fig, ax = plt.subplots(figsize=(8, 5))
+    ax.barh(range(len(top)), top.to_numpy(), color=sns.color_palette("colorblind")[0])
+    ax.set_yticks(range(len(top)))
+    ax.set_yticklabels(top.index)
+    ax.set_xlabel("mean |SHAP value| (wt%)")
+    ax.set_title("Feature importance for predicted uptake (SHAP, XGBoost)")
+    fig.tight_layout()
+    _save(fig, "fig7_shap", out_dir)
+    return {"top_features": list(importance.head(5).index)}
+
+
+def _pareto_mask(bet: np.ndarray, uptake: np.ndarray) -> np.ndarray:
+    """Non-dominated set maximising uptake while minimising BET: a point is
+    Pareto-optimal if no other point has >= uptake at <= BET."""
+    mask = np.ones(len(bet), dtype=bool)
+    for i in range(len(bet)):
+        dominated = (bet <= bet[i]) & (uptake >= uptake[i]) & (
+            (bet < bet[i]) | (uptake > uptake[i])
+        )
+        if dominated.any():
+            mask[i] = False
+    return mask
+
+
+def fig8_pareto(df: pd.DataFrame, out_dir: Path) -> dict:
+    """Uptake vs BET with the Pareto-optimal frontier (most uptake per area).
+
+    Over (BET, micropore volume) is deferred to Phase D's doping work (§15); the
+    present axis is uptake vs BET, which is the materials-design trade-off the
+    corpus can support: the frontier is the set achieving the most uptake for the
+    least surface area.
+    """
+    frame = _features.feature_frame(df)
+    bet = frame["bet_surface_area_m2_g"].to_numpy(float)
+    up = frame[_features.TARGET].to_numpy(float)
+    ok = np.isfinite(bet) & np.isfinite(up)
+    bet, up = bet[ok], up[ok]
+    pm = _pareto_mask(bet, up)
+    fig, ax = plt.subplots(figsize=(8, 5))
+    ax.scatter(bet[~pm], up[~pm], s=36, color=(0.7, 0.7, 0.7), alpha=0.7,
+               edgecolor="white", linewidth=0.3, label="dominated")
+    ax.scatter(bet[pm], up[pm], s=70, color=sns.color_palette("colorblind")[3],
+               edgecolor="black", linewidth=0.5, label="Pareto-optimal", zorder=5)
+    order = np.argsort(bet[pm])
+    ax.plot(bet[pm][order], up[pm][order], color=sns.color_palette("colorblind")[3],
+            lw=1.5, zorder=4)
+    ax.set_title("Materials trade-off: most uptake for the least surface area")
+    ax.set_xlabel("BET surface area (m$^2$/g)")
+    ax.set_ylabel("H$_2$ uptake (wt%, 77 K)")
+    ax.legend()
+    fig.tight_layout()
+    _save(fig, "fig8_pareto", out_dir)
+    return {"n_points": int(ok.sum()), "n_pareto": int(pm.sum())}
+
+
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--check", action="store_true",
@@ -311,10 +412,13 @@ def main(argv=None) -> int:
         "fig3": fig3_chahine(df, out_dir),
         "fig4": fig4_doping(df, out_dir),
         "fig5": fig5_tier_by_year(df, out_dir),
+        "fig6": fig6_pred_vs_measured(df, out_dir),
+        "fig7": fig7_shap(df, out_dir),
+        "fig8": fig8_pareto(df, out_dir),
     }
     for name, info in results.items():
         print(f"{name}: {info}")
-    print(f"wrote PNG+PDF for figures 1–5 to {out_dir}")
+    print(f"wrote PNG+PDF for figures 1–8 to {out_dir}")
     return 0
 
 
