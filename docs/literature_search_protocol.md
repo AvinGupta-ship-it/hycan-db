@@ -5,8 +5,8 @@ This document records the search strategy used to assemble the HyCAN-DB literatu
 ## Engines used
 
 - **Google Scholar** (https://scholar.google.com) — primary engine for the initial Day 5 sweep. Broad recall, free, no institutional login required.
-- **Semantic Scholar** — to be added in a later phase, for citation chaining via API.
-- **Scopus** (via UNT/TAMS credentials) — to be added in a later phase, for precision.
+- **Semantic Scholar** — not used for v0.1; a candidate for citation chaining via API in a later phase.
+- **Scopus** (via UNT/TAMS credentials) — not used for v0.1; a candidate for a later phase, for precision.
 
 ## Primary search strings (Section 7.4 of the Execution Manual)
 

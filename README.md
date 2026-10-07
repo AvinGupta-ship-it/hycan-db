@@ -139,10 +139,10 @@ physics-override clause, and worked examples are in
 ## Data and code availability
 
 The dataset is `data/raw/measurements_v0.1.csv`; the code that validates,
-harmonises, analyses, and plots it is in `src/hycan/`. A citable Zenodo DOI will be
-minted at the v1.0 release.
+harmonises, analyses, and plots it is in `src/hycan/`. A citable Zenodo DOI is
+minted with the v0.1 release and added here once the archive is published.
 
-> **Zenodo DOI:** _(to be minted at the v1.0 release)_
+> **Zenodo DOI:** _(pending — added here when the v0.1 archive is published on Zenodo)_
 
 Literature PDFs are excluded for copyright reasons; per-field citation provenance
 in `references/bibliography_sources.json` lets every source be retrieved

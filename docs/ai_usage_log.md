@@ -2,6 +2,8 @@
 
 Per Execution Manual Section 17.5, every meaningful AI-assisted session is logged here for the project's audit trail.
 
+Entries are contemporaneous session records in chronological order (oldest first). Each gives the date, the tools or agents used, what was done, how it was verified against the artifacts, and the decisions made and by whom. Earlier entries are briefer than later ones; that reflects the project's evolution, and the content rather than a uniform template is the record.
+
 ## 2026-06-10 — Day 5 literature search session
 Tool: Claude.ai Opus 4.8 (web) for procedural walkthrough; Google Scholar for searches; Claude Code for creating docs/literature_search_protocol.md scaffold.
 Purpose: Identify first 30 candidate papers for HyCAN-DB corpus.
@@ -61,7 +63,7 @@ What it produced: edits to src/hycan/schema.py, src/hycan/normalize.py, src/hyca
 What I verified: read every diff; ran the full pytest suite (76 passing); ran scripts/validate_data.py on the 25-row file (25 valid, 0 errors, exit 0); confirmed the new converters reproduce the stored uptake_mmol_g/uptake_wt_pct for the Nijkamp rows via the migration's per-row consistency check; confirmed the four Panella rows collapsed to two physical samples at BET 2564 and 854; confirmed the pressure>200 warning reclassification and all other fields were untouched.>
 What I changed: None
 
-## 2026-07-06 to 2027-07-09  — extraction, corpus overview, reproducibility tiering
+## 2026-07-06 to 2026-07-09 — extraction, corpus overview, reproducibility tiering
 (3 sessions logged separately below; dates are my working days, not calendar days)
 
 ### Day 11 [2026-07-06] — Papers HYC-0002, HYC-0005, HYC-0020 extracted
@@ -1226,7 +1228,7 @@ that change has now been made where it bit.
 
 ---
 
-## HYC-0031 — Blankenship, Balahmar & Mokaya 2017, 2026-09-30
+## 2026-09-30 — HYC-0031 (Blankenship, Balahmar & Mokaya 2017)
 
 **Paper.** *Oxygen-rich microporous carbons with exceptional hydrogen storage
 capacity*, Nature Communications 8:1545, doi `10.1038/s41467-017-01633-x`. First
@@ -2168,3 +2170,13 @@ re-executed end-to-end.
 verified label error with an unambiguous fix and the correct values in hand, not
 a scientific ambiguity, so §2.3 escalation does not apply. The surgery is
 mechanical, reversible, round-trip-tested, and moves no published number.
+
+## 2026-10-07 — Phase 8 (continued): pre-release documentation polish
+
+**Tool/agents.** Claude Code (Opus 4.8), Mode A. A documentation-only pass; no dataset, schema, code, figure, or notebook output changed.
+
+**What was done.** Added `docs/README.md`, a categorized index of the documentation set (start-here / methodology / provenance & audit / migration records). Removed `docs/HANDOFF.md` from the published tree — internal session scaffolding that referenced a Project-only manual and carried a stale "state as of 2026-10-01"; retained in git history. Lightly normalized this log: a format note in the preamble, consistent `## YYYY-MM-DD — Title` headers, and a `2027` → `2026` date typo, with no entry's recorded content altered. A repo-wide placeholder sweep surfaced three stale/forward-looking items, all corrected: the README's "DOI minted at the v1.0 release" (it is minted with v0.1), `CITATION.cff` `date-released` (2026-07-09 → 2026-10-07), and the literature-search protocol's "to be added in a later phase" engine notes (reframed as not used for v0.1). A hygiene check confirmed `.gitignore` coverage, both LICENSE files, and no stray tracked files.
+
+**What was deliberately not done.** The 13 migration plans and the body prose of this log were left as contemporaneous records: homogenizing them risks introducing inconsistencies into a verified state for cosmetic gain, and their candor is itself the audit evidence. `data/raw/test_measurements.csv` (a §11.4 validator fixture) and `references/staging/` (tested pipeline artifacts) are intentional and were kept.
+
+**Verified.** Full test suite still passing; the change set is six documentation files with no code, data, or schema change.

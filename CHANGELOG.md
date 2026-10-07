@@ -4,6 +4,20 @@ All notable changes to HyCAN-DB will be documented in this file.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
+### Docs — pre-release documentation polish (2026-10-07)
+- Added `docs/README.md`, a categorized index of the documentation set
+  (start-here / methodology / provenance & audit / migration records).
+- Removed `docs/HANDOFF.md` from the release — internal session scaffolding that
+  pointed at a Project-only manual and carried a stale "state as of 2026-10-01";
+  kept in git history.
+- `docs/ai_usage_log.md`: added a format note to the preamble, made the entry
+  headers consistent (`## YYYY-MM-DD — Title`), and fixed a `2027` date typo. No
+  entry's recorded content changed.
+- Corrected stale/forward-looking wording: the README no longer says the DOI is
+  minted "at the v1.0 release" (it is minted with v0.1); `CITATION.cff`
+  `date-released` set to the release date; `literature_search_protocol.md`
+  reframes the unused search engines as scoped out of v0.1 rather than pending.
+
 ### Fixed — Phase 8 pre-release audit (2026-10-07)
 - **HYC-0016-M5 corrected: the reference activated carbon was mislabeled as
   KOH-activated r-GO.** The 2026-10-05 verification pass had flagged (but
