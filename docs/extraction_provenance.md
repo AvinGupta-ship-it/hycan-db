@@ -9,29 +9,44 @@ and what you should check yourself before relying on any number here.
 It is written to be read by someone who has no connection to this project and
 no reason to trust it.
 
-Last updated 2026-09-25, against dataset `data/raw/measurements_v0.1.csv`
-(206 rows, 21 papers, sha256 `3ecc8b63d9a17ad6980602bc03c4da2150f0b3a4cbcb6335d7ed3ab5d1701676`).
+Last updated 2026-10-06, against dataset `data/raw/measurements_v0.1.csv`
+(521 rows, 51 papers with rows, sha256
+`b6fb30b92baf395810575ed06d6d295e79c5e3567695205d57ed2532e85501eb`).
 
 ---
 
 ## 1. Summary, stated plainly
 
-**The dataset is now mixed, and the two halves are not equally verified.**
+**521 rows from 51 papers, and all but one paper has been through independent
+dual-agent verification.** How a row was first *extracted* and whether it has
+been *verified* are two different things, and this file keeps them separate.
 
-121 of the 206 rows (11 papers) were extracted by a human reading the paper,
-with no independent second reader of any kind. `verified_by` and
-`verification_date` are empty on all of them. Treat those rows as single-reader
-extraction.
+- **Extraction.** 400 rows carry `extractor = "HyCAN pipeline v2"` (40 papers
+  produced by the AI dual-agent pipeline of §3). The other 121 rows (11 papers)
+  were originally extracted by a human reading the paper under the v1.0 protocol,
+  with no second reader at the time; they keep their historical
+  `extractor = "Avin Gupta"` / `"AG"` attribution, which is accurate about who
+  produced them.
+- **Verification.** On 2026-10-05 the 11 originally single-reader papers were
+  **re-read under the dual-agent protocol** (one isolated Sonnet agent per paper,
+  blind to the original extraction; an adjudicator resolved disputes), and every
+  one now carries a `verified_by` record on every row. Every measured value was
+  confirmed — **0 numeric disputes across those ~130 rows** — and the upheld
+  disputes were qualifier/identity fields (probe gas, pore method, a dopant-vs-
+  metal mislabel), not uptake numbers. So the "single-reader, unverified" caveat
+  earlier versions of this file carried **no longer holds**: those rows have a
+  second independent reader.
 
-85 rows (10 papers) were produced by the AI dual-agent pipeline described in §3
-and carry `extractor = "HyCAN pipeline v2"`, with `verified_by` recording the
-verification outcome. Every numeric and controlled-vocabulary cell in those rows
-was extracted by one agent and then independently re-derived, from the PDF, by a
-second agent that had the paper and the candidate values only — no access to the
-first agent's reasoning, search keys, notes, or uncertainty flags.
+**50 of the 51 papers now carry a complete row-level `verified_by` record.** The
+one exception is HYC-0031, tracked `extracted`: 29 of its 32 rows are confirmed
+from the main PDF, but three AX21 cryogenic rows' temperature is stated only in
+Supplementary Information that was not obtained (see `docs/known_limitations.md`).
 
-**Measured dispute rate: 31 cells disputed in 704 verified, 4.4% raised and
-3.3% upheld.**
+**What verification has consistently caught is field semantics, not arithmetic:
+across every batch the numeric cells agreed, and the disputes that were upheld
+were correct values placed in a field meaning something slightly different.** The
+per-paper dispute records (cells verified, disputed, how each resolved) are in
+`docs/ai_usage_log.md`, which is the authoritative running account.
 
 | Paper | Cells | Agreed | Disputed, upheld | Disputed, dismissed |
 | --- | --- | --- | --- | --- |

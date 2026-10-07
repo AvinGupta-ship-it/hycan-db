@@ -4,6 +4,37 @@ All notable changes to HyCAN-DB will be documented in this file.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
+### Added — Phase 5 analysis and Phase 6 machine learning (2026-10-06)
+- **`src/hycan/load.py` — the canonical §12.3 analysis filter.** `analysis_subset()`
+  applies the four exclusions (non-isothermal, non-exact, unstated-condition,
+  characterization-only) as one shared function so every figure and the model
+  filter identically. 431 rows / 45 papers survive; 419 carry a wt% target.
+- **Figures 1–8 generated through the filter** (`scripts/generate_figures.py`,
+  300-dpi PNG + PDF, standalone captions in `figures/CAPTIONS.md`): corpus map,
+  condition space, Chahine, doping (respecified per §15, now supportable after
+  Phase D), tier×year, predicted-vs-measured, SHAP, and uptake-vs-BET Pareto.
+  Replaces the figures stale since July.
+- **Meta-analysis (`src/hycan/meta.py`, `notebooks/04_meta_analysis.ipynb`).**
+  Headline finding: a hierarchical (paper-random-effects) through-origin fit puts
+  the corpus at **≈0.72 wt% per 500 m²/g (95% CI 0.62–0.81)** — 1 wt% per ~700
+  m²/g, ~30% below the Chahine rule, CI excluding 1.0. Robust to reproducibility
+  tier; a free-intercept fit shows a +1.1 wt% baseline offset. Publication-bias
+  funnel/Egger check included with its proxy-SE limitation stated.
+- **Baseline model (`src/hycan/features.py`, `src/hycan/ml.py`,
+  `notebooks/05_ml_baseline.ipynb`).** GroupKFold (5-fold, by paper) over 191
+  rows / 28 papers; RandomForest and XGBoost reach **R² ≈ 0.84, MAE ≈ 0.5 wt%**
+  on held-out papers (linear baseline R² ≈ 0.42). SHAP ranks pressure and BET
+  area as the dominant predictors. Out-of-fold predictions in
+  `data/processed/predictions_v0.1.csv`. Doping excluded as a feature (§14.3); no
+  lab overlay on Fig 6 (the lab's samples carry no H₂ uptake measurement).
+- **`docs/v0.1_summary.md`** writes up the analysis and model findings;
+  **`docs/known_limitations.md`** consolidates the honest-disclosure items
+  (HYC-0016-M5 mislabel, the §13.7 scorer blind spot, four schema gaps, HYC-0031
+  SI gap, the unretrieved PRISMA set). `docs/extraction_provenance.md` updated to
+  the current 521-row / 51-paper state.
+- Tests: `test_load`, `test_meta`, `test_ml`, `test_generate_figures` added.
+  **829 tests passing**, `ruff --select E,F` clean on the new code.
+
 ### Verified — 11 pre-protocol papers dual-agent verified (2026-10-05)
 - **11 of the 12 `extracted` papers moved `extracted -> verified`** under the dual-agent protocol (one blind Sonnet Agent B per paper re-read the PDF; Agent C adjudicated): HYC-0001/0002/0004/0005/0013/0016/0018/0020/0021/0023/0027. `verified_by`/`verification_date` stamped on every row; tracking `verified` 39 -> 50, `extracted` 12 -> 1. **Every hydrogen value (uptake, area, pore volume, T, P) was confirmed -- 0 numeric disputes across all ~130 rows.**
 - **Corrections (qualifier/identity fields only; no measured value changed):** `pore_volume_probe_gas -> N2` on 69 rows (HYC-0001/0004/0005/0018/0020/0021, all stated); stated pore methods recorded -- `DR` (HYC-0005), `DFT` (HYC-0021 micropore + HYC-0023 PSD); HYC-0013 Fe moved from `dopant_element` to `metal_element` (decorating nanocluster, not a dopant); HYC-0018 GO synthesis `thermal_reduction -> chemical_oxidation` and two characterization-only rows `measurement_method unknown -> not_applicable`; HYC-0021 two non-activated N-rich carbons `other -> doped_carbon` with dopant N; HYC-0004/0005 unsupported per-sample activation routes and "commercial" sourcing set to blank/`unknown`; HYC-0016 M13/M14 `graphene -> reduced_graphene_oxide` and unsupported uncertainty blanked on the volumetric 77 K rows. Scorer-vs-human tier agreement unchanged.
