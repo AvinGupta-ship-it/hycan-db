@@ -1,17 +1,23 @@
 #!/usr/bin/env python3
-"""Relabel 36 synthesis_method cells and backfill HYC-0027's Pd composition.
+"""Relabel 35 synthesis_method cells and backfill HYC-0027's Pd composition.
 
 Applies docs/migration_relabel_plan.md and nothing else. Reads and writes raw
 CSV cells through the csv module rather than pandas, so every cell this script
 does not name is byte-identical by construction and verify() can assert exactly
 that.
 
-The 36 relabels move rows extracted before schema v1.2 onto the vocabulary
+The 35 relabels move rows extracted before schema v1.2 onto the vocabulary
 values v1.2 added and no migration ever applied, which left `synthesis_method`
 partitioning the corpus by extraction date rather than by chemistry. Two papers
 that carry activation language and must NOT change are named in the plan's §8
 and asserted here as preconditions, because the difference between this
 migration and a text-matching sweep is that a sweep cannot produce that section.
+
+HYC-0016-M5 was removed from the relabel scope on 2026-10-07: it is the paper's
+reference activated carbon, not a KOH-activated r-GO, and was swept in on its
+(also wrong) activation_method -- the exact hazard §8 guards HYC-0001/0004
+against. It is corrected by scripts/migrate_hyc0016_m5.py
+(docs/migration_hyc0016_m5_plan.md). This dropped the map from 36 rows to 35.
 
 Every `notes` edit is an exact substring replacement on a sentence the plan
 quotes, applied to a named row set whose size is asserted. Rewriting a whole
@@ -40,7 +46,7 @@ DEFAULT_DATASET = Path("data/raw/measurements_v0.1.csv")
 DEFAULT_BACKUP_DIR = Path("/tmp")
 
 DEFAULT_EXPECTED_ROWS = 225
-DEFAULT_EXPECTED_CHANGED_CELLS = 70
+DEFAULT_EXPECTED_CHANGED_CELLS = 69
 EXPECTED_COLUMNS = 67
 
 # Columns this migration is allowed to touch. Anything else changing is a bug,
@@ -59,8 +65,10 @@ SCOPE_COLUMNS = frozenset(
 # --- Plan §1, encoded per paper so the script cannot drift from the table. ---
 
 _CHEMICAL_ACTIVATION = {
-    # §2 Klechikov 2015 -- the seven rows whose activation_method is koh_activation.
-    "HYC-0016": ("M3", "M4", "M5", "M8", "M9", "M10", "M12"),
+    # §2 Klechikov 2015 -- the six KOH-activated r-GO rows. M5 was removed
+    # 2026-10-07: it is the reference activated carbon, not a KOH-rGO sample,
+    # corrected by scripts/migrate_hyc0016_m5.py (migration_hyc0016_m5_plan.md).
+    "HYC-0016": ("M3", "M4", "M8", "M9", "M10", "M12"),
     # §3 Huang 2010 -- all twelve; six samples, one route, two conditions each.
     "HYC-0019": tuple(f"M{n}" for n in range(1, 13)),
     # §4 Serafin 2024 -- all seven; KOH on raw biomass, one-step route.
@@ -90,9 +98,9 @@ SYNTHESIS_RELABEL: dict[str, str] = {
 # were pinned once in this project and were false the next time a paper was
 # appended.
 EXPECTED_SYNTHESIS_DELTAS = {
-    "other": -13,
+    "other": -12,
     "carbonization": -23,
-    "chemical_activation": +34,
+    "chemical_activation": +33,
     "physical_activation": +2,
 }
 
@@ -534,7 +542,7 @@ def verify(
             f"synthesis_method values outside the plan changed count: {drifted}"
         )
 
-    # 4. Exactly the 36 named rows changed synthesis_method, and to the named value.
+    # 4. Exactly the 35 named rows changed synthesis_method, and to the named value.
     relabelled = {
         new[idx["measurement_id"]]: new[idx["synthesis_method"]]
         for old, new in zip(before, after)
@@ -563,7 +571,7 @@ def verify(
     #    was never testing this migration." HYC-0032's CO2-activated base carbons
     #    (2026-10-02) are legitimately physical_activation and broke it. The +2
     #    delta is this migration's own guarantee and is robust to corpus growth;
-    #    post-condition 4 already pins exactly which 36 cells changed and to what.
+    #    post-condition 4 already pins exactly which 35 cells changed and to what.
     #    See docs/migration_relabel_test_scope_plan.md.
 
     # 6. carbonization survives on the two control rows, and the migration adds

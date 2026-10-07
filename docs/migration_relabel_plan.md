@@ -15,8 +15,20 @@ carbon". Its words: *"Either run the whole migration or defer HYC-0019 until you
 do. Applying it to one paper is the worst of the three options."* Locate-only
 passes on the remaining candidate papers then **narrowed** the true scope rather
 than widening it to every row that carries an activation: two of the seven
-candidate papers must not change at all (§8). Final scope: **36 rows across five
+candidate papers must not change at all (§8). Scope as run: **36 rows across five
 papers.**
+
+**Later revision (2026-10-07).** `HYC-0016-M5` was removed from this migration's
+scope. The 2026-10-05 dual-agent verification found it to be Klechikov's
+**reference activated carbon** (the 293 K measurement of the same physical sample
+as the 77 K row M11), not a KOH-activated r-GO — it had been swept in on its
+wrong `activation_method`, the exact §8 hazard. It is corrected by
+`scripts/migrate_hyc0016_m5.py` (`docs/migration_hyc0016_m5_plan.md`). The
+current scope is therefore **35 rows**: HYC-0016 contributes **six** KOH rows
+(M3, M4, M8, M9, M10, M12), not seven, and `chemical_activation` moves +33, not
++34. The per-paper sections and arithmetic below are left at their as-run 36-row
+values as a record of what the migration did when it ran; `migrate_relabel.py`
+and its tests carry the current 35-row scope.
 
 ---
 

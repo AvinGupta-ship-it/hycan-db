@@ -287,9 +287,15 @@ def test_the_two_excluded_papers_cannot_be_relabelled_by_accident() -> None:
 # --- The scope, as the plan states it ---------------------------------------
 
 
-def test_the_relabel_map_is_thirty_six_rows_across_five_papers() -> None:
-    """MUTATION: drop a paper from _CHEMICAL_ACTIVATION -> the count changes."""
-    assert len(mr.SYNTHESIS_RELABEL) == 36
+def test_the_relabel_map_is_thirty_five_rows_across_five_papers() -> None:
+    """MUTATION: drop a paper from _CHEMICAL_ACTIVATION -> the count changes.
+
+    35, not 36, since 2026-10-07: HYC-0016-M5 was removed from the map (it is the
+    reference activated carbon, corrected by scripts/migrate_hyc0016_m5.py). The
+    five-paper set is unchanged -- HYC-0016 keeps its six genuine KOH-rGO rows.
+    """
+    assert len(mr.SYNTHESIS_RELABEL) == 35
+    assert "HYC-0016-M5" not in mr.SYNTHESIS_RELABEL
     papers = {mid.rsplit("-", 1)[0] for mid in mr.SYNTHESIS_RELABEL}
     assert papers == {
         "HYC-0016",
@@ -301,18 +307,18 @@ def test_the_relabel_map_is_thirty_six_rows_across_five_papers() -> None:
     by_value: dict[str, int] = {}
     for value in mr.SYNTHESIS_RELABEL.values():
         by_value[value] = by_value.get(value, 0) + 1
-    assert by_value == {"chemical_activation": 34, "physical_activation": 2}
+    assert by_value == {"chemical_activation": 33, "physical_activation": 2}
 
 
 def test_the_deltas_balance_against_the_row_count() -> None:
-    """36 rows leave two values and arrive at two others; the arithmetic that
+    """35 rows leave two values and arrive at two others; the arithmetic that
     §6.7 says this project gets wrong in prose is checked here instead.
 
     MUTATION: change any delta in EXPECTED_SYNTHESIS_DELTAS -> this fails.
     """
     out = -sum(d for d in mr.EXPECTED_SYNTHESIS_DELTAS.values() if d < 0)
     into = sum(d for d in mr.EXPECTED_SYNTHESIS_DELTAS.values() if d > 0)
-    assert out == into == len(mr.SYNTHESIS_RELABEL) == 36
+    assert out == into == len(mr.SYNTHESIS_RELABEL) == 35
 
 
 # --- The resulting dataset invariants ---------------------------------------

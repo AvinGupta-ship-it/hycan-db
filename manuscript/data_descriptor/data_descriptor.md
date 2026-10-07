@@ -145,8 +145,8 @@ applies the required exclusions; users should aggregate through it rather than
 over the raw 521 rows. Reproducibility tiers are not interchangeable — Tier D
 rows document the field's contested history and should not be averaged with higher
 tiers without showing the comparison separately. `docs/known_limitations.md` lists
-specific caveats (a mislabeled reference-carbon row, an advisory-scorer blind
-spot, four schema gaps, and the unretrieved PRISMA set). The Quick Start in the
+specific caveats (an advisory-scorer blind spot, four schema gaps, and the
+unretrieved PRISMA set). The Quick Start in the
 README loads the data and reproduces the headline result in a few lines.
 
 ## Code Availability

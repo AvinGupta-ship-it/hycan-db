@@ -4,6 +4,30 @@ All notable changes to HyCAN-DB will be documented in this file.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
+### Fixed — Phase 8 pre-release audit (2026-10-07)
+- **HYC-0016-M5 corrected: the reference activated carbon was mislabeled as
+  KOH-activated r-GO.** The 2026-10-05 verification pass had flagged (but
+  deferred) that M5 — a 293 K measurement at BET 1830 m²/g — is the same physical
+  sample as the 77 K reference-carbon row M11, not an r-GO sample. Confirmed
+  against the paper (Fig. 3 marks the reference carbon in red; the reference
+  carbon's BET is fixed across both temperature panels). `scripts/migrate_hyc0016_m5.py`
+  (`docs/migration_hyc0016_m5_plan.md`) sets M5's `material_class`,
+  `synthesis_method`, `activation_method` and `material_description` to match M11,
+  rewrites M5's `notes`, and refreshes the stale verification flag on all 14
+  HYC-0016 rows (19 cells, raw-CSV, refuse-twice, byte-verified). M5 was removed
+  from `scripts/migrate_relabel.py`'s scope (`SYNTHESIS_RELABEL` 36 → 35;
+  `chemical_activation` delta +34 → +33; changed-cell default 70 → 69), with the
+  test pins updated and a dedicated round-trip test added. **No headline result
+  changed** — M5 is 293 K; all headline results are 77 K. The 77 K Chahine subset
+  and the ML feature frame are byte-for-byte unchanged.
+- **`notebooks/01_corpus_overview.ipynb` made filter-aware** so it no longer
+  plots the unfiltered corpus through the pre-§12.3 `plotting.py` path.
+- **`docs/ai_usage_log.md` brought up to date** with the Phase 5–8 sessions
+  (analysis, meta-analysis, ML, figures, notebooks, publication prep, and this
+  audit), per manual §17.5.
+- **840 tests passing** (829 + 11 new M5-migration tests); dataset validates 0
+  errors; `ruff --select E,F` clean on the new code.
+
 ### Added — Phase 5 analysis and Phase 6 machine learning (2026-10-06)
 - **`src/hycan/load.py` — the canonical §12.3 analysis filter.** `analysis_subset()`
   applies the four exclusions (non-isothermal, non-exact, unstated-condition,
@@ -29,8 +53,9 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   lab overlay on Fig 6 (the lab's samples carry no H₂ uptake measurement).
 - **`docs/v0.1_summary.md`** writes up the analysis and model findings;
   **`docs/known_limitations.md`** consolidates the honest-disclosure items
-  (HYC-0016-M5 mislabel, the §13.7 scorer blind spot, four schema gaps, HYC-0031
-  SI gap, the unretrieved PRISMA set). `docs/extraction_provenance.md` updated to
+  (the §13.7 scorer blind spot, four schema gaps, HYC-0031 SI gap, the
+  unretrieved PRISMA set; the HYC-0016-M5 mislabel, listed here at Phase 5/6, was
+  corrected at Phase 8 — see below). `docs/extraction_provenance.md` updated to
   the current 521-row / 51-paper state.
 - Tests: `test_load`, `test_meta`, `test_ml`, `test_generate_figures` added.
   **829 tests passing**, `ruff --select E,F` clean on the new code.

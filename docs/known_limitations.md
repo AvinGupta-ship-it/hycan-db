@@ -9,21 +9,22 @@ stated here instead.
 
 ## Data labels
 
-- **HYC-0016-M5 is mislabeled** `reduced_graphene_oxide` / `chemical_activation`
-  / `koh_activation`. It is in fact the paper's **reference activated carbon**,
-  the same physical sample as HYC-0016-M11 measured at 293 K rather than 77 K
-  (Klechikov 2015; confirmed by the 2026-10-05 verification pass). It entered the
-  corpus mislabeled and was then swept into `scripts/migrate_relabel.py`'s KOH
-  relabel on its (also wrong) `activation_method` — the third instance of the
-  §6.7 "a text-match relabel catches a reference sample" hazard, after HYC-0001
-  and HYC-0004. **The correction** (for a future maintenance pass): set M5's
-  `material_class = activated_carbon`, `synthesis_method = other`,
-  `activation_method = none`, and `material_description = "Reference activated
-  carbon sample, BET 1830 m2/g"` (i.e. identical to M11), and remove `M5` from
-  `migrate_relabel._CHEMICAL_ACTIVATION["HYC-0016"]` (dropping `SYNTHESIS_RELABEL`
-  from 36 to 35, with the pinned counts in `tests/test_migrate_relabel.py`
-  updated). Left undone because it is protected-pipeline surgery for one 293 K
-  row that is invisible to every 77 K figure and to the model.
+No outstanding label errors. One was corrected after the v0.1 verification pass
+and is recorded here for provenance:
+
+- **HYC-0016-M5 (corrected 2026-10-07).** It had been extracted as
+  `reduced_graphene_oxide` / `koh_activation` and then swept into
+  `scripts/migrate_relabel.py`'s KOH relabel as `chemical_activation`. It is in
+  fact the paper's **reference activated carbon** — the 293 K measurement of the
+  same physical sample as the 77 K row HYC-0016-M11 (Klechikov 2015; the Fig. 3
+  caption marks the reference carbon in red, and the 2026-10-05 dual-agent pass
+  flagged it independently). It was the third instance of the §6.7 "a text-match
+  relabel catches a reference sample" hazard, after HYC-0001 and HYC-0004.
+  `scripts/migrate_hyc0016_m5.py` (`docs/migration_hyc0016_m5_plan.md`) set M5's
+  `material_class`, `synthesis_method`, `activation_method` and
+  `material_description` to match M11, and M5 was removed from the relabel
+  migration's scope (`SYNTHESIS_RELABEL` 36 → 35). No headline result moved: the
+  row is a 293 K measurement and every headline result is at 77 K.
 
 ## Tooling
 

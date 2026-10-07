@@ -2019,3 +2019,152 @@ extraction is complete through HYC-0065; what remains are the not-retrieved (HYC
 **Notable adjudications.** HYC-0001 SWCNT-II 2.52 wt% retained (Agent C re-read Fig 3: within figure-read precision; Agent B's 2.43 an equally valid read). HYC-0013 Fe moved dopant->metal. HYC-0018 GO synthesis corrected to chemical_oxidation. HYC-0016 M5 mislabel (the AC reference coded as rGO/KOH) flagged for a dedicated relabel migration rather than corrected here (migrate_relabel.py count pins). HYC-0031: the oxygen content previously assumed SI-only is in the main PDF (Table 1/XPS/TPD); only the AX21 cryogenic temperature is SI-gated.
 
 **807 tests passing.** test_sync_paper_tracking updated to define verified by a complete row-level verified_by record.
+
+## 2026-10-06 — Phase 5: analysis infrastructure and the Chahine meta-analysis
+
+**Tool/agents.** Claude Code (Opus 4.8), Mode A autonomous execution per manual
+§2.1. Verification is the test suite (which §18 Phase A established must be
+mutation-resistant, not merely green) plus re-reading every reported number off
+the regenerated artifact rather than off a tool's self-report (§3.8).
+
+**What was built.**
+- `src/hycan/load.py` — the single canonical §12.3 analysis filter.
+  `analysis_subset(df, require_wt_pct=False)` applies the four exclusions
+  (non-isothermal, non-exact `uptake_bound`, temperature/pressure unstated,
+  characterization-only) as one union so every figure and the model filter
+  identically; `confirmed_bet_area` masks BET where `surface_area_method` is not
+  BET; `load_dataset` deliberately avoids `keep_default_na=False` (§B.4). 431 of
+  521 rows / 45 papers survive; 419 carry a wt% target.
+- `src/hycan/meta.py` — `chahine_mixedlm` (statsmodels MixedLM, paper-level
+  random intercepts), `chahine_subset`, `tier_sensitivity`, `publication_bias`
+  (Egger-style on a within-paper dispersion precision proxy), `descriptive_summary`.
+- `notebooks/04_meta_analysis.ipynb`.
+
+**Headline finding.** A hierarchical **through-origin** fit of 77 K uptake on BET
+area gives **0.72 wt% per 500 m²/g (95% CI 0.62–0.81)**, ~30% below the Chahine
+rule, CI excluding 1.0; stable across Tier A/B (0.70) and Tier A (0.64). A
+free-intercept fit shows a +1.1 wt% baseline offset and a shallower slope.
+
+**The substantive methodological decision — mine.** The rule test is fit
+**through the origin**. A free-intercept model gave slope 0.64 with a +1.1 wt%
+intercept; reporting 0.64 as "the Chahine slope" would be wrong, because the
+Chahine rule is a through-origin proportionality (0 area → 0 uptake) and a
+free-intercept slope absorbs the offset. The through-origin hierarchical fit
+(0.72) is the correct like-for-like test of the rule, and the intercept finding
+is reported separately rather than folded into the slope. Figure 3's caption was
+corrected from the earlier naive-OLS value (580 m²/g per wt%) to the hierarchical
+~700 m²/g per wt% accordingly.
+
+**Verified.** `test_load`, `test_meta` added; full suite green. Re-ran the fit
+and read the CI off the result object; confirmed it excludes 1.0. Confirmed the
+publication-bias check carries its proxy-SE limitation in the notebook rather
+than being presented as a formal small-study test.
+
+## 2026-10-06 — Phase 6: machine-learning baseline and Figures 1–8
+
+**Tool/agents.** Claude Code (Opus 4.8), Mode A. Verification by the suite and by
+an explicit fold-isolation check, not by trusting a high R².
+
+**What was built.**
+- `src/hycan/features.py` — `feature_frame` (77 K Tier A/B, confirmed BET,
+  keeps `measurement_id` for traceability), `design_matrix` → (X, y, groups).
+  `NUMERIC_FEATURES` = BET, micropore / ultramicropore / total pore volume,
+  pressure. Doping is **excluded** as a feature (§14.3): there is no comparable
+  doped/undoped subset, and its absence is not evidence doping is irrelevant.
+- `src/hycan/ml.py` — `cross_validate`, `verify_fold_isolation`,
+  `out_of_fold_predictions`, `fit_full`, `shap_summary`. GroupKFold (5-fold) **by
+  `paper_id`** so no paper appears in both train and test; LinearRegression and
+  RandomForest on median-imputed features, XGBoost on native NaN.
+- `scripts/generate_figures.py` extended to Figures 1–8 (300-dpi PNG + PDF,
+  standalone captions in `figures/CAPTIONS.md`), all aggregations routed through
+  `analysis_subset`; `scripts/build_predictions.py` writes
+  `data/processed/predictions_v0.1.csv` (191 out-of-fold rows);
+  `notebooks/03_descriptive_analysis.ipynb`, `notebooks/05_ml_baseline.ipynb`.
+
+**Result.** GroupKFold over 191 rows / 28 papers: RandomForest and XGBoost reach
+**R² ≈ 0.84, MAE ≈ 0.5 wt%** on held-out papers against a linear baseline of
+R² ≈ 0.42; SHAP ranks pressure and BET area as the dominant predictors — the
+expected 77 K physisorption behaviour, which is itself a corpus-integrity check
+(unit or transcription corruption would not reproduce it).
+
+**Verified.** `verify_fold_isolation` asserts the paper-grouping holds (the §14.1
+concern that the modelling gate was "met on paper not in fact" — the corpus grew
+from the manual's 102 rows / 11 papers to 191 / 28 after Phase D and
+verification, which is what makes the grouped CV honest). `test_ml`,
+`test_generate_figures` added; all 8 figures regenerate and the predictions file
+round-trips.
+
+## 2026-10-06 — Phase 7: publication preparation
+
+**Tool/agents.** Claude Code (Opus 4.8), Mode A, except the ORCID, which only
+Avin can supply (0009-0009-4133-2275, provided by Avin and set in `CITATION.cff`,
+`.zenodo.json`, and the data descriptor).
+
+**What was written/fixed.** `README.md` (removed a `[username]` placeholder and a
+stale "119 rows, single-reader" line; added the Quick Start that reproduces the
+headline result), `CITATION.cff` (+ORCID), `.zenodo.json` (CC BY 4.0 data / MIT
+code, keywords, GitHub related-identifier), `manuscript/data_descriptor/data_descriptor.md`,
+`docs/v0.1_summary.md`, `docs/known_limitations.md`, and
+`docs/extraction_provenance.md` brought to the current 521-row / 51-paper state.
+
+**Correction made here.** `extraction_provenance.md` had carried a "121 rows
+single-reader, unverified" caveat that was **false** after the 2026-10-05
+verification pass — 50 of the 51 papers now hold a complete row-level
+`verified_by` record. The header count (206 → 521) and the §1 summary were
+corrected to match the dataset rather than restate the stale figure.
+
+**Decision — mine.** The data descriptor is left as an explicit **author-review
+draft**: the science, numbers and figures are final and reproducible, but
+framing, acknowledgements, the author-contribution statement and venue formatting
+are Avin's to complete before any submission. AI involvement is disclosed in this
+log rather than obscured.
+
+**Verified.** Every number in the README Quick Start and the descriptor was
+reproduced from a fresh run of the code, not copied from an earlier summary.
+
+## 2026-10-07 — Phase 8: pre-release audit and three corrections
+
+**Tool/agents.** Claude Code (Opus 4.8), Mode A. The audit was run as a
+clean-room reproduction (fresh clone, README-instructed install, full suite,
+figures, notebooks) so the gate is evaluated on what a user would actually get.
+
+**Why.** Before minting the Zenodo DOI, a rigorous check of "nothing forgotten or
+ignored." The reproduction gate passed, but three real gaps were found and are
+**not** waved through:
+
+1. **HYC-0016-M5 mislabel corrected.** The 2026-10-05 verification pass had
+   flagged, but deferred, that M5 (293 K, BET 1830) is the paper's reference
+   activated carbon — the same physical sample as the 77 K row M11 — not a
+   KOH-activated r-GO. Re-verified three ways before touching the protected
+   dataset: the paper's own captions (Fig. 3 marks the reference carbon in red;
+   Fig. 4's reference carbon is at BET 1830 = M11, and a reference sample has one
+   BET across both temperature panels), the 77 K twin, and the blind Agent B
+   record. `scripts/migrate_hyc0016_m5.py` (`docs/migration_hyc0016_m5_plan.md`)
+   set M5's four identity fields to match M11, rewrote its notes, and refreshed
+   the stale verification flag on all 14 HYC-0016 rows (19 cells; raw-CSV,
+   refuse-twice, re-read and byte-verified from disk). M5 was removed from
+   `scripts/migrate_relabel.py`'s scope (`SYNTHESIS_RELABEL` 36 → 35;
+   `chemical_activation` +34 → +33; changed-cell default 70 → 69), the two count
+   pins in `tests/test_migrate_relabel.py` updated, and a dedicated round-trip
+   test added (`tests/test_migrate_hyc0016_m5.py`). **No headline result moved**:
+   M5 is 293 K and every headline result is 77 K; the migrate_relabel round trip
+   still reproduces the committed bytes.
+2. **`notebooks/01_corpus_overview.ipynb` fixed.** It had plotted the raw
+   (pre-§12.3) corpus through `plotting.py` and, worse, **overwrote** the
+   canonical `figures/fig1,2,3` on every run. It now loads through `hycan.load`,
+   reports both the full corpus (521) and the analysis subset (431 / 45 papers),
+   runs the Chahine preview on the subset with a pointer to the canonical
+   hierarchical fit in `notebooks/04`, and writes its exploratory figures to a
+   throwaway directory so it never clobbers the published ones.
+3. **This log** brought up to date with Phases 5–8 (manual §17.5).
+
+**Verified.** Full suite **840 passing** (829 + 11 new M5 tests); dataset
+validates 0 errors; `ruff --select E,F` clean on all new code; M5 re-read from
+disk and confirmed equal to M11 on the four identity fields; the migrate_relabel
+round trip re-confirmed; figures regenerated from the corrected data; notebooks
+re-executed end-to-end.
+
+**Decision — mine.** Correcting M5 rather than leaving it documented: it is a
+verified label error with an unambiguous fix and the correct values in hand, not
+a scientific ambiguity, so §2.3 escalation does not apply. The surgery is
+mechanical, reversible, round-trip-tested, and moves no published number.
