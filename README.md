@@ -3,7 +3,7 @@
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Data License: CC BY 4.0](https://img.shields.io/badge/Data%20License-CC%20BY%204.0-lightgrey.svg)
 ![Version](https://img.shields.io/badge/version-v0.1-blue.svg)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23231986.svg)](https://doi.org/10.5281/zenodo.23231986)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23231985.svg)](https://doi.org/10.5281/zenodo.23231985)
 
 HyCAN-DB is an open, FAIR-compliant database of hydrogen sorption measurements in
 carbon nanomaterials (activated carbons, carbon nanotubes, graphene-family
@@ -140,10 +140,11 @@ physics-override clause, and worked examples are in
 ## Data and code availability
 
 The dataset is `data/raw/measurements_v0.1.csv`; the code that validates,
-harmonises, analyses, and plots it is in `src/hycan/`. The v0.1 release is
-archived on Zenodo under CC BY 4.0 (code under MIT).
+harmonises, analyses, and plots it is in `src/hycan/`. The project is archived on
+Zenodo under CC BY 4.0 (code under MIT).
 
-> **Zenodo DOI (v0.1):** [10.5281/zenodo.23231986](https://doi.org/10.5281/zenodo.23231986)
+> **Zenodo DOI:** [10.5281/zenodo.23231985](https://doi.org/10.5281/zenodo.23231985) — concept DOI, always resolves to the latest version.
+> **This release (v0.1):** [10.5281/zenodo.23231986](https://doi.org/10.5281/zenodo.23231986)
 
 Literature PDFs are excluded for copyright reasons; per-field citation provenance
 in `references/bibliography_sources.json` lets every source be retrieved
@@ -154,9 +155,12 @@ independently.
 ## Citation
 
 Please cite using the metadata in [`CITATION.cff`](CITATION.cff), or cite the
-archived v0.1 release directly:
+dataset directly:
 
-> Gupta, Avin (2026). *HyCAN-DB: Hydrogen in Carbon Nanomaterials Database* (v0.1) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.23231986
+> Gupta, Avin (2026). *HyCAN-DB: Hydrogen in Carbon Nanomaterials Database* [Data set]. Zenodo. https://doi.org/10.5281/zenodo.23231985
+
+The DOI above is the concept DOI (always the latest version). To cite this exact
+release, use the v0.1 version DOI, [10.5281/zenodo.23231986](https://doi.org/10.5281/zenodo.23231986).
 
 ## License
 
