@@ -4,6 +4,8 @@ All notable changes to HyCAN-DB will be documented in this file.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
+
+## [v0.1] - 2026-10-08
 ### Docs — pre-release documentation polish (2026-10-07)
 - Added `docs/README.md`, a categorized index of the documentation set
   (start-here / methodology / provenance & audit / migration records).
