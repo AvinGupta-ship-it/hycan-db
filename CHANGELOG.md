@@ -6,6 +6,8 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ## [v0.1] - 2026-10-08
+First archived release, deposited on Zenodo: DOI [10.5281/zenodo.23231986](https://doi.org/10.5281/zenodo.23231986) (CC BY 4.0 data, MIT code).
+
 ### Docs — pre-release documentation polish (2026-10-07)
 - Added `docs/README.md`, a categorized index of the documentation set
   (start-here / methodology / provenance & audit / migration records).
