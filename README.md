@@ -152,6 +152,16 @@ independently.
 
 ---
 
+## How this fits together
+
+**HyCAN-DB** curates what the field has measured.
+[**H2STAR**](https://doi.org/10.5281/zenodo.23257816) converts those
+measurements into system-level consequence and derives what a material would
+have to be; its carbon-nanotube case study is drawn entirely from this corpus,
+every entry carrying its `HYC-` identifier.
+
+---
+
 ## Citation
 
 Please cite using the metadata in [`CITATION.cff`](CITATION.cff), or cite the
