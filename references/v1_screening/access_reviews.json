@@ -1,0 +1,49 @@
+{
+  "reviews": [
+    {
+      "screener": "B",
+      "batch": "batch_087",
+      "transcript": "agent-ab5cca376284ea6e7.jsonl",
+      "call": 12,
+      "reason": "command names the home directory",
+      "access": false,
+      "note": "The ~ is a string literal printed by a Python script written in a quoted heredoc (print('   ~',h)) as a bullet before each matched excerpt; no path is named and nothing expands it."
+    },
+    {
+      "screener": "B",
+      "batch": "batch_087",
+      "transcript": "agent-ab5cca376284ea6e7.jsonl",
+      "call": 14,
+      "reason": "command names the home directory",
+      "access": false,
+      "note": "Same script rewritten: the ~ is a string literal printed as a bullet (print('   ~',h)) inside a quoted heredoc; no path."
+    },
+    {
+      "screener": "B",
+      "batch": "batch_087",
+      "transcript": "agent-ab5cca376284ea6e7.jsonl",
+      "call": 15,
+      "reason": "command names the home directory",
+      "access": false,
+      "note": "Same script rewritten: the ~ is a string literal printed as a bullet (print('   ~',h)) inside a quoted heredoc; no path."
+    },
+    {
+      "screener": "B",
+      "batch": "batch_087",
+      "transcript": "agent-ab5cca376284ea6e7.jsonl",
+      "call": 16,
+      "reason": "command names the home directory",
+      "access": false,
+      "note": "The ~ is a string literal printed as a bullet (print('~',...)) inside python3 -I -c with a double-quoted program; the shell does not expand a quoted ~ and Python does not treat it as a path."
+    },
+    {
+      "screener": "B",
+      "batch": "batch_105",
+      "transcript": "agent-a0d898612d41defa2.jsonl",
+      "call": 28,
+      "reason": "command in the tools directory reads more than its scripts' output: od -c",
+      "access": false,
+      "note": "From the tools directory the agent ran python3 -I -c on its own output file (absolute path; -I keeps the tools directory off the import path) and piped the first 300 bytes of the same file through od -c to see its bytes. od reads only that pipe; no other file is named."
+    }
+  ]
+}
