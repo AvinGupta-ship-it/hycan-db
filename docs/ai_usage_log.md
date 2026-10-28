@@ -2309,3 +2309,20 @@ the five round-3 agents. Full test suite passing.
 publication approval, and approval of the v0.1 record edit. The prompts,
 pilot and amendment were made by Claude; the author's sign-off on the
 amendment is its push.
+
+## 2026-10-28 (continued) — v1.0: reference set B
+
+**Tools and agents.** Claude (`claude-opus-5-5`), Mode A. The two screening
+agents of Amendment 1 (screener A `claude-opus-5-5`, screener B
+`claude-sonnet-5-5`) on the frozen `screen.md`.
+
+**What was done.** With the author's approval of the two downloads, Claude ran
+the committed lookup script in the built-in browser on the author's computer.
+It retrieved the 91 works Gunther et al. (2026) cite, and the script saved
+every response to disk. Claude built the screening input. The two screeners
+each ran once. Claude built set B (14 records) and audited both transcripts
+(`references/v1_setB/README.md`). No search request had been sent.
+
+**Author's role.** Approval of the downloads; the push that makes set B public
+before the search.
+

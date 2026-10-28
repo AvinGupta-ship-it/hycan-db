@@ -5,6 +5,14 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Reference set B identified (2026-10-28)
+- `references/v1_setB/`: the OpenAlex lookup of the 91 works Gunther et al.
+  (2026) cite, both frozen screeners' decisions, and set B (14 records), made
+  before any search request.
+- `scripts/v1_search/reference_sets.py` (set B and the recall check),
+  `screening_batches.py` (screening batches), the stemming check in both
+  search scripts, and `hycanReferencedWorks` in `openalex_lookup.js`.
+
 ### v1.0 prompts frozen (2026-10-28)
 - **Protocol §15, Amendment 1**: clarifications found in the prompt pilot and
   an independent review, the SHA-256 of every frozen prompt, and the model for
