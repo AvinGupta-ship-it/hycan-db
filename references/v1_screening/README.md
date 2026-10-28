@@ -134,6 +134,27 @@ in the merged set, the share that reach the frame.
   - MOFs are not carbon sorbents (§3).
 - **Set B, include by both screeners:** 2 of 2 (100%).
 
+## Draw order (§7)
+
+`scripts/v1_search/draw_order.py` read the committed frame (29ef4bf), checked
+that `build_frame.py` reproduces it, and wrote
+`references/v1_search/draw_order.csv`: s = 9317745109584548309 (the first 16
+hex digits of the frame's SHA-256), and within each stratum
+`numpy.random.default_rng([s, h]).permutation(N_h)` over its records sorted by
+`frame_id` (NumPy 2.5.4, as pinned in `requirements-v1.lock`). The order was
+recomputed independently from the frame and matches. It is committed before
+any full text is retrieved.
+
+## Author's audit (§6)
+
+`scripts/v1_search/screening_audit.py make` drew 100 of the 5,987
+double-excluded records with `numpy.random.default_rng(20261031).choice`,
+without replacement, from those records sorted by `frame_id`
+(`author_audit_sheet.csv`; 33 of the 100 have no abstract). The sheet shows
+title, venue, year and abstract only, with no screening decision. The author
+fills `author_decision`. `screening_audit.py score` then reports the share he
+would include, with an exact 95% CI: the estimated false-exclusion rate.
+
 ## Files
 
 | File | What it holds |
@@ -146,3 +167,4 @@ in the merged set, the share that reach the frame.
 | `sensitivity.json` | Screening sensitivity on sets A and B |
 | `access/` | The check of every agent (`screening_runs.py`) and the tiebreaker's access audit |
 | `access_reviews.json` | The review of every audit flag |
+| `author_audit_sheet.csv` | The author's blind audit sample of 100 double-excluded records |
