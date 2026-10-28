@@ -54,9 +54,42 @@ async function sha256Hex(text) {
   return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
+// API key. OpenAlex gives a request without a key a small daily budget shared
+// by everyone on the same IP address, which a search of this size exceeds; a
+// free key has its own budget. The author types the key into a box that
+// hycanKeyBox() adds to the page. The key is added to each request only when
+// it is sent: it is never written into a saved URL, returned or logged.
+let OA_KEY = null;
+
+function hycanKeyBox() {
+  const box = document.createElement('div');
+  box.style.cssText = 'position:fixed;top:12px;left:12px;z-index:99999;padding:12px;' +
+    'background:#fff;border:2px solid #333;font:16px sans-serif;color:#000';
+  const label = document.createElement('div');
+  label.textContent = 'HyCAN-DB: paste your OpenAlex API key, then click Use key';
+  const input = document.createElement('input');
+  input.type = 'password'; input.autocomplete = 'off'; input.style.cssText = 'width:320px;margin:8px 0';
+  const button = document.createElement('button');
+  button.textContent = 'Use key';
+  button.onclick = () => {
+    OA_KEY = input.value.trim() || null;
+    input.value = '';
+    label.textContent = OA_KEY ? 'Key set; the search will use it.' : 'No key entered.';
+  };
+  box.append(label, input, button);
+  document.body.appendChild(box);
+  return 'key box shown';
+}
+
+function hycanKeySet() { return OA_KEY !== null; }
+
+function withKey(url) {
+  return OA_KEY ? url + '&api_key=' + encodeURIComponent(OA_KEY) : url;
+}
+
 async function fetchRaw(url) {
   for (let attempt = 0; attempt < 6; attempt++) {
-    const r = await fetch(url);
+    const r = await fetch(withKey(url));
     const body = await r.text();
     if (r.status === 429 || r.status >= 500) {
       await new Promise(res => setTimeout(res, 2000 * (attempt + 1)));
@@ -153,4 +186,19 @@ async function hycanCounts() {
   });
   return { subqueries: rows.length, total: rows.reduce((a, r) => a + r.count, 0),
            largest: rows.map(r => [r.key, r.count]).sort((a, b) => b[1] - a[1]).slice(0, 5) };
+}
+
+// Run every sub-query in batches of `size`, from batch start `i0`, saving one
+// file per batch. Progress (sub-query keys and counts only) is kept in
+// window.HYCAN_PROGRESS so that a run stopped by an error or the daily budget
+// can resume at the first batch not saved.
+async function hycanRunAll(perPage, size, i0) {
+  const n = subQueries().length;
+  const log = [];
+  for (let i = i0 || 0; i < n; i += size) {
+    const r = await hycanRun(i, Math.min(i + size, n), perPage);
+    log.push([i, r]);
+    window.HYCAN_PROGRESS = { next: i + size, total: n, log };
+  }
+  return log;
 }
