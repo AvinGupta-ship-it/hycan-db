@@ -241,6 +241,21 @@ NUMERIC_ROOT = re.compile(r"^/\d+(?:/|$)")
 TOKEN = re.compile(r"[^\s'\"=(:,;|&<>\[\]{}]+")
 
 
+def _pattern_operands(cmd: str) -> list[str]:
+    """The pattern or program operand of every grep, sed, awk or jq command:
+    text that is matched or executed as an expression, never opened as a file."""
+    out = []
+    for pipe in pipelines(HEREDOC.sub(" ", cmd)):
+        for words in pipe:
+            while words and ASSIGNMENT.match(words[0]):
+                words = words[1:]
+            if words and posixpath.basename(words[0]) in PATTERN_FIRST:
+                operands = [a for a in words[1:] if not a.startswith("-")]
+                if operands:
+                    out.append(operands[0])
+    return out
+
+
 def _climbs_stay_inside(cmd: str, roots: list[str]) -> bool:
     """True when every path in the command that climbs with `..` resolves,
     against the last absolute `cd` before it (or by itself, if absolute), to a
@@ -274,7 +289,11 @@ def audit_bash(cmd: str, instruction: str, data: list[str], harness: list[str],
     if NETWORK.search(cmd):
         reasons.append("command uses the network")
     cd_targets = {norm(m.group(2)) for m in CD.finditer(cmd)}
+    patterns = _pattern_operands(cmd)
     for raw in ABS_PATH.findall(cmd):
+        if any(raw in pat for pat in patterns):
+            continue  # inside a grep/sed/awk/jq pattern or program, e.g. sed -n '/F1/,/F9/p'
+
         p = norm(raw)
         if p == instruction or raw.startswith(SYSTEM_PREFIXES):
             continue

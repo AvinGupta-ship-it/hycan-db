@@ -148,3 +148,10 @@ def test_numeric_root_is_not_a_path_and_a_misnamed_write_key_is_checked(tmp_path
     assert run(tmp_path, [("Bash", {"command": sed})]) == []
     assert run(tmp_path, [("Write", {"path": WORK + "/m.py", "content": "x"})]) == []
     assert run(tmp_path, [("Write", {"path": "/w/out_A/P1/m.py", "content": "x"})])
+
+
+def test_a_sed_address_is_not_a_path_but_a_sed_file_operand_is(tmp_path):
+    ok = f"cd {WORK} && sed -n '/F04466/,/F04476/p' make_out.py | cut -c1-120"
+    assert run(tmp_path, [("Bash", {"command": ok})]) == []
+    bad = f"cd {WORK} && sed -n '/F1/p' /w/out_A/P1/x.csv"
+    assert run(tmp_path, [("Bash", {"command": bad})])
