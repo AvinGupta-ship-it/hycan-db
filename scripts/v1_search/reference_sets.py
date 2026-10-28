@@ -27,6 +27,7 @@
 Every output depends only on the inputs, so a re-run reproduces it byte for
 byte.
 
+    (the two files from openalex_lookup.js hycanReferencedWorks)
     python3 scripts/v1_search/reference_sets.py setb-input CITING.json REFS.json
         --doi 10.1016/j.ijhydene.2026.156054 --out references/v1_setB
     python3 scripts/v1_search/reference_sets.py setb-build --dir references/v1_setB

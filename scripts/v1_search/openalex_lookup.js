@@ -68,3 +68,45 @@ async function hycanLookupIds(name, ids) {
   document.body.appendChild(a); a.click(); a.remove();
   return pages.map(p => [p.status, JSON.parse(p.body).meta.count]);
 }
+
+function saveJson(filename, obj) {
+  const blob = new Blob([JSON.stringify(obj)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  document.body.appendChild(a); a.click(); a.remove();
+}
+
+// Reference set B (protocol §5; §15 Amendment 1, item 9): the record of the
+// citing paper, found by DOI, and the records of all its referenced works, in
+// two files. The referenced works are read from the citing record inside the
+// page, so no response body passes through anything but this script.
+async function hycanReferencedWorks(name, doi) {
+  const url = 'https://api.openalex.org/works?per-page=50&filter=doi:' +
+    encodeURIComponent('https://doi.org/' + doi.toLowerCase());
+  const citing = await fetchRaw(url);
+  const recs = JSON.parse(citing.body).results;
+  if (recs.length !== 1) {
+    throw new Error('expected one record for ' + doi + ', found ' + recs.length);
+  }
+  const ids = recs[0].referenced_works.map(i => i.replace('https://openalex.org/', ''));
+  saveJson('hycan_v1_lookup_' + name + '_citing.json', {
+    source: 'OpenAlex', script: 'scripts/v1_search/openalex_lookup.js',
+    purpose: name + ': citing paper', dois: [doi],
+    run_at_utc: new Date().toISOString(), pages: [citing],
+  });
+  const pages = [];
+  for (let i = 0; i < ids.length; i += 40) {
+    const u = 'https://api.openalex.org/works?per-page=50&filter=openalex_id:' +
+      ids.slice(i, i + 40).join('|');
+    pages.push(await fetchRaw(u));
+    await new Promise(res => setTimeout(res, 300));
+  }
+  saveJson('hycan_v1_lookup_' + name + '_refs.json', {
+    source: 'OpenAlex', script: 'scripts/v1_search/openalex_lookup.js',
+    purpose: name + ': referenced works', ids,
+    run_at_utc: new Date().toISOString(), pages,
+  });
+  return { referenced_works: ids.length,
+           returned: pages.map(p => JSON.parse(p.body).meta.count) };
+}
