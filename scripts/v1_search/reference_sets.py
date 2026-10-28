@@ -23,6 +23,11 @@
                both-include subset, each split by whether OpenAlex holds an
                abstract, with the reason for every miss (§5): not indexed;
                indexed without abstract; indexed with abstract but not matched.
+  sensitivity  from the merged search, the frame (build_frame.py) and the two
+               screening files, report screening sensitivity on sets A and B
+               (§6): of the references in the merged set, the share that reach
+               the frame, how many each screener kept, and every reference both
+               screeners excluded, with their codes.
 
 Every output depends only on the inputs, so a re-run reproduces it byte for
 byte.
@@ -35,6 +40,13 @@ byte.
         --merged references/v1_search/merged_records.csv
         --set-a-lookup references/v1_pilot/hycan_v1_lookup_v01_pilot.json
         --setb references/v1_setB --out references/v1_search/recall.json
+    python3 scripts/v1_search/reference_sets.py sensitivity
+        --merged references/v1_search/merged_records.csv
+        --set-a-lookup references/v1_pilot/hycan_v1_lookup_v01_pilot.json
+        --setb references/v1_setB --frame references/v1_search/frame.csv
+        --screen-a references/v1_screening/screen_a.csv
+        --screen-b references/v1_screening/screen_b.csv
+        --out references/v1_screening/sensitivity.json
 """
 
 from __future__ import annotations
@@ -269,21 +281,27 @@ def _merged_index(merged: list[dict]):
     return by_oa, by_doi, by_title
 
 
-def _found(ref: dict, index) -> bool:
+def _match(ref: dict, index) -> dict | None:
+    """The merged record a reference matches: by OpenAlex ID, then DOI, then
+    title with a year at most 1 apart."""
     by_oa, by_doi, by_title = index
-    if ref.get("openalex_id") and bare_id(ref["openalex_id"]) in {
-        bare_id(k) for k in by_oa
-    }:
-        return True
+    if ref.get("openalex_id"):
+        bare = {bare_id(k): r for k, r in by_oa.items()}
+        if bare_id(ref["openalex_id"]) in bare:
+            return bare[bare_id(ref["openalex_id"])]
     if ref.get("doi") and norm_doi(ref["doi"]) in by_doi:
-        return True
+        return by_doi[norm_doi(ref["doi"])]
     for r in by_title.get(norm_title(ref.get("title")), []):
         try:
             if abs(int(r.get("year") or 0) - int(ref.get("year") or 0)) <= 1:
-                return True
+                return r
         except ValueError:
             continue
-    return False
+    return None
+
+
+def _found(ref: dict, index) -> bool:
+    return _match(ref, index) is not None
 
 
 def recall_block(refs: list[dict], index) -> dict:
@@ -317,9 +335,35 @@ def recall_block(refs: list[dict], index) -> dict:
     return out
 
 
-def cmd_recall(args) -> int:
-    merged = read_csv(Path(args.merged))
-    index = _merged_index(merged)
+def sensitivity_block(refs: list[dict], index, frame_ids: set[str],
+                      a: dict[str, dict], b: dict[str, dict]) -> dict:
+    """Of the references found in the merged set, how many reach the frame
+    (§6 screening sensitivity), how many each screener kept, and every
+    reference both screeners excluded, with their decisions and codes."""
+    found = [(r, _match(r, index)) for r in refs]
+    found = [(r, m) for r, m in found if m is not None]
+    in_frame = [(r, m) for r, m in found if m["frame_id"] in frame_ids]
+    out = {
+        "in_merged": len(found),
+        "in_frame": len(in_frame),
+        "sensitivity": None if not found else len(in_frame) / len(found),
+        "kept_by_a": sum(a[m["frame_id"]]["decision"] != "exclude" for _, m in found),
+        "kept_by_b": sum(b[m["frame_id"]]["decision"] != "exclude" for _, m in found),
+        "excluded_by_both": [],
+    }
+    for r, m in found:
+        if m["frame_id"] in frame_ids:
+            continue
+        fid = m["frame_id"]
+        out["excluded_by_both"].append({
+            "id": r["id"], "frame_id": fid, "title": r.get("title"),
+            "code_a": a[fid]["exclusion_code"], "code_b": b[fid]["exclusion_code"],
+        })
+    return out
+
+
+def _sets(args) -> tuple[list[dict], list[dict]]:
+    """Reference set A (Appendix B, with their OpenAlex lookup records) and set B."""
     # set A: the Appendix B papers, with their OpenAlex records from the lookup
     v01 = {}
     with (ROOT / "data" / "raw" / "measurements_v0.1.csv").open(encoding="utf-8") as fh:
@@ -356,6 +400,13 @@ def cmd_recall(args) -> int:
         }
         for r in set_b_rows
     ]
+    return set_a, set_b
+
+
+def cmd_recall(args) -> int:
+    merged = read_csv(Path(args.merged))
+    index = _merged_index(merged)
+    set_a, set_b = _sets(args)
     report = {
         "merged_sha256": sha256_file(Path(args.merged)),
         "set_a": recall_block(set_a, index),
@@ -374,6 +425,28 @@ def cmd_recall(args) -> int:
     return 0
 
 
+def cmd_sensitivity(args) -> int:
+    merged = read_csv(Path(args.merged))
+    index = _merged_index(merged)
+    set_a, set_b = _sets(args)
+    frame_ids = {r["frame_id"] for r in read_csv(Path(args.frame))}
+    a = {r["frame_id"]: r for r in read_csv(Path(args.screen_a))}
+    b = {r["frame_id"]: r for r in read_csv(Path(args.screen_b))}
+    report = {
+        "merged_sha256": sha256_file(Path(args.merged)),
+        "frame_sha256": sha256_file(Path(args.frame)),
+        "set_a": sensitivity_block(set_a, index, frame_ids, a, b),
+        "set_b": sensitivity_block(set_b, index, frame_ids, a, b),
+        "set_b_include_both": sensitivity_block(
+            [r for r in set_b if r["include_both"]], index, frame_ids, a, b
+        ),
+    }
+    Path(args.out).write_text(json.dumps(report, indent=2) + "\n")
+    print(json.dumps({k: v["sensitivity"] if isinstance(v, dict) else v
+                      for k, v in report.items()}, indent=2))
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -389,12 +462,21 @@ def main(argv: list[str] | None = None) -> int:
     r.add_argument("--set-a-lookup", required=True)
     r.add_argument("--setb", required=True)
     r.add_argument("--out", required=True)
+    s = sub.add_parser("sensitivity")
+    s.add_argument("--merged", required=True)
+    s.add_argument("--set-a-lookup", required=True)
+    s.add_argument("--setb", required=True)
+    s.add_argument("--frame", required=True)
+    s.add_argument("--screen-a", required=True)
+    s.add_argument("--screen-b", required=True)
+    s.add_argument("--out", required=True)
     args = ap.parse_args(argv)
     try:
         return {
             "setb-input": cmd_setb_input,
             "setb-build": cmd_setb_build,
             "recall": cmd_recall,
+            "sensitivity": cmd_sensitivity,
         }[args.cmd](args)
     except SetError as exc:
         print(f"REFUSED: {exc}", file=sys.stderr)

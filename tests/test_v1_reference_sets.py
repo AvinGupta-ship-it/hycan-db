@@ -124,3 +124,30 @@ def test_set_b_input_build_and_recall(tmp_path):
     assert block["recall"] == 0.5
     assert block["without_abstract"] == {"n": 1, "found": 0, "recall": 0.0}
     assert block["misses"][0]["reason"] == "indexed without abstract"
+
+
+def test_sensitivity_counts_references_that_reach_the_frame():
+    merged = [
+        {"frame_id": "F1", "openalex_id": "https://openalex.org/W1", "doi": "10.1/a",
+         "title": "A", "year": "2010"},
+        {"frame_id": "F2", "openalex_id": "", "doi": "10.1/b", "title": "B", "year": "2011"},
+        {"frame_id": "F3", "openalex_id": "", "doi": "", "title": "Hydrogen on C",
+         "year": "2012"},
+    ]
+    index = rs._merged_index(merged)
+    refs = [
+        {"id": "P1", "openalex_id": "W1", "doi": "", "title": "", "year": ""},
+        {"id": "P2", "openalex_id": "", "doi": "10.1/B", "title": "", "year": ""},
+        {"id": "P3", "openalex_id": "", "doi": "", "title": "Hydrogen on C.", "year": "2013"},
+        {"id": "P4", "openalex_id": "W9", "doi": "10.1/z", "title": "none", "year": "1"},
+    ]
+    keep = {"decision": "include", "exclusion_code": ""}
+    excl = {"decision": "exclude", "exclusion_code": "not_carbon"}
+    a = {"F1": keep, "F2": excl, "F3": excl}
+    b = {"F1": excl, "F2": excl, "F3": keep}
+    block = rs.sensitivity_block(refs, index, {"F1", "F3"}, a, b)
+    assert block["in_merged"] == 3 and block["in_frame"] == 2
+    assert block["kept_by_a"] == 1 and block["kept_by_b"] == 1
+    assert block["sensitivity"] == 2 / 3
+    assert block["excluded_by_both"] == [{"id": "P2", "frame_id": "F2", "title": "",
+                                          "code_a": "not_carbon", "code_b": "not_carbon"}]

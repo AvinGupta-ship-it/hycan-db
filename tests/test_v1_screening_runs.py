@@ -69,3 +69,43 @@ def test_a_clean_agent_passes_and_each_failure_is_reported(tmp_path, monkeypatch
     assert sr.main(["--run", str(run), "--transcripts", str(tdir)]) == 1
     rep = json.loads((run / "access" / "A_batch_001.json").read_text())
     assert not rep["launcher_exact"] and not rep["model_ok"] and rep["flags"]
+
+
+def test_a_reviewed_flag_passes_only_with_no_access_and_stale_reviews_fail(tmp_path, monkeypatch):
+    run, d, launch = setup_run(tmp_path, monkeypatch)
+    tdir = tmp_path / "t"
+    calls = [("Read", {"file_path": str(run / "prompts" / "screen.md")}),
+             ("Bash", {"command": f"cd {d} && python3 -I -c \"print('~', 1)\""})]
+    transcript(tdir, "agent-1", "Screener A batch 001", launch, calls, "claude-opus-5-5")
+    args = ["--run", str(run), "--transcripts", str(tdir)]
+    assert sr.main(args) == 1
+    rep = json.loads((run / "access" / "A_batch_001.json").read_text())
+    flag = rep["flags"][0]
+    assert flag["reason"] == "command names the home directory" and rep["flags_unreviewed"] == 1
+
+    def review(access, call=flag["call"]):
+        p = tmp_path / "reviews.json"
+        p.write_text(json.dumps({"reviews": [{
+            "screener": "A", "batch": "batch_001", "transcript": "agent-1.jsonl",
+            "call": call, "reason": flag["reason"], "access": access,
+            "note": "the ~ is text printed by python"}]}))
+        return args + ["--reviewed", str(p)]
+
+    assert sr.main(review(False)) == 0
+    rep = json.loads((run / "access" / "A_batch_001.json").read_text())
+    assert rep["ok"] and rep["flags"][0]["review"]["access"] is False
+    assert sr.main(review(True)) == 1          # a reviewed access still fails
+    assert sr.main(review(False, call=99)) == 1  # a review matching no flag fails
+
+
+def test_unfinished_agents_are_listed_with_the_agent_that_stands(tmp_path, monkeypatch):
+    run, d, launch = setup_run(tmp_path, monkeypatch)
+    tdir = tmp_path / "t"
+    calls = [("Read", {"file_path": str(run / "prompts" / "screen.md")})]
+    transcript(tdir, "agent-0", "Screener A batch 001", launch, [], "claude-opus-5-5",
+               finished=False)  # stopped by a technical failure
+    transcript(tdir, "agent-1", "Screener A batch 001", launch, calls, "claude-opus-5-5")
+    assert sr.main(["--run", str(run), "--transcripts", str(tdir)]) == 0
+    rep = json.loads((run / "access" / "A_batch_001.json").read_text())
+    assert rep["transcript"] == "agent-1.jsonl"
+    assert rep["unfinished_agents"] == ["agent-0.jsonl"] and rep["earlier_agents"] == []
