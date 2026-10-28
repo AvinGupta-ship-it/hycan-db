@@ -796,9 +796,297 @@ only, not to `temperature_cycle`, `TPD` or `flow` rows.
 
 ## 15. Amendments
 
-None yet. Each amendment is dated and appended here, and states which data, if
-any, had been seen when it was made. Any analysis not specified in §11 is
-reported as exploratory.
+Each amendment is dated and appended here, and states which data, if any, had
+been seen when it was made. Any analysis not specified in §11 is reported as
+exploratory.
+
+### Amendment 1 (2026-10-28): clarifications from the prompt pilot, frozen prompts and models
+
+**Data seen when made.** No v1.0 search request had been sent, reference set B
+had not been identified, and no frame record, sampled paper or new data value
+had been seen. The prompts were piloted on v0.1 papers only (§9): the OpenAlex
+records of the 51 v0.1 papers for screening; the full texts of HYC-0046 and
+HYC-0051 for eligibility; and the full texts of HYC-0046, HYC-0047, HYC-0051,
+HYC-0060 and HYC-0040 for extraction and reconciliation, with HYC-0046 also
+reconciled in the v0.1 mode. Two independent reviews of the prompts were made,
+one between the second and third pilot rounds and one before this amendment,
+and a third agent re-checked the fixes to the second.
+The pilot inputs, outputs and reviews are in `references/v1_pilot/`, whose
+README records every change made after each round. Every v0.1 paper is
+extracted again under the frozen prompts (§9), so no pilot output enters the
+dataset.
+
+**Not piloted in final form.** The screening and eligibility prompts as
+revised after round 2, the extraction and reconciliation changes made after
+round 3 and after the second review, and the v0.1 mode with a fresh extraction
+(its pilot reused the round-1 extraction by agent B). The stratum tiebreaker
+and the eligibility resolver were never run: the pilot's two stratum splits and
+its one I4 split were settled by revising the rules, which removed them in
+round 2. The agreement statistics of the main run (§9) report how the frozen
+prompts performed.
+
+**Clarifications.** Each was found in the pilot or a review and applies from
+now on. None changes a research question, a stratum target, an analysis or a
+threshold.
+
+*Screening and eligibility (§§4, 5, 6, 7).*
+
+1. *`electrochemical`* also covers electrochemistry of hydrogen in an
+   electrolyte other than storage, such as electrocatalysis of the hydrogen
+   evolution reaction. Such work reports no gas-phase uptake.
+2. *S1.* The 77 K mention and the pressure (or the words) must refer to the
+   same H₂ uptake measurement, not to another measurement such as N₂
+   adsorption, and not to sample preparation. 77 K may be written 77.3 K,
+   −196 °C or "liquid nitrogen temperature"; a pressure counts when it is at
+   least 20 bar after conversion (1 MPa = 10 bar, 1 atm = 1.01325 bar,
+   1 psi = 0.0689 bar); "excess maximum" counts in either word order. Read
+   literally, the registered rule put two pilot records in S1 because of a
+   77 K N₂ isotherm and a "high-pressure" pellet compression.
+3. *Title and abstract only.* At title and abstract, `not_primary` and
+   `retracted` are applied only when the title or abstract shows them, as §6
+   requires; the database's document type or retraction flag alone does not
+   exclude a record. At full text, `retracted` also applies when the OpenAlex
+   record has `is_retracted = true`.
+4. *I1.* I1 is met by the paper's own gravimetric, volumetric (Sieverts,
+   static or dynamic) or flow measurement of the amount of H₂ taken up from the
+   gas phase. It is not met by thermal desorption (TPD) alone, by other gases
+   (for example H₂S, which the search phrase "adsorption of hydrogen" also
+   matches) or by reactions of hydrogen without a measured uptake (for example
+   hydrogenation catalysis described as "hydrogen spillover"). When I1 is not
+   met, I2 to I4 are not assessed, and the failure is coded
+   `theoretical_only`, `electrochemical`, or otherwise `no_conditions_stated`
+   (the paper has no H₂ uptake value, so none with stated temperature and
+   pressure), unless `not_primary` or `retracted` comes first in the §4 order.
+   TPD values in an eligible paper are extracted, with `measurement_mode =
+   TPD`, and enter no analysis (§11.0).
+5. *I2* is read as: at least one sorbent whose H₂ uptake the paper measures is
+   a carbon sorbent.
+6. *I4.* The surface area must be given for a sample the paper reports
+   measurements on, including a supplier's value stated for the product used. A
+   value stated as typical of a kind of material ("generally has") does not
+   meet I4.
+7. *`duplicate_data`* is applied only when the paper itself states that every
+   H₂ uptake value it reports was published before, because the assessors
+   cannot search. Re-reported measurements in other papers are handled row by
+   row by the §11.0 duplicate rule: extractors note "previously reported:
+   <citation>" and `duplicate_of` is filled afterwards.
+8. *Include and uncertain.* A screener marks `include` when the title or
+   abstract reports a measured H₂ uptake of a carbon sorbent, and `uncertain`
+   for any other record it does not exclude. Both enter the frame.
+9. *Reference set B (§5).* The OpenAlex `referenced_works` of Gunther et al.
+   (2026) are retrieved with `scripts/v1_search/openalex_lookup.js` and
+   screened by the two screening agents with the frozen prompt. Set B is the
+   records that would enter the frame under §6, that is, all records not
+   excluded by both screeners. §6 assesses full texts only for drawn records,
+   so set B is identified at title and abstract; a record without an abstract
+   stays in set B unless both screeners exclude it. Recall (§5) is reported on
+   set B and on its subset that both screeners mark `include`, each split by
+   whether OpenAlex holds an abstract. Because set B is identified with the
+   frozen screening prompt, its screening sensitivity (§6) measures agreement
+   between two runs of that prompt and is reported as such.
+
+*Extraction (§9, with §§3, 10.1 and 11.0).*
+
+10. *Scope.* Only values for carbon sorbents are extracted. A value for another
+    material in the paper, such as a hydride calibration standard or a MOF or
+    zeolite measured for comparison, is listed in the extraction log. A figure
+    that is not an isotherm (uptake against surface area, a bar chart,
+    kinetics, cycling) is not digitized, as §9 provides; values it shows that
+    the tables and text do not give are listed in the log.
+11. *Aggregates.* A value the paper computes from measurements of several
+    samples or several laboratories (a mean across laboratories, a consensus or
+    reference value) is not a row; §11.0 forms its own multi-laboratory
+    medians. A mean of repeated measurements of one sample by one laboratory
+    is a row.
+12. *A table or text value that is also a plotted point.* It is the same
+    measurement when the paper says so, or when it is for the same sample and
+    temperature as a plotted isotherm and its printed pressure is within the §9
+    pressure tolerance of a plotted point (when several qualify, the one the
+    paper marks, or else the closest). It is one row, with the printed value
+    and the printed pressure (§9: the table or text value is used). When the
+    printed value has no pressure, the row takes the digitized pressure and is
+    flagged `pressure digitized`; the matching code then compares that pressure
+    as a figure value.
+13. *Isotherms.* Values in a table or text for one sample and temperature at
+    several pressures, with no plotted curve, are one isotherm unless the paper
+    says they come from different runs. A table or text value for a sample and
+    temperature that has a plotted curve, but is not the same measurement as
+    one of its points, belongs to that curve only if the paper says so.
+    `basis_stated`, `basis_evidence`, `basis_inferred`, `uptake_type` and
+    `measurement_method` are coded once per isotherm: a basis the paper names
+    or states for any value of an isotherm applies to all its rows (§3 defines
+    n_ex,max per isotherm, and `hycan.v1` refuses a 77 K isotherm with mixed
+    bases).
+14. *No characterization-only rows.* A sample's characterization is carried on
+    each of its uptake rows. A sample with characterization but no H₂ uptake
+    value gets no row. The 25 v0.1 rows without any uptake value stay in
+    `data/raw/measurements_v0.1.csv` and are not carried into the v1.0 rows.
+15. *`measurement_mode`.* An isotherm measured by a dynamic (flowing-gas)
+    volumetric method is `isothermal`, with `measurement_method =
+    volumetric_sieverts`; `flow` is only for a flow-through result that gives
+    no equilibrium value at a stated pressure.
+16. *`value_kind` of a maximum or saturation value (§3).* It "equals a
+    measured point" when it is the point it was merged with (item 12), has the
+    value of a printed point of the same isotherm, or lies within 3% of a
+    digitized point of the same isotherm. When the paper shows no measured
+    point of that isotherm to compare it with, it is `measured` if the paper
+    gives the pressure at which it was measured, `fitted_extrapolated` if the
+    paper says it was fitted or extrapolated, and otherwise `unclear`.
+17. *Sample coding.* The sample label is the one in the first table that
+    reports the sample's uptake, or else in the first figure legend, or else
+    the first in the text; unlabelled samples are numbered in order of first
+    appearance. `material_class` is `composite` when the sorbent contains a
+    non-carbon phase, otherwise `doped_carbon` when heteroatoms are built into
+    the carbon, otherwise the carbon's own class (§3 allows the flag by class
+    or by `metal_element`; both are recorded). `synthesis_method` is the route
+    that made the raw carbon, as the dictionary defines it.
+18. *`area_same_sample`.* `other_paper` covers every area the authors did not
+    measure themselves: a supplier's or datasheet value, or one cited from
+    other work. Only `yes` enters the analyses (§11.0), as registered.
+19. *§10.1 item 8.* "Reported" means that the uncertainty, or the results of
+    at least two independent measurements of the sample, are reported. A
+    statement that measurements were repeated, without their results or an
+    uncertainty, does not count.
+20. *Laboratory and material identity (§3).* `measuring_lab_id` is
+    "<surname> group, <institution>": the corresponding author (the first one
+    marked, or the first author if none is), and the university in that
+    author's first affiliation, or else the institute or company, as printed.
+    When the paper says another laboratory made the H₂ measurement, that
+    laboratory's institution and co-author are used. In a multi-laboratory
+    paper each laboratory is "<label as printed> (<paper_id>)". Before any RQ1
+    or RQ3 model is fitted, committed tables map laboratory identifiers that
+    name the same group and institution, and `material_identity` strings that
+    name the same supplier, product and grade, to one identifier each, with the
+    basis of each merge; they are built from the identifiers alone, without
+    uptake values.
+21. *Figure values.* The axis span in the §9 uncertainty is the distance
+    between the lowest and highest labelled ticks of the uptake axis, on which
+    each axis is calibrated; for a pair of digitizations the larger of the two
+    spans is used. A point that only one extractor digitized carries 1% of its
+    span. A line drawn without markers is read at k/10 × p_end for k = 1 to
+    10, where p_end is the pressure of its highest-pressure end, or, for a line
+    whose lowest-pressure end p_start is above 5% of p_end, at
+    p_start + k(p_end − p_start)/9 for k = 0 to 9, so that both extractors read
+    it at the same pressures. An axis whose printed tick labels are
+    inconsistent (the third-tick check fails because of a label) is not
+    digitized; the figure is used only to count markers.
+
+*v0.1 papers outside the sample (§9).*
+
+22. The v0.1 rows describe samples in free text. Before matching, a separate
+    agent (role `legacy_labels`), which sees the paper and the v0.1 rows but
+    never the fresh extraction, gives each v0.1 sample its printed label. The
+    extractor never sees its output.
+23. The v0.1 rows have no schema v2 coding, so a v2 field empty on the v0.1
+    side is not compared; agent B's v2 coding is then the only one, and C
+    checks it against the paper. A v0.1 row with no pressure also pairs with a
+    row whose pressure was read from a figure. A kept v0.1 row keeps its
+    `measurement_id` and `sample_id`. A digitized point only in the v0.1 rows
+    is kept if it is in the figure, with 1% of the axis span.
+
+*Prompt contents and agent environment (§9 Prompts and models).*
+
+24. *Redacted schema text.* The registered `src/hycan/schema.py` and
+    `docs/data_dictionary.md` explain many rules with examples from 20 v0.1
+    papers, by paper ID or first author and year, with their values. An
+    extractor told its paper's identity could link them to its paper, against
+    the §9 rule that no agent sees an existing row. The prompts therefore carry
+    a redacted copy, built by `scripts/v1_redact_schema.py` from the
+    registration commit: `schema.py` with its comments and docstrings removed
+    (the code is the same syntax tree), and the dictionary with the
+    paragraphs listed in the script's `REPLACE` table rewritten without
+    paper-specific content and the six in its `DROP` set (rationale and
+    history only) removed. The script refuses if any v0.1 paper ID or first
+    author remains, or if any field name or vocabulary value is missing;
+    whether each rewritten paragraph keeps its rule is checked by reading the
+    listed edits (`git diff --no-index` against the registered file). The
+    registered files remain the schema of record.
+25. *Protocol excerpt.* The extraction, reconciliation and labelling prompts
+    also carry §10.1 and §11.0, which their rules cite; §9 lists the minimum.
+26. *Agent environment and access audit.* Each agent's input is built under a
+    parent directory of its own (`scripts/v1_extract.py prepare`), and each
+    agent has its own work directory. Agents run from a tools directory that
+    holds only the figure digitizer, the row validator and the modules they
+    import, without comments and without data (`scripts/v1_tools_tree.py`).
+    The launcher lists the only paths an agent may open. These are
+    instructions: the agents run on a machine that also holds other agents'
+    outputs and the v0.1 rows, and nothing prevents a read. Compliance is
+    therefore audited after every run. `scripts/v1_audit_access.py` reads the
+    agent's transcript. It checks every file the agent read, wrote or searched
+    against its allowed paths, after normalizing each path; it flags any other
+    tool. Commands are checked by a heuristic that flags for review: absolute
+    paths outside the allowed paths, `..`, the home directory, network clients,
+    and anything run inside the tools directory other than its two scripts and
+    filters on their output. Every flag is reviewed against the transcript. If
+    any agent is found to have opened another agent's output for the same
+    record, any v0.1 row or pilot output, or the repository, its output is
+    discarded and the role is run once more with a fresh agent. This is an
+    exception to the §9 rule that allows a rerun only after a technical
+    failure, and every such rerun is logged and reported. In round 1 two
+    extractors of one pilot paper shared a scratch folder, and one saw part of
+    the other's script. The five round-3 agent transcripts raise no flag
+    (`references/v1_pilot/round3/access_*.json`).
+27. *Validator messages.* The row validator reports every model-level rule in
+    its own words (a missing condition by the field's name) instead of
+    "Missing required field: uptake", so that agents fix the field at fault
+    (`src/hycan/validate.py`).
+
+**Frozen prompts.** `prompts/v1/built/`, assembled by `scripts/v1_prompts.py`
+from `prompts/v1/roles/`, the registered protocol sections and the redacted
+schema, all committed in `a3af89bc97dec535ad1371b17b79c8ea480f7207`; this
+amendment is the next commit. `python3 scripts/v1_prompts.py --check` rebuilds
+them and compares. SHA-256:
+
+| File | SHA-256 |
+|---|---|
+| `prompts/v1/built/eligibility.md` | `e0e253900a4086ad004164bb7315e966c0dcb35403c8f1677c3f0217df156e75` |
+| `prompts/v1/built/eligibility_resolve.md` | `29649f4703d824828a0c3d56fb9b9e7ad9defb739aba4fc42a734b6b48d692ec` |
+| `prompts/v1/built/extract_A.md` | `4353f51c58076a747b76aac8d2bb2648080a9dcae050747158c776239c4d943a` |
+| `prompts/v1/built/extract_B.md` | `8cd4d7bff7349bd409370c64853a69f8a19e02703823ef3b43806f404ed96b17` |
+| `prompts/v1/built/launcher.md` | `4e8680db86961b5f7eebedb9b67b6daec8c684a0f160b32891dc085dd99cc928` |
+| `prompts/v1/built/legacy_labels.md` | `afa48428b36915772752e386683b5919b967a0246eabd984021ba622fd285b1a` |
+| `prompts/v1/built/reconcile.md` | `1366f8657590e33a2954cf458b70038c7e25b6075cecf2db4c0953af7b27ffd6` |
+| `prompts/v1/built/reconcile_legacy.md` | `0570ed5ee23cc7b302ab0bebc2e215930ad21543d148ccdf44253319c6d3c6cc` |
+| `prompts/v1/built/screen.md` | `41291c79e05592e7c7d36ebc2ef9bb8d9c1a683cffa01d5521d41e0020b971db` |
+| `prompts/v1/built/stratum_tiebreak.md` | `8245414b74119b958d1c1427411c1d36ca0bf0333f3281553fc26856eaf745bb` |
+| `prompts/v1/schema_v2_redacted/data_dictionary.md` | `88a8e9ed0d266f321a7158dead2dcf4207e273066a15ea0b88a6dd0859517426` |
+| `prompts/v1/schema_v2_redacted/schema.py` | `4817f257367a9509a2bae42ca77cc7d8ae0cbf03196e7da529b3894c2954d5d3` |
+
+The tools directory is reproduced by `scripts/v1_tools_tree.py`; the SHA-256 of
+its `MANIFEST` is
+`1410223606bdd826ec0ed8c96bee5b3a35a57e4d56f20378dd90d8bc09ece4b7`.
+
+**Models.**
+
+| Role | Prompt | Model |
+|---|---|---|
+| Title and abstract screener A | `screen.md` | `claude-opus-5-5` |
+| Title and abstract screener B | `screen.md` | `claude-sonnet-5-5` |
+| Stratum tiebreaker | `stratum_tiebreak.md` | `claude-opus-5-5` |
+| Full-text assessor a | `eligibility.md` | `claude-opus-5-5` |
+| Full-text assessor b | `eligibility.md` | `claude-sonnet-5-5` |
+| Eligibility resolver | `eligibility_resolve.md` | `claude-opus-5-5` |
+| Extractor A (text layer and page images) | `extract_A.md` | `claude-sonnet-5-5` |
+| Extractor B (page images only) | `extract_B.md` | `claude-opus-5-5` |
+| Reconciler C | `reconcile.md` | `claude-opus-5-5` |
+| Reconciler C, v0.1 papers | `reconcile_legacy.md` | `claude-opus-5-5` |
+| v0.1 sample labeller | `legacy_labels.md` | `claude-opus-5-5` |
+
+Every role is started with `launcher.md`, filled with the paths of its
+instruction, tools directory, input, output and work directory.
+
+**Implementation notes** (not changes to the protocol). The §9 matching rule is
+implemented in `scripts/v1_extract.py` and described to the reconciler by text
+generated from the same code. The sample label is compared after Unicode
+normalization and case folding, on its letters and digits only. Within the
+tolerances, a pair on the same isotherm branch, then the closest in pressure,
+then in temperature, is matched first. Free-text fields whose wording
+legitimately differs are compared on presence only. The uptake axis of a
+digitization is found from the archived points, so a pressure-composition plot
+with uptake on the x axis gets the right axis span. `v1_extract.py check`
+confirms that C resolved every disagreement, that every computed W1 equals the
+code's value, and that no isotherm mixes bases. Agreement statistics are
+computed by `scripts/v1_agreement.py`.
 
 ---
 
