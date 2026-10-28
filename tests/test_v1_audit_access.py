@@ -109,3 +109,26 @@ def test_the_report_names_the_models_that_wrote_the_turns(tmp_path):
     aa.main([str(p), "--instruction", INS, "--input", IN, "--output", OUT,
              "--work", WORK, "--tools", TOOLS, "--json", str(out)])
     assert json.loads(out.read_text())["models"] == ["claude-sonnet-5-5"]
+
+
+def test_grep_pattern_is_not_read_as_a_file_in_the_tools_directory(tmp_path):
+    cmd = (f"cd {TOOLS} && grep -c -E 'None|NA$|null' {OUT}/x.csv && "
+           f"sed -n 1,5p {OUT}/x.csv")
+    assert run(tmp_path, [("Bash", {"command": cmd})]) == []
+    bad = f"cd {TOOLS} && grep -c 'x' scripts/hycan/schema.py"
+    assert run(tmp_path, [("Bash", {"command": bad})])
+
+
+def test_the_agents_own_directory_may_be_listed_but_not_written(tmp_path):
+    own = "/w/runs/A/batch_001"
+    calls = [("Bash", {"command": f"cd {own} && ls -la in out work"}),
+             ("Read", {"file_path": own + "/in/batch_001.csv"}),
+             ("Write", {"file_path": own + "/note.txt", "content": "x"})]
+    flags = aa.audit(transcript(tmp_path, calls), INS,
+                     [own + "/in/batch_001.csv", own + "/out/batch_001.csv", own + "/work"],
+                     TOOLS, [], own=[own])
+    assert [f["call"] for f in flags] == [3]
+    flags = aa.audit(transcript(tmp_path, calls[:1]), INS,
+                     [own + "/in/batch_001.csv", own + "/out/batch_001.csv", own + "/work"],
+                     TOOLS, [])
+    assert flags  # without `own`, the agent directory is outside the allowed paths

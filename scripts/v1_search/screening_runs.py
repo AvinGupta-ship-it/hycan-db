@@ -111,7 +111,7 @@ def check_agent(run: Path, screener: str, batch: str, transcript: Path,
     report["flags"] = v1_audit_access.audit(
         transcript, str(prompt),
         [str(agent_dir / "in"), str(agent_dir / "out"), str(agent_dir / "work")],
-        TOOLS, harness,
+        TOOLS, harness, own=[str(agent_dir)],
     )
     report["tool_calls"] = sum(1 for _ in v1_audit_access.tool_calls(transcript))
     report["output_problems"] = screening_batches.check_batch(

@@ -174,6 +174,20 @@ def tools_context(cmd: str, tools: str) -> list[tuple[str, str]]:
     return out
 
 
+def _file_args_absolute(words: list[str]) -> bool:
+    """True when a filter or file command names at least one file and every
+    file it names is absolute or a variable. The first operand of grep, sed,
+    awk and jq is a pattern or a program, not a file."""
+    args = words[1:]
+    if words[0] in PATTERN_FIRST:
+        operands = [i for i, a in enumerate(args) if not a.startswith("-")]
+        if operands:
+            args = args[: operands[0]] + args[operands[0] + 1 :]
+    return any(not a.startswith("-") for a in args) and all(
+        a.startswith(("-", "/", "$")) or a.isdigit() for a in args
+    )
+
+
 def audit_tools_context(body: str, next_cd: str) -> list[str]:
     reasons = []
     if next_cd and not next_cd.startswith("/"):
@@ -204,9 +218,7 @@ def audit_tools_context(body: str, next_cd: str) -> list[str]:
                 reasons.append(
                     "command runs a file in the tools directory other than its two "
                     f"scripts: {' '.join(first)[:120]}")
-        elif first[0] in FILTERS + FILE_COMMANDS and first[1:] and all(
-                a.startswith(("-", "/", "$")) or a.isdigit() for a in first[1:]
-        ) and any(not a.startswith("-") for a in first[1:]):
+        elif first[0] in FILTERS + FILE_COMMANDS and _file_args_absolute(first):
             pass  # a command whose every file argument is absolute or a variable
         else:
             reasons.append(
@@ -266,10 +278,13 @@ def audit_bash(cmd: str, instruction: str, data: list[str], harness: list[str],
 
 
 def audit(transcript: Path, instruction: str, data_roots: list[str], tools: str,
-          harness: list[str]) -> list[dict]:
-    """data_roots = [input, output, work]."""
+          harness: list[str], own: list[str] | None = None) -> list[dict]:
+    """data_roots = [input, output, work]. `own`: directories prepared for this
+    agent alone, holding nothing but its own input, output and work directory
+    (the screening run layout); the agent may list, search and read in them,
+    but writes are still limited to the output and work directories."""
     inp, out, work = (norm(str(r)) for r in data_roots)
-    data = [inp, out, work]
+    data = [inp, out, work] + [norm(str(r)) for r in (own or [])]
     # An input or output that is a single file sits in a directory prepared for
     # that agent alone (scripts/v1_extract.py prepare, or the run layout), so
     # listing that directory is allowed.
