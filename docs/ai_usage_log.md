@@ -2238,6 +2238,14 @@ search, screening, sampling or extraction had been run by the time of this entry
    spurious ÷10, and its definition described W2. Both are corrected. The code
    was never affected (`validate.py` and `normalize.py` use wt% =
    mmol/g × 0.201588).
+8. **Computed fields and frame tooling, written by Claude before registration.**
+   `src/hycan/v1.py` implements the §3, §10 and §11.0 computed fields, and
+   `tests/test_v1.py` checks each rule, including the numbers §3 states. Writing
+   it showed that "null means not yet coded" could not hold for numeric fields
+   on a coded row, so the dictionary now defines a coded row (`basis_stated`
+   set) and the schema requires such a row to code every boolean and
+   categorical that applies. `build_frame.py`, `draw_order.py` and
+   `screening_audit.py` implement §6 and §7, with tests on synthetic inputs.
 
 **Verified.** Full suite passing; dataset validates with 0 errors; the
 pre-migration snapshot is byte-identical to `git show 45c669a:data/raw/measurements_v0.1.csv`.

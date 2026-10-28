@@ -65,7 +65,7 @@ hycan-db/
 ├── scripts/            generate_figures.py, build_predictions.py, validators, migrations
 ├── src/hycan/          schema, normalize, validate, clean, load, plotting, meta,
 │                       features, ml
-├── tests/              pytest suite (870 tests)
+├── tests/              pytest suite (1015 tests)
 ├── CHANGELOG.md  CITATION.cff  pyproject.toml  requirements.txt  ruff.toml
 ```
 

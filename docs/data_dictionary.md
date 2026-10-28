@@ -1058,10 +1058,30 @@ enumerates every such row by `measurement_id` so one cannot appear unnoticed.
 ## Schema v2 Fields — the v1.0 Protocol
 
 Schema v2 adds the fields that `docs/v1_protocol.md` needs. Every one is optional
-and defaults to null, and **null means "not yet coded"**. That keeps every v0.1
-row valid, and it keeps an uncoded field from passing for a coded `false`:
-`basis_stated` null says nobody has looked, `false` says the paper does not name
-its basis. Rules are in the protocol; section numbers below refer to it.
+and defaults to null, which keeps every v0.1 row valid.
+
+**A row counts as coded under schema v2 once `basis_stated` is not null**, and
+the extraction codes it on every row. On an uncoded row, null means "not yet
+coded". On a coded row:
+
+- every boolean and categorical that applies must be coded, and the schema
+  rejects the row otherwise. Each vocabulary has a value for "not stated", such
+  as `false`, `unknown`, `unspecified` or `unclear`. The fields are
+  `basis_inferred`, `wt_pct_convention`, `wt_pct_convention_source`,
+  `value_kind`, `isotherm_branch`, `temperature_inferred`, `data_location`,
+  `instrument_identified`, `calibration_described`, `replicates_reported` and
+  `measuring_lab_id` always; `surface_area_probe_gas` and `area_same_sample`
+  when the row reports a surface area; `bet_range_stated` and
+  `bet_consistency_criteria_stated` when that area is BET;
+- a null numeric or text field means the paper does not state the quantity, or,
+  for `isotherm_id`, `material_identity`, `duplicate_of` and `frame_id`, that the
+  field does not apply (a single point, a non-commercial material, no earlier
+  report, a paper outside the frame).
+
+So an uncoded field never passes for a coded `false`: `basis_stated` null says
+nobody has looked, `false` says the paper does not name its basis. Computed
+fields (`src/hycan/v1.py`) are produced only for coded rows. Rules are in the
+protocol; section numbers below refer to it.
 
 ### `basis_stated`, `basis_evidence`
 
@@ -1092,9 +1112,11 @@ is `stated` if the paper defines its convention, and
 mg g⁻¹ or cm³(STP) g⁻¹ for the same point and only one convention matches it
 within the printed rounding. `computed_from_other_unit` means the paper gives no
 wt% for the point and the stored wt% was computed as W1 from its value in one
-of those units. `none` means no basis for either convention. Whatever the
-source, the analysis computes W1 from `uptake_mmol_g` or `uptake_ml_stp_g` when
-either is present (§3).
+of those units. `none` means no basis for either convention. The schema checks
+that the two agree: `computed_from_other_unit` goes with `W1`, `stated` and
+`inferred_from_paired_units` with `W1` or `W2`, and `none` with `unknown`.
+Whatever the source, the analysis computes W1 from `uptake_mmol_g` or
+`uptake_ml_stp_g` when either is present (§3).
 
 ### `value_kind`
 

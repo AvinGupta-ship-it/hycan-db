@@ -24,6 +24,16 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   plotted marker (protocol §9).
 - Package metadata corrected (version `1.0.0.dev0`, author); `CoolProp` added;
   `requirements-v1.lock` added.
+- `src/hycan/v1.py`: the protocol's computed fields (W1 uptake, n_ex,max
+  status, basis–shape conflict, reporting score and tier, area rule,
+  plausibility screen), with tests of the §3, §10 and §11.0 rules
+  (`tests/test_v1.py`).
+- `scripts/v1_search/build_frame.py`, `draw_order.py`, `screening_audit.py`:
+  the sampling frame, the within-stratum draw order (refused unless the frame is
+  committed and reproduced byte for byte) and the author's screening audit.
+- Schema v2 row rules: a coded row (`basis_stated` set) must code every v2
+  boolean and categorical that applies, and the wt% convention must agree with
+  its source (`tests/test_schema_v2.py`, which also covers the earlier rules).
 - `docs/data_dictionary.md`: the `uptake_wt_pct` fill formula read
   `mmol/g × 0.201588 / 10`; it is `mmol/g × 0.201588`, which the code always
   used. The field's definition no longer implies the W2 convention, and

@@ -186,10 +186,13 @@ ExtractionMethod = Literal[
 ReproducibilityTier = Literal["A", "B", "C", "D"]
 
 # --- Schema v2 (docs/v1_protocol.md §3, §9, Appendix A) ----------------------
-# Every v2 field is optional and defaults to None, meaning "not yet coded". A
-# v0.1 row therefore stays valid, and an uncoded field never masquerades as a
-# coded "false": basis_stated = None says nobody has looked, which is different
-# from basis_stated = False, which says the paper does not name its basis.
+# Every v2 field is optional and defaults to None, so a v0.1 row stays valid. A
+# row counts as coded once basis_stated is not None. On a coded row, booleans and
+# categoricals are coded, and a None numeric or text field means "not stated";
+# on an uncoded row, None means "not yet coded". An uncoded field therefore never
+# masquerades as a coded "false": basis_stated = None says nobody has looked,
+# which is different from basis_stated = False, which says the paper does not
+# name its basis (data dictionary, "Schema v2 Fields").
 
 BasisInferred = Literal["excess", "absolute", "total", "unknown"]
 WtPctConvention = Literal["W1", "W2", "unknown"]
@@ -207,6 +210,24 @@ SelectionRoute = Literal["S1", "S2", "legacy_v0.1", "legacy_v0.1_ineligible"]
 # ---------------------------------------------------------------------------
 # Main model
 # ---------------------------------------------------------------------------
+
+# Schema v2 fields a coded row must code (validator rule 4).
+_V2_CODED_ALWAYS = (
+    "basis_inferred",
+    "wt_pct_convention",
+    "wt_pct_convention_source",
+    "value_kind",
+    "isotherm_branch",
+    "temperature_inferred",
+    "data_location",
+    "instrument_identified",
+    "calibration_described",
+    "replicates_reported",
+    "measuring_lab_id",
+)
+_V2_CODED_WITH_AREA = ("surface_area_probe_gas", "area_same_sample")
+_V2_CODED_WITH_BET = ("bet_range_stated", "bet_consistency_criteria_stated")
+
 
 class MeasurementEntry(BaseModel):
     """One row in HyCAN-DB, corresponding to a single (T, P, uptake) point."""
@@ -416,6 +437,14 @@ class MeasurementEntry(BaseModel):
         2. An inferred temperature is the liquid-nitrogen convention, 77.3 K, and
            nothing else; any other number was read from the paper and is stated.
         3. A digitization uncertainty belongs to a digitized value.
+        4. A coded row (basis_stated not None) codes every v2 boolean and
+           categorical that applies to it, and its measuring laboratory: the
+           surface-area fields when it reports a surface area, the two BET ones
+           when that area is BET. A null there would be read as "not stated"
+           when it means "not looked at".
+        5. The wt% convention and its source agree (§3): a computed wt% is W1,
+           a stated or inferred convention is W1 or W2, and no source means an
+           unknown convention.
         """
         if self.basis_stated is True and not (self.basis_evidence or "").strip():
             raise ValueError(
@@ -435,6 +464,33 @@ class MeasurementEntry(BaseModel):
                 "digitization_uncertainty_wt_pct is set on a row whose "
                 "extraction_method is not figure_digitized"
             )
+        if self.basis_stated is not None:
+            required = list(_V2_CODED_ALWAYS)
+            if self.surface_area_method not in ("none", "not_reported"):
+                required += _V2_CODED_WITH_AREA
+            if self.surface_area_method == "BET":
+                required += _V2_CODED_WITH_BET
+            missing = [f for f in required if getattr(self, f) is None]
+            if missing:
+                raise ValueError(
+                    "row is coded under schema v2 (basis_stated is set) but these "
+                    "fields are uncoded: " + ", ".join(missing)
+                )
+        convention, source = self.wt_pct_convention, self.wt_pct_convention_source
+        if (convention is None) != (source is None):
+            raise ValueError("wt_pct_convention and its source are coded together")
+        if source is not None:
+            allowed = {
+                "computed_from_other_unit": ("W1",),
+                "stated": ("W1", "W2"),
+                "inferred_from_paired_units": ("W1", "W2"),
+                "none": ("unknown",),
+            }[source]
+            if convention not in allowed:
+                raise ValueError(
+                    f"wt_pct_convention_source {source} requires wt_pct_convention "
+                    f"in {allowed}, not {convention}"
+                )
         return self
 
     # --- Cross-field validation ---
