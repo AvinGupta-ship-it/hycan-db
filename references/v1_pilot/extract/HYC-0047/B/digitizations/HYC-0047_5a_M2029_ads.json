@@ -1,0 +1,173 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-28T04:49:35+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0047",
+  "figure": "Figure 5a (p. 1907; 77 K, ICB gravimetric)",
+  "series_name": "M2029, adsorption (filled triangles), 77 K",
+  "source_image": {
+    "path": "/home/claude/work/v1_inputs/HYC-0047/B/pages/HYC-0047_main-06.png",
+    "sha256": "3f44d882ce841d1b2d18e54224cadff0fd641a994ac768e678fca1538cc7c159",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 717.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1112.0,
+        "value": 10.0
+      },
+      "scale": "linear",
+      "label": "P (MPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 762.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 556.0,
+        "value": 7.0
+      },
+      "scale": "linear",
+      "label": "H2 (wt %)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 875.0,
+        "stated": 4.0,
+        "predicted": 4.0,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 674.0,
+        "stated": 3.0,
+        "predicted": 2.9902912621359223,
+        "relative_error": 0.003236245954692555
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#111212",
+    "color_rgb": [
+      17,
+      18,
+      18
+    ],
+    "tolerance": 80.0,
+    "matched_pixels_in_image": 76562,
+    "matched_pixels_in_region": 641,
+    "region": [
+      724,
+      612,
+      1040,
+      652
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 8.24,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      18,
+      40
+    ],
+    "rejected_markers": [
+      {
+        "pixel_x": 743.5,
+        "pixel_y": 622.0,
+        "pixels": 12,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 733.0,
+        "pixel_y": 636.0,
+        "pixels": 15,
+        "reason": "too small"
+      }
+    ],
+    "n_points": 7,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.3225503984997661,
+      "y": 3.9014742898238035,
+      "pixel_x": 729.7407407407408,
+      "pixel_y": 647.1851851851852,
+      "pixel_count": 27,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.6270042194092823,
+      "y": 4.116181229773463,
+      "pixel_x": 741.7666666666667,
+      "pixel_y": 640.8666666666667,
+      "pixel_count": 30,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.2934407364787122,
+      "y": 4.511694616063547,
+      "pixel_x": 768.0909090909091,
+      "pixel_y": 629.2272727272727,
+      "pixel_count": 22,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.768776371308017,
+      "y": 4.761812297734627,
+      "pixel_x": 826.3666666666667,
+      "pixel_y": 621.8666666666667,
+      "pixel_count": 30,
+      "outside_axis_range": false
+    },
+    {
+      "x": 4.063291139240507,
+      "y": 4.854368932038836,
+      "pixel_x": 877.5,
+      "pixel_y": 619.1428571428571,
+      "pixel_count": 28,
+      "outside_axis_range": false
+    },
+    {
+      "x": 5.229254571026722,
+      "y": 4.885652642934198,
+      "pixel_x": 923.5555555555555,
+      "pixel_y": 618.2222222222222,
+      "pixel_count": 27,
+      "outside_axis_range": false
+    },
+    {
+      "x": 7.848101265822784,
+      "y": 4.831777445855117,
+      "pixel_x": 1027.0,
+      "pixel_y": 619.8076923076923,
+      "pixel_count": 26,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 5a (p. 1907; 77 K, ICB gravimetric), digitized (M2029, adsorption (filled triangles), 77 K)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0047_5a_M2029_ads.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

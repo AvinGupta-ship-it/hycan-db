@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-28T05:12:26+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0060",
+  "figure": "Fig. 9",
+  "series_name": "lab 7 (open pentagons), ambient 294 K, highest-pressure point",
+  "source_image": {
+    "path": "/home/claude/work/v1_work/HYC-0060/A/derived/HYC-0060_f9_lab7_ambient_last_discs.png",
+    "sha256": "e5ec14389c0083a56ac229e1a39fdd728f6ad94c2e0102d7bc7bf1c4d2c94e65",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 190.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 525.0,
+        "value": 3.0
+      },
+      "scale": "linear",
+      "label": "Hydrogen pressure (MPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1443.45,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1179.81,
+        "value": 0.2
+      },
+      "scale": "linear",
+      "label": "Hydrogen content (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 302.0,
+        "stated": 1.0,
+        "predicted": 1.0029850746268658,
+        "relative_error": 0.0029850746268658135
+      },
+      {
+        "axis": "y",
+        "pixel": 1311.0,
+        "stated": 0.1,
+        "predicted": 0.10047792444242148,
+        "relative_error": 0.00477924442421479
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 18,
+    "matched_pixels_in_region": 18,
+    "region": [
+      0,
+      0,
+      1239,
+      1652
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 10.545600000000004,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      6,
+      200
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 1.900995024875622,
+      "y": 0.11404861848648834,
+      "pixel_x": 402.27777777777777,
+      "pixel_y": 1293.111111111111,
+      "pixel_count": 18,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 9, digitized (lab 7 (open pentagons), ambient 294 K, highest-pressure point)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0060_f9_lab7_ambient_last.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

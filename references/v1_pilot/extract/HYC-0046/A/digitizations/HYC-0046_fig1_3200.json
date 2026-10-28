@@ -1,0 +1,204 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-28T03:58:22+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0046",
+  "figure": "Figure 1 (77 K adsorption isotherms)",
+  "series_name": "3200 m2/g (triangles)",
+  "source_image": {
+    "path": "/home/claude/work/hycan-db/references/v1_pilot/extract/HYC-0046/A/digitizations/work/fig1_series_3200.png",
+    "sha256": "2ab12528317a60b5b9e3914bcf229b5376662e3c42b7e381cff3cc6a25e1bdb5",
+    "width_px": 1275,
+    "height_px": 1650
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 730.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1093.0,
+        "value": 40.0
+      },
+      "scale": "linear",
+      "label": "pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 973.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 753.0,
+        "value": 5.0
+      },
+      "scale": "linear",
+      "label": "H2 gravimetric density (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 912.0,
+        "stated": 20.0,
+        "predicted": 20.05509641873278,
+        "relative_error": 0.0027548209366390353
+      },
+      {
+        "axis": "y",
+        "pixel": 841.0,
+        "stated": 3.0,
+        "predicted": 3.0,
+        "relative_error": 0.0
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 207,
+    "matched_pixels_in_region": 207,
+    "region": [
+      731,
+      720,
+      1092,
+      972
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 8.8,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      6,
+      60
+    ],
+    "rejected_markers": [],
+    "n_points": 11,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 4
+  },
+  "series": [
+    {
+      "x": 1.622283440465253,
+      "y": 3.063131313131314,
+      "pixel_x": 744.7222222222222,
+      "pixel_y": 838.2222222222222,
+      "pixel_count": 18,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.858891949801042,
+      "y": 3.6224747474747483,
+      "pixel_x": 755.9444444444445,
+      "pixel_y": 813.6111111111111,
+      "pixel_count": 18,
+      "outside_axis_range": false
+    },
+    {
+      "x": 4.584022038567496,
+      "y": 4.052272727272726,
+      "pixel_x": 771.6,
+      "pixel_y": 794.7,
+      "pixel_count": 20,
+      "outside_axis_range": false
+    },
+    {
+      "x": 6.666666666666666,
+      "y": 4.428030303030304,
+      "pixel_x": 790.5,
+      "pixel_y": 778.1666666666666,
+      "pixel_count": 18,
+      "outside_axis_range": false
+    },
+    {
+      "x": 8.919820211686236,
+      "y": 4.647129186602871,
+      "pixel_x": 810.9473684210526,
+      "pixel_y": 768.5263157894736,
+      "pixel_count": 19,
+      "outside_axis_range": false
+    },
+    {
+      "x": 11.054081484703488,
+      "y": 4.802631578947367,
+      "pixel_x": 830.3157894736842,
+      "pixel_y": 761.6842105263158,
+      "pixel_count": 19,
+      "outside_axis_range": false
+    },
+    {
+      "x": 15.311004784688993,
+      "y": 5.056220095693781,
+      "pixel_x": 868.9473684210526,
+      "pixel_y": 750.5263157894736,
+      "pixel_count": 19,
+      "outside_axis_range": true
+    },
+    {
+      "x": 18.940204180845893,
+      "y": 5.181818181818182,
+      "pixel_x": 901.8823529411765,
+      "pixel_y": 745.0,
+      "pixel_count": 17,
+      "outside_axis_range": true
+    },
+    {
+      "x": 23.575757575757578,
+      "y": 5.189772727272728,
+      "pixel_x": 943.95,
+      "pixel_y": 744.65,
+      "pixel_count": 20,
+      "outside_axis_range": true
+    },
+    {
+      "x": 28.81542699724518,
+      "y": 5.260330578512398,
+      "pixel_x": 991.5,
+      "pixel_y": 741.5454545454545,
+      "pixel_count": 22,
+      "outside_axis_range": true
+    },
+    {
+      "x": 35.46264786906497,
+      "y": 4.915775401069517,
+      "pixel_x": 1051.8235294117646,
+      "pixel_y": 756.7058823529412,
+      "pixel_count": 17,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 30.0,
+      "expected": 5.3,
+      "got": 5.198928863565849,
+      "difference": -0.10107113643415122,
+      "percent": 1.9070025742292684,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-10-28T03:59:05+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 1 (77 K adsorption isotherms), digitized (3200 m2/g (triangles))",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 30.0."
+  }
+}

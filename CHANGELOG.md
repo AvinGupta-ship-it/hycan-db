@@ -5,6 +5,30 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### v1.0 prompts frozen (2026-10-28)
+- **Protocol §15, Amendment 1**: clarifications found in the prompt pilot and
+  an independent review, the SHA-256 of every frozen prompt, and the model for
+  each agent role. Made before reference set B was identified and before any
+  search request.
+- `prompts/v1/`: role templates, built prompts with `SHA256SUMS`, launcher, and
+  the redacted schema text the prompts carry (`scripts/v1_redact_schema.py`),
+  which keeps every field, vocabulary, rule and definition and removes the
+  examples that name v0.1 papers.
+- `scripts/v1_extract.py`: per-agent inputs under separate parents (`prepare`),
+  `assemble` and `check` for the reconciler, v0.1 labels in matching, and figure
+  values for single digitizations and for plots with uptake on the x axis.
+  `scripts/v1_agreement.py`: C's outcomes split into fields, rows and curve
+  assignments. `scripts/v1_tools_tree.py`: the agents' tools directory.
+  `scripts/v1_audit_access.py`: audits each agent's transcript for paths
+  outside its allowed ones.
+- `src/hycan/validate.py`: every model-level rule is reported in its own words
+  (a missing condition by the field's name) instead of "Missing required
+  field: uptake".
+- `references/v1_pilot/`: three pilot rounds on v0.1 papers, two independent
+  reviews of the prompts and a re-check.
+- `docs/v1_registration.md`: the registration record. A notice about v1.0 was
+  added to the description of the v0.1 Zenodo record.
+
 ### v1.0 in preparation (2026-10-27)
 - **v0.1 analyses withdrawn** (README). The Chahine estimate pooled ~1 bar and
   high-pressure measurements; the tier-robustness check, the publication-bias

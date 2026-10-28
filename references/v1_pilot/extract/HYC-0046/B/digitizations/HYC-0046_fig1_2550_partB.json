@@ -1,0 +1,119 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-28T04:00:08+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0046",
+  "figure": "Figure 1 (page 3)",
+  "series_name": "2550 m2/gm (open circles), highest-pressure marker; ROI starts at the circle left edge to exclude the overlapping 3200 triangle base",
+  "source_image": {
+    "path": "/home/claude/work/v1_inputs/HYC-0046/B/pages/HYC-0046_main-3.png",
+    "sha256": "a3057cb1be65dbc5bee9c06f7c84738a3c4de88378218ea93b1612ee7f424e59",
+    "width_px": 1275,
+    "height_px": 1650
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 730.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1093.0,
+        "value": 40.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 973.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 753.0,
+        "value": 5.0
+      },
+      "scale": "linear",
+      "label": "H2 Gravimetric Density (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 912.0,
+        "stated": 20.0,
+        "predicted": 20.05509641873278,
+        "relative_error": 0.0027548209366390353
+      },
+      {
+        "axis": "y",
+        "pixel": 841.0,
+        "stated": 3.0,
+        "predicted": 3.0,
+        "relative_error": 0.0
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 105.0,
+    "matched_pixels_in_image": 79967,
+    "matched_pixels_in_region": 29,
+    "region": [
+      1055,
+      745,
+      1091,
+      770
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 8.8,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      21,
+      30
+    ],
+    "rejected_markers": [
+      {
+        "pixel_x": 1089.0,
+        "pixel_y": 753.0,
+        "pixels": 5,
+        "reason": "too small"
+      }
+    ],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 36.161616161616166,
+      "y": 4.853219696969696,
+      "pixel_x": 1058.1666666666667,
+      "pixel_y": 759.4583333333334,
+      "pixel_count": 24,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 1 (page 3), digitized (2550 m2/gm (open circles), highest-pressure marker; ROI starts at the circle left edge to exclude the overlapping 3200 triangle base)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0046_fig1_2550_partB.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

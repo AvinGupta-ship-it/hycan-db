@@ -1,0 +1,152 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-28T04:39:12+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0047",
+  "figure": "Figure 5a",
+  "series_name": "M1149 desorption, open squares, 77 K, gravimetric ICB",
+  "source_image": {
+    "path": "/home/claude/work/v1_work/HYC-0047/A/derived/fig5_open_marker_holes.png",
+    "sha256": "351cdb5ca5a2f2ba0b64bac67ee3ff6e95297192afb43f40a304df88f524db54",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 796.0,
+        "value": 2.0
+      },
+      "reference_2": {
+        "pixel": 1112.0,
+        "value": 10.0
+      },
+      "scale": "linear",
+      "label": "pressure (MPa)",
+      "decades_spanned": 0.6989700043360189
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 762.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 556.0,
+        "value": 7.0
+      },
+      "scale": "linear",
+      "label": "H2 uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 954.0,
+        "stated": 6.0,
+        "predicted": 6.0,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 644.0,
+        "stated": 4.0,
+        "predicted": 4.009708737864077,
+        "relative_error": 0.0024271844660193054
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 767,
+    "matched_pixels_in_region": 130,
+    "region": [
+      730,
+      665,
+      1000,
+      685
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 8.24,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      10,
+      40
+    ],
+    "rejected_markers": [],
+    "n_points": 6,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 3
+  },
+  "series": [
+    {
+      "x": 0.5063291139240507,
+      "y": 2.7694174757281553,
+      "pixel_x": 737.0,
+      "pixel_y": 680.5,
+      "pixel_count": 20,
+      "outside_axis_range": true
+    },
+    {
+      "x": 0.8860759493670887,
+      "y": 2.854368932038835,
+      "pixel_x": 752.0,
+      "pixel_y": 678.0,
+      "pixel_count": 25,
+      "outside_axis_range": true
+    },
+    {
+      "x": 1.7974683544303798,
+      "y": 3.092233009708738,
+      "pixel_x": 788.0,
+      "pixel_y": 671.0,
+      "pixel_count": 25,
+      "outside_axis_range": true
+    },
+    {
+      "x": 3.291139240506329,
+      "y": 3.1432038834951457,
+      "pixel_x": 847.0,
+      "pixel_y": 669.5,
+      "pixel_count": 20,
+      "outside_axis_range": false
+    },
+    {
+      "x": 4.582278481012658,
+      "y": 3.1432038834951457,
+      "pixel_x": 898.0,
+      "pixel_y": 669.5,
+      "pixel_count": 20,
+      "outside_axis_range": false
+    },
+    {
+      "x": 6.987341772151899,
+      "y": 3.1432038834951457,
+      "pixel_x": 993.0,
+      "pixel_y": 669.5,
+      "pixel_count": 20,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 5a, digitized (M1149 desorption, open squares, 77 K, gravimetric ICB)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0047_fig5a_M1149_des.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

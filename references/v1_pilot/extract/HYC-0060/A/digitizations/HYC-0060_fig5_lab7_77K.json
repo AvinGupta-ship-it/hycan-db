@@ -1,0 +1,168 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-28T05:12:16+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0060",
+  "figure": "Fig. 5",
+  "series_name": "lab 7 (open diamonds), 77 K",
+  "source_image": {
+    "path": "/home/claude/work/v1_work/HYC-0060/A/derived/HYC-0060_fig5_lab7_77K_discs.png",
+    "sha256": "e9fe18180faf56e063ab89735230242b76c871c9e8b80a473d893a1426414ea5",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 185.29,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 555.77,
+        "value": 2.5
+      },
+      "scale": "linear",
+      "label": "Hydrogen pressure (MPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 414.35,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 223.0,
+        "value": 1.4
+      },
+      "scale": "linear",
+      "label": "Hydrogen content (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 333.31,
+        "stated": 1.0,
+        "predicted": 0.9988393435543079,
+        "relative_error": 0.0011606564456920765
+      },
+      {
+        "axis": "y",
+        "pixel": 318.43,
+        "stated": 0.7,
+        "predicted": 0.7017925267833813,
+        "relative_error": 0.0025607525476876807
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 146,
+    "matched_pixels_in_region": 146,
+    "region": [
+      0,
+      0,
+      1239,
+      1652
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 7.654000000000001,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      6,
+      200
+    ],
+    "rejected_markers": [],
+    "n_points": 8,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 0.2983291945584108,
+      "y": 1.2374125366547628,
+      "pixel_x": 229.5,
+      "pixel_y": 245.22222222222223,
+      "pixel_count": 18,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.4988948271311693,
+      "y": 1.308544551868304,
+      "pixel_x": 259.22222222222223,
+      "pixel_y": 235.5,
+      "pixel_count": 18,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.7999899135119165,
+      "y": 1.3645730474605642,
+      "pixel_x": 303.8421052631579,
+      "pixel_y": 227.8421052631579,
+      "pixel_count": 19,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.0024299912489063,
+      "y": 1.3792059191616355,
+      "pixel_x": 333.8421052631579,
+      "pixel_y": 225.8421052631579,
+      "pixel_count": 19,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.202561541783632,
+      "y": 1.3963417820747321,
+      "pixel_x": 363.5,
+      "pixel_y": 223.5,
+      "pixel_count": 16,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.4016276182250054,
+      "y": 1.4057761335662124,
+      "pixel_x": 393.0,
+      "pixel_y": 222.21052631578948,
+      "pixel_count": 19,
+      "outside_axis_range": true
+    },
+    {
+      "x": 1.5988192495021476,
+      "y": 1.3963417820747321,
+      "pixel_x": 422.22222222222223,
+      "pixel_y": 223.5,
+      "pixel_count": 18,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.7940772426098717,
+      "y": 1.3842119015856862,
+      "pixel_x": 451.1578947368421,
+      "pixel_y": 225.1578947368421,
+      "pixel_count": 19,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 5, digitized (lab 7 (open diamonds), 77 K)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0060_fig5_lab7_77K.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

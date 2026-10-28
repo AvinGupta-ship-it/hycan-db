@@ -151,6 +151,15 @@ def _uptakes_disagree(left: float, right: float) -> bool:
     return difference / denominator > _UPTAKE_REL_TOLERANCE
 
 
+# Opening words of the model-level messages that mean "this row has no uptake
+# value it can be validated on"; they keep their historical message. Every
+# other model-level rule reports its own text, so an extractor is sent to the
+# field that is actually wrong (protocol §15, Amendment 1).
+_NO_UPTAKE_PREFIXES = ("A row must report at least one uptake value",)
+# The conditions rule names the missing fields; each is reported as missing.
+_CONDITIONS_PREFIX = "Rows reporting uptake must state their conditions"
+
+
 def _schema_errors(clean: dict) -> list[str]:
     """Run the Pydantic model and return only §11.3-relevant schema errors.
 
@@ -172,8 +181,18 @@ def _schema_errors(clean: dict) -> list[str]:
             if etype == "missing":
                 _append_unique(messages, f"Missing required field: {field_name}")
             elif etype == "value_error":
-                # Raised by the model-level "at least one uptake" validator.
-                _append_unique(messages, "Missing required field: uptake")
+                # Model-level validators: the no-uptake rules keep their
+                # historical message; every other rule reports its own text.
+                text = str(err.get("msg", "")).removeprefix("Value error, ")
+                if text.startswith(_NO_UPTAKE_PREFIXES):
+                    _append_unique(messages, "Missing required field: uptake")
+                elif text.startswith(_CONDITIONS_PREFIX) and "missing: " in text:
+                    for name in text.split("missing: ", 1)[1].split(","):
+                        _append_unique(
+                            messages, f"Missing required field: {name.strip()}"
+                        )
+                else:
+                    _append_unique(messages, f"Invalid row: {text}")
             else:
                 # Wrong type or value outside a controlled vocabulary.
                 _append_unique(messages, f"Invalid value: {field_name}")

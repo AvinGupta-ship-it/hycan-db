@@ -1,0 +1,181 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-28T04:49:46+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0047",
+  "figure": "Figure 5b (p. 1907; ICMPE volumetric per caption)",
+  "series_name": "M1149, adsorption (filled squares), 77 K",
+  "source_image": {
+    "path": "/home/claude/work/v1_inputs/HYC-0047/B/pages/HYC-0047_main-06.png",
+    "sha256": "3f44d882ce841d1b2d18e54224cadff0fd641a994ac768e678fca1538cc7c159",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 717.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1118.0,
+        "value": 10.0
+      },
+      "scale": "linear",
+      "label": "P (MPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1056.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 843.0,
+        "value": 7.0
+      },
+      "scale": "linear",
+      "label": "H2 (wt %)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 877.0,
+        "stated": 4.0,
+        "predicted": 3.9900249376558605,
+        "relative_error": 0.0024937655860348684
+      },
+      {
+        "axis": "y",
+        "pixel": 934.0,
+        "stated": 4.0,
+        "predicted": 4.009389671361503,
+        "relative_error": 0.0023474178403757318
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#111212",
+    "color_rgb": [
+      17,
+      18,
+      18
+    ],
+    "tolerance": 80.0,
+    "matched_pixels_in_image": 76562,
+    "matched_pixels_in_region": 853,
+    "region": [
+      722,
+      952,
+      1081,
+      992
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 8.52,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      40,
+      60
+    ],
+    "rejected_markers": [
+      {
+        "pixel_x": 907.5,
+        "pixel_y": 962.0,
+        "pixels": 28,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 723.7,
+        "pixel_y": 964.7,
+        "pixels": 30,
+        "reason": "too small"
+      }
+    ],
+    "n_points": 8,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.2111741921791272,
+      "y": 2.3298371791029853,
+      "pixel_x": 725.468085106383,
+      "pixel_y": 985.1063829787234,
+      "pixel_count": 47,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.6234413965087282,
+      "y": 2.6619718309859155,
+      "pixel_x": 742.0,
+      "pixel_y": 975.0,
+      "pixel_count": 49,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.14713216957606,
+      "y": 2.793427230046948,
+      "pixel_x": 763.0,
+      "pixel_y": 971.0,
+      "pixel_count": 49,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.6848787123101352,
+      "y": 2.795219803670506,
+      "pixel_x": 784.5636363636364,
+      "pixel_y": 970.9454545454546,
+      "pixel_count": 55,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.14214463840399,
+      "y": 2.9577464788732395,
+      "pixel_x": 843.0,
+      "pixel_y": 966.0,
+      "pixel_count": 49,
+      "outside_axis_range": false
+    },
+    {
+      "x": 6.6084788029925186,
+      "y": 3.1220657276995305,
+      "pixel_x": 982.0,
+      "pixel_y": 961.0,
+      "pixel_count": 49,
+      "outside_axis_range": false
+    },
+    {
+      "x": 8.079800498753118,
+      "y": 3.154929577464789,
+      "pixel_x": 1041.0,
+      "pixel_y": 960.0,
+      "pixel_count": 49,
+      "outside_axis_range": false
+    },
+    {
+      "x": 8.902743142144638,
+      "y": 3.204225352112676,
+      "pixel_x": 1074.0,
+      "pixel_y": 958.5,
+      "pixel_count": 56,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 5b (p. 1907; ICMPE volumetric per caption), digitized (M1149, adsorption (filled squares), 77 K)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0047_5b_M1149_ads.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

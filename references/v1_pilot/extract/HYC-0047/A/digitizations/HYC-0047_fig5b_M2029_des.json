@@ -1,0 +1,136 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-28T04:39:40+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0047",
+  "figure": "Figure 5b",
+  "series_name": "M2029 desorption, open triangles, 77 K, volumetric ICMPE",
+  "source_image": {
+    "path": "/home/claude/work/v1_work/HYC-0047/A/derived/fig5_open_marker_holes.png",
+    "sha256": "351cdb5ca5a2f2ba0b64bac67ee3ff6e95297192afb43f40a304df88f524db54",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 798.0,
+        "value": 2.0
+      },
+      "reference_2": {
+        "pixel": 1118.0,
+        "value": 10.0
+      },
+      "scale": "linear",
+      "label": "pressure (MPa)",
+      "decades_spanned": 0.6989700043360189
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1056.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 843.0,
+        "value": 7.0
+      },
+      "scale": "linear",
+      "label": "H2 uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 958.0,
+        "stated": 6.0,
+        "predicted": 6.0,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 934.0,
+        "stated": 4.0,
+        "predicted": 4.009389671361503,
+        "relative_error": 0.0023474178403757318
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 767,
+    "matched_pixels_in_region": 40,
+    "region": [
+      770,
+      907,
+      1118,
+      935
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 8.52,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      5,
+      40
+    ],
+    "rejected_markers": [],
+    "n_points": 4,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 1.507499999999999,
+      "y": 4.23943661971831,
+      "pixel_x": 778.3,
+      "pixel_y": 927.0,
+      "pixel_count": 10,
+      "outside_axis_range": true
+    },
+    {
+      "x": 2.725,
+      "y": 4.550149381135298,
+      "pixel_x": 827.0,
+      "pixel_y": 917.5454545454545,
+      "pixel_count": 11,
+      "outside_axis_range": false
+    },
+    {
+      "x": 4.866666666666665,
+      "y": 4.626499739175797,
+      "pixel_x": 912.6666666666666,
+      "pixel_y": 915.2222222222222,
+      "pixel_count": 9,
+      "outside_axis_range": false
+    },
+    {
+      "x": 7.1125,
+      "y": 4.4629107981220635,
+      "pixel_x": 1002.5,
+      "pixel_y": 920.2,
+      "pixel_count": 10,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 5b, digitized (M2029 desorption, open triangles, 77 K, volumetric ICMPE)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0047_fig5b_M2029_des.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

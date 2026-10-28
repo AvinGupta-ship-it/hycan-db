@@ -1,0 +1,157 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-28T04:49:37+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0047",
+  "figure": "Figure 5a (p. 1907; 77 K, ICB gravimetric)",
+  "series_name": "M2029, desorption (open triangles, interior centroid), 77 K, segment b",
+  "source_image": {
+    "path": "/home/claude/work/v1_inputs/HYC-0047/B/pages/HYC-0047_main-06.png",
+    "sha256": "3f44d882ce841d1b2d18e54224cadff0fd641a994ac768e678fca1538cc7c159",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 717.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1112.0,
+        "value": 10.0
+      },
+      "scale": "linear",
+      "label": "P (MPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 762.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 556.0,
+        "value": 7.0
+      },
+      "scale": "linear",
+      "label": "H2 (wt %)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 875.0,
+        "stated": 4.0,
+        "predicted": 4.0,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 674.0,
+        "stated": 3.0,
+        "predicted": 2.9902912621359223,
+        "relative_error": 0.003236245954692555
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ffffff",
+    "color_rgb": [
+      255,
+      255,
+      255
+    ],
+    "tolerance": 30.0,
+    "matched_pixels_in_image": 1879774,
+    "matched_pixels_in_region": 7515,
+    "region": [
+      746,
+      612,
+      1040,
+      640
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 8.24,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      3,
+      30
+    ],
+    "rejected_markers": [
+      {
+        "pixel_x": 748.3870967741935,
+        "pixel_y": 613.9032258064516,
+        "pixels": 31,
+        "reason": "too large"
+      },
+      {
+        "pixel_x": 896.1915236051502,
+        "pixel_y": 626.7740075107296,
+        "pixels": 7456,
+        "reason": "too large"
+      }
+    ],
+    "n_points": 5,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 1.0,
+      "y": 4.400485436893204,
+      "pixel_x": 756.5,
+      "pixel_y": 632.5,
+      "pixel_count": 4,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.0,
+      "y": 4.645631067961164,
+      "pixel_x": 796.0,
+      "pixel_y": 625.2857142857143,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.0,
+      "y": 4.808252427184466,
+      "pixel_x": 835.5,
+      "pixel_y": 620.5,
+      "pixel_count": 4,
+      "outside_axis_range": false
+    },
+    {
+      "x": 4.506329113924051,
+      "y": 4.849514563106795,
+      "pixel_x": 895.0,
+      "pixel_y": 619.2857142857143,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 6.502109704641351,
+      "y": 4.847896440129448,
+      "pixel_x": 973.8333333333334,
+      "pixel_y": 619.3333333333334,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 5a (p. 1907; 77 K, ICB gravimetric), digitized (M2029, desorption (open triangles, interior centroid), 77 K, segment b)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0047_5a_M2029_des_b.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

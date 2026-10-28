@@ -127,3 +127,32 @@ def test_rule_5_convention_and_source_agree(convention, source, ok):
 def test_rule_5_convention_and_source_are_coded_together():
     with pytest.raises(ValidationError, match="coded together"):
         MeasurementEntry(**make_row(wt_pct_convention="W1"))
+
+
+def test_validator_reports_schema_v2_messages_verbatim():
+    from hycan.validate import validate_row
+
+    errors = validate_row(make_row(**{**CODED, "basis_evidence": ""})).errors
+    assert errors == [
+        (
+            "Invalid row: basis_stated is true but basis_evidence is empty; a "
+            "stated basis must carry the quote that states it"
+        )
+    ]
+    errors = validate_row(make_row(**{**CODED, "value_kind": None})).errors
+    assert any("uncoded: value_kind" in e for e in errors)
+
+
+def test_validator_reports_every_model_rule_in_its_own_words():
+    from hycan.validate import validate_row
+
+    errors = validate_row(make_row(volumetric_capacity_kg_m3=30.0)).errors
+    assert any("volumetric_capacity_basis is null" in e for e in errors)
+    errors = validate_row(make_row(temperature_k=None)).errors
+    assert "Missing required field: temperature_k" in errors
+    errors = validate_row(make_row(temperature_unstated=True)).errors
+    assert any("temperature_unstated is set but temperature_k" in e for e in errors)
+    errors = validate_row(
+        make_row(uptake_wt_pct=None, uptake_mmol_g=None, uptake_ml_stp_g=20.0)
+    ).errors
+    assert any("At least one of 'uptake_wt_pct' or 'uptake_mmol_g'" in e for e in errors)

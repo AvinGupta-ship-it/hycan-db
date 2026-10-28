@@ -1,0 +1,119 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-28T04:49:44+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0047",
+  "figure": "Figure 5a (p. 1907; 77 K, ICB gravimetric)",
+  "series_name": "T3220, desorption (open circles, interior centroid), 77 K, segment f",
+  "source_image": {
+    "path": "/home/claude/work/v1_inputs/HYC-0047/B/pages/HYC-0047_main-06.png",
+    "sha256": "3f44d882ce841d1b2d18e54224cadff0fd641a994ac768e678fca1538cc7c159",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 717.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1112.0,
+        "value": 10.0
+      },
+      "scale": "linear",
+      "label": "P (MPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 762.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 556.0,
+        "value": 7.0
+      },
+      "scale": "linear",
+      "label": "H2 (wt %)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 875.0,
+        "stated": 4.0,
+        "predicted": 4.0,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 674.0,
+        "stated": 3.0,
+        "predicted": 2.9902912621359223,
+        "relative_error": 0.003236245954692555
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ffffff",
+    "color_rgb": [
+      255,
+      255,
+      255
+    ],
+    "tolerance": 30.0,
+    "matched_pixels_in_image": 1879774,
+    "matched_pixels_in_region": 92,
+    "region": [
+      876,
+      586,
+      883,
+      602
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 8.24,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      3,
+      30
+    ],
+    "rejected_markers": [
+      {
+        "pixel_x": 879.5,
+        "pixel_y": 597.2142857142857,
+        "pixels": 84,
+        "reason": "too large"
+      }
+    ],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 4.113924050632912,
+      "y": 5.8786407766990285,
+      "pixel_x": 879.5,
+      "pixel_y": 589.0,
+      "pixel_count": 8,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 5a (p. 1907; 77 K, ICB gravimetric), digitized (T3220, desorption (open circles, interior centroid), 77 K, segment f)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0047_5a_T3220_des_f.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

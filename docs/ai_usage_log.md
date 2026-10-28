@@ -2253,3 +2253,59 @@ pre-migration snapshot is byte-identical to `git show 45c669a:data/raw/measureme
 **Author's role at this stage.** None of the above was performed by the author.
 The author's part is the registration (push and Zenodo deposit), the screening
 audit (§6), the extraction audit (§12), and sign-off on scientific conclusions.
+
+## 2026-10-28 — v1.0: registration, prompt pilot, Amendment 1
+
+**Tools and agents.** Claude (model `claude-opus-5-5`) in a cloud session,
+Mode A. Pilot agents ran on `claude-opus-5-5` and `claude-sonnet-5-5` in fresh
+contexts, each with its own input, output and work directory
+(`references/v1_pilot/README.md` lists the model of every role). Three
+independent subagents on `claude-opus-5-5`, in fresh contexts without this
+session's notes, checked the prompts: a reviewer between pilot rounds 2 and 3,
+a second reviewer before the freeze, and a checker of the second reviewer's
+fixes. No search request had been sent and reference set B had
+not been identified by the time of this entry.
+
+**What was done.**
+1. **Registration.** The author pushed the registration commit, uploaded the
+   four files to Zenodo and approved publication; Claude filled the record in
+   the author's browser and verified the published files against the commit
+   (`docs/v1_registration.md`). With the author's approval, Claude added a
+   notice about v1.0 to the description of the v0.1 record.
+2. **Prompts.** Claude wrote the agent prompts (`prompts/v1/roles/`) and the
+   code that assembles them, prepares each agent's inputs, matches the two
+   extractions and summarizes agreement.
+3. **Pilot**, on v0.1 papers only (§9), in three rounds
+   (`references/v1_pilot/`): screening of the 51 v0.1 records, eligibility of
+   two papers, dual extraction and reconciliation of HYC-0046, -0047, -0051,
+   -0060 and -0040, and the v0.1 mode on HYC-0046. Each round's disagreements
+   were traced to a rule, and the rule was rewritten. In round 1 two extractors
+   of one pilot paper shared a scratch folder; one extractor reported it, and
+   every agent has had its own work directory since.
+4. **Independent review** (`references/v1_pilot/prompt_review_2026-10-28.md`):
+   22 findings, two critical (the prompts' schema text named v0.1 papers with
+   their values; v0.1-mode matching could not pair any row). Claude adopted
+   every finding: a redacted schema text, a labelling agent for v0.1 samples,
+   validator messages that name the failing rule, rules aligned with the
+   registered dictionary, and a confined agent environment. Claude decided the
+   two points the review left to the author: the redaction route rather than
+   declaring 20 papers unblinded, and `area_same_sample = other_paper` for any
+   area the authors did not measure.
+5. **Second review and re-check** (`prompt_review2_2026-10-28.md`,
+   `prompt_recheck_2026-10-28.md` in `references/v1_pilot/`): six blocking
+   problems, all fixed, among them an access audit of every agent transcript
+   (`scripts/v1_audit_access.py`) in place of a confinement the amendment had
+   claimed but nothing enforced.
+6. **Amendment 1**, appended to protocol §15: the clarifications, the frozen
+   prompt hashes and the model of each role. The prompts, code and pilot are
+   committed first, and the amendment, which cites that commit, second.
+
+**Verified.** The built prompts rebuild byte for byte (`scripts/v1_prompts.py
+--check`) and contain no v0.1 paper ID or first author (test). The tools
+directory rebuilds to the recorded manifest. The access audit flags no call of
+the five round-3 agents. Full test suite passing.
+
+**Author's role at this stage.** The registration push, the Zenodo upload and
+publication approval, and approval of the v0.1 record edit. The prompts,
+pilot and amendment were made by Claude; the author's sign-off on the
+amendment is its push.

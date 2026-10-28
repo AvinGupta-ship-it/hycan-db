@@ -1,0 +1,197 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-28T03:59:18+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0046",
+  "figure": "Figure 1 (page 3)",
+  "series_name": "1460 m2/gm (open diamonds), 2.8-21 bar",
+  "source_image": {
+    "path": "/home/claude/work/v1_inputs/HYC-0046/B/pages/HYC-0046_main-3.png",
+    "sha256": "a3057cb1be65dbc5bee9c06f7c84738a3c4de88378218ea93b1612ee7f424e59",
+    "width_px": 1275,
+    "height_px": 1650
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 730.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1093.0,
+        "value": 40.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 973.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 753.0,
+        "value": 5.0
+      },
+      "scale": "linear",
+      "label": "H2 Gravimetric Density (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 912.0,
+        "stated": 20.0,
+        "predicted": 20.05509641873278,
+        "relative_error": 0.0027548209366390353
+      },
+      {
+        "axis": "y",
+        "pixel": 841.0,
+        "stated": 3.0,
+        "predicted": 3.0,
+        "relative_error": 0.0
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#808080",
+    "color_rgb": [
+      128,
+      128,
+      128
+    ],
+    "tolerance": 150.0,
+    "matched_pixels_in_image": 134156,
+    "matched_pixels_in_region": 119,
+    "region": [
+      750,
+      817,
+      948,
+      870
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 8.8,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      11,
+      19
+    ],
+    "rejected_markers": [
+      {
+        "pixel_x": 760.0,
+        "pixel_y": 821.0,
+        "pixels": 1,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 764.0,
+        "pixel_y": 821.0,
+        "pixels": 1,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 764.0,
+        "pixel_y": 827.0,
+        "pixels": 1,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 753.0,
+        "pixel_y": 828.0,
+        "pixels": 1,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 756.0,
+        "pixel_y": 829.0,
+        "pixels": 1,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 756.0,
+        "pixel_y": 835.0,
+        "pixels": 1,
+        "reason": "too small"
+      }
+    ],
+    "n_points": 7,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 2.809917355371901,
+      "y": 2.4431818181818183,
+      "pixel_x": 755.5,
+      "pixel_y": 865.5,
+      "pixel_count": 12,
+      "outside_axis_range": false
+    },
+    {
+      "x": 4.113865932047754,
+      "y": 2.646464646464647,
+      "pixel_x": 767.3333333333334,
+      "pixel_y": 856.5555555555555,
+      "pixel_count": 18,
+      "outside_axis_range": false
+    },
+    {
+      "x": 5.159617566034683,
+      "y": 2.7660427807486645,
+      "pixel_x": 776.8235294117648,
+      "pixel_y": 851.2941176470588,
+      "pixel_count": 17,
+      "outside_axis_range": false
+    },
+    {
+      "x": 7.0339761248852195,
+      "y": 2.9356060606060597,
+      "pixel_x": 793.8333333333334,
+      "pixel_y": 843.8333333333334,
+      "pixel_count": 18,
+      "outside_axis_range": false
+    },
+    {
+      "x": 10.65197428833792,
+      "y": 3.125,
+      "pixel_x": 826.6666666666666,
+      "pixel_y": 835.5,
+      "pixel_count": 18,
+      "outside_axis_range": false
+    },
+    {
+      "x": 14.888276706458521,
+      "y": 3.2335858585858595,
+      "pixel_x": 865.1111111111111,
+      "pixel_y": 830.7222222222222,
+      "pixel_count": 18,
+      "outside_axis_range": false
+    },
+    {
+      "x": 20.110192837465565,
+      "y": 3.3295454545454546,
+      "pixel_x": 912.5,
+      "pixel_y": 826.5,
+      "pixel_count": 12,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 1 (page 3), digitized (1460 m2/gm (open diamonds), 2.8-21 bar)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0046_fig1_1460_partA.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

@@ -7,10 +7,18 @@ results, see the [root README](../README.md). For the dataset itself see
 
 ## Start here
 
-- [v1_protocol.md](v1_protocol.md) — the pre-specified v1.0 protocol (registration
-  record: `v1_registration.md`): search,
-  screening, sampling, extraction, verification, audits and the analysis plan.
-  It supersedes the v0.1 methods and analyses described in the files below.
+- [v1_protocol.md](v1_protocol.md) — the v1.0 protocol, registered on Zenodo
+  before any search ([v1_registration.md](v1_registration.md) gives the DOI,
+  the commit and the file checksums): search, screening, sampling, extraction,
+  verification, audits and the analysis plan. It supersedes the v0.1 methods
+  and analyses described in the files below.
+- `../prompts/v1/` — the agent prompts, frozen by protocol §15 Amendment 1:
+  `roles/` templates, `built/` assembled by `scripts/v1_prompts.py` (SHA-256
+  values in `built/SHA256SUMS`), `launcher.md`, and `schema_v2_redacted/`, the
+  schema text the prompts carry (`scripts/v1_redact_schema.py`). The agents run
+  from a tools directory built by `scripts/v1_tools_tree.py`.
+- `../references/v1_pilot/` — the prompt pilot on v0.1 papers, round by round,
+  with the independent review of the prompts.
 
 - [v0.1_summary.md](v0.1_summary.md) — summary of the v0.1 analysis and model
   findings. **Withdrawn**; kept as the record of what v0.1 reported.

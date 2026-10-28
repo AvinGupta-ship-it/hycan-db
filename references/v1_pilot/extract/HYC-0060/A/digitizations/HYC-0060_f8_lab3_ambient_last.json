@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-28T05:12:21+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0060",
+  "figure": "Fig. 8",
+  "series_name": "lab 3 (open diamonds), ambient 298 K, highest-pressure point",
+  "source_image": {
+    "path": "/home/claude/work/v1_work/HYC-0060/A/derived/HYC-0060_f8_lab3_ambient_last_discs.png",
+    "sha256": "5c23a3c7da7fe33d3799ab595bb8a7087aa7105168deb5be7ddbaf4711f76c1a",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 361.25,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 914.42,
+        "value": 22.0
+      },
+      "scale": "linear",
+      "label": "Hydrogen pressure (MPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 548.14,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 162.61,
+        "value": 0.7
+      },
+      "scale": "linear",
+      "label": "Hydrogen content (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 663.09,
+        "stated": 12.0,
+        "predicted": 12.004410940578849,
+        "relative_error": 0.0003675783815707175
+      },
+      {
+        "axis": "y",
+        "pixel": 383.13,
+        "stated": 0.3,
+        "predicted": 0.2996057375560916,
+        "relative_error": 0.0013142081463612953
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 16,
+    "matched_pixels_in_region": 16,
+    "region": [
+      0,
+      0,
+      1239,
+      1652
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 15.421199999999999,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      6,
+      200
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 9.236762658857133,
+      "y": 0.34341815163541095,
+      "pixel_x": 593.5,
+      "pixel_y": 359.0,
+      "pixel_count": 16,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 8, digitized (lab 3 (open diamonds), ambient 298 K, highest-pressure point)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0060_f8_lab3_ambient_last.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

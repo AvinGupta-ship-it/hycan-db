@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-28T04:57:55+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0060",
+  "figure": "Fig. 5 (p. 3051)",
+  "series_name": "isotherm 12 (open pentagon), 77 K",
+  "source_image": {
+    "path": "/home/claude/work/v1_inputs/HYC-0060/B/pages/HYC-0060_main-08.png",
+    "sha256": "1b490dd808a2bffb2b3526d6da57264e8c2ee522d0022b587ebc0b001c725f1d",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 185.25,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 555.79,
+        "value": 2.5
+      },
+      "scale": "linear",
+      "label": "hydrogen pressure (MPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 414.36,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 223.0,
+        "value": 1.4
+      },
+      "scale": "linear",
+      "label": "hydrogen content (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 333.29,
+        "stated": 1.0,
+        "predicted": 0.9988125438549147,
+        "relative_error": 0.0011874561450853083
+      },
+      {
+        "axis": "y",
+        "pixel": 318.42,
+        "stated": 0.7,
+        "predicted": 0.7019021739130433,
+        "relative_error": 0.0027173913043476716
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 400.0,
+    "matched_pixels_in_image": 208488,
+    "matched_pixels_in_region": 42,
+    "region": [
+      307,
+      180,
+      315,
+      188
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 7.654400000000001,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      8,
+      400
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 0.8482632811315276,
+      "y": 1.6816680602006688,
+      "pixel_x": 310.9761904761905,
+      "pixel_y": 184.5,
+      "pixel_count": 42,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 5 (p. 3051), digitized (isotherm 12 (open pentagon), 77 K)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0060_fig5_I10_m06.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-28T04:39:14+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0047",
+  "figure": "Figure 5a",
+  "series_name": "open markers below 0.7 MPa: T3220 circles, M2849 diamond, M2029 triangle, 77 K, gravimetric ICB",
+  "source_image": {
+    "path": "/home/claude/work/v1_work/HYC-0047/A/derived/fig5_open_marker_holes.png",
+    "sha256": "351cdb5ca5a2f2ba0b64bac67ee3ff6e95297192afb43f40a304df88f524db54",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 796.0,
+        "value": 2.0
+      },
+      "reference_2": {
+        "pixel": 1112.0,
+        "value": 10.0
+      },
+      "scale": "linear",
+      "label": "pressure (MPa)",
+      "decades_spanned": 0.6989700043360189
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 762.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 556.0,
+        "value": 7.0
+      },
+      "scale": "linear",
+      "label": "H2 uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 954.0,
+        "stated": 6.0,
+        "predicted": 6.0,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 644.0,
+        "stated": 4.0,
+        "predicted": 4.009708737864077,
+        "relative_error": 0.0024271844660193054
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 767,
+    "matched_pixels_in_region": 64,
+    "region": [
+      725,
+      620,
+      750,
+      656
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 8.24,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      5,
+      40
+    ],
+    "rejected_markers": [],
+    "n_points": 5,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 5
+  },
+  "series": [
+    {
+      "x": 0.26497890295358717,
+      "y": 3.742394822006472,
+      "pixel_x": 727.4666666666667,
+      "pixel_y": 651.8666666666667,
+      "pixel_count": 15,
+      "outside_axis_range": true
+    },
+    {
+      "x": 0.3894839337877305,
+      "y": 4.137789395070946,
+      "pixel_x": 732.3846153846154,
+      "pixel_y": 640.2307692307693,
+      "pixel_count": 13,
+      "outside_axis_range": true
+    },
+    {
+      "x": 0.44810126582278587,
+      "y": 4.40728155339806,
+      "pixel_x": 734.7,
+      "pixel_y": 632.3,
+      "pixel_count": 10,
+      "outside_axis_range": true
+    },
+    {
+      "x": 0.44810126582278587,
+      "y": 3.9757281553398056,
+      "pixel_x": 734.7,
+      "pixel_y": 645.0,
+      "pixel_count": 10,
+      "outside_axis_range": true
+    },
+    {
+      "x": 0.6708860759493671,
+      "y": 4.6213592233009715,
+      "pixel_x": 743.5,
+      "pixel_y": 626.0,
+      "pixel_count": 16,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 5a, digitized (open markers below 0.7 MPa: T3220 circles, M2849 diamond, M2029 triangle, 77 K, gravimetric ICB)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0047_fig5a_des_lowp_mixed.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

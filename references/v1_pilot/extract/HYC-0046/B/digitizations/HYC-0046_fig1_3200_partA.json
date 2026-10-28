@@ -1,0 +1,153 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-28T03:59:03+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0046",
+  "figure": "Figure 1 (page 3)",
+  "series_name": "3200 m2/gm (open up-triangles), low-pressure separable markers",
+  "source_image": {
+    "path": "/home/claude/work/v1_inputs/HYC-0046/B/pages/HYC-0046_main-3.png",
+    "sha256": "a3057cb1be65dbc5bee9c06f7c84738a3c4de88378218ea93b1612ee7f424e59",
+    "width_px": 1275,
+    "height_px": 1650
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 730.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1093.0,
+        "value": 40.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 973.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 753.0,
+        "value": 5.0
+      },
+      "scale": "linear",
+      "label": "H2 Gravimetric Density (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 912.0,
+        "stated": 20.0,
+        "predicted": 20.05509641873278,
+        "relative_error": 0.0027548209366390353
+      },
+      {
+        "axis": "y",
+        "pixel": 841.0,
+        "stated": 3.0,
+        "predicted": 3.0,
+        "relative_error": 0.0
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#808080",
+    "color_rgb": [
+      128,
+      128,
+      128
+    ],
+    "tolerance": 150.0,
+    "matched_pixels_in_image": 134156,
+    "matched_pixels_in_region": 38,
+    "region": [
+      735,
+      800,
+      762,
+      858
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 8.8,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      9,
+      14
+    ],
+    "rejected_markers": [
+      {
+        "pixel_x": 760.0,
+        "pixel_y": 821.0,
+        "pixels": 1,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 753.0,
+        "pixel_y": 828.0,
+        "pixels": 1,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 756.0,
+        "pixel_y": 829.0,
+        "pixels": 1,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 756.0,
+        "pixel_y": 835.0,
+        "pixels": 1,
+        "reason": "too small"
+      }
+    ],
+    "n_points": 3,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 1.1202938475665707,
+      "y": 2.706439393939395,
+      "pixel_x": 740.1666666666666,
+      "pixel_y": 853.9166666666666,
+      "pixel_count": 12,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.6198347107438065,
+      "y": 3.079545454545455,
+      "pixel_x": 744.7,
+      "pixel_y": 837.5,
+      "pixel_count": 10,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.8282828282828243,
+      "y": 3.6477272727272725,
+      "pixel_x": 755.6666666666666,
+      "pixel_y": 812.5,
+      "pixel_count": 12,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 1 (page 3), digitized (3200 m2/gm (open up-triangles), low-pressure separable markers)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0046_fig1_3200_partA.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

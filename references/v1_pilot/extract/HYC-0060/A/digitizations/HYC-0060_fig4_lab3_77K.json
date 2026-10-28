@@ -1,0 +1,144 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-28T05:12:19+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0060",
+  "figure": "Fig. 4",
+  "series_name": "lab 3 (open up-triangles), 77 K",
+  "source_image": {
+    "path": "/home/claude/work/v1_work/HYC-0060/A/derived/HYC-0060_fig4_lab3_77K_discs.png",
+    "sha256": "db413e63f2483604724f00df7b38cae48c4d2d8a71833cfb388242351b694e89",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 341.65,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 899.01,
+        "value": 10.0
+      },
+      "scale": "linear",
+      "label": "Hydrogen pressure (MPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1465.79,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1061.35,
+        "value": 3.0
+      },
+      "scale": "linear",
+      "label": "Hydrogen content (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 620.56,
+        "stated": 5.0,
+        "predicted": 5.004126596813548,
+        "relative_error": 0.0008253193627096422
+      },
+      {
+        "axis": "y",
+        "pixel": 1263.14,
+        "stated": 1.5,
+        "predicted": 1.503189595490059,
+        "relative_error": 0.002126396993372618
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 92,
+    "matched_pixels_in_region": 92,
+    "region": [
+      0,
+      0,
+      1239,
+      1652
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 16.1776,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      6,
+      200
+    ],
+    "rejected_markers": [],
+    "n_points": 5,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 2.9846059997129326,
+      "y": 1.400380773415092,
+      "pixel_x": 508.0,
+      "pixel_y": 1277.0,
+      "pixel_count": 21,
+      "outside_axis_range": false
+    },
+    {
+      "x": 5.187451158636749,
+      "y": 1.418924933241024,
+      "pixel_x": 630.7777777777778,
+      "pixel_y": 1274.5,
+      "pixel_count": 18,
+      "outside_axis_range": false
+    },
+    {
+      "x": 7.250749565411544,
+      "y": 1.367001285728414,
+      "pixel_x": 745.7777777777778,
+      "pixel_y": 1281.5,
+      "pixel_count": 18,
+      "outside_axis_range": false
+    },
+    {
+      "x": 8.5248219047691,
+      "y": 1.3410394619721093,
+      "pixel_x": 816.7894736842105,
+      "pixel_y": 1285.0,
+      "pixel_count": 19,
+      "outside_axis_range": false
+    },
+    {
+      "x": 9.228326395866226,
+      "y": 1.322495302146177,
+      "pixel_x": 856.0,
+      "pixel_y": 1287.5,
+      "pixel_count": 16,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 4, digitized (lab 3 (open up-triangles), 77 K)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0060_fig4_lab3_77K.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

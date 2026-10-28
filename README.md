@@ -37,7 +37,12 @@ checking against the source papers. The v0.1 *analyses* are withdrawn:
 v1.0 adds papers drawn by probability sampling from a reproducible search,
 re-verifies every v0.1 row under a blind protocol, and replaces the analyses
 with pre-registered ones. The protocol is in
-[`docs/v1_protocol.md`](docs/v1_protocol.md).
+[`docs/v1_protocol.md`](docs/v1_protocol.md). It was registered on Zenodo on
+28 October 2026, before any search was run:
+[10.5281/zenodo.23719010](https://doi.org/10.5281/zenodo.23719010)
+([`docs/v1_registration.md`](docs/v1_registration.md)). The agent prompts,
+piloted on v0.1 papers only, were frozen in its Amendment 1 (§15) before the
+search.
 
 ---
 

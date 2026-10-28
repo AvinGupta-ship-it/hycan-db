@@ -1,0 +1,180 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-28T03:59:19+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0046",
+  "figure": "Figure 1 (page 3)",
+  "series_name": "330 m2/gm (open down-triangles), P > 4 bar",
+  "source_image": {
+    "path": "/home/claude/work/v1_inputs/HYC-0046/B/pages/HYC-0046_main-3.png",
+    "sha256": "a3057cb1be65dbc5bee9c06f7c84738a3c4de88378218ea93b1612ee7f424e59",
+    "width_px": 1275,
+    "height_px": 1650
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 730.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1093.0,
+        "value": 40.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 973.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 753.0,
+        "value": 5.0
+      },
+      "scale": "linear",
+      "label": "H2 Gravimetric Density (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 912.0,
+        "stated": 20.0,
+        "predicted": 20.05509641873278,
+        "relative_error": 0.0027548209366390353
+      },
+      {
+        "axis": "y",
+        "pixel": 841.0,
+        "stated": 3.0,
+        "predicted": 3.0,
+        "relative_error": 0.0
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#808080",
+    "color_rgb": [
+      128,
+      128,
+      128
+    ],
+    "tolerance": 150.0,
+    "matched_pixels_in_image": 134156,
+    "matched_pixels_in_region": 93,
+    "region": [
+      766,
+      925,
+      1091,
+      965
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 8.8,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      9,
+      14
+    ],
+    "rejected_markers": [],
+    "n_points": 8,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 4.921946740128554,
+      "y": 0.6136363636363636,
+      "pixel_x": 774.6666666666666,
+      "pixel_y": 946.0,
+      "pixel_count": 12,
+      "outside_axis_range": false
+    },
+    {
+      "x": 7.192587027297769,
+      "y": 0.698347107438017,
+      "pixel_x": 795.2727272727273,
+      "pixel_y": 942.2727272727273,
+      "pixel_count": 11,
+      "outside_axis_range": false
+    },
+    {
+      "x": 8.89256198347108,
+      "y": 0.7386363636363636,
+      "pixel_x": 810.7,
+      "pixel_y": 940.5,
+      "pixel_count": 10,
+      "outside_axis_range": false
+    },
+    {
+      "x": 11.019283746556475,
+      "y": 0.7594696969696961,
+      "pixel_x": 830.0,
+      "pixel_y": 939.5833333333334,
+      "pixel_count": 12,
+      "outside_axis_range": false
+    },
+    {
+      "x": 14.104683195592287,
+      "y": 0.801652892561983,
+      "pixel_x": 858.0,
+      "pixel_y": 937.7272727272727,
+      "pixel_count": 11,
+      "outside_axis_range": false
+    },
+    {
+      "x": 18.953168044077135,
+      "y": 0.8181818181818181,
+      "pixel_x": 902.0,
+      "pixel_y": 937.0,
+      "pixel_count": 12,
+      "outside_axis_range": false
+    },
+    {
+      "x": 23.606696333969065,
+      "y": 0.816433566433566,
+      "pixel_x": 944.2307692307693,
+      "pixel_y": 937.0769230769231,
+      "pixel_count": 13,
+      "outside_axis_range": false
+    },
+    {
+      "x": 33.241505968778704,
+      "y": 0.7613636363636365,
+      "pixel_x": 1031.6666666666667,
+      "pixel_y": 939.5,
+      "pixel_count": 12,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 20.0,
+      "expected": 0.8,
+      "got": 0.8177885411491967,
+      "difference": 0.0177885411491967,
+      "percent": 2.2235676436495875,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-10-28T04:00:23+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 1 (page 3), digitized (330 m2/gm (open down-triangles), P > 4 bar)",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 20.0."
+  }
+}

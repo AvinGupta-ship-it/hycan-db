@@ -1,0 +1,192 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-28T05:12:15+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0060",
+  "figure": "Fig. 5",
+  "series_name": "lab 11 (open stars), 77 K",
+  "source_image": {
+    "path": "/home/claude/work/v1_work/HYC-0060/A/derived/HYC-0060_fig5_lab11_77K_discs.png",
+    "sha256": "4736104c3f1bfe0c0756f987a6c550a26a6c39b6983dd7a7209e7a84d50a1ab8",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 185.29,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 555.77,
+        "value": 2.5
+      },
+      "scale": "linear",
+      "label": "Hydrogen pressure (MPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 414.35,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 223.0,
+        "value": 1.4
+      },
+      "scale": "linear",
+      "label": "Hydrogen content (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 333.31,
+        "stated": 1.0,
+        "predicted": 0.9988393435543079,
+        "relative_error": 0.0011606564456920765
+      },
+      {
+        "axis": "y",
+        "pixel": 318.43,
+        "stated": 0.7,
+        "predicted": 0.7017925267833813,
+        "relative_error": 0.0025607525476876807
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 200,
+    "matched_pixels_in_region": 200,
+    "region": [
+      0,
+      0,
+      1239,
+      1652
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 7.654000000000001,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      6,
+      200
+    ],
+    "rejected_markers": [],
+    "n_points": 11,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 8
+  },
+  "series": [
+    {
+      "x": 0.39767478826267433,
+      "y": 1.330493859419911,
+      "pixel_x": 244.22222222222223,
+      "pixel_y": 232.5,
+      "pixel_count": 18,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.49846074509313654,
+      "y": 1.3549461581835434,
+      "pixel_x": 259.1578947368421,
+      "pixel_y": 229.1578947368421,
+      "pixel_count": 19,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.5996807839616315,
+      "y": 1.3768954657351504,
+      "pixel_x": 274.1578947368421,
+      "pixel_y": 226.1578947368421,
+      "pixel_count": 19,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.7995558314738838,
+      "y": 1.4109746537758034,
+      "pixel_x": 303.77777777777777,
+      "pixel_y": 221.5,
+      "pixel_count": 18,
+      "outside_axis_range": true
+    },
+    {
+      "x": 0.8969480560070009,
+      "y": 1.4219493075516068,
+      "pixel_x": 318.2105263157895,
+      "pixel_y": 220.0,
+      "pixel_count": 19,
+      "outside_axis_range": true
+    },
+    {
+      "x": 0.9981680948754958,
+      "y": 1.4292657434021427,
+      "pixel_x": 333.2105263157895,
+      "pixel_y": 219.0,
+      "pixel_count": 19,
+      "outside_axis_range": true
+    },
+    {
+      "x": 1.0979675016195207,
+      "y": 1.440240397177946,
+      "pixel_x": 348.0,
+      "pixel_y": 217.5,
+      "pixel_count": 16,
+      "outside_axis_range": true
+    },
+    {
+      "x": 1.1991875404880155,
+      "y": 1.4475568330284818,
+      "pixel_x": 363.0,
+      "pixel_y": 216.5,
+      "pixel_count": 16,
+      "outside_axis_range": true
+    },
+    {
+      "x": 1.3004075793565104,
+      "y": 1.4512150509537496,
+      "pixel_x": 378.0,
+      "pixel_y": 216.0,
+      "pixel_count": 21,
+      "outside_axis_range": true
+    },
+    {
+      "x": 1.4016276182250054,
+      "y": 1.4548732688790174,
+      "pixel_x": 393.0,
+      "pixel_y": 215.5,
+      "pixel_count": 16,
+      "outside_axis_range": true
+    },
+    {
+      "x": 1.4975202866267376,
+      "y": 1.4585314868042851,
+      "pixel_x": 407.2105263157895,
+      "pixel_y": 215.0,
+      "pixel_count": 19,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 5, digitized (lab 11 (open stars), 77 K)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0060_fig5_lab11_77K.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-28T04:49:51+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0047",
+  "figure": "Figure 5b (p. 1907; ICMPE volumetric per caption)",
+  "series_name": "M2029, desorption (open triangles, interior centroid), 77 K, segment b",
+  "source_image": {
+    "path": "/home/claude/work/v1_inputs/HYC-0047/B/pages/HYC-0047_main-06.png",
+    "sha256": "3f44d882ce841d1b2d18e54224cadff0fd641a994ac768e678fca1538cc7c159",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 717.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1118.0,
+        "value": 10.0
+      },
+      "scale": "linear",
+      "label": "P (MPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1056.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 843.0,
+        "value": 7.0
+      },
+      "scale": "linear",
+      "label": "H2 (wt %)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 877.0,
+        "stated": 4.0,
+        "predicted": 3.9900249376558605,
+        "relative_error": 0.0024937655860348684
+      },
+      {
+        "axis": "y",
+        "pixel": 934.0,
+        "stated": 4.0,
+        "predicted": 4.009389671361503,
+        "relative_error": 0.0023474178403757318
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ffffff",
+    "color_rgb": [
+      255,
+      255,
+      255
+    ],
+    "tolerance": 30.0,
+    "matched_pixels_in_image": 1879774,
+    "matched_pixels_in_region": 194,
+    "region": [
+      731,
+      941,
+      747,
+      955
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 8.52,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      3,
+      30
+    ],
+    "rejected_markers": [
+      {
+        "pixel_x": 733.0,
+        "pixel_y": 941.0,
+        "pixels": 1,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 740.4973262032086,
+        "pixel_y": 949.2941176470588,
+        "pixels": 187,
+        "reason": "too large"
+      }
+    ],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.4779717373233573,
+      "y": 3.6697965571204993,
+      "pixel_x": 736.1666666666666,
+      "pixel_y": 944.3333333333334,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 5b (p. 1907; ICMPE volumetric per caption), digitized (M2029, desorption (open triangles, interior centroid), 77 K, segment b)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0047_5b_M2029_des_b.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}
