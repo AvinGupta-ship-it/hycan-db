@@ -314,6 +314,20 @@ def audit(transcript: Path, instruction: str, data_roots: list[str], tools: str,
     return flags
 
 
+def models(transcript: Path) -> list[str]:
+    """The model IDs that wrote the agent's turns, as the transcript records
+    them, so that each role can be checked against protocol §15."""
+    seen = set()
+    for line in transcript.read_text(encoding="utf-8").splitlines():
+        try:
+            d = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        if d.get("type") == "assistant" and d.get("message", {}).get("model"):
+            seen.add(d["message"]["model"])
+    return sorted(seen)
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     ap.add_argument("transcript")
@@ -328,11 +342,12 @@ def main(argv: list[str] | None = None) -> int:
     flags = audit(Path(args.transcript), args.instruction,
                   [args.input, args.output, args.work], args.tools, args.harness)
     calls = sum(1 for _ in tool_calls(Path(args.transcript)))
-    report = {"transcript": Path(args.transcript).name, "tool_calls": calls,
+    report = {"transcript": Path(args.transcript).name,
+              "models": models(Path(args.transcript)), "tool_calls": calls,
               "flags": flags}
     if args.json:
         Path(args.json).write_text(json.dumps(report, indent=2) + "\n")
-    print(f"{calls} tool calls, {len(flags)} flagged")
+    print(f"{calls} tool calls, {len(flags)} flagged, models {report['models']}")
     for f in flags:
         print(f"  call {f['call']} {f['tool']}: {f['reason']}: {f['detail'][:160]}")
     return 1 if flags else 0

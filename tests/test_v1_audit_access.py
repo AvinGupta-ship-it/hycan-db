@@ -94,3 +94,18 @@ def test_adversarial_cases_are_flagged(tmp_path):
     ]
     for call in cases:
         assert run(tmp_path, [call]), call
+
+
+def test_the_report_names_the_models_that_wrote_the_turns(tmp_path):
+    p = tmp_path / "t.jsonl"
+    p.write_text("\n".join([
+        json.dumps({"type": "user", "message": {"content": "go"}}),
+        json.dumps({"type": "assistant", "message": {"model": "claude-sonnet-5-5",
+                                                     "content": []}}),
+        json.dumps({"type": "assistant", "message": {"model": "claude-sonnet-5-5",
+                                                     "content": []}}),
+    ]) + "\n")
+    out = tmp_path / "r.json"
+    aa.main([str(p), "--instruction", INS, "--input", IN, "--output", OUT,
+             "--work", WORK, "--tools", TOOLS, "--json", str(out)])
+    assert json.loads(out.read_text())["models"] == ["claude-sonnet-5-5"]

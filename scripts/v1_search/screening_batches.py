@@ -13,19 +13,28 @@ outputs (docs/v1_protocol.md §6).
            exactly its input batch, in order, with valid decisions, codes and
            strata. A batch that fails the check is reported by name: under §9
            it may be rerun only for a technical failure (missing, truncated or
-           malformed output), and the rerun is logged.
+           malformed output), and the rerun is logged. With --report, also
+           write counts of decisions, codes and strata, and of the evidence
+           quotations (required for an exclusion or an S1 flag) that are
+           missing or that do not occur in the record's title or abstract
+           (compared after case and whitespace are normalized). The quotation
+           counts are reported, not used to reject a batch.
 
     python3 scripts/v1_search/screening_batches.py split
         --merged references/v1_search/merged_records.csv --out DIR [--size 250]
     python3 scripts/v1_search/screening_batches.py join --inputs DIR
         --outputs DIR --out references/v1_screening/screen_a.csv
+        [--report references/v1_screening/screen_a_report.json]
 """
 
 from __future__ import annotations
 
 import argparse
 import csv
+import json
+import re
 import sys
+from collections import Counter
 from pathlib import Path
 
 SCREEN_COLUMNS = ("frame_id", "title", "abstract", "venue", "year", "type")
@@ -110,7 +119,44 @@ def cmd_join(args) -> int:
         raise BatchError(f"{len(problems)} problems; nothing written")
     write_csv(Path(args.out), OUT_COLUMNS, rows)
     print(f"joined {len(inputs)} batches, {len(rows)} records into {args.out}")
+    if args.report:
+        records = {r["frame_id"]: r for inp in inputs for r in read_csv(inp)[1]}
+        report = quality(rows, records)
+        Path(args.report).write_text(json.dumps(report, indent=2) + "\n")
+        print(json.dumps(report))
     return 0
+
+
+def _norm(text: str) -> str:
+    return " ".join(re.sub(r"[\u2018\u2019\u201c\u201d]", "'", text or "").lower().split())
+
+
+def quality(rows: list[dict], records: dict[str, dict]) -> dict:
+    """Counts of decisions, codes and strata, and of evidence quotations that
+    are missing or not found in the record's title or abstract."""
+    need = [r for r in rows if r["decision"] == "exclude" or r["stratum"] == "S1"]
+    missing = [r["frame_id"] for r in need if not r["evidence"].strip()]
+    not_found = []
+    for r in need:
+        if not r["evidence"].strip():
+            continue
+        src = records[r["frame_id"]]
+        hay = _norm(src["title"] + " " + src["abstract"])
+        quote = _norm(r["evidence"]).strip(" .\"'")
+        parts = [q.strip(" .\"'") for q in re.split(r"\.\.\.|\u2026", quote)]
+        if not all(q in hay for q in parts if q):
+            not_found.append(r["frame_id"])
+    return {
+        "records": len(rows),
+        "decisions": dict(sorted(Counter(r["decision"] for r in rows).items())),
+        "exclusion_codes": dict(
+            sorted(Counter(r["exclusion_code"] for r in rows if r["exclusion_code"]).items())
+        ),
+        "strata": dict(sorted(Counter(r["stratum"] for r in rows if r["stratum"]).items())),
+        "evidence_required": len(need),
+        "evidence_missing": missing,
+        "evidence_not_in_record": not_found,
+    }
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -124,6 +170,7 @@ def main(argv: list[str] | None = None) -> int:
     j.add_argument("--inputs", required=True)
     j.add_argument("--outputs", required=True)
     j.add_argument("--out", required=True)
+    j.add_argument("--report")
     args = ap.parse_args(argv)
     try:
         return {"split": cmd_split, "join": cmd_join}[args.cmd](args)
