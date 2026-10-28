@@ -132,3 +132,19 @@ def test_the_agents_own_directory_may_be_listed_but_not_written(tmp_path):
                      [own + "/in/batch_001.csv", own + "/out/batch_001.csv", own + "/work"],
                      TOOLS, [])
     assert flags  # without `own`, the agent directory is outside the allowed paths
+
+
+def test_climbs_resolved_against_an_absolute_cd(tmp_path):
+    ok = f"cd {WORK} && head -5 ../../out_B/P1/x.csv && python3 -c \"open('../P1/s.py')\""
+    assert run(tmp_path, [("Bash", {"command": ok})]) == []
+    breach = f"cd {WORK} && cat ../../out_A/P1/x.csv"
+    assert run(tmp_path, [("Bash", {"command": breach})])
+    unanchored = "cat ../out/x.csv"
+    assert run(tmp_path, [("Bash", {"command": unanchored})])
+
+
+def test_numeric_root_is_not_a_path_and_a_misnamed_write_key_is_checked(tmp_path):
+    sed = f"cd {WORK} && sed -i \"s/^21: ('exclude','a'/21: ('exclude','b'/\" d.py"
+    assert run(tmp_path, [("Bash", {"command": sed})]) == []
+    assert run(tmp_path, [("Write", {"path": WORK + "/m.py", "content": "x"})]) == []
+    assert run(tmp_path, [("Write", {"path": "/w/out_A/P1/m.py", "content": "x"})])

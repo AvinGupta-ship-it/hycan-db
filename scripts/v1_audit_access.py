@@ -237,10 +237,37 @@ def audit_tools_context(body: str, next_cd: str) -> list[str]:
     return reasons
 
 
+NUMERIC_ROOT = re.compile(r"^/\d+(?:/|$)")
+TOKEN = re.compile(r"[^\s'\"=(:,;|&<>\[\]{}]+")
+
+
+def _climbs_stay_inside(cmd: str, roots: list[str]) -> bool:
+    """True when every path in the command that climbs with `..` resolves,
+    against the last absolute `cd` before it (or by itself, if absolute), to a
+    path under the allowed roots. A climb with no absolute `cd` before it
+    cannot be resolved and is not accepted."""
+    cds = [(m.start(), norm(m.group(2))) for m in CD.finditer(cmd)
+           if m.group(2).startswith("/")]
+    for m in TOKEN.finditer(cmd):
+        tok = m.group(0)
+        if ".." not in tok.split("/"):
+            continue
+        if tok.startswith("/"):
+            resolved = norm(tok)
+        else:
+            base = [d for pos, d in cds if pos < m.start()]
+            if not base:
+                return False
+            resolved = norm(posixpath.join(base[-1], tok))
+        if not under(resolved, roots):
+            return False
+    return True
+
+
 def audit_bash(cmd: str, instruction: str, data: list[str], harness: list[str],
                tools: str) -> list[str]:
     reasons = []
-    if CLIMB.search(cmd):
+    if CLIMB.search(cmd) and not _climbs_stay_inside(cmd, data + harness):
         reasons.append("command climbs with ..")
     if HOME.search(cmd):
         reasons.append("command names the home directory")
@@ -251,6 +278,8 @@ def audit_bash(cmd: str, instruction: str, data: list[str], harness: list[str],
         p = norm(raw)
         if p == instruction or raw.startswith(SYSTEM_PREFIXES):
             continue
+        if NUMERIC_ROOT.match(raw):
+            continue  # "/21" in text or a sed expression: no root directory is a number
         if under(p, data + harness):
             continue
         if under(p, [tools]):
@@ -302,13 +331,14 @@ def audit(transcript: Path, instruction: str, data_roots: list[str], tools: str,
                           "detail": str(detail)[:300]})
 
         if name in FILE_TOOLS_READ:
-            path = str(args.get("file_path") or "")
+            path = str(args.get("file_path") or args.get("path") or "")
             if climbs(path):
                 flag("path climbs with ..", path)
             elif norm(path) != instruction and not under(path, data + harness):
                 flag("file outside the allowed paths", path)
         elif name in FILE_TOOLS_WRITE:
-            path = str(args.get("file_path") or args.get("notebook_path") or "")
+            path = str(args.get("file_path") or args.get("notebook_path")
+                       or args.get("path") or "")
             if climbs(path) or not under(path, out_dirs + [work] + harness):
                 flag("writes outside the output and work directories", path)
         elif name in SEARCH_TOOLS:
