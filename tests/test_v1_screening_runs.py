@@ -34,7 +34,7 @@ def setup_run(tmp_path, monkeypatch):
     (d / "in" / "batch_001.csv").write_text(HDR_IN + "F1,t,,,2010,article\n")
     (d / "out" / "batch_001.csv").write_text(HDR_OUT + "F1,uncertain,,S2,\n")
     launch = f"Read {run}/prompts/screen.md ... Input: {d}/in/batch_001.csv"
-    (run / "launch" / "A_batch_001.txt").write_text(launch)
+    (run / "launch" / "A_batch_001.txt").write_text(launch + "\n")
     return run, d, launch
 
 

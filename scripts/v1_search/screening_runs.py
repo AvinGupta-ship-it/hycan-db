@@ -14,7 +14,8 @@ launcher (prompts/v1/built/launcher.md) filled with that agent's paths:
 For every finished agent whose description is "Screener <S> batch NNN", this
 script checks that
 
-  1. the agent's first message is the filled launcher, byte for byte;
+  1. the agent's first message is the filled launcher, byte for byte apart
+     from the file's final newline, which the agent harness does not pass;
   2. the prompt file is the frozen screen.md (its SHA-256 in Amendment 1);
   3. the agent's turns were written by the model registered for that screener;
   4. the access audit (scripts/v1_audit_access.py) flags no call;
@@ -102,7 +103,7 @@ def check_agent(run: Path, screener: str, batch: str, transcript: Path,
         "screener": screener,
         "batch": batch,
         "transcript": transcript.name,
-        "launcher_exact": first_user_text(transcript) == launch,
+        "launcher_exact": first_user_text(transcript) == launch.removesuffix("\n"),
         "prompt_sha256_ok": hashlib.sha256(prompt.read_bytes()).hexdigest() == SCREEN_SHA256,
     }
     report["models"] = v1_audit_access.models(transcript)
