@@ -237,7 +237,19 @@ def audit_tools_context(body: str, next_cd: str) -> list[str]:
     return reasons
 
 
-NUMERIC_ROOT = re.compile(r"^/\d+(?:/|$)")
+# Directories a single-component absolute path could name on the machine the
+# agents run on. Any other single component ("/He" in "H2/He", "/21" in a sed
+# expression, "/NHMCS-900" in "Pd/NHMCS-900") is text, not a path; a path with
+# two or more components is always checked.
+FS_ROOTS = {"home", "root", "tmp", "mnt", "etc", "var", "opt", "srv", "usr", "bin",
+            "sbin", "lib", "lib64", "proc", "sys", "dev", "media", "run", "boot",
+            "workspace", "data", "work", "scratch"}
+
+
+def _text_not_path(raw: str) -> bool:
+    parts = [c for c in raw.split("/") if c]
+    return len(parts) == 1 and parts[0] not in FS_ROOTS and not raw.endswith("/") \
+        or (len(parts) == 1 and parts[0].isdigit())
 TOKEN = re.compile(r"[^\s'\"=(:,;|&<>\[\]{}]+")
 
 
@@ -297,8 +309,8 @@ def audit_bash(cmd: str, instruction: str, data: list[str], harness: list[str],
         p = norm(raw)
         if p == instruction or raw.startswith(SYSTEM_PREFIXES):
             continue
-        if NUMERIC_ROOT.match(raw):
-            continue  # "/21" in text or a sed expression: no root directory is a number
+        if _text_not_path(raw):
+            continue  # "/21", "/He", "/NHMCS-900": a fragment of text such as "H2/He"
         if under(p, data + harness):
             continue
         if under(p, [tools]):
@@ -340,7 +352,10 @@ def audit(transcript: Path, instruction: str, data_roots: list[str], tools: str,
         if posixpath.splitext(p)[1]:
             data.append(posixpath.dirname(p))
     out_dirs = [out] + ([posixpath.dirname(out)] if posixpath.splitext(out)[1] else [])
-    harness = [norm(h) for h in harness]
+    # The harness directory is shared by every agent of a session, so only the
+    # files the harness told this agent it had saved its own output to count.
+    roots = [norm(h) for h in harness]
+    harness = sorted(p for p in saved_outputs(transcript) if under(p, roots))
     tools = norm(tools)
     instruction = norm(instruction)
     flags = []
@@ -376,6 +391,32 @@ def audit(transcript: Path, instruction: str, data_roots: list[str], tools: str,
         else:
             flag("tool outside the allowed set", json.dumps(args)[:300])
     return flags
+
+
+SAVED_OUTPUT = re.compile(r"(?:Full output saved to|[Oo]utput (?:has been )?saved to):?\s*(/[^\s\\\"'<>]+)")
+
+
+def saved_outputs(transcript: Path) -> set[str]:
+    """Paths where the agent's tool environment told it, in the agent's own
+    tool results, that it had saved that agent's long command output."""
+    found = set()
+    for line in transcript.read_text(encoding="utf-8").splitlines():
+        try:
+            d = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        if d.get("type") != "user":
+            continue
+        content = d.get("message", {}).get("content")
+        if not isinstance(content, list):
+            continue
+        for part in content:
+            if isinstance(part, dict) and part.get("type") == "tool_result":
+                body = part.get("content")
+                if isinstance(body, list):
+                    body = " ".join(b.get("text", "") for b in body if isinstance(b, dict))
+                found.update(norm(m) for m in SAVED_OUTPUT.findall(str(body or "")))
+    return found
 
 
 def models(transcript: Path) -> list[str]:

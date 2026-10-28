@@ -155,3 +155,26 @@ def test_a_sed_address_is_not_a_path_but_a_sed_file_operand_is(tmp_path):
     assert run(tmp_path, [("Bash", {"command": ok})]) == []
     bad = f"cd {WORK} && sed -n '/F1/p' /w/out_A/P1/x.csv"
     assert run(tmp_path, [("Bash", {"command": bad})])
+
+
+def test_only_the_agents_own_saved_output_counts_in_the_harness_directory(tmp_path):
+    H = "/h/tool-results"
+    lines = [
+        json.dumps({"type": "user", "message": {"content": [{"type": "tool_result",
+            "content": f"<persisted-output>\nOutput too large (40KB). Full output saved to: {H}/mine.txt\n"}]}}),
+        json.dumps({"type": "assistant", "message": {"content": [
+            {"type": "tool_use", "name": "Read", "input": {"file_path": f"{H}/mine.txt"}}]}}),
+        json.dumps({"type": "assistant", "message": {"content": [
+            {"type": "tool_use", "name": "Read", "input": {"file_path": f"{H}/other_agent.txt"}}]}}),
+    ]
+    p = tmp_path / "t.jsonl"
+    p.write_text("\n".join(lines) + "\n")
+    flags = aa.audit(p, INS, [IN, OUT, WORK], TOOLS, [H])
+    assert [f["call"] for f in flags] == [2]
+
+
+def test_single_component_text_is_not_a_path_but_a_root_directory_is(tmp_path):
+    text = (f"cat > {WORK}/d.py <<'EOF'\nD = ['H2/He mixture', 'Pd /NHMCS-900', 'W /W ratio']\nEOF")
+    assert run(tmp_path, [("Bash", {"command": text})]) == []
+    for bad in ("ls /tmp", "cat /home/claude/x", "ls /root"):
+        assert run(tmp_path, [("Bash", {"command": bad})]), bad
