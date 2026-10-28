@@ -5,6 +5,21 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Search run (2026-10-28)
+- `references/v1_search/`: the OpenAlex and Semantic Scholar searches of
+  protocol §5, every response body as returned with its SHA-256
+  (`downloads.json`), the run log (`README.md`), the merged record set
+  (11,238 records) and recall: set A 44/44; set B 5/14, its include-both
+  subset 2/3.
+- `scripts/v1_search/openalex_slices.js`: re-queries a sub-query in
+  publication-date slices of one page each. Cursor paging left two sub-queries
+  short by 4 and 3 records; the slices recovered them.
+- `merge_search.py`: reports every sub-query re-queried in slices and every
+  sub-query whose distinct records fall short of its reported count, and
+  refuses a sub-query that appears in two paged batches.
+- `openalex_query.js`: an API-key box (OpenAlex now limits requests without a
+  key) and a count probe; `archive_downloads.py` archives the downloads.
+
 ### Reference set B identified (2026-10-28)
 - `references/v1_setB/`: the OpenAlex lookup of the 91 works Gunther et al.
   (2026) cite, both frozen screeners' decisions, and set B (14 records), made

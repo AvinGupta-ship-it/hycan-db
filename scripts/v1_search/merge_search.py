@@ -3,7 +3,10 @@
 Reads the raw batch files in references/v1_search/, re-checks every stored
 response body against its recorded SHA-256, and builds one record set:
 
-  1. the union of the OpenAlex sub-queries, by OpenAlex ID;
+  1. the union of the OpenAlex sub-queries, by OpenAlex ID, including any
+     sub-query re-queried in publication-date slices (openalex_slices.js);
+     a sub-query whose distinct records still number fewer than the count
+     OpenAlex reported for it is listed in merge_counts.json;
   2. Semantic Scholar records merged in by normalized DOI, then by normalized
      title with publication years differing by at most 1;
   3. a frame_id for every record: "F" + the zero-padded rank of its sort key,
@@ -88,16 +91,29 @@ def read_json(path: Path) -> dict:
     return json.loads(raw.decode("utf-8"))
 
 
-def load_openalex() -> tuple[dict[str, dict], dict[str, int]]:
+def load_openalex() -> tuple[dict[str, dict], dict[str, int], dict]:
+    """The OpenAlex records, the count OpenAlex reported for each sub-query in
+    the paged run, and a completeness report: every sub-query re-queried in
+    slices (its paged count, its sliced count, its distinct records over both)
+    and every sub-query whose distinct records fall short of its count."""
     recs: dict[str, dict] = {}
     per_query: dict[str, int] = {}
+    sliced: dict[str, int] = {}
+    seen: dict[str, set] = {}
     for f in batch_files("hycan_v1_openalex_"):
         data = read_json(f)
         for b in data["batch"]:
-            per_query[b["key"]] = b["count"]
+            if b.get("method") == "publication-date slices":
+                sliced[b["key"]] = b["count"]
+            elif b["key"] in per_query:
+                raise ValueError(f"sub-query {b['key']} appears in two paged batches")
+            else:
+                per_query[b["key"]] = b["count"]
+            ids = seen.setdefault(b["key"], set())
             for page in b["pages"]:
-                for w in checked_body(page)["results"]:
+                for w in checked_body(page).get("results") or []:
                     oid = w["id"].rsplit("/", 1)[-1]
+                    ids.add(oid)
                     r = recs.setdefault(
                         oid,
                         {
@@ -130,7 +146,22 @@ def load_openalex() -> tuple[dict[str, dict], dict[str, int]]:
                     r["subqueries"].add(b["key"])
                     if r["abstract"] and not r["abstract_source"]:
                         r["abstract_source"] = "openalex"
-    return recs, per_query
+    completeness = {
+        "sliced": {
+            k: {
+                "paged_count": per_query.get(k),
+                "sliced_count": n,
+                "distinct": len(seen[k]),
+            }
+            for k, n in sorted(sliced.items())
+        },
+        "short": [
+            [k, n, len(seen.get(k, ()))]
+            for k, n in sorted(per_query.items())
+            if len(seen.get(k, ())) < max(n, sliced.get(k, 0))
+        ],
+    }
+    return recs, per_query, completeness
 
 
 def collapse_openalex_doi_duplicates(recs: dict[str, dict]) -> int:
@@ -237,7 +268,7 @@ def sort_key(r: dict) -> str:
 
 
 def main() -> int:
-    recs, per_query = load_openalex()
+    recs, per_query, completeness = load_openalex()
     openalex_doi_duplicates = collapse_openalex_doi_duplicates(recs)
     n_openalex = len(recs)
     stats = merge_s2(recs)
@@ -276,6 +307,8 @@ def main() -> int:
     counts = {
         "openalex_subqueries": len(per_query),
         "openalex_count_sum": sum(per_query.values()),
+        "openalex_sliced": completeness["sliced"],
+        "openalex_subqueries_short": completeness["short"],
         "openalex_doi_duplicates_merged": openalex_doi_duplicates,
         "openalex_unique": n_openalex,
         **stats,

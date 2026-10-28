@@ -2326,3 +2326,25 @@ each ran once. Claude built set B (14 records) and audited both transcripts
 **Author's role.** Approval of the downloads; the push that makes set B public
 before the search.
 
+## 2026-10-28 (continued) — v1.0: search
+
+**Tools and agents.** Claude (`claude-opus-5-5`), Mode A. No agent saw a
+search result.
+
+**What was done.** With the author's approval of the downloads, Claude
+checked the code in each browser page against the committed scripts and
+started them in the built-in browser on the author's computer; the scripts
+saved every response to disk. When OpenAlex refused requests without a key,
+the author created a free account and typed its key into a box on the page;
+Claude never saw the key. Claude found that cursor paging had left two
+OpenAlex sub-queries short, wrote and committed the slice re-query, and ran
+it. Claude archived the downloads, merged them and computed recall
+(`references/v1_search/README.md`).
+
+**Verified.** Every stored response body against its SHA-256; every
+sub-query's distinct records against the count OpenAlex reported (none short
+after the slices); no saved URL holds the key. Full test suite passing.
+
+**Author's role.** Approval of the downloads, the OpenAlex account and key,
+and the push that makes the search record public.
+

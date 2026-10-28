@@ -196,3 +196,52 @@ def test_gzipped_batches_are_read_and_check_files_skipped(tmp_path, monkeypatch)
     assert ms.main() == 0
     counts = json.loads((tmp_path / "merge_counts.json").read_text())
     assert counts["openalex_unique"] == 2 and counts["s2_only"] == 1
+
+
+def test_a_short_subquery_is_reported_and_slices_fill_it(tmp_path, monkeypatch):
+    # The paged run reports 3 records for H1_C01 but returns W1 twice and never
+    # W5: the sub-query is short until a slice file supplies W5.
+    write_search(tmp_path)
+    oa = json.loads((tmp_path / "hycan_v1_openalex_000_002.json").read_text())
+    oa["batch"][0]["count"] = 3
+    oa["batch"][0]["pages"].append(
+        page({"meta": {}, "results": [oa_work("W1", None, "Porous Carbon A", 2005)]})
+    )
+    (tmp_path / "hycan_v1_openalex_000_002.json").write_text(json.dumps(oa))
+    monkeypatch.setattr(ms, "SEARCH_DIR", tmp_path)
+    ms.main()
+    counts = json.loads((tmp_path / "merge_counts.json").read_text())
+    assert counts["openalex_subqueries_short"] == [["H1_C01", 3, 2]]
+    assert counts["openalex_sliced"] == {}
+
+    slices = {
+        "batch": [
+            {
+                "key": "H1_C01",
+                "count": 3,
+                "method": "publication-date slices",
+                "pages": [
+                    page({"meta": {"count": 3}, "group_by": [], "results": []}),
+                    page({"meta": {}, "results": [oa_work("W5", None, "Carbon E", 2012)]}),
+                ],
+            }
+        ]
+    }
+    (tmp_path / "hycan_v1_openalex_slices.json").write_text(json.dumps(slices))
+    ms.main()
+    counts = json.loads((tmp_path / "merge_counts.json").read_text())
+    assert counts["openalex_subqueries_short"] == []
+    assert counts["openalex_sliced"] == {
+        "H1_C01": {"paged_count": 3, "sliced_count": 3, "distinct": 3}
+    }
+    assert counts["openalex_count_sum"] == 4  # paged counts only, slices not added
+    assert counts["openalex_unique"] == 3
+
+
+def test_a_subquery_in_two_paged_batches_is_refused(tmp_path, monkeypatch):
+    write_search(tmp_path)
+    src = tmp_path / "hycan_v1_openalex_000_002.json"
+    (tmp_path / "hycan_v1_openalex_002_004.json").write_text(src.read_text())
+    monkeypatch.setattr(ms, "SEARCH_DIR", tmp_path)
+    with pytest.raises(ValueError):
+        ms.main()
