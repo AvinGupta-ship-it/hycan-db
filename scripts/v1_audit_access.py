@@ -270,6 +270,13 @@ def audit(transcript: Path, instruction: str, data_roots: list[str], tools: str,
     """data_roots = [input, output, work]."""
     inp, out, work = (norm(str(r)) for r in data_roots)
     data = [inp, out, work]
+    # An input or output that is a single file sits in a directory prepared for
+    # that agent alone (scripts/v1_extract.py prepare, or the run layout), so
+    # listing that directory is allowed.
+    for p in (inp, out):
+        if posixpath.splitext(p)[1]:
+            data.append(posixpath.dirname(p))
+    out_dirs = [out] + ([posixpath.dirname(out)] if posixpath.splitext(out)[1] else [])
     harness = [norm(h) for h in harness]
     tools = norm(tools)
     instruction = norm(instruction)
@@ -287,7 +294,7 @@ def audit(transcript: Path, instruction: str, data_roots: list[str], tools: str,
                 flag("file outside the allowed paths", path)
         elif name in FILE_TOOLS_WRITE:
             path = str(args.get("file_path") or args.get("notebook_path") or "")
-            if climbs(path) or not under(path, [out, work] + harness):
+            if climbs(path) or not under(path, out_dirs + [work] + harness):
                 flag("writes outside the output and work directories", path)
         elif name in SEARCH_TOOLS:
             path = str(args.get("path") or "")
