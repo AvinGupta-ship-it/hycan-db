@@ -260,7 +260,7 @@ Fields are grouped into five categories matching the curation spreadsheet column
 
 | Attribute | Value |
 |---|---|
-| Type | Float, 0–4000 m²/g |
+| Type | Float, 0–5000 m²/g (schema v2; 0–4000 before) |
 | Required | Yes |
 | Example | `1200.0` |
 
@@ -401,13 +401,13 @@ Fields are grouped into five categories matching the curation spreadsheet column
 | Attribute | Value |
 |---|---|
 | Type | Float or null, 0–20 wt% |
-| Required | One of `uptake_wt_pct` or `uptake_mmol_g` must be present |
+| Required | One of `uptake_wt_pct` or `uptake_mmol_g` must be present when the row carries an uptake convertible to wt% (see "A consequence for analysis") |
 | Example | `2.1` |
 
-**Definition.** Gravimetric hydrogen uptake expressed as mass of H₂ divided by total sample mass, multiplied by 100.  
+**Definition.** Gravimetric hydrogen uptake in wt%, as the paper reports it. Papers use two conventions: W1 = 100·m(H₂)/m(sorbent) and W2 = 100·m(H₂)/[m(sorbent) + m(H₂)]. Schema v2 records which one in `wt_pct_convention`; the v1.0 analysis converts W2 values to W1 and uses a value of unknown convention as reported (protocol §3).  
 **Units.** wt%  
 **Scientific significance.** The primary figure of merit for onboard storage; the U.S. DOE target is 6.5 wt% (system-level).  
-**If missing.** Compute from `uptake_mmol_g` via wt% = mmol_per_g × 0.201588 / 10. Leave null only if `uptake_mmol_g` is filled.
+**If missing.** When the paper gives no wt% for the point, compute W1 from `uptake_mmol_g` (wt% = mmol_per_g × 0.201588) or `uptake_ml_stp_g`, and in schema v2 set `wt_pct_convention_source` to `computed_from_other_unit`. A value printed only in mg/g is stored here as W1 = 0.1 × mg/g, with the same source.
 
 ---
 
@@ -416,14 +416,14 @@ Fields are grouped into five categories matching the curation spreadsheet column
 | Attribute | Value |
 |---|---|
 | Type | Float or null |
-| Required | One of `uptake_wt_pct` or `uptake_mmol_g` must be present |
+| Required | One of `uptake_wt_pct` or `uptake_mmol_g` must be present when the row carries an uptake convertible to wt% (see "A consequence for analysis") |
 | Example | `10.4` |
 
 **Definition.** Gravimetric hydrogen uptake in millimoles of H₂ per gram of adsorbent.  
 **Units.** mmol/g  
 **Conversion.** wt% = mmol_per_g × 0.201588. The factor 0.201588 = 2.01588 g/mol (molar mass of H₂) / 10 (unit conversion).  
 **Scientific significance.** Molar units are preferred for thermodynamic modelling (e.g., isotherm fitting with Langmuir or Toth equations).  
-**If missing.** Compute from `uptake_wt_pct`. Leave null only if `uptake_wt_pct` is filled.
+**If missing.** Leave null. A v1.0 row fills this field only with a value printed in the paper, because the analysis computes W1 from it (protocol §3); a value computed from wt% would make that circular. Some v0.1 rows hold computed values here, and the v1.0 re-extraction (§9) corrects them.
 
 ---
 
@@ -556,7 +556,7 @@ Fields are grouped into five categories matching the curation spreadsheet column
 | Attribute | Value |
 |---|---|
 | Type | Single character |
-| Required | Yes |
+| Required | No (schema v2: legacy field) |
 | Allowed values | `A`, `B`, `C`, `D` |
 | Example | `B` |
 
@@ -567,7 +567,8 @@ Fields are grouped into five categories matching the curation spreadsheet column
 - **D**: insufficient detail to attempt reproduction.  
 **Units.** None.  
 **Scientific significance.** Filters low-reproducibility entries out of benchmarking datasets.  
-**If missing.** Cannot be left blank.
+**If missing.** May be blank on v1.0 rows.  
+**Schema v2 status: legacy.** The v0.1 rubric behind this field awarded points for agreeing with the Chahine rule, so a tier filter partly assumed the answer to the Chahine test. No v1.0 analysis uses this field. The v1.0 reporting-completeness score (`reporting_score`, `reporting_tier`, protocol §10.1) replaces it and is computed by code.
 
 ---
 
@@ -1051,3 +1052,147 @@ So a row may now report uptake and carry a null `uptake_wt_pct`. **Any gravimetr
 analysis must filter on `uptake_wt_pct` presence rather than on "reports uptake",**
 because a null is dropped silently by a mean. `tests/test_dataset_invariants.py`
 enumerates every such row by `measurement_id` so one cannot appear unnoticed.
+
+---
+
+## Schema v2 Fields — the v1.0 Protocol
+
+Schema v2 adds the fields that `docs/v1_protocol.md` needs. Every one is optional
+and defaults to null, and **null means "not yet coded"**. That keeps every v0.1
+row valid, and it keeps an uncoded field from passing for a coded `false`:
+`basis_stated` null says nobody has looked, `false` says the paper does not name
+its basis. Rules are in the protocol; section numbers below refer to it.
+
+### `basis_stated`, `basis_evidence`
+
+Boolean, plus the quoted text. `true` only when the paper names the uptake basis
+(excess, absolute, or total) **and** defines it or reports two bases side by
+side (§3). "Total" with no definition is `false`. A `true` must carry the quote
+in `basis_evidence`; the schema rejects a `true` with an empty quote.
+
+### `basis_inferred`
+
+Allowed values: `excess`, `absolute`, `total`, `unknown`. The basis the analysis
+uses, set by the first rule of §3 that applies: the stated basis when
+`basis_stated` is `true`; `excess` or `absolute` when the paper calls the value
+by that name without defining it; otherwise the instrumental default, under
+which a volumetric (Sieverts) value is `excess`, a gravimetric value is `excess`
+only if a buoyancy correction is stated (else `unknown`), and any other method
+is `unknown`. A value called "total" without a definition falls to the
+instrumental default.
+
+### `wt_pct_convention`, `wt_pct_convention_source`
+
+`wt_pct_convention` allowed values: `W1`, `W2`, `unknown`. W1 is
+100·m(H₂)/m(sorbent); W2 is 100·m(H₂)/[m(sorbent) + m(H₂)].
+`wt_pct_convention_source` allowed values: `stated`,
+`inferred_from_paired_units`, `computed_from_other_unit`, `none`. A reported wt%
+is `stated` if the paper defines its convention, and
+`inferred_from_paired_units` if the paper also gives a value in mmol g⁻¹,
+mg g⁻¹ or cm³(STP) g⁻¹ for the same point and only one convention matches it
+within the printed rounding. `computed_from_other_unit` means the paper gives no
+wt% for the point and the stored wt% was computed as W1 from its value in one
+of those units. `none` means no basis for either convention. Whatever the
+source, the analysis computes W1 from `uptake_mmol_g` or `uptake_ml_stp_g` when
+either is present (§3).
+
+### `value_kind`
+
+Allowed values: `measured`, `fitted_interpolated`, `fitted_extrapolated`,
+`unclear`. `measured` is a measured point. `fitted_interpolated` is read from a
+curve fitted to, and within the range of, the measured points.
+`fitted_extrapolated` lies beyond the highest measured pressure, or is a model
+parameter such as a Langmuir or Tóth capacity. A value the authors call the
+"maximum" or "saturation" is `measured` only if it equals a measured point.
+
+### `isotherm_id`, `isotherm_branch`, `isotherm_point_count`
+
+`isotherm_id` is an identifier shared by every row from one isotherm (one
+sample, one temperature, one instrument run). It is what lets code find an
+isotherm's maximum (§3) instead of an extractor guessing it.
+`isotherm_branch` allowed values: `adsorption`, `desorption`, `not_applicable`.
+`isotherm_point_count` is the number of measured points in the source isotherm,
+including points not extracted.
+
+### `temperature_inferred`
+
+Boolean. `true` when the paper says "liquid nitrogen" with no number; the row
+then carries `temperature_k = 77.3`, which the schema enforces. A number printed
+in the paper is never inferred.
+
+### `data_location`
+
+Allowed values: `main_text`, `SI`. Where the value was found. Supplementary
+information is part of the full text (§8).
+
+### `digitization_uncertainty_wt_pct`
+
+Float, wt%. For `figure_digitized` rows only: the larger of half the difference
+between the two independent digitizations and 1% of the axis span (§9).
+
+### `surface_area_probe_gas`
+
+Allowed values: `N2`, `Ar`, `CO2`, `other`, `unspecified`. The gas behind the
+reported surface area. The analysis uses a BET area only when the gas is `N2`,
+`Ar` or `unspecified`, and treats `unspecified` as N₂ (§11.0).
+
+### `bet_range_stated`, `bet_consistency_criteria_stated`
+
+Booleans. Whether the paper states the relative-pressure range used for the BET
+fit, and whether it says that consistency criteria (for example Rouquerol's)
+were applied. BET areas of microporous carbons depend on both.
+
+### `area_same_sample`
+
+Allowed values: `yes`, `parent_material`, `other_paper`, `unclear`. Whether the
+surface area was measured on the same sample, in the same treatment state, as
+the H₂ uptake. `parent_material` covers an area reported for the carbon before
+doping, metal decoration or densification. Only `yes` enters the analysis.
+
+### `degas_temperature_c`, `degas_duration_h`, `degas_end_pressure_pa`
+
+Degassing before the H₂ measurement: temperature (°C), duration (h) and final
+pressure (Pa). Distinct from `activation_method`, which keeps its v0.1 meaning of
+synthesis activation (for example KOH activation).
+
+### `sample_mass_mg`, `h2_purity_pct`, `free_volume_calibration`
+
+Sample mass used for the H₂ measurement (mg), hydrogen purity (%), and the
+free-volume calibration as text (gas and temperature, for example "He at
+77 K"). Small sample masses and helium calibration at 77 K are both known error
+sources on microporous carbons.
+
+### `instrument_identified`, `calibration_described`, `replicates_reported`
+
+Booleans. Instrument named (manufacturer and model, or home-built with a
+description); the free-volume determination (volumetric) or buoyancy correction
+(gravimetric) stated; at least two independent measurements of the sample, or a
+numerical uncertainty, reported.
+
+### `measuring_lab_id`, `material_identity`, `duplicate_of`
+
+`measuring_lab_id` names the laboratory whose instrument produced the value
+(§3); in a multi-laboratory paper each laboratory gets its own. `material_identity`
+is supplier, product and grade for commercial materials, else null.
+`duplicate_of` is the `measurement_id` of an earlier report of the same
+measurement in the dataset (an earlier report outside the dataset is cited in
+`notes` instead). Such a row is excluded from an analysis only when the row it
+points to is in the same analysis set (§11.0).
+
+### `selection_route`, `frame_id`
+
+`selection_route` allowed values: `S1`, `S2`, `legacy_v0.1`,
+`legacy_v0.1_ineligible`. How the paper entered the dataset (§7): an eligible
+paper drawn from stratum S1 or S2 of the probability sample, or a v0.1 paper
+outside the sample (`legacy_v0.1` if eligible under protocol §4,
+`legacy_v0.1_ineligible` if not, drawn or not). `frame_id` is the paper's
+identifier in the sampling frame.
+
+### Computed fields (processed release only)
+
+`basis_shape_conflict`, `nmax_status`, `p_at_nmax_bar`, `p_last_bar`,
+`reporting_score` and `reporting_tier` are computed by `src/hycan/v1.py` from
+the fields above. They appear in the processed release and are never entered by
+an extractor. `nmax_status` takes the values `observed_max`, `plateau`,
+`lower_bound` and `none` (§3); `reporting_tier` takes `A` to `D` by the §10.1
+thresholds.

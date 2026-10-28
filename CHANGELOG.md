@@ -5,6 +5,30 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### v1.0 in preparation (2026-10-27)
+- **v0.1 analyses withdrawn** (README). The Chahine estimate pooled ~1 bar and
+  high-pressure measurements; the tier-robustness check, the publication-bias
+  test and the doping comparison are withdrawn with it. The v0.1 rows stand.
+- **`docs/v1_protocol.md`**: the pre-specified v1.0 protocol, registered on
+  Zenodo before any search (record in `docs/v1_registration.md`): search,
+  screening, probability sampling, blind dual extraction, human audits, and the
+  analysis plan with its decision rules.
+- **Schema v2**: 30 optional fields (uptake basis and its evidence, wt%
+  convention, isotherm identity, surface-area provenance, measurement
+  conditions, laboratory and material identity, sampling route); BET cap raised
+  to 5000 m²/g; `reproducibility_tier` made optional and legacy. Dataset
+  migrated by `scripts/migrate_v2.py` (columns appended empty; no existing cell
+  changed).
+- `scripts/v1_search/`: search and merge tooling for the registered search.
+- `scripts/digitize_figure.py` v2.1: `--mode markers` extracts one point per
+  plotted marker (protocol §9).
+- Package metadata corrected (version `1.0.0.dev0`, author); `CoolProp` added;
+  `requirements-v1.lock` added.
+- `docs/data_dictionary.md`: the `uptake_wt_pct` fill formula read
+  `mmol/g × 0.201588 / 10`; it is `mmol/g × 0.201588`, which the code always
+  used. The field's definition no longer implies the W2 convention, and
+  `uptake_mmol_g` is filled only with values printed in the paper.
+
 ## [v0.1] - 2026-10-08
 First archived release, deposited on Zenodo: DOI [10.5281/zenodo.23231986](https://doi.org/10.5281/zenodo.23231986) (CC BY 4.0 data, MIT code).
 

@@ -43,14 +43,14 @@ def test_quoted_comma_does_not_shift_columns(tmp_path, capsys):
     assert code == 0
     # measurement_id is the 37th physical column. A comma-split read would put
     # something else there; pandas puts the measurement_id there.
-    assert "physical position: 37 of 67" in out
+    assert "physical position: 37 of 97" in out
     assert "HYC-9001-M1" in out
 
 
 def test_a_field_holding_a_comma_stays_one_field(tmp_path):
     path = write_csv(tmp_path / "commas.csv", [make_row(notes="a, b, c")])
     df = pd.read_csv(path)
-    assert len(df.columns) == 67
+    assert len(df.columns) == 97
     assert df.loc[0, "notes"] == "a, b, c"
 
 
@@ -61,7 +61,7 @@ def test_a_field_holding_a_comma_stays_one_field(tmp_path):
 def test_overview_is_the_default_view(clean_dataset, capsys):
     code, out = run([str(clean_dataset)], capsys)
     assert code == 0
-    assert "3 rows x 67 columns" in out
+    assert "3 rows x 97 columns" in out
     assert "paper_id" in out and "measurement_id" in out
 
 

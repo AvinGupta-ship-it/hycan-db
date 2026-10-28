@@ -1380,3 +1380,69 @@ def test_every_point_declares_whether_it_is_an_extrapolation(extracted):
     series = json.loads(extracted.read_text())["series"]
     assert all("outside_axis_range" in p for p in series)
     assert not any(p["outside_axis_range"] for p in series)
+
+
+# ---------------------------------------------------------------------------
+# Marker mode (protocol v1.0 §9: a digitized point is the centre of a marker)
+# ---------------------------------------------------------------------------
+
+MARKER_X_DATA = [5.0, 20.0, 40.0, 60.0, 80.0, 95.0]
+
+
+@pytest.fixture
+def marker_figure(tmp_path):
+    """Filled circular markers joined by a 1-px line in the same colour."""
+    from PIL import Image
+
+    canvas = np.full((300, 400, 3), 255, dtype=np.uint8)
+    canvas[250, 50:351] = 0
+    canvas[50:251, 50] = 0
+    centres = []
+    for x_data in MARKER_X_DATA:
+        cx = X1_PX + 3.0 * x_data
+        cy = 250 - 20 * true_y(x_data)
+        centres.append((cx, cy))
+    for (ax, ay), (bx, by) in zip(centres, centres[1:]):      # joining line
+        for t in np.linspace(0, 1, 400):
+            canvas[int(round(ay + t * (by - ay))), int(round(ax + t * (bx - ax)))] = RED
+    yy, xx = np.mgrid[0:300, 0:400]
+    for cx, cy in centres:                                     # radius-4 markers
+        canvas[(xx - cx) ** 2 + (yy - cy) ** 2 <= 16] = RED
+    path = tmp_path / "markers.png"
+    Image.fromarray(canvas).save(path)
+    return path
+
+
+def test_marker_mode_returns_one_point_per_marker_at_its_centre(
+    marker_figure, tmp_path, capsys
+):
+    out = tmp_path / "m.json"
+    code, _ = run([
+        "extract", "--image", marker_figure, "--out", out, "--mode", "markers",
+        "--color", "#d62728", "--tolerance", 40, "--open-px", 3,
+        "--x1-px", X1_PX, "--x1-val", X1_VAL, "--x2-px", X2_PX, "--x2-val", X2_VAL,
+        "--y1-px", Y1_PX, "--y1-val", Y1_VAL, "--y2-px", Y2_PX, "--y2-val", Y2_VAL,
+    ], capsys)
+    assert code == 0
+    archive = json.loads(out.read_text())
+    series = archive["series"]
+    assert len(series) == len(MARKER_X_DATA)          # the joining line is not a point
+    for point, x_data in zip(series, MARKER_X_DATA):
+        assert point["x"] == pytest.approx(x_data, abs=0.2)
+        assert point["y"] == pytest.approx(true_y(x_data), abs=0.02)
+    assert archive["extraction"]["mode"] == "markers"
+
+
+def test_marker_mode_without_opening_merges_markers_joined_by_a_line(
+    marker_figure, tmp_path, capsys
+):
+    """MUTATION guard: with no opening the joined markers form one group, which
+    is rejected as too large rather than averaged into a single false point."""
+    out = tmp_path / "m0.json"
+    code, _ = run([
+        "extract", "--image", marker_figure, "--out", out, "--mode", "markers",
+        "--color", "#d62728", "--tolerance", 40, "--open-px", 0, "--marker-max-px", 200,
+        "--x1-px", X1_PX, "--x1-val", X1_VAL, "--x2-px", X2_PX, "--x2-val", X2_VAL,
+        "--y1-px", Y1_PX, "--y1-val", Y1_VAL, "--y2-px", Y2_PX, "--y2-val", Y2_VAL,
+    ], capsys)
+    assert code == 1                                  # nothing usable

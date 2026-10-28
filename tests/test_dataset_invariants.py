@@ -109,7 +109,7 @@ def test_pore_volumes_nest(dataset):
 def test_physical_column_order_is_the_one_appends_rely_on(dataset):
     """§6.7. A positional append follows the CSV, not schema.py."""
     columns = list(dataset.columns)
-    assert len(columns) == 67
+    assert len(columns) == 97
     assert columns[0] == "paper_id"
     # v1.1 appended 39-40; v1.2 appended 41-51; v1.3 appended 52-67. Every one
     # went on the end precisely so that positional appends keep working, and this
@@ -151,6 +151,9 @@ def test_physical_column_order_is_the_one_appends_rely_on(dataset):
         "areal_uptake_g_cm2",
         "interlayer_spacing_nm",
     ]
+    # Schema v2 appended 68-97 (scripts/migrate_v2.py), in schema order.
+    from migrate_v2 import NEW_COLUMNS
+    assert columns[67:97] == NEW_COLUMNS
 
 
 def test_surface_area_method_partitions_the_corpus_cleanly(dataset):

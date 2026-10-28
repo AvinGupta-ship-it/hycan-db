@@ -20,16 +20,24 @@ papers have been through independent dual-agent verification.**
 
 ---
 
-## Headline results (v0.1)
+## Status: v0.1 analyses withdrawn, v1.0 in preparation
 
-- **The Chahine rule overstates real uptake by ~30%.** Pooled across the corpus
-  with a hierarchical (paper-random-effects) fit, 77 K uptake scales with BET area
-  at **≈0.72 wt% per 500 m²/g (95% CI 0.62–0.81)** — 1 wt% per ~700 m²/g, not per
-  500 — and the confidence interval excludes the rule. Robust to reproducibility
-  tier. See `notebooks/04_meta_analysis.ipynb` and `docs/v0.1_summary.md`.
-- **A paper-grouped model predicts 77 K uptake at R² ≈ 0.84, MAE ≈ 0.5 wt%** on
-  held-out papers, with pressure and BET area the dominant features (SHAP). See
-  `notebooks/05_ml_baseline.ipynb`.
+The v0.1 data rows remain available and were found accurate on independent
+checking against the source papers. The v0.1 *analyses* are withdrawn:
+
+- The Chahine-rule estimate (0.72 wt% per 500 m²/g) pooled measurements near
+  1 bar with high-pressure measurements, so it does not estimate uptake per unit
+  area at saturation. Its conclusion that the rule overstates uptake by ~30%
+  should not be cited.
+- The tier-robustness check, the publication-bias test and the doping comparison
+  are withdrawn for related reasons.
+- The machine-learning R² is superseded pending comparison with physical
+  baselines.
+
+v1.0 adds papers drawn by probability sampling from a reproducible search,
+re-verifies every v0.1 row under a blind protocol, and replaces the analyses
+with pre-registered ones. The protocol is in
+[`docs/v1_protocol.md`](docs/v1_protocol.md).
 
 ---
 
@@ -57,7 +65,7 @@ hycan-db/
 ├── scripts/            generate_figures.py, build_predictions.py, validators, migrations
 ├── src/hycan/          schema, normalize, validate, clean, load, plotting, meta,
 │                       features, ml
-├── tests/              pytest suite (829 tests)
+├── tests/              pytest suite (870 tests)
 ├── CHANGELOG.md  CITATION.cff  pyproject.toml  requirements.txt  ruff.toml
 ```
 

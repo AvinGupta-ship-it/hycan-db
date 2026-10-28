@@ -21,7 +21,7 @@ from pydantic import ValidationError
 from hycan.schema import MeasurementEntry
 from hycan.validate import validate_row
 
-from conftest import BASE_ROW, COLUMNS, make_row
+from conftest import BASE_ROW, COLUMNS_V1_3 as COLUMNS, make_row  # schema v2 columns postdate these tests
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 

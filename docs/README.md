@@ -7,8 +7,13 @@ results, see the [root README](../README.md). For the dataset itself see
 
 ## Start here
 
-- [v0.1_summary.md](v0.1_summary.md) — plain-language summary of the analysis and
-  model findings (the Chahine meta-analysis and the ML baseline).
+- [v1_protocol.md](v1_protocol.md) — the pre-specified v1.0 protocol (registration
+  record: `v1_registration.md`): search,
+  screening, sampling, extraction, verification, audits and the analysis plan.
+  It supersedes the v0.1 methods and analyses described in the files below.
+
+- [v0.1_summary.md](v0.1_summary.md) — summary of the v0.1 analysis and model
+  findings. **Withdrawn**; kept as the record of what v0.1 reported.
 - [data_dictionary.md](data_dictionary.md) — every column defined, with the
   controlled vocabularies and units.
 - [reproducibility_tiering.md](reproducibility_tiering.md) — the A–D reproducibility
@@ -35,6 +40,8 @@ results, see the [root README](../README.md). For the dataset itself see
   extraction.
 
 ## Migration records
+
+- [migration_v2_plan.md](migration_v2_plan.md) — schema v2 columns (v1.0).
 
 Each migration plan documents a change to the dataset or schema before it was
 made, and is applied by a committed script in `scripts/` that refuses to run

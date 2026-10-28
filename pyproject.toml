@@ -4,11 +4,11 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "hycan"
-version = "0.0.1"
+version = "1.0.0.dev0"
 description = "HyCAN-DB: Hydrogen in Carbon Nanomaterials Database — data curation, meta-analysis, and ML benchmarking pipeline."
 readme = "README.md"
 license = { text = "MIT" }
-authors = [{ name = "[Your Name]" }]
+authors = [{ name = "Avin Gupta", email = "iamavingupta@gmail.com" }]
 requires-python = ">=3.10"
 dependencies = [
     "pandas",
@@ -26,6 +26,7 @@ dependencies = [
     "pyyaml",
     "duckdb",
     "statsmodels",
+    "CoolProp",
 ]
 
 [project.optional-dependencies]

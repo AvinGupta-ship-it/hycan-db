@@ -98,6 +98,21 @@ COLUMNS = [
     "interlayer_spacing_nm",
 ]
 
+# Schema v2 (docs/v1_protocol.md Appendix A), appended at physical positions
+# 68-97 by scripts/migrate_v2.py. Every cell is empty until coded.
+COLUMNS_V1_3 = list(COLUMNS)
+COLUMNS += [
+    "basis_stated", "basis_inferred", "basis_evidence", "wt_pct_convention",
+    "wt_pct_convention_source", "value_kind", "isotherm_id", "isotherm_branch",
+    "isotherm_point_count", "temperature_inferred", "data_location",
+    "digitization_uncertainty_wt_pct", "surface_area_probe_gas", "bet_range_stated",
+    "bet_consistency_criteria_stated", "area_same_sample", "degas_temperature_c",
+    "degas_duration_h", "degas_end_pressure_pa", "sample_mass_mg", "h2_purity_pct",
+    "free_volume_calibration", "instrument_identified", "calibration_described",
+    "replicates_reported", "measuring_lab_id", "material_identity", "duplicate_of",
+    "selection_route", "frame_id",
+]
+
 # A row that validates with zero errors and zero warnings. Its `notes` field
 # deliberately contains a comma so every fixture file exercises the quoted-comma
 # case that breaks `awk -F','` (§6.7, §B.3).

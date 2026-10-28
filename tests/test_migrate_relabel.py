@@ -26,7 +26,10 @@ import pytest
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = REPO_ROOT / "scripts" / "migrate_relabel.py"
-DATASET = REPO_ROOT / "data" / "raw" / "measurements_v0.1.csv"
+# The dataset as it stood under schema v1.3, before the schema v2 migration
+# appended 30 columns. This test replays a migration that ran against that
+# file, so it compares against the frozen copy, not the live dataset.
+DATASET = REPO_ROOT / "tests" / "fixtures" / "measurements_v0.1_schema_v1_3.csv"
 
 sys.path.insert(0, str(REPO_ROOT / "scripts"))
 import migrate_relabel as mr  # noqa: E402

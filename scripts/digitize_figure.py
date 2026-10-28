@@ -84,7 +84,7 @@ from datetime import datetime, timezone
 import numpy as np
 
 TOOL = "digitize_figure.py"
-TOOL_VERSION = "2.0"
+TOOL_VERSION = "2.1"
 
 # A relative tolerance looser than this is not a check. Stated so that a
 # generous --tolerance-pct cannot quietly turn the §3.4 gate into a formality.
@@ -350,6 +350,45 @@ def extract_points(xs, ys, bin_width: int, min_pixels: int, max_gap: float = 5.0
     return points, multimodal
 
 
+def extract_markers(xs, ys, shape, open_px: int, min_px: int, max_px: int):
+    """One point per plotted marker: the centroid of each connected pixel group.
+
+    Protocol §9 (v1.0): a digitized point is the centre of one plotted marker.
+    A line joining markers in the same colour would merge them into one group, so
+    the mask is first opened with an *open_px* x *open_px* square, which removes
+    every feature thinner than that (the joining line) and keeps the markers.
+    Groups smaller than *min_px* (speckle) or larger than *max_px* (a legend
+    swatch or two overlapping markers) are dropped and reported, never averaged.
+
+    Returns (points, rejected), where *points* is a list of
+    (pixel_x, pixel_y, pixel_count) sorted by x.
+    """
+    from scipy import ndimage
+
+    if open_px < 0 or min_px < 1 or max_px < min_px:
+        raise ValueError(
+            "need --open-px >= 0 and 1 <= --marker-min-px <= --marker-max-px"
+        )
+    mask = np.zeros(shape, dtype=bool)
+    mask[ys, xs] = True
+    if open_px > 1:
+        mask = ndimage.binary_opening(mask, structure=np.ones((open_px, open_px), bool))
+    labels, n = ndimage.label(mask, structure=np.ones((3, 3), bool))
+    points: list[tuple[float, float, int]] = []
+    rejected: list[dict] = []
+    for index in range(1, n + 1):
+        gy, gx = np.nonzero(labels == index)
+        count = len(gx)
+        entry = (float(gx.mean()), float(gy.mean()), int(count))
+        if count < min_px or count > max_px:
+            rejected.append({"pixel_x": entry[0], "pixel_y": entry[1], "pixels": count,
+                             "reason": "too small" if count < min_px else "too large"})
+            continue
+        points.append(entry)
+    points.sort(key=lambda p: p[0])
+    return points, rejected
+
+
 def default_roi(x_axis: AxisCalibration, y_axis: AxisCalibration,
                 width: int, height: int, pad_pct: float) -> tuple[int, int, int, int]:
     """The plot box implied by the calibration reference pixels, padded."""
@@ -509,10 +548,22 @@ def run_extract(args) -> int:
         5.0, args.gap_pct_of_axis / 100.0 * y_span_px
     )
 
+    rejected_markers: list[dict] = []
     try:
-        points, multimodal = extract_points(
-            xs, ys, args.bin_width, args.min_pixels, max_gap
-        )
+        if args.mode == "markers":
+            points, rejected_markers = extract_markers(
+                xs, ys, rgb.shape[:2], args.open_px, args.marker_min_px,
+                args.marker_max_px,
+            )
+            multimodal = []
+            if rejected_markers:
+                print(f"\n{len(rejected_markers)} pixel group(s) rejected as "
+                      "markers (size outside the allowed range); recorded in "
+                      "the archive.")
+        else:
+            points, multimodal = extract_points(
+                xs, ys, args.bin_width, args.min_pixels, max_gap
+            )
     except ValueError as exc:
         print(f"Error: {exc}")
         return 2
@@ -623,7 +674,17 @@ def run_extract(args) -> int:
             "min_pixels_per_bin": int(args.min_pixels),
             "max_cluster_gap_px": float(max_gap),
             "longest_multimodal_run": int(run),
-            "aggregation": "median y of matched pixels within each x bin",
+            "mode": args.mode,
+            "aggregation": (
+                "centroid of each connected marker after a "
+                f"{args.open_px}-px opening" if args.mode == "markers"
+                else "median y of matched pixels within each x bin"
+            ),
+            "marker_size_px": (
+                [args.marker_min_px, args.marker_max_px]
+                if args.mode == "markers" else None
+            ),
+            "rejected_markers": rejected_markers,
             "n_points": len(series),
             "multimodal_bins": multimodal,
             "points_outside_axis_range": len(outside),
@@ -906,6 +967,13 @@ def build_parser() -> argparse.ArgumentParser:
     extract.add_argument("--roi", nargs=4, metavar=("X0", "Y0", "X1", "Y1"))
     extract.add_argument("--no-roi", action="store_true")
     extract.add_argument("--roi-pad-pct", type=float, default=2.0)
+    extract.add_argument(
+        "--mode", choices=["curve", "markers"], default="curve",
+        help="curve: one point per x bin (dense trace). markers: one point per "
+             "plotted marker (protocol v1.0 §9 definition of a digitized point)")
+    extract.add_argument("--open-px", type=int, default=3)
+    extract.add_argument("--marker-min-px", type=int, default=6)
+    extract.add_argument("--marker-max-px", type=int, default=2000)
     extract.add_argument("--bin-width", type=int, default=1)
     extract.add_argument("--min-pixels", type=int, default=1)
     extract.add_argument("--max-gap", type=float, default=None)

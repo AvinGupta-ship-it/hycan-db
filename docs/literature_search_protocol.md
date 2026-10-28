@@ -1,5 +1,9 @@
 # Literature Search Protocol — HyCAN-DB
 
+> **v0.1 record.** This file documents how the v0.1 corpus was assembled. It was
+> not a systematic search. v1.0 uses the registered search in
+> [`v1_protocol.md`](v1_protocol.md) §5.
+
 This document records the search strategy used to assemble the HyCAN-DB literature corpus. It is the reproducibility companion to references/paper_tracking.csv.
 
 ## Engines used

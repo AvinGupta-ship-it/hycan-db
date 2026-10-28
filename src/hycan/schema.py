@@ -185,6 +185,24 @@ ExtractionMethod = Literal[
 
 ReproducibilityTier = Literal["A", "B", "C", "D"]
 
+# --- Schema v2 (docs/v1_protocol.md §3, §9, Appendix A) ----------------------
+# Every v2 field is optional and defaults to None, meaning "not yet coded". A
+# v0.1 row therefore stays valid, and an uncoded field never masquerades as a
+# coded "false": basis_stated = None says nobody has looked, which is different
+# from basis_stated = False, which says the paper does not name its basis.
+
+BasisInferred = Literal["excess", "absolute", "total", "unknown"]
+WtPctConvention = Literal["W1", "W2", "unknown"]
+WtPctConventionSource = Literal[
+    "stated", "inferred_from_paired_units", "computed_from_other_unit", "none"
+]
+ValueKind = Literal["measured", "fitted_interpolated", "fitted_extrapolated", "unclear"]
+IsothermBranch = Literal["adsorption", "desorption", "not_applicable"]
+SurfaceAreaProbeGas = Literal["N2", "Ar", "CO2", "other", "unspecified"]
+AreaSameSample = Literal["yes", "parent_material", "other_paper", "unclear"]
+DataLocation = Literal["main_text", "SI"]
+SelectionRoute = Literal["S1", "S2", "legacy_v0.1", "legacy_v0.1_ineligible"]
+
 
 # ---------------------------------------------------------------------------
 # Main model
@@ -214,7 +232,9 @@ class MeasurementEntry(BaseModel):
     functional_groups: Optional[str] = None
 
     # --- Structural characterisation ---
-    bet_surface_area_m2_g: Optional[float] = Field(default=None, ge=0, le=4000)
+    # Schema v2 raises the cap from 4000 to 5000 m2/g: v0.1 already holds 3771,
+    # and the highest-area carbons are where the Chahine ratio says the most.
+    bet_surface_area_m2_g: Optional[float] = Field(default=None, ge=0, le=5000)
     langmuir_surface_area_m2_g: Optional[float] = Field(default=None, ge=0)
     surface_area_method: SurfaceAreaMethod = "unspecified"
     micropore_volume_cm3_g: Optional[float] = Field(default=None, ge=0, le=2)
@@ -236,7 +256,9 @@ class MeasurementEntry(BaseModel):
     source_location: str
     extraction_method: ExtractionMethod
     extraction_confidence: int = Field(ge=1, le=5)
-    reproducibility_tier: ReproducibilityTier
+    # Legacy v0.1 field. Its rubric scored agreement with the Chahine rule, so it
+    # is used by no v1.0 analysis (protocol §10.1); v1.0 rows may leave it null.
+    reproducibility_tier: Optional[ReproducibilityTier] = None
     notes: Optional[str] = None
     extractor: str
     extraction_date: date
@@ -344,6 +366,76 @@ class MeasurementEntry(BaseModel):
 
     # Physical CSV position 67. HYC-0015's held row.
     interlayer_spacing_nm: Optional[float] = Field(default=None, ge=0)
+
+    # --- Schema v2: what the uptake value is (protocol §3) ---
+    basis_stated: Optional[bool] = None
+    basis_inferred: Optional[BasisInferred] = None
+    basis_evidence: Optional[str] = None
+    wt_pct_convention: Optional[WtPctConvention] = None
+    wt_pct_convention_source: Optional[WtPctConventionSource] = None
+    value_kind: Optional[ValueKind] = None
+    isotherm_id: Optional[str] = None
+    isotherm_branch: Optional[IsothermBranch] = None
+    isotherm_point_count: Optional[int] = Field(default=None, ge=1)
+    temperature_inferred: Optional[bool] = None
+    data_location: Optional[DataLocation] = None
+    digitization_uncertainty_wt_pct: Optional[float] = Field(default=None, ge=0)
+
+    # --- Schema v2: the surface area behind the ratio (protocol §11.0) ---
+    surface_area_probe_gas: Optional[SurfaceAreaProbeGas] = None
+    bet_range_stated: Optional[bool] = None
+    bet_consistency_criteria_stated: Optional[bool] = None
+    area_same_sample: Optional[AreaSameSample] = None
+
+    # --- Schema v2: measurement conditions a reviewer will ask about ---
+    # Degassing before the H2 measurement. Distinct from activation_method,
+    # which keeps its v0.1 meaning: synthesis activation such as KOH treatment.
+    degas_temperature_c: Optional[float] = Field(default=None, ge=-50, le=1500)
+    degas_duration_h: Optional[float] = Field(default=None, ge=0)
+    degas_end_pressure_pa: Optional[float] = Field(default=None, ge=0)
+    sample_mass_mg: Optional[float] = Field(default=None, gt=0)
+    h2_purity_pct: Optional[float] = Field(default=None, ge=90, le=100)
+    free_volume_calibration: Optional[str] = None
+    instrument_identified: Optional[bool] = None
+    calibration_described: Optional[bool] = None
+    replicates_reported: Optional[bool] = None
+
+    # --- Schema v2: identity, provenance and sampling (protocol §3, §7) ---
+    measuring_lab_id: Optional[str] = None
+    material_identity: Optional[str] = None
+    duplicate_of: Optional[str] = None
+    selection_route: Optional[SelectionRoute] = None
+    frame_id: Optional[str] = None
+
+    @model_validator(mode="after")
+    def schema_v2_consistency(self) -> "MeasurementEntry":
+        """Schema v2 rules that one row can check (protocol §3).
+
+        1. A stated basis carries its evidence. basis_stated = true is a claim
+           about the paper's wording, and the protocol makes the quote the proof.
+        2. An inferred temperature is the liquid-nitrogen convention, 77.3 K, and
+           nothing else; any other number was read from the paper and is stated.
+        3. A digitization uncertainty belongs to a digitized value.
+        """
+        if self.basis_stated is True and not (self.basis_evidence or "").strip():
+            raise ValueError(
+                "basis_stated is true but basis_evidence is empty; a stated basis "
+                "must carry the quote that states it"
+            )
+        if self.temperature_inferred is True and self.temperature_k != 77.3:
+            raise ValueError(
+                "temperature_inferred is true, so temperature_k must be 77.3 "
+                "(the 'liquid nitrogen' convention, protocol §3)"
+            )
+        if (
+            self.digitization_uncertainty_wt_pct is not None
+            and self.extraction_method != "figure_digitized"
+        ):
+            raise ValueError(
+                "digitization_uncertainty_wt_pct is set on a row whose "
+                "extraction_method is not figure_digitized"
+            )
+        return self
 
     # --- Cross-field validation ---
     # Split in two at v1.3. The first three convert to a gravimetric figure

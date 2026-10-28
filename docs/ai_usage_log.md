@@ -2180,3 +2180,68 @@ mechanical, reversible, round-trip-tested, and moves no published number.
 **What was deliberately not done.** The 13 migration plans and the body prose of this log were left as contemporaneous records: homogenizing them risks introducing inconsistencies into a verified state for cosmetic gain, and their candor is itself the audit evidence. `data/raw/test_measurements.csv` (a §11.4 validator fixture) and `references/staging/` (tested pipeline artifacts) are intentional and were kept.
 
 **Verified.** Full test suite still passing; the change set is six documentation files with no code, data, or schema change.
+
+## 2026-10-27 — v1.0: referee audit, protocol, schema v2
+
+**Tools and agents.** Claude (model `claude-opus-5-5`) in a cloud session,
+Mode A. Independent subagents on the same model, each in a fresh context with no
+access to this session's notes: one referee (v0.1 audit), one pre-registration
+methodologist (protocol review), and one re-checker (protocol revision). No
+search, screening, sampling or extraction had been run by the time of this entry.
+
+**What was done.**
+1. **Independent referee audit of v0.1** (`claude/audit/HyCANDB_referee_2026-10-27.md`
+   in the author's Project). It checked 237 rows against the source PDFs and
+   found no numeric transcription errors. It found the Chahine headline
+   mis-specified (pooled ~1 bar and high-pressure points), the tier rubric
+   partly circular, the search non-systematic, and the verification protocol
+   misdescribed. Claude re-ran the referee's sensitivity script and confirmed its
+   estimates before reporting them to the author.
+2. **v0.1 analyses withdrawn in the README**, with the reasons.
+3. **`docs/v1_protocol.md` drafted by Claude**, reviewed adversarially by the
+   methodologist subagent (34 items, 25 must-fix), revised to adopt the review,
+   and re-checked by a third subagent. Claude decided four departures from the
+   review, each stated in the protocol:
+   - no interlibrary loan, so retrieval effort is uniform across records;
+   - the permutation seed is derived from the frame file's SHA-256;
+   - registration is a standalone Zenodo record;
+   - computed fields are implemented in code later.
+   The ±15% equivalence margin is justified from the 14-laboratory round robin
+   already in the corpus (HYC-0060, maximum inter-laboratory RSD 14% at 77 K,
+   read from the PDF).
+4. **Schema v2** (`src/hycan/schema.py`, `docs/data_dictionary.md`): 30 optional
+   fields whose null means "not yet coded"; BET cap raised to 5000 m²/g;
+   `reproducibility_tier` made optional and marked legacy.
+   `scripts/migrate_v2.py` appended the 30 empty columns to the dataset (no
+   existing cell changed, original bytes verified as line prefixes). The
+   pre-migration file is frozen at `tests/fixtures/measurements_v0.1_schema_v1_3.csv`
+   (byte-identical to the v0.1 release), and the historical migration tests now
+   replay against it.
+5. **Search tooling** (`scripts/v1_search/`): browser-run OpenAlex and Semantic
+   Scholar harnesses that store each response body verbatim with its SHA-256,
+   and a deterministic merge script that re-checks every hash.
+6. `pyproject.toml` metadata corrected (version, author); CoolProp added;
+   `requirements-v1.lock` pinned.
+7. **Final pre-registration pass** (Claude, end-to-end read of the protocol and
+   dictionary):
+   - the analysis basis now also takes excess or absolute from a paper that
+     names it without defining it, before the instrumental default;
+   - the wt% source value `computed_from_molar` is renamed
+     `computed_from_other_unit`, since it also covers mg/g;
+   - the §12 audit quotas are whole numbers, with a shortfall rule;
+   - the basis–shape-conflict exclusion now also applies to RQ3 and RQ5;
+   - an unsupported statement that the rule was stated only above 300 m²/g was
+     replaced by the measurement reason for the floor;
+   - the Chahine & Bénard (1998) DOI was confirmed on the publisher's page.
+
+   In `docs/data_dictionary.md`, the `uptake_wt_pct` fill formula carried a
+   spurious ÷10, and its definition described W2. Both are corrected. The code
+   was never affected (`validate.py` and `normalize.py` use wt% =
+   mmol/g × 0.201588).
+
+**Verified.** Full suite passing; dataset validates with 0 errors; the
+pre-migration snapshot is byte-identical to `git show 45c669a:data/raw/measurements_v0.1.csv`.
+
+**Author's role at this stage.** None of the above was performed by the author.
+The author's part is the registration (push and Zenodo deposit), the screening
+audit (§6), the extraction audit (§12), and sign-off on scientific conclusions.
