@@ -131,3 +131,26 @@ async function hycanStemCheck() {
   });
   return rows.map(r => [r.term, r.count]);
 }
+
+// Count probe: the result count of every sub-query (one record per request),
+// saved before the run so that batches can be sized; the counts are kept with
+// their response bodies like every other response.
+async function hycanCounts() {
+  const rows = [];
+  for (const q of subQueries()) {
+    const url = 'https://api.openalex.org/works?per-page=1&select=id&filter=' +
+      encodeURIComponent(q.filter);
+    const { status, body } = await fetchRaw(url);
+    if (status !== 200) throw new Error(q.key + ' HTTP ' + status);
+    rows.push({ key: q.key, filter: q.filter, url, retrieved_utc: new Date().toISOString(),
+                status, sha256: await sha256Hex(body), body,
+                count: JSON.parse(body).meta.count });
+    await new Promise(res => setTimeout(res, 120));
+  }
+  save('hycan_v1_openalex_counts.json', {
+    source: 'OpenAlex', script: 'scripts/v1_search/openalex_query.js',
+    protocol: 'docs/v1_protocol.md §5', run_at_utc: new Date().toISOString(), rows,
+  });
+  return { subqueries: rows.length, total: rows.reduce((a, r) => a + r.count, 0),
+           largest: rows.map(r => [r.key, r.count]).sort((a, b) => b[1] - a[1]).slice(0, 5) };
+}

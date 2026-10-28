@@ -17,6 +17,7 @@ depends only on the input files, so re-running it reproduces the same bytes.
 from __future__ import annotations
 
 import csv
+import gzip
 import hashlib
 import json
 import re
@@ -65,11 +66,33 @@ def checked_body(page: dict) -> dict:
     return json.loads(body)
 
 
+def batch_files(prefix: str) -> list[Path]:
+    """The archived result files of one source: `<prefix>*.json` or
+    `<prefix>*.json.gz` (gzip keeps every stored body byte for byte), without
+    the stemming-check and count-probe files, which hold no results."""
+    files = [
+        f
+        for f in SEARCH_DIR.iterdir()
+        if f.name.startswith(prefix)
+        and (f.name.endswith(".json") or f.name.endswith(".json.gz"))
+        and "stemcheck" not in f.name
+        and "counts" not in f.name
+    ]
+    return sorted(files, key=lambda f: f.name)
+
+
+def read_json(path: Path) -> dict:
+    raw = path.read_bytes()
+    if path.name.endswith(".gz"):
+        raw = gzip.decompress(raw)
+    return json.loads(raw.decode("utf-8"))
+
+
 def load_openalex() -> tuple[dict[str, dict], dict[str, int]]:
     recs: dict[str, dict] = {}
     per_query: dict[str, int] = {}
-    for f in sorted(SEARCH_DIR.glob("hycan_v1_openalex_*.json")):
-        data = json.loads(f.read_text(encoding="utf-8"))
+    for f in batch_files("hycan_v1_openalex_"):
+        data = read_json(f)
         for b in data["batch"]:
             per_query[b["key"]] = b["count"]
             for page in b["pages"]:
@@ -148,8 +171,8 @@ def merge_s2(recs: dict[str, dict]) -> dict[str, int]:
         "s2_matched_title_year": 0,
         "s2_only": 0,
     }
-    for f in sorted(SEARCH_DIR.glob("hycan_v1_semanticscholar*.json")):
-        data = json.loads(f.read_text(encoding="utf-8"))
+    for f in batch_files("hycan_v1_semanticscholar"):
+        data = read_json(f)
         for page in data["pages"]:
             for p in checked_body(page).get("data") or []:
                 stats["s2_records"] += 1

@@ -178,3 +178,21 @@ def test_two_openalex_ids_with_one_doi_become_one_record(tmp_path, monkeypatch):
     assert counts["openalex_doi_duplicates_merged"] == 1
     rows = list(csv.DictReader((tmp_path / "merged_records.csv").open()))
     assert len(rows) == 1 and rows[0]["openalex_id"] == "W3"
+
+
+def test_gzipped_batches_are_read_and_check_files_skipped(tmp_path, monkeypatch):
+    import gzip
+
+    write_search(tmp_path)
+    plain = tmp_path / "hycan_v1_openalex_000_002.json"
+    (tmp_path / "hycan_v1_openalex_000_002.json.gz").write_bytes(
+        gzip.compress(plain.read_bytes(), mtime=0)
+    )
+    plain.unlink()
+    (tmp_path / "hycan_v1_openalex_stemcheck.json").write_text('{"rows": []}')
+    (tmp_path / "hycan_v1_semanticscholar_stemcheck.json").write_text('{"rows": []}')
+    (tmp_path / "hycan_v1_openalex_counts.json").write_text('{"rows": []}')
+    monkeypatch.setattr(ms, "SEARCH_DIR", tmp_path)
+    assert ms.main() == 0
+    counts = json.loads((tmp_path / "merge_counts.json").read_text())
+    assert counts["openalex_unique"] == 2 and counts["s2_only"] == 1
