@@ -60,3 +60,40 @@ async function s2Run() {
   const first = JSON.parse(pages[0].body);
   return [pages.length, first.total];
 }
+
+// Stemming check (protocol §5 Implementation): the bulk-search totals for three
+// terms in the singular and in the plural.
+const STEM_PAIRS = [
+  ['"carbon nanotube"', '"carbon nanotubes"'],
+  ['"activated carbon"', '"activated carbons"'],
+  ['"carbon nanofiber"', '"carbon nanofibers"'],
+];
+
+async function s2StemCheck() {
+  const rows = [];
+  for (const pair of STEM_PAIRS) {
+    for (const term of pair) {
+      const url = 'https://api.semanticscholar.org/graph/v1/paper/search/bulk?query=' +
+        encodeURIComponent(term) + '&fields=paperId';
+      let r, body, tries = 0;
+      while (true) {
+        r = await fetch(url);
+        body = await r.text();
+        if ((r.status !== 429 && r.status < 500) || ++tries > 10) break;
+        await new Promise(res => setTimeout(res, 3000 * tries));
+      }
+      if (r.status !== 200) throw new Error(term + ' HTTP ' + r.status);
+      rows.push({ term, url, retrieved_utc: new Date().toISOString(), status: r.status,
+                  sha256: await sha256Hex(body), body, total: JSON.parse(body).total });
+      await new Promise(res => setTimeout(res, 1100));
+    }
+  }
+  const blob = new Blob([JSON.stringify({
+    source: 'Semantic Scholar', script: 'scripts/v1_search/semanticscholar_query.js',
+    protocol: 'docs/v1_protocol.md §5', run_at_utc: new Date().toISOString(), rows,
+  })], { type: 'application/json' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = 'hycan_v1_semanticscholar_stemcheck.json'; document.body.appendChild(a);
+  a.click(); a.remove();
+  return rows.map(x => [x.term, x.total]);
+}

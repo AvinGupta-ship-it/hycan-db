@@ -102,3 +102,32 @@ async function hycanRun(i0, i1, perPage) {
   });
   return batch.map(b => [b.key, b.count, b.pages.length]);
 }
+
+// Stemming check (protocol §5 Implementation): the counts for three terms in
+// the singular and in the plural. Equal or near-equal counts show that the
+// source stems; otherwise plural forms are added to C_TERMS before the run.
+const STEM_PAIRS = [
+  ['"carbon nanotube"', '"carbon nanotubes"'],
+  ['"activated carbon"', '"activated carbons"'],
+  ['"carbon nanofiber"', '"carbon nanofibers"'],
+];
+
+async function hycanStemCheck() {
+  const rows = [];
+  for (const pair of STEM_PAIRS) {
+    for (const term of pair) {
+      const url = 'https://api.openalex.org/works?per-page=1&select=id&filter=' +
+        encodeURIComponent('title_and_abstract.search:' + term);
+      const { status, body } = await fetchRaw(url);
+      if (status !== 200) throw new Error(term + ' HTTP ' + status);
+      rows.push({ term, url, retrieved_utc: new Date().toISOString(), status,
+                  sha256: await sha256Hex(body), body,
+                  count: JSON.parse(body).meta.count });
+    }
+  }
+  save('hycan_v1_openalex_stemcheck.json', {
+    source: 'OpenAlex', script: 'scripts/v1_search/openalex_query.js',
+    protocol: 'docs/v1_protocol.md §5', run_at_utc: new Date().toISOString(), rows,
+  });
+  return rows.map(r => [r.term, r.count]);
+}
