@@ -74,3 +74,11 @@ def test_join_report_counts_missing_and_unfound_evidence(tmp_path):
     assert r["evidence_required"] == 4
     assert r["evidence_missing"] == ["F3"]
     assert r["evidence_not_in_record"] == ["F4"]
+
+
+def test_a_quotation_across_a_literal_backslash_n_is_found():
+    rows = [{"frame_id": "F1", "decision": "exclude", "exclusion_code": "theoretical_only",
+             "stratum": "", "evidence": "we predict enhanced H2 adsorption on molecular systems"}]
+    records = {"F1": {"title": "t", "abstract": "Using DFT, we predict enhanced H2 adsorption on\\nmolecular systems."}}
+    q = sb.quality(rows, records)
+    assert q["evidence_not_in_record"] == [] and q["evidence_missing"] == []

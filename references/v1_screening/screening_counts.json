@@ -1,0 +1,109 @@
+{
+  "merged_sha256": "e276a0ca9c7f842a6aadd7650afd6fc4b570da93de80358629b83a00a6da41e5",
+  "screen_a_sha256": "306ed7a25e0ea89080058f8a66f30bd36acd31c1b54b2685da7b9af0ae06fe64",
+  "screen_b_sha256": "fe15604f70d317cc9d3aafdfbc36b8593b31c219f75a26600772c8f5687ca5f8",
+  "without_abstract": {
+    "openalex": {
+      "records": 10043,
+      "without_abstract": 4515,
+      "share": 0.44956686249128747
+    },
+    "semantic_scholar": {
+      "records": 8608,
+      "without_abstract": 5851,
+      "share": 0.6797165427509294
+    },
+    "merged": {
+      "records": 11238,
+      "without_abstract": 4815,
+      "share": 0.4284570208222104
+    }
+  },
+  "screener_a": {
+    "decisions": {
+      "exclude": 6362,
+      "include": 1608,
+      "uncertain": 3268
+    },
+    "exclusion_codes": {
+      "electrochemical": 1254,
+      "not_carbon": 1731,
+      "not_primary": 1112,
+      "retracted": 5,
+      "theoretical_only": 2260
+    },
+    "strata": {
+      "S1": 171,
+      "S2": 4705
+    }
+  },
+  "screener_b": {
+    "decisions": {
+      "exclude": 6291,
+      "include": 1408,
+      "uncertain": 3539
+    },
+    "exclusion_codes": {
+      "electrochemical": 1249,
+      "not_carbon": 1789,
+      "not_primary": 1086,
+      "retracted": 8,
+      "theoretical_only": 2159
+    },
+    "strata": {
+      "S1": 168,
+      "S2": 4779
+    }
+  },
+  "decision_pairs_a_b": {
+    "exclude/exclude": 5987,
+    "exclude/include": 2,
+    "exclude/uncertain": 373,
+    "include/exclude": 1,
+    "include/include": 1352,
+    "include/uncertain": 255,
+    "uncertain/exclude": 303,
+    "uncertain/include": 54,
+    "uncertain/uncertain": 2911
+  },
+  "kept_vs_excluded": {
+    "all": {
+      "records": 11238,
+      "agreement": 0.9395799964406478,
+      "kappa": 0.8772183312246481,
+      "kept_by_a": 4876,
+      "kept_by_b": 4947,
+      "kept_by_a_only": 304,
+      "kept_by_b_only": 375,
+      "excluded_by_both": 5987
+    },
+    "with_abstract": {
+      "records": 6423,
+      "agreement": 0.9472209248014947,
+      "kappa": 0.8864517876515133,
+      "kept_by_a": 2347,
+      "kept_by_b": 2372,
+      "kept_by_a_only": 157,
+      "kept_by_b_only": 182,
+      "excluded_by_both": 3894
+    },
+    "without_abstract": {
+      "records": 4815,
+      "agreement": 0.9293873312564901,
+      "kappa": 0.8582770415040241,
+      "kept_by_a": 2529,
+      "kept_by_b": 2575,
+      "kept_by_a_only": 147,
+      "kept_by_b_only": 193,
+      "excluded_by_both": 2093
+    }
+  },
+  "frame": {
+    "frame": 5251,
+    "frame_S1": 176,
+    "frame_S2": 5075,
+    "double_excluded": 5987,
+    "stratum_tiebreaks": 8,
+    "frame_sha256": "814f47cf446b91d545cd4b359e0e17bdc460fd8e86a489a924e221443cc23171"
+  }
+}

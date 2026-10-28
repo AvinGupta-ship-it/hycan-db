@@ -128,7 +128,11 @@ def cmd_join(args) -> int:
 
 
 def _norm(text: str) -> str:
-    return " ".join(re.sub(r"[\u2018\u2019\u201c\u201d]", "'", text or "").lower().split())
+    # Some sources index an abstract with its line breaks as the two
+    # characters backslash and n; a screener who quotes across one writes a
+    # space, so both count as whitespace here.
+    text = (text or "").replace("\\n", " ")
+    return " ".join(re.sub(r"[\u2018\u2019\u201c\u201d]", "'", text).lower().split())
 
 
 def quality(rows: list[dict], records: dict[str, dict]) -> dict:

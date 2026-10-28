@@ -249,3 +249,11 @@ def test_screening_audit_score_requires_every_decision():
     assert sa.score(rows)["author_would_include"] == 1
     with pytest.raises(RuntimeError):
         sa.score(rows + [{"author_decision": ""}])
+
+
+def test_tiebreak_input_holds_only_disagreeing_flags(tmp_path):
+    data = bf.tiebreak_input(*setup(tmp_path, A, B))
+    rows = list(csv.DictReader(io.StringIO(data.decode())))
+    assert [r["frame_id"] for r in rows] == ["F5"]
+    assert list(rows[0]) == ["frame_id", "title", "abstract", "flag_1", "flag_2"]
+    assert (rows[0]["flag_1"], rows[0]["flag_2"]) == ("S1", "S2")

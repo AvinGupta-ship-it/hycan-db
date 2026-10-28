@@ -37,6 +37,11 @@ Outputs
 
 Every output depends only on the inputs, so a re-run reproduces them byte for
 byte (§7). draw_order.py checks this before it computes the permutation.
+
+    python3 scripts/v1_search/build_frame.py
+    python3 scripts/v1_search/build_frame.py tiebreak-input OUT.csv
+        writes the stratum tiebreaker's input: frame_id, title, abstract and
+        the two flags of every record whose two flags disagree
 """
 
 from __future__ import annotations
@@ -236,7 +241,47 @@ def build(
     }
 
 
-def main() -> int:
+TIEBREAK_COLUMNS = ("frame_id", "title", "abstract", "flag_1", "flag_2")
+
+
+def tiebreak_input(
+    search_dir: Path = SEARCH_DIR, screen_dir: Path = SCREEN_DIR
+) -> bytes:
+    """The stratum tiebreaker's input (§6): every record both screeners kept
+    with different strata, with only its title, abstract and the two flags.
+    The flags are written in sorted order, so neither is marked as screener A's
+    or B's."""
+    merged = load_merged(search_dir)
+    ids = {r["frame_id"] for r in merged}
+    a = load_screen(screen_dir / "screen_a.csv", ids)
+    b = load_screen(screen_dir / "screen_b.csv", ids)
+    rows = []
+    for rec in sorted(merged, key=lambda r: r["frame_id"]):
+        ra, rb = a[rec["frame_id"]], b[rec["frame_id"]]
+        if "exclude" in (ra["decision"], rb["decision"]):
+            continue
+        if ra["stratum"] != rb["stratum"]:
+            f1, f2 = sorted((ra["stratum"], rb["stratum"]))
+            rows.append({"frame_id": rec["frame_id"], "title": rec["title"],
+                         "abstract": rec["abstract"], "flag_1": f1, "flag_2": f2})
+    return csv_bytes(TIEBREAK_COLUMNS, rows)
+
+
+def main(argv: list[str] | None = None) -> int:
+    argv = sys.argv[1:] if argv is None else argv
+    if argv[:1] == ["tiebreak-input"]:
+        if len(argv) != 2:
+            print("usage: build_frame.py tiebreak-input OUT.csv", file=sys.stderr)
+            return 2
+        try:
+            data = tiebreak_input()
+        except FrameError as exc:
+            print(f"REFUSED: {exc}", file=sys.stderr)
+            return 1
+        Path(argv[1]).write_bytes(data)
+        n = len(list(csv.reader(io.StringIO(data.decode("utf-8"))))) - 1
+        print(f"{n} records for the stratum tiebreak")
+        return 0
     try:
         outputs = build()
     except FrameError as exc:

@@ -2348,3 +2348,26 @@ after the slices); no saved URL holds the key. Full test suite passing.
 **Author's role.** Approval of the downloads, the OpenAlex account and key,
 and the push that makes the search record public.
 
+## 2026-10-28 (continued) — v1.0: title-and-abstract screening and frame
+
+**Tools and agents.** Claude (`claude-opus-5-5`), Mode A, as orchestrator.
+226 screening agents under the frozen `screen.md` (screener A
+`claude-opus-5-5`, screener B `claude-sonnet-5-5`), one per batch of 100
+records and screener; 28 more agents stopped by a usage limit or a container
+restart and were rerun (§9); one stratum tiebreaker (`claude-opus-5-5`).
+
+**What was done.** Claude split the merged set into batches, gave each agent
+its own directories, started every agent with the frozen launcher, checked
+each one after it ran, reviewed the five audit flags against the
+transcripts, joined the outputs, ran the tiebreak and built the frame
+(`references/v1_screening/README.md`). Claude did not screen any record and
+did not change any decision.
+
+**Verified.** All 226 standing agents pass the launcher, prompt-hash, model,
+access and output checks. Every evidence quotation is found in its record.
+The registered `build_frame.py` (0190009) and the current one both reproduce
+the frame byte for byte. Full test suite passing.
+
+**Author's role.** None yet. The author's audit of 100 double-excluded records
+(§6) and the push that makes this record public come next.
+

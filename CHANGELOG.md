@@ -5,6 +5,21 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Screening and frame (2026-10-28)
+- `references/v1_screening/`: both screeners' title-and-abstract decisions on
+  all 11,238 merged records (§6), the stratum tiebreak of 8 records, the check
+  of every agent, and the screening counts. Agreement 94.0%, κ = 0.877.
+- `references/v1_search/frame.csv`: the frame, 5,251 records (S1 176, S2
+  5,075), SHA-256 `814f47cf…3171`; 5,987 records excluded by both screeners.
+  Screening sensitivity: set A 44/44; set B 4/5, include-both 2/2.
+- `scripts/v1_search/screening_runs.py`: checks every screening agent's
+  launcher, prompt, model, access and output; flags carry their review;
+  stopped agents are listed.
+- `scripts/v1_search/screening_counts.py` (counts, including records without
+  an abstract by source), `reference_sets.py sensitivity`, and
+  `build_frame.py tiebreak-input`. `screening_batches.py join` reads a stored
+  `\n` in an abstract as a space when it checks quotations.
+
 ### Search run (2026-10-28)
 - `references/v1_search/`: the OpenAlex and Semantic Scholar searches of
   protocol §5, every response body as returned with its SHA-256
