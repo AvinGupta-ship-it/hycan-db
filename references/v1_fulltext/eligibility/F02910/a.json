@@ -1,0 +1,35 @@
+{
+  "frame_id": "F02910",
+  "eligible": false,
+  "exclusion_code": "no_conditions_stated",
+  "exclusion_quote": "",
+  "exclusion_location": "",
+  "criteria": {
+    "I1": {
+      "met": true,
+      "quote": "The hydrogen storage capacity of the GO/rGO sample is measured using indigenously fabricated high pressure hydrogen storage Sieverts’ type volumetric setup at room temperature and pressure up to 80 bars.",
+      "location": "main, p. 2 (printed p. 1), Abstract"
+    },
+    "I2": {
+      "met": true,
+      "quote": "In present experimental investigations, GO was found to exhibit better H2 uptake capacity (1.90wt. %) as compared to rGO (1.34 wt. %) at room temperature.",
+      "location": "main, p. 2 (printed p. 1), Abstract"
+    },
+    "I3": {
+      "met": false,
+      "quote": "Searched text, captions and Fig. 8 axes for a numeric or recoverable H2-uptake temperature. Found only 'room temperature' with 80 bar (Abstract; Hydrogen Storage Performance; Conclusion); Fig. 8 plots wt% against time with no temperature.",
+      "location": ""
+    },
+    "I4": {
+      "met": false,
+      "quote": "Searched text, figures and captions for a specific surface area (BET, Langmuir, any method) of GO or rGO. None reported; the only area value, '2630 cm2/gm' (Introduction), describes graphene generally, not a measured sample.",
+      "location": ""
+    },
+    "I5": {
+      "met": true,
+      "quote": "Hydrogen storage properties of the derivatives of graphene, graphene oxide/reduced- graphene oxide are studied in this paper.",
+      "location": "main, p. 2 (printed p. 1), Abstract"
+    }
+  },
+  "notes": "Page numbers are PDF pages (pages/main-NN.png); printed page = PDF page - 1, because PDF p. 1 is the Ulster University repository cover sheet for this Author Accepted Manuscript. I1/I2: H2 uptake of GO and rGO measured with a home-built Sieverts volumetric apparatus (Section 2.3, PDF p. 6-7; Hydrogen Storage Performance, PDF p. 14; Fig. 8 is uptake in wt% against time, PDF p. 14). I3 decision: pressure (80 bar) is stated, but the only temperature given for any uptake value is 'room temperature' (Abstract; 'recorded upto a pressure of 80bar at room temperature', PDF p. 14; Conclusion, PDF p. 15). The registered data dictionary (temperature_unstated) treats a condition stated only in words ('room temperature') as not stated numerically and not imputed, and protocol section 3 imputes a number only for 'liquid nitrogen'; so no uptake value has a stated or recoverable temperature. If a resolver reads 'room temperature' as a stated temperature, I3 is met and the first applicable code becomes no_surface_area, because I4 also fails: no surface area by any method is reported for GO or rGO (characterization is SEM, TEM, XRD, Raman, FTIR only). The paper is excluded under either reading. not_primary, retracted, duplicate_data: none applies (original research article, record is_retracted false, no retraction notice, no statement that the uptake data were published before)."
+}

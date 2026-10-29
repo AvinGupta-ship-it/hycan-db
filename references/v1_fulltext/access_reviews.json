@@ -71,6 +71,15 @@
       "reason": "command names the home directory",
       "access": false,
       "note": "The flagged '~' is the approximately sign inside quotations from the paper ('uptake ~ 2.5 wt% at −196 °C and ~ 0.8 Mpa') in the assessment the agent writes. The text sits in a heredoc with a quoted delimiter (<<'EOF'), so the shell expands nothing in it, and the '~' is never a path. The command changes to the agent's own run directory (which holds only its own in, out and work directories) and runs python3 -I on the heredoc to write its own output file; no other path is named."
+    },
+    {
+      "screener": "B",
+      "batch": "F05380",
+      "transcript": "agent-a5a7f026bfa39fe54.jsonl",
+      "call": 13,
+      "reason": "command in the tools directory does more than run its two scripts: cat",
+      "access": false,
+      "note": "The agent's shell was in the tools directory (cd), but the command only runs its own work script with python3 -I (isolated mode: nothing is imported from the current directory), writes a second script from a quoted heredoc to its own work directory with cat, runs it with python3 -I to check its own output's quotes against its own input text (in/text/main.txt), and reads its own output back with python3 -I. No file in the tools directory is opened, listed or searched (the same pattern as B F07841 call 17 and B F09346 call 18)."
     }
   ]
 }

@@ -1,0 +1,35 @@
+{
+  "frame_id": "F02910",
+  "eligible": false,
+  "exclusion_code": "no_conditions_stated",
+  "exclusion_quote": "",
+  "exclusion_location": "",
+  "criteria": {
+    "I1": {
+      "met": true,
+      "quote": "Hydrogen adsorption isotherms were measured by indigenous fabricated volumetric apparatus working under pressure 80bar regions.",
+      "location": "main, PDF p. 6 (manuscript p. 5), Section 2.3 Hydrogen Storage Setup; also Fig. 1 caption and Fig. 8, PDF p. 14"
+    },
+    "I2": {
+      "met": true,
+      "quote": "GO was found to exhibit better H2 uptake capacity (1.90wt. %) as compared to rGO (1.34 wt. %) at room temperature.",
+      "location": "main, PDF p. 2, Abstract"
+    },
+    "I3": {
+      "met": false,
+      "quote": "Searched for a numeric temperature (K or °C) of the H2 uptake in text, Section 2.3, Fig. 8 axes and caption. Found only \"at room temperature\" in words; pressure (80 bar) is stated, temperature is not numeric.",
+      "location": ""
+    },
+    "I4": {
+      "met": false,
+      "quote": "Searched for BET, Langmuir or any specific surface area of the GO or rGO samples (N2 isotherm, m2/g). None reported. Only the Introduction's \"higher specific surface (2630 cm2/gm)\" for graphene in general.",
+      "location": ""
+    },
+    "I5": {
+      "met": true,
+      "quote": "Hydrogen storage properties of the derivatives of graphene, graphene oxide/reduced-graphene oxide are studied in this paper.",
+      "location": "main, PDF p. 2, Abstract (first sentence of the article; PDF p. 1 is a repository cover page)"
+    }
+  },
+  "notes": "Original Sieverts-type volumetric H2 uptake on GO and rGO (graphene_oxide, reduced_graphene_oxide classes); 1.90 and 1.34 wt% at 80 bar, 'room temperature' (Abstract, PDF p. 2; Hydrogen Storage Performance, PDF p. 14; Fig. 8 plots wt% vs time in s, no T or P on axes). I3 judgement: the registered data dictionary says a condition stated only in words ('room temperature') is not a number and is not imputed (temperature_unstated), so no uptake value has a stated or recoverable temperature, giving no_conditions_stated, which precedes no_surface_area in the table order. If a resolver accepts 'room temperature' as a stated temperature, I3 is met and the code becomes no_surface_area (I4 fails independently). Not retracted (record is_retracted false); not a review; no statement that the uptake values were published before."
+}

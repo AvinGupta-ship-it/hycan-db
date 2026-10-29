@@ -2388,3 +2388,45 @@ the committed draw.
 
 **Author's role.** All 100 audit decisions.
 
+
+## 2026-10-29 — v1.0: full-text retrieval, eligibility and the walk
+
+**Tools and agents.** Claude (`claude-opus-5-5`), Mode A, as orchestrator
+and as the operator of a browser on the author's computer: the built-in
+browser of the Claude desktop app until about 07:08 UTC, then Claude in
+Chrome (the author's own Chrome). Eligibility agents under the frozen
+`eligibility.md`, one per record and role: assessor A `claude-opus-5-5`,
+assessor B `claude-sonnet-5-5`; the resolver (`claude-opus-5-5`,
+`eligibility_resolve.md`) for every record on which they disagreed.
+398 agents in all: A and B for 198 records (156 taken by the walk or
+assessed ahead of it, and 42 v0.1 papers), and 2 resolvers.
+
+**What was done.** Claude retrieved each drawn record by the two §8 routes,
+in draw order and under the implementation rules fixed in
+`references/v1_fulltext/README.md`, saved every PDF unmodified, logged every
+route with the file's SHA-256, built each agent's input under a parent of its
+own, started every agent with the frozen launcher, checked each one after it
+ran, reviewed every audit flag against the transcript, ran the resolver
+where the assessors disagreed, and collected the outcomes; `fulltext.py
+status` computed the walk from the files. After both walks had stopped, the
+44 v0.1 papers that were not drawn were retrieved and assessed the same way.
+Claude also compared the retrieved and not-retrieved records (§8). Claude
+did not assess any record and did not change any assessment.
+
+**Incident.** At about 15:38 UTC the university library's proxy suspended
+the session ('EZproxy - Security') after Claude had fetched 41 files
+through it in about 25 minutes. Claude stopped using the proxy and told the
+author; one record (F07281) waits for its rule-3 retry. Downloads through the
+proxy are spaced out from now on.
+
+**Verified.** All 398 agents pass the launcher, prompt-hash, model, access and
+output checks; the 9 audit flags were each read against the call and none was
+access (`access_reviews.json`). Every obtained file's SHA-256 matches its log
+row, and every stored main text matches its record's title. The walk is
+recomputed from the committed files by `fulltext.py status`. Full test suite
+passing.
+
+**Author's role.** He signed in to the university library himself (Claude
+never saw or handled his credentials), approved the downloads, and installed
+the Chrome extension. His review of every full-text exclusion (§6) comes
+next.

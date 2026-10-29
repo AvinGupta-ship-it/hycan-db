@@ -189,3 +189,15 @@ every full-text exclusion (§6).
   records taken, and no two taken records share a DOI or have titles more than
   80% alike (difflib ratio on lower-cased alphanumeric titles), so no taken
   record is a `frame_duplicate` and no `frame_duplicates.csv` is written.
+- **v0.1 papers not drawn.** The 42 retrieved were assessed in the same way.
+  The assessors agreed on all 42: 35 eligible, 6 `no_surface_area` and 1
+  `no_conditions_stated`, each subject to the author's review below. Two of
+  them, HYC-0046 (F05380) and HYC-0051 (F04740), are the papers on which the
+  eligibility prompt was piloted (Amendment 1); the pilot outputs are not used,
+  and both were assessed afresh with the frozen prompt. HYC-0041 (F02292) was
+  not retrieved by either route, so it has no assessment; HYC-0062 (F07281)
+  awaits its retry. Their rows in `eligibility.csv` lie outside the walk, which
+  `fulltext.py status` computes from the records taken only.
+- **Agent checks.** 398 agents (A and B for 198 records, and 2 resolvers) pass
+  the launcher, prompt-hash, model, access and output checks; every audit flag
+  was reviewed against its call (`access_reviews.json`), and none was access.
