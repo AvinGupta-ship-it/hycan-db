@@ -26,6 +26,222 @@
       "call": 51,
       "reason": "command names the home directory",
       "note": "The flagged '~' is the approximately sign in a Python comment ('y ~ 4.2-4.6 wt%') inside a heredoc with a quoted delimiter (<<'EOF'), so the shell expands nothing in it and it is never a path. The command crops the agent's own input page (in/pages/main-5.png) and saves the crop in its own work directory."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0068",
+      "transcript": "agent-ac9f23afe839faf73.jsonl",
+      "call": 15,
+      "reason": "command in the tools directory does more than run its two scripts: ls scripts",
+      "access": false,
+      "note": "The command counts the lines of the agent's own input text, then in the tools directory runs 'ls scripts' and 'python3 -I scripts/digitize_figure.py --help'. 'ls scripts' lists a directory the launcher did not allow, and the agent reported it after its reply. This is a breach of the launcher's instruction but not access in the sense of Amendment 1, item 26: the tools directory holds only the two scripts and the modules they import, without data (its MANIFEST: scripts/digitize_figure.py, scripts/validate_row_detail.py, src/hycan/*.py), so the listing showed no other agent's output, no v0.1 row, no pilot output and nothing of the repository. Recorded as an instruction breach without data access; the output is kept."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0068",
+      "transcript": "agent-ac9f23afe839faf73.jsonl",
+      "call": 39,
+      "reason": "command opens the tools directory: /home/claude/work/v1_tools_frozen",
+      "access": false,
+      "note": "The command writes a helper (run_ext.py) to the agent's own work directory from a quoted heredoc and runs it with python3 -I. The tools directory appears only as the working directory (cwd) of a subprocess that runs 'python3 -I scripts/digitize_figure.py extract' with explicit calibration arguments on the agent's own cleaned page image in its work directory, writing JSON to its work directory. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0068",
+      "transcript": "agent-ac9f23afe839faf73.jsonl",
+      "call": 57,
+      "reason": "command names a path outside the allowed paths: /t/c_red_pale.json",
+      "access": false,
+      "note": "The flagged '/t/...' strings are the end of paths built as W+'/t/c_red_pale.png' and W+'/t/c_red_pale.json', where W is the agent's own work directory (/home/claude/work/runs/extract/A/HYC-0068/work); the code reads its own page image and writes into its own work directory, and runs the digitizer through its own helper as in call 39."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0068",
+      "transcript": "agent-ac9f23afe839faf73.jsonl",
+      "call": 57,
+      "reason": "command names a path outside the allowed paths: /t/c_red_pale.png",
+      "access": false,
+      "note": "The flagged '/t/...' strings are the end of paths built as W+'/t/c_red_pale.png' and W+'/t/c_red_pale.json', where W is the agent's own work directory (/home/claude/work/runs/extract/A/HYC-0068/work); the code reads its own page image and writes into its own work directory, and runs the digitizer through its own helper as in call 39."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0068",
+      "transcript": "agent-ac9f23afe839faf73.jsonl",
+      "call": 87,
+      "reason": "command uses the network",
+      "access": false,
+      "note": "The flagged 'nc' is a Python variable name (nc=r.pop('_note_core'); r['notes']=nc+'; '+...) in a script the agent writes to its own work directory and runs with python3 -I to build its own rows.csv from its own digitizations and its own input (paper.json). No network client is used and no URL appears."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0068",
+      "transcript": "agent-ac9f23afe839faf73.jsonl",
+      "call": 88,
+      "reason": "command in the tools directory does more than run its two scripts: chk fig6a_UTL1_adsorption.json 1004.6 2.51",
+      "access": false,
+      "note": "In the tools directory the command defines a shell function chk() that runs 'python3 -I scripts/digitize_figure.py check' on the agent's own archived digitizations (out/digitizations) and filters its output with grep, and calls it 17 times. Only the allowed script runs; nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0068",
+      "transcript": "agent-ac9f23afe839faf73.jsonl",
+      "call": 88,
+      "reason": "command in the tools directory does more than run its two scripts: chk fig6a_UTL2_adsorption.json 1007 2.62",
+      "access": false,
+      "note": "In the tools directory the command defines a shell function chk() that runs 'python3 -I scripts/digitize_figure.py check' on the agent's own archived digitizations (out/digitizations) and filters its output with grep, and calls it 17 times. Only the allowed script runs; nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0068",
+      "transcript": "agent-ac9f23afe839faf73.jsonl",
+      "call": 88,
+      "reason": "command in the tools directory does more than run its two scripts: chk fig6a_UTL3_adsorption.json 1006.8 2.30",
+      "access": false,
+      "note": "In the tools directory the command defines a shell function chk() that runs 'python3 -I scripts/digitize_figure.py check' on the agent's own archived digitizations (out/digitizations) and filters its output with grep, and calls it 17 times. Only the allowed script runs; nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0068",
+      "transcript": "agent-ac9f23afe839faf73.jsonl",
+      "call": 88,
+      "reason": "command in the tools directory does more than run its two scripts: chk fig6b_OP1_adsorption.json 1005.3 2.59",
+      "access": false,
+      "note": "In the tools directory the command defines a shell function chk() that runs 'python3 -I scripts/digitize_figure.py check' on the agent's own archived digitizations (out/digitizations) and filters its output with grep, and calls it 17 times. Only the allowed script runs; nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0068",
+      "transcript": "agent-ac9f23afe839faf73.jsonl",
+      "call": 88,
+      "reason": "command in the tools directory does more than run its two scripts: chk fig6b_OP3_adsorption.json 1007.9 2.46",
+      "access": false,
+      "note": "In the tools directory the command defines a shell function chk() that runs 'python3 -I scripts/digitize_figure.py check' on the agent's own archived digitizations (out/digitizations) and filters its output with grep, and calls it 17 times. Only the allowed script runs; nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0068",
+      "transcript": "agent-ac9f23afe839faf73.jsonl",
+      "call": 88,
+      "reason": "command in the tools directory does more than run its two scripts: chk fig6c_UTL1_adsorption.json 33 4.44",
+      "access": false,
+      "note": "In the tools directory the command defines a shell function chk() that runs 'python3 -I scripts/digitize_figure.py check' on the agent's own archived digitizations (out/digitizations) and filters its output with grep, and calls it 17 times. Only the allowed script runs; nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0068",
+      "transcript": "agent-ac9f23afe839faf73.jsonl",
+      "call": 88,
+      "reason": "command in the tools directory does more than run its two scripts: chk fig6c_UTL2_adsorption.json 30 4.83",
+      "access": false,
+      "note": "In the tools directory the command defines a shell function chk() that runs 'python3 -I scripts/digitize_figure.py check' on the agent's own archived digitizations (out/digitizations) and filters its output with grep, and calls it 17 times. Only the allowed script runs; nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0068",
+      "transcript": "agent-ac9f23afe839faf73.jsonl",
+      "call": 88,
+      "reason": "command in the tools directory does more than run its two scripts: chk fig6c_UTL3_adsorption.json 34 5.29",
+      "access": false,
+      "note": "In the tools directory the command defines a shell function chk() that runs 'python3 -I scripts/digitize_figure.py check' on the agent's own archived digitizations (out/digitizations) and filters its output with grep, and calls it 17 times. Only the allowed script runs; nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0068",
+      "transcript": "agent-ac9f23afe839faf73.jsonl",
+      "call": 88,
+      "reason": "command in the tools directory does more than run its two scripts: chk fig6d_OP1_adsorption.json 33 4.06",
+      "access": false,
+      "note": "In the tools directory the command defines a shell function chk() that runs 'python3 -I scripts/digitize_figure.py check' on the agent's own archived digitizations (out/digitizations) and filters its output with grep, and calls it 17 times. Only the allowed script runs; nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0068",
+      "transcript": "agent-ac9f23afe839faf73.jsonl",
+      "call": 88,
+      "reason": "command in the tools directory does more than run its two scripts: chk fig6d_OP2_adsorption.json 25 4.78",
+      "access": false,
+      "note": "In the tools directory the command defines a shell function chk() that runs 'python3 -I scripts/digitize_figure.py check' on the agent's own archived digitizations (out/digitizations) and filters its output with grep, and calls it 17 times. Only the allowed script runs; nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0068",
+      "transcript": "agent-ac9f23afe839faf73.jsonl",
+      "call": 88,
+      "reason": "command in the tools directory does more than run its two scripts: chk fig6d_OP3_adsorption.json 30 5.24",
+      "access": false,
+      "note": "In the tools directory the command defines a shell function chk() that runs 'python3 -I scripts/digitize_figure.py check' on the agent's own archived digitizations (out/digitizations) and filters its output with grep, and calls it 17 times. Only the allowed script runs; nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0068",
+      "transcript": "agent-ac9f23afe839faf73.jsonl",
+      "call": 88,
+      "reason": "command in the tools directory does more than run its two scripts: chk fig6e_UTL1_total.json 80 6.44",
+      "access": false,
+      "note": "In the tools directory the command defines a shell function chk() that runs 'python3 -I scripts/digitize_figure.py check' on the agent's own archived digitizations (out/digitizations) and filters its output with grep, and calls it 17 times. Only the allowed script runs; nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0068",
+      "transcript": "agent-ac9f23afe839faf73.jsonl",
+      "call": 88,
+      "reason": "command in the tools directory does more than run its two scripts: chk fig6e_UTL2_total.json 80 6.98",
+      "access": false,
+      "note": "In the tools directory the command defines a shell function chk() that runs 'python3 -I scripts/digitize_figure.py check' on the agent's own archived digitizations (out/digitizations) and filters its output with grep, and calls it 17 times. Only the allowed script runs; nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0068",
+      "transcript": "agent-ac9f23afe839faf73.jsonl",
+      "call": 88,
+      "reason": "command in the tools directory does more than run its two scripts: chk fig6e_UTL3_total.json 80 8.34",
+      "access": false,
+      "note": "In the tools directory the command defines a shell function chk() that runs 'python3 -I scripts/digitize_figure.py check' on the agent's own archived digitizations (out/digitizations) and filters its output with grep, and calls it 17 times. Only the allowed script runs; nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0068",
+      "transcript": "agent-ac9f23afe839faf73.jsonl",
+      "call": 88,
+      "reason": "command in the tools directory does more than run its two scripts: chk fig6f_OP1_total.json 80 5.59",
+      "access": false,
+      "note": "In the tools directory the command defines a shell function chk() that runs 'python3 -I scripts/digitize_figure.py check' on the agent's own archived digitizations (out/digitizations) and filters its output with grep, and calls it 17 times. Only the allowed script runs; nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0068",
+      "transcript": "agent-ac9f23afe839faf73.jsonl",
+      "call": 88,
+      "reason": "command in the tools directory does more than run its two scripts: chk fig6f_OP2_total.json 80 6.49",
+      "access": false,
+      "note": "In the tools directory the command defines a shell function chk() that runs 'python3 -I scripts/digitize_figure.py check' on the agent's own archived digitizations (out/digitizations) and filters its output with grep, and calls it 17 times. Only the allowed script runs; nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0068",
+      "transcript": "agent-ac9f23afe839faf73.jsonl",
+      "call": 88,
+      "reason": "command in the tools directory does more than run its two scripts: chk fig6f_OP3_total.json 80 7.39",
+      "access": false,
+      "note": "In the tools directory the command defines a shell function chk() that runs 'python3 -I scripts/digitize_figure.py check' on the agent's own archived digitizations (out/digitizations) and filters its output with grep, and calls it 17 times. Only the allowed script runs; nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0068",
+      "transcript": "agent-ac9f23afe839faf73.jsonl",
+      "call": 88,
+      "reason": "command in the tools directory does more than run its two scripts: chk(){ echo == $1 at $2 expect $3",
+      "access": false,
+      "note": "In the tools directory the command defines a shell function chk() that runs 'python3 -I scripts/digitize_figure.py check' on the agent's own archived digitizations (out/digitizations) and filters its output with grep, and calls it 17 times. Only the allowed script runs; nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0068",
+      "transcript": "agent-ac9f23afe839faf73.jsonl",
+      "call": 101,
+      "reason": "search outside the allowed paths",
+      "access": false,
+      "note": "A Grep search for 'digitization_uncertainty' in the agent's own instruction file (/home/claude/work/runs/extract/prompts/extract_A.md), which the launcher allows it to read."
     }
   ]
 }
