@@ -68,6 +68,17 @@ files by `scripts/v1_search/fulltext.py status`.
   stopped at its cap of 80 assessments at position 127 (F08543), with 20
   eligible papers against its target of 40; no S2 record after position 127
   was tried.
+- **v0.1 papers not drawn (§7 v0.1 papers, §8).** All 51 v0.1 papers are in
+  the frame. Seven were drawn by the walk (HYC-0009, -0022, -0031, -0040,
+  -0044, -0048, -0057; all eligible). The other 44 are retrieved by the same
+  routes and rules, so that each can be assessed against §4; this began at
+  14:58 UTC on 29 Oct 2026, after both walks had stopped. Their log rows name
+  the v0.1 paper in the note, and as records past the stop they do not move the
+  walk. A PDF held from v0.1 is not used: where a route served bytes identical
+  to a v0.1 copy (F08691, F08931), the note says so. Of the 44, 42 were
+  obtained (10 by route 1, 32 by route 2), HYC-0041 (F02292) was not (abstract
+  page only through the library), and HYC-0062 (F07281) awaits its rule-3
+  retry (see Incidents).
 - **Supplementary information.** Document files (PDF, Word, Excel, text) are
   retrieved; files in another document format are converted to PDF for the
   assessors with `soffice` (`fulltext.py stage`), and a supplementary zip is
@@ -126,6 +137,14 @@ record alike, so that retrieval effort is the same for every record (§8).
   was running, but that run had saved the file; when the step was repeated in
   the same tab, Chrome kept no second file. The file from the first run is the
   one logged.
+- **Library proxy suspension.** At about 15:38 UTC on 29 Oct 2026, after 41
+  files had been fetched through the library proxy in about 25 minutes (v0.1
+  papers), the proxy began answering with its own 'EZproxy - Security'
+  suspension page instead of publisher content. Retrieval through the proxy
+  stopped. The one record affected (F07281, route 2: the Science article page
+  had loaded, but its PDF link returned the suspension page) is treated under
+  rule 3: one more attempt in a fresh tab after at least 30 minutes, once the
+  proxy serves again; that outcome is final.
 
 ### Retrieved and not retrieved (§8)
 
