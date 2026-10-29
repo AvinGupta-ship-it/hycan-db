@@ -1,0 +1,124 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T23:04:42+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0082",
+  "figure": "Fig. 3c",
+  "series_name": "YP80F @ 298 K, highest-pressure marker",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0082/in/pages/main-06.png",
+    "sha256": "70b393d0a6862e91effe02f80a2171aa5e4fcbed5cd3d56811360b2b0cc1ff3b",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 214.55,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 593.2,
+        "value": 80.0
+      },
+      "scale": "linear",
+      "label": "Pressure_bar",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 823.78,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 518.82,
+        "value": 6.0
+      },
+      "scale": "linear",
+      "label": "H2_uptake_wt_pct",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 403.39,
+        "stated": 40.0,
+        "predicted": 39.89753070117522,
+        "relative_error": 0.0025617324706194823
+      },
+      {
+        "axis": "y",
+        "pixel": 671.52,
+        "stated": 3.0,
+        "predicted": 2.995671563483736,
+        "relative_error": 0.0014428121720880445
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#007b00",
+    "color_rgb": [
+      0,
+      123,
+      0
+    ],
+    "tolerance": 80.0,
+    "matched_pixels_in_image": 1343,
+    "matched_pixels_in_region": 18,
+    "region": [
+      589,
+      795,
+      601,
+      808
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 12.198399999999998,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 80.063383071438,
+      "y": 0.47770199370409194,
+      "pixel_x": 593.5,
+      "pixel_y": 799.5,
+      "pixel_count": 16,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [
+    {
+      "at": 80.063383071438,
+      "expected": 0.5,
+      "got": 0.47770199370409194,
+      "difference": -0.022298006295908057,
+      "percent": 4.459601259181611,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-10-29T23:05:58+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 3c, digitized (YP80F @ 298 K, highest-pressure marker)",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 80.063383071438."
+  }
+}

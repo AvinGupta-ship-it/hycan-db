@@ -1,0 +1,124 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T23:04:36+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0082",
+  "figure": "Fig. 3a",
+  "series_name": "PDAC @ 90 K, highest-pressure marker",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0082/in/pages/main-06.png",
+    "sha256": "70b393d0a6862e91effe02f80a2171aa5e4fcbed5cd3d56811360b2b0cc1ff3b",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 214.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 583.02,
+        "value": 1000.0
+      },
+      "scale": "linear",
+      "label": "Pressure_mbar",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 448.36,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 155.37,
+        "value": 2.5
+      },
+      "scale": "linear",
+      "label": "H2_uptake_wt_pct",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 397.9,
+        "stated": 500.0,
+        "predicted": 498.34697306379053,
+        "relative_error": 0.003306053872418943
+      },
+      {
+        "axis": "y",
+        "pixel": 331.4,
+        "stated": 1.0,
+        "predicted": 0.9979862793952015,
+        "relative_error": 0.002013720604798541
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#9e0c28",
+    "color_rgb": [
+      158,
+      12,
+      40
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 927,
+    "matched_pixels_in_region": 32,
+    "region": [
+      584,
+      250,
+      596,
+      268
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 11.7196,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 1008.9464759943326,
+      "y": 1.6148405845153178,
+      "pixel_x": 586.3214285714286,
+      "pixel_y": 259.10714285714283,
+      "pixel_count": 28,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [
+    {
+      "at": 1008.9464759943326,
+      "expected": 1.6,
+      "got": 1.6148405845153178,
+      "difference": 0.014840584515317667,
+      "percent": 0.9275365322073542,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-10-29T23:05:58+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 3a, digitized (PDAC @ 90 K, highest-pressure marker)",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 1008.9464759943326."
+  }
+}

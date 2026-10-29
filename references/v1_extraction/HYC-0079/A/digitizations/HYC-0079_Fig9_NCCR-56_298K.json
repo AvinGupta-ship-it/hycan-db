@@ -1,0 +1,107 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T23:09:40+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0079",
+  "figure": "Fig9",
+  "series_name": "NCCR-56 298 K highest-pressure point",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0079/work/blobs/HYC-0079_Fig9_NCCR-56_298K.png",
+    "sha256": "37c5887a4e1fbf7a61c0d953e2a5142eb1ed7808f2e66d0840040a9e3c81eaf0",
+    "width_px": 1303,
+    "height_px": 1705
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 814.52,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1058.52,
+        "value": 50.0
+      },
+      "scale": "linear",
+      "label": "Hydrogen Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 405.05,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 154.46,
+        "value": 0.3
+      },
+      "scale": "linear",
+      "label": "Excess Adsorption (wt %)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 961.0,
+        "stated": 30.0,
+        "predicted": 30.016393442622956,
+        "relative_error": 0.0005464480874318649
+      },
+      {
+        "axis": "y",
+        "pixel": 279.48,
+        "stated": 0.15,
+        "predicted": 0.1503292230336406,
+        "relative_error": 0.002194820224270718
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff0000",
+    "color_rgb": [
+      255,
+      0,
+      0
+    ],
+    "tolerance": 216.0,
+    "matched_pixels_in_image": 14,
+    "matched_pixels_in_region": 14,
+    "region": null,
+    "region_basis": "disabled (--no-roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 10.0236,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 50.200819672131146,
+      "y": 0.2343640437139779,
+      "pixel_x": 1059.5,
+      "pixel_y": 209.28571428571428,
+      "pixel_count": 14,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig9, digitized (NCCR-56 298 K highest-pressure point)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0079_Fig9_NCCR-56_298K.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

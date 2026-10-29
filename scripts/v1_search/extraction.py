@@ -272,12 +272,22 @@ def cmd_prepare(args) -> int:
     return 0
 
 
+def require_finished(transcripts: str, pid: str, roles: tuple[str, ...]) -> None:
+    """Refuse unless every named agent for the paper has finished: an agent can
+    write its output file before it has finished revising it."""
+    states = agent_states(Path(transcripts))
+    waiting = [r for r in roles if states.get((r, pid)) != "finished"]
+    if waiting:
+        raise ExtractionError(f"{pid}: agent {', '.join(waiting)} not finished")
+
+
 def cmd_assemble(args) -> int:
     run = Path(args.run)
     check_frozen(run)
     for pid in args.paper_id:
         p = paper(pid)
         legacy = p["mode"] == "legacy"
+        require_finished(args.transcripts, pid, ("L", "B") if legacy else ("A", "B"))
         first = (run / "V" / pid / "rows") if legacy else (run / "A" / pid / "out")
         cmd = [sys.executable, str(ROOT / "scripts" / "v1_extract.py"), "assemble",
                "--c", str(run / "C" / pid / "in"), "--first", str(first),
@@ -312,6 +322,7 @@ def cmd_collect(args) -> int:
     for pid in args.paper_id:
         p = paper(pid)
         roles = ("L", "B", "C") if p["mode"] == "legacy" else ("A", "B", "C")
+        require_finished(args.transcripts, pid, roles)
         dest = OUT / pid
         if dest.exists():
             raise ExtractionError(f"{dest} exists")
@@ -384,6 +395,8 @@ def main(argv: list[str] | None = None) -> int:
         s = sub.add_parser(name)
         s.add_argument("paper_id", nargs="+")
         s.add_argument("--run", default=str(RUN))
+        if name in ("assemble", "collect"):
+            s.add_argument("--transcripts", required=True)
     args = ap.parse_args(argv)
     try:
         return {"plan": cmd_plan, "status": cmd_status, "prepare": cmd_prepare, "assemble": cmd_assemble,

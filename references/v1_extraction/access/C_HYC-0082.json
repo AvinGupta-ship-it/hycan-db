@@ -1,0 +1,31 @@
+{
+  "screener": "C",
+  "batch": "HYC-0082",
+  "transcript": "agent-afe56d24dcb91084b.jsonl",
+  "launcher_exact": true,
+  "prompt_sha256_ok": true,
+  "models": [
+    "claude-opus-5-5"
+  ],
+  "model_ok": true,
+  "flags": [
+    {
+      "call": 74,
+      "tool": "Bash",
+      "reason": "command uses the network",
+      "detail": "cd /home/claude/work/runs/extract/C/HYC-0082/in && python3 -c \"\nimport csv\nf=list(csv.DictReader(open('first/rows.csv')))\ns=list(csv.DictReader(open('second/rows.csv')))\nfm={r['measurement_id']:r for r in f}; sm={r['measurement_id']:r for r in s}\nnc=set('basis_evidence digitization_uncertainty_wt_pc",
+      "review": {
+        "access": false,
+        "note": "The flagged network-client name is a variable or word in the agent's own code (e.g. a Python variable 'nc'); no network client runs and no URL appears."
+      }
+    }
+  ],
+  "tool_calls": 96,
+  "output_problems": [],
+  "flags_unreviewed": 0,
+  "flags_access": 0,
+  "access_ok": true,
+  "ok": true,
+  "earlier_agents": [],
+  "unfinished_agents": []
+}

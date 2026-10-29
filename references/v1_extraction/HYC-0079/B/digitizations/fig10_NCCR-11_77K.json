@@ -1,0 +1,168 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T22:58:18+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0079",
+  "figure": "Figure 10",
+  "series_name": "NCCR-11 77 K (open stars, left axis; separable markers only)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0079/work/derived/fig10_NCCR-11_77K.png",
+    "sha256": "2d75560b6e461d7e199db1b8360028dec067b6b8a66e784151bb88f8f44fbf79",
+    "width_px": 1303,
+    "height_px": 1705
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 816.43,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1056.49,
+        "value": 50.0
+      },
+      "scale": "linear",
+      "label": "Hydrogen Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 808.0,
+        "value": -1.0
+      },
+      "reference_2": {
+        "pixel": 558.6,
+        "value": 2.0
+      },
+      "scale": "linear",
+      "label": "Excess Adsorption (wt %), left axis",
+      "decades_spanned": 0.3010299956639812
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 960.48,
+        "stated": 30.0,
+        "predicted": 30.00291593768225,
+        "relative_error": 9.719792274166157e-05
+      },
+      {
+        "axis": "y",
+        "pixel": 641.57,
+        "stated": 1.0,
+        "predicted": 1.0019647153167597,
+        "relative_error": 0.00196471531675968
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#9500ff",
+    "color_rgb": [
+      149,
+      0,
+      255
+    ],
+    "tolerance": 10.0,
+    "matched_pixels_in_image": 32,
+    "matched_pixels_in_region": 32,
+    "region": [
+      805,
+      550,
+      1068,
+      815
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 9.975999999999999,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      1,
+      9
+    ],
+    "rejected_markers": [],
+    "n_points": 8,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 1.4725485295342933,
+      "y": 1.339615076182839,
+      "pixel_x": 823.5,
+      "pixel_y": 613.5,
+      "pixel_count": 4,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.7222361076397665,
+      "y": 1.447874899759423,
+      "pixel_x": 829.5,
+      "pixel_y": 604.5,
+      "pixel_count": 4,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.97192368574524,
+      "y": 1.5200481154771452,
+      "pixel_x": 835.5,
+      "pixel_y": 598.5,
+      "pixel_count": 4,
+      "outside_axis_range": false
+    },
+    {
+      "x": 10.220361576272605,
+      "y": 1.5200481154771452,
+      "pixel_x": 865.5,
+      "pixel_y": 598.5,
+      "pixel_count": 4,
+      "outside_axis_range": false
+    },
+    {
+      "x": 14.385986836624184,
+      "y": 1.4238171611868489,
+      "pixel_x": 885.5,
+      "pixel_y": 606.5,
+      "pixel_count": 4,
+      "outside_axis_range": false
+    },
+    {
+      "x": 20.009580938098814,
+      "y": 1.1712109061748195,
+      "pixel_x": 912.5,
+      "pixel_y": 627.5,
+      "pixel_count": 4,
+      "outside_axis_range": false
+    },
+    {
+      "x": 36.25551945346997,
+      "y": 0.2449879711307137,
+      "pixel_x": 990.5,
+      "pixel_y": 704.5,
+      "pixel_count": 4,
+      "outside_axis_range": false
+    },
+    {
+      "x": 45.41989502624344,
+      "y": -0.392542101042502,
+      "pixel_x": 1034.5,
+      "pixel_y": 757.5,
+      "pixel_count": 4,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 10, digitized (NCCR-11 77 K (open stars, left axis; separable markers only))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig10_NCCR-11_77K.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

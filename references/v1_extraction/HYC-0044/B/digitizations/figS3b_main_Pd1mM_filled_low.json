@@ -1,0 +1,179 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T23:22:20+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0044",
+  "figure": "FigS3b_main",
+  "series_name": "Pd_1 mM, filled markers 0-1 MPa, main panel",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0044/in/pages/si1-4.png",
+    "sha256": "6895ab8550bf155bf94d4721ec6972283a2f2b0b8e3c77dc41935dfc1ace3aa1",
+    "width_px": 1241,
+    "height_px": 1754
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 462.7,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1017.3,
+        "value": 10.0
+      },
+      "scale": "linear",
+      "label": "Pressure_MPa",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1207.55,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 807.68,
+        "value": 6.0
+      },
+      "scale": "linear",
+      "label": "Hydrogen_uptake_wt%",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 684.45,
+        "stated": 4.0,
+        "predicted": 3.998377208799136,
+        "relative_error": 0.00040569780021604274
+      },
+      {
+        "axis": "y",
+        "pixel": 874.21,
+        "stated": 5.0,
+        "predicted": 5.001725560807261,
+        "relative_error": 0.0003451121614521213
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#008001",
+    "color_rgb": [
+      0,
+      128,
+      1
+    ],
+    "tolerance": 50.0,
+    "matched_pixels_in_image": 9802,
+    "matched_pixels_in_region": 1905,
+    "region": [
+      455,
+      808,
+      548,
+      1215
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 15.9948,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      60,
+      2000
+    ],
+    "rejected_markers": [
+      {
+        "pixel_x": 481.6363636363636,
+        "pixel_y": 963.6818181818181,
+        "pixels": 22,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 471.0,
+        "pixel_y": 1012.0,
+        "pixels": 15,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 469.0,
+        "pixel_y": 1040.0,
+        "pixels": 9,
+        "reason": "too small"
+      }
+    ],
+    "n_points": 7,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 0.0119660361275944,
+      "y": -0.0002728159379068444,
+      "pixel_x": 463.3636363636364,
+      "pixel_y": 1207.5681818181818,
+      "pixel_count": 176,
+      "outside_axis_range": true
+    },
+    {
+      "x": 0.08749234730247654,
+      "y": 2.1971326727698135,
+      "pixel_x": 467.55232558139534,
+      "pixel_y": 1061.1220930232557,
+      "pixel_count": 172,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.1928908631937841,
+      "y": 3.243679195738614,
+      "pixel_x": 473.39772727272725,
+      "pixel_y": 991.375,
+      "pixel_count": 176,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.39224707876858583,
+      "y": 3.9096930640389163,
+      "pixel_x": 484.45402298850576,
+      "pixel_y": 946.9885057471264,
+      "pixel_count": 174,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.5916748235536557,
+      "y": 4.33025733363343,
+      "pixel_x": 495.51428571428573,
+      "pixel_y": 918.96,
+      "pixel_count": 175,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.7917448519928858,
+      "y": 4.644335680282532,
+      "pixel_x": 506.6101694915254,
+      "pixel_y": 898.0282485875706,
+      "pixel_count": 177,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.0028849621348732,
+      "y": 4.854484850433534,
+      "pixel_x": 518.32,
+      "pixel_y": 884.0228571428571,
+      "pixel_count": 175,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "FigS3b_main, digitized (Pd_1 mM, filled markers 0-1 MPa, main panel)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: figS3b_main_Pd1mM_filled_low.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

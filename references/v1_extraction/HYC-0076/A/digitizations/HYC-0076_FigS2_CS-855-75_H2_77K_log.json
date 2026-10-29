@@ -1,0 +1,120 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T22:50:58+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0076",
+  "figure": "Fig. S2 log p/p0 panel",
+  "series_name": "CS-855-75 H2 77 K 3Flex",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0076/work/derived/HYC-0076_FigS2_CS-855-75_H2_77K_log.png",
+    "sha256": "54790627589f05bcabdf8430542f567f6b2075c8150c6eae07968765cf36dbee",
+    "width_px": 892,
+    "height_px": 780
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 217.5,
+        "value": 1e-05
+      },
+      "reference_2": {
+        "pixel": 721.5,
+        "value": 0.1
+      },
+      "scale": "log10",
+      "label": "p/p0",
+      "decades_spanned": 4.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 777.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 85.5,
+        "value": 1000.0
+      },
+      "scale": "linear",
+      "label": "H2 adsorbed volume (cm3 STP/g)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 469.5,
+        "stated": 0.001,
+        "predicted": 0.001,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 361.5,
+        "stated": 600.0,
+        "predicted": 601.1560693641619,
+        "relative_error": 0.0019267822736031804
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 120.0,
+    "matched_pixels_in_image": 210,
+    "matched_pixels_in_region": 210,
+    "region": [
+      0,
+      0,
+      891,
+      779
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 27.68,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      8,
+      728
+    ],
+    "rejected_markers": [],
+    "n_points": 2,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.02070321231194981,
+      "y": 51.76409641182244,
+      "pixel_x": 635.3207547169811,
+      "pixel_y": 741.6792452830189,
+      "pixel_count": 106,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.03362864756169415,
+      "y": 71.3372610048911,
+      "pixel_x": 661.8653846153846,
+      "pixel_y": 728.1346153846154,
+      "pixel_count": 104,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. S2 log p/p0 panel, digitized (CS-855-75 H2 77 K 3Flex)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0076_FigS2_CS-855-75_H2_77K_log.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

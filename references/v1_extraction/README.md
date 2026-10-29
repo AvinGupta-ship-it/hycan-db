@@ -59,6 +59,14 @@ input is built under a parent of its own. The prompts and the tools directory
 are checked against their Amendment 1 SHA-256 values before any input is
 prepared. Agents run at most 20 at a time.
 
+An agent can write its output file before it has finished revising it, so
+`assemble` and `collect` refuse until the agents they copy from have finished
+(read from the run's transcripts). That guard was added after HYC-0083 was
+assembled while extractor B was still running; the assembly was set aside
+before any reconciler was started, and the paper was assembled again once B
+had finished (B's `rows.csv` had not changed). For every other assembled
+paper the reconciler's copies equal the extractors' final outputs.
+
 ## Agent checks
 
 `extraction_runs.py` checks every finished agent (launcher, frozen prompt,
@@ -75,7 +83,13 @@ repository. An agent that went outside the launcher's list without reaching
 any of those keeps its output, and the breach is recorded in its review:
 
 - listing the tools directory's `scripts/` folder, which holds only the two
-  scripts: extractor A on HYC-0068 and on HYC-0076 (both self-reported);
+  scripts: extractor A on HYC-0068, HYC-0076 and HYC-0044 (all self-reported);
+- writing eight trial digitizations of the agent's own figure to a new folder
+  `/work` at the container root, through a mistyped output path
+  (`/../work/…` for its own work directory), and listing that folder:
+  extractor A on HYC-0085. The harness blocked its attempt to delete them;
+  the run operator moved them out of `/work`, and they are kept outside the
+  repository. No other transcript names `/work` or those files;
 - writing trial digitizations of the agent's own paper into the tools
   directory, because a helper ran the digitizer from there with a relative
   output path, and then deleting or moving them: extractor B on HYC-0068

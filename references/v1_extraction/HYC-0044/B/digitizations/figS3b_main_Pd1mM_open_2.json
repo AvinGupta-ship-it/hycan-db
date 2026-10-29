@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T23:22:24+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0044",
+  "figure": "FigS3b_main",
+  "series_name": "Pd_1 mM, open marker near 0.08 MPa, main panel",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0044/in/pages/si1-4.png",
+    "sha256": "6895ab8550bf155bf94d4721ec6972283a2f2b0b8e3c77dc41935dfc1ace3aa1",
+    "width_px": 1241,
+    "height_px": 1754
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 462.7,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1017.3,
+        "value": 10.0
+      },
+      "scale": "linear",
+      "label": "Pressure_MPa",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1207.55,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 807.68,
+        "value": 6.0
+      },
+      "scale": "linear",
+      "label": "Hydrogen_uptake_wt%",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 684.45,
+        "stated": 4.0,
+        "predicted": 3.998377208799136,
+        "relative_error": 0.00040569780021604274
+      },
+      {
+        "axis": "y",
+        "pixel": 874.21,
+        "stated": 5.0,
+        "predicted": 5.001725560807261,
+        "relative_error": 0.0003451121614521213
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#008001",
+    "color_rgb": [
+      0,
+      128,
+      1
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 10680,
+    "matched_pixels_in_region": 67,
+    "region": [
+      459,
+      1020,
+      474,
+      1038
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 15.9948,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      20,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.07376568294481461,
+      "y": 2.6791207142321247,
+      "pixel_x": 466.7910447761194,
+      "pixel_y": 1029.0,
+      "pixel_count": 67,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "FigS3b_main, digitized (Pd_1 mM, open marker near 0.08 MPa, main panel)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: figS3b_main_Pd1mM_open_2.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

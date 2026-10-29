@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T23:16:06+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0085",
+  "figure": "7A",
+  "series_name": "open triangle (desorption) at grid 3.5 bar",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0085/in/pages/main-4.png",
+    "sha256": "d308ef16402fbf05f9779f0e3614dae3abd5ff54fe4b1347cc988239ae80a23b",
+    "width_px": 1275,
+    "height_px": 1650
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 748.46,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1117.5,
+        "value": 20.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 329.04,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 105.0,
+        "value": 3.5
+      },
+      "scale": "linear",
+      "label": "H2 uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 933.0,
+        "stated": 10.0,
+        "predicted": 10.001083893344893,
+        "relative_error": 0.00010838933448926724
+      },
+      {
+        "axis": "y",
+        "pixel": 201.0,
+        "stated": 2.0,
+        "predicted": 2.0002678093197646,
+        "relative_error": 0.00013390465988227795
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 200.0,
+    "matched_pixels_in_image": 137809,
+    "matched_pixels_in_region": 32,
+    "region": [
+      808,
+      242,
+      818,
+      252
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 8.9616,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      3,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 3.490949490570126,
+      "y": 1.2630947598643103,
+      "pixel_x": 812.875,
+      "pixel_y": 248.1875,
+      "pixel_count": 32,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "7A, digitized (open triangle (desorption) at grid 3.5 bar)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0085_fig7A_desorption_triangle_03.5.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

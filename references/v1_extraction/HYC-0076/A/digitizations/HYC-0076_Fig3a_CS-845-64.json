@@ -1,0 +1,164 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T22:49:57+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0076",
+  "figure": "Fig. 3a",
+  "series_name": "CS-845-64",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0076/work/derived/HYC-0076_Fig3a_CS-845-64.png",
+    "sha256": "6140b3b96225d79ca44af78a1eeaa8e90d3b6f4c1df3b03b09d911428d7c8f0b",
+    "width_px": 1452,
+    "height_px": 1588
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 60.25999999999999,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1375.2600000000002,
+        "value": 100.0
+      },
+      "scale": "linear",
+      "label": "P (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1309.58,
+        "value": 2.0
+      },
+      "reference_2": {
+        "pixel": 270.10000000000036,
+        "value": 8.0
+      },
+      "scale": "linear",
+      "label": "H2 uptake (wt%)",
+      "decades_spanned": 0.6020599913279624
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 849.9000000000001,
+        "stated": 60.0,
+        "predicted": 60.04866920152091,
+        "relative_error": 0.0008111533586818117
+      },
+      {
+        "axis": "y",
+        "pixel": 961.46,
+        "stated": 4.0,
+        "predicted": 4.009389310039635,
+        "relative_error": 0.0023473275099088475
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#0000fd",
+    "color_rgb": [
+      0,
+      0,
+      253
+    ],
+    "tolerance": 120.0,
+    "matched_pixels_in_image": 3000,
+    "matched_pixels_in_region": 3000,
+    "region": [
+      0,
+      0,
+      1451,
+      1587
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 41.579199999999986,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      8,
+      3138
+    ],
+    "rejected_markers": [],
+    "n_points": 6,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 50.55558935361216,
+      "y": 6.0568284142071045,
+      "pixel_x": 725.066,
+      "pixel_y": 606.748,
+      "pixel_count": 500,
+      "outside_axis_range": false
+    },
+    {
+      "x": 60.87361216730037,
+      "y": 6.263551006272369,
+      "pixel_x": 860.748,
+      "pixel_y": 570.934,
+      "pixel_count": 500,
+      "outside_axis_range": false
+    },
+    {
+      "x": 70.70768060836501,
+      "y": 6.411790510639937,
+      "pixel_x": 990.066,
+      "pixel_y": 545.252,
+      "pixel_count": 500,
+      "outside_axis_range": false
+    },
+    {
+      "x": 80.9738403041825,
+      "y": 6.533004964020474,
+      "pixel_x": 1125.066,
+      "pixel_y": 524.252,
+      "pixel_count": 500,
+      "outside_axis_range": false
+    },
+    {
+      "x": 90.86235741444865,
+      "y": 6.592757917420251,
+      "pixel_x": 1255.1,
+      "pixel_y": 513.9,
+      "pixel_count": 500,
+      "outside_axis_range": false
+    },
+    {
+      "x": 101.11589353612165,
+      "y": 6.683080001539233,
+      "pixel_x": 1389.934,
+      "pixel_y": 498.252,
+      "pixel_count": 500,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [
+    {
+      "at": 100.0,
+      "expected": 6.68,
+      "got": 6.673250238553918,
+      "difference": -0.006749761446081415,
+      "percent": 0.10104433302517088,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-10-29T22:51:16+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 3a, digitized (CS-845-64)",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 100.0."
+  }
+}

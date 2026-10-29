@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T22:47:51+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0076",
+  "figure": "Fig. S8b (SI p.8)",
+  "series_name": "CS-855-75 predicted, -123 C, highest-pressure point",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0076/work/iso/figS8b_CS-855-75.png",
+    "sha256": "9132225a8e1735d1d8c004d54722008e6093a770e2330b3635306eacdba958f0",
+    "width_px": 1241,
+    "height_px": 1754
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 795.47,
+        "value": 50.0
+      },
+      "reference_2": {
+        "pixel": 1034.39,
+        "value": 150.0
+      },
+      "scale": "linear",
+      "label": "P (bar)",
+      "decades_spanned": 0.47712125471966244
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1184.14,
+        "value": 1.0
+      },
+      "reference_2": {
+        "pixel": 851.09,
+        "value": 5.0
+      },
+      "scale": "linear",
+      "label": "H2 uptake (wt%)",
+      "decades_spanned": 0.6989700043360189
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 915.51,
+        "stated": 100.0,
+        "predicted": 100.24275908253806,
+        "relative_error": 0.0024275908253805767
+      },
+      {
+        "axis": "y",
+        "pixel": 1017.57,
+        "stated": 3.0,
+        "predicted": 3.000540459390482,
+        "relative_error": 0.00018015313016069476
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff00ff",
+    "color_rgb": [
+      255,
+      0,
+      255
+    ],
+    "tolerance": 30.0,
+    "matched_pixels_in_image": 149,
+    "matched_pixels_in_region": 149,
+    "region": [
+      681,
+      825,
+      1044,
+      1220
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 13.322000000000003,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      20,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 116.35275405993634,
+      "y": 4.917009458039334,
+      "pixel_x": 954.0,
+      "pixel_y": 858.0,
+      "pixel_count": 149,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. S8b (SI p.8), digitized (CS-855-75 predicted, -123 C, highest-pressure point)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0076_figS8b_CS-855-75.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

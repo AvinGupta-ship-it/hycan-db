@@ -1,0 +1,31 @@
+{
+  "screener": "A",
+  "batch": "HYC-0089",
+  "transcript": "agent-a9628703b7b643d08.jsonl",
+  "launcher_exact": true,
+  "prompt_sha256_ok": true,
+  "models": [
+    "claude-sonnet-5-5"
+  ],
+  "model_ok": true,
+  "flags": [
+    {
+      "call": 80,
+      "tool": "Bash",
+      "reason": "command opens the tools directory: /home/claude/work/v1_tools_frozen",
+      "detail": "cd /home/claude/work/runs/extract/A/HYC-0089/work && cat > run_tool.py <<'EOF'\nimport subprocess, sys, json, os\nS=4\ndef n(px): return S*px + (S-1)/2\nCAL = {\n 'F1': dict(x1=(232.51,0.0), x2=(943.48,40.0), y1=(692.79,5.0), y2=(174.65,25.0), xv=(588.58,20.0), yv=(432.88,15.0), roi=(225,150,962,718), na",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
+    }
+  ],
+  "tool_calls": 98,
+  "output_problems": [],
+  "flags_unreviewed": 0,
+  "flags_access": 0,
+  "access_ok": true,
+  "ok": true,
+  "earlier_agents": [],
+  "unfinished_agents": []
+}

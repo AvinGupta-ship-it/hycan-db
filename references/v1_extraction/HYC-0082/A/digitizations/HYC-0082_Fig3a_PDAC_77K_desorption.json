@@ -1,0 +1,164 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T22:58:16+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0082",
+  "figure": "Fig3a",
+  "series_name": "PDAC 77 K desorption (open circles, isolated)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0082/work/prep_black_rings_3a.png",
+    "sha256": "88f4fc5f76e1c8a1e12c8dd906adb50b9bc3109f5e9aa10fac935b2152769ee9",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 214.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 583.0,
+        "value": 1000.0
+      },
+      "scale": "linear",
+      "label": "Pressure (mbar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 448.46,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 155.37,
+        "value": 2.5
+      },
+      "scale": "linear",
+      "label": "Gravimetric H2 uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 397.9,
+        "stated": 500.0,
+        "predicted": 498.37398373983734,
+        "relative_error": 0.003252032520325315
+      },
+      {
+        "axis": "y",
+        "pixel": 272.89,
+        "stated": 1.5,
+        "predicted": 1.4975775359104713,
+        "relative_error": 0.0016149760596858205
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 196,
+    "matched_pixels_in_region": 196,
+    "region": [
+      220,
+      146,
+      597,
+      444
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 11.7236,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 6,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 494.8135688253435,
+      "y": 2.078430657406634,
+      "pixel_x": 396.58620689655174,
+      "pixel_y": 204.79310344827587,
+      "pixel_count": 29,
+      "outside_axis_range": false
+    },
+    {
+      "x": 543.4014946210067,
+      "y": 2.136632971359506,
+      "pixel_x": 414.5151515151515,
+      "pixel_y": 197.96969696969697,
+      "pixel_count": 33,
+      "outside_axis_range": false
+    },
+    {
+      "x": 801.2001548586916,
+      "y": 2.369116263653778,
+      "pixel_x": 509.64285714285717,
+      "pixel_y": 170.71428571428572,
+      "pixel_count": 28,
+      "outside_axis_range": false
+    },
+    {
+      "x": 850.9485094850949,
+      "y": 2.4007983895731684,
+      "pixel_x": 528.0,
+      "pixel_y": 167.0,
+      "pixel_count": 36,
+      "outside_axis_range": false
+    },
+    {
+      "x": 898.9965575331428,
+      "y": 2.4314595738049283,
+      "pixel_x": 545.7297297297297,
+      "pixel_y": 163.40540540540542,
+      "pixel_count": 37,
+      "outside_axis_range": false
+    },
+    {
+      "x": 980.6192001313954,
+      "y": 2.4700707301614875,
+      "pixel_x": 575.8484848484849,
+      "pixel_y": 158.87878787878788,
+      "pixel_count": 33,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 980.6,
+      "expected": 2.5,
+      "got": 2.4700616476415913,
+      "difference": -0.029938352358408693,
+      "percent": 1.1975340943363477,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-10-29T22:58:38+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig3a, digitized (PDAC 77 K desorption (open circles, isolated))",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 980.6."
+  }
+}

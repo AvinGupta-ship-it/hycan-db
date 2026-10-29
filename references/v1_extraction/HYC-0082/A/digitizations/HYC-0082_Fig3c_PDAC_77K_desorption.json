@@ -1,0 +1,140 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T22:56:20+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0082",
+  "figure": "Fig3c",
+  "series_name": "PDAC 77 K desorption (open circles, isolated)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0082/work/prep_black_rings_3c.png",
+    "sha256": "8331a534222004d6379775faca5e735024a047d88f0cb20437f970e5785c4e23",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 214.55,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 593.09,
+        "value": 80.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 823.78,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 518.84,
+        "value": 6.0
+      },
+      "scale": "linear",
+      "label": "Gravimetric H2 uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 403.25,
+        "stated": 40.0,
+        "predicted": 39.879537169123466,
+        "relative_error": 0.0030115707719133413
+      },
+      {
+        "axis": "y",
+        "pixel": 671.52,
+        "stated": 3.0,
+        "predicted": 2.9958680396143507,
+        "relative_error": 0.0013773201285497787
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 109,
+    "matched_pixels_in_region": 109,
+    "region": [
+      220,
+      525,
+      597,
+      780
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 12.197599999999998,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 3,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 70.89343266233422,
+      "y": 5.448050923619889,
+      "pixel_x": 550.0,
+      "pixel_y": 546.8918918918919,
+      "pixel_count": 37,
+      "outside_axis_range": false
+    },
+    {
+      "x": 75.2317383162208,
+      "y": 5.464506678909514,
+      "pixel_x": 570.5277777777778,
+      "pixel_y": 546.0555555555555,
+      "pixel_count": 36,
+      "outside_axis_range": false
+    },
+    {
+      "x": 79.63461956170784,
+      "y": 5.423515008416956,
+      "pixel_x": 591.3611111111111,
+      "pixel_y": 548.1388888888889,
+      "pixel_count": 36,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 79.6,
+      "expected": 5.39,
+      "got": 5.423837323189261,
+      "difference": 0.03383732318926125,
+      "percent": 0.6277796510067022,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-10-29T22:58:38+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig3c, digitized (PDAC 77 K desorption (open circles, isolated))",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 79.6."
+  }
+}

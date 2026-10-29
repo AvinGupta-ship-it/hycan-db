@@ -1,0 +1,124 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T22:45:02+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0076",
+  "figure": "Fig. S9 (SI p.9)",
+  "series_name": "CS-885-82 predicted (linear extrapolation), -123 C",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0076/work/iso/figS9_extrapolation.png",
+    "sha256": "96dd027b2353d9ced90969aa0297ac54a3c35f15aa42ada993020304d0df616c",
+    "width_px": 1241,
+    "height_px": 1754
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 310.68,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1018.97,
+        "value": 40.0
+      },
+      "scale": "linear",
+      "label": "P (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 639.29,
+        "value": 0.5
+      },
+      "reference_2": {
+        "pixel": 246.32,
+        "value": 2.5
+      },
+      "scale": "linear",
+      "label": "H2 uptake (wt%)",
+      "decades_spanned": 0.6989700043360189
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 664.84,
+        "stated": 20.0,
+        "predicted": 20.00084711064677,
+        "relative_error": 4.2355532338511634e-05
+      },
+      {
+        "axis": "y",
+        "pixel": 442.08,
+        "stated": 1.5,
+        "predicted": 1.5036898490978954,
+        "relative_error": 0.002459899398596921
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff00ff",
+    "color_rgb": [
+      255,
+      0,
+      255
+    ],
+    "tolerance": 30.0,
+    "matched_pixels_in_image": 95,
+    "matched_pixels_in_region": 95,
+    "region": [
+      280,
+      162,
+      1047,
+      735
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 15.7188,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      20,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 5.028211013775951,
+      "y": 0.18871602626690376,
+      "pixel_x": 399.7157894736842,
+      "pixel_y": 700.4526315789474,
+      "pixel_count": 95,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [
+    {
+      "at": 5.028211013775951,
+      "expected": 0.18,
+      "got": 0.18871602626690376,
+      "difference": 0.008716026266903765,
+      "percent": 4.842236814946536,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-10-29T22:45:24+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. S9 (SI p.9), digitized (CS-885-82 predicted (linear extrapolation), -123 C)",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 5.028211013775951."
+  }
+}
