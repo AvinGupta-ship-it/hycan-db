@@ -1,0 +1,132 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T22:36:26+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0073",
+  "figure": "Fig. 3",
+  "series_name": "Zr-CDC_set3",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0073/work/series_img/Zr-CDC_set3.png",
+    "sha256": "a3dbb92847e565833a8ada8862c916d92518e2d03a03c7e1be39a124eb6c8bf1",
+    "width_px": 1241,
+    "height_px": 1625
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 227.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 500.5,
+        "value": 20.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 382.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 130.0,
+        "value": 6.0
+      },
+      "scale": "linear",
+      "label": "H2 uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 364.0,
+        "stated": 10.0,
+        "predicted": 10.0,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 255.5,
+        "stated": 3.0,
+        "predicted": 3.011904761904762,
+        "relative_error": 0.003968253968253954
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 53,
+    "matched_pixels_in_region": 53,
+    "region": [
+      229,
+      116,
+      503,
+      380
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 10.08,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 2-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 2,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 3.47985347985348,
+      "y": 2.6547619047619047,
+      "pixel_x": 275.0,
+      "pixel_y": 270.5,
+      "pixel_count": 26,
+      "outside_axis_range": false
+    },
+    {
+      "x": 19.963369963369964,
+      "y": 3.8928571428571432,
+      "pixel_x": 500.0,
+      "pixel_y": 218.5,
+      "pixel_count": 26,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 19.96,
+      "expected": 3.8,
+      "got": 3.8926040211640216,
+      "difference": 0.09260402116402178,
+      "percent": 2.4369479253689943,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-10-29T22:36:41+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 3, digitized (Zr-CDC_set3)",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 19.96."
+  }
+}

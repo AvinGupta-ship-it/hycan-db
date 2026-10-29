@@ -74,15 +74,27 @@ another agent's output for the same paper, a v0.1 row, a pilot output or the
 repository. An agent that went outside the launcher's list without reaching
 any of those keeps its output, and the breach is recorded in its review:
 
-- extractor A, HYC-0068: listed the tools directory's `scripts/` folder (self-
-  reported);
-- extractor B, HYC-0068: its helper ran the digitizer from the tools directory
-  with a relative output path, so trial digitizations of the paper's own
-  figure were written to `v1_tools_frozen/dz/`, which it then deleted; it also
-  listed a system font folder (self-reported). No other agent opened that
-  folder, and the tools directory matched its MANIFEST afterwards. The tools
-  check above was added after this, because the audit sees a write made
-  through a script's output argument only when the agent reports it.
+- listing the tools directory's `scripts/` folder, which holds only the two
+  scripts: extractor A on HYC-0068 and on HYC-0076 (both self-reported);
+- writing trial digitizations of the agent's own paper into the tools
+  directory, because a helper ran the digitizer from there with a relative
+  output path, and then deleting or moving them: extractor B on HYC-0068
+  (`dz/`), extractor A on HYC-0072 (one file), extractor A on HYC-0075
+  (`test/`), extractor B on HYC-0074 (`dig/`), and extractor A on HYC-0048 and
+  extractor B on HYC-0075, which used the same folder name (`trial/`) at the
+  same time. Each agent read back and deleted only files it had named itself,
+  no file names overlapped, and across every transcript no other agent opened
+  any of those folders, so no paper's rows contain another's digitizations;
+- writing scratch files to system folders (`/dev/null.png`, extractor B on
+  HYC-0048) and listing a system font folder (extractor B on HYC-0068).
+
+All of these were reported by the agents themselves after their reply. The
+tools check above was added after the first, because the access audit sees a
+write made through a script's output argument only when the agent reports
+it. At 22:27 UTC on 29 Oct 2026 the tools directory was made immutable
+(`chattr +i`), so that a relative output path now fails at once instead of
+writing there; its files and MANIFEST are unchanged, and both scripts run as
+before.
 
 ## Schema limits met in extraction
 

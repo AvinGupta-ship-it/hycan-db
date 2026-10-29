@@ -1,0 +1,31 @@
+{
+  "screener": "B",
+  "batch": "HYC-0073",
+  "transcript": "agent-a431ba1069d330d6d.jsonl",
+  "launcher_exact": true,
+  "prompt_sha256_ok": true,
+  "models": [
+    "claude-opus-5-5"
+  ],
+  "model_ok": true,
+  "flags": [
+    {
+      "call": 64,
+      "tool": "Bash",
+      "reason": "command names a path outside the allowed paths: /tmp/claude-0/-home-claude/663fb236-481a-5f2f-b02f-82bfd72801cf/tasks/bsfrnpdi9.output",
+      "detail": "sleep 20; cat /tmp/claude-0/-home-claude/663fb236-481a-5f2f-b02f-82bfd72801cf/tasks/bsfrnpdi9.output",
+      "review": {
+        "access": false,
+        "note": "The command reads /tmp/claude-0/.../tasks/bsfrnpdi9.output, the file in which the agent's own tool environment saved the output of its own earlier command (call 63, moved to the background after 120 s; the harness gave the agent that path). The launcher allows such files."
+      }
+    }
+  ],
+  "tool_calls": 83,
+  "output_problems": [],
+  "flags_unreviewed": 0,
+  "flags_access": 0,
+  "access_ok": true,
+  "ok": true,
+  "earlier_agents": [],
+  "unfinished_agents": []
+}
