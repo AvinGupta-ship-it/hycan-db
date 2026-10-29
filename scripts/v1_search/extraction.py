@@ -32,6 +32,7 @@ Run layout (under --run, default /home/claude/work/runs/extract):
     launch/<R>_<paper_id>.txt         the filled launcher
 
     python3 scripts/v1_search/extraction.py plan
+    python3 scripts/v1_search/extraction.py status --transcripts DIR
     python3 scripts/v1_search/extraction.py prepare HYC-0066 [...]
     python3 scripts/v1_search/extraction.py assemble HYC-0066 [...]
     python3 scripts/v1_search/extraction.py check HYC-0066 [...]
@@ -326,17 +327,66 @@ def cmd_collect(args) -> int:
     return 0
 
 
+def agent_states(transcripts: Path) -> dict[tuple[str, str], str]:
+    """(role, paper_id) -> 'running' or 'finished', from the agents' metadata
+    (the description each agent is started with: 'Extraction <R> <paper_id>')."""
+    out: dict[tuple[str, str], str] = {}
+    for meta_path in sorted(transcripts.glob("*.meta.json")):
+        meta = json.loads(meta_path.read_text())
+        m = re.match(r"^Extraction (A|B|C|L) (HYC-\d{4})$", meta.get("description", ""))
+        if m:
+            key = (m.group(1), m.group(2))
+            state = "finished" if meta.get("finished") else "running"
+            if out.get(key) != "finished":
+                out[key] = state
+    return out
+
+
+def cmd_status(args) -> int:
+    """Each paper's place in the run, and what can be started next."""
+    run = Path(args.run)
+    states = agent_states(Path(args.transcripts))
+    papers = [r for r in read(PAPERS) if r["mode"] != "none"]
+    running = sum(1 for v in states.values() if v == "running")
+    todo = {"prepare": [], "launch_first": [], "assemble": [], "launch_C": [], "collect": []}
+    done = 0
+    for p in papers:
+        pid = p["paper_id"]
+        first = ("L", "B") if p["mode"] == "legacy" else ("A", "B")
+        if (OUT / pid).exists():
+            done += 1
+            continue
+        if not (run / "launch" / f"B_{pid}.txt").exists():
+            todo["prepare"].append(pid)
+        elif any((r, pid) not in states for r in first):
+            todo["launch_first"].append(pid + ":" + "".join(r for r in first if (r, pid) not in states))
+        elif all(states[(r, pid)] == "finished" for r in first):
+            if not (run / "launch" / f"C_{pid}.txt").exists():
+                todo["assemble"].append(pid)
+            elif ("C", pid) not in states:
+                todo["launch_C"].append(pid)
+            elif states[("C", pid)] == "finished":
+                todo["collect"].append(pid)
+    print(f"papers {len(papers)}: collected {done}; agents running {running}")
+    for k, v in todo.items():
+        print(f"{k} ({len(v)}): {' '.join(v[:40])}{' ...' if len(v) > 40 else ''}")
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     sub = ap.add_subparsers(dest="cmd", required=True)
     sub.add_parser("plan")
+    st = sub.add_parser("status")
+    st.add_argument("--run", default=str(RUN))
+    st.add_argument("--transcripts", required=True)
     for name in ("prepare", "assemble", "check", "collect"):
         s = sub.add_parser(name)
         s.add_argument("paper_id", nargs="+")
         s.add_argument("--run", default=str(RUN))
     args = ap.parse_args(argv)
     try:
-        return {"plan": cmd_plan, "prepare": cmd_prepare, "assemble": cmd_assemble,
+        return {"plan": cmd_plan, "status": cmd_status, "prepare": cmd_prepare, "assemble": cmd_assemble,
                 "check": cmd_check, "collect": cmd_collect}[args.cmd](args)
     except ExtractionError as exc:
         print(f"REFUSED: {exc}", file=sys.stderr)
