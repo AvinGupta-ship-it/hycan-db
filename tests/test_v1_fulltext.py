@@ -151,3 +151,26 @@ def test_collect_writes_the_outcome_and_keeps_the_assessments(tmp_path, monkeypa
     assert kept.joinpath("a.json").read_bytes() == a.read_bytes()
     with pytest.raises(ft.WalkError, match="already has an outcome"):
         ft.cmd_collect(args)
+
+
+def test_retrieval_comparison_tables():
+    rc_spec = importlib.util.spec_from_file_location(
+        "retrieval_comparison", REPO_ROOT / "scripts" / "v1_search" / "retrieval_comparison.py")
+    rc = importlib.util.module_from_spec(rc_spec)
+    rc_spec.loader.exec_module(rc)
+    recs = [{"frame_id": f"F{i}", "stratum": "S1" if i < 4 else "S2", "retrieved": i % 2 == 0,
+             "route": "oa" if i % 2 == 0 else "", "year": 2010 + i,
+             "publisher": "Big" if i < 6 else f"Small{i}", "oa_status": "closed"} for i in range(8)]
+    c = rc.compare(recs)
+    assert c["n"] == {"retrieved": 4, "not_retrieved": 4}
+    assert c["retrieved_by_route"] == {"oa": 4}
+    assert c["stratum"] == [
+        {"category": "S1", "retrieved": 2, "not_retrieved": 2, "retrieved_share": 0.5,
+         "not_retrieved_share": 0.5, "retrieved_fraction": 0.5},
+        {"category": "S2", "retrieved": 2, "not_retrieved": 2, "retrieved_share": 0.5,
+         "not_retrieved_share": 0.5, "retrieved_fraction": 0.5}]
+    assert c["publishers_pooled_as_other"] == ["Small6", "Small7"]
+    assert {r["category"]: r["retrieved"] + r["not_retrieved"] for r in c["publisher"]} == {
+        "Big": 6, "other": 2}
+    assert c["year"]["retrieved"]["median"] == 2013
+    assert [r["category"] for r in c["period"]] == ["<= 2015", ">= 2016"]
