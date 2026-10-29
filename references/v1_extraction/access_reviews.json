@@ -242,6 +242,15 @@
       "reason": "search outside the allowed paths",
       "access": false,
       "note": "A Grep search for 'digitization_uncertainty' in the agent's own instruction file (/home/claude/work/runs/extract/prompts/extract_A.md), which the launcher allows it to read."
+    },
+    {
+      "screener": "C",
+      "batch": "HYC-0066",
+      "transcript": "agent-a1b6e7e60c086d240.jsonl",
+      "call": 18,
+      "reason": "command in the tools directory does more than run its two scripts: which pdftoppm pdfimages mutool",
+      "access": false,
+      "note": "In the tools directory the command runs 'python3 scripts/digitize_figure.py --help' (an allowed script), 'which pdftoppm pdfimages mutool' (looks the programs up on PATH; opens no file in the tools directory), checks whether the fitz library imports (the tools directory holds no module of that name: its MANIFEST lists only scripts/ and src/hycan/), and prints the size of the agent's own page image (in/pages/main-5.png). Nothing in the tools directory is opened, listed or searched."
     }
   ]
 }
