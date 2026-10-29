@@ -51,11 +51,22 @@ files by `scripts/v1_search/fulltext.py status`.
 - **Order.** Route 1 is tried first when the plan has one. Route 2 is tried only
   when route 1 did not obtain the main text. Supplementary files are taken from
   the route that obtained the main text.
-- **Retrieval ahead of the walk.** Records were retrieved in batches ahead of
-  the assessments, in draw order. The S1 walk reached its target of 60 eligible
-  papers at position 108 (F02540); the five S1 records after it that had
-  already been tried (positions 109 to 113: F02862, F10642, F09358, F07990,
-  F03705) keep their log rows but were not assessed and are not in the sample.
+- **Retrieval and assessment ahead of the walk.** Records were retrieved, and
+  then assessed, in batches ahead of the walk, in draw order, with the
+  assessments of a batch run in parallel. The S1 walk reached its target of 60
+  eligible papers at position 106 (F09134). The two S1 records after it that
+  had already been assessed (positions 107 and 108: F05603 and F02540, both
+  eligible) keep their rows in `eligibility.csv`, and the five after those that
+  had already been tried (positions 109 to 113: F02862, F10642, F09358, F07990,
+  F03705) keep their log rows and were not assessed. None of these seven
+  records is in the sample: §7 gives a record past the stop no route into the
+  dataset, so they are not extracted and enter no analysis. `fulltext.py
+  status` computes the stop from the files, so their rows do not move it. (The
+  first version of this note, in commit 5c3d297, gave the S1 stop as position
+  108, F02540; that was a misreading of the walk, corrected here.) The S2 walk
+  stopped at its cap of 80 assessments at position 127 (F08543), with 20
+  eligible papers against its target of 40; no S2 record after position 127
+  was tried.
 - **Supplementary information.** Document files (PDF, Word, Excel, text) are
   retrieved; files in another document format are converted to PDF for the
   assessors with `soffice` (`fulltext.py stage`), and a supplementary zip is
@@ -129,3 +140,15 @@ disagree, a resolver (claude-opus-5-5, `eligibility_resolve.md`) decides with
 both assessments in view. Every agent is checked by `fulltext_runs.py`; an agent
 whose check fails is rerun only for a technical failure (§9). The author reviews
 every full-text exclusion (§6).
+
+- **Outcome.** S1: 106 records taken, 74 assessed, 60 eligible (target
+  reached), 32 not retrieved. S2: 127 taken, 80 assessed (cap), 20 eligible,
+  47 not retrieved. The two assessors agreed on 152 of the 154 assessed
+  records; the resolver decided F09324 and F02466, where they agreed that the
+  record is ineligible but gave different codes.
+- **Frame duplicates (§7).** `fulltext.py status` lists every pair of planned
+  records with the same main-text SHA-256, or the same normalized title with
+  years at most one apart. None of these pairs has both records among the 233
+  records taken, and no two taken records share a DOI or have titles more than
+  80% alike (difflib ratio on lower-cased alphanumeric titles), so no taken
+  record is a `frame_duplicate` and no `frame_duplicates.csv` is written.

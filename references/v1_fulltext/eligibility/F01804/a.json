@@ -1,0 +1,35 @@
+{
+  "frame_id": "F01804",
+  "eligible": false,
+  "exclusion_code": "no_conditions_stated",
+  "exclusion_quote": "",
+  "exclusion_location": "",
+  "criteria": {
+    "I1": {
+      "met": true,
+      "quote": "The hydrogen capacity of the material was tested through running TGA on non-hydrogen charged Ca/graphene and charged graphene. ... The calculated hydrogen uptake was up to 4.98 wt%",
+      "location": "main, p. 5 (journal p. 342), Section 3.1.6 Thermogravimetric analysis"
+    },
+    "I2": {
+      "met": true,
+      "quote": "Table 2 Elemental comp. of Ca decorated graphene samples reduced with Asc Acid & NH3. Ca-NH3rGO ... Carbon 75.426 ... Ca-AscrGO ... Carbon 81.589",
+      "location": "main, p. 5 (journal p. 342), Table 2"
+    },
+    "I3": {
+      "met": false,
+      "quote": "Searched for a numeric temperature for the TGA uptake values (4.98, 3.99 wt%). Only verbal: '10 bars and ambient temperature' (p. 5, Section 3.1.6) and '10 bars & ST temperature' (p. 7, Fig. 8). No number found.",
+      "location": ""
+    },
+    "I4": {
+      "met": false,
+      "quote": "Searched text and page images for a BET, Langmuir or other specific surface area value (m2/g) or N2 sorption measurement; none found. Only 'high surface area [4-7]' (Introduction), about graphene in general.",
+      "location": ""
+    },
+    "I5": {
+      "met": true,
+      "quote": "Light-weight materials such as graphene have attracted a great interest for hydrogen storage applications.",
+      "location": "main, p. 1 (journal p. 338), Abstract"
+    }
+  },
+  "notes": "I1: uptake is a TGA weight-loss difference between H2-charged (Parr reactor, 10 bar, ambient temperature, 30 min) and uncharged Ca/graphene, heated to 500 C under N2 (a temperature-cycle gravimetric value); the TPD-MS gives no quantitative uptake, and the 2 wt% at 50 bar/77 K for graphene is cited from refs [23,25], not measured. I2: XRF carbon 75.4% and 81.6% (basis unstated; carbon is the majority by mass even if these are atomic %); metal-decorated carbon. I3 judged not met because the only temperature is verbal ('ambient', 'ST temperature' in Fig. 8); the data dictionary treats a condition stated only in words ('room temperature') as unstated and not imputed, and section 3 makes an exception only for 'liquid nitrogen'. Pressure (10 bar) is stated. If 'ambient temperature' were accepted as stated, I3 would be met and the code would be no_surface_area, since I4 fails independently (no surface area for any sample). No not_primary, retracted or duplicate_data indication."
+}

@@ -1,0 +1,35 @@
+{
+  "frame_id": "F01804",
+  "eligible": false,
+  "exclusion_code": "no_conditions_stated",
+  "exclusion_quote": "",
+  "exclusion_location": "",
+  "criteria": {
+    "I1": {
+      "met": true,
+      "quote": "The Ca/graphene reduced with ammonia had a total weight loss of 50.97 wt% while the non-charged material lost about 45.99%. The calculated hydrogen uptake was up to 4.98 wt%",
+      "location": "main, PDF p. 5 (journal p. 342), Section 3.1.6 Thermogravimetric analysis; H2 charging described in the same section ('The samples were charged in a 4540 Parr reactor at 10 bars and ambient temperature for 30 min')"
+    },
+    "I2": {
+      "met": true,
+      "quote": "Elemental comp. of Ca decorated graphene samples reduced with Asc Acid & NH3. Ca-NH3rGO ... Carbon 75.426 ... Ca-AscrGO ... Carbon 81.589",
+      "location": "main, PDF p. 5 (journal p. 342), Table 2"
+    },
+    "I3": {
+      "met": false,
+      "quote": "Searched for a numeric temperature of the H2 charging (the only uptake condition) in the text, Fig. 7, Fig. 8 and captions. Found only 'charged in a 4540 Parr reactor at 10 bars and ambient temperature for 30 min' (pressure 10 bar numeric; temperature in words only) and Fig. 8 '10 bars & ST temperature' (undefined). Fig. 7 temperature axis is the TGA ramp to 500 C, not the uptake temperature.",
+      "location": ""
+    },
+    "I4": {
+      "met": false,
+      "quote": "Searched for a specific surface area (BET, Langmuir, m2/g, N2 or Ar physisorption, supplier value) for any measured sample in the text, Tables 1-3 and captions. Found none; the only mention is generic ('graphene has ... high surface area [4-7]', Introduction) and Tables 1-3 give only XRF elemental composition.",
+      "location": ""
+    },
+    "I5": {
+      "met": true,
+      "quote": "Light-weight materials such as graphene have attracted a great interest for hydrogen storage applications.",
+      "location": "main, PDF p. 1 (journal p. 338), Abstract, first sentence"
+    }
+  },
+  "notes": "The paper is a primary article, not retracted (record is_retracted false; no retraction statement in the PDF), and does not state that its uptake values were published before. I1 is judged met because the paper reports its own TGA (gravimetric) uptake value for samples charged with H2 gas at 10 bar (4.98 wt% Ca/NH3-rGO; 3.99 wt% Ca/Asc-rGO), taken as the difference in weight loss between charged and uncharged samples on heating to 500 C under nitrogen. This is a weight difference across a temperature cycle, not an isothermal uptake (measurement_mode temperature_cycle, reference temperature 500 C if extracted). The TPD-MS (Fig. 9) gives no uptake value; the '2 wt% at 50 bars and 77 K' is quoted from other work [23,25]. I2 met: Ca-decorated rGO with XRF carbon 75-82 wt%. The decisive point is I3: pressure is 10 bar but temperature is given only as 'ambient temperature' (words); under the data dictionary a condition stated only in words is not a number and is not imputed (temperature_unstated), so I3 is judged not met and the first applicable code is no_conditions_stated. I4 is also not met (no surface area for any sample), so the paper is ineligible under either reading of I3; if a resolver accepts 'ambient temperature' as a stated temperature, I3 would be met and the code would be no_surface_area."
+}
