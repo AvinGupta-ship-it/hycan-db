@@ -62,7 +62,11 @@ TOOL_SCRIPTS = ("scripts/digitize_figure.py", "scripts/validate_row_detail.py")
 FILE_TOOLS_READ = ("Read",)
 FILE_TOOLS_WRITE = ("Write", "Edit", "NotebookEdit")
 SEARCH_TOOLS = ("Glob", "Grep")
-HARMLESS_TOOLS = ("TodoWrite", "TaskCreate", "TaskUpdate", "TaskList", "TaskGet")
+# Tools that touch no file: the task list, and SubagentHandback, by which a
+# background agent returns its reply to the orchestrator (its only input is
+# the reply text).
+HARMLESS_TOOLS = ("TodoWrite", "TaskCreate", "TaskUpdate", "TaskList", "TaskGet",
+                  "SubagentHandback")
 
 # An absolute path: preceded by the start or a shell or code delimiter (so that
 # `x/w.sum()` in inline Python is not read as a path), then one or more

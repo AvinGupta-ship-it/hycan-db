@@ -178,3 +178,10 @@ def test_single_component_text_is_not_a_path_but_a_root_directory_is(tmp_path):
     assert run(tmp_path, [("Bash", {"command": text})]) == []
     for bad in ("ls /tmp", "cat /home/claude/x", "ls /root"):
         assert run(tmp_path, [("Bash", {"command": bad})]), bad
+
+
+def test_subagent_handback_is_harmless(tmp_path):
+    t = tmp_path / "t.jsonl"
+    t.write_text(json.dumps({"type": "assistant", "message": {"model": "m", "content": [
+        {"type": "tool_use", "name": "SubagentHandback", "input": {"message": "eligible"}}]}}) + "\n")
+    assert aa.audit(t, "/run/prompt.md", ["/run/A/x/in", "/run/A/x/out", "/run/A/x/work"], "/tools", []) == []

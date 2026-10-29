@@ -370,6 +370,46 @@ def cmd_log(args) -> int:
     return 0
 
 
+PDF_STORE = Path("/home/claude/work/fulltext")
+
+
+def title_match(pdf: Path, title: str) -> float:
+    """Share of the record's title words (4+ letters) found in the PDF's first
+    two pages: a check that the saved file is the record's paper."""
+    import re
+    out = subprocess.run(["pdftotext", "-l", "2", str(pdf), "-"], capture_output=True,
+                         text=True).stdout.lower()
+    words = [w for w in re.findall(r"[a-z]{4,}", title.lower())]
+    return sum(w in out for w in words) / len(words) if words else 0.0
+
+
+def cmd_stage(args) -> int:
+    """Copy each downloaded file whose SHA-256 matches its obtained row in the
+    retrieval log into the PDF store, and check the main file's title."""
+    import hashlib
+    plan = {r["frame_id"]: r for r in read(PLAN)}
+    got = {(r["frame_id"], r["file"]): r for r in read(LOG) if r["outcome"] == "obtained"}
+    src = Path(args.src)
+    for (fid, file), row in sorted(got.items()):
+        dest = PDF_STORE / fid / file
+        f = src / f"hycan_ft_{fid}_{file}"
+        if dest.exists():
+            continue
+        if not f.exists():
+            print(f"{fid} {file}: not in {src}")
+            continue
+        sha = hashlib.sha256(f.read_bytes()).hexdigest()
+        if sha != row["sha256"]:
+            raise WalkError(f"{fid} {file}: SHA-256 {sha} differs from the log")
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy(f, dest)
+        note = ""
+        if file == "main.pdf":
+            note = f"title match {title_match(dest, plan[fid]['title']):.2f}"
+        print(f"{fid} {file}: stored {note}")
+    return 0
+
+
 def cmd_prepare(args) -> int:
     pdfs = _pdfs(Path(args.pdfs))
     dirs = [Path(args.out_a), Path(args.out_b)]
@@ -430,12 +470,14 @@ def main(argv: list[str] | None = None) -> int:
     lg.add_argument("--outcome", required=True, choices=list(OUTCOMES))
     lg.add_argument("--sha256"); lg.add_argument("--bytes", type=int)
     lg.add_argument("--at-utc", required=True); lg.add_argument("--note")
+    st = sub.add_parser("stage")
+    st.add_argument("--src", required=True)
     c = sub.add_parser("collect")
     c.add_argument("frame_id"); c.add_argument("--a", required=True)
     c.add_argument("--b", required=True); c.add_argument("--resolver")
     args = ap.parse_args(argv)
     try:
-        return {"plan": cmd_plan, "status": cmd_status, "log": cmd_log, "prepare": cmd_prepare,
+        return {"plan": cmd_plan, "status": cmd_status, "log": cmd_log, "stage": cmd_stage, "prepare": cmd_prepare,
                 "resolver": cmd_resolver, "collect": cmd_collect}[args.cmd](args)
     except WalkError as exc:
         print(f"REFUSED: {exc}", file=sys.stderr)
