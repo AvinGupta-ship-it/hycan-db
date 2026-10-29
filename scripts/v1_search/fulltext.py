@@ -1,9 +1,11 @@
 """Full-text retrieval, eligibility and the sampling walk (docs/v1_protocol.md
 §4, §6, §7, §8).
 
-  plan     write references/v1_fulltext/retrieval_plan.csv: in draw order, up
-           to the assessment cap of each stratum (110 in S1, 80 in S2), every
-           record with its two retrieval routes (§8):
+  plan     write references/v1_fulltext/retrieval_plan.csv: every frame
+           record in draw order within its stratum (the walk may take more
+           records than its assessment cap, since records not retrieved and
+           frame duplicates are not assessments), with its two retrieval
+           routes (§8):
              route 1  an open-access PDF at the record's OpenAlex
                       best_oa_location (pdf_url, else landing_page_url) or
                       open_access.oa_url, read from the archived search
@@ -15,6 +17,11 @@
            eligible, not retrieved and frame duplicates, whether the walk has
            stopped and why, and the next records to retrieve or assess.
            Writes references/v1_fulltext/walk.json.
+  log      append one row to the retrieval log
+  stage    copy each downloaded file whose SHA-256 matches its log row into
+           the PDF store; a supplementary file in another document format
+           is converted to PDF (soffice), and a supplementary zip is unpacked
+           to the one document it holds first
   prepare  build the two assessors' inputs for one retrieved record, each
            under a parent of its own (Amendment 1, item 26): record.json,
            text/ (pdftotext -layout) and pages/ (PNG), from the record's PDFs
@@ -22,8 +29,9 @@
   resolver build the resolver's input: the assessors' input plus
            assessments/a.json and b.json
   collect  check the assessments of one record, decide its outcome (the
-           assessors' common decision, else the resolver's) and write it to
-           references/v1_fulltext/eligibility.csv
+           assessors' common decision, else the resolver's), write it to
+           references/v1_fulltext/eligibility.csv and keep the assessments in
+           references/v1_fulltext/eligibility/<frame_id>/ (a, b, resolver)
 
 The retrieval log (references/v1_fulltext/retrieval_log.csv) has one row per
 route tried for each file: frame_id, file (main.pdf, si1.pdf, ...), route
@@ -42,6 +50,9 @@ frame_duplicate together).
 
     python3 scripts/v1_search/fulltext.py plan
     python3 scripts/v1_search/fulltext.py status
+    python3 scripts/v1_search/fulltext.py log FRAME_ID --file FILE --route oa|library
+        --url URL --outcome OUTCOME --at-utc TIME [--sha256 HEX --bytes N] [--note TEXT]
+    python3 scripts/v1_search/fulltext.py stage --src DIR
     python3 scripts/v1_search/fulltext.py prepare FRAME_ID --pdfs DIR
         --out-a DIR --out-b DIR
     python3 scripts/v1_search/fulltext.py resolver FRAME_ID --input DIR
@@ -126,7 +137,7 @@ def plan_rows() -> list[dict[str, str]]:
     order = build_frame.read_csv(SEARCH / "draw_order.csv")
     rows = []
     for st in ("S1", "S2"):
-        for d in [r for r in order if r["stratum"] == st][: CAP[st]]:
+        for d in [r for r in order if r["stratum"] == st]:
             m = merged[d["frame_id"]]
             oa_id = (m["openalex_id"] or "").rsplit("/", 1)[-1]
             url, field = route1(locs.get(oa_id) if oa_id else None)
@@ -224,7 +235,7 @@ def walk(plan: list[dict], log: list[dict], elig: list[dict], dups: list[dict]) 
             if fid in obtained or fid in dup or not (needed - tried.get(fid, set())):
                 continue
             ahead.append(fid)
-        s["retrieve_ahead"] = ahead
+        s["retrieve_ahead"] = ahead[:30]
     return report
 
 
@@ -383,6 +394,30 @@ def title_match(pdf: Path, title: str) -> float:
     return sum(w in out for w in words) / len(words) if words else 0.0
 
 
+DOCUMENT_SUFFIXES = {".pdf", ".doc", ".docx", ".rtf", ".odt", ".txt", ".xls", ".xlsx", ".csv"}
+UNZIP_LIMIT = 200 * 2**20
+
+
+def unzip_document(archive: Path) -> Path:
+    """Write the single document member of a supplementary zip next to it,
+    named after the archive (si1.zip -> si1.<ext>); no path from inside the
+    archive is used."""
+    import zipfile
+    with zipfile.ZipFile(archive) as z:
+        docs = [i for i in z.infolist() if not i.is_dir()
+                and Path(i.filename).suffix.lower() in DOCUMENT_SUFFIXES
+                and not Path(i.filename).name.startswith(".")
+                and not i.filename.startswith("__MACOSX/")]
+        if len(docs) != 1:
+            raise WalkError(f"{archive} holds {len(docs)} documents: "
+                            + ", ".join(i.filename for i in docs))
+        if docs[0].file_size > UNZIP_LIMIT:
+            raise WalkError(f"{archive}: {docs[0].filename} is {docs[0].file_size} bytes")
+        out = archive.with_suffix(Path(docs[0].filename).suffix.lower())
+        out.write_bytes(z.read(docs[0]))
+    return out
+
+
 def cmd_stage(args) -> int:
     """Copy each downloaded file whose SHA-256 matches its obtained row in the
     retrieval log into the PDF store, and check the main file's title."""
@@ -404,13 +439,20 @@ def cmd_stage(args) -> int:
         dest.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy(f, dest)
         note = ""
+        if dest.suffix.lower() == ".zip":
+            # A supplementary archive is unpacked to the one document it holds
+            # (si1.zip -> si1.pdf, or si1.docx then converted below); members
+            # that are not documents (videos, images) are not used, as for
+            # non-document supplementary files on article pages.
+            dest = unzip_document(dest)
+            note = f"unpacked {dest.name}; "
         if dest.suffix.lower() != ".pdf":
             # A supplementary file in another document format (Word, Excel,
             # text) is converted to PDF for the assessors; the original and
             # its SHA-256 stay in the store and the log.
             subprocess.run(["soffice", "--headless", "--convert-to", "pdf", "--outdir",
                             str(dest.parent), str(dest)], check=True, capture_output=True)
-            note = f"converted to {dest.stem}.pdf"
+            note += f"converted to {dest.stem}.pdf"
         if file == "main.pdf":
             note = f"title match {title_match(dest, plan[fid]['title']):.2f}"
         print(f"{fid} {file}: stored {note}")
@@ -453,6 +495,11 @@ def cmd_collect(args) -> int:
         raise WalkError(f"{fid} already has an outcome")
     rows.append(row)
     ELIG.write_bytes(build_frame.csv_bytes(ELIG_COLUMNS, rows))
+    keep = ELIG.parent / "eligibility" / fid
+    keep.mkdir(parents=True, exist_ok=True)
+    for name, f in (("a", args.a), ("b", args.b), ("resolver", args.resolver)):
+        if f:
+            shutil.copy(f, keep / f"{name}.json")
     print(json.dumps(row))
     return 0
 

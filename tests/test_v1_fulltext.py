@@ -97,3 +97,36 @@ def test_assessment_format_is_checked(tmp_path):
     f = tmp_path / "a.json"; f.write_text(json.dumps(a))
     with pytest.raises(ft.WalkError, match="I3 met without a quote"):
         ft.load_assessment(f, "F1")
+
+
+def test_a_supplementary_zip_is_unpacked_to_its_one_document(tmp_path):
+    import zipfile
+    z = tmp_path / "si1.zip"
+    with zipfile.ZipFile(z, "w") as w:
+        w.writestr("../../escape/Supplementary.PDF", b"%PDF-1.4 x")
+        w.writestr("__MACOSX/._Supplementary.PDF", b"junk")
+        w.writestr("movie.mp4", b"video")
+    out = ft.unzip_document(z)
+    assert out == tmp_path / "si1.pdf" and out.read_bytes() == b"%PDF-1.4 x"
+    assert sorted(p.name for p in tmp_path.iterdir()) == ["si1.pdf", "si1.zip"]
+    two = tmp_path / "si2.zip"
+    with zipfile.ZipFile(two, "w") as w:
+        w.writestr("a.pdf", b"%PDF-"); w.writestr("b.docx", b"x")
+    with pytest.raises(ft.WalkError, match="holds 2 documents"):
+        ft.unzip_document(two)
+
+
+def test_collect_writes_the_outcome_and_keeps_the_assessments(tmp_path, monkeypatch):
+    import argparse, json
+    monkeypatch.setattr(ft, "ELIG", tmp_path / "eligibility.csv")
+    a, b = tmp_path / "a_in.json", tmp_path / "b_in.json"
+    a.write_text(json.dumps(assessment("F00001", True)))
+    b.write_text(json.dumps(assessment("F00001", True)))
+    args = argparse.Namespace(frame_id="F00001", a=str(a), b=str(b), resolver=None)
+    assert ft.cmd_collect(args) == 0
+    assert [r["eligible"] for r in ft.read(ft.ELIG)] == ["true"]
+    kept = tmp_path / "eligibility" / "F00001"
+    assert sorted(p.name for p in kept.iterdir()) == ["a.json", "b.json"]
+    assert kept.joinpath("a.json").read_bytes() == a.read_bytes()
+    with pytest.raises(ft.WalkError, match="already has an outcome"):
+        ft.cmd_collect(args)

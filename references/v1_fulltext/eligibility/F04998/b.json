@@ -1,0 +1,35 @@
+{
+  "frame_id": "F04998",
+  "eligible": false,
+  "exclusion_code": "no_surface_area",
+  "exclusion_quote": "",
+  "exclusion_location": "",
+  "criteria": {
+    "I1": {
+      "met": true,
+      "quote": "The gravimetric hydrogen-storage capacity was evaluated using a magnetic suspension balance (Rubotherm). ... monitoring the mass change of the samples in the chamber while taking into account the buoyancy of the samples.",
+      "location": "main, p. 10 (journal p. 3037), Methods, 'H2 Storage Capacity by the Gravimetric Method'; data in Figure 4a, main p. 6 (journal p. 3033)"
+    },
+    "I2": {
+      "met": true,
+      "quote": "The C60−HQ clathrate is a 3:1 complex of HQ and C60 | Hydrogen storage capacity of C60−HQ clathrates, α-HQ, and fullerite as a function of pressure at 77 K.",
+      "location": "main, p. 2 (journal p. 3029), Results, 'High-Pressure Behavior of HQ Clathrates'; main, p. 6 (journal p. 3033), Figure 4 caption (a)"
+    },
+    "I3": {
+      "met": true,
+      "quote": "The volumetric hydrogen-storage capacity of the C60−HQ clathrate typically increases with an increase in the pressure, reaching 49.5 g L−1 at 77 K and 8 MPa (Figure 4a).",
+      "location": "main, p. 7 (journal p. 3034), Results, 'Hydrogen-Storage Capacity and GCMC Simulations'"
+    },
+    "I4": {
+      "met": false,
+      "quote": "Searched main text and SI (si1) for surface area, BET, Langmuir, specific surface, m2 g-1, N2 adsorption, physisorption, pore volume, porosity and a supplier value for C60 or HQ; none found. The only related statement is qualitative: the C60-HQ clathrate is 'nonporous', with no numerical area. SI holds only XRD, NMR, Raman, THz, DFT/GCMC figures and Tables S1-S3 (coordinates, bond geometry, Lennard-Jones parameters).",
+      "location": ""
+    },
+    "I5": {
+      "met": true,
+      "quote": "An effective combination of host and guest molecules in a framework type of architecture can enhance the structural stability and physical properties of clathrate compounds.",
+      "location": "main, p. 1 (journal p. 3028), Abstract (first sentence of the article)"
+    }
+  },
+  "notes": "I2 is a judgement call, decided as met. Measured sorbents are the C60-HQ clathrate (HQ3.C60 per the 3:1 stoichiometry), guest-free beta-HQ, MeOH-HQ, CO2-HQ, alpha-HQ and a fullerite (C60) curve, all at 77 K in Figure 4a. By formula mass C60 (about 721 g/mol) is about 69 wt% of HQ3.C60 (3 HQ about 330 g/mol), and carbon is about 89 wt% of the clathrate by elements; this is my arithmetic, not a figure in the paper. The host is an organic H-bonded framework, which is why the call is borderline, but C60 is the majority component and the sorbent is not a MOF, zeolite, hydride or polymer. The paper itself does not say the fullerite curve was measured by the authors, so I2 rests on the C60-HQ clathrate. If a reader holds that a C60-HQ clathrate is not a carbon sorbent, the code would be not_carbon instead of no_surface_area. I1 is met by the gravimetric (magnetic suspension balance, buoyancy-corrected) uptake of the C60-HQ clathrate; the GCMC and DFT parts are computational and are not counted. Other conditions seen: 77 K and 8 MPa for all Figure 4a curves; 93 and 293 K XRD after 30 cycles at 77 K and 8 MPa (SI Figure S9). The article is primary research, is_retracted is false in record.json, and no passage states that all uptake values were published before, so not_primary, retracted and duplicate_data do not apply."
+}
