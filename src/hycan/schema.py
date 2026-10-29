@@ -204,7 +204,10 @@ IsothermBranch = Literal["adsorption", "desorption", "not_applicable"]
 SurfaceAreaProbeGas = Literal["N2", "Ar", "CO2", "other", "unspecified"]
 AreaSameSample = Literal["yes", "parent_material", "other_paper", "unclear"]
 DataLocation = Literal["main_text", "SI"]
-SelectionRoute = Literal["S1", "S2", "legacy_v0.1", "legacy_v0.1_ineligible"]
+SelectionRoute = Literal[
+    "S1", "S2", "legacy_v0.1", "legacy_v0.1_ineligible",
+    "legacy_v0.1_not_retrieved",  # protocol §15 Amendment 2
+]
 
 
 # ---------------------------------------------------------------------------

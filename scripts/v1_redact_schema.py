@@ -17,7 +17,8 @@ and definition and removes the paper-specific examples and rationale.
 Both are built from the registration commit, so the redaction is reproducible
 and auditable: `git diff --no-index` against the registered files shows exactly
 what was removed. `check()` refuses if any v0.1 paper ID or first author
-survives, or if any field heading or vocabulary value of the schema is lost.
+survives, or if any field heading or vocabulary value of the registered schema
+is lost.
 
     python3 scripts/v1_redact_schema.py
 """
@@ -251,6 +252,26 @@ def v01_identifiers() -> tuple[set[str], set[str]]:
     return {r["paper_id"] for r in rows}, {r["first_author"] for r in rows}
 
 
+def registered_schema():
+    """src/hycan/schema.py as registered, loaded as a module. The redaction is
+    built from the registration commit, so it is checked against the fields and
+    vocabularies registered there, not against the working copy, which a §15
+    amendment may change (Amendment 2 added a selection_route value) without
+    changing the frozen prompts."""
+    import importlib.util
+    import tempfile
+
+    name = "hycan_schema_registered"
+    with tempfile.TemporaryDirectory() as d:
+        path = Path(d) / "schema_registered.py"
+        path.write_text(git_show("src/hycan/schema.py"), encoding="utf-8")
+        spec = importlib.util.spec_from_file_location(name, path)
+        mod = importlib.util.module_from_spec(spec)
+        sys.modules[name] = mod
+        spec.loader.exec_module(mod)
+    return mod
+
+
 def check(schema_text: str, dict_text: str) -> list[str]:
     problems = []
     ids, authors = v01_identifiers()
@@ -261,10 +282,9 @@ def check(schema_text: str, dict_text: str) -> list[str]:
         for a in authors:
             if re.search(rf"\b{re.escape(a)}\b", text):
                 problems.append(f"{name}: v0.1 first author {a}")
-    sys.path.insert(0, str(ROOT / "src"))
     import typing
 
-    from hycan.schema import MeasurementEntry
+    MeasurementEntry = registered_schema().MeasurementEntry
 
     for name, f in MeasurementEntry.model_fields.items():
         if f"`{name}`" not in dict_text:

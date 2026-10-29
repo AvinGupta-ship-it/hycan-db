@@ -156,3 +156,14 @@ def test_validator_reports_every_model_rule_in_its_own_words():
         make_row(uptake_wt_pct=None, uptake_mmol_g=None, uptake_ml_stp_g=20.0)
     ).errors
     assert any("At least one of 'uptake_wt_pct' or 'uptake_mmol_g'" in e for e in errors)
+
+
+@pytest.mark.parametrize("route", ["S1", "S2", "legacy_v0.1", "legacy_v0.1_ineligible",
+                                   "legacy_v0.1_not_retrieved"])
+def test_selection_route_values_including_amendment_2(route):
+    assert entry(selection_route=route, frame_id="F00001").selection_route == route
+
+
+def test_an_unknown_selection_route_is_refused():
+    with pytest.raises(ValidationError):
+        entry(selection_route="legacy_v0.1_unretrieved")

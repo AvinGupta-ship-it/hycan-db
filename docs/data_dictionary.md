@@ -1204,11 +1204,14 @@ points to is in the same analysis set (§11.0).
 ### `selection_route`, `frame_id`
 
 `selection_route` allowed values: `S1`, `S2`, `legacy_v0.1`,
-`legacy_v0.1_ineligible`. How the paper entered the dataset (§7): an eligible
-paper drawn from stratum S1 or S2 of the probability sample, or a v0.1 paper
-outside the sample (`legacy_v0.1` if eligible under protocol §4,
-`legacy_v0.1_ineligible` if not, drawn or not). `frame_id` is the paper's
-identifier in the sampling frame.
+`legacy_v0.1_ineligible`, `legacy_v0.1_not_retrieved`. How the paper entered
+the dataset (§7): an eligible paper drawn from stratum S1 or S2 of the
+probability sample, or a v0.1 paper outside the sample (`legacy_v0.1` if
+eligible under protocol §4, `legacy_v0.1_ineligible` if not, drawn or not).
+`legacy_v0.1_not_retrieved` (protocol §15, Amendment 2) is a v0.1 paper that
+neither §8 retrieval route yielded: its v0.1 rows are kept unchanged, it is not
+assessed or extracted again, and it enters no analysis. `frame_id` is the
+paper's identifier in the sampling frame.
 
 ### Computed fields (processed release only)
 

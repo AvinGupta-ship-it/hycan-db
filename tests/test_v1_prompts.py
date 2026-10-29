@@ -70,3 +70,18 @@ def test_tools_tree_has_no_v01_identifiers_and_no_data():
     files = load("v1_tools_tree").build()
     assert set(files) == set(load("v1_tools_tree").FILES) | {"MANIFEST"}
     assert not any(name.startswith(("data/", "references/")) for name in files)
+
+
+def test_redaction_is_checked_against_the_registered_schema():
+    # Amendment 2 added a selection_route value to the working schema; the
+    # frozen prompts carry the registered schema, so the check must not use
+    # the working copy.
+    spec = importlib.util.spec_from_file_location(
+        "v1_redact_schema", REPO_ROOT / "scripts" / "v1_redact_schema.py")
+    rs = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(rs)
+    import typing
+    registered = typing.get_args(rs.registered_schema().SelectionRoute)
+    assert "legacy_v0.1_not_retrieved" not in registered
+    assert rs.build()["schema.py"] == (
+        REPO_ROOT / "prompts" / "v1" / "schema_v2_redacted" / "schema.py").read_text(encoding="utf-8")

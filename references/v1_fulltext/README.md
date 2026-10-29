@@ -198,7 +198,8 @@ every full-text exclusion (§6).
   them, HYC-0046 (F05380) and HYC-0051 (F04740), are the papers on which the
   eligibility prompt was piloted (Amendment 1); the pilot outputs are not used,
   and both were assessed afresh with the frozen prompt. HYC-0041 (F02292) was
-  not retrieved by either route, so it has no assessment. HYC-0062 (F07281),
+  not retrieved by either route, so it has no assessment; under Amendment 2 it
+  is `legacy_v0.1_not_retrieved` and enters no analysis. HYC-0062 (F07281),
   retrieved on its rule-3 retry, was assessed after the author's review and is
   eligible, so the review below still covers every exclusion. Their rows in `eligibility.csv` lie outside the walk, which
   `fulltext.py status` computes from the records taken only.

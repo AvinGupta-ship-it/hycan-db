@@ -1088,6 +1088,44 @@ confirms that C resolved every disagreement, that every computed W1 equals the
 code's value, and that no isotherm mixes bases. Agreement statistics are
 computed by `scripts/v1_agreement.py`.
 
+### Amendment 2 (2026-10-29): a v0.1 paper that neither retrieval route yields
+
+**Data seen when made.** Every full-text retrieval and eligibility outcome: the
+233 records the §7 walk took, the seven S1 records retrieved past its stop, and
+the 44 v0.1 papers that were not drawn (43 obtained and assessed). The author
+had reviewed every full-text exclusion (81 confirmed, none reversed). No
+extraction had begun, and no new data value had been seen.
+
+**Gap.** §7 assesses every v0.1 paper against §4 on its full text, and keeps
+all 51 in the release. §8 allows only its two routes, and uses a PDF held from
+v0.1 only if one of the routes also yields it. HYC-0041 (F02292, not drawn)
+was not obtained by either route: it has no open-access location, and through
+the library the publisher served only the abstract page. It therefore cannot
+be assessed, and §7 gives it no `selection_route`. It is the only such paper;
+the other 50 were obtained by a §8 route.
+
+**Rule.** A v0.1 paper that neither §8 route yields is
+`legacy_v0.1_not_retrieved`. Its v0.1 rows stay in the release unchanged
+(§7). It is not assessed against §4 and not extracted again (§9), and it
+enters no analysis: not the primary or secondary analyses, not the sensitivity
+analyses, and not RQ3. The PRISMA flow (§14) reports it in the v0.1 papers'
+lane as not retrieved. `selection_route` gains this value in
+`src/hycan/schema.py` and `docs/data_dictionary.md`, and the list in
+Appendix A is read with it added. The frozen prompts are unchanged: they carry
+the schema as registered (Amendment 1), and no agent is given this paper.
+`scripts/v1_redact_schema.py` now checks the redacted schema against the
+registered schema rather than the working copy, so that this change does not
+fail the check on the frozen prompts; their text and SHA-256 values are
+unchanged.
+
+**Why not the v0.1 copy.** Assessing this one paper from the PDF held since
+v0.1 would give it a retrieval route that no other record had, against §8's
+rule that retrieval effort is the same for every record. Removing its rows
+instead would contradict §7. The author chose the rule above over both. It only
+labels a paper that, under §8, no analysis could use, and it changes no
+eligibility outcome, no analysis set of a retrieved paper, and no research
+question, target or threshold.
+
 ---
 
 ## Appendix A. Fields added in schema v2

@@ -266,6 +266,8 @@ def box_text(c: dict) -> dict[str, list[str]]:
 
     pending = len(v["awaiting_retrieval"]) + len(v["not_assessed_yet"])
     v01_status = [f"Not retrieved: {len(v['not_retrieved'])}"]
+    if v["not_retrieved"]:
+        v01_status.append("  (legacy_v0.1_not_retrieved)")
     if v["awaiting_retrieval"]:
         v01_status.append(f"Retrieval not finished: {len(v['awaiting_retrieval'])}")
     if v["not_assessed_yet"]:

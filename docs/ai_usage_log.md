@@ -2430,9 +2430,19 @@ row, and every stored main text matches its record's title. The walk is
 recomputed from the committed files by `fulltext.py status`. Full test suite
 passing.
 
-**Author's role.** He signed in to the university library himself (Claude
-never saw or handled his credentials), approved the downloads, and installed
-the Chrome extension. He reviewed every full-text exclusion (§6) on a page
+**Amendment 2.** Claude found that the protocol gives no `selection_route`
+to a v0.1 paper that neither §8 route yields (HYC-0041), drafted Amendment 2
+with three options, and recommended one. The author chose it; Claude then
+appended the amendment to §15, added the value to the schema and the data
+dictionary, and changed `scripts/v1_redact_schema.py` to check the frozen
+prompts' redacted schema against the registered schema instead of the
+working copy. `scripts/v1_prompts.py --check` confirms that the built prompts
+are unchanged.
+
+**Author's role.** He signed in to the university library himself, twice
+(Claude never saw or handled his credentials), approved the downloads, and
+installed and later reconnected the Chrome extension. He chose the rule in
+Amendment 2. He reviewed every full-text exclusion (§6) on a page
 Claude built from the committed assessments, which saved each decision as he
 made it: 81 confirmed, none reversed (`references/v1_fulltext/author_review.csv`).
 Claude copied the decisions unchanged and checked that they cover exactly the
