@@ -1,0 +1,120 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T22:26:04+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0057",
+  "figure": "Figure 8",
+  "series_name": "Sample C-4, 77K (segment 5, ROI, open-px 4)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0057/in/pages/main-08.png",
+    "sha256": "e5a35c47c6abe920d23956b4876beba7a634c5234a716e70857641e068559de7",
+    "width_px": 1240,
+    "height_px": 1755
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 704.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1106.0,
+        "value": 40.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 831.5,
+        "value": 1.0
+      },
+      "reference_2": {
+        "pixel": 631.0,
+        "value": 6.0
+      },
+      "scale": "linear",
+      "label": "Excess hydrogen absorption (wt%)",
+      "decades_spanned": 0.7781512503836436
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 905.0,
+        "stated": 20.0,
+        "predicted": 20.0,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 752.0,
+        "stated": 3.0,
+        "predicted": 2.982543640897756,
+        "relative_error": 0.005818786367414693
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#231f20",
+    "color_rgb": [
+      35,
+      31,
+      32
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 55486,
+    "matched_pixels_in_region": 56,
+    "region": [
+      1091,
+      628,
+      1103,
+      650
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 8.02,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 4-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 2,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 38.85572139303483,
+      "y": 5.6633416458852865,
+      "pixel_x": 1094.5,
+      "pixel_y": 644.5,
+      "pixel_count": 16,
+      "outside_axis_range": false
+    },
+    {
+      "x": 39.353233830845774,
+      "y": 5.6633416458852865,
+      "pixel_x": 1099.5,
+      "pixel_y": 644.5,
+      "pixel_count": 16,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 8, digitized (Sample C-4, 77K (segment 5, ROI, open-px 4))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig8_C-4_77K_seg5.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

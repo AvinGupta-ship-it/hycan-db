@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T22:28:08+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0057",
+  "figure": "Figure 8",
+  "series_name": "Sample C-4, 77K filled triangle 30 (split from touching cluster, red in derived image)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0057/work/derived_main-08_fig8_cluster.png",
+    "sha256": "8a86d8c5d25a2fa5c280373a1c8830a0c713b73adcd714b3d8c3a435f9490d02",
+    "width_px": 1240,
+    "height_px": 1755
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 704.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1106.0,
+        "value": 40.0
+      },
+      "scale": "linear",
+      "label": "pressure_bar",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 872.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 631.0,
+        "value": 6.0
+      },
+      "scale": "linear",
+      "label": "uptake_wt_pct",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 905.0,
+        "stated": 20.0,
+        "predicted": 20.0,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 752.0,
+        "stated": 3.0,
+        "predicted": 2.987551867219917,
+        "relative_error": 0.004149377593360981
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff0000",
+    "color_rgb": [
+      255,
+      0,
+      0
+    ],
+    "tolerance": 30.0,
+    "matched_pixels_in_image": 20,
+    "matched_pixels_in_region": 20,
+    "region": [
+      1090,
+      630,
+      1108,
+      652
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 9.64,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 38.85572139303483,
+      "y": 5.663900414937759,
+      "pixel_x": 1094.5,
+      "pixel_y": 644.5,
+      "pixel_count": 16,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 8, digitized (Sample C-4, 77K filled triangle 30 (split from touching cluster, red in derived image))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig8_C-4_77K_end30.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

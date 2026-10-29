@@ -1052,6 +1052,240 @@
       "reason": "command in the tools directory does more than run its two scripts: grep -c",
       "access": false,
       "note": "The command edits and runs the agent's own row-building script in its work directory, then in the tools directory runs the allowed validator on its own out/rows.csv and counts that file's lines with grep -c, and prints its own table rows. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0073",
+      "transcript": "agent-ae19d0585d667cf3f.jsonl",
+      "call": 86,
+      "reason": "command names a path outside the allowed paths: /tmp/claude-0/-home-claude/663fb236-481a-5f2f-b02f-82bfd72801cf/tasks/b6o40q9xo.output",
+      "access": false,
+      "note": "The file is /tmp/claude-0/.../tasks/b6o40q9xo.output, in which the agent's own tool environment saved the output of its own earlier command (moved to the background after 120 s; the harness gave the agent that ID and path in its own transcript). The launcher allows such files."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0073",
+      "transcript": "agent-ae19d0585d667cf3f.jsonl",
+      "call": 87,
+      "reason": "file outside the allowed paths",
+      "access": false,
+      "note": "The file is /tmp/claude-0/.../tasks/b6o40q9xo.output, in which the agent's own tool environment saved the output of its own earlier command (moved to the background after 120 s; the harness gave the agent that ID and path in its own transcript). The launcher allows such files."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0073",
+      "transcript": "agent-ae19d0585d667cf3f.jsonl",
+      "call": 104,
+      "reason": "command in the tools directory does more than run its two scripts: chk $1 $2 $3",
+      "access": false,
+      "note": "The command clears the agent's own archived Fig. 3 digitizations, then in the tools directory runs the allowed digitizer in a loop on series images in its own work directory, writing to its own out/digitizations, and defines a shell function chk() that runs only 'python3 scripts/digitize_figure.py check' on those archives. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0073",
+      "transcript": "agent-ae19d0585d667cf3f.jsonl",
+      "call": 104,
+      "reason": "command in the tools directory does more than run its two scripts: chk(){ python3 scripts/digitize_figure.py check --digitization $D/HYC-0073_Fig3_$1.json --at $3 --expect $2 --tolerance-",
+      "access": false,
+      "note": "The command clears the agent's own archived Fig. 3 digitizations, then in the tools directory runs the allowed digitizer in a loop on series images in its own work directory, writing to its own out/digitizations, and defines a shell function chk() that runs only 'python3 scripts/digitize_figure.py check' on those archives. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0048",
+      "transcript": "agent-a28e6908ea39d4203.jsonl",
+      "call": 36,
+      "reason": "command in the tools directory does more than run its two scripts: *) echo bad panel",
+      "access": false,
+      "note": "The command writes a helper (run_extract.sh) to the agent's own work directory; its case statement only chooses calibration arguments per figure panel, and it changes into the tools directory and runs only the allowed digitizer on the agent's own page image. Its output argument was relative (trial/...), which is how the files of call 38 came to be written in the tools directory."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0048",
+      "transcript": "agent-a28e6908ea39d4203.jsonl",
+      "call": 36,
+      "reason": "command in the tools directory does more than run its two scripts: 8a) CAL=--x1-px 229.0 --x1-val 0.0 --x2-px 584 --x2-val 3.5 --x-verify-px 432 --x-verify-val 2.0 --y1-px 509.5 --y1-val ",
+      "access": false,
+      "note": "The command writes a helper (run_extract.sh) to the agent's own work directory; its case statement only chooses calibration arguments per figure panel, and it changes into the tools directory and runs only the allowed digitizer on the agent's own page image. Its output argument was relative (trial/...), which is how the files of call 38 came to be written in the tools directory."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0048",
+      "transcript": "agent-a28e6908ea39d4203.jsonl",
+      "call": 36,
+      "reason": "command in the tools directory does more than run its two scripts: exit 1",
+      "access": false,
+      "note": "The command writes a helper (run_extract.sh) to the agent's own work directory; its case statement only chooses calibration arguments per figure panel, and it changes into the tools directory and runs only the allowed digitizer on the agent's own page image. Its output argument was relative (trial/...), which is how the files of call 38 came to be written in the tools directory."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0048",
+      "transcript": "agent-a28e6908ea39d4203.jsonl",
+      "call": 38,
+      "reason": "command opens the tools directory: /home/claude/work/v1_tools_frozen/trial",
+      "access": false,
+      "note": "Instruction breach without data access, reported by the agent after its reply. Through its helper with a relative output path (calls 36 and 37), three trial digitizations of this paper's own Fig. 8a (f8a_red/blue/black.json) were written into /home/claude/work/v1_tools_frozen/trial/; this call deletes those three files by name. Its rmdir failed because extractor B of HYC-0075 had made the same mistake with the same folder name; that agent later deleted its own six files by name and removed the folder. Neither agent listed the folder or read a file it had not named itself, and the file names do not overlap, so neither paper's rows can contain the other's digitizations; the papers differ, so item 26's same-record rule does not arise. The tools directory matched its MANIFEST afterwards and has been immutable since 22:27 UTC on 29 Oct 2026. Not access; the output is kept."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0048",
+      "transcript": "agent-a28e6908ea39d4203.jsonl",
+      "call": 38,
+      "reason": "command opens the tools directory: /home/claude/work/v1_tools_frozen/trial/f8a_black.json",
+      "access": false,
+      "note": "Instruction breach without data access, reported by the agent after its reply. Through its helper with a relative output path (calls 36 and 37), three trial digitizations of this paper's own Fig. 8a (f8a_red/blue/black.json) were written into /home/claude/work/v1_tools_frozen/trial/; this call deletes those three files by name. Its rmdir failed because extractor B of HYC-0075 had made the same mistake with the same folder name; that agent later deleted its own six files by name and removed the folder. Neither agent listed the folder or read a file it had not named itself, and the file names do not overlap, so neither paper's rows can contain the other's digitizations; the papers differ, so item 26's same-record rule does not arise. The tools directory matched its MANIFEST afterwards and has been immutable since 22:27 UTC on 29 Oct 2026. Not access; the output is kept."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0048",
+      "transcript": "agent-a28e6908ea39d4203.jsonl",
+      "call": 38,
+      "reason": "command opens the tools directory: /home/claude/work/v1_tools_frozen/trial/f8a_blue.json",
+      "access": false,
+      "note": "Instruction breach without data access, reported by the agent after its reply. Through its helper with a relative output path (calls 36 and 37), three trial digitizations of this paper's own Fig. 8a (f8a_red/blue/black.json) were written into /home/claude/work/v1_tools_frozen/trial/; this call deletes those three files by name. Its rmdir failed because extractor B of HYC-0075 had made the same mistake with the same folder name; that agent later deleted its own six files by name and removed the folder. Neither agent listed the folder or read a file it had not named itself, and the file names do not overlap, so neither paper's rows can contain the other's digitizations; the papers differ, so item 26's same-record rule does not arise. The tools directory matched its MANIFEST afterwards and has been immutable since 22:27 UTC on 29 Oct 2026. Not access; the output is kept."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0048",
+      "transcript": "agent-a28e6908ea39d4203.jsonl",
+      "call": 38,
+      "reason": "command opens the tools directory: /home/claude/work/v1_tools_frozen/trial/f8a_red.json",
+      "access": false,
+      "note": "Instruction breach without data access, reported by the agent after its reply. Through its helper with a relative output path (calls 36 and 37), three trial digitizations of this paper's own Fig. 8a (f8a_red/blue/black.json) were written into /home/claude/work/v1_tools_frozen/trial/; this call deletes those three files by name. Its rmdir failed because extractor B of HYC-0075 had made the same mistake with the same folder name; that agent later deleted its own six files by name and removed the folder. Neither agent listed the folder or read a file it had not named itself, and the file names do not overlap, so neither paper's rows can contain the other's digitizations; the papers differ, so item 26's same-record rule does not arise. The tools directory matched its MANIFEST afterwards and has been immutable since 22:27 UTC on 29 Oct 2026. Not access; the output is kept."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0048",
+      "transcript": "agent-a28e6908ea39d4203.jsonl",
+      "call": 47,
+      "reason": "command opens the tools directory: /home/claude/work/v1_tools_frozen",
+      "access": false,
+      "note": "The command writes a pipeline script to the agent's own work directory and runs it; the tools directory appears only as the working directory of subprocesses that run 'python3 scripts/digitize_figure.py' on the agent's own images, writing to absolute paths in its work directory. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0048",
+      "transcript": "agent-a28e6908ea39d4203.jsonl",
+      "call": 83,
+      "reason": "search outside the allowed paths",
+      "access": false,
+      "note": "A search or read of the agent's own instruction file (/home/claude/work/runs/extract/prompts/extract_A.md), which the launcher allows it to read; where the command first changes into the prompts directory, it reads only that file (grep, sed) and lists nothing."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0048",
+      "transcript": "agent-a28e6908ea39d4203.jsonl",
+      "call": 97,
+      "reason": "search outside the allowed paths",
+      "access": false,
+      "note": "A search or read of the agent's own instruction file (/home/claude/work/runs/extract/prompts/extract_A.md), which the launcher allows it to read; where the command first changes into the prompts directory, it reads only that file (grep, sed) and lists nothing."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0048",
+      "transcript": "agent-a28e6908ea39d4203.jsonl",
+      "call": 122,
+      "reason": "search outside the allowed paths",
+      "access": false,
+      "note": "A search or read of the agent's own instruction file (/home/claude/work/runs/extract/prompts/extract_A.md), which the launcher allows it to read; where the command first changes into the prompts directory, it reads only that file (grep, sed) and lists nothing."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0048",
+      "transcript": "agent-a28e6908ea39d4203.jsonl",
+      "call": 124,
+      "reason": "search outside the allowed paths",
+      "access": false,
+      "note": "A search or read of the agent's own instruction file (/home/claude/work/runs/extract/prompts/extract_A.md), which the launcher allows it to read; where the command first changes into the prompts directory, it reads only that file (grep, sed) and lists nothing."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0048",
+      "transcript": "agent-a28e6908ea39d4203.jsonl",
+      "call": 138,
+      "reason": "search outside the allowed paths",
+      "access": false,
+      "note": "A search or read of the agent's own instruction file (/home/claude/work/runs/extract/prompts/extract_A.md), which the launcher allows it to read; where the command first changes into the prompts directory, it reads only that file (grep, sed) and lists nothing."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0048",
+      "transcript": "agent-a28e6908ea39d4203.jsonl",
+      "call": 144,
+      "reason": "command names a path outside the allowed paths: /home/claude/work/runs/extract/prompts",
+      "access": false,
+      "note": "A search or read of the agent's own instruction file (/home/claude/work/runs/extract/prompts/extract_A.md), which the launcher allows it to read; where the command first changes into the prompts directory, it reads only that file (grep, sed) and lists nothing."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0048",
+      "transcript": "agent-a28e6908ea39d4203.jsonl",
+      "call": 150,
+      "reason": "command names a path outside the allowed paths: /home/claude/work/runs/extract/prompts",
+      "access": false,
+      "note": "A search or read of the agent's own instruction file (/home/claude/work/runs/extract/prompts/extract_A.md), which the launcher allows it to read; where the command first changes into the prompts directory, it reads only that file (grep, sed) and lists nothing."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0078",
+      "transcript": "agent-a1dea244635b77ed7.jsonl",
+      "call": 36,
+      "reason": "command moves within the tools directory",
+      "access": false,
+      "note": "The command changes into the tools directory and runs the allowed digitizer on an image in the agent's own work directory, writing to an absolute path there. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0078",
+      "transcript": "agent-a1dea244635b77ed7.jsonl",
+      "call": 39,
+      "reason": "command names the home directory",
+      "access": false,
+      "note": "The command runs the allowed digitizer's 'colors' subcommand on the agent's own page image, then in its own work directory reads pixel values of that image with python3 -I. The flagged '~' is the approximately sign in a Python comment inside the quoted -c string, never a path."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0078",
+      "transcript": "agent-a1dea244635b77ed7.jsonl",
+      "call": 46,
+      "reason": "command moves within the tools directory",
+      "access": false,
+      "note": "The command changes into the tools directory and runs the allowed digitizer on images in the agent's own work directory, writing to absolute paths in its out/digitizations. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0078",
+      "transcript": "agent-a9d90d03a3bf908f1.jsonl",
+      "call": 59,
+      "reason": "command in the tools directory reads more than its scripts' output: grep -E 'points|rejected|outside'; python3 -c \" import json d=json.load(open('/home/claude/work/runs/extract/B/HYC-0078/",
+      "access": false,
+      "note": "In the tools directory the command runs the allowed digitizer in a loop on the agent's own page image, with --out absolute paths in its work directory, filters the printed output with grep, and prints its own output JSON with python3 -c (the tools directory's top level holds no Python module, so nothing there is imported). Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0078",
+      "transcript": "agent-a9d90d03a3bf908f1.jsonl",
+      "call": 63,
+      "reason": "command in the tools directory reads more than its scripts' output: grep -E 'region|inside|points'; python3 -c \" import json d=json.load(open('/home/claude/work/runs/extract/B/HYC-0078/wor",
+      "access": false,
+      "note": "In the tools directory the command runs the allowed digitizer in a loop on the agent's own page image, with --out absolute paths in its work directory, filters the printed output with grep, and prints its own output JSON with python3 -c (the tools directory's top level holds no Python module, so nothing there is imported). Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0078",
+      "transcript": "agent-a9d90d03a3bf908f1.jsonl",
+      "call": 65,
+      "reason": "command in the tools directory does more than run its two scripts: eval python3 scripts/digitize_figure.py extract --image $IMG7 --out $D/fig9_ACNC10-900.json --overwrite --color #646464 ",
+      "access": false,
+      "note": "In the tools directory the command runs the allowed digitizer through 'eval', used only to expand a shell variable of calibration arguments with quoted axis labels, on the agent's own page image, writing to absolute paths in its out/digitizations, and filters the printed output with grep. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0078",
+      "transcript": "agent-a9d90d03a3bf908f1.jsonl",
+      "call": 65,
+      "reason": "command in the tools directory does more than run its two scripts: eval python3 scripts/digitize_figure.py extract --image $IMG7 --out $D/fig9_ACNC40-900.json --overwrite --color #ff4846 ",
+      "access": false,
+      "note": "In the tools directory the command runs the allowed digitizer through 'eval', used only to expand a shell variable of calibration arguments with quoted axis labels, on the agent's own page image, writing to absolute paths in its out/digitizations, and filters the printed output with grep. Nothing in the tools directory is opened, listed or searched."
     }
   ]
 }

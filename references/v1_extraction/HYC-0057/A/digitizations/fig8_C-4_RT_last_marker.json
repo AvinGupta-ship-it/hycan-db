@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T22:27:05+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0057",
+  "figure": "Figure 8",
+  "series_name": "Sample C-4, RT (highest-pressure open triangle; ring interior, derived image fig8_C4_RT_hole.png)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0057/work/fig8_C4_RT_hole.png",
+    "sha256": "acf38c1bed00bb85d7ca1b756c302d9e0f2c93e654cab665cec0b23a813eb05f",
+    "width_px": 1240,
+    "height_px": 1755
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 704.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1106.0,
+        "value": 40.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 831.5,
+        "value": 1.0
+      },
+      "reference_2": {
+        "pixel": 631.0,
+        "value": 6.0
+      },
+      "scale": "linear",
+      "label": "Excess hydrogen absorption (wt%)",
+      "decades_spanned": 0.7781512503836436
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 905.0,
+        "stated": 20.0,
+        "predicted": 20.0,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 752.0,
+        "stated": 3.0,
+        "predicted": 2.982543640897756,
+        "relative_error": 0.005818786367414693
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#231f20",
+    "color_rgb": [
+      35,
+      31,
+      32
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 19,
+    "matched_pixels_in_region": 19,
+    "region": [
+      1090,
+      846,
+      1105,
+      860
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 8.02,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 39.542288557213936,
+      "y": 0.44887780548628375,
+      "pixel_x": 1101.4,
+      "pixel_y": 853.6,
+      "pixel_count": 15,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 8, digitized (Sample C-4, RT (highest-pressure open triangle; ring interior, derived image fig8_C4_RT_hole.png))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig8_C-4_RT_last_marker.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}
