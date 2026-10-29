@@ -394,20 +394,32 @@ def title_match(pdf: Path, title: str) -> float:
     return sum(w in out for w in words) / len(words) if words else 0.0
 
 
-DOCUMENT_SUFFIXES = {".pdf", ".doc", ".docx", ".rtf", ".odt", ".txt", ".xls", ".xlsx", ".csv"}
+DOCUMENT_SUFFIXES = {".pdf", ".doc", ".docx", ".rtf", ".odt", ".txt", ".xls", ".xlsx", ".csv",
+                     ".tsv", ".tab"}
+TABLE_SUFFIXES = {".csv", ".tsv", ".tab", ".txt"}
 UNZIP_LIMIT = 200 * 2**20
 
 
 def unzip_document(archive: Path) -> Path:
     """Write the single document member of a supplementary zip next to it,
     named after the archive (si1.zip -> si1.<ext>); no path from inside the
-    archive is used."""
+    archive is used. An archive of a dataset's data tables (every document a
+    plain-text table: .csv, .tsv, .tab or .txt) is written as one text file,
+    si1.txt, with the tables in name order, each headed by its member name."""
     import zipfile
     with zipfile.ZipFile(archive) as z:
         docs = [i for i in z.infolist() if not i.is_dir()
                 and Path(i.filename).suffix.lower() in DOCUMENT_SUFFIXES
                 and not Path(i.filename).name.startswith(".")
                 and not i.filename.startswith("__MACOSX/")]
+        if len(docs) > 1 and all(Path(i.filename).suffix.lower() in TABLE_SUFFIXES for i in docs):
+            if sum(i.file_size for i in docs) > UNZIP_LIMIT:
+                raise WalkError(f"{archive}: tables total more than {UNZIP_LIMIT} bytes")
+            out = archive.with_suffix(".txt")
+            parts = [f"==== {i.filename} ====\n{z.read(i).decode('utf-8', errors='replace')}\n"
+                     for i in sorted(docs, key=lambda i: i.filename)]
+            out.write_text("".join(parts), encoding="utf-8")
+            return out
         if len(docs) != 1:
             raise WalkError(f"{archive} holds {len(docs)} documents: "
                             + ", ".join(i.filename for i in docs))
@@ -441,9 +453,10 @@ def cmd_stage(args) -> int:
         note = ""
         if dest.suffix.lower() == ".zip":
             # A supplementary archive is unpacked to the one document it holds
-            # (si1.zip -> si1.pdf, or si1.docx then converted below); members
-            # that are not documents (videos, images) are not used, as for
-            # non-document supplementary files on article pages.
+            # (si1.zip -> si1.pdf, or si1.docx then converted below), or, for
+            # an archive of data tables, to one text file of all the tables;
+            # members that are not documents (videos, images) are not used, as
+            # for non-document supplementary files on article pages.
             dest = unzip_document(dest)
             note = f"unpacked {dest.name}; "
         if dest.suffix.lower() != ".pdf":

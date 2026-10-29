@@ -42,6 +42,12 @@ files by `scripts/v1_search/fulltext.py status`.
   redistributed (§14); the log keeps their SHA-256. Some publishers stamp each
   download (ScienceDirect, Trans Tech, Oxford Academic), so the same article
   gives different bytes on a second download.
+- **Accepted manuscripts on the DOI page.** When the DOI landing page reached
+  through route 2 gives no access to the published PDF but offers the article
+  as the author's accepted manuscript (RSC's 'Author manuscript version'), that
+  file is taken as the main text (first case: F06046, 11:36 UTC on 29 Oct
+  2026). The RSC pages of the earlier no-access records F06237 and F06071 were
+  checked and offer no such file.
 - **Order.** Route 1 is tried first when the plan has one. Route 2 is tried only
   when route 1 did not obtain the main text. Supplementary files are taken from
   the route that obtained the main text.
@@ -51,6 +57,13 @@ files by `scripts/v1_search/fulltext.py status`.
   unpacked to the one document it holds. The original file and its SHA-256 stay
   in the store and the log. Non-document supplementary files (videos) are not
   retrieved.
+- **Datasets.** A drawn record that is a dataset rather than an article has no
+  article text. Its documentation file (for F09355, the README PDF) is taken as
+  the main text, and its data tables as the supplementary file: the
+  repository's zip of the tables is stored as fetched, and for the assessors
+  the tables are written as one text file in name order, each headed by its
+  file name (`fulltext.py stage`). This handling was fixed at 11:25 UTC on
+  29 Oct 2026, when the first such record (F09355) was reached.
 
 ### Implementation rules
 
@@ -89,7 +102,7 @@ record alike, so that retrieval effort is the same for every record (§8).
 - **F01856.** Chrome silently blocked a script-initiated save in a tab that had
   already downloaded a file; the PDF was saved again from a fresh tab, and from
   then on every record uses a fresh tab.
-- **F10222.** The same block happened once more, in a tab reused by mistake
+- **F10222, F02566.** The same block happened twice more, each time in a tab reused by mistake
   after it had saved another record's PDF; the missing file was noticed at
   staging and the PDF was saved again from a fresh tab.
 - **F01800.** The browser tool reported a lost connection while the save step

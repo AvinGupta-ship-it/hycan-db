@@ -116,6 +116,27 @@ def test_a_supplementary_zip_is_unpacked_to_its_one_document(tmp_path):
         ft.unzip_document(two)
 
 
+def test_a_zip_of_data_tables_becomes_one_text_file_in_name_order(tmp_path):
+    import zipfile
+    z = tmp_path / "si1.zip"
+    with zipfile.ZipFile(z, "w") as w:
+        w.writestr("N2--MOF-5.csv", "p,q\n0.1,5\n")
+        w.writestr("../H2.77K--MOF-5.tab", "P\tn\n1\t2\n")
+        w.writestr("MANIFEST.TXT", "2 files\n")
+        w.writestr("plot.png", b"image")
+    out = ft.unzip_document(z)
+    assert out == tmp_path / "si1.txt"
+    assert out.read_text() == ("==== ../H2.77K--MOF-5.tab ====\nP\tn\n1\t2\n\n"
+                               "==== MANIFEST.TXT ====\n2 files\n\n"
+                               "==== N2--MOF-5.csv ====\np,q\n0.1,5\n\n")
+    assert sorted(p.name for p in tmp_path.iterdir()) == ["si1.txt", "si1.zip"]
+    mixed = tmp_path / "si2.zip"
+    with zipfile.ZipFile(mixed, "w") as w:
+        w.writestr("a.csv", "x"); w.writestr("b.pdf", b"%PDF-")
+    with pytest.raises(ft.WalkError, match="holds 2 documents"):
+        ft.unzip_document(mixed)
+
+
 def test_collect_writes_the_outcome_and_keeps_the_assessments(tmp_path, monkeypatch):
     import argparse, json
     monkeypatch.setattr(ft, "ELIG", tmp_path / "eligibility.csv")
