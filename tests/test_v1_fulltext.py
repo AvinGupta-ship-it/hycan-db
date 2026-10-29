@@ -1,0 +1,99 @@
+"""Tests for scripts/v1_search/fulltext.py (the §7 walk and the §6 eligibility decision)."""
+
+from __future__ import annotations
+
+import importlib.util
+import sys
+from pathlib import Path
+
+import pytest
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPO_ROOT / "scripts" / "v1_search"))
+spec = importlib.util.spec_from_file_location(
+    "fulltext", REPO_ROOT / "scripts" / "v1_search" / "fulltext.py")
+ft = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(ft)
+
+
+def plan(n, st="S1", oa=True, doi=True):
+    return [{"stratum": st, "position": str(i + 1), "frame_id": f"F{i:05d}",
+             "route1_url": "https://oa/x" if oa else "", "title": f"t{i}", "year": "2010",
+             "route2_url": "https://doi.org/x" if doi else ""} for i in range(n)]
+
+
+def log(fid, route, outcome, file="main.pdf"):
+    return {"frame_id": fid, "file": file, "route": route, "url": "u", "outcome": outcome,
+            "sha256": "ab" if outcome == "obtained" else "", "bytes": "", "at_utc": "", "note": ""}
+
+
+def elig(fid, ok):
+    return {"frame_id": fid, "eligible": "true" if ok else "false"}
+
+
+def test_walk_takes_records_in_order_and_skips_unretrieved():
+    p = plan(5)
+    lg = [log("F00000", "oa", "obtained"),
+          log("F00001", "oa", "no_full_text"), log("F00001", "library", "no_full_text"),
+          log("F00002", "oa", "no_full_text")]
+    s = ft.walk(p, lg, [elig("F00000", True)], [])["S1"]
+    assert (s["taken"], s["assessed"], s["eligible"], s["not_retrieved"]) == (2, 1, 1, 1)
+    assert s["next_to_retrieve"] == ["F00002"] and s["stopped"] is None
+    assert s["retrieve_ahead"] == ["F00002", "F00003", "F00004"]
+
+
+def test_walk_stops_at_target_and_cap_and_counts_duplicates(monkeypatch):
+    monkeypatch.setitem(ft.TARGET, "S1", 2)
+    monkeypatch.setitem(ft.CAP, "S1", 3)
+    p = plan(6)
+    lg = [log(f"F0000{i}", "oa", "obtained") for i in range(6)]
+    s = ft.walk(p, lg, [elig("F00000", True), elig("F00001", True)], [])["S1"]
+    assert s["stopped"] == "target reached" and s["taken"] == 2
+    el = [elig("F00000", False), elig("F00002", False), elig("F00003", False)]
+    s = ft.walk(p, lg, el, [{"frame_id": "F00001"}])["S1"]
+    assert s["stopped"] == "assessment cap"
+    assert (s["taken"], s["assessed"], s["frame_duplicate"]) == (4, 3, 1)
+
+
+def test_a_record_with_no_route_is_not_retrieved():
+    p = plan(2, oa=False, doi=False)
+    s = ft.walk(p, [], [], [])["S1"]
+    assert s["not_retrieved"] == 2 and s["stopped"] == "plan exhausted"
+
+
+def test_log_rows_are_checked():
+    with pytest.raises(ft.WalkError):
+        ft.walk(plan(1), [log("F09999", "oa", "obtained")], [], [])
+    bad = log("F00000", "oa", "obtained"); bad["sha256"] = ""
+    with pytest.raises(ft.WalkError):
+        ft.walk(plan(1), [bad], [], [])
+
+
+def assessment(fid, eligible, code=None, met=True):
+    crit = {c: {"met": met if c != "I1" else (eligible or code != "theoretical_only"),
+                "quote": "q", "location": "main"} for c in ft.CRITERIA}
+    if eligible:
+        crit = {c: {"met": True, "quote": "q", "location": "main"} for c in ft.CRITERIA}
+    return {"frame_id": fid, "eligible": eligible, "exclusion_code": code, "criteria": crit}
+
+
+def test_decide_uses_agreement_or_the_resolver():
+    a = assessment("F1", True)
+    row = ft.decide(a, assessment("F1", True), None)
+    assert row["agree"] == "true" and row["eligible"] == "true"
+    b = assessment("F1", False, "no_surface_area")
+    b["criteria"]["I4"]["met"] = False
+    with pytest.raises(ft.WalkError):
+        ft.decide(a, b, None)
+    row = ft.decide(a, b, b)
+    assert row["resolved"] == "true" and row["exclusion_code"] == "no_surface_area"
+    with pytest.raises(ft.WalkError):
+        ft.decide(a, assessment("F1", True), a)
+
+
+def test_assessment_format_is_checked(tmp_path):
+    import json
+    a = assessment("F1", True); a["criteria"]["I3"]["quote"] = ""
+    f = tmp_path / "a.json"; f.write_text(json.dumps(a))
+    with pytest.raises(ft.WalkError, match="I3 met without a quote"):
+        ft.load_assessment(f, "F1")
