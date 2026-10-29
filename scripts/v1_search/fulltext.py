@@ -404,6 +404,13 @@ def cmd_stage(args) -> int:
         dest.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy(f, dest)
         note = ""
+        if dest.suffix.lower() != ".pdf":
+            # A supplementary file in another document format (Word, Excel,
+            # text) is converted to PDF for the assessors; the original and
+            # its SHA-256 stay in the store and the log.
+            subprocess.run(["soffice", "--headless", "--convert-to", "pdf", "--outdir",
+                            str(dest.parent), str(dest)], check=True, capture_output=True)
+            note = f"converted to {dest.stem}.pdf"
         if file == "main.pdf":
             note = f"title match {title_match(dest, plan[fid]['title']):.2f}"
         print(f"{fid} {file}: stored {note}")

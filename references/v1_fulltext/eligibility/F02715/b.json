@@ -1,0 +1,35 @@
+{
+  "frame_id": "F02715",
+  "eligible": false,
+  "exclusion_code": "not_carbon",
+  "exclusion_quote": "",
+  "exclusion_location": "",
+  "criteria": {
+    "I1": {
+      "met": true,
+      "quote": "a different amount of hydrogen was let into a chamber from the calibrated capacity [...] Adsorption isotherms were calculated using the obtained data and taking into consideration system parameters (Fig. 12b).",
+      "location": "main, p. 18069 (PDF p. 9), Section 5, text above Fig. 12 (volumetric pressure-change measurement on a V-N-inert gas film, the authors' own sample)"
+    },
+    "I2": {
+      "met": false,
+      "quote": "Searched for any carbon sorbent whose H2 uptake the paper measures itself. Carbon data (Table 2, Figs 5-7) are compiled from cited work; the only measured sorbent is a vanadium nitride film (Fig. 12). None found.",
+      "location": ""
+    },
+    "I3": {
+      "met": true,
+      "quote": "the amount of hydrogen absorbed at room temperature exceeds that adsorbed at elevated temperatures [...] (7wt. %) is reached in our case at relatively low pressure values of ~0.4 MPa.",
+      "location": "main, p. 18069 (PDF p. 9), Section 5 text; Fig. 12b, isotherms labelled 293 K, 573 K and 773 K, pressure axis P, MPa 0.00-0.40 (VN film)"
+    },
+    "I4": {
+      "met": true,
+      "quote": "A specific surface area of pores was within 16 m2/g. The surface area was measured by saturating a sample with nitrogen at a temperature of 77 K",
+      "location": "main, p. 18070 (PDF p. 10), Section 5 (VN film)"
+    },
+    "I5": {
+      "met": true,
+      "quote": "At the close of the XX century, and especially at the beginning of the XXI century, the issues of conservation of fossil sources of energy (oil, gas and coal) [...] became more and more vital.",
+      "location": "main, p. 18061 (PDF p. 1), Section 1 Introduction, first sentence (middle omitted to stay under 40 words)"
+    }
+  },
+  "notes": "I1 is met only through the authors' own volumetric (calibrated-chamber, P-T) H2 isotherms on a vanadium nitride (V-N-inert gas) IBAD film, Fig. 12; VN is not a carbon sorbent, so I2 fails and the code is not_carbon. The paper labels itself 'Review' (p. 18061) and its abstract begins 'This review systemizes the results of research done over the last decade', so not_primary would also apply, but not_carbon precedes it in the section 4 table order. If the resolver judges that the VN data are not a reportable original measurement (the article is a review), the code would be not_primary instead. I3 and I4 are assessed on the VN film only (293, 573, 773 K, 0 to 0.4 MPa; SSA about 16 m2/g by N2 at 77 K). All carbon data (Table 2, Figs 5 to 7) are quoted from cited papers. No retraction (is_retracted false; the appended item is a corrigendum on reference numbers). No statement that the VN uptake values were published before, so duplicate_data is not applied."
+}
