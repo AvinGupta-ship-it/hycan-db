@@ -1,0 +1,35 @@
+{
+  "frame_id": "F01781",
+  "eligible": false,
+  "exclusion_code": "no_conditions_stated",
+  "exclusion_quote": "",
+  "exclusion_location": "",
+  "criteria": {
+    "I1": {
+      "met": true,
+      "quote": "H2 adsorption measurements were performed for samples Pt/Ni@(N)G-0 (lacking Pt) and Pt/Ni@(N)G-18 the best performing catalyst. As it can be seen in Fig. 7, contrasting H2 physi- and chemisorption profiles were measured for both samples.",
+      "location": "main, p. 7, Section 3 (Results and discussion); data in Fig. 7, p. 8 (y axis 'H2 volume (cc/g STP)', x axis 'Pressure (mm Hg)')"
+    },
+    "I2": {
+      "met": true,
+      "quote": "Sample | Ni (wt %) | Pt (wt %) | C (wt %) | N (wt %) ... Pt/Ni@(N)G-18 | 14.4 | 0.0018 | 73.75 | 3.49",
+      "location": "main, p. 3, Table 1"
+    },
+    "I3": {
+      "met": false,
+      "quote": "Searched Fig. 7 axes and caption, Sections 2.3 and 3, and the SI for the temperature of the H2 adsorption isotherms: none stated. Pulse chemisorption says only 'cooled down to room temperature', with no pressure or uptake value.",
+      "location": ""
+    },
+    "I4": {
+      "met": false,
+      "quote": "Searched main text, tables and SI for a BET, Langmuir or other specific surface area of any sample: none found. Only 'Ni surface area (1.78 m2 x g-1)' from H2 chemisorption, a metal area, not the sample's specific surface area.",
+      "location": ""
+    },
+    "I5": {
+      "met": true,
+      "quote": "Ni nanoparticles (≈ 8 nm) have been prepared at about 15 wt% loading strongly grafted on N-doped graphitic carbon matrix [Ni@(N)C] by pyrolysis of Ni(OAc)2 adsorbed on chitosan.",
+      "location": "main, p. 1, Abstract"
+    }
+  },
+  "notes": "The paper's 'H2 storage capacity' (e.g. 5.8 wt%, Table 2, Fig. 6) is catalytic hydrogenation of liquid N-ethylcarbazole at 200 C and 40 bar H2, quantified by GC product distribution; it is not H2 uptake by a sorbent (I1 exclusion: hydrogenation without measured uptake). The only gas-phase H2 uptake measured on the solid is Fig. 7: volumetric H2 physisorbed/chemisorbed/total isotherms (0-800 mm Hg, cc/g STP) on Pt/Ni@(N)G-18 and Pt/Ni@(N)G-0 (carbon-majority Ni/Pt on N-doped graphitic carbon, C about 72-74 wt%, Ni 14-15 wt%). No temperature is given for these isotherms in the figure, caption or text. Section 2.3 describes only pulse chemisorption (Micromeritics AutoChem II 2920, pulses of 5 vol% H2 in He after cooling to 'room temperature'); that protocol does not produce a pressure-swept isotherm, so its temperature cannot be assigned to Fig. 7, and 'room temperature' in words is unstated under the schema's temperature_unstated rule. Hence I3 fails -> no_conditions_stated. If I1 were instead judged not met (chemisorption used only as catalyst characterization), the code would still be no_conditions_stated. If 'room temperature' were accepted for Fig. 7, I4 would decide (no_surface_area), since the only area reported is a Ni metal surface area (1.78 m2/g). Not a review; record is_retracted false and no retraction notice; no statement that data were published before."
+}

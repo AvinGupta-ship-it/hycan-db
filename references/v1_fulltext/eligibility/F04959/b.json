@@ -1,0 +1,35 @@
+{
+  "frame_id": "F04959",
+  "eligible": false,
+  "exclusion_code": "no_conditions_stated",
+  "exclusion_quote": "",
+  "exclusion_location": "",
+  "criteria": {
+    "I1": {
+      "met": true,
+      "quote": "The reduced samples were swept with a flow of N2 for 1 h, cooled to room temperature, and subjected to H2 chemisorption using a pulse (50 μl) titration procedure.",
+      "location": "main, p. 2, Section 1.2 Catalyst characterization (values in Table 1, p. 3, column 'H2 uptake (cm3/g)')"
+    },
+    "I2": {
+      "met": true,
+      "quote": "the gas phase HDC of chlorobenzene (CB) has been studied over bulk Pd and Ni and ((8 ± 1) wt%) Pd and Ni supported on activated carbon (AC), graphite, graphitic nanofibers (GNF)",
+      "location": "main, p. 1, Abstract (H2 uptake of Pd/AC, Pd/graphite, Pd/GNF, Ni/AC, Ni/graphite, Ni/GNF in main, p. 3, Table 1)"
+    },
+    "I3": {
+      "met": false,
+      "quote": "Searched text, tables, figures for a numeric temperature and an uptake pressure for Table 1. Found only 'room temperature' / 'ambient conditions' and a per-pulse 'maximum partial pressure of H2 in the sample cell (0.004 atm)'.",
+      "location": ""
+    },
+    "I4": {
+      "met": true,
+      "quote": "Metal loading (supported catalysts), BET surface area, H2 uptake, and specific metal surface areas (S) are given in Table 1.",
+      "location": "main, p. 3, Section 2.1 and Table 1 (row Pd/AC: 7.8 wt%, BET 875 m2/g, H2 uptake 1.0 cm3/g)"
+    },
+    "I5": {
+      "met": true,
+      "quote": "Halogen containing waste is typically xenobiotic and, having no analogous compounds in nature, there is no natural means of ameliorating the negative environmental impact.",
+      "location": "main, p. 1, Introduction (first sentence)"
+    }
+  },
+  "notes": "Catalysis paper (gas-phase hydrodechlorination of chlorobenzene over Pd and Ni, bulk and on AC, graphite, GNF, Al2O3, SiO2). Its only H2 uptake values are pulse H2 chemisorption volumes (cm3/g) in Table 1, measured in a CHEMBET 3000 flow unit with N2 carrier; I judged this a flow method, so I1 is met, and the Pd/AC, Ni/AC, Pd/GNF and similar catalysts are metal-decorated carbons (about 8 wt% metal), so I2 is met. Table 1 reports BET area (single-point method) for every sample, so I4 is met. I3 is the decisive and borderline call: the temperature of the chemisorption is given only as 'room temperature' / 'ambient conditions', which the registered schema treats as not stated (words are not a number and are not imputed), and the 0.004 atm figure is the maximum per-pulse partial pressure, not the pressure of the saturation uptake value. TPD (Fig. 5) is a desorption ramp and does not supply uptake conditions. If I1 were read as not met (chemisorption on metal sites in a catalyst study), the code would still be no_conditions_stated. Not a review, not retracted (is_retracted false; no retraction notice in the text), no statement that the uptake values were published before. No supplementary files in the input."
+}
