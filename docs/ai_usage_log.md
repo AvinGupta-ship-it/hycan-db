@@ -2428,5 +2428,8 @@ passing.
 
 **Author's role.** He signed in to the university library himself (Claude
 never saw or handled his credentials), approved the downloads, and installed
-the Chrome extension. His review of every full-text exclusion (§6) comes
-next.
+the Chrome extension. He reviewed every full-text exclusion (§6) on a page
+Claude built from the committed assessments, which saved each decision as he
+made it: 81 confirmed, none reversed (`references/v1_fulltext/author_review.csv`).
+Claude copied the decisions unchanged and checked that they cover exactly the
+81 exclusions.
