@@ -1,0 +1,35 @@
+{
+  "frame_id": "F09355",
+  "eligible": false,
+  "exclusion_code": "not_carbon",
+  "exclusion_quote": "",
+  "exclusion_location": "",
+  "criteria": {
+    "I1": {
+      "met": true,
+      "quote": "This section contains experimental hydrogen (H2) adsorption isotherms for pristine MOFs and their carbon-based hybrids (GO, EG, and QDOTs) measured at 20K, 77K, and 87K.",
+      "location": "main, p. 3, section 'Hydrogen Adsorption Isotherms (20, 77, and 87 K)'"
+    },
+    "I2": {
+      "met": false,
+      "quote": "Searched main and SI text for a measured H2 sorbent whose majority component by mass is carbon; none found. The six measured samples are MIL-100(Fe), MIL-101(Cr), MOF-5 and their hybrids. Carbon is a minor additive: 'MIL-101(Cr) + 1% GO: Hybrid synthesized via post-synthetic hybridization incorporating 1wt.% graphene oxide (GO).' (main, p. 6, Sample naming conventions); 'incorporating 0.5 wt.% carbon quantum dots (QDOTs)' (MIL-100(Fe) hybrid, main, p. 6); 'incorporating 1wt.% exfoliated graphite (EG)' (MOF-5 hybrid, main, p. 6). No H2 file exists for GO, EG or QDOTs alone.",
+      "location": ""
+    },
+    "I3": {
+      "met": true,
+      "quote": "H2.77K--MIL-101(Cr).tab: Hydrogen adsorption/desorption isotherms recorded at 77 K up to 1 bar for MIL-101(Cr)",
+      "location": "main, p. 4, Hydrogen Adsorption Isotherms file inventory (SI, p. 81, file H2.77K--MIL-101(Cr).csv, column headers in bar and mmol/g)"
+    },
+    "I4": {
+      "met": true,
+      "quote": "w (nm),dV/dw (cm3 g-1 nm),V cum (cm3 g-1),S cum (m2 g-1) ... 293.17116630,0.00000000,1.20479984,4708.27206700",
+      "location": "si1, file PSD--MOF-5.csv, header p. 114, last row p. 117 (cumulative surface area column of the pore size distribution; no BET value or method is named anywhere)"
+    },
+    "I5": {
+      "met": true,
+      "quote": "This replication dataset gathers experimental measurements evaluating the performance of pristine metal-organic frameworks (MOFs) and MOF/carbon hybrids as cryo-adsorbents to mitigate boil-off (BO) losses in liquid hydrogen (LH2) systems operating below 20 K.",
+      "location": "main, p. 1, opening paragraph"
+    }
+  },
+  "notes": "Input is a data-deposit README (main, 6 pp.) plus the raw CSV files (SI): XRD, FTIR, TGA/DTG, Ar 87 K, N2 77 K, H2 isotherms at 20, 77 and 87 K, H2 isochores (100% and 85% loading) and DFT-type PSD for six samples. The associated article (DOI 10.1016/j.cej.2026.173683) is not supplied, so no experimental section exists and the H2 uptake method (volumetric or gravimetric) is not named. I1 is judged met because the README states experimental H2 adsorption isotherms and isochores (main, p. 5: 'equilibrium pressure variations as a function of temperature under constant density conditions'), none of the I1 exclusions applies, and the data are quantity adsorbed (mmol/g or cm3 STP/g) vs pressure. If a reader insists that I1 needs a named method, the code would be no_conditions_stated instead. I2 fails on the paper's own description: the sorbents are MOFs (not carbon sorbents under protocol 3) with 0.5-1 wt.% carbon additive, so the majority component by mass is not carbon. I4 is met only weakly, through the S cum (m2 g-1) column of the PSD files (final values 1236 to 4708 m2/g, one per sample); no BET or Langmuir area is stated and the probe gas and model are not named. I4 does not change the outcome because not_carbon precedes no_surface_area in the protocol 4 order. not_primary, retracted (is_retracted false) and duplicate_data were considered and not applied; not_primary was not reached because a higher-order code applies."
+}

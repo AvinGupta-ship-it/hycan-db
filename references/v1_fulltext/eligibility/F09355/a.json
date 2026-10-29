@@ -1,0 +1,35 @@
+{
+  "frame_id": "F09355",
+  "eligible": false,
+  "exclusion_code": "not_carbon",
+  "exclusion_quote": "",
+  "exclusion_location": "",
+  "criteria": {
+    "I1": {
+      "met": true,
+      "quote": "This section contains experimental hydrogen (H2) adsorption isotherms for pristine MOFs and their carbon-based hybrids (GO, EG, and QDOTs) measured at 20K, 77K, and 87K.",
+      "location": "main, p. 3, section 'Hydrogen Adsorption Isotherms (20, 77, and 87 K)'"
+    },
+    "I2": {
+      "met": false,
+      "quote": "Searched for a measured sorbent whose majority component by mass is carbon; found none. All six H2-measured sorbents are MOFs or MOF hybrids with 0.5-1 wt% carbon, e.g. 'MIL-101(Cr) + 1% GO: Hybrid synthesized via post-synthetic hybridization incorporating 1wt.% graphene oxide (GO).' (main, p. 6, Sample naming conventions).",
+      "location": ""
+    },
+    "I3": {
+      "met": true,
+      "quote": "H2.77K--MIL-101(Cr) +1% GO.tab: Hydrogen adsorption/desorption isotherms recorded at 77 K up to 1 bar for MIL-101(Cr)+1%GO",
+      "location": "main, p. 4, file inventory (Hydrogen Adsorption Isotherms); data in si1, pp. 80-81, H2.77K--MIL-101(Cr) +1% GO.csv, columns 'Relative pressure adsorption (bar)' and 'Quantity Adsorbed (mmol/g)'"
+    },
+    "I4": {
+      "met": true,
+      "quote": "w (nm),dV/dw (cm3 g-1 nm),V cum (cm3 g-1),S cum (m2 g-1) [...] 293.171166300,0.000000000,1.307379705,1242.834481000",
+      "location": "si1, p. 105 (header) and p. 108 (last row), PSD--MIL-101(Cr)+1%GO.csv"
+    },
+    "I5": {
+      "met": true,
+      "quote": "This replication dataset gathers experimental measurements evaluating the performance of pristine metal-organic frameworks (MOFs) and MOF/carbon hybrids as cryo-adsorbents to mitigate boil-off (BO) losses in liquid hydrogen (LH2) systems operating below 20 K.",
+      "location": "main, p. 1, opening paragraph"
+    }
+  },
+  "notes": "The document is a data-repository README (Recherche Data Gouv, doi 10.57745/FCV2R0) plus its CSV data files (si1), the replication dataset for the article 10.1016/j.cej.2026.173683; it carries data, so not_primary was not applied. I1: the H2 measurement method (volumetric or gravimetric) is not named anywhere, but the files are gas-phase H2 adsorption/desorption isotherms (quantity adsorbed in cm3 g-1 STP or mmol/g vs pressure), not TPD, electrochemistry or computation, so I1 was judged met. I2 decides the code: sorbents are MIL-100(Fe), MIL-101(Cr), MOF-5 and their hybrids with 0.5 wt% carbon quantum dots, 1 wt% GO or 1 wt% exfoliated graphite; the majority component is the MOF in every sample, and protocol section 3 excludes MOFs. I4: the only surface areas are cumulative surface areas (S cum, m2 g-1) from the PSD files; no BET value is given. duplicate_data: the README calls itself 'Replication Data' with 'DOI Reference: 10.1016/j.cej.2026.173683' but does not state that the values were published before; in any case not_carbon precedes it. Not retracted (record flag false; no retraction notice)."
+}
