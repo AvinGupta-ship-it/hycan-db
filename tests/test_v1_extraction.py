@@ -76,3 +76,25 @@ def test_plan_routes_and_ids():
         assert (r["mode"] == "dual") == (r["selection_route"] in ("S1", "S2"))
         assert (r["mode"] == "none") == (r["selection_route"] == "legacy_v0.1_not_retrieved")
         assert r["first_author"] and r["journal"] and r["year"]
+
+
+def test_tools_directory_check_finds_a_stray_file(tmp_path):
+    tools = tmp_path / "tools"
+    (tools / "scripts").mkdir(parents=True)
+    (tools / "scripts" / "a.py").write_text("x = 1\n")
+    digest = hashlib.sha256(b"x = 1\n").hexdigest()
+    (tools / "MANIFEST").write_text(f"{digest}  scripts/a.py\n")
+    ex.TOOLS_MANIFEST_SHA256, saved = hashlib.sha256((tools / "MANIFEST").read_bytes()).hexdigest(), ex.TOOLS_MANIFEST_SHA256
+    try:
+        assert runs.tools_problems(tools) == []
+        (tools / "dz").mkdir()
+        (tools / "dz" / "t.json").write_text("{}")
+        assert runs.tools_problems(tools) == ["files in the tools directory not in its MANIFEST: ['dz/t.json']"]
+        (tools / "src" / "__pycache__").mkdir(parents=True)
+        (tools / "src" / "__pycache__" / "m.pyc").write_bytes(b"")
+        (tools / "dz" / "t.json").unlink()
+        assert runs.tools_problems(tools) == []
+        (tools / "scripts" / "a.py").write_text("x = 2\n")
+        assert runs.tools_problems(tools) == ["tools file changed or missing: scripts/a.py"]
+    finally:
+        ex.TOOLS_MANIFEST_SHA256 = saved

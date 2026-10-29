@@ -251,6 +251,15 @@
       "reason": "command in the tools directory does more than run its two scripts: which pdftoppm pdfimages mutool",
       "access": false,
       "note": "In the tools directory the command runs 'python3 scripts/digitize_figure.py --help' (an allowed script), 'which pdftoppm pdfimages mutool' (looks the programs up on PATH; opens no file in the tools directory), checks whether the fitz library imports (the tools directory holds no module of that name: its MANIFEST lists only scripts/ and src/hycan/), and prints the size of the agent's own page image (in/pages/main-5.png). Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0068",
+      "transcript": "agent-a6d5d2af3d467768e.jsonl",
+      "call": 47,
+      "reason": "command in the tools directory does more than run its two scripts: rmdir dz",
+      "access": false,
+      "note": "Instruction breach without data access, reported by the agent after its reply. Its helper script (work/scripts/run.sh) ran the allowed digitizer from the tools directory with a relative --out path, so calls 44 to 46 wrote trial digitizations of this paper's own Fig. 6c (dz/t_*.json) into /home/claude/work/v1_tools_frozen/dz/; in this call it removed those files and the folder (rm -f, rmdir), and in call 48 it made the helper write to absolute paths in its own work directory. The files held only its own digitizations. No other agent opened that folder: across every extraction transcript the only other command naming the tools directory with a listing is extractor A's 'ls scripts' (HYC-0068, call 15), which lists the scripts subfolder only. After the run the tools directory matched its MANIFEST file by file, with no file other than Python's __pycache__. The agent also listed /usr/share/fonts/truetype/dejavu/ (call 94) and loaded a system font to label its overlay images (calls 92 to 135): a system folder holding no project data. None of this is access under Amendment 1, item 26; the output is kept."
     }
   ]
 }

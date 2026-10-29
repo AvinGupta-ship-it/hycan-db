@@ -147,6 +147,31 @@ def check_agent(run: Path, role: str, pid: str, mode: str, transcript: Path,
     return report
 
 
+def tools_problems(tools: Path = extraction.TOOLS) -> list[str]:
+    """The shared tools directory must hold exactly its MANIFEST files, unchanged
+    (Python's __pycache__ aside): an agent that wrote there could reach the
+    others. Checked on every run, because the access audit sees a write made
+    through a script's output argument only when the agent reports it."""
+    problems = []
+    if hashlib.sha256((tools / "MANIFEST").read_bytes()).hexdigest() != extraction.TOOLS_MANIFEST_SHA256:
+        return ["tools MANIFEST changed"]
+    listed = {}
+    for line in (tools / "MANIFEST").read_text(encoding="utf-8").splitlines():
+        if line.strip() and not line.startswith("#"):
+            digest, name = line.split(None, 1)
+            listed[name.strip()] = digest
+    for name, digest in listed.items():
+        f = tools / name
+        if not f.is_file() or hashlib.sha256(f.read_bytes()).hexdigest() != digest:
+            problems.append(f"tools file changed or missing: {name}")
+    extra = sorted(str(f.relative_to(tools)) for f in tools.rglob("*")
+                   if f.is_file() and f.name != "MANIFEST" and "__pycache__" not in f.parts
+                   and str(f.relative_to(tools)) not in listed)
+    if extra:
+        problems.append(f"files in the tools directory not in its MANIFEST: {extra}")
+    return problems
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     ap.add_argument("--run", default=str(extraction.RUN))
@@ -175,8 +200,12 @@ def main(argv: list[str] | None = None) -> int:
     stale = sorted(set(reviews) - used)
     for key in stale:
         print("review matches no flag: " + json.dumps(key))
-    print(f"{len(found)} agents checked, {bad} not ok")
-    return 1 if bad or stale else 0
+    tools = tools_problems()
+    for t in tools:
+        print("TOOLS: " + t)
+    print(f"{len(found)} agents checked, {bad} not ok; tools directory "
+          + ("clean" if not tools else "NOT clean"))
+    return 1 if bad or stale or tools else 0
 
 
 if __name__ == "__main__":
