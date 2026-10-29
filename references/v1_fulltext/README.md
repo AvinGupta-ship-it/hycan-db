@@ -76,10 +76,10 @@ files by `scripts/v1_search/fulltext.py status`.
   14:58 UTC on 29 Oct 2026, after both walks had stopped. Their log rows name
   the v0.1 paper in the note, and as records past the stop they do not move the
   walk. A PDF held from v0.1 is not used: where a route served bytes identical
-  to a v0.1 copy (F08691, F08931), the note says so. Of the 44, 42 were
-  obtained (10 by route 1, 32 by route 2), HYC-0041 (F02292) was not (abstract
-  page only through the library), and HYC-0062 (F07281) awaits its rule-3
-  retry (see Incidents).
+  to a v0.1 copy (F08691, F08931), the note says so. Of the 44, 43 were
+  obtained (10 by route 1, 33 by route 2; HYC-0062, F07281, on its rule-3
+  retry, see Incidents), and HYC-0041 (F02292) was not (abstract page only
+  through the library).
 - **Supplementary information.** Document files (PDF, Word, Excel, text) are
   retrieved; files in another document format are converted to PDF for the
   assessors with `soffice` (`fulltext.py stage`), and a supplementary zip is
@@ -145,7 +145,9 @@ record alike, so that retrieval effort is the same for every record (§8).
   stopped. The one record affected (F07281, route 2: the Science article page
   had loaded, but its PDF link returned the suspension page) is treated under
   rule 3: one more attempt in a fresh tab after at least 30 minutes, once the
-  proxy serves again; that outcome is final.
+  proxy serves again; that outcome is final. The author signed in to the
+  library again, and the second attempt, at 19:11 UTC in a fresh Chrome tab,
+  obtained the PDF.
 
 ### Retrieved and not retrieved (§8)
 
@@ -190,14 +192,15 @@ every full-text exclusion (§6).
   records taken, and no two taken records share a DOI or have titles more than
   80% alike (difflib ratio on lower-cased alphanumeric titles), so no taken
   record is a `frame_duplicate` and no `frame_duplicates.csv` is written.
-- **v0.1 papers not drawn.** The 42 retrieved were assessed in the same way.
-  The assessors agreed on all 42: 35 eligible, 6 `no_surface_area` and 1
-  `no_conditions_stated`, each subject to the author's review below. Two of
+- **v0.1 papers not drawn.** The 43 retrieved were assessed in the same way.
+  The assessors agreed on all 43: 36 eligible, 6 `no_surface_area` and 1
+  `no_conditions_stated`, each exclusion subject to the author's review below. Two of
   them, HYC-0046 (F05380) and HYC-0051 (F04740), are the papers on which the
   eligibility prompt was piloted (Amendment 1); the pilot outputs are not used,
   and both were assessed afresh with the frozen prompt. HYC-0041 (F02292) was
-  not retrieved by either route, so it has no assessment; HYC-0062 (F07281)
-  awaits its retry. Their rows in `eligibility.csv` lie outside the walk, which
+  not retrieved by either route, so it has no assessment. HYC-0062 (F07281),
+  retrieved on its rule-3 retry, was assessed after the author's review and is
+  eligible, so the review below still covers every exclusion. Their rows in `eligibility.csv` lie outside the walk, which
   `fulltext.py status` computes from the records taken only.
 - **Author's review (§6).** The author reviewed all 81 full-text exclusions
   (74 among the records the walk took and the 7 v0.1 papers) on a page that
@@ -209,6 +212,6 @@ every full-text exclusion (§6).
   (`author_review.csv`). The page was built from the committed assessments at
   commit 6ecc749 and saved each decision as he made it; the decisions were
   copied into `author_review.csv` unchanged.
-- **Agent checks.** 398 agents (A and B for 198 records, and 2 resolvers) pass
+- **Agent checks.** 400 agents (A and B for 199 records, and 2 resolvers) pass
   the launcher, prompt-hash, model, access and output checks; every audit flag
   was reviewed against its call (`access_reviews.json`), and none was access.

@@ -2398,8 +2398,8 @@ Chrome (the author's own Chrome). Eligibility agents under the frozen
 `eligibility.md`, one per record and role: assessor A `claude-opus-5-5`,
 assessor B `claude-sonnet-5-5`; the resolver (`claude-opus-5-5`,
 `eligibility_resolve.md`) for every record on which they disagreed.
-398 agents in all: A and B for 198 records (156 taken by the walk or
-assessed ahead of it, and 42 v0.1 papers), and 2 resolvers.
+400 agents in all: A and B for 199 records (156 taken by the walk or
+assessed ahead of it, and 43 v0.1 papers), and 2 resolvers.
 
 **What was done.** Claude retrieved each drawn record by the two §8 routes,
 in draw order and under the implementation rules fixed in
@@ -2409,7 +2409,8 @@ own, started every agent with the frozen launcher, checked each one after it
 ran, reviewed every audit flag against the transcript, ran the resolver
 where the assessors disagreed, and collected the outcomes; `fulltext.py
 status` computed the walk from the files. After both walks had stopped, the
-44 v0.1 papers that were not drawn were retrieved and assessed the same way.
+44 v0.1 papers that were not drawn were sought by the same routes, and the 43
+obtained were assessed the same way.
 Claude also compared the retrieved and not-retrieved records (§8), and
 wrote `prisma.py`, which computes the PRISMA 2020 counts (§14) from the
 committed files and draws the flow diagram (`references/v1_prisma/`). Claude
@@ -2418,11 +2419,12 @@ did not assess any record and did not change any assessment.
 **Incident.** At about 15:38 UTC the university library's proxy suspended
 the session ('EZproxy - Security') after Claude had fetched 41 files
 through it in about 25 minutes. Claude stopped using the proxy and told the
-author; one record (F07281) waits for its rule-3 retry. Downloads through the
+author. The one record affected (F07281) was retrieved on its rule-3 retry
+at 19:11 UTC, after the author had signed in again. Downloads through the
 proxy are spaced out from now on.
 
-**Verified.** All 398 agents pass the launcher, prompt-hash, model, access and
-output checks; the 9 audit flags were each read against the call and none was
+**Verified.** All 400 agents pass the launcher, prompt-hash, model, access and
+output checks; the 11 audit flags were each read against the call and none was
 access (`access_reviews.json`). Every obtained file's SHA-256 matches its log
 row, and every stored main text matches its record's title. The walk is
 recomputed from the committed files by `fulltext.py status`. Full test suite

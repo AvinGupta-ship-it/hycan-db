@@ -80,6 +80,24 @@
       "reason": "command in the tools directory does more than run its two scripts: cat",
       "access": false,
       "note": "The agent's shell was in the tools directory (cd), but the command only runs its own work script with python3 -I (isolated mode: nothing is imported from the current directory), writes a second script from a quoted heredoc to its own work directory with cat, runs it with python3 -I to check its own output's quotes against its own input text (in/text/main.txt), and reads its own output back with python3 -I. No file in the tools directory is opened, listed or searched (the same pattern as B F07841 call 17 and B F09346 call 18)."
+    },
+    {
+      "screener": "B",
+      "batch": "F07281",
+      "transcript": "agent-afec7c8c8a2d8b566.jsonl",
+      "call": 13,
+      "access": false,
+      "reason": "command names the home directory",
+      "note": "The flagged '~' is the approximately sign inside a quotation from the paper ('can absorb ~20 or ~14 weight percent of hydrogen') and in the agent's own location note ('renders ~ as a different glyph'), in the assessment the agent writes. The text sits in a heredoc with a quoted delimiter (<<'EOF'), so the shell expands nothing in it, and the '~' is never a path. The only paths the command names are its own input text (in/text/main.txt), its own work script and its own output."
+    },
+    {
+      "screener": "B",
+      "batch": "F07281",
+      "transcript": "agent-afec7c8c8a2d8b566.jsonl",
+      "call": 13,
+      "access": false,
+      "reason": "command in the tools directory does more than run its two scripts: cat",
+      "note": "The agent's shell was in the tools directory (cd), but the command only counts a word in its own input text (grep on in/text/main.txt), writes a script from a quoted heredoc to its own work directory with cat, runs it with python3 -I (isolated mode: nothing is imported from the current directory) to write its own output, and reads its own output back with python3 -I. No file in the tools directory is opened, listed or searched (the same pattern as B F05380 call 13)."
     }
   ]
 }
