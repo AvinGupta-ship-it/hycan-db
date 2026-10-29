@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T22:42:44+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0069",
+  "figure": "Fig. 6a (77 K)",
+  "series_name": "SBL-CO-PP-C-7 adsorption marker 07",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0069/in/pages/main-07.png",
+    "sha256": "61dd1ca3d5941be126b5809b5c634e729d823ad040d03e638f5917d92e36c792",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 307.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 617.0,
+        "value": 25.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1446.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1226.0,
+        "value": 5.0
+      },
+      "scale": "linear",
+      "label": "H2 Uptake (wt.%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 431.0,
+        "stated": 10.0,
+        "predicted": 10.0,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 1336.0,
+        "stated": 2.5,
+        "predicted": 2.5,
+        "relative_error": 0.0
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#00ff00",
+    "color_rgb": [
+      0,
+      255,
+      0
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 2316,
+    "matched_pixels_in_region": 33,
+    "region": [
+      316,
+      1338,
+      324,
+      1346
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 8.8,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 1.111925708699904,
+      "y": 2.3856749311294774,
+      "pixel_x": 320.7878787878788,
+      "pixel_y": 1341.030303030303,
+      "pixel_count": 33,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 6a (77 K), digitized (SBL-CO-PP-C-7 adsorption marker 07)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig6a_SBL-CO-PP-C-7_ads_07.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

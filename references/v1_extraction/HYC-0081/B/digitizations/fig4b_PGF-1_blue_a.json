@@ -1,0 +1,176 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T22:55:00+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0081",
+  "figure": "Fig. 4b",
+  "series_name": "PGF-1 (blue filled triangles), part a: markers 2.4-10.7 atm, open-px 2",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0081/in/pages/main-3.png",
+    "sha256": "7355775647738fd4cb654a239673dd0763fa1d5f6d9945fd2a1fc0f4dd375fa5",
+    "width_px": 1241,
+    "height_px": 1625
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 406.41,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 566.34,
+        "value": 20.0
+      },
+      "scale": "linear",
+      "label": "P (atm)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 253.24,
+        "value": 0.5
+      },
+      "reference_2": {
+        "pixel": 145.89,
+        "value": 2.0
+      },
+      "scale": "linear",
+      "label": "H2 uptake (wt%)",
+      "decades_spanned": 0.6020599913279624
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 486.27,
+        "stated": 10.0,
+        "predicted": 9.986869255299188,
+        "relative_error": 0.0013130744700811548
+      },
+      {
+        "axis": "y",
+        "pixel": 217.42,
+        "stated": 1.0,
+        "predicted": 1.0005123428039127,
+        "relative_error": 0.0005123428039126576
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#3e56a4",
+    "color_rgb": [
+      62,
+      86,
+      164
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 1915,
+    "matched_pixels_in_region": 270,
+    "region": [
+      420,
+      140,
+      497,
+      232
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 5.0,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 2-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 9,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 2.4123053836053225,
+      "y": 1.1349324639031204,
+      "pixel_x": 425.7,
+      "pixel_y": 207.8,
+      "pixel_count": 10,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.2516431821274745,
+      "y": 1.2266610044110795,
+      "pixel_x": 432.4117647058824,
+      "pixel_y": 201.23529411764707,
+      "pixel_count": 17,
+      "outside_axis_range": false
+    },
+    {
+      "x": 4.416591349624551,
+      "y": 1.3156920862090864,
+      "pixel_x": 441.72727272727275,
+      "pixel_y": 194.86363636363637,
+      "pixel_count": 22,
+      "outside_axis_range": false
+    },
+    {
+      "x": 5.516953140683258,
+      "y": 1.3843870271860368,
+      "pixel_x": 450.5263157894737,
+      "pixel_y": 189.94736842105263,
+      "pixel_count": 19,
+      "outside_axis_range": false
+    },
+    {
+      "x": 6.536431117185195,
+      "y": 1.457009781089893,
+      "pixel_x": 458.67857142857144,
+      "pixel_y": 184.75,
+      "pixel_count": 28,
+      "outside_axis_range": false
+    },
+    {
+      "x": 7.603862404087501,
+      "y": 1.5198882161155098,
+      "pixel_x": 467.2142857142857,
+      "pixel_y": 180.25,
+      "pixel_count": 28,
+      "outside_axis_range": false
+    },
+    {
+      "x": 8.660872465036785,
+      "y": 1.5804378202142524,
+      "pixel_x": 475.6666666666667,
+      "pixel_y": 175.91666666666666,
+      "pixel_count": 24,
+      "outside_axis_range": false
+    },
+    {
+      "x": 9.680257840077758,
+      "y": 1.620345513824787,
+      "pixel_x": 483.8181818181818,
+      "pixel_y": 173.06060606060606,
+      "pixel_count": 33,
+      "outside_axis_range": false
+    },
+    {
+      "x": 10.718145070821423,
+      "y": 1.6651661689361352,
+      "pixel_x": 492.11764705882354,
+      "pixel_y": 169.85294117647058,
+      "pixel_count": 34,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 4b, digitized (PGF-1 (blue filled triangles), part a: markers 2.4-10.7 atm, open-px 2)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig4b_PGF-1_blue_a.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

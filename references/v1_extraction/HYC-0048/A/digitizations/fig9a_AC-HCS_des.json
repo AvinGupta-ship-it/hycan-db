@@ -1,0 +1,136 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T22:26:13+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0048",
+  "figure": "Fig 9a",
+  "series_name": "AC-HCS open-marker pass (ring interiors)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0048/work/holes/9a_HCS_rings.png",
+    "sha256": "652b2a1a598ddab6a42343d81a4a6aadc18f38cc0310af783c35fc22e833621e",
+    "width_px": 1241,
+    "height_px": 1648
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 219.2,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 570.5,
+        "value": 1.0
+      },
+      "scale": "linear",
+      "label": "Relative pressure (P/P0)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1080.5,
+        "value": 1.0
+      },
+      "reference_2": {
+        "pixel": 764.0,
+        "value": 7.0
+      },
+      "scale": "linear",
+      "label": "Hydrogen uptake (wt%)",
+      "decades_spanned": 0.8450980400142568
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 360.0,
+        "stated": 0.4,
+        "predicted": 0.4007970395673214,
+        "relative_error": 0.00199259891830339
+      },
+      {
+        "axis": "y",
+        "pixel": 922.5,
+        "stated": 4.0,
+        "predicted": 3.995260663507109,
+        "relative_error": 0.0011848341232227888
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 104,
+    "matched_pixels_in_region": 104,
+    "region": [
+      221,
+      766,
+      604,
+      1131
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 12.66,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 2-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 4,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.046399089097637375,
+      "y": 2.516587677725118,
+      "pixel_x": 235.5,
+      "pixel_y": 1000.5,
+      "pixel_count": 24,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.1716481639624253,
+      "y": 4.023696682464455,
+      "pixel_x": 279.5,
+      "pixel_y": 921.0,
+      "pixel_count": 20,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.286934244235696,
+      "y": 4.7725118483412325,
+      "pixel_x": 320.0,
+      "pixel_y": 881.5,
+      "pixel_count": 30,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.5886706518645033,
+      "y": 5.890995260663507,
+      "pixel_x": 426.0,
+      "pixel_y": 822.5,
+      "pixel_count": 30,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig 9a, digitized (AC-HCS open-marker pass (ring interiors))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: 9a_HCS_rings.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

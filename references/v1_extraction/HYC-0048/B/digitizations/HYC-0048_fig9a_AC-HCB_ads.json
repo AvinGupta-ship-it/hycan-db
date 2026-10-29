@@ -1,0 +1,204 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T22:26:09+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0048",
+  "figure": "Fig.9a",
+  "series_name": "AC-HCB ads (filled blue triangles)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0048/work/p17_f9a_masked.png",
+    "sha256": "500c59bc73925b170397bbf5fe9775de5275c0afcfc3d41eb77e085ac05fc7fa",
+    "width_px": 1241,
+    "height_px": 1648
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 219.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 570.5,
+        "value": 1.0
+      },
+      "scale": "linear",
+      "label": "relative_pressure_P/P0",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1080.5,
+        "value": 1.0
+      },
+      "reference_2": {
+        "pixel": 764.0,
+        "value": 7.0
+      },
+      "scale": "linear",
+      "label": "uptake_wt_pct",
+      "decades_spanned": 0.8450980400142568
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 430.0,
+        "stated": 0.6,
+        "predicted": 0.6002844950213371,
+        "relative_error": 0.0004741583688951575
+      },
+      {
+        "axis": "y",
+        "pixel": 922.5,
+        "stated": 4.0,
+        "predicted": 3.995260663507109,
+        "relative_error": 0.0011848341232227888
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#0000ff",
+    "color_rgb": [
+      0,
+      0,
+      255
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 4676,
+    "matched_pixels_in_region": 965,
+    "region": [
+      221,
+      765,
+      605,
+      1132
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 12.66,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 11,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.02142792288368998,
+      "y": 3.9627911666834734,
+      "pixel_x": 226.53191489361703,
+      "pixel_y": 924.2127659574468,
+      "pixel_count": 47,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.06444683136412457,
+      "y": 4.8168101363768265,
+      "pixel_x": 241.6530612244898,
+      "pixel_y": 879.1632653061224,
+      "pixel_count": 49,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.1162782215413794,
+      "y": 5.132458378903875,
+      "pixel_x": 259.87179487179486,
+      "pixel_y": 862.5128205128206,
+      "pixel_count": 39,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.17672559777822927,
+      "y": 5.357030015797789,
+      "pixel_x": 281.1190476190476,
+      "pixel_y": 850.6666666666666,
+      "pixel_count": 42,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.21763869132290184,
+      "y": 5.4739336492890995,
+      "pixel_x": 295.5,
+      "pixel_y": 844.5,
+      "pixel_count": 44,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.30032005689900426,
+      "y": 5.699052132701421,
+      "pixel_x": 324.5625,
+      "pixel_y": 832.625,
+      "pixel_count": 32,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.3575347635498012,
+      "y": 5.8022052422864885,
+      "pixel_x": 344.6734693877551,
+      "pixel_y": 827.1836734693877,
+      "pixel_count": 49,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.503829740671846,
+      "y": 6.065986146554868,
+      "pixel_x": 396.09615384615387,
+      "pixel_y": 813.2692307692307,
+      "pixel_count": 52,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.7124324324324325,
+      "y": 6.33952606635071,
+      "pixel_x": 469.42,
+      "pixel_y": 798.84,
+      "pixel_count": 50,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.8581708643628148,
+      "y": 6.485549670105009,
+      "pixel_x": 520.6470588235294,
+      "pixel_y": 791.1372549019608,
+      "pixel_count": 51,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.999564548436729,
+      "y": 6.579843311732276,
+      "pixel_x": 570.3469387755102,
+      "pixel_y": 786.1632653061224,
+      "pixel_count": 49,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 0.99,
+      "expected": 6.57,
+      "got": 6.5734648365653925,
+      "difference": 0.003464836565392204,
+      "percent": 0.05273723843823751,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-10-29T22:28:05+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig.9a, digitized (AC-HCB ads (filled blue triangles))",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 0.99."
+  }
+}

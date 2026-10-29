@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T22:55:05+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0081",
+  "figure": "Fig. 4b",
+  "series_name": "PGF-2 (red filled triangles), part c: upper marker of an overlapping pair near 1.2 atm, ROI limited to rows 219-226, open-px 2",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0081/in/pages/main-3.png",
+    "sha256": "7355775647738fd4cb654a239673dd0763fa1d5f6d9945fd2a1fc0f4dd375fa5",
+    "width_px": 1241,
+    "height_px": 1625
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 406.41,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 566.34,
+        "value": 20.0
+      },
+      "scale": "linear",
+      "label": "P (atm)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 253.24,
+        "value": 0.5
+      },
+      "reference_2": {
+        "pixel": 145.89,
+        "value": 2.0
+      },
+      "scale": "linear",
+      "label": "H2 uptake (wt%)",
+      "decades_spanned": 0.6020599913279624
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 486.27,
+        "stated": 10.0,
+        "predicted": 9.986869255299188,
+        "relative_error": 0.0013130744700811548
+      },
+      {
+        "axis": "y",
+        "pixel": 217.42,
+        "stated": 1.0,
+        "predicted": 1.0005123428039127,
+        "relative_error": 0.0005123428039126576
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#eb3436",
+    "color_rgb": [
+      235,
+      52,
+      54
+    ],
+    "tolerance": 50.0,
+    "matched_pixels_in_image": 1890,
+    "matched_pixels_in_region": 35,
+    "region": [
+      412,
+      219,
+      424,
+      226
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 5.0,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 2-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 1.2194447974214522,
+      "y": 0.9090208392806166,
+      "pixel_x": 416.16129032258067,
+      "pixel_y": 223.96774193548387,
+      "pixel_count": 31,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 4b, digitized (PGF-2 (red filled triangles), part c: upper marker of an overlapping pair near 1.2 atm, ROI limited to rows 219-226, open-px 2)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig4b_PGF-2_red_c.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

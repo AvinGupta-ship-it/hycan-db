@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T22:55:09+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0081",
+  "figure": "Fig. 4a",
+  "series_name": "PGF-1 87 K (red open triangles), highest-pressure marker only; ROI = bounding box of the last marker (earlier markers overlap)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0081/in/pages/main-3.png",
+    "sha256": "7355775647738fd4cb654a239673dd0763fa1d5f6d9945fd2a1fc0f4dd375fa5",
+    "width_px": 1241,
+    "height_px": 1625
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 165.04,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 331.92,
+        "value": 1.0
+      },
+      "scale": "linear",
+      "label": "P (atm)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 276.94,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 131.76,
+        "value": 160.0
+      },
+      "scale": "linear",
+      "label": "H2 uptake (cc/g)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 265.0,
+        "stated": 0.6,
+        "predicted": 0.598993288590604,
+        "relative_error": 0.001677852348993351
+      },
+      {
+        "axis": "y",
+        "pixel": 204.34,
+        "stated": 80.0,
+        "predicted": 80.01102080176332,
+        "relative_error": 0.00013776002204153316
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#eb3436",
+    "color_rgb": [
+      235,
+      52,
+      54
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 1958,
+    "matched_pixels_in_region": 44,
+    "region": [
+      324,
+      184,
+      335,
+      193
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 5.807200000000001,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.9769186350562188,
+      "y": 96.04027602098964,
+      "pixel_x": 328.0681818181818,
+      "pixel_y": 189.79545454545453,
+      "pixel_count": 44,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 4a, digitized (PGF-1 87 K (red open triangles), highest-pressure marker only; ROI = bounding box of the last marker (earlier markers overlap))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig4a_PGF-1_87K_red_last.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

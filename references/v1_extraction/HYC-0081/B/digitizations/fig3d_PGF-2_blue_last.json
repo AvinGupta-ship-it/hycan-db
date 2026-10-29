@@ -1,0 +1,122 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T22:55:07+00:00",
+  "status": "discarded",
+  "paper_id": "HYC-0081",
+  "figure": "Fig. 3d",
+  "series_name": "PGF-2 (blue filled triangles), highest-pressure marker only; ROI = bounding box of the last marker (earlier markers merge into a continuous band)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0081/in/pages/main-2.png",
+    "sha256": "2d7a3abef8ae0b51dab8bcb5ee6590321f28d7ad99e744c3f99350881c696c0f",
+    "width_px": 1241,
+    "height_px": 1625
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 952.33,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1102.17,
+        "value": 1.0
+      },
+      "scale": "linear",
+      "label": "P (atm)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1406.77,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1271.86,
+        "value": 160.0
+      },
+      "scale": "linear",
+      "label": "H2 uptake (cc/g)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 1042.25,
+        "stated": 0.6,
+        "predicted": 0.6001067805659366,
+        "relative_error": 0.00017796760989433985
+      },
+      {
+        "axis": "y",
+        "pixel": 1339.17,
+        "stated": 80.0,
+        "predicted": 80.17196649618249,
+        "relative_error": 0.002149581202281148
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#4655a1",
+    "color_rgb": [
+      70,
+      85,
+      161
+    ],
+    "tolerance": 50.0,
+    "matched_pixels_in_image": 4950,
+    "matched_pixels_in_region": 64,
+    "region": [
+      1097,
+      1300,
+      1107,
+      1309
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 5.396400000000003,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.987603443673251,
+      "y": 120.19642724779473,
+      "pixel_x": 1100.3125,
+      "pixel_y": 1305.421875,
+      "pixel_count": 64,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 0.987603443673251,
+      "expected": 111.19,
+      "got": 120.19642724779473,
+      "difference": 9.006427247794733,
+      "percent": 8.100033499230806,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": false,
+      "checked_utc": "2026-10-29T22:55:34+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": null,
+    "notes": "DISCARDED by a failed \u00a73.4 step 6 check. No row may be written from this archive. Re-calibrate from the axis ticks or obtain a higher-resolution crop and extract again; do not adjust this one to fit."
+  }
+}

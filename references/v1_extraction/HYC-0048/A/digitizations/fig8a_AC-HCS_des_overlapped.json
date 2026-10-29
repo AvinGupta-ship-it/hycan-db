@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T22:39:35+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0048",
+  "figure": "Fig 8a",
+  "series_name": "AC-HCS open-marker pass 2 (ring interior of a marker overlapped by blue)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0048/work/holes/8a_HCS_rings2.png",
+    "sha256": "f6059f3050a8c74897db3034fd6ecd7c2480d3c40c4b6cdbad06248b088cfa91",
+    "width_px": 1241,
+    "height_px": 1648
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 229.3,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 584.0,
+        "value": 3.5
+      },
+      "scale": "linear",
+      "label": "Pressure (MPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 509.5,
+        "value": 50.0
+      },
+      "reference_2": {
+        "pixel": 213.0,
+        "value": 200.0
+      },
+      "scale": "linear",
+      "label": "Volume H2 (cm3/g)",
+      "decades_spanned": 0.6020599913279624
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 432.0,
+        "stated": 2.0,
+        "predicted": 2.0001409641950945,
+        "relative_error": 7.048209754723089e-05
+      },
+      {
+        "axis": "y",
+        "pixel": 312.0,
+        "stated": 150.0,
+        "predicted": 149.91568296795953,
+        "relative_error": 0.000562113546936492
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 23,
+    "matched_pixels_in_region": 23,
+    "region": [
+      231,
+      155,
+      593,
+      508
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 11.86,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 2-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 3.1784094112822614,
+      "y": 220.60401655679902,
+      "pixel_x": 551.4090909090909,
+      "pixel_y": 172.27272727272728,
+      "pixel_count": 22,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig 8a, digitized (AC-HCS open-marker pass 2 (ring interior of a marker overlapped by blue))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: 8a_HCS_rings2.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

@@ -1,0 +1,176 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T22:27:54+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0048",
+  "figure": "Fig.8a",
+  "series_name": "AC-HCT ads (filled red circles)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0048/work/p17_f8a_masked.png",
+    "sha256": "816e52a19198c3fb12feb8951c2dfb5c8e03f9caea81aef22b36caf1f5725743",
+    "width_px": 1241,
+    "height_px": 1648
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 229.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 584.0,
+        "value": 3.5
+      },
+      "scale": "linear",
+      "label": "pressure_MPa",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 509.5,
+        "value": 50.0
+      },
+      "reference_2": {
+        "pixel": 213.0,
+        "value": 200.0
+      },
+      "scale": "linear",
+      "label": "uptake_cm3STP_per_g",
+      "decades_spanned": 0.6020599913279624
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 432.0,
+        "stated": 2.0,
+        "predicted": 2.0014084507042256,
+        "relative_error": 0.0007042253521127861
+      },
+      {
+        "axis": "y",
+        "pixel": 312.0,
+        "stated": 150.0,
+        "predicted": 149.91568296795953,
+        "relative_error": 0.000562113546936492
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff0000",
+    "color_rgb": [
+      255,
+      0,
+      0
+    ],
+    "tolerance": 120.0,
+    "matched_pixels_in_image": 4322,
+    "matched_pixels_in_region": 844,
+    "region": [
+      231,
+      154,
+      594,
+      509
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 11.86,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 9,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 2
+  },
+  "series": [
+    {
+      "x": 0.4495774647887326,
+      "y": 116.47554806070825,
+      "pixel_x": 274.6,
+      "pixel_y": 378.1,
+      "pixel_count": 30,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.6101514748870583,
+      "y": 130.18549747048903,
+      "pixel_x": 290.8867924528302,
+      "pixel_y": 351.0,
+      "pixel_count": 53,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.758206933911159,
+      "y": 139.98248800103775,
+      "pixel_x": 305.90384615384613,
+      "pixel_y": 331.63461538461536,
+      "pixel_count": 52,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.046136277122193,
+      "y": 153.8808623125655,
+      "pixel_x": 335.1081081081081,
+      "pixel_y": 304.1621621621622,
+      "pixel_count": 37,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.2598028169014082,
+      "y": 163.25126475548063,
+      "pixel_x": 356.78,
+      "pixel_y": 285.64,
+      "pixel_count": 50,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.7829605081469204,
+      "y": 179.60519789703403,
+      "pixel_x": 409.84313725490193,
+      "pixel_y": 253.31372549019608,
+      "pixel_count": 51,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.523363711681856,
+      "y": 195.16913004662234,
+      "pixel_x": 484.94117647058823,
+      "pixel_y": 222.54901960784315,
+      "pixel_count": 51,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.9796338028169016,
+      "y": 202.71163575042158,
+      "pixel_x": 531.22,
+      "pixel_y": 207.64,
+      "pixel_count": 50,
+      "outside_axis_range": true
+    },
+    {
+      "x": 3.480281690140845,
+      "y": 209.35919055649242,
+      "pixel_x": 582.0,
+      "pixel_y": 194.5,
+      "pixel_count": 52,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig.8a, digitized (AC-HCT ads (filled red circles))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0048_fig8a_AC-HCT_ads.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

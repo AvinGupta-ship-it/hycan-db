@@ -1,0 +1,152 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T22:25:55+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0048",
+  "figure": "Fig.8a",
+  "series_name": "AC-HCB des (open blue triangles; interiors)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0048/work/f8a_des_blue.png",
+    "sha256": "8543e7c14b26dba2023bb2fbc25015555f7f5263be468706ba5b0e20f21980a1",
+    "width_px": 1241,
+    "height_px": 1648
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 229.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 584.0,
+        "value": 3.5
+      },
+      "scale": "linear",
+      "label": "pressure_MPa",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 509.5,
+        "value": 50.0
+      },
+      "reference_2": {
+        "pixel": 213.0,
+        "value": 200.0
+      },
+      "scale": "linear",
+      "label": "uptake_cm3STP_per_g",
+      "decades_spanned": 0.6020599913279624
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 432.0,
+        "stated": 2.0,
+        "predicted": 2.0014084507042256,
+        "relative_error": 0.0007042253521127861
+      },
+      {
+        "axis": "y",
+        "pixel": 312.0,
+        "stated": 150.0,
+        "predicted": 149.91568296795953,
+        "relative_error": 0.000562113546936492
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#0000ff",
+    "color_rgb": [
+      0,
+      0,
+      255
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 81,
+    "matched_pixels_in_region": 81,
+    "region": [
+      231,
+      154,
+      594,
+      509
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 11.86,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      4,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 6,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 3
+  },
+  "series": [
+    {
+      "x": 0.17746478873239438,
+      "y": 158.63276689583603,
+      "pixel_x": 247.0,
+      "pixel_y": 294.7692307692308,
+      "pixel_count": 13,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.5852112676056336,
+      "y": 177.95711876656227,
+      "pixel_x": 288.35714285714283,
+      "pixel_y": 256.57142857142856,
+      "pixel_count": 14,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.0161971830985914,
+      "y": 190.56853770175863,
+      "pixel_x": 332.07142857142856,
+      "pixel_y": 231.64285714285714,
+      "pixel_count": 14,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.1098591549295773,
+      "y": 206.69347515890516,
+      "pixel_x": 443.0,
+      "pixel_y": 199.76923076923077,
+      "pixel_count": 13,
+      "outside_axis_range": true
+    },
+    {
+      "x": 2.7753521126760567,
+      "y": 214.7554806070826,
+      "pixel_x": 510.5,
+      "pixel_y": 183.83333333333334,
+      "pixel_count": 12,
+      "outside_axis_range": true
+    },
+    {
+      "x": 3.2357746478873244,
+      "y": 219.39291736930863,
+      "pixel_x": 557.2,
+      "pixel_y": 174.66666666666666,
+      "pixel_count": 15,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig.8a, digitized (AC-HCB des (open blue triangles; interiors))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0048_fig8a_AC-HCB_des.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}
