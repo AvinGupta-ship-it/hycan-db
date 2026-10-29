@@ -1,0 +1,124 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T21:07:10+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0066",
+  "figure": "Fig. 6b",
+  "series_name": "ACBF-1050 (end marker, ROI-limited)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0066/work/der_b_blue_50.png",
+    "sha256": "b534aaf6c2884c9fb89e55e945e23f56d2def8dfefdba203bc88d33a881c5609",
+    "width_px": 1040,
+    "height_px": 960
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 185.7800000000002,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 956.0600000000004,
+        "value": 20.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 781.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 56.18000000000029,
+        "value": 7.0
+      },
+      "scale": "linear",
+      "label": "Hydrogen uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 569.5,
+        "stated": 10.0,
+        "predicted": 9.963130290284045,
+        "relative_error": 0.003686970971595471
+      },
+      {
+        "axis": "y",
+        "pixel": 470.3000000000002,
+        "stated": 3.0,
+        "predicted": 3.0033640324270663,
+        "relative_error": 0.0011213441423554293
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#0000ff",
+    "color_rgb": [
+      0,
+      0,
+      255
+    ],
+    "tolerance": 30.0,
+    "matched_pixels_in_image": 7060,
+    "matched_pixels_in_region": 121,
+    "region": [
+      952,
+      342,
+      978,
+      442
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 29.012799999999988,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 2-px opening",
+    "marker_size_px": [
+      8,
+      4000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 19.98106087428977,
+      "y": 3.7644541503026545,
+      "pixel_x": 955.3305785123966,
+      "pixel_y": 391.43801652892563,
+      "pixel_count": 121,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 19.98106087428977,
+      "expected": 3.9,
+      "got": 3.7644541503026545,
+      "difference": -0.1355458496973454,
+      "percent": 3.4755346076242413,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-10-29T21:07:20+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 6b, digitized (ACBF-1050 (end marker, ROI-limited))",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 19.98106087428977."
+  }
+}

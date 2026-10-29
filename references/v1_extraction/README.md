@@ -58,3 +58,39 @@ instruction, the tools directory, its input, output and work directory; its
 input is built under a parent of its own. The prompts and the tools directory
 are checked against their Amendment 1 SHA-256 values before any input is
 prepared. Agents run at most 20 at a time.
+
+## Agent checks
+
+`extraction_runs.py` checks every finished agent (launcher, frozen prompt,
+model, access audit, output) and, on every run, that the shared tools
+directory holds exactly its MANIFEST files, unchanged. Every audit flag is read
+against its call and recorded in `access_reviews.json`. The command heuristic
+flags text, not actions: a `~` in a quotation or comment, a Python variable
+named `nc`, a path built inside the agent's own work directory. Those reviews
+say so.
+
+Under Amendment 1, item 26, an output is discarded only if its agent opened
+another agent's output for the same paper, a v0.1 row, a pilot output or the
+repository. An agent that went outside the launcher's list without reaching
+any of those keeps its output, and the breach is recorded in its review:
+
+- extractor A, HYC-0068: listed the tools directory's `scripts/` folder (self-
+  reported);
+- extractor B, HYC-0068: its helper ran the digitizer from the tools directory
+  with a relative output path, so trial digitizations of the paper's own
+  figure were written to `v1_tools_frozen/dz/`, which it then deleted; it also
+  listed a system font folder (self-reported). No other agent opened that
+  folder, and the tools directory matched its MANIFEST afterwards. The tools
+  check above was added after this, because the audit sees a write made
+  through a script's output argument only when the agent reports it.
+
+## Schema limits met in extraction
+
+- `temperature_k` is registered as 50–500 K. An uptake measured at a stated
+  temperature above 500 K (HYC-0062: 653 K, and a 673 K temperature-cycle
+  value) cannot be stored there. The extractors, like v0.1, leave it empty,
+  set `temperature_unstated = true` and give the printed temperature in
+  `notes`; for those rows the flag does not mean "never stated". No §11
+  analysis uses a row above 303 K.
+- `volumetric_capacity_kg_m3` is registered as 0–200; a larger printed value
+  (HYC-0062, 280 g/L) is kept in `notes`.
