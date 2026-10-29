@@ -1,0 +1,35 @@
+{
+  "frame_id": "F09461",
+  "eligible": false,
+  "exclusion_code": "not_english",
+  "exclusion_quote": "",
+  "exclusion_location": "",
+  "criteria": {
+    "I1": {
+      "met": true,
+      "quote": "303K, 0〜3.5MPaでの水素吸着等温線は、自作の高圧用の水素吸着測定装置を用いて容量法から算出した。",
+      "location": "main, p. 2 (journal p. 232), Section 2.2, last paragraph (Japanese text, read from page image; the text layer has no body text). English abstract, p. 1: 'The hydrogen adsorption isotherms of activated carbon fiber (ACF), single-walled carbon nanotube (SWCNT) and H-Y-type zeolite (H-YZ) were measured at 77 and 303K'"
+    },
+    "I2": {
+      "met": true,
+      "quote": "The hydrogen adsorption isotherms of activated carbon fiber (ACF), single-walled carbon nanotube (SWCNT) and H-Y-type zeolite (H-YZ) were measured at 77 and 303K in a hydrogen pressure of 0~3.5MPa.",
+      "location": "main, p. 1 (journal p. 231), English abstract; isotherms of ACF and SWCNT in Fig. 1 and Fig. 2, pp. 3-4"
+    },
+    "I3": {
+      "met": true,
+      "quote": "Fig.1 Hydrogen adsorption isotherms at 77K in 0~0.1MPa; (a) ACFs, (b) SWCNTs and H-YZ. ... Fig.2 Hydrogen adsorption isotherms at 303K in 0~3.5MPa",
+      "location": "main, p. 3 (journal p. 233), Fig. 1 caption; p. 4 (journal p. 234), Fig. 2 caption (also Fig. 3 and Fig. 4 captions: 77K-0.1MPa, 303K-3.1MPa)"
+    },
+    "I4": {
+      "met": true,
+      "quote": "Smicro: specific surface area of micropore, Sext: specific external surface area ... ACF-1800 0.72 1810 40 0.79",
+      "location": "main, p. 3 (journal p. 233), Table 1 and its footnote"
+    },
+    "I5": {
+      "met": false,
+      "quote": "Searched all 7 pages for English running text. Only title, authors, abstract, keywords, figure and table captions and some references are English; Sections 1-4 are Japanese. First body sentence (main, p. 1, Section 1): エネルギーの安定供給と地球環境問題への対応の両立を可能とするエネルギー・環境技術の開発が求められるなか、水素は理想的なエネルギー源として注目されており",
+      "location": ""
+    }
+  },
+  "notes": "Article in TANSO 2002 [No.205] 231-237. Only the title, author line, abstract, keywords, figure and table captions and part of the reference list are in English; the introduction, experimental, results and discussion and conclusion sections are in Japanese, so I5 is not met and the code is not_english. The text layer holds almost none of the Japanese body, so the Japanese was read from the page images (pages 1-7) and the quoted Japanese was checked on enlarged crops. Rough translation of the I1 quote (mine, not a quote): 'The hydrogen adsorption isotherms at 303 K, 0-3.5 MPa were calculated by the volumetric method using a home-made high-pressure hydrogen adsorption measurement apparatus.' Section 2.2 also states that the 77 K and 303 K isotherms up to 0.1 MPa were measured with a BELSORP automatic adsorption apparatus (Bel Japan). I1 to I4 are met on their own: measured volumetric H2 uptake on ACF and SWCNT (carbon sorbents) at 77 K and 303 K with pressure ranges in the captions, and Table 1 gives micropore and external specific surface areas (from alpha_s-plot analysis of N2 isotherms at 77 K per Section 2.1) with no single total or BET area; I treated the component areas as a reported specific surface area. If component areas were not accepted as a specific surface area, I4 would fail and the code would be no_surface_area, which comes before not_english in the table order; so this I4 reading decides the code. Not a review, not retracted (record.json is_retracted false; no retraction statement in the PDF), no statement that all uptake values were published before."
+}

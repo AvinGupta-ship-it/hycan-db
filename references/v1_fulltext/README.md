@@ -70,7 +70,10 @@ record alike, so that retrieval effort is the same for every record (§8).
    record's page through the library proxy and then refused the immediate
    reload, which showed that these blocks can be transient. It applies equally
    to the records already logged `no_full_text` for this reason (F07150,
-   F07677, F07809).
+   F07677, F07809). A page saying the whole service is temporarily
+   unavailable (SSRN's outage page, which is served with HTTP 200) counts as a
+   server error; this reading was applied from 10:44 UTC on 29 Oct 2026, the
+   first time such a page answered a first attempt (F08267).
 4. A route-1 location whose page offers only purchase, or whose `pdf_url` is not
    the article (an abstract page, a graphical-abstract image, a 404), is logged
    `no_full_text` and route 2 is tried.
@@ -86,6 +89,13 @@ record alike, so that retrieval effort is the same for every record (§8).
 - **F01856.** Chrome silently blocked a script-initiated save in a tab that had
   already downloaded a file; the PDF was saved again from a fresh tab, and from
   then on every record uses a fresh tab.
+- **F10222.** The same block happened once more, in a tab reused by mistake
+  after it had saved another record's PDF; the missing file was noticed at
+  staging and the PDF was saved again from a fresh tab.
+- **F01800.** The browser tool reported a lost connection while the save step
+  was running, but that run had saved the file; when the step was repeated in
+  the same tab, Chrome kept no second file. The file from the first run is the
+  one logged.
 
 The `stage` step checks every main PDF's first page against the record's title;
 every stored main text was confirmed to be the drawn article (one 1980 scan
