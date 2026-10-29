@@ -1,0 +1,35 @@
+{
+  "frame_id": "F00950",
+  "eligible": false,
+  "exclusion_code": "no_conditions_stated",
+  "exclusion_quote": "",
+  "exclusion_location": "",
+  "criteria": {
+    "I1": {
+      "met": true,
+      "quote": "The hydrogenation of the MWNTs was measured by thermogravimetric analysis. Here ultrahigh pure hydrogen gas was used.",
+      "location": "main, p. 3 (J Mater Sci p. 1310), Experimental, 'Hydrogenation conditions'; results in Fig. 5, main p. 5"
+    },
+    "I2": {
+      "met": true,
+      "quote": "These MWNTs have a purity of >95 % and were synthesized by chemical-vapor deposition. The hydrogen-adsorption capacities of the s_MWNTs and l_MWNTs are illustrated in Fig. 5.",
+      "location": "main, p. 2 (J Mater Sci p. 1309), 'Sample preparation'; main, p. 3 (p. 1310), 'Hydrogenation'"
+    },
+    "I3": {
+      "met": false,
+      "quote": "Searched text, Fig. 5 and caption for a numeric temperature of the H2 uptake. Found only 'a maximum pressure of 3 MPa at room temperature'; no numeric temperature (22 °C belongs to the D2 neutron-diffraction run).",
+      "location": ""
+    },
+    "I4": {
+      "met": true,
+      "quote": "For s_MWNTs with smaller diameters, the specific areas were 128 ± 0.6 and 136 ± 0.4 m2/g, respectively, before and after the microwave treatment.",
+      "location": "main, p. 3 (J Mater Sci p. 1310), 'Characterization of the as-received and the irradiated MWNTs'"
+    },
+    "I5": {
+      "met": true,
+      "quote": "Microwave irradiation is a simple yet effective way of altering the properties of multiwalled carbon nanotubes (MWNTs).",
+      "location": "main, p. 1 (J Mater Sci p. 1308), Abstract, first sentence"
+    }
+  },
+  "notes": "Judgment call on I3. Every uptake value (0.87 wt% max; Fig. 5 bar values 0.12-0.87 wt% for s_MWNTs and 0.27-0.79 wt% for l_MWNTs, cycles 1 and 2) is given at 3 MPa and 'room temperature' only. Schema v2 (data dictionary, temperature_unstated) says a condition stated only in words ('room temperature') is not a number and is not imputed, and only 'liquid nitrogen' has a registered numeric convention (77.3 K). Rows would therefore carry temperature_unstated = true, so I3 is coded not met and the code is no_conditions_stated. If the adjudicator reads 'room temperature' in words as a stated temperature, I1-I5 are all met (I4: BET areas 128/136 and 50.4/47.3 m2/g measured by N2 at 77 K on the paper's own samples) and no other code applies, so the paper would be eligible. Other checks: record.json is_retracted false and no retraction notice in the text; primary research article; no statement that the H2 values were published earlier; the neutron-diffraction work used D2 with no uptake amount."
+}
