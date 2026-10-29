@@ -1,0 +1,172 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T22:43:00+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0078",
+  "figure": "Fig. 10",
+  "series_name": "ACNC40-900",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0078/work/fig10_nolegend.png",
+    "sha256": "3cec2d7a200712256a977b125de845d18f185959ab60d9a8a139593442a2813f",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 171.18,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 558.98,
+        "value": 5000.0
+      },
+      "scale": "linear",
+      "label": "Pressure, KPa",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1437.81,
+        "value": -2.0
+      },
+      "reference_2": {
+        "pixel": 1095.74,
+        "value": 18.0
+      },
+      "scale": "linear",
+      "label": "Average hydrogen adsorption, mmol/g",
+      "decades_spanned": 0.9542425094393249
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 365.22,
+        "stated": 2500.0,
+        "predicted": 2501.8050541516245,
+        "relative_error": 0.000722021660649807
+      },
+      {
+        "axis": "y",
+        "pixel": 1266.78,
+        "stated": 8.0,
+        "predicted": 7.9997076621744085,
+        "relative_error": 3.654222819893249e-05
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff0000",
+    "color_rgb": [
+      255,
+      0,
+      0
+    ],
+    "tolerance": 160.0,
+    "matched_pixels_in_image": 340,
+    "matched_pixels_in_region": 323,
+    "region": [
+      140,
+      1100,
+      590,
+      1432
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 13.682799999999999,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 7,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 19.89948756213424,
+      "y": 0.004156173086376391,
+      "pixel_x": 172.72340425531914,
+      "pixel_y": 1403.531914893617,
+      "pixel_count": 47,
+      "outside_axis_range": false
+    },
+    {
+      "x": 941.2302498945098,
+      "y": 2.910797098945725,
+      "pixel_x": 244.1818181818182,
+      "pixel_y": 1353.8181818181818,
+      "pixel_count": 44,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1734.5833640315332,
+      "y": 6.09917769545916,
+      "pixel_x": 305.7142857142857,
+      "pixel_y": 1299.2857142857142,
+      "pixel_count": 42,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2576.328004125838,
+      "y": 9.390066360686408,
+      "pixel_x": 371.0,
+      "pixel_y": 1243.0,
+      "pixel_count": 45,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3428.7813185890586,
+      "y": 10.85855404272619,
+      "pixel_x": 437.1162790697674,
+      "pixel_y": 1217.8837209302326,
+      "pixel_count": 43,
+      "outside_axis_range": false
+    },
+    {
+      "x": 4239.556472408458,
+      "y": 13.01505539801795,
+      "pixel_x": 500.0,
+      "pixel_y": 1181.0,
+      "pixel_count": 45,
+      "outside_axis_range": false
+    },
+    {
+      "x": 5190.358252275806,
+      "y": 15.0151900093888,
+      "pixel_x": 573.7441860465116,
+      "pixel_y": 1146.7906976744187,
+      "pixel_count": 43,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [
+    {
+      "at": 5187.0,
+      "expected": 15.018,
+      "got": 15.008125491049876,
+      "difference": -0.00987450895012465,
+      "percent": 0.06575115827756459,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-10-29T22:43:08+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 10, digitized (ACNC40-900)",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 5187.0."
+  }
+}

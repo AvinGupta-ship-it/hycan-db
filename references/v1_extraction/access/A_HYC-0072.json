@@ -1,0 +1,31 @@
+{
+  "screener": "A",
+  "batch": "HYC-0072",
+  "transcript": "agent-a467ac016a538d9c8.jsonl",
+  "launcher_exact": true,
+  "prompt_sha256_ok": true,
+  "models": [
+    "claude-sonnet-5-5"
+  ],
+  "model_ok": true,
+  "flags": [
+    {
+      "call": 39,
+      "tool": "Bash",
+      "reason": "command opens the tools directory: /home/claude/work/v1_tools_frozen/test_a_blue.json",
+      "detail": "mv /home/claude/work/v1_tools_frozen/test_a_blue.json /home/claude/work/runs/extract/A/HYC-0072/work/test_a_blue.json && cd /home/claude/work/runs/extract/A/HYC-0072/work && python3 -I show.py test_a_blue.json",
+      "review": {
+        "access": false,
+        "note": "Instruction breach without data access, reported by the agent after its reply: its helper script changed into the tools directory and ran the digitizer with a relative --out, so one trial digitization of this paper's own figure (test_a_blue.json) was written at the top of the tools directory; this call moves it into the agent's own work directory. No other agent opened it: across every extraction transcript only this agent's calls name that file, and no other call lists the tools directory beyond extractor A's 'ls scripts' on HYC-0068. The tools directory matched its MANIFEST afterwards and has been immutable since 22:27 UTC on 29 Oct 2026. Not access under Amendment 1, item 26; the output is kept."
+      }
+    }
+  ],
+  "tool_calls": 73,
+  "output_problems": [],
+  "flags_unreviewed": 0,
+  "flags_access": 0,
+  "access_ok": true,
+  "ok": true,
+  "earlier_agents": [],
+  "unfinished_agents": []
+}

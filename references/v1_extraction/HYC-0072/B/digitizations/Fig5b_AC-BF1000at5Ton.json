@@ -1,0 +1,128 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T22:29:12+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0072",
+  "figure": "Fig. 5b",
+  "series_name": "AC-BF1000@5Ton",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0072/work/main-6_fig5_masked.png",
+    "sha256": "3ba7187c3218679814e2d4488cc5911918304ee9346dc2ad6f6220bb01b964f6",
+    "width_px": 1241,
+    "height_px": 1625
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 311.81,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 608.09,
+        "value": 20.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1410.03,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1184.41,
+        "value": 7.0
+      },
+      "scale": "linear",
+      "label": "H2 uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 460.0,
+        "stated": 10.0,
+        "predicted": 10.003375185635209,
+        "relative_error": 0.0003375185635208666
+      },
+      {
+        "axis": "y",
+        "pixel": 1313.31,
+        "stated": 3.0,
+        "predicted": 3.0007978016133343,
+        "relative_error": 0.00026593387111143824
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ee322a",
+    "color_rgb": [
+      238,
+      50,
+      42
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 2232,
+    "matched_pixels_in_region": 195,
+    "region": [
+      306,
+      1187,
+      614,
+      1416
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 9.024799999999995,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 3,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 0.012825705413797605,
+      "y": 0.17822001595603354,
+      "pixel_x": 312.0,
+      "pixel_y": 1404.2857142857142,
+      "pixel_count": 21,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.012825705413797605,
+      "y": -0.007933693821468562,
+      "pixel_x": 312.0,
+      "pixel_y": 1410.2857142857142,
+      "pixel_count": 21,
+      "outside_axis_range": true
+    },
+    {
+      "x": 0.04657756176589697,
+      "y": 0.5749047070295181,
+      "pixel_x": 312.5,
+      "pixel_y": 1391.5,
+      "pixel_count": 16,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 5b, digitized (AC-BF1000@5Ton)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: Fig5b_AC-BF1000at5Ton.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

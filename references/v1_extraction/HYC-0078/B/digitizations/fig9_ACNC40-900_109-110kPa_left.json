@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T22:44:31+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0078",
+  "figure": "Fig. 9",
+  "series_name": "ACNC40-900: left marker of overlapping pair at 109-110kPa (ROI split)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0078/in/pages/main-07.png",
+    "sha256": "d5d2c73a3b6cfdcd76f69c1705abb7e5cd83736271c0df21b1c51cd8e65bee0b",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 720.89,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1123.73,
+        "value": 120.0
+      },
+      "scale": "linear",
+      "label": "Pressure (kPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1402.52,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1086.27,
+        "value": 5.0
+      },
+      "scale": "linear",
+      "label": "Quantity adsorbed (mmol/g)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 922.28,
+        "stated": 60.0,
+        "predicted": 59.99106344950848,
+        "relative_error": 0.00014894250819198854
+      },
+      {
+        "axis": "y",
+        "pixel": 1212.56,
+        "stated": 3.0,
+        "predicted": 3.0033201581027673,
+        "relative_error": 0.001106719367589104
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff4846",
+    "color_rgb": [
+      255,
+      72,
+      70
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 1947,
+    "matched_pixels_in_region": 18,
+    "region": [
+      1082,
+      1102,
+      1089,
+      1114
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 12.65,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 109.20762585641941,
+      "y": 4.648537549407115,
+      "pixel_x": 1087.5,
+      "pixel_y": 1108.5,
+      "pixel_count": 16,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 9, digitized (ACNC40-900: left marker of overlapping pair at 109-110kPa (ROI split))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig9_ACNC40-900_109-110kPa_left.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

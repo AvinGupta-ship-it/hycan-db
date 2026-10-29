@@ -1,0 +1,251 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T22:40:33+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0078",
+  "figure": "Fig. 9",
+  "series_name": "ACNC40-900",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0078/work/fig9_nolegend.png",
+    "sha256": "20d3a2ff875fa639be4eb6f14f2e961a6dabc51dc2a99dc613c017aca73f62ed",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 720.89,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1123.73,
+        "value": 120.0
+      },
+      "scale": "linear",
+      "label": "Pressure, KPa",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1402.52,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1086.27,
+        "value": 5.0
+      },
+      "scale": "linear",
+      "label": "Quantity adsorbed, mmol/g",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 922.28,
+        "stated": 60.0,
+        "predicted": 59.99106344950848,
+        "relative_error": 0.00014894250819198854
+      },
+      {
+        "axis": "y",
+        "pixel": 1212.56,
+        "stated": 3.0,
+        "predicted": 3.0033201581027673,
+        "relative_error": 0.001106719367589104
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff4846",
+    "color_rgb": [
+      255,
+      72,
+      70
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 2181,
+    "matched_pixels_in_region": 1713,
+    "region": [
+      705,
+      1090,
+      1160,
+      1425
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 12.65,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      20
+    ],
+    "rejected_markers": [
+      {
+        "pixel_x": 1089.0,
+        "pixel_y": 1108.5,
+        "pixels": 28,
+        "reason": "too large"
+      },
+      {
+        "pixel_x": 1055.52,
+        "pixel_y": 1110.92,
+        "pixels": 25,
+        "reason": "too large"
+      },
+      {
+        "pixel_x": 1021.5,
+        "pixel_y": 1114.0,
+        "pixels": 24,
+        "reason": "too large"
+      },
+      {
+        "pixel_x": 990.0909090909091,
+        "pixel_y": 1117.909090909091,
+        "pixels": 22,
+        "reason": "too large"
+      },
+      {
+        "pixel_x": 956.074074074074,
+        "pixel_y": 1122.4074074074074,
+        "pixels": 27,
+        "reason": "too large"
+      },
+      {
+        "pixel_x": 922.5,
+        "pixel_y": 1127.5,
+        "pixels": 24,
+        "reason": "too large"
+      },
+      {
+        "pixel_x": 888.8620689655172,
+        "pixel_y": 1134.2068965517242,
+        "pixels": 29,
+        "reason": "too large"
+      },
+      {
+        "pixel_x": 855.5555555555555,
+        "pixel_y": 1142.888888888889,
+        "pixels": 27,
+        "reason": "too large"
+      },
+      {
+        "pixel_x": 747.0909090909091,
+        "pixel_y": 1259.0748189863234,
+        "pixels": 1243,
+        "reason": "too large"
+      }
+    ],
+    "n_points": 10,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 34.706583258862075,
+      "y": 3.986086956521737,
+      "pixel_x": 837.4,
+      "pixel_y": 1150.4,
+      "pixel_count": 15,
+      "outside_axis_range": false
+    },
+    {
+      "x": 45.1126998311985,
+      "y": 4.150513833992094,
+      "pixel_x": 872.3333333333334,
+      "pixel_y": 1140.0,
+      "pixel_count": 18,
+      "outside_axis_range": false
+    },
+    {
+      "x": 54.96276437295204,
+      "y": 4.270671936758891,
+      "pixel_x": 905.4,
+      "pixel_y": 1132.4,
+      "pixel_count": 15,
+      "outside_axis_range": false
+    },
+    {
+      "x": 65.12064343163539,
+      "y": 4.371857707509881,
+      "pixel_x": 939.5,
+      "pixel_y": 1126.0,
+      "pixel_count": 12,
+      "outside_axis_range": false
+    },
+    {
+      "x": 74.9508489722967,
+      "y": 4.45090909090909,
+      "pixel_x": 972.5,
+      "pixel_y": 1121.0,
+      "pixel_count": 12,
+      "outside_axis_range": false
+    },
+    {
+      "x": 85.07893952934167,
+      "y": 4.522055335968379,
+      "pixel_x": 1006.5,
+      "pixel_y": 1116.5,
+      "pixel_count": 16,
+      "outside_axis_range": false
+    },
+    {
+      "x": 95.17724158474832,
+      "y": 4.571067193675888,
+      "pixel_x": 1040.4,
+      "pixel_y": 1113.4,
+      "pixel_count": 15,
+      "outside_axis_range": false
+    },
+    {
+      "x": 105.03723562704795,
+      "y": 4.632727272727272,
+      "pixel_x": 1073.5,
+      "pixel_y": 1109.5,
+      "pixel_count": 16,
+      "outside_axis_range": false
+    },
+    {
+      "x": 115.46321120047662,
+      "y": 4.672252964426877,
+      "pixel_x": 1108.5,
+      "pixel_y": 1107.0,
+      "pixel_count": 12,
+      "outside_axis_range": false
+    },
+    {
+      "x": 120.0804289544236,
+      "y": 4.69596837944664,
+      "pixel_x": 1124.0,
+      "pixel_y": 1105.5,
+      "pixel_count": 12,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [
+    {
+      "at": 120.0,
+      "expected": 4.6,
+      "got": 4.6955552722172635,
+      "difference": 0.0955552722172639,
+      "percent": 2.077288526462259,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-10-29T22:43:01+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 9, digitized (ACNC40-900)",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 120.0."
+  }
+}
