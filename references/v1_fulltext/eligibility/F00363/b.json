@@ -1,0 +1,35 @@
+{
+  "frame_id": "F00363",
+  "eligible": false,
+  "exclusion_code": "not_carbon",
+  "exclusion_quote": "",
+  "exclusion_location": "",
+  "criteria": {
+    "I1": {
+      "met": true,
+      "quote": "H2 adsorption isotherms (99.999 %) at 77 and 87 K were obtained on a Hiden Analytical Intelligent Gravimetric Analyser (IGA-003) equipped with an ultra-high vacuum system.",
+      "location": "main, p. 5 (journal p. 1338), Materials and Methods"
+    },
+    "I2": {
+      "met": false,
+      "quote": "Searched the main text, Tables 1-3, Figures 3-5 and the SI for any carbon sorbent (activated carbon, carbon nanotube, graphene, carbon composite) whose H2 uptake the paper measures; found none. The only sample measured is the cobalt MOF URJC-3 ({[Co2(ABTC)(DMF)3]·2DMF}n). Active carbon and purified SWCNTs appear only as a comparison to values quoted from reference [43] (main, p. 3, Section 2).",
+      "location": ""
+    },
+    "I3": {
+      "met": true,
+      "quote": "Table 2. Excess and total gravimetric and volumetric H2 adsorption capacity of URJC-3 at 77 K and 18 bar.",
+      "location": "main, p. 3 (journal p. 1336), Table 2 caption; Figure 3 axes (77 K, 0-16 bar)"
+    },
+    "I4": {
+      "met": true,
+      "quote": "The resulting Brunauer, Emmett and Teller (BET) specific surface area was 171 m2 g-1, and a pore volume of 0.076 cm3 g-1.",
+      "location": "main, p. 2 (journal p. 1335), Section 2 and Table 1"
+    },
+    "I5": {
+      "met": true,
+      "quote": "A novel URJC-3 material based on cobalt and 5,5'-(diazene-1,2-diyl)diisophthalate ligand, containing Lewis acid and basic sites, has been synthesized under solvothermal conditions.",
+      "location": "main, p. 1 (journal p. 1334), Abstract"
+    }
+  },
+  "notes": "I1 is met by the paper's own gravimetric (Hiden IGA-003, 77 and 87 K) and volumetric (Quantachrome iSorbHP1, 273-323 K up to 170 bar) H2 uptake measurements. Every uptake value is for URJC-3, a Co(II) azobenzene-tetracarboxylate MOF, which is not a carbon sorbent (section 3), so I2 fails and the code is not_carbon (first applicable code in section 4 order). I3 and I4 are met for URJC-3 but do not change the outcome. The paper's pressure for the 77 K value is stated inconsistently (16 bar in text, 18 bar in Table 2 caption, 20 bar in Conclusions); this does not affect I3. is_retracted is false in record.json and no retraction notice appears in the PDF. Not a review; no statement that the uptake values were previously published."
+}
