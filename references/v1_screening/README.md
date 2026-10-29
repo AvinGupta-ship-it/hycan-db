@@ -155,6 +155,26 @@ title, venue, year and abstract only, with no screening decision. The author
 fills `author_decision`. `screening_audit.py score` then reports the share he
 would include, with an exact 95% CI: the estimated false-exclusion rate.
 
+**Result (`author_audit_score.json`).** The author screened the 100 records
+on a page that showed one record at a time with the §6 rule and no screening
+decision, and saved each choice as he made it. The page recorded his
+decisions between 05:58Z and 06:10Z on 2026-10-29. They were copied into
+`author_audit_sheet.csv` unchanged.
+
+- He would include 11 of the 100: an estimated false-exclusion rate of 11%
+  (exact 95% CI 5.6% to 18.8%). Applied to the 5,987 double-excluded records,
+  that is about 660 records the author would have kept at this stage (CI about
+  340 to 1,130).
+- Keeping a record at title and abstract is not eligibility. These records
+  are still unscreened against §4 on the full text, so the share of eligible
+  papers among them is unknown.
+- Of the 11, both screeners had excluded 4 as `not_carbon`, 4 as
+  `theoretical_only` and 3 as `not_primary`. None had been excluded as
+  `electrochemical`. Two of the 11 have no abstract; in the sample as a whole,
+  33 of the 100 have no abstract.
+- The protocol sets no threshold or action on this rate. It is reported as a
+  limit on the frame's coverage (§14).
+
 ## Files
 
 | File | What it holds |
@@ -167,4 +187,5 @@ would include, with an exact 95% CI: the estimated false-exclusion rate.
 | `sensitivity.json` | Screening sensitivity on sets A and B |
 | `access/` | The check of every agent (`screening_runs.py`) and the tiebreaker's access audit |
 | `access_reviews.json` | The review of every audit flag |
-| `author_audit_sheet.csv` | The author's blind audit sample of 100 double-excluded records |
+| `author_audit_sheet.csv` | The author's blind audit sample of 100 double-excluded records, with his decisions |
+| `author_audit_score.json` | The estimated false-exclusion rate and its exact 95% CI |

@@ -5,6 +5,12 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Author's screening audit (2026-10-29)
+- `references/v1_screening/author_audit_sheet.csv`: the author's blind
+  decisions on the 100 sampled double-excluded records (§6); he would include
+  11, an estimated false-exclusion rate of 11% (exact 95% CI 5.6%–18.8%,
+  `author_audit_score.json`).
+
 ### Screening and frame (2026-10-28)
 - `references/v1_screening/`: both screeners' title-and-abstract decisions on
   all 11,238 merged records (§6), the stratum tiebreak of 8 records, the check

@@ -2371,3 +2371,20 @@ the frame byte for byte. Full test suite passing.
 **Author's role.** None yet. The author's audit of 100 double-excluded records
 (§6) and the push that makes this record public come next.
 
+## 2026-10-29 — v1.0: author's screening audit
+
+**Tools and agents.** Claude (`claude-opus-5-5`), Mode A.
+
+**What was done.** Claude built a page that showed the author the 100
+sampled records one at a time, with the §6 rule, the title, venue, year and
+abstract, and no screening decision, and stored each choice. The author made
+every decision himself, without AI assistance (§13). Claude copied the
+decisions into the sheet, checked that each record and its order matched the
+draw, and scored it with `screening_audit.py score`.
+
+**Verified.** 100 decisions, each one include or exclude, on exactly the drawn
+records. Except for the two decision columns, the sheet is byte-identical to
+the committed draw.
+
+**Author's role.** All 100 audit decisions.
+
