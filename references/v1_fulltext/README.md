@@ -63,7 +63,9 @@ record alike, so that retrieval effort is the same for every record (§8).
 3. A route that fails only because a bot check (Cloudflare verification, the
    IEEE Xplore challenge) or a server error (HTTP 5xx) blocks the browser is
    tried once more, in a fresh tab, after a pause of at least 30 minutes; the
-   outcome of that second attempt is final, and both attempts are logged. This
+   outcome of that second attempt is final. The second attempt is part of the
+   route's one try, so the route keeps one log row, whose note describes both
+   attempts and the time of the second. This
    rule was added at 09:40 UTC on 29 Oct 2026, after Ingenta Connect served one
    record's page through the library proxy and then refused the immediate
    reload, which showed that these blocks can be transient. It applies equally
