@@ -352,6 +352,24 @@ def cmd_status(args) -> int:
     return 0
 
 
+def cmd_log(args) -> int:
+    """Append one route attempt to the retrieval log."""
+    plan = {r["frame_id"]: r for r in read(PLAN)}
+    if args.frame_id not in plan:
+        raise WalkError(f"{args.frame_id} is not in the plan")
+    row = {"frame_id": args.frame_id, "file": args.file, "route": args.route,
+           "url": args.url, "outcome": args.outcome, "sha256": args.sha256 or "",
+           "bytes": str(args.bytes or ""), "at_utc": args.at_utc, "note": args.note or ""}
+    rows = read(LOG) + [row]
+    check_log(rows, set(plan))
+    if any(r["frame_id"] == row["frame_id"] and r["file"] == row["file"]
+           and r["route"] == row["route"] for r in rows[:-1]):
+        raise WalkError(f"{args.frame_id} {args.file} was already tried by route {args.route}")
+    LOG.write_bytes(build_frame.csv_bytes(LOG_COLUMNS, rows))
+    print(json.dumps(row))
+    return 0
+
+
 def cmd_prepare(args) -> int:
     pdfs = _pdfs(Path(args.pdfs))
     dirs = [Path(args.out_a), Path(args.out_b)]
@@ -405,12 +423,19 @@ def main(argv: list[str] | None = None) -> int:
     r.add_argument("frame_id"); r.add_argument("--input", required=True)
     r.add_argument("--a", required=True); r.add_argument("--b", required=True)
     r.add_argument("--out", required=True)
+    lg = sub.add_parser("log")
+    lg.add_argument("frame_id"); lg.add_argument("--file", required=True)
+    lg.add_argument("--route", required=True, choices=["oa", "library"])
+    lg.add_argument("--url", required=True)
+    lg.add_argument("--outcome", required=True, choices=list(OUTCOMES))
+    lg.add_argument("--sha256"); lg.add_argument("--bytes", type=int)
+    lg.add_argument("--at-utc", required=True); lg.add_argument("--note")
     c = sub.add_parser("collect")
     c.add_argument("frame_id"); c.add_argument("--a", required=True)
     c.add_argument("--b", required=True); c.add_argument("--resolver")
     args = ap.parse_args(argv)
     try:
-        return {"plan": cmd_plan, "status": cmd_status, "prepare": cmd_prepare,
+        return {"plan": cmd_plan, "status": cmd_status, "log": cmd_log, "prepare": cmd_prepare,
                 "resolver": cmd_resolver, "collect": cmd_collect}[args.cmd](args)
     except WalkError as exc:
         print(f"REFUSED: {exc}", file=sys.stderr)
