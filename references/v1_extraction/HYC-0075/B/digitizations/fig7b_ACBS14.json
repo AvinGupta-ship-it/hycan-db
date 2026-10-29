@@ -1,0 +1,160 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T22:23:55+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0075",
+  "figure": "Fig.7b",
+  "series_name": "ACBS14",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0075/work/fig7/page7_f7b_masked.png",
+    "sha256": "5c4c803483b51501d90e4e2ad0d4dc4331ba805073c8753bc598a53d23d93ab9",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 759.96,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1023.86,
+        "value": 40.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 625.2,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 418.63,
+        "value": 6.0
+      },
+      "scale": "linear",
+      "label": "H2 storage capacity (wt%, at 77 K)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 892.26,
+        "stated": 20.0,
+        "predicted": 20.05305039787798,
+        "relative_error": 0.002652519893898919
+      },
+      {
+        "axis": "y",
+        "pixel": 522.02,
+        "stated": 3.0,
+        "predicted": 2.9969501863775005,
+        "relative_error": 0.001016604540833151
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#0000fe",
+    "color_rgb": [
+      0,
+      0,
+      254
+    ],
+    "tolerance": 120.0,
+    "matched_pixels_in_image": 724,
+    "matched_pixels_in_region": 317,
+    "region": [
+      765,
+      403,
+      1056,
+      640
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 8.262800000000002,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 7,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 2.582796513830991,
+      "y": 2.582590474346295,
+      "pixel_x": 777.0,
+      "pixel_y": 536.2857142857143,
+      "pixel_count": 21,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.946949602122011,
+      "y": 3.2444207774604257,
+      "pixel_x": 786.0,
+      "pixel_y": 513.5,
+      "pixel_count": 12,
+      "outside_axis_range": false
+    },
+    {
+      "x": 5.2504736642667655,
+      "y": 3.619112165367672,
+      "pixel_x": 794.6,
+      "pixel_y": 500.6,
+      "pixel_count": 15,
+      "outside_axis_range": false
+    },
+    {
+      "x": 8.055363873875658,
+      "y": 4.05541131717807,
+      "pixel_x": 813.1052631578947,
+      "pixel_y": 485.57894736842104,
+      "pixel_count": 19,
+      "outside_axis_range": false
+    },
+    {
+      "x": 14.162940507768088,
+      "y": 4.693808394248922,
+      "pixel_x": 853.4,
+      "pixel_y": 463.6,
+      "pixel_count": 15,
+      "outside_axis_range": false
+    },
+    {
+      "x": 27.289124668435008,
+      "y": 5.205015249068112,
+      "pixel_x": 940.0,
+      "pixel_y": 446.0,
+      "pixel_count": 9,
+      "outside_axis_range": false
+    },
+    {
+      "x": 40.02122015915119,
+      "y": 5.422859079246744,
+      "pixel_x": 1024.0,
+      "pixel_y": 438.5,
+      "pixel_count": 12,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig.7b, digitized (ACBS14)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig7b_ACBS14.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

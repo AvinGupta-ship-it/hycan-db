@@ -1,0 +1,245 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T22:23:52+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0075",
+  "figure": "Fig.7a",
+  "series_name": "ACBS14",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0075/work/fig7/page7_f7a_masked.png",
+    "sha256": "2fc3e71bd1a86691609a513aa47fa0257665d9ce14e0827ed193968376f1e6eb",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 245.1,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 558.64,
+        "value": 1.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 642.26,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 399.63,
+        "value": 3.0
+      },
+      "scale": "linear",
+      "label": "H2 storage capacity (wt%, at 77 K)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 433.27,
+        "stated": 0.6,
+        "predicted": 0.6001467117433182,
+        "relative_error": 0.00024451957219710313
+      },
+      {
+        "axis": "y",
+        "pixel": 520.68,
+        "stated": 1.5,
+        "predicted": 1.5032765939908508,
+        "relative_error": 0.002184395993900523
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#0000fc",
+    "color_rgb": [
+      0,
+      0,
+      252
+    ],
+    "tolerance": 120.0,
+    "matched_pixels_in_image": 755,
+    "matched_pixels_in_region": 353,
+    "region": [
+      245,
+      401,
+      573,
+      638
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 9.7052,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 2-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [
+      {
+        "pixel_x": 390.5,
+        "pixel_y": 484.5,
+        "pixels": 4,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 383.5,
+        "pixel_y": 488.5,
+        "pixels": 4,
+        "reason": "too small"
+      }
+    ],
+    "n_points": 16,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.47489953434968435,
+      "y": 1.9506244075341055,
+      "pixel_x": 394.0,
+      "pixel_y": 484.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.5067933915927794,
+      "y": 2.012446935663356,
+      "pixel_x": 404.0,
+      "pixel_y": 479.5,
+      "pixel_count": 10,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.5418766345601838,
+      "y": 2.061904958166756,
+      "pixel_x": 415.0,
+      "pixel_y": 475.5,
+      "pixel_count": 10,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.578554570389743,
+      "y": 2.111362980670156,
+      "pixel_x": 426.5,
+      "pixel_y": 471.5,
+      "pixel_count": 8,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.6128404669260701,
+      "y": 2.1515476239541687,
+      "pixel_x": 437.25,
+      "pixel_y": 468.25,
+      "pixel_count": 12,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.6473257000701665,
+      "y": 2.1955961752462594,
+      "pixel_x": 448.0625,
+      "pixel_y": 464.6875,
+      "pixel_count": 16,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.6842733266043548,
+      "y": 2.2404629658812376,
+      "pixel_x": 459.6470588235294,
+      "pixel_y": 461.05882352941177,
+      "pixel_count": 17,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.72093786165356,
+      "y": 2.277400627645857,
+      "pixel_x": 471.14285714285717,
+      "pixel_y": 458.07142857142856,
+      "pixel_count": 14,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.7544398125391638,
+      "y": 2.3146499996363383,
+      "pixel_x": 481.6470588235294,
+      "pixel_y": 455.05882352941177,
+      "pixel_count": 17,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.7896919053390318,
+      "y": 2.3431974611548445,
+      "pixel_x": 492.7,
+      "pixel_y": 452.75,
+      "pixel_count": 20,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.8234538313635081,
+      "y": 2.378377423590299,
+      "pixel_x": 503.2857142857143,
+      "pixel_y": 449.9047619047619,
+      "pixel_count": 21,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.8628295558696448,
+      "y": 2.4162456588654586,
+      "pixel_x": 515.6315789473684,
+      "pixel_y": 446.8421052631579,
+      "pixel_count": 19,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.8949416342412453,
+      "y": 2.442113506161645,
+      "pixel_x": 525.7,
+      "pixel_y": 444.75,
+      "pixel_count": 20,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.9303836831026344,
+      "y": 2.472251988624655,
+      "pixel_x": 536.8125,
+      "pixel_y": 442.3125,
+      "pixel_count": 16,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.9670356185050935,
+      "y": 2.505145605493424,
+      "pixel_x": 548.304347826087,
+      "pixel_y": 439.6521739130435,
+      "pixel_count": 23,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.9998052796084106,
+      "y": 2.5281769729521013,
+      "pixel_x": 558.578947368421,
+      "pixel_y": 437.7894736842105,
+      "pixel_count": 19,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig.7a, digitized (ACBS14)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig7a_ACBS14.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

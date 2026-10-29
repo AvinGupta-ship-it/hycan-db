@@ -269,6 +269,789 @@
       "reason": "command names a path outside the allowed paths: /digitizations/",
       "access": false,
       "note": "The flagged '/digitizations/' is part of a relative glob, s+'/digitizations/*.json' for s in first and second, run after 'cd' into the agent's own input directory (C/HYC-0068/in), so it reads in/first/digitizations/ and in/second/digitizations/: the two extractions' archives that its input holds. Nothing outside its input is opened."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0071",
+      "transcript": "agent-a826ebc632ca7668a.jsonl",
+      "call": 58,
+      "reason": "command in the tools directory does more than run its two scripts: eval python3 scripts/digitize_figure.py extract --image $W/fig6_AC_filled_input.png --out $OUT/HYC-0071_fig6_activated_c",
+      "access": false,
+      "note": "In the tools directory the command runs the allowed digitizer twice through 'eval', used only to expand a shell variable of calibration arguments (CAL) that holds quoted axis labels; the images come from the agent's own work directory and --out is an absolute path in its own out/digitizations. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0071",
+      "transcript": "agent-a826ebc632ca7668a.jsonl",
+      "call": 58,
+      "reason": "command in the tools directory does more than run its two scripts: eval python3 scripts/digitize_figure.py extract --image $W/fig6_AC_open_input.png --out $OUT/HYC-0071_fig6_activated_car",
+      "access": false,
+      "note": "In the tools directory the command runs the allowed digitizer twice through 'eval', used only to expand a shell variable of calibration arguments (CAL) that holds quoted axis labels; the images come from the agent's own work directory and --out is an absolute path in its own out/digitizations. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0071",
+      "transcript": "agent-a826ebc632ca7668a.jsonl",
+      "call": 60,
+      "reason": "command in the tools directory does more than run its two scripts: bash /home/claude/work/runs/extract/B/HYC-0071/work/run_digitize.sh",
+      "access": false,
+      "note": "In the tools directory the command runs the agent's own script work/run_digitize.sh with bash. The script (read on disk after the run) sets the agent's own work and output paths and a calibration array, and runs only 'python3 scripts/digitize_figure.py extract' twice, on images in its work directory, writing to absolute paths in its out/digitizations. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0075",
+      "transcript": "agent-a85b21430fa280fab.jsonl",
+      "call": 35,
+      "reason": "command in the tools directory does more than run its two scripts: $W/run_a.sh #008000 ACBS16 60 $W/test/a_green.json",
+      "access": false,
+      "note": "In the tools directory the command writes a helper script (run_a.sh) to the agent's own work directory from a quoted heredoc, makes it executable, runs it (it runs only 'python3 scripts/digitize_figure.py extract' on the agent's own masked page image, with the output path given as an argument, here an absolute path in its work directory) and reads that output back with python3 -I. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0075",
+      "transcript": "agent-a85b21430fa280fab.jsonl",
+      "call": 35,
+      "reason": "command in the tools directory does more than run its two scripts: cat > $W/run_a.sh",
+      "access": false,
+      "note": "In the tools directory the command writes a helper script (run_a.sh) to the agent's own work directory from a quoted heredoc, makes it executable, runs it (it runs only 'python3 scripts/digitize_figure.py extract' on the agent's own masked page image, with the output path given as an argument, here an absolute path in its work directory) and reads that output back with python3 -I. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0075",
+      "transcript": "agent-a85b21430fa280fab.jsonl",
+      "call": 35,
+      "reason": "command in the tools directory does more than run its two scripts: chmod +x $W/run_a.sh",
+      "access": false,
+      "note": "In the tools directory the command writes a helper script (run_a.sh) to the agent's own work directory from a quoted heredoc, makes it executable, runs it (it runs only 'python3 scripts/digitize_figure.py extract' on the agent's own masked page image, with the output path given as an argument, here an absolute path in its work directory) and reads that output back with python3 -I. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0075",
+      "transcript": "agent-a85b21430fa280fab.jsonl",
+      "call": 42,
+      "reason": "command names a path outside the allowed paths: /home/claude/work",
+      "access": false,
+      "note": "Instruction breach without data access, reported by the agent after its reply. In earlier calls its helper (run_a.sh, run from the tools directory) was given relative output paths (test/...), so trial digitizations of this paper's own Fig. 7a were written to /home/claude/work/v1_tools_frozen/test/. In this call it moved those files into its own work directory (work/test/) and removed the empty folder. The files held only its own digitizations. No other agent opened that folder: across every extraction transcript, only this agent's calls name v1_tools_frozen/test, and no other call lists the tools directory beyond extractor A's 'ls scripts' on HYC-0068. The tools directory matched its MANIFEST afterwards; it was made immutable at 22:27 UTC on 29 Oct 2026 so that a relative output path fails instead of writing there. Not access under Amendment 1, item 26; the output is kept."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0069",
+      "transcript": "agent-a4f61bb7b0a1cdcb9.jsonl",
+      "call": 52,
+      "reason": "command in the tools directory reads more than its scripts' output: grep -E \"points extracted|rejected\"; python3 -I -c \" import json d=json.load(open('$W/${n}_f.json')) print('rejected',[(",
+      "access": false,
+      "note": "In the tools directory the command runs the allowed digitizer on the agent's own page image with --out an absolute path in its work directory, filters its printed output with grep, and reads that JSON back with python3 -I. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0072",
+      "transcript": "agent-a467ac016a538d9c8.jsonl",
+      "call": 39,
+      "reason": "command opens the tools directory: /home/claude/work/v1_tools_frozen/test_a_blue.json",
+      "access": false,
+      "note": "Instruction breach without data access, reported by the agent after its reply: its helper script changed into the tools directory and ran the digitizer with a relative --out, so one trial digitization of this paper's own figure (test_a_blue.json) was written at the top of the tools directory; this call moves it into the agent's own work directory. No other agent opened it: across every extraction transcript only this agent's calls name that file, and no other call lists the tools directory beyond extractor A's 'ls scripts' on HYC-0068. The tools directory matched its MANIFEST afterwards and has been immutable since 22:27 UTC on 29 Oct 2026. Not access under Amendment 1, item 26; the output is kept."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0057",
+      "transcript": "agent-a5685409c14990ef0.jsonl",
+      "call": 79,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $C --out $D/fig8_C-4_77K_end30.json --color #ff0000 --tolerance 30 $F8 --roi 1090 630 1108 652 --figure Figu",
+      "access": false,
+      "note": "In the tools directory the command defines a shell function run() that calls only 'python3 scripts/digitize_figure.py extract' and filters its output with grep, and calls it on the agent's own page images with --out absolute paths in its out/digitizations. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0057",
+      "transcript": "agent-a5685409c14990ef0.jsonl",
+      "call": 79,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $C --out $D/fig8_C-4_77K_end31.json --color #00ff00 --tolerance 30 $F8 --roi 1090 630 1108 652 --figure Figu",
+      "access": false,
+      "note": "In the tools directory the command defines a shell function run() that calls only 'python3 scripts/digitize_figure.py extract' and filters its output with grep, and calls it on the agent's own page images with --out absolute paths in its out/digitizations. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0057",
+      "transcript": "agent-a5685409c14990ef0.jsonl",
+      "call": 79,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $C --out $D/fig8_C-4_77K_end32.json --color #0000ff --tolerance 30 $F8 --roi 1090 630 1109 652 --figure Figu",
+      "access": false,
+      "note": "In the tools directory the command defines a shell function run() that calls only 'python3 scripts/digitize_figure.py extract' and filters its output with grep, and calls it on the agent's own page images with --out absolute paths in its out/digitizations. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0057",
+      "transcript": "agent-a5685409c14990ef0.jsonl",
+      "call": 79,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $P/main-07.png --out $D/fig3_N-C-2_filled.json --color #000000 --tolerance 60 $F3 --roi 174 1005 568 1276 --",
+      "access": false,
+      "note": "In the tools directory the command defines a shell function run() that calls only 'python3 scripts/digitize_figure.py extract' and filters its output with grep, and calls it on the agent's own page images with --out absolute paths in its out/digitizations. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0057",
+      "transcript": "agent-a5685409c14990ef0.jsonl",
+      "call": 79,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $P/main-08.png --out $D/fig8_C-1_77K_main.json --color #000000 --tolerance 60 $F8 --roi 731 750 1105 795 --f",
+      "access": false,
+      "note": "In the tools directory the command defines a shell function run() that calls only 'python3 scripts/digitize_figure.py extract' and filters its output with grep, and calls it on the agent's own page images with --out absolute paths in its out/digitizations. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0057",
+      "transcript": "agent-a5685409c14990ef0.jsonl",
+      "call": 79,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $P/main-08.png --out $D/fig8_C-1_77K_pt1.json --color #000000 --tolerance 60 $F8 --roi 705 810 718 826 --fig",
+      "access": false,
+      "note": "In the tools directory the command defines a shell function run() that calls only 'python3 scripts/digitize_figure.py extract' and filters its output with grep, and calls it on the agent's own page images with --out absolute paths in its out/digitizations. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0057",
+      "transcript": "agent-a5685409c14990ef0.jsonl",
+      "call": 79,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $P/main-08.png --out $D/fig8_C-1_77K_pt2.json --color #000000 --tolerance 60 $F8 --roi 718 790 730 806 --fig",
+      "access": false,
+      "note": "In the tools directory the command defines a shell function run() that calls only 'python3 scripts/digitize_figure.py extract' and filters its output with grep, and calls it on the agent's own page images with --out absolute paths in its out/digitizations. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0057",
+      "transcript": "agent-a5685409c14990ef0.jsonl",
+      "call": 79,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $P/main-08.png --out $D/fig8_C-4_77K_main.json --color #000000 --tolerance 60 $F8 --roi 730 612 1091 745 --f",
+      "access": false,
+      "note": "In the tools directory the command defines a shell function run() that calls only 'python3 scripts/digitize_figure.py extract' and filters its output with grep, and calls it on the agent's own page images with --out absolute paths in its out/digitizations. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0057",
+      "transcript": "agent-a5685409c14990ef0.jsonl",
+      "call": 79,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $P/main-08.png --out $D/fig8_C-4_77K_pt1.json --color #000000 --tolerance 60 $F8 --roi 706 794 717 806 --fig",
+      "access": false,
+      "note": "In the tools directory the command defines a shell function run() that calls only 'python3 scripts/digitize_figure.py extract' and filters its output with grep, and calls it on the agent's own page images with --out absolute paths in its out/digitizations. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0057",
+      "transcript": "agent-a5685409c14990ef0.jsonl",
+      "call": 79,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $P/main-08.png --out $D/fig8_C-4_77K_pt2.json --color #000000 --tolerance 60 $F8 --roi 718 752 730 768 --fig",
+      "access": false,
+      "note": "In the tools directory the command defines a shell function run() that calls only 'python3 scripts/digitize_figure.py extract' and filters its output with grep, and calls it on the agent's own page images with --out absolute paths in its out/digitizations. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0057",
+      "transcript": "agent-a5685409c14990ef0.jsonl",
+      "call": 79,
+      "reason": "command in the tools directory does more than run its two scripts: run --image /home/claude/work/runs/extract/B/HYC-0057/work/derived_main-07_fig3_open.png --out $D/fig3_N-C-2_open.json -",
+      "access": false,
+      "note": "In the tools directory the command defines a shell function run() that calls only 'python3 scripts/digitize_figure.py extract' and filters its output with grep, and calls it on the agent's own page images with --out absolute paths in its out/digitizations. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0057",
+      "transcript": "agent-a5685409c14990ef0.jsonl",
+      "call": 79,
+      "reason": "command in the tools directory does more than run its two scripts: run(){ python3 scripts/digitize_figure.py extract $@ --overwrite",
+      "access": false,
+      "note": "In the tools directory the command defines a shell function run() that calls only 'python3 scripts/digitize_figure.py extract' and filters its output with grep, and calls it on the agent's own page images with --out absolute paths in its out/digitizations. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0057",
+      "transcript": "agent-a5685409c14990ef0.jsonl",
+      "call": 83,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $C --out $D/fig8_C-4_77K_end30.json --color #ff0000 --tolerance 30 $F8 --roi 1090 630 1108 652 --figure Figu",
+      "access": false,
+      "note": "As call 79: a shell function run() that calls only the allowed digitizer on the agent's own page images and crops in its work directory, writing to absolute paths in its out/digitizations."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0057",
+      "transcript": "agent-a5685409c14990ef0.jsonl",
+      "call": 83,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $C --out $D/fig8_C-4_77K_end31.json --color #00ff00 --tolerance 30 $F8 --roi 1090 630 1108 652 --figure Figu",
+      "access": false,
+      "note": "As call 79: a shell function run() that calls only the allowed digitizer on the agent's own page images and crops in its work directory, writing to absolute paths in its out/digitizations."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0057",
+      "transcript": "agent-a5685409c14990ef0.jsonl",
+      "call": 83,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $C --out $D/fig8_C-4_77K_end32.json --color #0000ff --tolerance 30 $F8 --roi 1090 630 1109 652 --figure Figu",
+      "access": false,
+      "note": "As call 79: a shell function run() that calls only the allowed digitizer on the agent's own page images and crops in its work directory, writing to absolute paths in its out/digitizations."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0057",
+      "transcript": "agent-a5685409c14990ef0.jsonl",
+      "call": 83,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $P/main-08.png --out $D/fig8_C-1_77K_main.json --color #000000 --tolerance 60 $F8 --roi 731 750 1105 795 --f",
+      "access": false,
+      "note": "As call 79: a shell function run() that calls only the allowed digitizer on the agent's own page images and crops in its work directory, writing to absolute paths in its out/digitizations."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0057",
+      "transcript": "agent-a5685409c14990ef0.jsonl",
+      "call": 83,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $P/main-08.png --out $D/fig8_C-1_77K_pt1.json --color #000000 --tolerance 60 $F8 --roi 705 810 718 826 --fig",
+      "access": false,
+      "note": "As call 79: a shell function run() that calls only the allowed digitizer on the agent's own page images and crops in its work directory, writing to absolute paths in its out/digitizations."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0057",
+      "transcript": "agent-a5685409c14990ef0.jsonl",
+      "call": 83,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $P/main-08.png --out $D/fig8_C-1_77K_pt2.json --color #000000 --tolerance 60 $F8 --roi 718 790 730 806 --fig",
+      "access": false,
+      "note": "As call 79: a shell function run() that calls only the allowed digitizer on the agent's own page images and crops in its work directory, writing to absolute paths in its out/digitizations."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0057",
+      "transcript": "agent-a5685409c14990ef0.jsonl",
+      "call": 83,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $P/main-08.png --out $D/fig8_C-4_77K_main.json --color #000000 --tolerance 60 $F8 --roi 730 612 1091 745 --f",
+      "access": false,
+      "note": "As call 79: a shell function run() that calls only the allowed digitizer on the agent's own page images and crops in its work directory, writing to absolute paths in its out/digitizations."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0057",
+      "transcript": "agent-a5685409c14990ef0.jsonl",
+      "call": 83,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $P/main-08.png --out $D/fig8_C-4_77K_pt1.json --color #000000 --tolerance 60 $F8 --roi 706 794 717 806 --fig",
+      "access": false,
+      "note": "As call 79: a shell function run() that calls only the allowed digitizer on the agent's own page images and crops in its work directory, writing to absolute paths in its out/digitizations."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0057",
+      "transcript": "agent-a5685409c14990ef0.jsonl",
+      "call": 83,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $P/main-08.png --out $D/fig8_C-4_77K_pt2.json --color #000000 --tolerance 60 $F8 --roi 718 752 730 768 --fig",
+      "access": false,
+      "note": "As call 79: a shell function run() that calls only the allowed digitizer on the agent's own page images and crops in its work directory, writing to absolute paths in its out/digitizations."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0057",
+      "transcript": "agent-a5685409c14990ef0.jsonl",
+      "call": 83,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $R --out $D/fig8_C-1_RT.json --color #00ff00 --tolerance 30 --open-px 1 --marker-min-px 2 $F8 --roi 712 848 ",
+      "access": false,
+      "note": "As call 79: a shell function run() that calls only the allowed digitizer on the agent's own page images and crops in its work directory, writing to absolute paths in its out/digitizations."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0057",
+      "transcript": "agent-a5685409c14990ef0.jsonl",
+      "call": 83,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $R --out $D/fig8_C-4_RT.json --color #ff0000 --tolerance 30 --open-px 1 --marker-min-px 2 $F8 --roi 712 848 ",
+      "access": false,
+      "note": "As call 79: a shell function run() that calls only the allowed digitizer on the agent's own page images and crops in its work directory, writing to absolute paths in its out/digitizations."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0057",
+      "transcript": "agent-a5685409c14990ef0.jsonl",
+      "call": 83,
+      "reason": "command in the tools directory does more than run its two scripts: run(){ python3 scripts/digitize_figure.py extract $@ --overwrite",
+      "access": false,
+      "note": "As call 79: a shell function run() that calls only the allowed digitizer on the agent's own page images and crops in its work directory, writing to absolute paths in its out/digitizations."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0057",
+      "transcript": "agent-a5685409c14990ef0.jsonl",
+      "call": 87,
+      "reason": "command in the tools directory does more than run its two scripts: -c import json;print(repr(json.load(open('$D/fig8_C-4_77K_end32.json'))['series'][0]['x'])))",
+      "access": false,
+      "note": "In the tools directory the command reads two values from the agent's own archived digitizations (out/digitizations) with python3 -c and passes them to 'python3 scripts/digitize_figure.py check'. The tools directory's top level holds no Python module (only MANIFEST, scripts/ and src/), so nothing there is imported; nothing in it is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0057",
+      "transcript": "agent-a5685409c14990ef0.jsonl",
+      "call": 87,
+      "reason": "command in the tools directory does more than run its two scripts: -c import json;s=json.load(open('$D/fig8_C-1_77K_main.json'))['series'];print(repr(max(p['x'] for p in s)-1e-9)))",
+      "access": false,
+      "note": "In the tools directory the command reads two values from the agent's own archived digitizations (out/digitizations) with python3 -c and passes them to 'python3 scripts/digitize_figure.py check'. The tools directory's top level holds no Python module (only MANIFEST, scripts/ and src/), so nothing there is imported; nothing in it is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0057",
+      "transcript": "agent-a5685409c14990ef0.jsonl",
+      "call": 88,
+      "reason": "command names the home directory",
+      "access": false,
+      "note": "The flagged '~' is the approximately sign in quotations from the paper and in the agent's own notes ('an uptake of ~4.2 wt%', 'above ~34 bar') inside a heredoc with a quoted delimiter (<<'EOF'), so the shell expands nothing in it and it is never a path. The command writes a script to its own work directory that builds its own rows.csv from its own digitizations."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0073",
+      "transcript": "agent-a431ba1069d330d6d.jsonl",
+      "call": 64,
+      "reason": "command names a path outside the allowed paths: /tmp/claude-0/-home-claude/663fb236-481a-5f2f-b02f-82bfd72801cf/tasks/bsfrnpdi9.output",
+      "access": false,
+      "note": "The command reads /tmp/claude-0/.../tasks/bsfrnpdi9.output, the file in which the agent's own tool environment saved the output of its own earlier command (call 63, moved to the background after 120 s; the harness gave the agent that path). The launcher allows such files."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0075",
+      "transcript": "agent-af746987eadcabb10.jsonl",
+      "call": 44,
+      "reason": "command in the tools directory reads more than its scripts' output: tr -d #).json --overwrite --color $col --tolerance 60 --x1-px 245.1 --x1-val 0 --x2-px 558.64 --x2-val 1.0 --y1-px 642.2",
+      "access": false,
+      "note": "In the tools directory the command runs the allowed digitizer for four colours on the agent's own page image, naming each output file from the colour with 'tr -d #' (a filter on a shell string, not on any file), with --out absolute paths in its work directory, and filters the printed output with grep. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0075",
+      "transcript": "agent-af746987eadcabb10.jsonl",
+      "call": 54,
+      "reason": "command in the tools directory does more than run its two scripts: rm -f trial/g.json trial/r_60_3.json trial/r_60_2.json trial/r_90_3.json trial/r_90_2.json trial/r_dbg.json",
+      "access": false,
+      "note": "Instruction breach without data access, reported by the agent after its reply. Its helper (run7a.sh) was given relative output names, so in calls 51 to 53 six trial digitizations of this paper's own Fig. 7a were written into /home/claude/work/v1_tools_frozen/trial/; this call deletes those six files by name and removes the folder. Extractor A of HYC-0048 had made the same mistake with the same folder name (its files f8a_red/blue/black.json, which it deleted by name in its call 38, when its rmdir failed because this agent's files were still there). Neither agent listed the folder or read a file it had not named itself, and the two sets of file names do not overlap, so neither paper's rows can contain the other's digitizations; the two papers differ, so item 26's same-record rule does not arise. The tools directory matched its MANIFEST afterwards and has been immutable since 22:27 UTC on 29 Oct 2026. Not access; the output is kept."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0075",
+      "transcript": "agent-af746987eadcabb10.jsonl",
+      "call": 54,
+      "reason": "command in the tools directory does more than run its two scripts: rmdir trial",
+      "access": false,
+      "note": "Instruction breach without data access, reported by the agent after its reply. Its helper (run7a.sh) was given relative output names, so in calls 51 to 53 six trial digitizations of this paper's own Fig. 7a were written into /home/claude/work/v1_tools_frozen/trial/; this call deletes those six files by name and removes the folder. Extractor A of HYC-0048 had made the same mistake with the same folder name (its files f8a_red/blue/black.json, which it deleted by name in its call 38, when its rmdir failed because this agent's files were still there). Neither agent listed the folder or read a file it had not named itself, and the two sets of file names do not overlap, so neither paper's rows can contain the other's digitizations; the two papers differ, so item 26's same-record rule does not arise. The tools directory matched its MANIFEST afterwards and has been immutable since 22:27 UTC on 29 Oct 2026. Not access; the output is kept."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0075",
+      "transcript": "agent-af746987eadcabb10.jsonl",
+      "call": 70,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $W/fig7/page7_f7a_masked.png --out $O/fig7a_ACBS12.json --color #000000 --tolerance 90 --open-px 3 --series-",
+      "access": false,
+      "note": "In the tools directory the command defines a shell function run() that calls only the allowed digitizer, and calls it on masked page images in the agent's work directory with --out absolute paths in its out/digitizations. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0075",
+      "transcript": "agent-af746987eadcabb10.jsonl",
+      "call": 70,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $W/fig7/page7_f7a_masked.png --out $O/fig7a_ACBS13.json --color #fc0101 --tolerance 90 --open-px 2 --series-",
+      "access": false,
+      "note": "In the tools directory the command defines a shell function run() that calls only the allowed digitizer, and calls it on masked page images in the agent's work directory with --out absolute paths in its out/digitizations. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0075",
+      "transcript": "agent-af746987eadcabb10.jsonl",
+      "call": 70,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $W/fig7/page7_f7a_masked.png --out $O/fig7a_ACBS14.json --color #0000fc --tolerance 120 --open-px 2 --series",
+      "access": false,
+      "note": "In the tools directory the command defines a shell function run() that calls only the allowed digitizer, and calls it on masked page images in the agent's work directory with --out absolute paths in its out/digitizations. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0075",
+      "transcript": "agent-af746987eadcabb10.jsonl",
+      "call": 70,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $W/fig7/page7_f7a_masked.png --out $O/fig7a_ACBS16.json --color #008000 --tolerance 60 --open-px 3 --series-",
+      "access": false,
+      "note": "In the tools directory the command defines a shell function run() that calls only the allowed digitizer, and calls it on masked page images in the agent's work directory with --out absolute paths in its out/digitizations. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0075",
+      "transcript": "agent-af746987eadcabb10.jsonl",
+      "call": 70,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $W/fig7/page7_f7b_masked.png --out $O/fig7b_ACBS12.json --color #000000 --tolerance 90 --open-px 3 --series-",
+      "access": false,
+      "note": "In the tools directory the command defines a shell function run() that calls only the allowed digitizer, and calls it on masked page images in the agent's work directory with --out absolute paths in its out/digitizations. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0075",
+      "transcript": "agent-af746987eadcabb10.jsonl",
+      "call": 70,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $W/fig7/page7_f7b_masked.png --out $O/fig7b_ACBS13.json --color #fe0101 --tolerance 90 --open-px 3 --series-",
+      "access": false,
+      "note": "In the tools directory the command defines a shell function run() that calls only the allowed digitizer, and calls it on masked page images in the agent's work directory with --out absolute paths in its out/digitizations. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0075",
+      "transcript": "agent-af746987eadcabb10.jsonl",
+      "call": 70,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $W/fig7/page7_f7b_masked.png --out $O/fig7b_ACBS14.json --color #0000fe --tolerance 120 --open-px 3 --series",
+      "access": false,
+      "note": "In the tools directory the command defines a shell function run() that calls only the allowed digitizer, and calls it on masked page images in the agent's work directory with --out absolute paths in its out/digitizations. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0075",
+      "transcript": "agent-af746987eadcabb10.jsonl",
+      "call": 70,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $W/fig7/page7_f7b_masked.png --out $O/fig7b_ACBS16.json --color #008000 --tolerance 90 --open-px 3 --series-",
+      "access": false,
+      "note": "In the tools directory the command defines a shell function run() that calls only the allowed digitizer, and calls it on masked page images in the agent's work directory with --out absolute paths in its out/digitizations. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0075",
+      "transcript": "agent-af746987eadcabb10.jsonl",
+      "call": 70,
+      "reason": "command in the tools directory does more than run its two scripts: run(){ python3 scripts/digitize_figure.py extract $@ --x-label Pressure (bar) --y-label H2 storage capacity (wt%, at 77 ",
+      "access": false,
+      "note": "In the tools directory the command defines a shell function run() that calls only the allowed digitizer, and calls it on masked page images in the agent's work directory with --out absolute paths in its out/digitizations. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0057",
+      "transcript": "agent-aa99eb7b1ab56168e.jsonl",
+      "call": 49,
+      "reason": "command in the tools directory reads more than its scripts' output: tail -n +2",
+      "access": false,
+      "note": "In the tools directory the command runs only the allowed digitizer (directly, in a loop, or through a shell function), on the agent's own page images or images it made in its work directory, with --out absolute paths in its own work or out/digitizations directory, and filters the printed output (grep, tail, tr) or reads its own JSON back. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0057",
+      "transcript": "agent-aa99eb7b1ab56168e.jsonl",
+      "call": 49,
+      "reason": "command in the tools directory reads more than its scripts' output: tr \\n",
+      "access": false,
+      "note": "In the tools directory the command runs only the allowed digitizer (directly, in a loop, or through a shell function), on the agent's own page images or images it made in its work directory, with --out absolute paths in its own work or out/digitizations directory, and filters the printed output (grep, tail, tr) or reads its own JSON back. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0057",
+      "transcript": "agent-aa99eb7b1ab56168e.jsonl",
+      "call": 51,
+      "reason": "command in the tools directory reads more than its scripts' output: tail -n +2",
+      "access": false,
+      "note": "In the tools directory the command runs only the allowed digitizer (directly, in a loop, or through a shell function), on the agent's own page images or images it made in its work directory, with --out absolute paths in its own work or out/digitizations directory, and filters the printed output (grep, tail, tr) or reads its own JSON back. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0057",
+      "transcript": "agent-aa99eb7b1ab56168e.jsonl",
+      "call": 51,
+      "reason": "command in the tools directory reads more than its scripts' output: tr \\n",
+      "access": false,
+      "note": "In the tools directory the command runs only the allowed digitizer (directly, in a loop, or through a shell function), on the agent's own page images or images it made in its work directory, with --out absolute paths in its own work or out/digitizations directory, and filters the printed output (grep, tail, tr) or reads its own JSON back. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0057",
+      "transcript": "agent-aa99eb7b1ab56168e.jsonl",
+      "call": 63,
+      "reason": "command names a path outside the allowed paths: /in/pages/main-07.png",
+      "access": false,
+      "note": "The command writes a script to the agent's own work directory from a quoted heredoc and runs it; the script runs only 'python3 scripts/digitize_figure.py extract' (through subprocess with the tools directory as its working directory, or after cd) on the agent's own images, writing to absolute paths in its own work or out/digitizations directory. The other paths flagged are the ends of paths built from the agent's own base directory. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0057",
+      "transcript": "agent-aa99eb7b1ab56168e.jsonl",
+      "call": 63,
+      "reason": "command names a path outside the allowed paths: /in/pages/main-08.png",
+      "access": false,
+      "note": "The command writes a script to the agent's own work directory from a quoted heredoc and runs it; the script runs only 'python3 scripts/digitize_figure.py extract' (through subprocess with the tools directory as its working directory, or after cd) on the agent's own images, writing to absolute paths in its own work or out/digitizations directory. The other paths flagged are the ends of paths built from the agent's own base directory. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0057",
+      "transcript": "agent-aa99eb7b1ab56168e.jsonl",
+      "call": 63,
+      "reason": "command names a path outside the allowed paths: /out/digitizations",
+      "access": false,
+      "note": "The command writes a script to the agent's own work directory from a quoted heredoc and runs it; the script runs only 'python3 scripts/digitize_figure.py extract' (through subprocess with the tools directory as its working directory, or after cd) on the agent's own images, writing to absolute paths in its own work or out/digitizations directory. The other paths flagged are the ends of paths built from the agent's own base directory. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0057",
+      "transcript": "agent-aa99eb7b1ab56168e.jsonl",
+      "call": 63,
+      "reason": "command names a path outside the allowed paths: /work",
+      "access": false,
+      "note": "The command writes a script to the agent's own work directory from a quoted heredoc and runs it; the script runs only 'python3 scripts/digitize_figure.py extract' (through subprocess with the tools directory as its working directory, or after cd) on the agent's own images, writing to absolute paths in its own work or out/digitizations directory. The other paths flagged are the ends of paths built from the agent's own base directory. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0057",
+      "transcript": "agent-aa99eb7b1ab56168e.jsonl",
+      "call": 63,
+      "reason": "command opens the tools directory: /home/claude/work/v1_tools_frozen",
+      "access": false,
+      "note": "The command writes a script to the agent's own work directory from a quoted heredoc and runs it; the script runs only 'python3 scripts/digitize_figure.py extract' (through subprocess with the tools directory as its working directory, or after cd) on the agent's own images, writing to absolute paths in its own work or out/digitizations directory. The other paths flagged are the ends of paths built from the agent's own base directory. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0048",
+      "transcript": "agent-ade84b63e051e97d0.jsonl",
+      "call": 59,
+      "reason": "command runs a file in the tools directory other than its two scripts: python3 $W/scripts/show.py $W/test_red.json $W/test_black.json",
+      "access": false,
+      "note": "In the tools directory the command runs the allowed digitizer on images in the agent's own work directory and then its own helper work/scripts/show.py (written by the agent in its work directory) to print the points of its own output JSON. The flag is for running a file other than the two scripts while in the tools directory; the file run is the agent's own, outside the tools directory. Nothing in the tools directory is opened, listed or searched. (Separately, the agent reported after its reply that in call 78 its own hole-detection script was given the output name /dev/null.png, so it wrote a scratch image to /dev, which it deleted in call 113: a system folder holding no project data; not access.)"
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0048",
+      "transcript": "agent-ade84b63e051e97d0.jsonl",
+      "call": 71,
+      "reason": "command in the tools directory does more than run its two scripts: black) h=#000000",
+      "access": false,
+      "note": "In the tools directory the command runs the allowed digitizer on images in the agent's own work directory and then its own helper work/scripts/show.py (written by the agent in its work directory) to print the points of its own output JSON. The flag is for running a file other than the two scripts while in the tools directory; the file run is the agent's own, outside the tools directory. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0048",
+      "transcript": "agent-ade84b63e051e97d0.jsonl",
+      "call": 71,
+      "reason": "command in the tools directory does more than run its two scripts: red) h=#ff0000",
+      "access": false,
+      "note": "In the tools directory the command runs the allowed digitizer on images in the agent's own work directory and then its own helper work/scripts/show.py (written by the agent in its work directory) to print the points of its own output JSON. The flag is for running a file other than the two scripts while in the tools directory; the file run is the agent's own, outside the tools directory. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0048",
+      "transcript": "agent-ade84b63e051e97d0.jsonl",
+      "call": 71,
+      "reason": "command runs a file in the tools directory other than its two scripts: python3 $W/scripts/show.py $W/t9a_blue.json $W/t9a_red.json $W/t9a_black.json",
+      "access": false,
+      "note": "In the tools directory the command runs the allowed digitizer on images in the agent's own work directory and then its own helper work/scripts/show.py (written by the agent in its work directory) to print the points of its own output JSON. The flag is for running a file other than the two scripts while in the tools directory; the file run is the agent's own, outside the tools directory. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0048",
+      "transcript": "agent-ade84b63e051e97d0.jsonl",
+      "call": 81,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $W/f8a_des_black.png --out $O/HYC-0048_fig8a_AC-HCS_des.json --overwrite --color #000000 --tolerance 60 --op",
+      "access": false,
+      "note": "In the tools directory the command runs only the allowed digitizer (directly, in a loop, or through a shell function), on the agent's own page images or images it made in its work directory, with --out absolute paths in its own work or out/digitizations directory, and filters the printed output (grep, tail, tr) or reads its own JSON back. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0048",
+      "transcript": "agent-ade84b63e051e97d0.jsonl",
+      "call": 81,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $W/f8a_des_blue.png --out $O/HYC-0048_fig8a_AC-HCB_des.json --overwrite --color #0000ff --tolerance 60 --ope",
+      "access": false,
+      "note": "In the tools directory the command runs only the allowed digitizer (directly, in a loop, or through a shell function), on the agent's own page images or images it made in its work directory, with --out absolute paths in its own work or out/digitizations directory, and filters the printed output (grep, tail, tr) or reads its own JSON back. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0048",
+      "transcript": "agent-ade84b63e051e97d0.jsonl",
+      "call": 81,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $W/f8a_des_red.png --out $O/HYC-0048_fig8a_AC-HCT_des.json --overwrite --color #ff0000 --tolerance 60 --open",
+      "access": false,
+      "note": "In the tools directory the command runs only the allowed digitizer (directly, in a loop, or through a shell function), on the agent's own page images or images it made in its work directory, with --out absolute paths in its own work or out/digitizations directory, and filters the printed output (grep, tail, tr) or reads its own JSON back. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0048",
+      "transcript": "agent-ade84b63e051e97d0.jsonl",
+      "call": 81,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $W/f8a_filledblack.png --out $O/HYC-0048_fig8a_AC-HCS_ads.json --overwrite --color #000000 --tolerance 60 $C",
+      "access": false,
+      "note": "In the tools directory the command runs only the allowed digitizer (directly, in a loop, or through a shell function), on the agent's own page images or images it made in its work directory, with --out absolute paths in its own work or out/digitizations directory, and filters the printed output (grep, tail, tr) or reads its own JSON back. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0048",
+      "transcript": "agent-ade84b63e051e97d0.jsonl",
+      "call": 81,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $W/f9a_des_black.png --out $O/HYC-0048_fig9a_AC-HCS_des.json --overwrite --color #000000 --tolerance 60 --op",
+      "access": false,
+      "note": "In the tools directory the command runs only the allowed digitizer (directly, in a loop, or through a shell function), on the agent's own page images or images it made in its work directory, with --out absolute paths in its own work or out/digitizations directory, and filters the printed output (grep, tail, tr) or reads its own JSON back. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0048",
+      "transcript": "agent-ade84b63e051e97d0.jsonl",
+      "call": 81,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $W/f9a_des_blue.png --out $O/HYC-0048_fig9a_AC-HCB_des.json --overwrite --color #0000ff --tolerance 60 --ope",
+      "access": false,
+      "note": "In the tools directory the command runs only the allowed digitizer (directly, in a loop, or through a shell function), on the agent's own page images or images it made in its work directory, with --out absolute paths in its own work or out/digitizations directory, and filters the printed output (grep, tail, tr) or reads its own JSON back. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0048",
+      "transcript": "agent-ade84b63e051e97d0.jsonl",
+      "call": 81,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $W/f9a_des_red.png --out $O/HYC-0048_fig9a_AC-HCT_des.json --overwrite --color #ff0000 --tolerance 60 --open",
+      "access": false,
+      "note": "In the tools directory the command runs only the allowed digitizer (directly, in a loop, or through a shell function), on the agent's own page images or images it made in its work directory, with --out absolute paths in its own work or out/digitizations directory, and filters the printed output (grep, tail, tr) or reads its own JSON back. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0048",
+      "transcript": "agent-ade84b63e051e97d0.jsonl",
+      "call": 81,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $W/f9a_filledblack.png --out $O/HYC-0048_fig9a_AC-HCS_ads.json --overwrite --color #000000 --tolerance 60 $C",
+      "access": false,
+      "note": "In the tools directory the command runs only the allowed digitizer (directly, in a loop, or through a shell function), on the agent's own page images or images it made in its work directory, with --out absolute paths in its own work or out/digitizations directory, and filters the printed output (grep, tail, tr) or reads its own JSON back. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0048",
+      "transcript": "agent-ade84b63e051e97d0.jsonl",
+      "call": 81,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $W/p17_f8a_masked.png --out $O/HYC-0048_fig8a_AC-HCB_ads.json --overwrite --color #0000ff --tolerance 60 $CA",
+      "access": false,
+      "note": "In the tools directory the command runs only the allowed digitizer (directly, in a loop, or through a shell function), on the agent's own page images or images it made in its work directory, with --out absolute paths in its own work or out/digitizations directory, and filters the printed output (grep, tail, tr) or reads its own JSON back. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0048",
+      "transcript": "agent-ade84b63e051e97d0.jsonl",
+      "call": 81,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $W/p17_f8a_masked.png --out $O/HYC-0048_fig8a_AC-HCT_ads.json --overwrite --color #ff0000 --tolerance 60 $CA",
+      "access": false,
+      "note": "In the tools directory the command runs only the allowed digitizer (directly, in a loop, or through a shell function), on the agent's own page images or images it made in its work directory, with --out absolute paths in its own work or out/digitizations directory, and filters the printed output (grep, tail, tr) or reads its own JSON back. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0048",
+      "transcript": "agent-ade84b63e051e97d0.jsonl",
+      "call": 81,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $W/p17_f9a_masked.png --out $O/HYC-0048_fig9a_AC-HCB_ads.json --overwrite --color #0000ff --tolerance 60 $CA",
+      "access": false,
+      "note": "In the tools directory the command runs only the allowed digitizer (directly, in a loop, or through a shell function), on the agent's own page images or images it made in its work directory, with --out absolute paths in its own work or out/digitizations directory, and filters the printed output (grep, tail, tr) or reads its own JSON back. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0048",
+      "transcript": "agent-ade84b63e051e97d0.jsonl",
+      "call": 81,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $W/p17_f9a_masked.png --out $O/HYC-0048_fig9a_AC-HCT_ads.json --overwrite --color #ff0000 --tolerance 60 $CA",
+      "access": false,
+      "note": "In the tools directory the command runs only the allowed digitizer (directly, in a loop, or through a shell function), on the agent's own page images or images it made in its work directory, with --out absolute paths in its own work or out/digitizations directory, and filters the printed output (grep, tail, tr) or reads its own JSON back. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0048",
+      "transcript": "agent-ade84b63e051e97d0.jsonl",
+      "call": 81,
+      "reason": "command in the tools directory does more than run its two scripts: run(){ python3 scripts/digitize_figure.py extract $@",
+      "access": false,
+      "note": "In the tools directory the command runs only the allowed digitizer (directly, in a loop, or through a shell function), on the agent's own page images or images it made in its work directory, with --out absolute paths in its own work or out/digitizations directory, and filters the printed output (grep, tail, tr) or reads its own JSON back. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0048",
+      "transcript": "agent-ade84b63e051e97d0.jsonl",
+      "call": 81,
+      "reason": "command runs a file in the tools directory other than its two scripts: python3 $W/scripts/show.py $O/HYC-0048_fig8a_*.json $O/HYC-0048_fig9a_*.json",
+      "access": false,
+      "note": "In the tools directory the command runs only the allowed digitizer (directly, in a loop, or through a shell function), on the agent's own page images or images it made in its work directory, with --out absolute paths in its own work or out/digitizations directory, and filters the printed output (grep, tail, tr) or reads its own JSON back. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0048",
+      "transcript": "agent-ade84b63e051e97d0.jsonl",
+      "call": 82,
+      "reason": "command in the tools directory reads more than its scripts' output: tail -n +2",
+      "access": false,
+      "note": "In the tools directory the command runs the allowed digitizer on images in the agent's own work directory and then its own helper work/scripts/show.py (written by the agent in its work directory) to print the points of its own output JSON. The flag is for running a file other than the two scripts while in the tools directory; the file run is the agent's own, outside the tools directory. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0048",
+      "transcript": "agent-ade84b63e051e97d0.jsonl",
+      "call": 82,
+      "reason": "command runs a file in the tools directory other than its two scripts: python3 $W/scripts/show.py $W/t_frag.json",
+      "access": false,
+      "note": "In the tools directory the command runs the allowed digitizer on images in the agent's own work directory and then its own helper work/scripts/show.py (written by the agent in its work directory) to print the points of its own output JSON. The flag is for running a file other than the two scripts while in the tools directory; the file run is the agent's own, outside the tools directory. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0048",
+      "transcript": "agent-ade84b63e051e97d0.jsonl",
+      "call": 84,
+      "reason": "command runs a file in the tools directory other than its two scripts: python3 $W/scripts/show.py $W/t8a_red120.json",
+      "access": false,
+      "note": "In the tools directory the command runs the allowed digitizer on images in the agent's own work directory and then its own helper work/scripts/show.py (written by the agent in its work directory) to print the points of its own output JSON. The flag is for running a file other than the two scripts while in the tools directory; the file run is the agent's own, outside the tools directory. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0048",
+      "transcript": "agent-ade84b63e051e97d0.jsonl",
+      "call": 84,
+      "reason": "command runs a file in the tools directory other than its two scripts: python3 $W/scripts/show.py $W/t9a_red120.json",
+      "access": false,
+      "note": "In the tools directory the command runs the allowed digitizer on images in the agent's own work directory and then its own helper work/scripts/show.py (written by the agent in its work directory) to print the points of its own output JSON. The flag is for running a file other than the two scripts while in the tools directory; the file run is the agent's own, outside the tools directory. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0048",
+      "transcript": "agent-ade84b63e051e97d0.jsonl",
+      "call": 98,
+      "reason": "command runs a file in the tools directory other than its two scripts: python3 $W/scripts/show.py $O/HYC-0048_fig8b_*.json $O/HYC-0048_fig9b_*.json",
+      "access": false,
+      "note": "In the tools directory the command runs the allowed digitizer on images in the agent's own work directory and then its own helper work/scripts/show.py (written by the agent in its work directory) to print the points of its own output JSON. The flag is for running a file other than the two scripts while in the tools directory; the file run is the agent's own, outside the tools directory. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0072",
+      "transcript": "agent-aea1ad4aec9d6d776.jsonl",
+      "call": 65,
+      "reason": "command in the tools directory does more than run its two scripts: run(){",
+      "access": false,
+      "note": "The command writes a script to the agent's own work directory from a quoted heredoc and runs it; the script runs only 'python3 scripts/digitize_figure.py extract' (through subprocess with the tools directory as its working directory, or after cd) on the agent's own images, writing to absolute paths in its own work or out/digitizations directory. The other paths flagged are the ends of paths built from the agent's own base directory. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0072",
+      "transcript": "agent-aea1ad4aec9d6d776.jsonl",
+      "call": 66,
+      "reason": "command opens the tools directory: /home/claude/work/v1_tools_frozen",
+      "access": false,
+      "note": "The command writes a script to the agent's own work directory from a quoted heredoc and runs it; the script runs only 'python3 scripts/digitize_figure.py extract' (through subprocess with the tools directory as its working directory, or after cd) on the agent's own images, writing to absolute paths in its own work or out/digitizations directory. The other paths flagged are the ends of paths built from the agent's own base directory. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0072",
+      "transcript": "agent-aea1ad4aec9d6d776.jsonl",
+      "call": 78,
+      "reason": "command opens the tools directory: /home/claude/work/v1_tools_frozen",
+      "access": false,
+      "note": "The command writes a script to the agent's own work directory from a quoted heredoc and runs it; the script runs only 'python3 scripts/digitize_figure.py extract' (through subprocess with the tools directory as its working directory, or after cd) on the agent's own images, writing to absolute paths in its own work or out/digitizations directory. The other paths flagged are the ends of paths built from the agent's own base directory. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0072",
+      "transcript": "agent-aea1ad4aec9d6d776.jsonl",
+      "call": 80,
+      "reason": "command in the tools directory does more than run its two scripts: -c import json;d=json.load(open('$D/$1.json'));print(max(p['x'] for p in d['series'])))",
+      "access": false,
+      "note": "In the tools directory the command reads the largest x of each of the agent's own archived digitizations (out/digitizations) with python3 -c and passes it to 'python3 scripts/digitize_figure.py check'. The tools directory's top level holds no Python module, so nothing there is imported; nothing in it is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0072",
+      "transcript": "agent-aea1ad4aec9d6d776.jsonl",
+      "call": 87,
+      "reason": "command in the tools directory does more than run its two scripts: /home/claude/work/runs/extract/B/HYC-0072/out/rows.csv",
+      "access": false,
+      "note": "The command edits and runs the agent's own row-building script in its work directory, then in the tools directory runs the allowed validator on its own out/rows.csv and counts that file's lines with grep -c, and prints its own table rows. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0072",
+      "transcript": "agent-aea1ad4aec9d6d776.jsonl",
+      "call": 87,
+      "reason": "command in the tools directory does more than run its two scripts: grep -c",
+      "access": false,
+      "note": "The command edits and runs the agent's own row-building script in its work directory, then in the tools directory runs the allowed validator on its own out/rows.csv and counts that file's lines with grep -c, and prints its own table rows. Nothing in the tools directory is opened, listed or searched."
     }
   ]
 }

@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T22:19:02+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0070",
+  "figure": "Figure_11B",
+  "series_name": "Ni20(arc) PCI 77 K, marker near 15.6 atm (ROI-isolated)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0070/in/pages/main-6.png",
+    "sha256": "adfbada898a257ecac2e103b7f754547745d256a5953ddc81f37114928bd7462",
+    "width_px": 1275,
+    "height_px": 1650
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 723.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1153.5,
+        "value": 80.0
+      },
+      "scale": "linear",
+      "label": "Pressure_atm",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 694.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 396.5,
+        "value": 3.0
+      },
+      "scale": "linear",
+      "label": "H2_uptake_pct",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 938.5,
+        "stated": 40.0,
+        "predicted": 40.04645760743322,
+        "relative_error": 0.0011614401858304646
+      },
+      {
+        "axis": "y",
+        "pixel": 545.5,
+        "stated": 1.5,
+        "predicted": 1.5,
+        "relative_error": 0.0
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 33002,
+    "matched_pixels_in_region": 49,
+    "region": [
+      803,
+      600,
+      810,
+      611
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 11.92,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 15.609756097560975,
+      "y": 0.9010067114093959,
+      "pixel_x": 807.0,
+      "pixel_y": 605.0,
+      "pixel_count": 49,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure_11B, digitized (Ni20(arc) PCI 77 K, marker near 15.6 atm (ROI-isolated))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0070_fig11B_Ni20arc_PCI_77K_pairA.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}
