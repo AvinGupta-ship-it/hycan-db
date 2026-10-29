@@ -35,6 +35,15 @@
       "reason": "command in the tools directory does more than run its two scripts: cat",
       "access": false,
       "note": "The agent's shell was in the tools directory (cd), but the command only writes a script from a quoted heredoc to its own work directory with cat, runs it with python3 -I (isolated mode: nothing is imported from the current directory) to write its own output, and reads its own output back with python3 -I. No file in the tools directory is opened, listed or searched (the same pattern as B F07841 call 17)."
+    },
+    {
+      "screener": "A",
+      "batch": "F08747",
+      "transcript": "agent-acaf5752bf4b4b992.jsonl",
+      "call": 12,
+      "reason": "tool outside the allowed set",
+      "access": false,
+      "note": "The agent called the Artifact tool (action publish) on its own output file /home/claude/work/runs/elig/A/F08747/out/F08747.json with one text edit (shortening its I1 quote), evidently as an edit tool. The call was refused with a tool error ('an Artifact's page must be .html'); per the tool's contract nothing was edited or published. The target is the agent's own output; no other path is named, and the agent then made the same edit in its own work script (call 13) and rewrote its output from there (the same pattern as A F05451 call 11)."
     }
   ]
 }

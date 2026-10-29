@@ -51,6 +51,11 @@ files by `scripts/v1_search/fulltext.py status`.
 - **Order.** Route 1 is tried first when the plan has one. Route 2 is tried only
   when route 1 did not obtain the main text. Supplementary files are taken from
   the route that obtained the main text.
+- **Retrieval ahead of the walk.** Records were retrieved in batches ahead of
+  the assessments, in draw order. The S1 walk reached its target of 60 eligible
+  papers at position 108 (F02540); the five S1 records after it that had
+  already been tried (positions 109 to 113: F02862, F10642, F09358, F07990,
+  F03705) keep their log rows but were not assessed and are not in the sample.
 - **Supplementary information.** Document files (PDF, Word, Excel, text) are
   retrieved; files in another document format are converted to PDF for the
   assessors with `soffice` (`fulltext.py stage`), and a supplementary zip is
