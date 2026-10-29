@@ -2410,7 +2410,9 @@ ran, reviewed every audit flag against the transcript, ran the resolver
 where the assessors disagreed, and collected the outcomes; `fulltext.py
 status` computed the walk from the files. After both walks had stopped, the
 44 v0.1 papers that were not drawn were retrieved and assessed the same way.
-Claude also compared the retrieved and not-retrieved records (§8). Claude
+Claude also compared the retrieved and not-retrieved records (§8), and
+wrote `prisma.py`, which computes the PRISMA 2020 counts (§14) from the
+committed files and draws the flow diagram (`references/v1_prisma/`). Claude
 did not assess any record and did not change any assessment.
 
 **Incident.** At about 15:38 UTC the university library's proxy suspended

@@ -1,0 +1,181 @@
+{
+  "protocol": "docs/v1_protocol.md \u00a714 (PRISMA 2020, Page et al. 2021)",
+  "identification": {
+    "openalex": {
+      "records": 10048,
+      "subqueries": 160,
+      "hits_over_subqueries": 19270
+    },
+    "semantic_scholar": {
+      "records": 8608
+    },
+    "duplicates_removed": {
+      "total": 7418,
+      "openalex_ids_sharing_a_doi": 5,
+      "semantic_scholar_matched_by_doi": 6604,
+      "semantic_scholar_matched_by_title_and_year": 809
+    },
+    "merged": 11238
+  },
+  "screening": {
+    "screened": 11238,
+    "excluded_by_both": {
+      "total": 5987,
+      "same_code": {
+        "theoretical_only": 2119,
+        "electrochemical": 1192,
+        "not_carbon": 1504,
+        "not_primary": 976,
+        "retracted": 5
+      },
+      "codes_differ": 191
+    },
+    "frame": {
+      "total": 5251,
+      "S1": 176,
+      "S2": 5075
+    }
+  },
+  "walk": {
+    "not_reached": {
+      "S1": 70,
+      "S2": 4948,
+      "total": 5018
+    },
+    "drawn": {
+      "S1": 106,
+      "S2": 127,
+      "total": 233
+    },
+    "not_retrieved": {
+      "S1": 32,
+      "S2": 47,
+      "total": 79
+    },
+    "assessed": {
+      "S1": 74,
+      "S2": 80,
+      "total": 154
+    },
+    "excluded": {
+      "S1": 14,
+      "S2": 60,
+      "total": 74
+    },
+    "eligible": {
+      "S1": 60,
+      "S2": 20,
+      "total": 80
+    },
+    "excluded_codes": {
+      "S1": {
+        "theoretical_only": 1,
+        "not_carbon": 4,
+        "no_conditions_stated": 1,
+        "no_surface_area": 7,
+        "not_english": 1
+      },
+      "S2": {
+        "theoretical_only": 10,
+        "electrochemical": 4,
+        "not_carbon": 6,
+        "not_primary": 6,
+        "no_conditions_stated": 32,
+        "no_surface_area": 2
+      },
+      "total": {
+        "theoretical_only": 11,
+        "electrochemical": 4,
+        "not_carbon": 10,
+        "not_primary": 6,
+        "no_conditions_stated": 33,
+        "no_surface_area": 9,
+        "not_english": 1
+      }
+    },
+    "frame_duplicate": {
+      "S1": 0,
+      "S2": 0,
+      "total": 0
+    },
+    "stopped": {
+      "S1": "target reached",
+      "S2": "assessment cap"
+    },
+    "target": {
+      "S1": 60,
+      "S2": 40
+    },
+    "cap": {
+      "S1": 110,
+      "S2": 80
+    },
+    "sample_v01_papers": [
+      "HYC-0009",
+      "HYC-0022",
+      "HYC-0031",
+      "HYC-0040",
+      "HYC-0044",
+      "HYC-0048",
+      "HYC-0057"
+    ],
+    "past_the_stop": {
+      "tried": 7,
+      "assessed": 2,
+      "assessed_eligible": 2,
+      "strata": {
+        "S1": 7
+      },
+      "frame_ids": [
+        "F02540",
+        "F02862",
+        "F03705",
+        "F05603",
+        "F07990",
+        "F09358",
+        "F10642"
+      ]
+    }
+  },
+  "author_review": {
+    "reviewed": 81,
+    "confirmed": 81,
+    "reversed": 0
+  },
+  "v01_papers": {
+    "papers": 51,
+    "drawn": 7,
+    "drawn_eligible": 7,
+    "not_drawn": 44,
+    "retrieved": 42,
+    "not_retrieved": [
+      "HYC-0041"
+    ],
+    "awaiting_retrieval": [
+      "HYC-0062"
+    ],
+    "assessed": 42,
+    "eligible": 35,
+    "excluded": 7,
+    "excluded_codes": {
+      "no_conditions_stated": 1,
+      "no_surface_area": 6
+    },
+    "not_assessed_yet": []
+  },
+  "analysed": null,
+  "analysed_note": "Per-RQ counts are added when the \u00a711 analyses are run.",
+  "inputs_sha256": {
+    "references/v1_search/merge_counts.json": "94e3794cc937912eba1f054728fff74392cf3aa4a4492c0ac5b6739766c44d2d",
+    "references/v1_search/merged_records.csv": "e276a0ca9c7f842a6aadd7650afd6fc4b570da93de80358629b83a00a6da41e5",
+    "references/v1_search/frame.csv": "814f47cf446b91d545cd4b359e0e17bdc460fd8e86a489a924e221443cc23171",
+    "references/v1_screening/screen_a.csv": "306ed7a25e0ea89080058f8a66f30bd36acd31c1b54b2685da7b9af0ae06fe64",
+    "references/v1_screening/screen_b.csv": "fe15604f70d317cc9d3aafdfbc36b8593b31c219f75a26600772c8f5687ca5f8",
+    "references/v1_fulltext/retrieval_plan.csv": "8c939404787a8863444fbbe2daa0d0ddc9447801017c22faa28b6d429084f715",
+    "references/v1_fulltext/retrieval_log.csv": "d20a93897e31f0d4ac0dbf00563950cfc062bbdc6f2e8a10a3d7759f57ffc30b",
+    "references/v1_fulltext/eligibility.csv": "7085cb94e339e5de0ebbcb5e92e9ca5cdcc1f2f9bcf709c99881726e5efa4499",
+    "references/v1_fulltext/author_review.csv": "be490ddcbb8a9fd6802b8b97831efa02d22c17a62fced75a5e3be019006c8071",
+    "data/raw/measurements_v0.1.csv": "b50857ea8c985667658086c6c2800c07848f5ff66e0148c32e350dfb0d8820e3",
+    "references/paper_tracking.csv": "c8a76ccadbcdc522b93a896c75963ae2392974a6dc644a7b5fa8a535bd23fa76"
+  }
+}
