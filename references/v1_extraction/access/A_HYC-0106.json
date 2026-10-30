@@ -23,31 +23,51 @@
       "call": 47,
       "tool": "Bash",
       "reason": "command opens the tools directory: /home/claude/work/v1_tools_frozen",
-      "detail": "cd /home/claude/work/runs/extract/A/HYC-0106/work && cat > pipe.py <<'EOF'\nimport sys, json, subprocess, os\nsys.path.insert(0, \"/home/claude/work/runs/extract/A/HYC-0106/work\")\nimport numpy as np\nfrom PIL import Image, ImageDraw\nfrom scipy import ndimage as ndi\n\nW=np.array([255,255,255],float)\nWORK="
+      "detail": "cd /home/claude/work/runs/extract/A/HYC-0106/work && cat > pipe.py <<'EOF'\nimport sys, json, subprocess, os\nsys.path.insert(0, \"/home/claude/work/runs/extract/A/HYC-0106/work\")\nimport numpy as np\nfrom PIL import Image, ImageDraw\nfrom scipy import ndimage as ndi\n\nW=np.array([255,255,255],float)\nWORK=",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
     },
     {
       "call": 87,
       "tool": "Bash",
       "reason": "command names the home directory",
-      "detail": "cd /home/claude/work/runs/extract/A/HYC-0106/work && python3 -I - <<'EOF'\nimport numpy as np\nfrom PIL import Image\ng=np.array(Image.open('../in/pages/main-10.png').convert('L')).astype(float)\nd=255-g\n# panel 8a: frame ~ x130..436,y142..388. look at bottom region rows 380..392 and columns 120..445\npr"
+      "detail": "cd /home/claude/work/runs/extract/A/HYC-0106/work && python3 -I - <<'EOF'\nimport numpy as np\nfrom PIL import Image\ng=np.array(Image.open('../in/pages/main-10.png').convert('L')).astype(float)\nd=255-g\n# panel 8a: frame ~ x130..436,y142..388. look at bottom region rows 380..392 and columns 120..445\npr",
+      "review": {
+        "access": false,
+        "note": "The flagged '~' appears only inside quoted text (a quotation from the paper, the agent's notes or a comment) or as an awk/regex match operator; no '~/' path and no $HOME occurs, so it is never a path."
+      }
     },
     {
       "call": 105,
       "tool": "Grep",
       "reason": "search outside the allowed paths",
-      "detail": "/home/claude/work/runs/extract/prompts/extract_A.md"
+      "detail": "/home/claude/work/runs/extract/prompts/extract_A.md",
+      "review": {
+        "access": false,
+        "note": "A search or read of the agent's own instruction file in /home/claude/work/runs/extract/prompts/, which the launcher allows it to read; it lists nothing and opens no other file there."
+      }
     },
     {
       "call": 202,
       "tool": "Grep",
       "reason": "search outside the allowed paths",
-      "detail": "/home/claude/work/runs/extract/prompts/extract_A.md"
+      "detail": "/home/claude/work/runs/extract/prompts/extract_A.md",
+      "review": {
+        "access": false,
+        "note": "A search or read of the agent's own instruction file in /home/claude/work/runs/extract/prompts/, which the launcher allows it to read; it lists nothing and opens no other file there."
+      }
     },
     {
       "call": 252,
       "tool": "Grep",
       "reason": "search outside the allowed paths",
-      "detail": "/home/claude/work/runs/extract/prompts/extract_A.md"
+      "detail": "/home/claude/work/runs/extract/prompts/extract_A.md",
+      "review": {
+        "access": false,
+        "note": "A search or read of the agent's own instruction file in /home/claude/work/runs/extract/prompts/, which the launcher allows it to read; it lists nothing and opens no other file there."
+      }
     },
     {
       "call": 15,
@@ -59,7 +79,7 @@
   "cross_access": [],
   "tool_calls": 257,
   "output_problems": [],
-  "flags_unreviewed": 7,
+  "flags_unreviewed": 2,
   "flags_access": 0,
   "access_ok": false,
   "ok": false,

@@ -7298,6 +7298,600 @@
       "reason": "tool outside the allowed set",
       "access": false,
       "note": "The call is the harness's current-time tool with no arguments; it returns the date and time and opens no file."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 26,
+      "reason": "command names a path outside the allowed paths: /home/claude/work",
+      "access": false,
+      "note": "The command changes into /home/claude/work and runs python3 -I -c to import seven libraries and print their versions; -I keeps the working directory off the import path, and no file is opened or listed."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 63,
+      "reason": "command climbs with ..",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 63,
+      "reason": "command names a path outside the allowed paths: /../in/pages/main-06.png",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 63,
+      "reason": "command names a path outside the allowed paths: /dev",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 65,
+      "reason": "command climbs with ..",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 65,
+      "reason": "command names a path outside the allowed paths: /../in/pages/main-06.png",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 65,
+      "reason": "command names a path outside the allowed paths: /dev",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 65,
+      "reason": "command names a path outside the allowed paths: /dev/fig3_points.json",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 70,
+      "reason": "command climbs with ..",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 70,
+      "reason": "command names a path outside the allowed paths: /../in/pages/main-06.png",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 70,
+      "reason": "command names a path outside the allowed paths: /dev",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 84,
+      "reason": "command climbs with ..",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 84,
+      "reason": "command names a path outside the allowed paths: /../in/pages/main-09.png",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 84,
+      "reason": "command names a path outside the allowed paths: /dev",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 84,
+      "reason": "command names a path outside the allowed paths: /dev/fig5_points.json",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 84,
+      "reason": "command names a path outside the allowed paths: /crops/ov5.png",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 92,
+      "reason": "command climbs with ..",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 92,
+      "reason": "command names a path outside the allowed paths: /../in/pages/si1-17.png",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 92,
+      "reason": "command names a path outside the allowed paths: /dev",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 92,
+      "reason": "command names a path outside the allowed paths: /dev/s9_points.json",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 92,
+      "reason": "command names a path outside the allowed paths: /crops/ovS9.png",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 97,
+      "reason": "command climbs with ..",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 97,
+      "reason": "command names a path outside the allowed paths: /../in/pages/si1-19.png",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 97,
+      "reason": "command names a path outside the allowed paths: /dev",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 97,
+      "reason": "command names a path outside the allowed paths: /dev/s11_points.json",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 108,
+      "reason": "command climbs with ..",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 108,
+      "reason": "command names a path outside the allowed paths: /../in/pages/main-09.png",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 112,
+      "reason": "command climbs with ..",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 112,
+      "reason": "command names a path outside the allowed paths: /../in/pages/main-09.png",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 113,
+      "reason": "command climbs with ..",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 113,
+      "reason": "command names a path outside the allowed paths: /../in/pages/main-09.png",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 115,
+      "reason": "command climbs with ..",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 115,
+      "reason": "command names a path outside the allowed paths: /../in/pages/main-09.png",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 116,
+      "reason": "command climbs with ..",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 116,
+      "reason": "command names a path outside the allowed paths: /../in/pages/main-09.png",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 121,
+      "reason": "command climbs with ..",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 121,
+      "reason": "command names a path outside the allowed paths: /../in/pages/main-09.png",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 122,
+      "reason": "command climbs with ..",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 122,
+      "reason": "command names a path outside the allowed paths: /../in/pages/main-09.png",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 148,
+      "reason": "command climbs with ..",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 148,
+      "reason": "command names a path outside the allowed paths: /../in/pages/si1-21.png",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 148,
+      "reason": "command names a path outside the allowed paths: /dev",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 148,
+      "reason": "command names a path outside the allowed paths: /dev/s13_points.json",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 148,
+      "reason": "command names a path outside the allowed paths: /crops/ovS13.png",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 153,
+      "reason": "command climbs with ..",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 153,
+      "reason": "command names a path outside the allowed paths: /../in/pages/si1-23.png",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 153,
+      "reason": "command names a path outside the allowed paths: /dev",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 153,
+      "reason": "command names a path outside the allowed paths: /dev/s15_points.json",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 153,
+      "reason": "command names a path outside the allowed paths: /crops/ovS15.png",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 154,
+      "reason": "command climbs with ..",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 154,
+      "reason": "command names a path outside the allowed paths: /../in/pages/si1-23.png",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 162,
+      "reason": "command climbs with ..",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 162,
+      "reason": "command names a path outside the allowed paths: /../in/pages/si1-18.png",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 162,
+      "reason": "command names a path outside the allowed paths: /dev",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 172,
+      "reason": "command climbs with ..",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 172,
+      "reason": "command names a path outside the allowed paths: /../in/pages/si1-17.png",
+      "access": false,
+      "note": "The flagged paths are built inside the agent's own helper code from its own work directory WORK (/home/claude/work/runs/extract/A/HYC-0101/work): WORK+'/../in/pages/...' is its own input page, '/crops/...' and '/dev/...' are its own work subfolders (crops/, dev/), and '..' only climbs from its work directory to its own run directory. The digitizer runs from the tools directory on its own images. Nothing outside its own run directory, the tools directory's script and its own instruction file is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 126,
+      "reason": "command names a path outside the allowed paths: /tmp/dummy_ignore",
+      "access": false,
+      "note": "Attempted breach, self-reported: the agent tried to send its own scripts' output to /tmp/dummy_ignore, a shared temporary path; the harness refused the command and it did not run, so nothing was written there."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 188,
+      "reason": "command opens the tools directory: /home/claude/work/v1_tools_frozen",
+      "access": false,
+      "note": "Breach, self-reported: after checking with ps for its own helper processes, the agent listed the tools directory (ls ... | head -3), seeing the names of its first three entries. No file in it was opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0101",
+      "transcript": "agent-a692ae45403ed2449.jsonl",
+      "call": 188,
+      "reason": "command reads or lists a file in the tools directory (supplementary check)",
+      "access": false,
+      "note": "Breach, self-reported: after checking with ps for its own helper processes, the agent listed the tools directory (ls ... | head -3), seeing the names of its first three entries. No file in it was opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0106",
+      "transcript": "agent-a7c6fc81e80067185.jsonl",
+      "call": 47,
+      "reason": "command opens the tools directory: /home/claude/work/v1_tools_frozen",
+      "access": false,
+      "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0106",
+      "transcript": "agent-a7c6fc81e80067185.jsonl",
+      "call": 87,
+      "reason": "command names the home directory",
+      "access": false,
+      "note": "The flagged '~' appears only inside quoted text (a quotation from the paper, the agent's notes or a comment) or as an awk/regex match operator; no '~/' path and no $HOME occurs, so it is never a path."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0106",
+      "transcript": "agent-a7c6fc81e80067185.jsonl",
+      "call": 105,
+      "reason": "search outside the allowed paths",
+      "access": false,
+      "note": "A search or read of the agent's own instruction file in /home/claude/work/runs/extract/prompts/, which the launcher allows it to read; it lists nothing and opens no other file there."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0106",
+      "transcript": "agent-a7c6fc81e80067185.jsonl",
+      "call": 202,
+      "reason": "search outside the allowed paths",
+      "access": false,
+      "note": "A search or read of the agent's own instruction file in /home/claude/work/runs/extract/prompts/, which the launcher allows it to read; it lists nothing and opens no other file there."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0106",
+      "transcript": "agent-a7c6fc81e80067185.jsonl",
+      "call": 252,
+      "reason": "search outside the allowed paths",
+      "access": false,
+      "note": "A search or read of the agent's own instruction file in /home/claude/work/runs/extract/prompts/, which the launcher allows it to read; it lists nothing and opens no other file there."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0031",
+      "transcript": "agent-a459641740f8f95dc.jsonl",
+      "call": 131,
+      "reason": "command opens the tools directory: /home/claude/work/v1_tools_frozen",
+      "access": false,
+      "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "C",
+      "batch": "HYC-0114",
+      "transcript": "agent-af6d3eec0568bd6a2.jsonl",
+      "call": 26,
+      "reason": "tool outside the allowed set",
+      "access": false,
+      "note": "The call is the harness's current-time tool with no arguments; it returns the date and time and opens no file."
     }
   ]
 }
