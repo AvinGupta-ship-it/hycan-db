@@ -103,7 +103,8 @@ list without reaching any of those keeps its output, and the breach is
 recorded in its review:
 
 - listing the tools directory's `scripts/` folder, which holds only the two
-  scripts: extractor A on HYC-0068, HYC-0076 and HYC-0044;
+  scripts: extractor A on HYC-0068, HYC-0076 and HYC-0044, and reconciler C on
+  HYC-0100 (whose listing went to `head -0`, so it saw nothing);
 - reading a tool script's source: extractor A on HYC-0094 (`sed` of
   `digitize_figure.py`, piped to `head -0`, so nothing was printed) and
   extractor A on HYC-0096 (`grep` of `validate_row_detail.py` for the message
