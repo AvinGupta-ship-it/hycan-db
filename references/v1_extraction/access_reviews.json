@@ -7163,6 +7163,24 @@
       "reason": "command names the home directory",
       "access": false,
       "note": "The flagged '~' appears only inside quoted text (a quotation from the paper, the agent's notes or a comment) or as an awk/regex match operator; no '~/' path and no $HOME occurs, so it is never a path."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0106",
+      "transcript": "agent-abc541b3e11a80c25.jsonl",
+      "call": 146,
+      "reason": "command in the tools directory does more than run its two scripts: grep -c",
+      "access": false,
+      "note": "The agent edits and runs its own work/assemble.py, then from the tools directory runs scripts/validate_row_detail.py on its own out/rows.csv, counts that file's lines with grep -c, and reads it with python3 -c, all by absolute path in its own out directory. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0106",
+      "transcript": "agent-abc541b3e11a80c25.jsonl",
+      "call": 146,
+      "reason": "command in the tools directory does more than run its two scripts: /home/claude/work/runs/extract/B/HYC-0106/out/rows.csv",
+      "access": false,
+      "note": "The agent edits and runs its own work/assemble.py, then from the tools directory runs scripts/validate_row_detail.py on its own out/rows.csv, counts that file's lines with grep -c, and reads it with python3 -c, all by absolute path in its own out directory. Nothing in the tools directory is opened, listed or searched."
     }
   ]
 }

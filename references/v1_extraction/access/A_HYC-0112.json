@@ -1,0 +1,50 @@
+{
+  "screener": "A",
+  "batch": "HYC-0112",
+  "transcript": "agent-a66de49257306bc7a.jsonl",
+  "launcher_exact": true,
+  "prompt_sha256_ok": true,
+  "models": [
+    "<synthetic>",
+    "claude-sonnet-5-5"
+  ],
+  "model_ok": false,
+  "flags": [
+    {
+      "call": 94,
+      "tool": "Bash",
+      "reason": "command in the tools directory does more than run its two scripts: C) CAL=--x1-px 240.5 --x1-val 0 --x2-px 579 --x2-val 20 --y1-px 1404 --y1-val 0 --y2-px 951 --y2-val 6 --x-verify-px 410",
+      "detail": "cd /home/claude/work/runs/extract/A/HYC-0112/work && python3 -I - <<'EOF'\nfrom PIL import Image, ImageDraw\nim=Image.open('p18_main_clean.png').convert('RGB')\nd=ImageDraw.Draw(im)\nd.rectangle((843,1117,874,1138),fill=(255,255,255))\nim.save('p18_main_clean.png')\nEOF\ncat > run_tool18.sh <<'EOF'\n#!/bin/"
+    },
+    {
+      "call": 94,
+      "tool": "Bash",
+      "reason": "command in the tools directory does more than run its two scripts: P) CAL=--x1-px 697.5 --x1-val 0 --x2-px 1035 --x2-val 20 --y1-px 1404 --y1-val 0 --y2-px 987 --y2-val 4 --x-verify-px 86",
+      "detail": "cd /home/claude/work/runs/extract/A/HYC-0112/work && python3 -I - <<'EOF'\nfrom PIL import Image, ImageDraw\nim=Image.open('p18_main_clean.png').convert('RGB')\nd=ImageDraw.Draw(im)\nd.rectangle((843,1117,874,1138),fill=(255,255,255))\nim.save('p18_main_clean.png')\nEOF\ncat > run_tool18.sh <<'EOF'\n#!/bin/"
+    },
+    {
+      "call": 94,
+      "tool": "Bash",
+      "reason": "command in the tools directory does more than run its two scripts: CI) CAL=--x1-px 414.5 --x1-val 0 --x2-px 563 --x2-val 20 --y1-px 1343 --y1-val 0 --y2-px 1144 --y2-val 0.2 --x-verify-px",
+      "detail": "cd /home/claude/work/runs/extract/A/HYC-0112/work && python3 -I - <<'EOF'\nfrom PIL import Image, ImageDraw\nim=Image.open('p18_main_clean.png').convert('RGB')\nd=ImageDraw.Draw(im)\nd.rectangle((843,1117,874,1138),fill=(255,255,255))\nim.save('p18_main_clean.png')\nEOF\ncat > run_tool18.sh <<'EOF'\n#!/bin/"
+    },
+    {
+      "call": 94,
+      "tool": "Bash",
+      "reason": "command in the tools directory does more than run its two scripts: PI) CAL=--x1-px 877 --x1-val 0 --x2-px 1025.5 --x2-val 20 --y1-px 1343.5 --y1-val 0 --y2-px 1126.5 --y2-val 0.2 --x-veri",
+      "detail": "cd /home/claude/work/runs/extract/A/HYC-0112/work && python3 -I - <<'EOF'\nfrom PIL import Image, ImageDraw\nim=Image.open('p18_main_clean.png').convert('RGB')\nd=ImageDraw.Draw(im)\nd.rectangle((843,1117,874,1138),fill=(255,255,255))\nim.save('p18_main_clean.png')\nEOF\ncat > run_tool18.sh <<'EOF'\n#!/bin/"
+    }
+  ],
+  "cross_access": [],
+  "tool_calls": 119,
+  "output_problems": [
+    "rows.csv missing",
+    "log.md missing"
+  ],
+  "flags_unreviewed": 4,
+  "flags_access": 0,
+  "access_ok": false,
+  "ok": false,
+  "earlier_agents": [],
+  "unfinished_agents": []
+}
