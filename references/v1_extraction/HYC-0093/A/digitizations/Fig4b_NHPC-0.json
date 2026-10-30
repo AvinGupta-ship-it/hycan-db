@@ -1,0 +1,136 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T23:55:30+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0093",
+  "figure": "Fig 4b",
+  "series_name": "NHPC-0",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0093/work/derived/4b_NHPC-0.png",
+    "sha256": "f4d89d325e2ed6e9397a3f54ab6386c3353ef07a8c3d8b420770a5031c8ef869",
+    "width_px": 1560,
+    "height_px": 1268
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 57.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1379.5,
+        "value": 100.0
+      },
+      "scale": "linear",
+      "label": "",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1219.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 43.5,
+        "value": 2.5
+      },
+      "scale": "linear",
+      "label": "",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 587.5,
+        "stated": 40.0,
+        "predicted": 40.09077155824508,
+        "relative_error": 0.0022692889561270134
+      },
+      {
+        "axis": "y",
+        "pixel": 511.5,
+        "stated": 1.5,
+        "predicted": 1.5051020408163265,
+        "relative_error": 0.003401360544217654
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#00b34f",
+    "color_rgb": [
+      0,
+      179,
+      79
+    ],
+    "tolerance": 30.0,
+    "matched_pixels_in_image": 1731,
+    "matched_pixels_in_region": 1731,
+    "region": [
+      62,
+      46,
+      1514,
+      1218
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 47.04,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      60,
+      6000
+    ],
+    "rejected_markers": [],
+    "n_points": 4,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 19.818456883509832,
+      "y": 0.8577806122448979,
+      "pixel_x": 319.5,
+      "pixel_y": 816.0,
+      "pixel_count": 258,
+      "outside_axis_range": false
+    },
+    {
+      "x": 45.608576259550716,
+      "y": 1.3577698936717544,
+      "pixel_x": 660.4453781512605,
+      "pixel_y": 580.8050420168067,
+      "pixel_count": 595,
+      "outside_axis_range": false
+    },
+    {
+      "x": 70.91853723153986,
+      "y": 1.6920039546919248,
+      "pixel_x": 995.0430622009569,
+      "pixel_y": 423.58133971291863,
+      "pixel_count": 418,
+      "outside_axis_range": false
+    },
+    {
+      "x": 75.90956053282166,
+      "y": 1.7492943685234628,
+      "pixel_x": 1061.0243902439024,
+      "pixel_y": 396.6319290465632,
+      "pixel_count": 451,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig 4b, digitized (NHPC-0)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: Fig4b_NHPC-0.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T23:57:34+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0093",
+  "figure": "4c",
+  "series_name": "NHPC-1 solid markers",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0093/in/pages/main-06.png",
+    "sha256": "af92a3828f3b125bdfd29bb74595ce2dfa7a18c71d62d237afc3880a972ad5c7",
+    "width_px": 1266,
+    "height_px": 1669
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 245.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 579.5,
+        "value": 100.0
+      },
+      "scale": "linear",
+      "label": "Pressure (kPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1022.6,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 726.4,
+        "value": 0.1
+      },
+      "scale": "linear",
+      "label": "H2 uptake (wt.%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 445.5,
+        "stated": 60.0,
+        "predicted": 59.88023952095808,
+        "relative_error": 0.001996007984032033
+      },
+      {
+        "axis": "y",
+        "pixel": 845.4,
+        "stated": 0.06,
+        "predicted": 0.05982444294395679,
+        "relative_error": 0.0029259509340534102
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#00b0e6",
+    "color_rgb": [
+      0,
+      176,
+      230
+    ],
+    "tolerance": 50.0,
+    "matched_pixels_in_image": 8554,
+    "matched_pixels_in_region": 81,
+    "region": [
+      575,
+      850,
+      595,
+      872
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 11.848000000000003,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 4-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 101.60928143712576,
+      "y": 0.0546579591492235,
+      "pixel_x": 584.875,
+      "pixel_y": 860.703125,
+      "pixel_count": 64,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "4c, digitized (NHPC-1 solid markers)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0093_fig4c_NHPC-1_highest.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

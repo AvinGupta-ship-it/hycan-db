@@ -1,0 +1,170 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T23:57:08+00:00",
+  "status": "discarded",
+  "paper_id": "HYC-0093",
+  "figure": "4c",
+  "series_name": "NHPC-2 solid markers",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0093/in/pages/main-06.png",
+    "sha256": "af92a3828f3b125bdfd29bb74595ce2dfa7a18c71d62d237afc3880a972ad5c7",
+    "width_px": 1266,
+    "height_px": 1669
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 245.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 579.5,
+        "value": 100.0
+      },
+      "scale": "linear",
+      "label": "Pressure (kPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1022.6,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 726.4,
+        "value": 0.1
+      },
+      "scale": "linear",
+      "label": "H2 uptake (wt.%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 445.5,
+        "stated": 60.0,
+        "predicted": 59.88023952095808,
+        "relative_error": 0.001996007984032033
+      },
+      {
+        "axis": "y",
+        "pixel": 845.4,
+        "stated": 0.06,
+        "predicted": 0.05982444294395679,
+        "relative_error": 0.0029259509340534102
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ffa7c4",
+    "color_rgb": [
+      255,
+      167,
+      196
+    ],
+    "tolerance": 50.0,
+    "matched_pixels_in_image": 14705,
+    "matched_pixels_in_region": 1391,
+    "region": [
+      244,
+      727,
+      612,
+      1022
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 11.848000000000003,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 4-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 7,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 4.654327708219928,
+      "y": 0.08513698770282162,
+      "pixel_x": 261.04545454545456,
+      "pixel_y": 770.4242424242424,
+      "pixel_count": 66,
+      "outside_axis_range": false
+    },
+    {
+      "x": 70.35928143712576,
+      "y": 0.06181634031060095,
+      "pixel_x": 480.5,
+      "pixel_y": 839.5,
+      "pixel_count": 16,
+      "outside_axis_range": false
+    },
+    {
+      "x": 81.1377245508982,
+      "y": 0.07042538825118164,
+      "pixel_x": 516.5,
+      "pixel_y": 814.0,
+      "pixel_count": 40,
+      "outside_axis_range": false
+    },
+    {
+      "x": 86.22406350090517,
+      "y": 0.07489282854136896,
+      "pixel_x": 533.4883720930233,
+      "pixel_y": 800.7674418604652,
+      "pixel_count": 43,
+      "outside_axis_range": false
+    },
+    {
+      "x": 91.33966110332526,
+      "y": 0.07901647822776446,
+      "pixel_x": 550.5744680851063,
+      "pixel_y": 788.5531914893617,
+      "pixel_count": 47,
+      "outside_axis_range": false
+    },
+    {
+      "x": 96.4459968950987,
+      "y": 0.08288568784855077,
+      "pixel_x": 567.6296296296297,
+      "pixel_y": 777.0925925925926,
+      "pixel_count": 54,
+      "outside_axis_range": false
+    },
+    {
+      "x": 100.2994011976048,
+      "y": 0.08549122214719784,
+      "pixel_x": 580.5,
+      "pixel_y": 769.375,
+      "pixel_count": 48,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [
+    {
+      "at": 100.0,
+      "expected": 0.09,
+      "got": 0.08528877775564828,
+      "difference": -0.0047112222443517204,
+      "percent": 5.234691382613023,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": false,
+      "checked_utc": "2026-10-30T00:07:56+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": null,
+    "notes": "DISCARDED by a failed \u00a73.4 step 6 check. No row may be written from this archive. Re-calibrate from the axis ticks or obtain a higher-resolution crop and extract again; do not adjust this one to fit."
+  }
+}

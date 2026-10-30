@@ -1,0 +1,184 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T23:58:06+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0093",
+  "figure": "4d",
+  "series_name": "NHPC-0 hollow markers",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0093/work/f4d_NHPC-0_open.png",
+    "sha256": "f2302e51ed9a650d3247d36aaffc3dcb049f9d07ddb1fcd9f5053a7f864474dc",
+    "width_px": 1266,
+    "height_px": 1669
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 716.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1051.5,
+        "value": 50.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1023.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 727.0,
+        "value": 5.0
+      },
+      "scale": "linear",
+      "label": "Excess H2 uptake (wt.%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 850.5,
+        "stated": 20.0,
+        "predicted": 20.044709388971686,
+        "relative_error": 0.002235469448584304
+      },
+      {
+        "axis": "y",
+        "pixel": 904.5,
+        "stated": 2.0,
+        "predicted": 2.001689189189189,
+        "relative_error": 0.0008445945945945166
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#00b34f",
+    "color_rgb": [
+      0,
+      179,
+      79
+    ],
+    "tolerance": 10.0,
+    "matched_pixels_in_image": 349,
+    "matched_pixels_in_region": 349,
+    "region": [
+      717,
+      727,
+      1084,
+      1022
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 11.84,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      4,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 10,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 3.8109431552054476,
+      "y": 3.959942084942085,
+      "pixel_x": 741.5714285714286,
+      "pixel_y": 788.5714285714286,
+      "pixel_count": 35,
+      "outside_axis_range": false
+    },
+    {
+      "x": 4.843517138599106,
+      "y": 4.096283783783784,
+      "pixel_x": 748.5,
+      "pixel_y": 780.5,
+      "pixel_count": 36,
+      "outside_axis_range": false
+    },
+    {
+      "x": 5.725686265083403,
+      "y": 4.2382301656495205,
+      "pixel_x": 754.4193548387096,
+      "pixel_y": 772.0967741935484,
+      "pixel_count": 31,
+      "outside_axis_range": false
+    },
+    {
+      "x": 7.078986587183309,
+      "y": 4.349662162162162,
+      "pixel_x": 763.5,
+      "pixel_y": 765.5,
+      "pixel_count": 36,
+      "outside_axis_range": false
+    },
+    {
+      "x": 8.569299552906111,
+      "y": 4.451013513513514,
+      "pixel_x": 773.5,
+      "pixel_y": 759.5,
+      "pixel_count": 36,
+      "outside_axis_range": false
+    },
+    {
+      "x": 10.506706408345751,
+      "y": 4.535472972972973,
+      "pixel_x": 786.5,
+      "pixel_y": 754.5,
+      "pixel_count": 36,
+      "outside_axis_range": false
+    },
+    {
+      "x": 13.785394932935915,
+      "y": 4.586148648648648,
+      "pixel_x": 808.5,
+      "pixel_y": 751.5,
+      "pixel_count": 36,
+      "outside_axis_range": false
+    },
+    {
+      "x": 20.044709388971686,
+      "y": 4.535472972972973,
+      "pixel_x": 850.5,
+      "pixel_y": 754.5,
+      "pixel_count": 36,
+      "outside_axis_range": false
+    },
+    {
+      "x": 40.909090909090914,
+      "y": 3.5388513513513513,
+      "pixel_x": 990.5,
+      "pixel_y": 813.5,
+      "pixel_count": 36,
+      "outside_axis_range": false
+    },
+    {
+      "x": 49.7139560598048,
+      "y": 2.937554489973844,
+      "pixel_x": 1049.5806451612902,
+      "pixel_y": 849.0967741935484,
+      "pixel_count": 31,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "4d, digitized (NHPC-0 hollow markers)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0093_fig4d_NHPC-0_hollow.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

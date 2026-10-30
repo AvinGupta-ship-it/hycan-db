@@ -1,0 +1,260 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T00:07:53+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0093",
+  "figure": "4e",
+  "series_name": "NHPC-1 solid markers",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0093/in/pages/main-06.png",
+    "sha256": "af92a3828f3b125bdfd29bb74595ce2dfa7a18c71d62d237afc3880a972ad5c7",
+    "width_px": 1266,
+    "height_px": 1669
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 244.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 576.5,
+        "value": 50.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1409.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1134.0,
+        "value": 7.0
+      },
+      "scale": "linear",
+      "label": "Total H2 uptake (wt.%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 377.5,
+        "stated": 20.0,
+        "predicted": 20.03012048192771,
+        "relative_error": 0.0015060240963855164
+      },
+      {
+        "axis": "y",
+        "pixel": 1252.0,
+        "stated": 4.0,
+        "predicted": 4.001814882032668,
+        "relative_error": 0.00045372050816694376
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#00b0e6",
+    "color_rgb": [
+      0,
+      176,
+      230
+    ],
+    "tolerance": 50.0,
+    "matched_pixels_in_image": 8554,
+    "matched_pixels_in_region": 1927,
+    "region": [
+      245,
+      1115,
+      610,
+      1409
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 11.02,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 4-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 18,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 1.1295180722891567,
+      "y": 3.137931034482759,
+      "pixel_x": 252.0,
+      "pixel_y": 1286.0,
+      "pixel_count": 23,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.033132530120482,
+      "y": 3.506352087114337,
+      "pixel_x": 258.0,
+      "pixel_y": 1271.5,
+      "pixel_count": 28,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.635542168674699,
+      "y": 6.822141560798548,
+      "pixel_x": 262.0,
+      "pixel_y": 1141.0,
+      "pixel_count": 69,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.8824653452519717,
+      "y": 3.913568682551763,
+      "pixel_x": 270.2795698924731,
+      "pixel_y": 1255.47311827957,
+      "pixel_count": 186,
+      "outside_axis_range": false
+    },
+    {
+      "x": 6.768999073215939,
+      "y": 4.336423286332543,
+      "pixel_x": 289.44615384615383,
+      "pixel_y": 1238.8307692307692,
+      "pixel_count": 65,
+      "outside_axis_range": false
+    },
+    {
+      "x": 8.960843373493976,
+      "y": 4.566256637762991,
+      "pixel_x": 304.0,
+      "pixel_y": 1229.7851851851851,
+      "pixel_count": 135,
+      "outside_axis_range": false
+    },
+    {
+      "x": 11.857725017717932,
+      "y": 4.768549161951534,
+      "pixel_x": 323.2352941176471,
+      "pixel_y": 1221.8235294117646,
+      "pixel_count": 68,
+      "outside_axis_range": false
+    },
+    {
+      "x": 13.651665485471293,
+      "y": 4.862335859933808,
+      "pixel_x": 335.1470588235294,
+      "pixel_y": 1218.1323529411766,
+      "pixel_count": 68,
+      "outside_axis_range": false
+    },
+    {
+      "x": 16.654662126767942,
+      "y": 5.018885294195011,
+      "pixel_x": 355.0869565217391,
+      "pixel_y": 1211.9710144927535,
+      "pixel_count": 69,
+      "outside_axis_range": false
+    },
+    {
+      "x": 19.57831325301205,
+      "y": 5.099931941923775,
+      "pixel_x": 374.5,
+      "pixel_y": 1208.78125,
+      "pixel_count": 64,
+      "outside_axis_range": false
+    },
+    {
+      "x": 23.880043985465672,
+      "y": 5.230288364589633,
+      "pixel_x": 403.06349206349205,
+      "pixel_y": 1203.6507936507937,
+      "pixel_count": 63,
+      "outside_axis_range": false
+    },
+    {
+      "x": 28.572100903614455,
+      "y": 5.361161524500908,
+      "pixel_x": 434.21875,
+      "pixel_y": 1198.5,
+      "pixel_count": 64,
+      "outside_axis_range": false
+    },
+    {
+      "x": 33.78707136237257,
+      "y": 5.387547117129691,
+      "pixel_x": 468.84615384615387,
+      "pixel_y": 1197.4615384615386,
+      "pixel_count": 65,
+      "outside_axis_range": false
+    },
+    {
+      "x": 38.93072289156627,
+      "y": 5.462794918330308,
+      "pixel_x": 503.0,
+      "pixel_y": 1194.5,
+      "pixel_count": 28,
+      "outside_axis_range": false
+    },
+    {
+      "x": 40.62029367469879,
+      "y": 5.462794918330308,
+      "pixel_x": 514.21875,
+      "pixel_y": 1194.5,
+      "pixel_count": 64,
+      "outside_axis_range": false
+    },
+    {
+      "x": 45.993532955350815,
+      "y": 5.442244048254512,
+      "pixel_x": 549.8970588235294,
+      "pixel_y": 1195.3088235294117,
+      "pixel_count": 68,
+      "outside_axis_range": false
+    },
+    {
+      "x": 48.19277108433735,
+      "y": 5.513611615245009,
+      "pixel_x": 564.5,
+      "pixel_y": 1192.5,
+      "pixel_count": 16,
+      "outside_axis_range": false
+    },
+    {
+      "x": 50.34356174698795,
+      "y": 5.539019963702359,
+      "pixel_x": 578.78125,
+      "pixel_y": 1191.5,
+      "pixel_count": 64,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [
+    {
+      "at": 50.0,
+      "expected": 5.4,
+      "got": 5.534961299725583,
+      "difference": 0.13496129972558268,
+      "percent": 2.499283328251531,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-10-30T00:07:56+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "4e, digitized (NHPC-1 solid markers)",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 50.0."
+  }
+}

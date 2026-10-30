@@ -6047,6 +6047,51 @@
       "reason": "command names a path outside the allowed paths: /second/rows.csv",
       "access": false,
       "note": "The flagged paths are the ends of paths the command builds from the agent's own run directory (e.g. BASE + '/out/digitizations'); every absolute path it names is in the agent's own run directory, the tools directory's two scripts or its own instruction file. Nothing outside those is opened."
+    },
+    {
+      "screener": "C",
+      "batch": "HYC-0093",
+      "transcript": "agent-a0c87db5c3cf246d3.jsonl",
+      "call": 31,
+      "reason": "command names a path outside the allowed paths: /first/rows.csv",
+      "access": false,
+      "note": "The flagged paths are the ends of paths the command builds from the agent's own run directory (e.g. BASE + '/out/digitizations'); every absolute path it names is in the agent's own run directory, the tools directory's two scripts or its own instruction file. Nothing outside those is opened."
+    },
+    {
+      "screener": "C",
+      "batch": "HYC-0093",
+      "transcript": "agent-a0c87db5c3cf246d3.jsonl",
+      "call": 31,
+      "reason": "command names a path outside the allowed paths: /second/rows.csv",
+      "access": false,
+      "note": "The flagged paths are the ends of paths the command builds from the agent's own run directory (e.g. BASE + '/out/digitizations'); every absolute path it names is in the agent's own run directory, the tools directory's two scripts or its own instruction file. Nothing outside those is opened."
+    },
+    {
+      "screener": "C",
+      "batch": "HYC-0093",
+      "transcript": "agent-a0c87db5c3cf246d3.jsonl",
+      "call": 41,
+      "reason": "command names the home directory",
+      "access": false,
+      "note": "The flagged '~' appears only inside quoted text (a quotation from the paper, the agent's notes or a comment) or as an awk/regex match operator; no '~/' path and no $HOME occurs, so it is never a path."
+    },
+    {
+      "screener": "C",
+      "batch": "HYC-0093",
+      "transcript": "agent-a0c87db5c3cf246d3.jsonl",
+      "call": 48,
+      "reason": "command names a path outside the allowed paths: /first/digitizations/Fig",
+      "access": false,
+      "note": "The flagged paths are the ends of paths the command builds from the agent's own run directory (e.g. BASE + '/out/digitizations'); every absolute path it names is in the agent's own run directory, the tools directory's two scripts or its own instruction file. Nothing outside those is opened."
+    },
+    {
+      "screener": "C",
+      "batch": "HYC-0093",
+      "transcript": "agent-a0c87db5c3cf246d3.jsonl",
+      "call": 48,
+      "reason": "command names a path outside the allowed paths: /second/digitizations/HYC-0093_fig",
+      "access": false,
+      "note": "The flagged paths are the ends of paths the command builds from the agent's own run directory (e.g. BASE + '/out/digitizations'); every absolute path it names is in the agent's own run directory, the tools directory's two scripts or its own instruction file. Nothing outside those is opened."
     }
   ]
 }

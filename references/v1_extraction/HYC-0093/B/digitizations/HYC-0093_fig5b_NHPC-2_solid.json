@@ -1,0 +1,240 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T23:58:30+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0093",
+  "figure": "5b",
+  "series_name": "NHPC-2 solid markers",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0093/in/pages/main-07.png",
+    "sha256": "4cf98553ab78e39d29ff6e0338ae123da8a1a44f37d668714d553965f84d6958",
+    "width_px": 1266,
+    "height_px": 1669
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 723.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1088.0,
+        "value": 50.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 457.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 132.5,
+        "value": 25.0
+      },
+      "scale": "linear",
+      "label": "Excess volumetric H2 uptake (g/L)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 869.2,
+        "stated": 20.0,
+        "predicted": 19.986282578875176,
+        "relative_error": 0.0006858710562411829
+      },
+      {
+        "axis": "y",
+        "pixel": 327.43,
+        "stated": 10.0,
+        "predicted": 9.982280431432972,
+        "relative_error": 0.0017719568567027722
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ffa7c4",
+    "color_rgb": [
+      255,
+      167,
+      196
+    ],
+    "tolerance": 50.0,
+    "matched_pixels_in_image": 24323,
+    "matched_pixels_in_region": 3301,
+    "region": [
+      724,
+      133,
+      1124,
+      457
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 12.98,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 4-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 17,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 0.2743484224965706,
+      "y": 9.591679506933744,
+      "pixel_x": 725.5,
+      "pixel_y": 332.5,
+      "pixel_count": 24,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.5954607806459701,
+      "y": 12.195335481159827,
+      "pixel_x": 727.8409090909091,
+      "pixel_y": 298.70454545454544,
+      "pixel_count": 88,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.8468407939307356,
+      "y": 13.534165592276972,
+      "pixel_x": 729.6734693877551,
+      "pixel_y": 281.3265306122449,
+      "pixel_count": 49,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.0883350156585703,
+      "y": 14.1742012384801,
+      "pixel_x": 731.433962264151,
+      "pixel_y": 273.0188679245283,
+      "pixel_count": 53,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.5932213077274857,
+      "y": 15.790318438623524,
+      "pixel_x": 735.1145833333334,
+      "pixel_y": 252.04166666666666,
+      "pixel_count": 96,
+      "outside_axis_range": false
+    },
+    {
+      "x": 5.610329980185946,
+      "y": 19.02098313644924,
+      "pixel_x": 764.3993055555555,
+      "pixel_y": 210.10763888888889,
+      "pixel_count": 576,
+      "outside_axis_range": false
+    },
+    {
+      "x": 11.839849108367627,
+      "y": 19.840620184899844,
+      "pixel_x": 809.8125,
+      "pixel_y": 199.46875,
+      "pixel_count": 64,
+      "outside_axis_range": false
+    },
+    {
+      "x": 13.729349317110993,
+      "y": 19.669056072888054,
+      "pixel_x": 823.5869565217391,
+      "pixel_y": 201.69565217391303,
+      "pixel_count": 92,
+      "outside_axis_range": false
+    },
+    {
+      "x": 17.294667352537722,
+      "y": 19.229704352850536,
+      "pixel_x": 849.578125,
+      "pixel_y": 207.3984375,
+      "pixel_count": 128,
+      "outside_axis_range": false
+    },
+    {
+      "x": 19.88751714677641,
+      "y": 18.627118644067796,
+      "pixel_x": 868.48,
+      "pixel_y": 215.22,
+      "pixel_count": 100,
+      "outside_axis_range": false
+    },
+    {
+      "x": 23.767575445816185,
+      "y": 17.65576848998459,
+      "pixel_x": 896.765625,
+      "pixel_y": 227.828125,
+      "pixel_count": 64,
+      "outside_axis_range": false
+    },
+    {
+      "x": 29.113147940308437,
+      "y": 16.14663585002568,
+      "pixel_x": 935.7348484848485,
+      "pixel_y": 247.41666666666666,
+      "pixel_count": 132,
+      "outside_axis_range": false
+    },
+    {
+      "x": 33.85726261240664,
+      "y": 14.43567026194145,
+      "pixel_x": 970.3194444444445,
+      "pixel_y": 269.625,
+      "pixel_count": 72,
+      "outside_axis_range": false
+    },
+    {
+      "x": 40.6283144542022,
+      "y": 12.09870856035455,
+      "pixel_x": 1019.680412371134,
+      "pixel_y": 299.9587628865979,
+      "pixel_count": 97,
+      "outside_axis_range": false
+    },
+    {
+      "x": 44.3758573388203,
+      "y": 21.10297894196199,
+      "pixel_x": 1047.0,
+      "pixel_y": 183.08333333333334,
+      "pixel_count": 72,
+      "outside_axis_range": false
+    },
+    {
+      "x": 45.513823682837774,
+      "y": 10.258469150806222,
+      "pixel_x": 1055.2957746478874,
+      "pixel_y": 323.84507042253523,
+      "pixel_count": 71,
+      "outside_axis_range": false
+    },
+    {
+      "x": 50.002143347050755,
+      "y": 8.41318374422188,
+      "pixel_x": 1088.015625,
+      "pixel_y": 347.796875,
+      "pixel_count": 64,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "5b, digitized (NHPC-2 solid markers)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0093_fig5b_NHPC-2_solid.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

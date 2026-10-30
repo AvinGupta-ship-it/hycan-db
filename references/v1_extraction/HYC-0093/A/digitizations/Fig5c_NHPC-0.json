@@ -1,0 +1,175 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T23:56:36+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0093",
+  "figure": "Fig 5c",
+  "series_name": "NHPC-0",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0093/work/derived/5c_NHPC-0.png",
+    "sha256": "72a53a54b483843fa0f5c7ce25496cfda0b1c519955844a531975dae19b07012",
+    "width_px": 1820,
+    "height_px": 1380
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 171.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1619.5,
+        "value": 50.0
+      },
+      "scale": "linear",
+      "label": "",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1307.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 15.5,
+        "value": 35.0
+      },
+      "scale": "linear",
+      "label": "",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 751.5,
+        "stated": 20.0,
+        "predicted": 20.027624309392262,
+        "relative_error": 0.0013812154696131174
+      },
+      {
+        "axis": "y",
+        "pixel": 569.5,
+        "stated": 20.0,
+        "predicted": 19.992260061919506,
+        "relative_error": 0.00038699690402470565
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#00b34f",
+    "color_rgb": [
+      0,
+      179,
+      79
+    ],
+    "tolerance": 30.0,
+    "matched_pixels_in_image": 1093,
+    "matched_pixels_in_region": 1093,
+    "region": [
+      178,
+      18,
+      1762,
+      1306
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 51.68,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      60,
+      6000
+    ],
+    "rejected_markers": [
+      {
+        "pixel_x": 220.0,
+        "pixel_y": 786.5,
+        "pixels": 12,
+        "reason": "too small"
+      }
+    ],
+    "n_points": 8,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 2.962972800679984,
+      "y": 16.90037806620624,
+      "pixel_x": 257.3076923076923,
+      "pixel_y": 683.6346153846154,
+      "pixel_count": 104,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.7358474048712154,
+      "y": 17.977505123620983,
+      "pixel_x": 279.6901408450704,
+      "pixel_y": 643.8732394366198,
+      "pixel_count": 71,
+      "outside_axis_range": false
+    },
+    {
+      "x": 4.670317021836359,
+      "y": 18.892027863777088,
+      "pixel_x": 306.752380952381,
+      "pixel_y": 610.1142857142858,
+      "pixel_count": 105,
+      "outside_axis_range": false
+    },
+    {
+      "x": 6.6692119664674,
+      "y": 20.726461554238167,
+      "pixel_x": 364.6403785488959,
+      "pixel_y": 542.397476340694,
+      "pixel_count": 317,
+      "outside_axis_range": false
+    },
+    {
+      "x": 8.23776897353882,
+      "y": 21.56489327032752,
+      "pixel_x": 410.0657894736842,
+      "pixel_y": 511.44736842105266,
+      "pixel_count": 228,
+      "outside_axis_range": false
+    },
+    {
+      "x": 9.637158330910149,
+      "y": 22.14803649991853,
+      "pixel_x": 450.5921052631579,
+      "pixel_y": 489.92105263157896,
+      "pixel_count": 76,
+      "outside_axis_range": false
+    },
+    {
+      "x": 11.429558011049725,
+      "y": 22.768962848297214,
+      "pixel_x": 502.5,
+      "pixel_y": 467.0,
+      "pixel_count": 76,
+      "outside_axis_range": false
+    },
+    {
+      "x": 16.350138121546962,
+      "y": 24.150541795665635,
+      "pixel_x": 645.0,
+      "pixel_y": 416.0,
+      "pixel_count": 81,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig 5c, digitized (NHPC-0)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: Fig5c_NHPC-0.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}
