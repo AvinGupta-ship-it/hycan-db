@@ -7055,6 +7055,51 @@
       "reason": "command runs a file in the tools directory other than its two scripts: python3 $W/scripts/show.py $W/trial/f7br_$2.json",
       "access": false,
       "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0109",
+      "transcript": "agent-ac8a0527884f0ab34.jsonl",
+      "call": 77,
+      "reason": "command climbs with ..",
+      "access": false,
+      "note": "From the tools directory the command runs only scripts/digitize_figure.py extract on its own input page ($W/../in/pages/main-06.png, its own run directory reached from its own work directory) with outputs in its own work/trial, and prints them with its own helper $W/scripts/show.py. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0109",
+      "transcript": "agent-ac8a0527884f0ab34.jsonl",
+      "call": 77,
+      "reason": "command runs a file in the tools directory other than its two scripts: python3 $W/scripts/show.py $W/trial/f5r_exp_o$op.json",
+      "access": false,
+      "note": "From the tools directory the command runs only scripts/digitize_figure.py extract on its own input page ($W/../in/pages/main-06.png, its own run directory reached from its own work directory) with outputs in its own work/trial, and prints them with its own helper $W/scripts/show.py. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0109",
+      "transcript": "agent-ac8a0527884f0ab34.jsonl",
+      "call": 102,
+      "reason": "command runs a file in the tools directory other than its two scripts: python3 $W/scripts/show.py $O/f1BR_B51_stored_303K_des_rerun.json",
+      "access": false,
+      "note": "From the tools directory the command runs scripts/digitize_figure.py extract and check on its own image and digitizations ($W, $O: its own work and out directories), prints one with its own helper, and diffs two of its own digitizations' series through process substitution (the 'diff <(python3 -c ...)' the supplementary check read as relative paths); every file named is in $W or $O. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0109",
+      "transcript": "agent-ac8a0527884f0ab34.jsonl",
+      "call": 102,
+      "reason": "command in the tools directory does more than run its two scripts: diff <(python3 -c import json;print(json.load(open('$O/f1BR_B51_stored_303K_des.json'))['series'])) <(python3 -c import ",
+      "access": false,
+      "note": "From the tools directory the command runs scripts/digitize_figure.py extract and check on its own image and digitizations ($W, $O: its own work and out directories), prints one with its own helper, and diffs two of its own digitizations' series through process substitution (the 'diff <(python3 -c ...)' the supplementary check read as relative paths); every file named is in $W or $O. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0109",
+      "transcript": "agent-ac8a0527884f0ab34.jsonl",
+      "call": 102,
+      "reason": "command reads or lists a relative path in the tools directory (supplementary check)",
+      "access": false,
+      "note": "From the tools directory the command runs scripts/digitize_figure.py extract and check on its own image and digitizations ($W, $O: its own work and out directories), prints one with its own helper, and diffs two of its own digitizations' series through process substitution (the 'diff <(python3 -c ...)' the supplementary check read as relative paths); every file named is in $W or $O. Nothing in the tools directory is opened, listed or searched."
     }
   ]
 }
