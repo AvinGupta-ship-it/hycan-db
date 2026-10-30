@@ -1,0 +1,160 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T23:34:25+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0088",
+  "figure": "Fig. 11b",
+  "series_name": "Desorption WS_PD_90 77 K",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0088/work/derived/fig11b_holes.png",
+    "sha256": "bc669a65a35b69b597c6e715f91bf3781fe7f7ee7447c8fc57ab74c4de3c1db8",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 516.1,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 707.0,
+        "value": 60.0
+      },
+      "scale": "linear",
+      "label": "bar",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 997.16,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 802.04,
+        "value": 3.0
+      },
+      "scale": "linear",
+      "label": "wt%",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 643.45,
+        "stated": 40.0,
+        "predicted": 40.02619172341541,
+        "relative_error": 0.000654793085385208
+      },
+      {
+        "axis": "y",
+        "pixel": 866.98,
+        "stated": 2.0,
+        "predicted": 2.0015375153751527,
+        "relative_error": 0.000768757687576338
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 174,
+    "matched_pixels_in_region": 174,
+    "region": [
+      512,
+      800,
+      766,
+      1006
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 7.8048,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 7,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.6233630172865423,
+      "y": 1.1107523575235754,
+      "pixel_x": 518.0833333333334,
+      "pixel_y": 924.9166666666666,
+      "pixel_count": 24,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.8665718775724045,
+      "y": 1.224784747847478,
+      "pixel_x": 518.8571428571429,
+      "pixel_y": 917.5,
+      "pixel_count": 28,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.2257726558407473,
+      "y": 1.386223862238622,
+      "pixel_x": 520.0,
+      "pixel_y": 907.0,
+      "pixel_count": 25,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.142482975379761,
+      "y": 1.5412566625666257,
+      "pixel_x": 522.9166666666666,
+      "pixel_y": 896.9166666666666,
+      "pixel_count": 24,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.740178103719218,
+      "y": 1.7552275522755223,
+      "pixel_x": 528.0,
+      "pixel_y": 883.0,
+      "pixel_count": 25,
+      "outside_axis_range": false
+    },
+    {
+      "x": 7.511786275536925,
+      "y": 2.0012300123001223,
+      "pixel_x": 540.0,
+      "pixel_y": 867.0,
+      "pixel_count": 25,
+      "outside_axis_range": false
+    },
+    {
+      "x": 33.85838249026351,
+      "y": 2.523985239852398,
+      "pixel_x": 623.8260869565217,
+      "pixel_y": 833.0,
+      "pixel_count": 23,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 11b, digitized (Desorption WS_PD_90 77 K)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig11b_des_WS_PD_90.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

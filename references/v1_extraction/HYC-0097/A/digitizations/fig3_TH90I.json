@@ -1,0 +1,176 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T00:10:53+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0097",
+  "figure": "Figure 3",
+  "series_name": "TH90I",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0097/work/fig3.png",
+    "sha256": "8c8b7acc5035f431fbe35ba78020032fc3af25d8da4a0ae8573811f4108be6d4",
+    "width_px": 1253,
+    "height_px": 1014
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 190.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 967.5,
+        "value": 12.0
+      },
+      "scale": "linear",
+      "label": "Absolute Pressure (MPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 787.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 96.0,
+        "value": 6.0
+      },
+      "scale": "linear",
+      "label": "excess H2 wt%",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 578.5,
+        "stated": 6.0,
+        "predicted": 5.996141479099679,
+        "relative_error": 0.0006430868167202064
+      },
+      {
+        "axis": "y",
+        "pixel": 441.5,
+        "stated": 3.0,
+        "predicted": 3.002169197396963,
+        "relative_error": 0.0007230657989876951
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#800080",
+    "color_rgb": [
+      128,
+      0,
+      128
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 6391,
+    "matched_pixels_in_region": 4525,
+    "region": [
+      185,
+      35,
+      1040,
+      795
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 27.66,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 5-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 9,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 0.10934655839555285,
+      "y": 1.2007059083054525,
+      "pixel_x": 197.08474576271186,
+      "pixel_y": 649.1186440677966,
+      "pixel_count": 59,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.21469392707638169,
+      "y": 2.013547251667827,
+      "pixel_x": 203.91037735849056,
+      "pixel_y": 555.438679245283,
+      "pixel_count": 212,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.9410010528412485,
+      "y": 2.5198011249112167,
+      "pixel_x": 250.96902654867256,
+      "pixel_y": 497.0929203539823,
+      "pixel_count": 226,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.014926694002773,
+      "y": 2.655575235328066,
+      "pixel_x": 320.55045871559633,
+      "pixel_y": 481.4449541284404,
+      "pixel_count": 218,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.032797427652733,
+      "y": 2.6516596406499406,
+      "pixel_x": 386.5,
+      "pixel_y": 481.89622641509436,
+      "pixel_count": 212,
+      "outside_axis_range": false
+    },
+    {
+      "x": 5.08627735712063,
+      "y": 2.4976158821236143,
+      "pixel_x": 519.5483870967741,
+      "pixel_y": 499.64976958525347,
+      "pixel_count": 217,
+      "outside_axis_range": false
+    },
+    {
+      "x": 7.694210736882659,
+      "y": 2.230634665173886,
+      "pixel_x": 688.520737327189,
+      "pixel_y": 530.4193548387096,
+      "pixel_count": 217,
+      "outside_axis_range": false
+    },
+    {
+      "x": 10.339476181707438,
+      "y": 2.0465182948388394,
+      "pixel_x": 859.9118942731277,
+      "pixel_y": 551.6387665198238,
+      "pixel_count": 227,
+      "outside_axis_range": false
+    },
+    {
+      "x": 12.247724121655505,
+      "y": 1.9778304045851658,
+      "pixel_x": 983.5504587155963,
+      "pixel_y": 559.5550458715596,
+      "pixel_count": 218,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 3, digitized (TH90I)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig3_TH90I.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

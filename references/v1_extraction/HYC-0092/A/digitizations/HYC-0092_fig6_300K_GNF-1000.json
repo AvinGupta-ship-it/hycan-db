@@ -1,0 +1,132 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T23:47:54+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0092",
+  "figure": "Figure 6",
+  "series_name": "GNF-1000 300 K, highest-pressure point and one further point (calibration check)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0092/work/ser67_F6_GNF-1000.png",
+    "sha256": "a8550b3f62b517e264a60c173b181eb9e881554040d8aa94d90d1b2edab01157",
+    "width_px": 1275,
+    "height_px": 1650
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 175.25,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 606.6,
+        "value": 20.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 464.4,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 103.42,
+        "value": 0.3
+      },
+      "scale": "linear",
+      "label": "Hydrogen Uptake @ 300K (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 391.0,
+        "stated": 10.0,
+        "predicted": 10.003477454503303,
+        "relative_error": 0.00034774545033027237
+      },
+      {
+        "axis": "y",
+        "pixel": 163.4,
+        "stated": 0.25,
+        "predicted": 0.2501523630118012,
+        "relative_error": 0.0006094520472048615
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 62,
+    "matched_pixels_in_region": 62,
+    "region": [
+      275,
+      328,
+      614,
+      415
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 14.4392,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      3,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 2,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 4.972759939724122,
+      "y": 0.04537647515097787,
+      "pixel_x": 282.5,
+      "pixel_y": 409.8,
+      "pixel_count": 30,
+      "outside_axis_range": false
+    },
+    {
+      "x": 19.995363393995593,
+      "y": 0.10754058396587067,
+      "pixel_x": 606.5,
+      "pixel_y": 335.0,
+      "pixel_count": 32,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 19.995,
+      "expected": 0.11,
+      "got": 0.10753908022759032,
+      "difference": -0.0024609197724096837,
+      "percent": 2.2371997930997125,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-10-29T23:48:14+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 6, digitized (GNF-1000 300 K, highest-pressure point and one further point (calibration check))",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 19.995."
+  }
+}

@@ -1,0 +1,184 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T23:28:07+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0089",
+  "figure": "Fig. 1",
+  "series_name": "sample 2 (numeral 2 markers)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0089/work/proc/fig1_series2_painted.png",
+    "sha256": "479c71b84139788c35fd03d7ce3f9a47ccffb7800db68722d10b14d80d9e3906",
+    "width_px": 1130,
+    "height_px": 1653
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 232.52,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 943.47,
+        "value": 40.0
+      },
+      "scale": "linear",
+      "label": "pressure (atm)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 692.5,
+        "value": 5.0
+      },
+      "reference_2": {
+        "pixel": 174.33,
+        "value": 25.0
+      },
+      "scale": "linear",
+      "label": "amount adsorbed (g H2 per kg carbon)",
+      "decades_spanned": 0.6989700043360189
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 588.6,
+        "stated": 20.0,
+        "predicted": 20.03403896195232,
+        "relative_error": 0.0017019480976159685
+      },
+      {
+        "axis": "y",
+        "pixel": 432.8,
+        "stated": 15.0,
+        "predicted": 15.023737383484185,
+        "relative_error": 0.0015824922322790276
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff0000",
+    "color_rgb": [
+      255,
+      0,
+      0
+    ],
+    "tolerance": 30.0,
+    "matched_pixels_in_image": 840,
+    "matched_pixels_in_region": 840,
+    "region": [
+      229,
+      150,
+      962,
+      716
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 20.726799999999997,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      10,
+      400
+    ],
+    "rejected_markers": [],
+    "n_points": 10,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 5
+  },
+  "series": [
+    {
+      "x": 0.9834728180603411,
+      "y": 15.42129031012988,
+      "pixel_x": 250.0,
+      "pixel_y": 422.5,
+      "pixel_count": 84,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.9962022645755673,
+      "y": 18.08450894494085,
+      "pixel_x": 268.0,
+      "pixel_y": 353.5,
+      "pixel_count": 84,
+      "outside_axis_range": false
+    },
+    {
+      "x": 5.034390604121245,
+      "y": 21.519675010131813,
+      "pixel_x": 322.0,
+      "pixel_y": 264.5,
+      "pixel_count": 84,
+      "outside_axis_range": false
+    },
+    {
+      "x": 10.041775089668752,
+      "y": 23.796919929752786,
+      "pixel_x": 411.0,
+      "pixel_y": 205.5,
+      "pixel_count": 84,
+      "outside_axis_range": false
+    },
+    {
+      "x": 15.04915957521626,
+      "y": 25.10923056139877,
+      "pixel_x": 500.0,
+      "pixel_y": 171.5,
+      "pixel_count": 84,
+      "outside_axis_range": true
+    },
+    {
+      "x": 20.05654406076377,
+      "y": 25.10923056139877,
+      "pixel_x": 589.0,
+      "pixel_y": 171.5,
+      "pixel_count": 84,
+      "outside_axis_range": true
+    },
+    {
+      "x": 25.120191293339897,
+      "y": 25.186425304436767,
+      "pixel_x": 679.0,
+      "pixel_y": 169.5,
+      "pixel_count": 84,
+      "outside_axis_range": true
+    },
+    {
+      "x": 30.127575778887405,
+      "y": 25.14782793291777,
+      "pixel_x": 768.0,
+      "pixel_y": 170.5,
+      "pixel_count": 84,
+      "outside_axis_range": true
+    },
+    {
+      "x": 35.07869751740629,
+      "y": 24.954841075322772,
+      "pixel_x": 856.0,
+      "pixel_y": 175.5,
+      "pixel_count": 84,
+      "outside_axis_range": false
+    },
+    {
+      "x": 40.08608200295379,
+      "y": 24.723256846208773,
+      "pixel_x": 945.0,
+      "pixel_y": 181.5,
+      "pixel_count": 84,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 1, digitized (sample 2 (numeral 2 markers))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0089_fig1_sample2.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

@@ -29,6 +29,7 @@ import argparse
 import csv
 import hashlib
 import json
+import posixpath
 import re
 import subprocess
 import sys
@@ -126,6 +127,103 @@ def output_problems(run: Path, role: str, pid: str, mode: str) -> list[str]:
     return problems
 
 
+# Supplementary checks, added during the run (README, "Agent checks"): the access
+# audit accepts any command that names one of the two tool scripts, so it does
+# not see a script's source being read, and it accepts any path that starts with
+# /dev/null, so it does not see a file such as /dev/null.png being written.
+READERS = {"grep", "egrep", "fgrep", "rg", "sed", "awk", "gawk", "cat", "head", "tail", "less", "more",
+           "wc", "od", "xxd", "hexdump", "strings", "cp", "mv", "diff", "cmp", "sha256sum", "md5sum",
+           "nl", "tac", "cut", "sort", "uniq", "file", "stat", "ls", "find", "tree", "du", "tar", "zip",
+           "base64", "vi", "vim", "nano"}
+PATTERN_FIRST = {"grep", "egrep", "fgrep", "rg", "sed", "awk", "gawk"}
+TOOL_SCRIPT_REL = re.compile(r"(?<![\w/.])scripts/(digitize_figure|validate_row_detail)\.py\b")
+TOOLS_VAR = re.compile(r"\$\{?TOOLS?\b")
+PY_TOOLS_READ = re.compile(
+    r"open\(\s*[rbuf]*['\"][^'\"]*(v1_tools_frozen|scripts/(digitize_figure|validate_row_detail)\.py)"
+    r"|^\s*(?:import\s+(?:scripts\.)?(?:digitize_figure|validate_row_detail)\b"
+    r"|from\s+(?:scripts\.)?(?:digitize_figure|validate_row_detail)\s+import\b)|inspect\.getsource", re.MULTILINE)
+DEVICE = re.compile(r"/dev/(?!(?:null|stdout|stderr|tty|zero|urandom|random)(?![\w.])|fd/)[\w./-]*")
+
+
+def supplementary_flags(transcript: Path, tools: str) -> list[dict]:
+    """Calls that read or list a file in the tools directory (a script's source
+    included) or name a device path other than /dev/null, /dev/stdout and
+    /dev/stderr."""
+    flags = []
+
+    def flag(n, name, reason, detail):
+        if not any(f["call"] == n and f["reason"] == reason for f in flags):
+            flags.append({"call": n, "tool": name, "reason": reason, "detail": str(detail)[:300]})
+
+    for n, name, args in v1_audit_access.tool_calls(transcript):
+        if name in ("Read", "Grep", "Glob", "Write", "Edit", "NotebookEdit"):
+            path = str(args.get("file_path") or args.get("path") or args.get("notebook_path") or "")
+            if path == tools or path.startswith(tools + "/"):
+                flag(n, name, "tool call opens a path in the tools directory (supplementary check)", path)
+            if DEVICE.search(path):
+                flag(n, name, "tool call names a device path (supplementary check)", path)
+            continue
+        if name != "Bash":
+            continue
+        cmd = args.get("command") or ""
+        for pipe in v1_audit_access.pipelines(v1_audit_access.HEREDOC.sub(" ", cmd)):
+            for words in pipe:
+                if words and posixpath.basename(words[0]) in READERS and any(
+                        a == tools or a.startswith(tools + "/") or TOOL_SCRIPT_REL.search(a) or TOOLS_VAR.search(a)
+                        for a in words[1:]):
+                    flag(n, name, "command reads or lists a file in the tools directory (supplementary check)",
+                         " ".join(words))
+        # A file named relatively while the tools directory is the working directory.
+        for body, _ in v1_audit_access.tools_context(v1_audit_access.HEREDOC.sub(" ", cmd), tools):
+            for pipe in v1_audit_access.pipelines(body):
+                words = pipe[0]
+                prog = posixpath.basename(words[0]) if words else ""
+                if prog not in READERS:
+                    continue
+                ops, skip = [], False
+                for a in words[1:]:
+                    if skip:
+                        skip = False
+                    elif re.fullmatch(r"\d*(>>?|<)&?", a):
+                        skip = True  # a redirection and its target
+                    elif not a.startswith("-") and not a.isdigit():
+                        ops.append(a)
+                if prog in PATTERN_FIRST and ops:
+                    ops = ops[1:]
+                if not ops and prog in ("ls", "find", "tree", "du"):
+                    ops = ["."]
+                if any(not a.startswith(("/", "$")) for a in ops):
+                    flag(n, name, "command reads or lists a relative path in the tools directory (supplementary check)",
+                         " ".join(words))
+        if PY_TOOLS_READ.search(cmd):
+            flag(n, name, "code opens or imports a file in the tools directory (supplementary check)",
+                 PY_TOOLS_READ.search(cmd).group(0))
+        for m in DEVICE.finditer(cmd):
+            flag(n, name, "command names a device path other than /dev/null, /dev/stdout or /dev/stderr "
+                 "(supplementary check)", m.group(0))
+    return flags
+
+
+CROSS = re.compile(r"/home/claude/work/hycan-db|measurements_v0\.1|/runs/extract/(?:pilot|[ABCLV])/HYC-\d{4}"
+                   r"|/home/claude/work/runs/(?!extract\b)\w+")
+
+
+def cross_access(transcript: Path, run: Path, role: str, pid: str) -> list[str]:
+    """Every place a tool call names the repository, the v0.1 rows file, another
+    agent's run directory or another stage's run folder: the paths whose opening
+    discards an output under Amendment 1, item 26. Text alone is listed too;
+    each entry is read against its call (README, "Agent checks")."""
+    own = str(run / role / pid)
+    hits = []
+    for n, name, args in v1_audit_access.tool_calls(transcript):
+        for m in CROSS.finditer(json.dumps(args)):
+            path = m.group(0)
+            if path.startswith("/runs/extract/") and own.endswith(path):
+                continue
+            hits.append(f"call {n} {name}: {path}")
+    return hits
+
+
 def check_agent(run: Path, role: str, pid: str, mode: str, transcript: Path,
                 harness: list[str]) -> dict:
     d = run / role / pid
@@ -142,9 +240,30 @@ def check_agent(run: Path, role: str, pid: str, mode: str, transcript: Path,
     report["flags"] = v1_audit_access.audit(
         transcript, str(prompt), [str(d / "in"), str(d / "out"), str(d / "work")],
         str(extraction.TOOLS), harness, own=[str(d)])
+    report["flags"] += supplementary_flags(transcript, str(extraction.TOOLS))
+    report["cross_access"] = cross_access(transcript, run, role, pid)
     report["tool_calls"] = sum(1 for _ in v1_audit_access.tool_calls(transcript))
     report["output_problems"] = output_problems(run, role, pid, mode)
     return report
+
+
+def cache_key(run: Path, role: str, pid: str, transcript: Path, harness: list[str]) -> str:
+    """What a report depends on: the transcript, the agent's run directory, its
+    launcher and prompt, and the checking code. A cached report is reused only
+    while all of these are unchanged; reviews are applied afresh every run."""
+    h = hashlib.sha256()
+    st = transcript.stat()
+    h.update(f"{transcript.name} {st.st_size} {st.st_mtime_ns} {harness}".encode())
+    for f in sorted((run / role / pid).rglob("*")):
+        if f.is_file() and "work" not in f.relative_to(run / role / pid).parts[:1]:
+            s = f.stat()
+            h.update(f"{f.relative_to(run)} {s.st_size} {s.st_mtime_ns}".encode())
+    for f in (run / "launch" / f"{role}_{pid}.txt", Path(__file__), Path(v1_audit_access.__file__),
+              Path(screening_runs.__file__), Path(extraction.__file__), ROOT / "scripts" / "v1_extract.py"):
+        h.update(hashlib.sha256(f.read_bytes()).digest())
+    for f in sorted((run / "prompts").glob("*.md")):
+        h.update(hashlib.sha256(f.read_bytes()).digest())
+    return h.hexdigest()
 
 
 def tools_problems(tools: Path = extraction.TOOLS) -> list[str]:
@@ -186,9 +305,23 @@ def main(argv: list[str] | None = None) -> int:
     used: set = set()
     found, stopped = agents(Path(args.transcripts))
     bad = 0
+    cache_dir = run / "access_cache"
+    cache_dir.mkdir(exist_ok=True)
     for (role, pid), transcripts in sorted(found.items()):
-        report = check_agent(run, role, pid, modes[pid], transcripts[-1], args.harness)
+        key = cache_key(run, role, pid, transcripts[-1], args.harness)
+        cached = cache_dir / f"{role}_{pid}.json"
+        try:
+            hit = json.loads(cached.read_text())
+        except (OSError, ValueError):
+            hit = {}
+        if hit.get("key") == key:
+            report = hit["report"]
+        else:
+            report = check_agent(run, role, pid, modes[pid], transcripts[-1], args.harness)
+            cached.write_text(json.dumps({"key": key, "report": report}) + "\n")
         screening_runs.apply_reviews(report, reviews, used)
+        if report["cross_access"]:
+            report["ok"] = False
         report["earlier_agents"] = [t.name for t in transcripts[:-1]]
         report["unfinished_agents"] = stopped.get((role, pid), [])
         (run / "access" / f"{role}_{pid}.json").write_text(json.dumps(report, indent=2) + "\n")
@@ -196,7 +329,7 @@ def main(argv: list[str] | None = None) -> int:
             bad += 1
             print(f"{role} {pid}: " + json.dumps(
                 {k: report[k] for k in ("launcher_exact", "prompt_sha256_ok", "models",
-                                        "flags", "output_problems")})[:900])
+                                        "flags", "output_problems", "cross_access")})[:900])
     stale = sorted(set(reviews) - used)
     for key in stale:
         print("review matches no flag: " + json.dumps(key))

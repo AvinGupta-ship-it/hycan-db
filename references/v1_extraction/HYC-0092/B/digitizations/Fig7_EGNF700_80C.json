@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T23:57:28+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0092",
+  "figure": "Figure 7 (main p.6, 300 K)",
+  "series_name": "EGNF700_80C highest-pressure point",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0092/work/masks67/Fig7_EGNF700_80C.png",
+    "sha256": "b47b295174c7fd5c3ba9a50fbb7495687b34e5a1d54f74f8443a450c2d01bd51",
+    "width_px": 1275,
+    "height_px": 1650
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 713.68,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1155.73,
+        "value": 20.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 457.72,
+        "value": -0.05
+      },
+      "reference_2": {
+        "pixel": 103.41,
+        "value": 0.3
+      },
+      "scale": "linear",
+      "label": "H2 uptake @ 300K (wt%)",
+      "decades_spanned": 0.7781512503836435
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 934.67,
+        "stated": 10.0,
+        "predicted": 9.998416468725257,
+        "relative_error": 0.00015835312747434216
+      },
+      {
+        "axis": "y",
+        "pixel": 306.0,
+        "stated": 0.1,
+        "predicted": 0.09987440377070926,
+        "relative_error": 0.0012559622929074477
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 230.0,
+    "matched_pixels_in_image": 27,
+    "matched_pixels_in_region": 27,
+    "region": [
+      1030,
+      100,
+      1170,
+      460
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 14.172400000000003,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 19.98708039563146,
+      "y": 0.04821426518104567,
+      "pixel_x": 1155.4444444444443,
+      "pixel_y": 358.2962962962963,
+      "pixel_count": 27,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 7 (main p.6, 300 K), digitized (EGNF700_80C highest-pressure point)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: Fig7_EGNF700_80C.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

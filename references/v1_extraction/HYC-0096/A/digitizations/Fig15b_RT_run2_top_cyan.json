@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T00:05:52+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0096",
+  "figure": "Figure 15b",
+  "series_name": "RT run 2 highest-pressure marker (cyan triangle)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0096/work/c15b.png",
+    "sha256": "0efa8f5bb7dd8554ef5d5208439c7042ea582f2466305875e3323fc8a039d57b",
+    "width_px": 1900,
+    "height_px": 1060
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 97.39,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1830.99,
+        "value": 80.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 997.47,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 181.9,
+        "value": 0.25
+      },
+      "scale": "linear",
+      "label": "Hydrogen uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 964.72,
+        "stated": 40.0,
+        "predicted": 40.024457775726816,
+        "relative_error": 0.0006114443931704017
+      },
+      {
+        "axis": "y",
+        "pixel": 509.5,
+        "stated": 0.15,
+        "predicted": 0.14957943524161016,
+        "relative_error": 0.0028037650559322356
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#168bff",
+    "color_rgb": [
+      22,
+      139,
+      255
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 781,
+    "matched_pixels_in_region": 110,
+    "region": [
+      1690,
+      36,
+      1850,
+      700
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 32.622800000000005,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 77.69700563680354,
+      "y": 0.281734298780086,
+      "pixel_x": 1781.0841121495328,
+      "pixel_y": 78.37383177570094,
+      "pixel_count": 107,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 15b, digitized (RT run 2 highest-pressure marker (cyan triangle))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: Fig15b_RT_run2_top_cyan.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

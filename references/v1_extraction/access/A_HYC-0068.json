@@ -258,8 +258,19 @@
         "access": false,
         "note": "A Grep search for 'digitization_uncertainty' in the agent's own instruction file (/home/claude/work/runs/extract/prompts/extract_A.md), which the launcher allows it to read."
       }
+    },
+    {
+      "call": 15,
+      "tool": "Bash",
+      "reason": "command reads or lists a relative path in the tools directory (supplementary check)",
+      "detail": "ls scripts",
+      "review": {
+        "access": false,
+        "note": "Breach, self-reported (also reviewed under the audit's own flag on this call): from the tools directory the agent listed scripts/, which holds only the two scripts it may run. Nothing in it was opened."
+      }
     }
   ],
+  "cross_access": [],
   "tool_calls": 108,
   "output_problems": [],
   "flags_unreviewed": 0,

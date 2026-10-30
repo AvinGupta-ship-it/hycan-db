@@ -1,0 +1,144 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T00:25:20+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0102",
+  "figure": "Figure 5",
+  "series_name": "4 (acid/baked ozonized SWNTs), 77 K",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0102/in/pages/main-4.png",
+    "sha256": "009ec6e5f19b8cd5a7224f6c0f2a530ded838ec0403b7b3f5abcef98a0cedfc8",
+    "width_px": 1275,
+    "height_px": 1650
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 188.33,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 599.5,
+        "value": 30.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 736.37,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 502.75,
+        "value": 3.0
+      },
+      "scale": "linear",
+      "label": "H2 Adsorption (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 325.01,
+        "stated": 10.0,
+        "predicted": 9.972517450203078,
+        "relative_error": 0.0027482549796921775
+      },
+      {
+        "axis": "y",
+        "pixel": 619.83,
+        "stated": 1.5,
+        "predicted": 1.4965328310932278,
+        "relative_error": 0.0023114459378481556
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#282b74",
+    "color_rgb": [
+      40,
+      43,
+      116
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 739,
+    "matched_pixels_in_region": 634,
+    "region": [
+      189,
+      503,
+      599,
+      655
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 9.344800000000001,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 5,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.3042537150083898,
+      "y": 1.3053248865679306,
+      "pixel_x": 192.5,
+      "pixel_y": 634.72,
+      "pixel_count": 100,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.5537855388282201,
+      "y": 1.5059583939731187,
+      "pixel_x": 195.92,
+      "pixel_y": 619.096,
+      "pixel_count": 125,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.2494995170316652,
+      "y": 1.7543395512804953,
+      "pixel_x": 205.455223880597,
+      "pixel_y": 599.7537313432836,
+      "pixel_count": 134,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.899641534538263,
+      "y": 1.9560125782749145,
+      "pixel_x": 214.3658536585366,
+      "pixel_y": 584.0487804878048,
+      "pixel_count": 123,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.2282997300386693,
+      "y": 2.225691293553634,
+      "pixel_x": 232.576,
+      "pixel_y": 563.048,
+      "pixel_count": 125,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 5, digitized (4 (acid/baked ozonized SWNTs), 77 K)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig5_series4_markers.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

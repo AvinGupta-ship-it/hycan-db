@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T00:05:21+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0096",
+  "figure": "Figure 15b (main p.26)",
+  "series_name": "PPAC_POW_CO2_1173 RT run 5 highest-pressure marker",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0096/in/pages/main-26.png",
+    "sha256": "98eab4ad89d511f3340754a33a1bb9b937f1b3058c68d1bcc4aedae4a25b20a9",
+    "width_px": 1241,
+    "height_px": 1754
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 708.84,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1142.43,
+        "value": 80.0
+      },
+      "scale": "linear",
+      "label": "Pressure_bar",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 998.97,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 795.14,
+        "value": 0.25
+      },
+      "scale": "linear",
+      "label": "Hydrogen_uptake_wt%",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 925.74,
+        "stated": 40.0,
+        "predicted": 40.01937314052445,
+        "relative_error": 0.00048432851311126514
+      },
+      {
+        "axis": "y",
+        "pixel": 917.87,
+        "stated": 0.1,
+        "predicted": 0.09947014669086986,
+        "relative_error": 0.005298533091301488
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff0000",
+    "color_rgb": [
+      255,
+      0,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 182,
+    "matched_pixels_in_region": 13,
+    "region": [
+      1116,
+      758,
+      1140,
+      812
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 8.153200000000002,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 77.67820362022256,
+      "y": 0.24592609225636747,
+      "pixel_x": 1129.8461538461538,
+      "pixel_y": 798.4615384615385,
+      "pixel_count": 13,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 15b (main p.26), digitized (PPAC_POW_CO2_1173 RT run 5 highest-pressure marker)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig15b_run5_RT_highest_point.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

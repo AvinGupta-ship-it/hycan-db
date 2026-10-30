@@ -1,0 +1,152 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T00:08:55+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0095",
+  "figure": "Figure_20_right_panel_main-24.png",
+  "series_name": "Run 2, Desorb",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0095/work/img_f20R_run2_des.png",
+    "sha256": "56ba45d7e127ca5e8549c1626d04397cebdd3674a9bea5f8580df287155783cb",
+    "width_px": 1275,
+    "height_px": 1650
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 697.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1004.0,
+        "value": 80.0
+      },
+      "scale": "linear",
+      "label": "Pressure_bar",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1059.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 847.0,
+        "value": 35.0
+      },
+      "scale": "linear",
+      "label": "Absolute_Volumetric_Capacity_g_per_L",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 850.0,
+        "stated": 40.0,
+        "predicted": 39.869706840390876,
+        "relative_error": 0.0032573289902281034
+      },
+      {
+        "axis": "y",
+        "pixel": 968.0,
+        "stated": 15.0,
+        "predicted": 15.023584905660378,
+        "relative_error": 0.0015723270440252198
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff0000",
+    "color_rgb": [
+      255,
+      0,
+      0
+    ],
+    "tolerance": 30.0,
+    "matched_pixels_in_image": 124,
+    "matched_pixels_in_region": 124,
+    "region": [
+      664,
+      848,
+      1003,
+      1085
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 8.48,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 6,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 31.335504885993487,
+      "y": 17.41745283018868,
+      "pixel_x": 817.25,
+      "pixel_y": 953.5,
+      "pixel_count": 24,
+      "outside_axis_range": false
+    },
+    {
+      "x": 36.09120521172638,
+      "y": 19.068396226415093,
+      "pixel_x": 835.5,
+      "pixel_y": 943.5,
+      "pixel_count": 20,
+      "outside_axis_range": false
+    },
+    {
+      "x": 41.56351791530945,
+      "y": 20.88443396226415,
+      "pixel_x": 856.5,
+      "pixel_y": 932.5,
+      "pixel_count": 20,
+      "outside_axis_range": false
+    },
+    {
+      "x": 52.50814332247557,
+      "y": 24.351415094339625,
+      "pixel_x": 898.5,
+      "pixel_y": 911.5,
+      "pixel_count": 20,
+      "outside_axis_range": false
+    },
+    {
+      "x": 58.241042345276874,
+      "y": 26.00235849056604,
+      "pixel_x": 920.5,
+      "pixel_y": 901.5,
+      "pixel_count": 20,
+      "outside_axis_range": false
+    },
+    {
+      "x": 63.97394136807818,
+      "y": 27.653301886792452,
+      "pixel_x": 942.5,
+      "pixel_y": 891.5,
+      "pixel_count": 20,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure_20_right_panel_main-24.png, digitized (Run 2, Desorb)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: f20_right_run2_des.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

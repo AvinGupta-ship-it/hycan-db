@@ -1,0 +1,144 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T00:27:22+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0102",
+  "figure": "Figure 5",
+  "series_name": "4 (blue diamond markers)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0102/in/pages/main-4.png",
+    "sha256": "009ec6e5f19b8cd5a7224f6c0f2a530ded838ec0403b7b3f5abcef98a0cedfc8",
+    "width_px": 1275,
+    "height_px": 1650
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 188.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 599.5,
+        "value": 30.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 736.39,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 502.75,
+        "value": 3.0
+      },
+      "scale": "linear",
+      "label": "H2 Adsorption (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 325.0,
+        "stated": 10.0,
+        "predicted": 9.987849331713244,
+        "relative_error": 0.0012150668286755816
+      },
+      {
+        "axis": "y",
+        "pixel": 619.83,
+        "stated": 1.5,
+        "predicted": 1.496661530559835,
+        "relative_error": 0.0022256462934433507
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#2a2d7b",
+    "color_rgb": [
+      42,
+      45,
+      123
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 749,
+    "matched_pixels_in_region": 674,
+    "region": [
+      180,
+      505,
+      598,
+      656
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 9.3456,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 5,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.24018762892424128,
+      "y": 1.3032681963505768,
+      "pixel_x": 191.29457364341084,
+      "pixel_y": 634.8914728682171,
+      "pixel_count": 129,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.5950088793345178,
+      "y": 1.5067263245229343,
+      "pixel_x": 196.16153846153847,
+      "pixel_y": 619.0461538461539,
+      "pixel_count": 130,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.2728933667994071,
+      "y": 1.7557828064137606,
+      "pixel_x": 205.45985401459853,
+      "pixel_y": 599.6496350364963,
+      "pixel_count": 137,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.925013018573164,
+      "y": 1.9564225793039354,
+      "pixel_x": 214.4047619047619,
+      "pixel_y": 584.0238095238095,
+      "pixel_count": 126,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.2471214488225417,
+      "y": 2.2270872567482733,
+      "pixel_x": 232.53968253968253,
+      "pixel_y": 562.9444444444445,
+      "pixel_count": 126,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 5, digitized (4 (blue diamond markers))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig5_series4_markers.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

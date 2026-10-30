@@ -1,0 +1,211 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T23:51:08+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0092",
+  "figure": "Figure 5 (main p.5, 77 K)",
+  "series_name": "EGNF700_ads",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0092/work/masks5/EGNF700_ads.png",
+    "sha256": "ae25d7476f3544a68ce6ef902ba90004d7572070bcae0fb76806ec8aa6b927bb",
+    "width_px": 1275,
+    "height_px": 1650
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 714.4,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1155.6,
+        "value": 20.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 506.2,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 103.6,
+        "value": 1.4
+      },
+      "scale": "linear",
+      "label": "Hydrogen uptake @ 77K (%wt)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 935.5,
+        "stated": 10.0,
+        "predicted": 10.022665457842251,
+        "relative_error": 0.002266545784225116
+      },
+      {
+        "axis": "y",
+        "pixel": 334.0,
+        "stated": 0.6,
+        "predicted": 0.5988077496274217,
+        "relative_error": 0.001987083954297179
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 230.0,
+    "matched_pixels_in_image": 322,
+    "matched_pixels_in_region": 322,
+    "region": [
+      700,
+      95,
+      1170,
+      515
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 16.104000000000003,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [
+      {
+        "pixel_x": 933.0,
+        "pixel_y": 429.0,
+        "pixels": 1,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 938.5,
+        "pixel_y": 429.0,
+        "pixels": 2,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 879.0,
+        "pixel_y": 449.0,
+        "pixels": 1,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 739.5,
+        "pixel_y": 476.0,
+        "pixels": 2,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 745.0,
+        "pixel_y": 476.0,
+        "pixels": 3,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 742.0,
+        "pixel_y": 484.0,
+        "pixels": 1,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 728.5,
+        "pixel_y": 492.0,
+        "pixels": 2,
+        "reason": "too small"
+      }
+    ],
+    "n_points": 8,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.5025255795881365,
+      "y": 0.034674615002483714,
+      "pixel_x": 725.4857142857143,
+      "pixel_y": 496.22857142857146,
+      "pixel_count": 35,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.9862307343608352,
+      "y": 0.0637232985593641,
+      "pixel_x": 736.15625,
+      "pixel_y": 487.875,
+      "pixel_count": 32,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.2037418610401416,
+      "y": 0.09237230727543691,
+      "pixel_x": 740.9545454545455,
+      "pixel_y": 479.6363636363636,
+      "pixel_count": 22,
+      "outside_axis_range": false
+    },
+    {
+      "x": 4.963619034335266,
+      "y": 0.17064210834702628,
+      "pixel_x": 823.8974358974359,
+      "pixel_y": 457.12820512820514,
+      "pixel_count": 39,
+      "outside_axis_range": false
+    },
+    {
+      "x": 7.4820736833429535,
+      "y": 0.21455538996522597,
+      "pixel_x": 879.4545454545455,
+      "pixel_y": 444.5,
+      "pixel_count": 44,
+      "outside_axis_range": false
+    },
+    {
+      "x": 10.02606527651859,
+      "y": 0.25176353700943854,
+      "pixel_x": 935.575,
+      "pixel_y": 433.8,
+      "pixel_count": 40,
+      "outside_axis_range": false
+    },
+    {
+      "x": 12.508782864913874,
+      "y": 0.2852986835568802,
+      "pixel_x": 990.34375,
+      "pixel_y": 424.15625,
+      "pixel_count": 64,
+      "outside_axis_range": false
+    },
+    {
+      "x": 17.499600021332203,
+      "y": 0.36050378422606005,
+      "pixel_x": 1100.4411764705883,
+      "pixel_y": 402.52941176470586,
+      "pixel_count": 34,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 5 (main p.5, 77 K), digitized (EGNF700_ads)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: Fig5_EGNF700_ads.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

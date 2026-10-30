@@ -148,8 +148,19 @@
         "access": false,
         "note": "The command writes and runs a script in the agent's own work directory that reads only its own input (in/paper.json), its own work files and its own instruction file, and writes its own out/rows.csv or log; the flagged paths are the ends of paths built from the agent's own base directory."
       }
+    },
+    {
+      "call": 19,
+      "tool": "Bash",
+      "reason": "command reads or lists a file in the tools directory (supplementary check)",
+      "detail": "ls /home/claude/work/v1_tools_frozen/scripts",
+      "review": {
+        "access": false,
+        "note": "Breach, self-reported (also reviewed under the audit's own flag on this call): the agent listed the tools directory's scripts/ folder, which holds only the two scripts it may run. Nothing in it was opened."
+      }
     }
   ],
+  "cross_access": [],
   "tool_calls": 151,
   "output_problems": [],
   "flags_unreviewed": 0,

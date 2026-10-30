@@ -1,0 +1,124 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T23:57:31+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0092",
+  "figure": "Figure 7 (main p.6, 300 K)",
+  "series_name": "E2GNF700 highest-pressure point",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0092/work/masks67/Fig7_E2GNF700.png",
+    "sha256": "2e5308e8720e628875558c4dcb818165ada674b7abbe84ff764ae8a314e1c09e",
+    "width_px": 1275,
+    "height_px": 1650
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 713.68,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1155.73,
+        "value": 20.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 457.72,
+        "value": -0.05
+      },
+      "reference_2": {
+        "pixel": 103.41,
+        "value": 0.3
+      },
+      "scale": "linear",
+      "label": "H2 uptake @ 300K (wt%)",
+      "decades_spanned": 0.7781512503836435
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 934.67,
+        "stated": 10.0,
+        "predicted": 9.998416468725257,
+        "relative_error": 0.00015835312747434216
+      },
+      {
+        "axis": "y",
+        "pixel": 306.0,
+        "stated": 0.1,
+        "predicted": 0.09987440377070926,
+        "relative_error": 0.0012559622929074477
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 230.0,
+    "matched_pixels_in_image": 44,
+    "matched_pixels_in_region": 44,
+    "region": [
+      1030,
+      100,
+      1170,
+      460
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 14.172400000000003,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 20.00604621032174,
+      "y": 0.029244164714515533,
+      "pixel_x": 1155.8636363636363,
+      "pixel_y": 377.5,
+      "pixel_count": 44,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [
+    {
+      "at": 20.00604621032174,
+      "expected": 0.03,
+      "got": 0.029244164714515533,
+      "difference": -0.0007558352854844658,
+      "percent": 2.519450951614886,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-10-29T23:58:12+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 7 (main p.6, 300 K), digitized (E2GNF700 highest-pressure point)",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 20.00604621032174."
+  }
+}

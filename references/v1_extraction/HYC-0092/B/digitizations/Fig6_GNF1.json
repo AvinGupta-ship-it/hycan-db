@@ -1,0 +1,122 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T23:57:21+00:00",
+  "status": "discarded",
+  "paper_id": "HYC-0092",
+  "figure": "Figure 6 (main p.6, 300 K)",
+  "series_name": "GNF1 highest-pressure point",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0092/work/masks67/Fig6_GNF1.png",
+    "sha256": "15050de4ac6f1623670d5238c4293b3046c5d55285a42c5233a1d7ebdbbddd30",
+    "width_px": 1275,
+    "height_px": 1650
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 175.3,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 606.6,
+        "value": 20.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 464.4,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 103.46,
+        "value": 0.3
+      },
+      "scale": "linear",
+      "label": "Hydrogen Uptake @ 300K (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 391.0,
+        "stated": 10.0,
+        "predicted": 10.002318571759796,
+        "relative_error": 0.00023185717597957735
+      },
+      {
+        "axis": "y",
+        "pixel": 344.36,
+        "stated": 0.1,
+        "predicted": 0.09977281542638662,
+        "relative_error": 0.002271845736133843
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 230.0,
+    "matched_pixels_in_image": 42,
+    "matched_pixels_in_region": 42,
+    "region": [
+      590,
+      100,
+      620,
+      470
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 14.4376,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 19.99536285648041,
+      "y": 0.026217258111755813,
+      "pixel_x": 606.5,
+      "pixel_y": 432.85714285714283,
+      "pixel_count": 42,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 19.99536285648041,
+      "expected": 0.02,
+      "got": 0.026217258111755813,
+      "difference": 0.006217258111755813,
+      "percent": 31.086290558779062,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": false,
+      "checked_utc": "2026-10-29T23:58:09+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": null,
+    "notes": "DISCARDED by a failed \u00a73.4 step 6 check. No row may be written from this archive. Re-calibrate from the axis ticks or obtain a higher-resolution crop and extract again; do not adjust this one to fit."
+  }
+}

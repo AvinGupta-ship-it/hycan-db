@@ -1,0 +1,127 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T00:18:06+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0098",
+  "figure": "Fig. 9a",
+  "series_name": "BC (black pentagons), region 1 of 2",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0098/in/pages/main-12.png",
+    "sha256": "a755b8b42561a087b4260c9830d56c7068cde105e9b41b6337460aa809717227",
+    "width_px": 1275,
+    "height_px": 1650
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 435.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 870.3,
+        "value": 800.0
+      },
+      "scale": "linear",
+      "label": "Absolute pressure (mmHg)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 575.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 211.0,
+        "value": 3.0
+      },
+      "scale": "linear",
+      "label": "Hydrogen uptake (wt.%, 77 K)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 652.55,
+        "stated": 400.0,
+        "predicted": 399.35602575896957,
+        "relative_error": 0.001609935602576087
+      },
+      {
+        "axis": "y",
+        "pixel": 392.62,
+        "stated": 1.5,
+        "predicted": 1.503131868131868,
+        "relative_error": 0.002087912087911962
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 70.0,
+    "matched_pixels_in_image": 36315,
+    "matched_pixels_in_region": 148,
+    "region": [
+      437,
+      508,
+      470,
+      573
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 14.56,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 2-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [
+      {
+        "pixel_x": 437.5,
+        "pixel_y": 572.5,
+        "pixels": 4,
+        "reason": "too small"
+      }
+    ],
+    "n_points": 2,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 15.502066484504818,
+      "y": 0.3718632114154505,
+      "pixel_x": 443.92537313432837,
+      "pixel_y": 529.8805970149253,
+      "pixel_count": 67,
+      "outside_axis_range": false
+    },
+    {
+      "x": 35.329814877580375,
+      "y": 0.48452862926547136,
+      "pixel_x": 454.70175438596493,
+      "pixel_y": 516.2105263157895,
+      "pixel_count": 57,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 9a, digitized (BC (black pentagons), region 1 of 2)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig9a_BC_black_part1.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

@@ -18,8 +18,19 @@
         "access": false,
         "note": "Instruction breach without data access, reported by the agent after its reply: its helper script changed into the tools directory and ran the digitizer with a relative --out, so one trial digitization of this paper's own figure (test_a_blue.json) was written at the top of the tools directory; this call moves it into the agent's own work directory. No other agent opened it: across every extraction transcript only this agent's calls name that file, and no other call lists the tools directory beyond extractor A's 'ls scripts' on HYC-0068. The tools directory matched its MANIFEST afterwards and has been immutable since 22:27 UTC on 29 Oct 2026. Not access under Amendment 1, item 26; the output is kept."
       }
+    },
+    {
+      "call": 39,
+      "tool": "Bash",
+      "reason": "command reads or lists a file in the tools directory (supplementary check)",
+      "detail": "mv /home/claude/work/v1_tools_frozen/test_a_blue.json /home/claude/work/runs/extract/A/HYC-0072/work/test_a_blue.json",
+      "review": {
+        "access": false,
+        "note": "Breach, recorded earlier under the audit's own flag on this call: the agent moved its own trial digitization test_a_blue.json, written to the tools directory by a relative output path, into its own work directory. No other file in the tools directory was touched."
+      }
     }
   ],
+  "cross_access": [],
   "tool_calls": 73,
   "output_problems": [],
   "flags_unreviewed": 0,

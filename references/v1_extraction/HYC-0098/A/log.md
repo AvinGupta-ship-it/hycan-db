@@ -1,0 +1,89 @@
+# HYC-0098 extractor A log (Zhao 2017, BioResources 12(1), 1246-1262)
+
+Rows written: 148 (rows.csv). Page numbers: `main` PDF page N = journal page 1245+N (Table 2 on PDF p.9 = journal p.1254; Fig. 9 on PDF p.12 = journal p.1257).
+
+## Extracted from
+- Table 2 (PDF p.9): H2 uptake at 1 bar and at 4 MPa for BC, AC2-AC6 (12 values, all 77 K), with S_BET, V0.99 (total pore volume), VDR (micropore volume), L0, Vmeso carried onto every row of each sample. 1 bar values are in the 'Absolute Pressure (mmHg)' panel; 4 MPa values are in the 'Pressure (Mpa)' panel.
+- Fig. 9a (PDF p.12, plotted panel with axis 0-800 mmHg, i.e. up to 1 bar): 6 series digitized, archives `digitizations/fig9a_<sample>.json`.
+- Fig. 9b (PDF p.12, plotted panel with axis 0-9 MPa): 6 series digitized, archives `digitizations/fig9b_<sample>.json`.
+- Table 1 (PDF p.6, journal p.1251) and XPS text (PDF p.5, journal p.1250): elemental composition of BC and AC5, written into `notes` (no schema field: N is not an intended dopant, no metal reported). Bamboo (raw) composition also in Table 1: no H2 value, no row.
+- Experimental text (journal p.1247-1249): synthesis, degassing (350 °C, 24 h, 'primary vacuum', no end pressure), instruments (Micromeritics ASAP 2020 HD88 up to 1 bar; VTI HPVA-100 'gravimetric analyzer' up to 8 MPa); N2 isotherms with ASAP 2020, degassed 563 K for 24 h.
+
+## Decisions where the paper is ambiguous
+- **Fig. 9 caption vs panels.** The caption says (a) up to 8 MPa and (b) up to 1 bar, but the plotted panel (a) is 0-800 mmHg and panel (b) is 0-8 MPa; the text also says Fig. 9a is up to 1 bar. Rows follow the plotted axes (a = mmHg panel, b = MPa panel).
+- **Curve-to-sample mapping.** No legend; end-of-curve labels are ambiguous for AC4/AC5/AC6 (labels AC3/AC6 sit above/below the cluster, AC4/AC5 beside the curve ends). Mapping used: blue = AC3, red = AC2, black pentagons = BC, magenta = AC4, green = AC5, black stars = AC6. Basis: colours must be the same in both panels; blue top curve = AC3 in both (Table 2: AC3 highest at 1 bar, 5.8 at 4 MPa); green top curve in 9b (6.6) = AC5 (Table 2, label 'AC5' above the curve) and green end of 9a (2.577) = Table 2 AC5 2.58; magenta end of 9a (2.678) = Table 2 AC4 2.67. The remaining black stars are then AC6. Under the alternative reading by label order in 9a (stars = AC5, green = AC6) the two samples swap in 9a.
+- **Table 2 '4 MPa' column vs text 'up to 8 MPa'.** Table 2, abstract and Table 3 give 4 MPa (40 bar); the text calls the same numbers (BC 1.2, best AC 6.6) the maximum capacities 'up to 8 MPa'. The 4 MPa values equal the plateau maxima of the Fig. 9b curves rounded to 0.1 wt% (BC max 1.171, AC2 4.365, AC3 5.770, AC5 6.630, AC6 6.516), not the values at 3.9-4.1 MPa. Rows keep the printed pressure 4 MPa = 40 bar.
+- **Merging Table 2 rows with plotted points (pressure rule: printed pressure within the larger of 2% and 0.02 bar of a digitized point).** 1 bar: all six match the last plotted point (0.9996-1.0053 bar), so one row each (table value, digitized point in notes). 4 MPa (40 bar, tolerance 0.8 bar): BC (39.21 bar), AC2 (39.23), AC4 (39.24), AC6 (39.25) match; AC3 (39.19 bar, 0.81 away) and AC5 (38.74 bar, partly hidden marker) do not, so their table rows stand alone and the digitized points stay as separate rows. The 3.9 MPa pressure is at the 2% edge for all six series (same pressure grid), so the split is decided by digitizing noise of 0.1 bar.
+- **isotherm_id for Table 2 rows.** The paper says the Fig. 9 isotherms are given in Fig. 9 'and the hydrogen storage capacities are listed in Table 2' and calls the Table 2 values maximum capacities of those isotherms; every Table 2 row therefore carries its Fig. 9 isotherm id (I1-I12: per sample, 9a then 9b), including the two unmerged 4 MPa rows.
+- **Branches.** Fig. 9b shows two interleaved marker sets (pairs of markers at ~0.27, 0.40, 0.67 and 1.37 MPa, two near-parallel connecting lines, single markers at 0.13 MPa and from 2.57 MPa up; distinct markers at 2.57/2.76 and 3.92/4.14 MPa). The text says 'There was no hysteresis cycle' and never labels desorption, so every row is `adsorption` and one isotherm per sample per panel. `isotherm_point_count` counts both markers of each pair: 21 per series in 9a, 16 per series in 9b (the 9b count is not verifiable for BC/AC4/AC5 low-pressure markers, which are overlapped).
+- **Instrument/method coding.** ASAP 2020 HD88: manufacturer and model named but the paper does not call it volumetric, so `measurement_method = unknown`. HPVA-100: the paper calls it a 'gravimetric analyzer', coded `gravimetric_microbalance`; no buoyancy correction stated. Both give `basis_inferred = unknown`; no basis is named (`uptake_type = unspecified`). No free-volume calibration or buoyancy statement: `calibration_described = false`. No uncertainty, error bars or repeat results: `replicates_reported = false`.
+- **Sample order.** S1 = BC (first sample in Experimental), S2 = AC5 (first discussed in TG/XPS/EA, Fig. 2), then Table 2 order AC2, AC3, AC4, AC6. 'AC4' also occurs earlier only as a nomenclature example (p.1248), not counted as an appearance. Raw bamboo and Maxsorb-3 have no H2 row and no sample number.
+- **measuring_lab_id.** The asterisk (corresponding author) is printed on 'Mizi Fan c,*', whose only affiliation is Brunel University, so `Fan group, Brunel University`; the printed corresponding-author e-mail (weigang-zhao@hotmail.com) is Zhao's (Fujian Agriculture and Forestry University). The paper does not say where the H2 measurements were made.
+- **Surface-area coding.** S_BET from N2 at 77 K (ASAP 2020); BET P/P0 range not stated, consistency criteria not stated; `area_same_sample = yes` (same prepared samples, vacuum desiccator storage, different degassing: 563 K for N2, 623 K for H2). V0.99 (single point P/P0 = 0.99) is the total pore volume; VDR is the micropore volume (DR, N2); L0 'average micropore diameter' cited to Stoeckli (the text also says DFT was used for PSDs), coded `stoeckli_L0`. BC has only S_BET and V0.99 (VDR, Ea, L0, Vmeso 'N').
+- **Class/synthesis coding.** BC is a pyrolysis char (not activated): `material_class = other`; ACs `activated_carbon`; all `synthesis_method = carbonization` (carbonization of bamboo at 650 °C is the raw-carbon route; KOH activation is in `activation_method`). No functional-group field filled: FTIR/XPS text is qualitative and for bamboo/BC/AC5 together.
+
+## Table 2 vs Fig. 9 mismatches (recorded, rows kept as printed)
+- AC2, 1 bar: Table 2 says 2.20 wt%; the last plotted AC2 point is 1.983 wt% at 1.005 bar (table +11.0%). The other five 1 bar entries agree with the last plotted points within 0.6% (BC, AC3, AC4, AC5) or, for AC6, 4.8%.
+- AC6, 1 bar: Table 2 says 2.50; the star series ends at 2.625 (table -4.8%). The green series (AC5 by the mapping above) ends at 2.577 and matches the AC5 entry 2.58. With the alternative mapping (stars = AC5, green = AC6) the AC5 and AC6 entries would differ from the plot by 1.7% and 3.0%, and the colours would differ between panels.
+- BC, 4 MPa: Table 2 says 1.2; the plotted BC points at 3.92 and 4.14 MPa are 1.092 and 1.137 (table +9.8% at the merged point); the plateau maximum is 1.171.
+- Table 3 'Bamboo, This work': 6.60 wt% at 77 K 40 bar (= Table 2 AC5, 4 MPa) and 2.74 wt% at 1 bar listed with S_BET 3208 m2/g, which is the AC5 area; 2.74 is the AC3 1 bar value (AC5 is 2.58). Treated as a best-values summary of Table 2, no row.
+- Text inconsistencies without effect on rows: 'when W increased from 2 to 6, S_BET increased from 1767 to 3208' (AC6 is 2914); TG 'at the weight ratio (W=4)' vs Fig. 2 showing AC5; XPS 'atomic percentages (wt.%)'.
+
+## Values seen but not extracted
+- Text p.1255 and abstract/conclusions: 0.86 and 1.2 wt% (BC), 2.74 wt% at 1 bar and 6.6 wt% at 4 MPa/up to 8 MPa (best AC): the same numbers as Table 2 entries (BC 1 bar, BC 4 MPa, AC3 1 bar, AC5 4 MPa); noted in `notes` of those rows, not separate rows.
+- Table 3 literature rows (empty fruit bunch 1.97 at 1 bar and 2.14 at 20 bar, anthracites 6.6 at 40 bar, rice husk 2.72 at 1 bar, chitosan 5.6, corncob 5.8, carbon aerogels 4.3, fungi 2.4, carbon xerogels 4.3): other papers' samples, not measured here.
+- Maxsorb-3 (commercial KOH AC, S_BET 3203 m2/g, petroleum coke precursor, Fig. 10 PSD): no H2 value is printed; the paper only says the bamboo ACs' H2 capacities were 'much higher' than those of Maxsorb-3 (abstract, conclusions); characterization only, no row.
+- Fig. 7 (N2 adsorption/desorption isotherms), Fig. 8 and Fig. 10 (PSDs), Fig. 2 (TG), Fig. 3 (XPS), Fig. 4 (FTIR), Fig. 5 (SEM/TEM), Fig. 6 (XRD): not H2 uptake isotherms, not digitized; they show no H2 value that the tables and text lack.
+- Origin (0,0): both Fig. 9 panels start the curves at the origin where a faint symbol overlaps the axes; not counted as a measured point and not extracted.
+- Fig. 9 markers counted on the plot but not extracted (isotherm_point_count includes them):
+  - Fig. 9a BC: 21 markers counted, 20 digitized (rows or merged with a Table 2 row), 1 not extracted.
+  - Fig. 9a AC2: 21 markers counted, 18 digitized (rows or merged with a Table 2 row), 3 not extracted.
+  - Fig. 9a AC3: 21 markers counted, 21 digitized (rows or merged with a Table 2 row), 0 not extracted.
+  - Fig. 9a AC4: 21 markers counted, 17 digitized (rows or merged with a Table 2 row), 4 not extracted.
+  - Fig. 9a AC5: 21 markers counted, 6 digitized (rows or merged with a Table 2 row), 15 not extracted.
+  - Fig. 9a AC6: 21 markers counted, 20 digitized (rows or merged with a Table 2 row), 1 not extracted.
+  - Fig. 9b BC: 16 markers counted, 7 digitized (rows or merged with a Table 2 row), 9 not extracted.
+  - Fig. 9b AC2: 16 markers counted, 8 digitized (rows or merged with a Table 2 row), 8 not extracted.
+  - Fig. 9b AC3: 16 markers counted, 7 digitized (rows or merged with a Table 2 row), 9 not extracted.
+  - Fig. 9b AC4: 16 markers counted, 2 digitized (rows or merged with a Table 2 row), 14 not extracted.
+  - Fig. 9b AC5: 16 markers counted, 8 digitized (rows or merged with a Table 2 row), 8 not extracted.
+  - Fig. 9b AC6: 16 markers counted, 12 digitized (rows or merged with a Table 2 row), 4 not extracted.
+- Reasons for markers not extracted (selection rule: a marker is kept when the tool finds a single marker whose visible area is at least 35% of a full marker of that series; blobs of two overlapping markers and markers hidden below others are not extracted; partly hidden kept markers carry confidence 2-3 and a note):
+  - Fig. 9a AC2: markers at ~15, 39 and 83 mmHg lie beneath AC3/AC4/AC5/AC6/BC markers; the tool found none.
+  - Fig. 9a AC4: markers at ~15, 39, 83 mmHg hidden (none found); the marker at 113 mmHg is a 9 px fringe (of ~48 px) beneath the AC6 star, not extracted.
+  - Fig. 9a AC5: 15 of 21 green triangles are hidden beneath the black AC6 stars (only 6 found: ~39, 609, 647, 684, 722, 753 mmHg); fringes of 6-20 px found with a 2-px opening were not used.
+  - Fig. 9a AC6/BC: the first star and the first BC pentagon (~15 mmHg) overlap in one black blob (n=64) that cannot be split; neither is extracted (the star was not found separately; the BC blob point is in the BC archive at 15.38 mmHg, 0.3731 wt% but not used in rows).
+  - Fig. 9b BC: blob at 0.344 MPa, 0.085 wt% (92 px): two (or more) overlapping BC markers merged into one blob (92 px vs ~52 px for one marker); not separable.
+  - Fig. 9b BC: blob at 0.670 MPa, 0.222 wt% (77 px): two (or more) overlapping BC markers merged into one blob (77 px vs ~52 px for one marker); not separable.
+  - Fig. 9b BC: blob at 1.370 MPa, 0.524 wt% (68 px): two (or more) overlapping BC markers merged into one blob (68 px vs ~52 px for one marker); not separable.
+  - Fig. 9b AC5: blob at 0.246 MPa, 4.182 wt% (18 px): two overlapping markers at this pressure (merged blob or only a fringe of one visible, 18 px); not separable.
+  - Fig. 9b AC5: blob at 0.384 MPa, 4.596 wt% (14 px): two overlapping markers at this pressure (merged blob or only a fringe of one visible, 14 px); not separable.
+  - Fig. 9b AC5: blob at 0.662 MPa, 5.096 wt% (30 px): two overlapping markers at this pressure (merged blob or only a fringe of one visible, 30 px); not separable.
+  - Fig. 9b AC5: blob at 1.325 MPa, 5.786 wt% (29 px): two overlapping markers at this pressure (merged blob or only a fringe of one visible, 29 px); not separable.
+  - Fig. 9b AC2: blob at 0.266 MPa, 2.082 wt% (87 px): two overlapping markers at this pressure (merged blob or only a fringe of one visible, 87 px); not separable.
+  - Fig. 9b AC2: blob at 0.402 MPa, 2.461 wt% (82 px): two overlapping markers at this pressure (merged blob or only a fringe of one visible, 82 px); not separable.
+  - Fig. 9b AC2: blob at 0.669 MPa, 2.922 wt% (94 px): two overlapping markers at this pressure (merged blob or only a fringe of one visible, 94 px); not separable.
+  - Fig. 9b AC2: blob at 1.367 MPa, 3.573 wt% (73 px): two overlapping markers at this pressure (merged blob or only a fringe of one visible, 73 px); not separable.
+  - Fig. 9b AC3: blob at 0.153 MPa, 2.745 wt% (12 px): marker mostly hidden by other markers (visible 12 px vs ~38 px full marker).
+  - Fig. 9b AC3: blob at 0.268 MPa, 3.460 wt% (68 px): two overlapping markers at this pressure (merged blob or only a fringe of one visible, 68 px); not separable.
+  - Fig. 9b AC3: blob at 0.404 MPa, 3.844 wt% (67 px): two overlapping markers at this pressure (merged blob or only a fringe of one visible, 67 px); not separable.
+  - Fig. 9b AC3: blob at 0.670 MPa, 4.318 wt% (69 px): two overlapping markers at this pressure (merged blob or only a fringe of one visible, 69 px); not separable.
+  - Fig. 9b AC3: blob at 1.370 MPa, 4.969 wt% (61 px): two overlapping markers at this pressure (merged blob or only a fringe of one visible, 61 px); not separable.
+  - Fig. 9b AC4: blob at 2.565 MPa, 6.124 wt% (12 px): marker mostly hidden by other markers (visible 12 px vs ~48 px full marker).
+  - Fig. 9b AC4: blob at 2.758 MPa, 6.185 wt% (12 px): marker mostly hidden by other markers (visible 12 px vs ~48 px full marker).
+  - Fig. 9b AC4: blob at 4.147 MPa, 6.387 wt% (12 px): marker mostly hidden by other markers (visible 12 px vs ~48 px full marker).
+  - Fig. 9b AC4: blob at 5.218 MPa, 6.408 wt% (9 px): marker mostly hidden by other markers (visible 9 px vs ~48 px full marker).
+  - Fig. 9b AC4: blob at 6.839 MPa, 6.408 wt% (9 px): marker mostly hidden by other markers (visible 9 px vs ~48 px full marker).
+  - Fig. 9b AC4: blob at 7.949 MPa, 6.398 wt% (16 px): marker mostly hidden by other markers (visible 16 px vs ~48 px full marker).
+  - Fig. 9b AC6: blob at 0.404 MPa, 4.445 wt% (28 px): two overlapping stars merged into one blob (28 px vs ~16 px for one star core); not separable.
+  - Fig. 9b AC6: blob at 1.376 MPa, 5.648 wt% (36 px): two overlapping stars merged into one blob (36 px vs ~16 px for one star core); not separable.
+  - Fig. 9b BC: the BC markers at ~0.13-0.4 MPa sit on the x axis and over each other; apart from the three blobs listed, the remaining low-pressure BC markers were not found by the tool.
+  - Fig. 9b AC4: the magenta diamonds lie behind the stars/green triangles, so only fringes show; the two kept points (0.117 and 3.924 MPa) are the only ones with at least 35% visible.
+  - Fig. 9b AC5: green markers at 0.25, 0.38, 0.66, 1.32 MPa (blob positions listed above) are fringes of one of two overlapping markers; the kept plateau points (2.60-7.89 MPa) are partly covered by the black stars, so their pressures may be off by up to 3 px (0.06 MPa) and their confidence is 2-3.
+  - fig9a_AC6.json also records 21 'too large' rejected pixel groups: the BC pentagons, excluded by the size filter used to split the black series.
+
+## Digitization settings and checks
+- Fig. 9a calibration (page image main-12.png): x 0 mmHg at 435.5 px, 800 mmHg at 870.32 px, check tick 400 at 652.55 px (linear prediction 652.91, residual 0.36 px = 0.7 mmHg); y 0.0 wt% at 574.75 px, 3.0 at 211.0 px, check tick 1.5 at 392.6 px (prediction 392.875, residual 0.27 px = 0.002 wt%). Tick positions from intensity centroids of the tick marks.
+- Fig. 9b calibration: x 0 MPa at 442.59 px, 9 MPa at 908.97 px, check tick 4 at 649.39 px (prediction 649.87, residual 0.48 px = 0.009 MPa); y 0 wt% at 1088.62 px, 7 at 742.73 px, check tick 4 at 891.0 px (prediction 891.0, residual 0). 1 px = 0.0082 wt% in 9a and 0.0202 wt% in 9b.
+- Colours: red #ff0000 (AC2), blue #0000ff (AC3), magenta #ff00ff (AC4), green #00ff00 (AC5), tolerance 60; black #000000 tolerance 80 for BC (min marker size 30 px in 9a) and AC6 stars (max 35 px in 9a; 9b split by region: y>950 px BC, y<950 px stars). Marker mode, default 3-px opening. Marker counts and overlays were checked on enlarged crops; centroids sit on the marker centres. Right-pointing and up-pointing triangle centroids may differ by about 1.5 px from the plotting-program anchor.
+- Extra `check` runs (not required by the instructions) against Table 2 values: 9a BC 0.8650 vs 0.86 (0.6%) pass; AC3 2.7363 vs 2.74 (0.1%) pass; AC4 2.6784 vs 2.67 (0.3%) pass; AC5 2.5731 vs 2.58 (0.3%) pass; AC6 2.6218 vs 2.50 (4.9%) pass at the 5% limit; AC2 1.9803 vs 2.20 (10.0%) FAIL. 9b at 4 MPa (interpolated): AC2 4.322 vs 4.4 (1.8%), AC3 5.718 vs 5.8 (1.4%), AC4 6.375 vs 6.5 (1.9%), AC5 6.595 vs 6.6 (0.1%), AC6 6.485 vs 6.5 (0.2%) pass; BC 1.108 vs 1.2 (7.7%) FAIL. The tool set the AC2 (9a) and BC (9b) archives to 'discarded'; both failures are Table 2 vs figure differences explained above (the calibration, overlay and the other series are unaffected), so the two archives were regenerated unchanged (same points, status 'unchecked') and their points are used as isotherm shape. Other archives carry status 'passed' (AC4 9a checked at its last point, 749.7 mmHg).

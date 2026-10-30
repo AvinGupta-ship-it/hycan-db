@@ -1,0 +1,268 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T00:19:52+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0095",
+  "figure": "Figure 19A (0-150 bar panel), markers at p >= 30 bar",
+  "series_name": "Gibbs Excess (NREL, 75.6K)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0095/work/dots_N_green.png",
+    "sha256": "5d63f51efd3bbee24ec5d92f1c5347ef510f6ff0abc4105f7899ceeae20462e8",
+    "width_px": 1460,
+    "height_px": 1140
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 65.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1409.5,
+        "value": 150.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1113.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 49.5,
+        "value": 6.0
+      },
+      "scale": "linear",
+      "label": "H2 Gravimetric Uptake (wt.%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 961.5,
+        "stated": 100.0,
+        "predicted": 100.0,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 581.5,
+        "stated": 3.0,
+        "predicted": 3.0,
+        "relative_error": 0.0
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#008000",
+    "color_rgb": [
+      0,
+      128,
+      0
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 294,
+    "matched_pixels_in_region": 294,
+    "region": [
+      5,
+      5,
+      1455,
+      1135
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 42.56,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      4,
+      400
+    ],
+    "rejected_markers": [],
+    "n_points": 19,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 32.828912815126046,
+      "y": 4.965225563909774,
+      "pixel_x": 359.6470588235294,
+      "pixel_y": 233.0,
+      "pixel_count": 17,
+      "outside_axis_range": false
+    },
+    {
+      "x": 37.69717261904761,
+      "y": 4.965225563909774,
+      "pixel_x": 403.26666666666665,
+      "pixel_y": 233.0,
+      "pixel_count": 15,
+      "outside_axis_range": false
+    },
+    {
+      "x": 42.689732142857146,
+      "y": 4.959586466165414,
+      "pixel_x": 448.0,
+      "pixel_y": 234.0,
+      "pixel_count": 13,
+      "outside_axis_range": false
+    },
+    {
+      "x": 52.414434523809526,
+      "y": 4.849812030075189,
+      "pixel_x": 535.1333333333333,
+      "pixel_y": 253.46666666666667,
+      "pixel_count": 15,
+      "outside_axis_range": false
+    },
+    {
+      "x": 54.854910714285715,
+      "y": 4.838345864661654,
+      "pixel_x": 557.0,
+      "pixel_y": 255.5,
+      "pixel_count": 16,
+      "outside_axis_range": false
+    },
+    {
+      "x": 62.82366071428571,
+      "y": 4.731766917293233,
+      "pixel_x": 628.4,
+      "pixel_y": 274.4,
+      "pixel_count": 15,
+      "outside_axis_range": false
+    },
+    {
+      "x": 68.09151785714286,
+      "y": 4.6686090225563905,
+      "pixel_x": 675.6,
+      "pixel_y": 285.6,
+      "pixel_count": 15,
+      "outside_axis_range": false
+    },
+    {
+      "x": 73.52818080357143,
+      "y": 4.59797932330827,
+      "pixel_x": 724.3125,
+      "pixel_y": 298.125,
+      "pixel_count": 16,
+      "outside_axis_range": false
+    },
+    {
+      "x": 80.97098214285715,
+      "y": 4.4718045112781954,
+      "pixel_x": 791.0,
+      "pixel_y": 320.5,
+      "pixel_count": 16,
+      "outside_axis_range": false
+    },
+    {
+      "x": 84.25223214285715,
+      "y": 4.415977443609023,
+      "pixel_x": 820.4,
+      "pixel_y": 330.4,
+      "pixel_count": 15,
+      "outside_axis_range": false
+    },
+    {
+      "x": 94.08482142857143,
+      "y": 4.261949516648764,
+      "pixel_x": 908.5,
+      "pixel_y": 357.7142857142857,
+      "pixel_count": 14,
+      "outside_axis_range": false
+    },
+    {
+      "x": 95.36830357142857,
+      "y": 4.2518796992481205,
+      "pixel_x": 920.0,
+      "pixel_y": 359.5,
+      "pixel_count": 16,
+      "outside_axis_range": false
+    },
+    {
+      "x": 107.25446428571428,
+      "y": 4.075859291084854,
+      "pixel_x": 1026.5,
+      "pixel_y": 390.7142857142857,
+      "pixel_count": 14,
+      "outside_axis_range": false
+    },
+    {
+      "x": 118.91741071428572,
+      "y": 3.9352609464838566,
+      "pixel_x": 1131.0,
+      "pixel_y": 415.6470588235294,
+      "pixel_count": 17,
+      "outside_axis_range": false
+    },
+    {
+      "x": 120.80078125,
+      "y": 3.9068374060150375,
+      "pixel_x": 1147.875,
+      "pixel_y": 420.6875,
+      "pixel_count": 16,
+      "outside_axis_range": false
+    },
+    {
+      "x": 131.43136160714286,
+      "y": 3.7736137218045114,
+      "pixel_x": 1243.125,
+      "pixel_y": 444.3125,
+      "pixel_count": 16,
+      "outside_axis_range": false
+    },
+    {
+      "x": 134.15178571428572,
+      "y": 3.7584586466165417,
+      "pixel_x": 1267.5,
+      "pixel_y": 447.0,
+      "pixel_count": 16,
+      "outside_axis_range": false
+    },
+    {
+      "x": 140.79241071428572,
+      "y": 3.6654135338345863,
+      "pixel_x": 1327.0,
+      "pixel_y": 463.5,
+      "pixel_count": 16,
+      "outside_axis_range": false
+    },
+    {
+      "x": 147.265625,
+      "y": 3.5808270676691727,
+      "pixel_x": 1385.0,
+      "pixel_y": 478.5,
+      "pixel_count": 16,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 40.0,
+      "expected": 5.1,
+      "got": 4.962624519570162,
+      "difference": -0.13737548042983772,
+      "percent": 2.6936368711732888,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-10-30T00:19:57+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 19A (0-150 bar panel), markers at p >= 30 bar, digitized (Gibbs Excess (NREL, 75.6K))",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 40.0."
+  }
+}

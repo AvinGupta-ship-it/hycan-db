@@ -1,0 +1,172 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T00:08:18+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0095",
+  "figure": "Figure 20 left panel (SwRI excess concentration, 77K)",
+  "series_name": "Run 2, Desorb (SwRI, 77K)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0095/work/dots_20L_run2d.png",
+    "sha256": "0f348c873bcc6ca8734769666ab0677ae885de63e162eeb83f93d5d3dd8b309d",
+    "width_px": 1496,
+    "height_px": 1072
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 157.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1469.5,
+        "value": 90.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1037.5,
+        "value": -1.0
+      },
+      "reference_2": {
+        "pixel": 27.5,
+        "value": 7.0
+      },
+      "scale": "linear",
+      "label": "Excess Concentration (wt.% H)",
+      "decades_spanned": 0.8450980400142568
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 741.5,
+        "stated": 40.0,
+        "predicted": 40.0609756097561,
+        "relative_error": 0.0015243902439024738
+      },
+      {
+        "axis": "y",
+        "pixel": 405.5,
+        "stated": 4.0,
+        "predicted": 4.005940594059406,
+        "relative_error": 0.0014851485148514865
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#008000",
+    "color_rgb": [
+      0,
+      128,
+      0
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 102,
+    "matched_pixels_in_region": 102,
+    "region": [
+      5,
+      5,
+      1490,
+      1066
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 40.4,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      4,
+      400
+    ],
+    "rejected_markers": [],
+    "n_points": 7,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 31.417682926829265,
+      "y": 5.354172560113155,
+      "pixel_x": 615.5,
+      "pixel_y": 235.28571428571428,
+      "pixel_count": 14,
+      "outside_axis_range": false
+    },
+    {
+      "x": 36.34984756097561,
+      "y": 5.416633663366337,
+      "pixel_x": 687.4,
+      "pixel_y": 227.4,
+      "pixel_count": 15,
+      "outside_axis_range": false
+    },
+    {
+      "x": 41.56326219512195,
+      "y": 5.448316831683169,
+      "pixel_x": 763.4,
+      "pixel_y": 223.4,
+      "pixel_count": 15,
+      "outside_axis_range": false
+    },
+    {
+      "x": 46.78353658536585,
+      "y": 5.477510608203677,
+      "pixel_x": 839.5,
+      "pixel_y": 219.71428571428572,
+      "pixel_count": 14,
+      "outside_axis_range": false
+    },
+    {
+      "x": 52.53103222996516,
+      "y": 5.447524752475248,
+      "pixel_x": 923.2857142857143,
+      "pixel_y": 223.5,
+      "pixel_count": 14,
+      "outside_axis_range": false
+    },
+    {
+      "x": 58.30792682926829,
+      "y": 5.414144271570014,
+      "pixel_x": 1007.5,
+      "pixel_y": 227.71428571428572,
+      "pixel_count": 14,
+      "outside_axis_range": false
+    },
+    {
+      "x": 64.03582317073172,
+      "y": 5.352475247524753,
+      "pixel_x": 1091.0,
+      "pixel_y": 235.5,
+      "pixel_count": 16,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 64.0,
+      "expected": 5.0,
+      "got": 5.35286093536642,
+      "difference": 0.3528609353664196,
+      "percent": 7.057218707328391,
+      "tolerance_pct": 10.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-10-30T00:09:23+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 20 left panel (SwRI excess concentration, 77K), digitized (Run 2, Desorb (SwRI, 77K))",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 64.0."
+  }
+}

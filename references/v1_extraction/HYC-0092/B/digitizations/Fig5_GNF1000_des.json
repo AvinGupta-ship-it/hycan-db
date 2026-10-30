@@ -1,0 +1,184 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T23:51:06+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0092",
+  "figure": "Figure 5 (main p.5, 77 K)",
+  "series_name": "GNF1000_des",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0092/work/masks5/GNF1000_des.png",
+    "sha256": "38721a0288c7a63b14e418551ad8866c5a74adbdea95f3bf0db85ce167c73606",
+    "width_px": 1275,
+    "height_px": 1650
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 714.4,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1155.6,
+        "value": 20.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 506.2,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 103.6,
+        "value": 1.4
+      },
+      "scale": "linear",
+      "label": "Hydrogen uptake @ 77K (%wt)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 935.5,
+        "stated": 10.0,
+        "predicted": 10.022665457842251,
+        "relative_error": 0.002266545784225116
+      },
+      {
+        "axis": "y",
+        "pixel": 334.0,
+        "stated": 0.6,
+        "predicted": 0.5988077496274217,
+        "relative_error": 0.001987083954297179
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 230.0,
+    "matched_pixels_in_image": 212,
+    "matched_pixels_in_region": 212,
+    "region": [
+      700,
+      95,
+      1170,
+      515
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 16.104000000000003,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 10,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": -0.018132366273797704,
+      "y": 0.1380526577247888,
+      "pixel_x": 714.0,
+      "pixel_y": 466.5,
+      "pixel_count": 14,
+      "outside_axis_range": true
+    },
+    {
+      "x": 0.002014707363757018,
+      "y": 0.12279074902025706,
+      "pixel_x": 714.4444444444445,
+      "pixel_y": 470.8888888888889,
+      "pixel_count": 9,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.5031731640979159,
+      "y": 0.11892697466467952,
+      "pixel_x": 725.5,
+      "pixel_y": 472.0,
+      "pixel_count": 20,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.9761257177394971,
+      "y": 0.12054975989402203,
+      "pixel_x": 735.9333333333333,
+      "pixel_y": 471.53333333333336,
+      "pixel_count": 15,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.4750679963735283,
+      "y": 0.12935916542473913,
+      "pixel_x": 769.0,
+      "pixel_y": 469.0,
+      "pixel_count": 13,
+      "outside_axis_range": false
+    },
+    {
+      "x": 4.984035634041548,
+      "y": 0.13283656234475902,
+      "pixel_x": 824.3478260869565,
+      "pixel_y": 468.0,
+      "pixel_count": 23,
+      "outside_axis_range": false
+    },
+    {
+      "x": 7.516178447494299,
+      "y": 0.13919180499169193,
+      "pixel_x": 880.2068965517242,
+      "pixel_y": 466.17241379310343,
+      "pixel_count": 29,
+      "outside_axis_range": false
+    },
+    {
+      "x": 12.51719908271559,
+      "y": 0.15717834078489812,
+      "pixel_x": 990.5294117647059,
+      "pixel_y": 461.0,
+      "pixel_count": 34,
+      "outside_axis_range": false
+    },
+    {
+      "x": 15.016100290743115,
+      "y": 0.16940918512427836,
+      "pixel_x": 1045.655172413793,
+      "pixel_y": 457.48275862068965,
+      "pixel_count": 29,
+      "outside_axis_range": false
+    },
+    {
+      "x": 17.512727526326806,
+      "y": 0.17175665864190443,
+      "pixel_x": 1100.7307692307693,
+      "pixel_y": 456.8076923076923,
+      "pixel_count": 26,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 5 (main p.5, 77 K), digitized (GNF1000_des)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: Fig5_GNF1000_des.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

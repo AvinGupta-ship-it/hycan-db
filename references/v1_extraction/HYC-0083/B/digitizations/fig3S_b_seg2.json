@@ -1,0 +1,128 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T23:19:24+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0083",
+  "figure": "Supporting Figure 3S (SI p.S4)",
+  "series_name": "Fig. 3S curve b CB850 (segment 2 of 4)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0083/in/pages/si1-4.png",
+    "sha256": "6dc3d69ec038340d7be40d4f6c84b1cfa9483791c9318ada1d14f8e96386887b",
+    "width_px": 1275,
+    "height_px": 1650
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 307.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1002.0,
+        "value": 20.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 652.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 202.0,
+        "value": 6.0
+      },
+      "scale": "linear",
+      "label": "H2 uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 655.0,
+        "stated": 10.0,
+        "predicted": 10.014388489208631,
+        "relative_error": 0.0014388489208631227
+      },
+      {
+        "axis": "y",
+        "pixel": 427.0,
+        "stated": 3.0,
+        "predicted": 3.0,
+        "relative_error": 0.0
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff0000",
+    "color_rgb": [
+      255,
+      0,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 7779,
+    "matched_pixels_in_region": 242,
+    "region": [
+      388,
+      403,
+      435,
+      439
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 18.0,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 3,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 2.4957488554610863,
+      "y": 2.9221818181818184,
+      "pixel_x": 393.72727272727275,
+      "pixel_y": 432.8363636363636,
+      "pixel_count": 55,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.9938154739366403,
+      "y": 3.092163742690059,
+      "pixel_x": 411.03508771929825,
+      "pixel_y": 420.0877192982456,
+      "pixel_count": 57,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.492063492063491,
+      "y": 3.254179894179894,
+      "pixel_x": 428.3492063492063,
+      "pixel_y": 407.93650793650795,
+      "pixel_count": 63,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Supporting Figure 3S (SI p.S4), digitized (Fig. 3S curve b CB850 (segment 2 of 4))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig3S_b_seg2.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

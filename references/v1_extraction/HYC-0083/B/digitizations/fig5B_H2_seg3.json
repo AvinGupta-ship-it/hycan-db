@@ -1,0 +1,144 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T23:23:56+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0083",
+  "figure": "Fig. 5B (main p.1678)",
+  "series_name": "Fig. 5B H2 curve CA850 gravimetric (segment 3 of 3)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0083/in/pages/main-6.png",
+    "sha256": "9090cd4405a7d86b26674fa4c63defbfbf1eef346bf8e60fc5516f51af806ba4",
+    "width_px": 1275,
+    "height_px": 1650
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 699.46,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1024.78,
+        "value": 2.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 343.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 107.48,
+        "value": 7.0
+      },
+      "scale": "linear",
+      "label": "H2 uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 862.18,
+        "stated": 1.0,
+        "predicted": 1.0003688675765396,
+        "relative_error": 0.0003688675765396443
+      },
+      {
+        "axis": "y",
+        "pixel": 242.0,
+        "stated": 3.0,
+        "predicted": 3.0018682065217392,
+        "relative_error": 0.0006227355072464155
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 180.0,
+    "matched_pixels_in_image": 100298,
+    "matched_pixels_in_region": 250,
+    "region": [
+      858,
+      241,
+      1029,
+      273
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 9.4208,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 5,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 1.0018970332507773,
+      "y": 2.1908967391304355,
+      "pixel_x": 862.4285714285714,
+      "pixel_y": 269.2857142857143,
+      "pixel_count": 21,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.2072625927292104,
+      "y": 2.387624547101449,
+      "pixel_x": 895.8333333333334,
+      "pixel_y": 262.6666666666667,
+      "pixel_count": 18,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.5033812861182836,
+      "y": 2.6253962862318843,
+      "pixel_x": 944.0,
+      "pixel_y": 254.66666666666666,
+      "pixel_count": 18,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.8046231402926352,
+      "y": 2.8235394021739135,
+      "pixel_x": 993.0,
+      "pixel_y": 248.0,
+      "pixel_count": 9,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.0044264109184806,
+      "y": 2.942425271739131,
+      "pixel_x": 1025.5,
+      "pixel_y": 244.0,
+      "pixel_count": 12,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 5B (main p.1678), digitized (Fig. 5B H2 curve CA850 gravimetric (segment 3 of 3))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig5B_H2_seg3.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T00:10:53+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0097",
+  "figure": "Figure 3",
+  "series_name": "SA_20",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0097/work/fig3.png",
+    "sha256": "8c8b7acc5035f431fbe35ba78020032fc3af25d8da4a0ae8573811f4108be6d4",
+    "width_px": 1253,
+    "height_px": 1014
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 190.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 967.5,
+        "value": 12.0
+      },
+      "scale": "linear",
+      "label": "Absolute Pressure (MPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 787.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 96.0,
+        "value": 6.0
+      },
+      "scale": "linear",
+      "label": "excess H2 wt%",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 578.5,
+        "stated": 6.0,
+        "predicted": 5.996141479099679,
+        "relative_error": 0.0006430868167202064
+      },
+      {
+        "axis": "y",
+        "pixel": 441.5,
+        "stated": 3.0,
+        "predicted": 3.002169197396963,
+        "relative_error": 0.0007230657989876951
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#8000ff",
+    "color_rgb": [
+      128,
+      0,
+      255
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 5576,
+    "matched_pixels_in_region": 3825,
+    "region": [
+      185,
+      35,
+      1040,
+      795
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 27.66,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 5-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 7,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 0.28638799571275436,
+      "y": 1.908411665461557,
+      "pixel_x": 208.55555555555554,
+      "pixel_y": 567.5555555555555,
+      "pixel_count": 63,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.9207725030456753,
+      "y": 2.702658277306962,
+      "pixel_x": 249.6583850931677,
+      "pixel_y": 476.01863354037266,
+      "pixel_count": 161,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.002131277251225,
+      "y": 3.249366844215284,
+      "pixel_x": 384.5130890052356,
+      "pixel_y": 413.0104712041885,
+      "pixel_count": 191,
+      "outside_axis_range": false
+    },
+    {
+      "x": 5.073495636196601,
+      "y": 3.2392831319078605,
+      "pixel_x": 518.7202380952381,
+      "pixel_y": 414.17261904761904,
+      "pixel_count": 168,
+      "outside_axis_range": false
+    },
+    {
+      "x": 7.679982560357512,
+      "y": 3.0064095493706873,
+      "pixel_x": 687.5988700564972,
+      "pixel_y": 441.01129943502826,
+      "pixel_count": 177,
+      "outside_axis_range": false
+    },
+    {
+      "x": 10.321722874448515,
+      "y": 2.762498108258084,
+      "pixel_x": 858.7616279069767,
+      "pixel_y": 469.1220930232558,
+      "pixel_count": 172,
+      "outside_axis_range": false
+    },
+    {
+      "x": 12.204655948553054,
+      "y": 2.658940192128912,
+      "pixel_x": 980.76,
+      "pixel_y": 481.0571428571429,
+      "pixel_count": 175,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 3, digitized (SA_20)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig3_SA_20.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

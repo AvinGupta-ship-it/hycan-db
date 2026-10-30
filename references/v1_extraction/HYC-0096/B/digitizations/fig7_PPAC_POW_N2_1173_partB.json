@@ -1,0 +1,160 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T00:00:27+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0096",
+  "figure": "Figure 7 (main p.16)",
+  "series_name": "PPAC_POW_N2_1173 partB (region x200-695 y1025-1195 px)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0096/in/pages/main-16.png",
+    "sha256": "925b9677cda2330d53dfe24aa5c28daddb5ed391bdac54fdfbb59826f2acff6d",
+    "width_px": 1241,
+    "height_px": 1754
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 207.11,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1099.93,
+        "value": 1.0
+      },
+      "scale": "linear",
+      "label": "Relative_pressure_p/p0",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1196.99,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 699.12,
+        "value": 2.0
+      },
+      "scale": "linear",
+      "label": "Hydrogen_uptake_wt%",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 564.11,
+        "stated": 0.4,
+        "predicted": 0.3998566340359759,
+        "relative_error": 0.00035841491006036175
+      },
+      {
+        "axis": "y",
+        "pixel": 947.93,
+        "stated": 1.0,
+        "predicted": 1.00050213911262,
+        "relative_error": 0.0005021391126200925
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#0000ff",
+    "color_rgb": [
+      0,
+      0,
+      255
+    ],
+    "tolerance": 120.0,
+    "matched_pixels_in_image": 2081,
+    "matched_pixels_in_region": 340,
+    "region": [
+      200,
+      1025,
+      695,
+      1195
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 19.9148,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 7,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.0008950190509743205,
+      "y": 0.047799991600582487,
+      "pixel_x": 207.9090909090909,
+      "pixel_y": 1185.090909090909,
+      "pixel_count": 22,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.0012265946160796024,
+      "y": 0.12428432301089852,
+      "pixel_x": 208.2051282051282,
+      "pixel_y": 1166.051282051282,
+      "pixel_count": 39,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.002116888062543386,
+      "y": 0.20282403036937358,
+      "pixel_x": 209.0,
+      "pixel_y": 1146.5,
+      "pixel_count": 26,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.0033141792491670806,
+      "y": 0.27547836542290816,
+      "pixel_x": 210.06896551724137,
+      "pixel_y": 1128.4137931034484,
+      "pixel_count": 29,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.006597074438296617,
+      "y": 0.3802943396009856,
+      "pixel_x": 213.0,
+      "pixel_y": 1102.3214285714287,
+      "pixel_count": 28,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.014265085735258871,
+      "y": 0.5115237063737675,
+      "pixel_x": 219.84615384615384,
+      "pixel_y": 1069.6538461538462,
+      "pixel_count": 26,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.023499595765001994,
+      "y": 0.6302813622395043,
+      "pixel_x": 228.0909090909091,
+      "pixel_y": 1040.090909090909,
+      "pixel_count": 22,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 7 (main p.16), digitized (PPAC_POW_N2_1173 partB (region x200-695 y1025-1195 px))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig7_PPAC_POW_N2_1173_partB.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

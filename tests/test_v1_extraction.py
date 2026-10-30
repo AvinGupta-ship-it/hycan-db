@@ -98,3 +98,65 @@ def test_tools_directory_check_finds_a_stray_file(tmp_path):
         assert runs.tools_problems(tools) == ["tools file changed or missing: scripts/a.py"]
     finally:
         ex.TOOLS_MANIFEST_SHA256 = saved
+
+
+def _transcript(tmp_path, calls):
+    import json as _json
+    lines = [_json.dumps({"type": "assistant", "message": {"content": [
+        {"type": "tool_use", "name": name, "input": inp}]}}) for name, inp in calls]
+    p = tmp_path / "agent.jsonl"
+    p.write_text("\n".join(lines) + "\n")
+    return p
+
+
+def test_supplementary_flags_see_script_source_reads_and_device_files(tmp_path):
+    tools = "/w/tools"
+    t = _transcript(tmp_path, [
+        ("Bash", {"command": f"cd {tools} && python3 scripts/digitize_figure.py extract --image /w/in/p.png | head -5"}),
+        ("Bash", {"command": f"cd {tools} && sed -n 1,60p scripts/digitize_figure.py | head -0"}),
+        ("Bash", {"command": f"grep -n 'Pressure out of range' -r {tools}/scripts/validate_row_detail.py"}),
+        ("Bash", {"command": "python3 - <<'EOF'\nprint(open('scripts/validate_row_detail.py').read())\nEOF"}),
+        ("Bash", {"command": "ls -la /dev/null.png; python3 x.py > /dev/null 2>&1"}),
+        ("Read", {"file_path": f"{tools}/scripts/digitize_figure.py"}),
+        ("Bash", {"command": "cat > /w/work/run.sh <<'EOF'\ncat scripts/digitize_figure.py\nEOF\nbash /w/work/run.sh"}),
+    ])
+    calls = sorted({f["call"] for f in runs.supplementary_flags(t, tools)})
+    # 1 runs the script and filters its output; 7's heredoc is file content
+    # (running the written script is the audit's business, not this check's).
+    assert calls == [2, 3, 4, 5, 6]
+
+
+def test_supplementary_flags_ignore_prose_naming_the_script(tmp_path):
+    t = _transcript(tmp_path, [
+        ("Bash", {"command": "cat > /w/work/a.py <<'EOF'\n'''values come from digitize_figure.py'''\nEOF\npython3 /w/work/a.py"}),
+        ("Bash", {"command": "python3 - <<'EOF'\nimport sys\nfrom digitize_figure import main\nEOF"}),
+    ])
+    assert sorted({f["call"] for f in runs.supplementary_flags(t, "/w/tools")}) == [2]
+
+
+def test_supplementary_flags_see_relative_reads_inside_the_tools_directory(tmp_path):
+    t = _transcript(tmp_path, [
+        ("Bash", {"command": "cd /w/tools && ls"}),
+        ("Bash", {"command": "cd /w/tools && ls scripts/"}),
+        ("Bash", {"command": "cd /w/tools && python3 scripts/validate_row_detail.py /w/out/rows.csv | head -40"}),
+        ("Bash", {"command": "cd /w/tools && ls -la $OUT && head -n 5 /w/out/rows.csv"}),
+        ("Bash", {"command": "cd /w/tools && cat MANIFEST"}),
+    ])
+    assert sorted({f["call"] for f in runs.supplementary_flags(t, "/w/tools")}) == [1, 2, 5]
+
+
+def test_supplementary_flags_skip_redirection_targets(tmp_path):
+    t = _transcript(tmp_path, [("Bash", {"command": "cd /w/tools && cat > $W/run_a.sh <<'EOF'\nx\nEOF\nbash $W/run_a.sh"})])
+    assert runs.supplementary_flags(t, "/w/tools") == []
+
+
+def test_cross_access_lists_other_agents_and_the_repository(tmp_path):
+    run = Path("/home/claude/work/runs/extract")
+    t = _transcript(tmp_path, [
+        ("Read", {"file_path": f"{run}/A/HYC-0001/out/rows.csv"}),
+        ("Read", {"file_path": f"{run}/B/HYC-0001/out/rows.csv"}),
+        ("Bash", {"command": "cat /home/claude/work/hycan-db/data/raw/measurements_v0.1.csv"}),
+        ("Bash", {"command": "ls /home/claude/work/runs/screen"}),
+    ])
+    hits = runs.cross_access(t, run, "A", "HYC-0001")
+    assert [h.split(":")[0] for h in hits] == ["call 2 Read", "call 3 Bash", "call 3 Bash", "call 4 Bash"]

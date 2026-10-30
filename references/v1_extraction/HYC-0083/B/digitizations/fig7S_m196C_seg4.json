@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T23:28:19+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0083",
+  "figure": "Supporting Figure 7S (SI p.S8)",
+  "series_name": "Supp. Fig. 7S CB850h -196 C (segment 4 of 8)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0083/in/pages/si1-8.png",
+    "sha256": "d6b51c7470d5aef530f61a6126c295a967fc62b47fde997a8cb5d9972bcbd7a5",
+    "width_px": 1275,
+    "height_px": 1650
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 365.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 945.0,
+        "value": 20.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1186.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 779.5,
+        "value": 7.0
+      },
+      "scale": "linear",
+      "label": "H2 uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 655.0,
+        "stated": 10.0,
+        "predicted": 10.0,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 1012.0,
+        "stated": 3.0,
+        "predicted": 3.0012285012285016,
+        "relative_error": 0.0004095004095005332
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 100.0,
+    "matched_pixels_in_image": 35418,
+    "matched_pixels_in_region": 55,
+    "region": [
+      563,
+      900,
+      574,
+      909
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 16.28,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 7.010610079575596,
+      "y": 4.852107352107353,
+      "pixel_x": 568.3076923076923,
+      "pixel_y": 904.3846153846154,
+      "pixel_count": 39,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Supporting Figure 7S (SI p.S8), digitized (Supp. Fig. 7S CB850h -196 C (segment 4 of 8))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig7S_m196C_seg4.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

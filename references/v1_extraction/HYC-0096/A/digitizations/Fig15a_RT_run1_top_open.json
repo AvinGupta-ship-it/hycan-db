@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T00:05:52+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0096",
+  "figure": "Figure 15a",
+  "series_name": "RT run 1 highest-pressure marker (open)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0096/work/c15a_min7.png",
+    "sha256": "6c8a24ec93f1a16542b58c5b60e04cd8aafb7e65d6294988d066e29f9e892590",
+    "width_px": 1900,
+    "height_px": 1060
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 98.23,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1837.8,
+        "value": 80.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 997.47,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 181.9,
+        "value": 0.25
+      },
+      "scale": "linear",
+      "label": "Hydrogen uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 969.17,
+        "stated": 40.0,
+        "predicted": 40.05311657478572,
+        "relative_error": 0.0013279143696429685
+      },
+      {
+        "axis": "y",
+        "pixel": 509.5,
+        "stated": 0.15,
+        "predicted": 0.14957943524161016,
+        "relative_error": 0.0028037650559322356
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 300.0,
+    "matched_pixels_in_image": 88268,
+    "matched_pixels_in_region": 565,
+    "region": [
+      1700,
+      36,
+      1850,
+      200
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 32.622800000000005,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 77.63684861394646,
+      "y": 0.2828086410275413,
+      "pixel_x": 1786.4141592920355,
+      "pixel_y": 74.86902654867257,
+      "pixel_count": 565,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 15a, digitized (RT run 1 highest-pressure marker (open))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: Fig15a_RT_run1_top_open.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

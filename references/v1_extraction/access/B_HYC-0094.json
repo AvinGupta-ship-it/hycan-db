@@ -1,0 +1,32 @@
+{
+  "screener": "B",
+  "batch": "HYC-0094",
+  "transcript": "agent-a1826a62e07dda28d.jsonl",
+  "launcher_exact": true,
+  "prompt_sha256_ok": true,
+  "models": [
+    "claude-opus-5-5"
+  ],
+  "model_ok": true,
+  "flags": [
+    {
+      "call": 75,
+      "tool": "Bash",
+      "reason": "command names the home directory",
+      "detail": "cat > /home/claude/work/runs/extract/B/HYC-0094/work/scripts/build_rows.py << 'EOF'\nimport csv, json\nB='/home/claude/work/runs/extract/B/HYC-0094/'\nP=json.load(open(B+'in/paper.json'))\nCOLS=\"paper_id,doi,first_author,year,journal,title,sample_id,material_class,material_description,synthesis_method,p",
+      "review": {
+        "access": false,
+        "note": "The flagged '~' appears only inside quoted text in the agent's own row-building script ('P/Po ~ 0.99'); no '~/' path and no $HOME occurs. The script, written in its own work/scripts, reads only its own in/paper.json and out/digitizations and writes its own out/rows.csv."
+      }
+    }
+  ],
+  "cross_access": [],
+  "tool_calls": 80,
+  "output_problems": [],
+  "flags_unreviewed": 0,
+  "flags_access": 0,
+  "access_ok": true,
+  "ok": true,
+  "earlier_agents": [],
+  "unfinished_agents": []
+}

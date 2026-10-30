@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T23:51:02+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0092",
+  "figure": "Figure 5 (main p.5, 77 K)",
+  "series_name": "GNFdesB",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0092/work/masks5/GNFdesB.png",
+    "sha256": "1772eb902efc781dbfa42ee280add53fd3f8d796cbc5482a6c54d39a9e046b31",
+    "width_px": 1275,
+    "height_px": 1650
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 714.4,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1155.6,
+        "value": 20.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 506.2,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 103.6,
+        "value": 1.4
+      },
+      "scale": "linear",
+      "label": "Hydrogen uptake @ 77K (%wt)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 935.5,
+        "stated": 10.0,
+        "predicted": 10.022665457842251,
+        "relative_error": 0.002266545784225116
+      },
+      {
+        "axis": "y",
+        "pixel": 334.0,
+        "stated": 0.6,
+        "predicted": 0.5988077496274217,
+        "relative_error": 0.001987083954297179
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 230.0,
+    "matched_pixels_in_image": 43,
+    "matched_pixels_in_region": 43,
+    "region": [
+      700,
+      95,
+      1170,
+      515
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 16.104000000000003,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 15.018026945539656,
+      "y": 0.32118208389653297,
+      "pixel_x": 1045.6976744186047,
+      "pixel_y": 413.83720930232556,
+      "pixel_count": 43,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 5 (main p.5, 77 K), digitized (GNFdesB)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: Fig5_GNFdesB.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

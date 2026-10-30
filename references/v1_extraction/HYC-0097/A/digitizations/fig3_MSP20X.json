@@ -1,0 +1,160 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T00:10:51+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0097",
+  "figure": "Figure 3",
+  "series_name": "MSP20X",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0097/work/fig3.png",
+    "sha256": "8c8b7acc5035f431fbe35ba78020032fc3af25d8da4a0ae8573811f4108be6d4",
+    "width_px": 1253,
+    "height_px": 1014
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 190.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 967.5,
+        "value": 12.0
+      },
+      "scale": "linear",
+      "label": "Absolute Pressure (MPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 787.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 96.0,
+        "value": 6.0
+      },
+      "scale": "linear",
+      "label": "excess H2 wt%",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 578.5,
+        "stated": 6.0,
+        "predicted": 5.996141479099679,
+        "relative_error": 0.0006430868167202064
+      },
+      {
+        "axis": "y",
+        "pixel": 441.5,
+        "stated": 3.0,
+        "predicted": 3.002169197396963,
+        "relative_error": 0.0007230657989876951
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#008000",
+    "color_rgb": [
+      0,
+      128,
+      0
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 7103,
+    "matched_pixels_in_region": 4338,
+    "region": [
+      185,
+      35,
+      1040,
+      795
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 27.66,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 5-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 7,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 0.7950677011121271,
+      "y": 4.367768512806225,
+      "pixel_x": 241.5137614678899,
+      "pixel_y": 284.11467889908255,
+      "pixel_count": 218,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.950882392164417,
+      "y": 4.82427501824325,
+      "pixel_x": 316.4009216589862,
+      "pixel_y": 231.50230414746545,
+      "pixel_count": 217,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.010234267340377,
+      "y": 4.9074269187067445,
+      "pixel_x": 385.03809523809525,
+      "pixel_y": 221.91904761904763,
+      "pixel_count": 210,
+      "outside_axis_range": false
+    },
+    {
+      "x": 5.076357459200388,
+      "y": 4.784758318667376,
+      "pixel_x": 518.9056603773585,
+      "pixel_y": 236.0566037735849,
+      "pixel_count": 212,
+      "outside_axis_range": false
+    },
+    {
+      "x": 7.6893031250463055,
+      "y": 4.43505902815958,
+      "pixel_x": 688.2027649769585,
+      "pixel_y": 276.3594470046083,
+      "pixel_count": 217,
+      "outside_axis_range": false
+    },
+    {
+      "x": 10.315904031659658,
+      "y": 4.1509260804271655,
+      "pixel_x": 858.3846153846154,
+      "pixel_y": 309.1057692307692,
+      "pixel_count": 208,
+      "outside_axis_range": false
+    },
+    {
+      "x": 12.430373485035865,
+      "y": 4.022609711329885,
+      "pixel_x": 995.3846153846154,
+      "pixel_y": 323.8942307692308,
+      "pixel_count": 208,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 3, digitized (MSP20X)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig3_MSP20X.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

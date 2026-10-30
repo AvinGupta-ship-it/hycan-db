@@ -1,0 +1,160 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T23:35:51+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0088",
+  "figure": "Fig. 11b",
+  "series_name": "Desorption WS_PD_90 (open circles, ring interiors filled)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0088/work/d_f11b_open.png",
+    "sha256": "b90eebb70007b586e66f9ad81d2178216ff9e36d0dc790cd77735af1af004aa8",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 516.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 707.0,
+        "value": 60.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 997.25,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 802.25,
+        "value": 3.0
+      },
+      "scale": "linear",
+      "label": "Quantity Adsorbed (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 643.5,
+        "stated": 40.0,
+        "predicted": 40.052356020942405,
+        "relative_error": 0.0013089005235601193
+      },
+      {
+        "axis": "y",
+        "pixel": 867.0,
+        "stated": 2.0,
+        "predicted": 2.003846153846154,
+        "relative_error": 0.0019230769230769162
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 61,
+    "matched_pixels_in_region": 61,
+    "region": [
+      511,
+      805,
+      762,
+      1008
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 7.8,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      3,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 7,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.6282722513089005,
+      "y": 1.1115384615384616,
+      "pixel_x": 518.0,
+      "pixel_y": 925.0,
+      "pixel_count": 9,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.8795811518324465,
+      "y": 1.226923076923077,
+      "pixel_x": 518.8,
+      "pixel_y": 917.5,
+      "pixel_count": 10,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.256544502617801,
+      "y": 1.3884615384615384,
+      "pixel_x": 520.0,
+      "pixel_y": 907.0,
+      "pixel_count": 9,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.159685863874346,
+      "y": 1.544230769230769,
+      "pixel_x": 522.875,
+      "pixel_y": 896.875,
+      "pixel_count": 8,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.769633507853403,
+      "y": 1.7576923076923077,
+      "pixel_x": 528.0,
+      "pixel_y": 883.0,
+      "pixel_count": 9,
+      "outside_axis_range": false
+    },
+    {
+      "x": 7.539267015706806,
+      "y": 2.003846153846154,
+      "pixel_x": 540.0,
+      "pixel_y": 867.0,
+      "pixel_count": 9,
+      "outside_axis_range": false
+    },
+    {
+      "x": 33.8369483919222,
+      "y": 2.526923076923077,
+      "pixel_x": 623.7142857142857,
+      "pixel_y": 833.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 11b, digitized (Desorption WS_PD_90 (open circles, ring interiors filled))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0088_fig11b_DES_WS_PD_90_77K.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

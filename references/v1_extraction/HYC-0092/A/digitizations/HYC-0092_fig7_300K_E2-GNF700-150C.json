@@ -1,0 +1,132 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T23:48:01+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0092",
+  "figure": "Figure 7",
+  "series_name": "E2-GNF700-150C 300 K, highest-pressure point and one further point (calibration check)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0092/work/ser67_F7_E2-GNF700-150C.png",
+    "sha256": "1720db7b474b53292c8ef7b9b1e5b791c98816275569e639b0e7f9a0fff4121c",
+    "width_px": 1275,
+    "height_px": 1650
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 713.75,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1155.4,
+        "value": 20.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 406.81,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 103.59,
+        "value": 0.3
+      },
+      "scale": "linear",
+      "label": "H2 uptake @ 300K (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 934.75,
+        "stated": 10.0,
+        "predicted": 10.007924827351973,
+        "relative_error": 0.0007924827351972752
+      },
+      {
+        "axis": "y",
+        "pixel": 204.24,
+        "stated": 0.2,
+        "predicted": 0.20041883780753245,
+        "relative_error": 0.0020941890376621752
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 84,
+    "matched_pixels_in_region": 84,
+    "region": [
+      1094,
+      371,
+      1163,
+      389
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 12.128800000000002,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      3,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 2,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 17.53651081172874,
+      "y": 0.02504122419365477,
+      "pixel_x": 1101.0,
+      "pixel_y": 381.5,
+      "pixel_count": 36,
+      "outside_axis_range": false
+    },
+    {
+      "x": 20.021510245669646,
+      "y": 0.02899874678451289,
+      "pixel_x": 1155.875,
+      "pixel_y": 377.5,
+      "pixel_count": 48,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [
+    {
+      "at": 20.0215,
+      "expected": 0.03,
+      "got": 0.028998730467620207,
+      "difference": -0.001001269532379792,
+      "percent": 3.3375651079326403,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-10-29T23:48:08+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 7, digitized (E2-GNF700-150C 300 K, highest-pressure point and one further point (calibration check))",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 20.0215."
+  }
+}

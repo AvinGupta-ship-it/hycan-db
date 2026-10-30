@@ -1,0 +1,120 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T23:35:52+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0088",
+  "figure": "Fig. 12a",
+  "series_name": "Desorption WS_PD_90 298 K (open circles, ring interiors filled)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0088/work/d_f12a_open.png",
+    "sha256": "9d11f321a8fb52bd0d7232c45b7b5c0da7ea52f47d883fedeba36864480947c7",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 314.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 534.0,
+        "value": 60.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 394.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 158.53,
+        "value": 1.0
+      },
+      "scale": "linear",
+      "label": "Quantity Adsorbed (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 460.52,
+        "stated": 40.0,
+        "predicted": 39.959999999999994,
+        "relative_error": 0.0010000000000001564
+      },
+      {
+        "axis": "y",
+        "pixel": 299.5,
+        "stated": 0.4,
+        "predicted": 0.4013250095553574,
+        "relative_error": 0.0033125238883933983
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 21,
+    "matched_pixels_in_region": 21,
+    "region": [
+      311,
+      160,
+      602,
+      399
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 9.418800000000001,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      3,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 2,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 2
+  },
+  "series": [
+    {
+      "x": -0.09917355371901108,
+      "y": 0.0019303752263364294,
+      "pixel_x": 313.6363636363636,
+      "pixel_y": 393.54545454545456,
+      "pixel_count": 11,
+      "outside_axis_range": true
+    },
+    {
+      "x": 77.53636363636362,
+      "y": 0.11169151059582967,
+      "pixel_x": 598.3,
+      "pixel_y": 367.7,
+      "pixel_count": 10,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 12a, digitized (Desorption WS_PD_90 298 K (open circles, ring interiors filled))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0088_fig12a_298K_open_circles_WS_PD_90.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

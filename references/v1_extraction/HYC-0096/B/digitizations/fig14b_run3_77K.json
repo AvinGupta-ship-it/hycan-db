@@ -1,0 +1,199 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T00:05:45+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0096",
+  "figure": "Figure 14b (main p.25)",
+  "series_name": "PPAC_POW_CO2_1173 77 K run 3 (pink down-triangles) x700-1140 y1190-1316",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0096/in/pages/main-25.png",
+    "sha256": "f4fc5d23ed308933e2070f5abebde3595a56be773c1f803d597e5b8db8cc73c2",
+    "width_px": 1241,
+    "height_px": 1754
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 709.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1097.68,
+        "value": 70.0
+      },
+      "scale": "linear",
+      "label": "Pressure_bar",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1428.09,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1196.0,
+        "value": 3.5
+      },
+      "scale": "linear",
+      "label": "Hydrogen_uptake_wt%",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 875.95,
+        "stated": 30.0,
+        "predicted": 30.067150355047858,
+        "relative_error": 0.00223834516826192
+      },
+      {
+        "axis": "y",
+        "pixel": 1328.71,
+        "stated": 1.5,
+        "predicted": 1.4986858546253596,
+        "relative_error": 0.0008760969164269087
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff1493",
+    "color_rgb": [
+      255,
+      20,
+      147
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 81,
+    "matched_pixels_in_region": 71,
+    "region": [
+      700,
+      1190,
+      1140,
+      1316
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 9.283599999999996,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [
+      {
+        "pixel_x": 947.0,
+        "pixel_y": 1223.0,
+        "pixels": 3,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 917.5,
+        "pixel_y": 1227.0,
+        "pixels": 4,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 887.5,
+        "pixel_y": 1232.0,
+        "pixels": 4,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 858.0,
+        "pixel_y": 1237.0,
+        "pixels": 3,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 826.5,
+        "pixel_y": 1243.0,
+        "pixels": 4,
+        "reason": "too small"
+      }
+    ],
+    "n_points": 8,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 9.725223834516825,
+      "y": 2.4669955620664394,
+      "pixel_x": 763.0,
+      "pixel_y": 1264.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 15.668416177832661,
+      "y": 2.6479598431642897,
+      "pixel_x": 796.0,
+      "pixel_y": 1252.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 48.265925697231644,
+      "y": 3.1456116161833774,
+      "pixel_x": 977.0,
+      "pixel_y": 1219.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 53.75887619635689,
+      "y": 3.1933660792508665,
+      "pixel_x": 1007.5,
+      "pixel_y": 1216.3333333333333,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 58.981681588967774,
+      "y": 3.2323236675427633,
+      "pixel_x": 1036.5,
+      "pixel_y": 1213.75,
+      "pixel_count": 8,
+      "outside_axis_range": false
+    },
+    {
+      "x": 64.44461596514697,
+      "y": 3.233580363939275,
+      "pixel_x": 1066.8333333333333,
+      "pixel_y": 1213.6666666666667,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 69.87753421838015,
+      "y": 3.243633935111379,
+      "pixel_x": 1097.0,
+      "pixel_y": 1213.0,
+      "pixel_count": 8,
+      "outside_axis_range": false
+    },
+    {
+      "x": 75.4605330863435,
+      "y": 3.2328622517126964,
+      "pixel_x": 1128.0,
+      "pixel_y": 1213.7142857142858,
+      "pixel_count": 7,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 14b (main p.25), digitized (PPAC_POW_CO2_1173 77 K run 3 (pink down-triangles) x700-1140 y1190-1316)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig14b_run3_77K.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

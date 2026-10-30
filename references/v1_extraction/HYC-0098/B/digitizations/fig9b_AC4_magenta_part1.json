@@ -1,0 +1,177 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T00:21:50+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0098",
+  "figure": "Fig. 9b",
+  "series_name": "AC4 (magenta diamonds), region 1 of 2",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0098/in/pages/main-12.png",
+    "sha256": "a755b8b42561a087b4260c9830d56c7068cde105e9b41b6337460aa809717227",
+    "width_px": 1275,
+    "height_px": 1650
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 442.59,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 909.0,
+        "value": 9.0
+      },
+      "scale": "linear",
+      "label": "Pressure (MPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1088.62,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 742.73,
+        "value": 7.0
+      },
+      "scale": "linear",
+      "label": "Hydrogen uptake (wt.%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 649.39,
+        "stated": 4.0,
+        "predicted": 3.9904804785489163,
+        "relative_error": 0.0023798803627709253
+      },
+      {
+        "axis": "y",
+        "pixel": 940.59,
+        "stated": 3.0,
+        "predicted": 2.9957790048859447,
+        "relative_error": 0.0014069983713517569
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff00ff",
+    "color_rgb": [
+      255,
+      0,
+      255
+    ],
+    "tolerance": 70.0,
+    "matched_pixels_in_image": 1521,
+    "matched_pixels_in_region": 273,
+    "region": [
+      444,
+      735,
+      668,
+      1087
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 13.835599999999996,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 2-px opening",
+    "marker_size_px": [
+      8,
+      2000
+    ],
+    "rejected_markers": [
+      {
+        "pixel_x": 589.5,
+        "pixel_y": 780.5,
+        "pixels": 4,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 452.5,
+        "pixel_y": 880.0,
+        "pixels": 6,
+        "reason": "too small"
+      }
+    ],
+    "n_points": 6,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.10868120323320743,
+      "y": 3.488925509394445,
+      "pixel_x": 448.22222222222223,
+      "pixel_y": 916.2222222222222,
+      "pixel_count": 27,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.27063841156592267,
+      "y": 4.27023709182777,
+      "pixel_x": 456.61538461538464,
+      "pixel_y": 877.6153846153846,
+      "pixel_count": 13,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.5839711841512836,
+      "y": 6.129376391338287,
+      "pixel_x": 576.5,
+      "pixel_y": 785.75,
+      "pixel_count": 24,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.757638129542677,
+      "y": 6.179247737720083,
+      "pixel_x": 585.5,
+      "pixel_y": 783.2857142857143,
+      "pixel_count": 14,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.9350064613459477,
+      "y": 6.380047256221762,
+      "pixel_x": 646.5151515151515,
+      "pixel_y": 773.3636363636364,
+      "pixel_count": 33,
+      "outside_axis_range": false
+    },
+    {
+      "x": 4.1469736926738285,
+      "y": 6.387406400878892,
+      "pixel_x": 657.5,
+      "pixel_y": 773.0,
+      "pixel_count": 12,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 4.0,
+      "expected": 6.5,
+      "got": 6.3823037222318035,
+      "difference": -0.11769627776819647,
+      "percent": 1.810711965664561,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-10-30T00:22:05+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 9b, digitized (AC4 (magenta diamonds), region 1 of 2)",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 4.0."
+  }
+}

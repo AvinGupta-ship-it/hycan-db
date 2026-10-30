@@ -1,0 +1,135 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T00:21:51+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0098",
+  "figure": "Fig. 9b",
+  "series_name": "AC4 (magenta diamonds), region 2 of 2",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0098/in/pages/main-12.png",
+    "sha256": "a755b8b42561a087b4260c9830d56c7068cde105e9b41b6337460aa809717227",
+    "width_px": 1275,
+    "height_px": 1650
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 442.59,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 909.0,
+        "value": 9.0
+      },
+      "scale": "linear",
+      "label": "Pressure (MPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1088.62,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 742.73,
+        "value": 7.0
+      },
+      "scale": "linear",
+      "label": "Hydrogen uptake (wt.%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 649.39,
+        "stated": 4.0,
+        "predicted": 3.9904804785489163,
+        "relative_error": 0.0023798803627709253
+      },
+      {
+        "axis": "y",
+        "pixel": 940.59,
+        "stated": 3.0,
+        "predicted": 2.9957790048859447,
+        "relative_error": 0.0014069983713517569
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff00ff",
+    "color_rgb": [
+      255,
+      0,
+      255
+    ],
+    "tolerance": 70.0,
+    "matched_pixels_in_image": 1521,
+    "matched_pixels_in_region": 194,
+    "region": [
+      680,
+      735,
+      862,
+      1087
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 13.835599999999996,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 2-px opening",
+    "marker_size_px": [
+      8,
+      2000
+    ],
+    "rejected_markers": [
+      {
+        "pixel_x": 716.5,
+        "pixel_y": 769.5,
+        "pixels": 4,
+        "reason": "too small"
+      }
+    ],
+    "n_points": 3,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 5.217919855920757,
+      "y": 6.407644048685999,
+      "pixel_x": 713.0,
+      "pixel_y": 772.0,
+      "pixel_count": 9,
+      "outside_axis_range": false
+    },
+    {
+      "x": 6.840097768058147,
+      "y": 6.41573910780884,
+      "pixel_x": 797.0666666666667,
+      "pixel_y": 771.6,
+      "pixel_count": 15,
+      "outside_axis_range": false
+    },
+    {
+      "x": 7.948350164018781,
+      "y": 6.402124690193151,
+      "pixel_x": 854.5,
+      "pixel_y": 772.2727272727273,
+      "pixel_count": 22,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 9b, digitized (AC4 (magenta diamonds), region 2 of 2)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig9b_AC4_magenta_part2.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

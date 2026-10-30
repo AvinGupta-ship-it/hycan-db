@@ -1,0 +1,164 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T00:17:52+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0098",
+  "figure": "Fig. 9a",
+  "series_name": "AC5",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0098/in/pages/main-12.png",
+    "sha256": "a755b8b42561a087b4260c9830d56c7068cde105e9b41b6337460aa809717227",
+    "width_px": 1275,
+    "height_px": 1650
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 435.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 870.32,
+        "value": 800.0
+      },
+      "scale": "linear",
+      "label": "Absolute Pressure (mmHg)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 574.75,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 211.0,
+        "value": 3.0
+      },
+      "scale": "linear",
+      "label": "Hydrogen uptake (wt. %, 77K)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 652.55,
+        "stated": 400.0,
+        "predicted": 399.3376569615012,
+        "relative_error": 0.0016558575962470456
+      },
+      {
+        "axis": "y",
+        "pixel": 392.6,
+        "stated": 1.5,
+        "predicted": 1.5022680412371132,
+        "relative_error": 0.001512027491408811
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#00ff00",
+    "color_rgb": [
+      0,
+      255,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 983,
+    "matched_pixels_in_region": 455,
+    "region": [
+      432,
+      200,
+      930,
+      580
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 14.55,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 6,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 40.08226721073414,
+      "y": 0.6636229749631812,
+      "pixel_x": 457.2857142857143,
+      "pixel_y": 494.2857142857143,
+      "pixel_count": 28,
+      "outside_axis_range": false
+    },
+    {
+      "x": 608.8854136322053,
+      "y": 2.3832760595647193,
+      "pixel_x": 766.4444444444445,
+      "pixel_y": 285.77777777777777,
+      "pixel_count": 27,
+      "outside_axis_range": false
+    },
+    {
+      "x": 646.9343636447265,
+      "y": 2.441237113402062,
+      "pixel_x": 787.125,
+      "pixel_y": 278.75,
+      "pixel_count": 24,
+      "outside_axis_range": false
+    },
+    {
+      "x": 683.9427809208407,
+      "y": 2.491298969072165,
+      "pixel_x": 807.24,
+      "pixel_y": 272.68,
+      "pixel_count": 25,
+      "outside_axis_range": false
+    },
+    {
+      "x": 721.5246155497292,
+      "y": 2.536540664375716,
+      "pixel_x": 827.6666666666666,
+      "pixel_y": 267.19444444444446,
+      "pixel_count": 36,
+      "outside_axis_range": false
+    },
+    {
+      "x": 753.0472379375371,
+      "y": 2.5769072164948454,
+      "pixel_x": 844.8,
+      "pixel_y": 262.3,
+      "pixel_count": 30,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 750.06,
+      "expected": 2.58,
+      "got": 2.5730818845026544,
+      "difference": -0.006918115497345667,
+      "percent": 0.26814401152502587,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-10-30T00:20:56+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 9a, digitized (AC5)",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 750.06."
+  }
+}

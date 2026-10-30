@@ -1,0 +1,2534 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T23:40:46+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0090",
+  "figure": "Fig 8a",
+  "series_name": "in situDIW",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0090/work/m_8a_insituDIW.png",
+    "sha256": "ab08c2e8f760f8319af5a8d74ba3f8045e4a82be84392b7cc482240abf33d336",
+    "width_px": 1266,
+    "height_px": 1669
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 293.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 589.0,
+        "value": 100.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 377.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 147.0,
+        "value": 7.0
+      },
+      "scale": "linear",
+      "label": "Total gravimetric uptake (wt.%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 471.0,
+        "stated": 60.0,
+        "predicted": 60.13513513513513,
+        "relative_error": 0.0022522522522521625
+      },
+      {
+        "axis": "y",
+        "pixel": 245.5,
+        "stated": 4.0,
+        "predicted": 4.002173913043478,
+        "relative_error": 0.0005434782608695343
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#8000ff",
+    "color_rgb": [
+      128,
+      0,
+      255
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 4268,
+    "matched_pixels_in_region": 2119,
+    "region": [
+      296,
+      134,
+      616,
+      375
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 9.200000000000001,
+    "longest_multimodal_run": 2,
+    "mode": "curve",
+    "aggregation": "median y of matched pixels within each x bin",
+    "marker_size_px": null,
+    "rejected_markers": [],
+    "n_points": 297,
+    "multimodal_bins": [
+      {
+        "bin_index": 296,
+        "pixel_x": 296.0,
+        "separation_px": 25.0,
+        "clusters": [
+          {
+            "pixel_y_min": 260.0,
+            "pixel_y_max": 260.0,
+            "pixels": 1
+          },
+          {
+            "pixel_y_min": 285.0,
+            "pixel_y_max": 290.0,
+            "pixels": 6
+          }
+        ]
+      },
+      {
+        "bin_index": 297,
+        "pixel_x": 297.0,
+        "separation_px": 16.0,
+        "clusters": [
+          {
+            "pixel_y_min": 258.0,
+            "pixel_y_max": 262.0,
+            "pixels": 5
+          },
+          {
+            "pixel_y_min": 278.0,
+            "pixel_y_max": 280.0,
+            "pixels": 3
+          }
+        ]
+      },
+      {
+        "bin_index": 299,
+        "pixel_x": 299.0,
+        "separation_px": 27.0,
+        "clusters": [
+          {
+            "pixel_y_min": 241.0,
+            "pixel_y_max": 241.0,
+            "pixels": 1
+          },
+          {
+            "pixel_y_min": 255.0,
+            "pixel_y_max": 266.0,
+            "pixels": 8
+          },
+          {
+            "pixel_y_min": 293.0,
+            "pixel_y_max": 295.0,
+            "pixels": 3
+          }
+        ]
+      }
+    ],
+    "points_outside_axis_range": 3
+  },
+  "series": [
+    {
+      "x": 1.0135135135135136,
+      "y": 2.739130434782609,
+      "pixel_x": 296.0,
+      "pixel_y": 287.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.3513513513513513,
+      "y": 3.515217391304348,
+      "pixel_x": 297.0,
+      "pixel_y": 261.5,
+      "pixel_count": 8,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.6891891891891893,
+      "y": 3.4543478260869565,
+      "pixel_x": 298.0,
+      "pixel_y": 263.5,
+      "pixel_count": 14,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.027027027027027,
+      "y": 3.4543478260869565,
+      "pixel_x": 299.0,
+      "pixel_y": 263.5,
+      "pixel_count": 12,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.364864864864865,
+      "y": 3.880434782608696,
+      "pixel_x": 300.0,
+      "pixel_y": 249.5,
+      "pixel_count": 12,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.7027027027027026,
+      "y": 3.9869565217391307,
+      "pixel_x": 301.0,
+      "pixel_y": 246.0,
+      "pixel_count": 15,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.040540540540541,
+      "y": 4.139130434782609,
+      "pixel_x": 302.0,
+      "pixel_y": 241.0,
+      "pixel_count": 9,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.3783783783783785,
+      "y": 4.291304347826087,
+      "pixel_x": 303.0,
+      "pixel_y": 236.0,
+      "pixel_count": 17,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.7162162162162162,
+      "y": 4.321739130434782,
+      "pixel_x": 304.0,
+      "pixel_y": 235.0,
+      "pixel_count": 17,
+      "outside_axis_range": false
+    },
+    {
+      "x": 4.054054054054054,
+      "y": 4.489130434782608,
+      "pixel_x": 305.0,
+      "pixel_y": 229.5,
+      "pixel_count": 12,
+      "outside_axis_range": false
+    },
+    {
+      "x": 4.391891891891892,
+      "y": 4.610869565217391,
+      "pixel_x": 306.0,
+      "pixel_y": 225.5,
+      "pixel_count": 14,
+      "outside_axis_range": false
+    },
+    {
+      "x": 4.72972972972973,
+      "y": 4.610869565217391,
+      "pixel_x": 307.0,
+      "pixel_y": 225.5,
+      "pixel_count": 14,
+      "outside_axis_range": false
+    },
+    {
+      "x": 5.0675675675675675,
+      "y": 4.6869565217391305,
+      "pixel_x": 308.0,
+      "pixel_y": 223.0,
+      "pixel_count": 13,
+      "outside_axis_range": false
+    },
+    {
+      "x": 5.405405405405405,
+      "y": 4.808695652173913,
+      "pixel_x": 309.0,
+      "pixel_y": 219.0,
+      "pixel_count": 11,
+      "outside_axis_range": false
+    },
+    {
+      "x": 5.743243243243244,
+      "y": 4.823913043478261,
+      "pixel_x": 310.0,
+      "pixel_y": 218.5,
+      "pixel_count": 12,
+      "outside_axis_range": false
+    },
+    {
+      "x": 6.081081081081082,
+      "y": 4.869565217391305,
+      "pixel_x": 311.0,
+      "pixel_y": 217.0,
+      "pixel_count": 13,
+      "outside_axis_range": false
+    },
+    {
+      "x": 6.418918918918918,
+      "y": 4.976086956521739,
+      "pixel_x": 312.0,
+      "pixel_y": 213.5,
+      "pixel_count": 10,
+      "outside_axis_range": false
+    },
+    {
+      "x": 6.756756756756757,
+      "y": 4.976086956521739,
+      "pixel_x": 313.0,
+      "pixel_y": 213.5,
+      "pixel_count": 10,
+      "outside_axis_range": false
+    },
+    {
+      "x": 7.094594594594595,
+      "y": 5.021739130434782,
+      "pixel_x": 314.0,
+      "pixel_y": 212.0,
+      "pixel_count": 11,
+      "outside_axis_range": false
+    },
+    {
+      "x": 7.4324324324324325,
+      "y": 5.0826086956521745,
+      "pixel_x": 315.0,
+      "pixel_y": 210.0,
+      "pixel_count": 9,
+      "outside_axis_range": false
+    },
+    {
+      "x": 7.77027027027027,
+      "y": 5.0978260869565215,
+      "pixel_x": 316.0,
+      "pixel_y": 209.5,
+      "pixel_count": 10,
+      "outside_axis_range": false
+    },
+    {
+      "x": 8.108108108108109,
+      "y": 5.143478260869565,
+      "pixel_x": 317.0,
+      "pixel_y": 208.0,
+      "pixel_count": 9,
+      "outside_axis_range": false
+    },
+    {
+      "x": 8.445945945945946,
+      "y": 5.173913043478261,
+      "pixel_x": 318.0,
+      "pixel_y": 207.0,
+      "pixel_count": 9,
+      "outside_axis_range": false
+    },
+    {
+      "x": 8.783783783783784,
+      "y": 5.2043478260869565,
+      "pixel_x": 319.0,
+      "pixel_y": 206.0,
+      "pixel_count": 9,
+      "outside_axis_range": false
+    },
+    {
+      "x": 9.121621621621621,
+      "y": 5.219565217391304,
+      "pixel_x": 320.0,
+      "pixel_y": 205.5,
+      "pixel_count": 8,
+      "outside_axis_range": false
+    },
+    {
+      "x": 9.45945945945946,
+      "y": 5.265217391304348,
+      "pixel_x": 321.0,
+      "pixel_y": 204.0,
+      "pixel_count": 9,
+      "outside_axis_range": false
+    },
+    {
+      "x": 9.797297297297296,
+      "y": 5.280434782608696,
+      "pixel_x": 322.0,
+      "pixel_y": 203.5,
+      "pixel_count": 8,
+      "outside_axis_range": false
+    },
+    {
+      "x": 10.135135135135135,
+      "y": 5.310869565217391,
+      "pixel_x": 323.0,
+      "pixel_y": 202.5,
+      "pixel_count": 8,
+      "outside_axis_range": false
+    },
+    {
+      "x": 10.472972972972974,
+      "y": 5.341304347826087,
+      "pixel_x": 324.0,
+      "pixel_y": 201.5,
+      "pixel_count": 8,
+      "outside_axis_range": false
+    },
+    {
+      "x": 10.81081081081081,
+      "y": 5.341304347826087,
+      "pixel_x": 325.0,
+      "pixel_y": 201.5,
+      "pixel_count": 8,
+      "outside_axis_range": false
+    },
+    {
+      "x": 11.14864864864865,
+      "y": 5.371739130434783,
+      "pixel_x": 326.0,
+      "pixel_y": 200.5,
+      "pixel_count": 8,
+      "outside_axis_range": false
+    },
+    {
+      "x": 11.486486486486488,
+      "y": 5.386956521739131,
+      "pixel_x": 327.0,
+      "pixel_y": 200.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 11.824324324324325,
+      "y": 5.4021739130434785,
+      "pixel_x": 328.0,
+      "pixel_y": 199.5,
+      "pixel_count": 8,
+      "outside_axis_range": false
+    },
+    {
+      "x": 12.162162162162163,
+      "y": 5.4173913043478255,
+      "pixel_x": 329.0,
+      "pixel_y": 199.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 12.5,
+      "y": 5.432608695652173,
+      "pixel_x": 330.0,
+      "pixel_y": 198.5,
+      "pixel_count": 8,
+      "outside_axis_range": false
+    },
+    {
+      "x": 12.837837837837837,
+      "y": 5.447826086956521,
+      "pixel_x": 331.0,
+      "pixel_y": 198.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 13.175675675675674,
+      "y": 5.46304347826087,
+      "pixel_x": 332.0,
+      "pixel_y": 197.5,
+      "pixel_count": 8,
+      "outside_axis_range": false
+    },
+    {
+      "x": 13.513513513513514,
+      "y": 5.478260869565218,
+      "pixel_x": 333.0,
+      "pixel_y": 197.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 13.85135135135135,
+      "y": 5.478260869565218,
+      "pixel_x": 334.0,
+      "pixel_y": 197.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 14.18918918918919,
+      "y": 5.508695652173913,
+      "pixel_x": 335.0,
+      "pixel_y": 196.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 14.527027027027026,
+      "y": 5.508695652173913,
+      "pixel_x": 336.0,
+      "pixel_y": 196.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 14.864864864864865,
+      "y": 5.523913043478261,
+      "pixel_x": 337.0,
+      "pixel_y": 195.5,
+      "pixel_count": 8,
+      "outside_axis_range": false
+    },
+    {
+      "x": 15.202702702702704,
+      "y": 5.539130434782608,
+      "pixel_x": 338.0,
+      "pixel_y": 195.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 15.54054054054054,
+      "y": 5.539130434782608,
+      "pixel_x": 339.0,
+      "pixel_y": 195.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 15.878378378378377,
+      "y": 5.554347826086956,
+      "pixel_x": 340.0,
+      "pixel_y": 194.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 16.216216216216218,
+      "y": 5.569565217391304,
+      "pixel_x": 341.0,
+      "pixel_y": 194.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 16.554054054054053,
+      "y": 5.569565217391304,
+      "pixel_x": 342.0,
+      "pixel_y": 194.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 16.89189189189189,
+      "y": 5.569565217391304,
+      "pixel_x": 343.0,
+      "pixel_y": 194.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 17.22972972972973,
+      "y": 5.6000000000000005,
+      "pixel_x": 344.0,
+      "pixel_y": 193.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 17.56756756756757,
+      "y": 5.6000000000000005,
+      "pixel_x": 345.0,
+      "pixel_y": 193.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 17.905405405405407,
+      "y": 5.6000000000000005,
+      "pixel_x": 346.0,
+      "pixel_y": 193.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 18.243243243243242,
+      "y": 5.6000000000000005,
+      "pixel_x": 347.0,
+      "pixel_y": 193.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 18.58108108108108,
+      "y": 5.630434782608695,
+      "pixel_x": 348.0,
+      "pixel_y": 192.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 18.91891891891892,
+      "y": 5.630434782608695,
+      "pixel_x": 349.0,
+      "pixel_y": 192.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 19.256756756756758,
+      "y": 5.630434782608695,
+      "pixel_x": 350.0,
+      "pixel_y": 192.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 19.594594594594593,
+      "y": 5.630434782608695,
+      "pixel_x": 351.0,
+      "pixel_y": 192.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 19.93243243243243,
+      "y": 5.660869565217391,
+      "pixel_x": 352.0,
+      "pixel_y": 191.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 20.27027027027027,
+      "y": 5.660869565217391,
+      "pixel_x": 353.0,
+      "pixel_y": 191.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 20.60810810810811,
+      "y": 5.660869565217391,
+      "pixel_x": 354.0,
+      "pixel_y": 191.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 20.945945945945947,
+      "y": 5.660869565217391,
+      "pixel_x": 355.0,
+      "pixel_y": 191.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 21.283783783783782,
+      "y": 5.660869565217391,
+      "pixel_x": 356.0,
+      "pixel_y": 191.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 21.62162162162162,
+      "y": 5.676086956521739,
+      "pixel_x": 357.0,
+      "pixel_y": 190.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 21.95945945945946,
+      "y": 5.691304347826087,
+      "pixel_x": 358.0,
+      "pixel_y": 190.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 22.2972972972973,
+      "y": 5.691304347826087,
+      "pixel_x": 359.0,
+      "pixel_y": 190.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 22.635135135135133,
+      "y": 5.691304347826087,
+      "pixel_x": 360.0,
+      "pixel_y": 190.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 22.972972972972975,
+      "y": 5.691304347826087,
+      "pixel_x": 361.0,
+      "pixel_y": 190.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 23.31081081081081,
+      "y": 5.691304347826087,
+      "pixel_x": 362.0,
+      "pixel_y": 190.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 23.64864864864865,
+      "y": 5.706521739130435,
+      "pixel_x": 363.0,
+      "pixel_y": 189.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 23.986486486486484,
+      "y": 5.721739130434783,
+      "pixel_x": 364.0,
+      "pixel_y": 189.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 24.324324324324326,
+      "y": 5.721739130434783,
+      "pixel_x": 365.0,
+      "pixel_y": 189.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 24.66216216216216,
+      "y": 5.721739130434783,
+      "pixel_x": 366.0,
+      "pixel_y": 189.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 25.0,
+      "y": 5.721739130434783,
+      "pixel_x": 367.0,
+      "pixel_y": 189.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 25.33783783783784,
+      "y": 5.721739130434783,
+      "pixel_x": 368.0,
+      "pixel_y": 189.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 25.675675675675674,
+      "y": 5.736956521739131,
+      "pixel_x": 369.0,
+      "pixel_y": 188.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 26.013513513513516,
+      "y": 5.736956521739131,
+      "pixel_x": 370.0,
+      "pixel_y": 188.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 26.351351351351347,
+      "y": 5.752173913043478,
+      "pixel_x": 371.0,
+      "pixel_y": 188.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 26.68918918918919,
+      "y": 5.736956521739131,
+      "pixel_x": 372.0,
+      "pixel_y": 188.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 27.027027027027028,
+      "y": 5.752173913043478,
+      "pixel_x": 373.0,
+      "pixel_y": 188.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 27.364864864864863,
+      "y": 5.752173913043478,
+      "pixel_x": 374.0,
+      "pixel_y": 188.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 27.7027027027027,
+      "y": 5.752173913043478,
+      "pixel_x": 375.0,
+      "pixel_y": 188.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 28.040540540540544,
+      "y": 5.752173913043478,
+      "pixel_x": 376.0,
+      "pixel_y": 188.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 28.37837837837838,
+      "y": 5.752173913043478,
+      "pixel_x": 377.0,
+      "pixel_y": 188.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 28.716216216216218,
+      "y": 5.767391304347826,
+      "pixel_x": 378.0,
+      "pixel_y": 187.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 29.054054054054053,
+      "y": 5.767391304347826,
+      "pixel_x": 379.0,
+      "pixel_y": 187.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 29.39189189189189,
+      "y": 5.782608695652174,
+      "pixel_x": 380.0,
+      "pixel_y": 187.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 29.72972972972973,
+      "y": 5.767391304347826,
+      "pixel_x": 381.0,
+      "pixel_y": 187.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 30.067567567567565,
+      "y": 5.782608695652174,
+      "pixel_x": 382.0,
+      "pixel_y": 187.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 30.405405405405407,
+      "y": 5.782608695652174,
+      "pixel_x": 383.0,
+      "pixel_y": 187.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 30.743243243243246,
+      "y": 5.782608695652174,
+      "pixel_x": 384.0,
+      "pixel_y": 187.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 31.08108108108108,
+      "y": 5.782608695652174,
+      "pixel_x": 385.0,
+      "pixel_y": 187.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 31.41891891891892,
+      "y": 5.782608695652174,
+      "pixel_x": 386.0,
+      "pixel_y": 187.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 31.756756756756754,
+      "y": 5.797826086956522,
+      "pixel_x": 387.0,
+      "pixel_y": 186.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 32.0945945945946,
+      "y": 5.797826086956522,
+      "pixel_x": 388.0,
+      "pixel_y": 186.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 32.432432432432435,
+      "y": 5.782608695652174,
+      "pixel_x": 389.0,
+      "pixel_y": 187.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 32.77027027027027,
+      "y": 5.797826086956522,
+      "pixel_x": 390.0,
+      "pixel_y": 186.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 33.108108108108105,
+      "y": 5.797826086956522,
+      "pixel_x": 391.0,
+      "pixel_y": 186.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 33.44594594594595,
+      "y": 5.8130434782608695,
+      "pixel_x": 392.0,
+      "pixel_y": 186.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 33.78378378378378,
+      "y": 5.797826086956522,
+      "pixel_x": 393.0,
+      "pixel_y": 186.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 34.12162162162162,
+      "y": 5.8130434782608695,
+      "pixel_x": 394.0,
+      "pixel_y": 186.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 34.45945945945946,
+      "y": 5.8130434782608695,
+      "pixel_x": 395.0,
+      "pixel_y": 186.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 34.7972972972973,
+      "y": 5.8130434782608695,
+      "pixel_x": 396.0,
+      "pixel_y": 186.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 35.13513513513514,
+      "y": 5.8130434782608695,
+      "pixel_x": 397.0,
+      "pixel_y": 186.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 35.47297297297297,
+      "y": 5.8130434782608695,
+      "pixel_x": 398.0,
+      "pixel_y": 186.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 35.810810810810814,
+      "y": 5.8130434782608695,
+      "pixel_x": 399.0,
+      "pixel_y": 186.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 36.14864864864865,
+      "y": 5.828260869565217,
+      "pixel_x": 400.0,
+      "pixel_y": 185.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 36.486486486486484,
+      "y": 5.8130434782608695,
+      "pixel_x": 401.0,
+      "pixel_y": 186.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 36.82432432432432,
+      "y": 5.828260869565217,
+      "pixel_x": 402.0,
+      "pixel_y": 185.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 37.16216216216216,
+      "y": 5.828260869565217,
+      "pixel_x": 403.0,
+      "pixel_y": 185.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 37.5,
+      "y": 5.843478260869565,
+      "pixel_x": 404.0,
+      "pixel_y": 185.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 37.83783783783784,
+      "y": 5.828260869565217,
+      "pixel_x": 405.0,
+      "pixel_y": 185.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 38.17567567567568,
+      "y": 5.828260869565217,
+      "pixel_x": 406.0,
+      "pixel_y": 185.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 38.513513513513516,
+      "y": 5.843478260869565,
+      "pixel_x": 407.0,
+      "pixel_y": 185.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 38.85135135135135,
+      "y": 5.828260869565217,
+      "pixel_x": 408.0,
+      "pixel_y": 185.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 39.189189189189186,
+      "y": 5.843478260869565,
+      "pixel_x": 409.0,
+      "pixel_y": 185.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 39.52702702702703,
+      "y": 5.843478260869565,
+      "pixel_x": 410.0,
+      "pixel_y": 185.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 39.86486486486486,
+      "y": 5.843478260869565,
+      "pixel_x": 411.0,
+      "pixel_y": 185.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 40.2027027027027,
+      "y": 5.843478260869565,
+      "pixel_x": 412.0,
+      "pixel_y": 185.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 40.54054054054054,
+      "y": 5.843478260869565,
+      "pixel_x": 413.0,
+      "pixel_y": 185.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 40.87837837837838,
+      "y": 5.843478260869565,
+      "pixel_x": 414.0,
+      "pixel_y": 185.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 41.21621621621622,
+      "y": 5.843478260869565,
+      "pixel_x": 415.0,
+      "pixel_y": 185.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 41.55405405405405,
+      "y": 5.843478260869565,
+      "pixel_x": 416.0,
+      "pixel_y": 185.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 41.891891891891895,
+      "y": 5.858695652173913,
+      "pixel_x": 417.0,
+      "pixel_y": 184.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 42.22972972972973,
+      "y": 5.858695652173913,
+      "pixel_x": 418.0,
+      "pixel_y": 184.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 42.567567567567565,
+      "y": 5.843478260869565,
+      "pixel_x": 419.0,
+      "pixel_y": 185.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 42.9054054054054,
+      "y": 5.858695652173913,
+      "pixel_x": 420.0,
+      "pixel_y": 184.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 43.24324324324324,
+      "y": 5.858695652173913,
+      "pixel_x": 421.0,
+      "pixel_y": 184.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 43.58108108108108,
+      "y": 5.843478260869565,
+      "pixel_x": 422.0,
+      "pixel_y": 185.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 43.91891891891892,
+      "y": 5.858695652173913,
+      "pixel_x": 423.0,
+      "pixel_y": 184.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 44.25675675675676,
+      "y": 5.858695652173913,
+      "pixel_x": 424.0,
+      "pixel_y": 184.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 44.5945945945946,
+      "y": 5.873913043478261,
+      "pixel_x": 425.0,
+      "pixel_y": 184.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 44.932432432432435,
+      "y": 5.858695652173913,
+      "pixel_x": 426.0,
+      "pixel_y": 184.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 45.27027027027027,
+      "y": 5.873913043478261,
+      "pixel_x": 427.0,
+      "pixel_y": 184.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 45.608108108108105,
+      "y": 5.873913043478261,
+      "pixel_x": 428.0,
+      "pixel_y": 184.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 45.94594594594595,
+      "y": 5.858695652173913,
+      "pixel_x": 429.0,
+      "pixel_y": 184.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 46.28378378378378,
+      "y": 5.873913043478261,
+      "pixel_x": 430.0,
+      "pixel_y": 184.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 46.62162162162162,
+      "y": 5.873913043478261,
+      "pixel_x": 431.0,
+      "pixel_y": 184.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 46.95945945945946,
+      "y": 5.873913043478261,
+      "pixel_x": 432.0,
+      "pixel_y": 184.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 47.2972972972973,
+      "y": 5.873913043478261,
+      "pixel_x": 433.0,
+      "pixel_y": 184.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 47.63513513513514,
+      "y": 5.873913043478261,
+      "pixel_x": 434.0,
+      "pixel_y": 184.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 47.97297297297297,
+      "y": 5.873913043478261,
+      "pixel_x": 435.0,
+      "pixel_y": 184.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 48.310810810810814,
+      "y": 5.873913043478261,
+      "pixel_x": 436.0,
+      "pixel_y": 184.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 48.64864864864865,
+      "y": 5.873913043478261,
+      "pixel_x": 437.0,
+      "pixel_y": 184.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 48.986486486486484,
+      "y": 5.873913043478261,
+      "pixel_x": 438.0,
+      "pixel_y": 184.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 49.32432432432432,
+      "y": 5.873913043478261,
+      "pixel_x": 439.0,
+      "pixel_y": 184.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 49.66216216216216,
+      "y": 5.873913043478261,
+      "pixel_x": 440.0,
+      "pixel_y": 184.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 50.0,
+      "y": 5.889130434782609,
+      "pixel_x": 441.0,
+      "pixel_y": 183.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 50.33783783783784,
+      "y": 5.873913043478261,
+      "pixel_x": 442.0,
+      "pixel_y": 184.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 50.67567567567568,
+      "y": 5.873913043478261,
+      "pixel_x": 443.0,
+      "pixel_y": 184.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 51.01351351351351,
+      "y": 5.889130434782609,
+      "pixel_x": 444.0,
+      "pixel_y": 183.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 51.35135135135135,
+      "y": 5.889130434782609,
+      "pixel_x": 445.0,
+      "pixel_y": 183.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 51.689189189189186,
+      "y": 5.873913043478261,
+      "pixel_x": 446.0,
+      "pixel_y": 184.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 52.02702702702703,
+      "y": 5.889130434782609,
+      "pixel_x": 447.0,
+      "pixel_y": 183.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 52.36486486486487,
+      "y": 5.889130434782609,
+      "pixel_x": 448.0,
+      "pixel_y": 183.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 52.702702702702695,
+      "y": 5.904347826086957,
+      "pixel_x": 449.0,
+      "pixel_y": 183.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 53.04054054054054,
+      "y": 5.889130434782609,
+      "pixel_x": 450.0,
+      "pixel_y": 183.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 53.37837837837838,
+      "y": 5.904347826086957,
+      "pixel_x": 451.0,
+      "pixel_y": 183.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 53.71621621621622,
+      "y": 5.904347826086957,
+      "pixel_x": 452.0,
+      "pixel_y": 183.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 54.054054054054056,
+      "y": 5.889130434782609,
+      "pixel_x": 453.0,
+      "pixel_y": 183.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 54.391891891891895,
+      "y": 5.904347826086957,
+      "pixel_x": 454.0,
+      "pixel_y": 183.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 54.729729729729726,
+      "y": 5.904347826086957,
+      "pixel_x": 455.0,
+      "pixel_y": 183.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 55.067567567567565,
+      "y": 5.889130434782609,
+      "pixel_x": 456.0,
+      "pixel_y": 183.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 55.4054054054054,
+      "y": 5.904347826086957,
+      "pixel_x": 457.0,
+      "pixel_y": 183.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 55.74324324324324,
+      "y": 5.904347826086957,
+      "pixel_x": 458.0,
+      "pixel_y": 183.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 56.08108108108109,
+      "y": 5.904347826086957,
+      "pixel_x": 459.0,
+      "pixel_y": 183.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 56.41891891891891,
+      "y": 5.904347826086957,
+      "pixel_x": 460.0,
+      "pixel_y": 183.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 56.75675675675676,
+      "y": 5.904347826086957,
+      "pixel_x": 461.0,
+      "pixel_y": 183.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 57.0945945945946,
+      "y": 5.904347826086957,
+      "pixel_x": 462.0,
+      "pixel_y": 183.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 57.432432432432435,
+      "y": 5.904347826086957,
+      "pixel_x": 463.0,
+      "pixel_y": 183.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 57.770270270270274,
+      "y": 5.904347826086957,
+      "pixel_x": 464.0,
+      "pixel_y": 183.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 58.108108108108105,
+      "y": 5.904347826086957,
+      "pixel_x": 465.0,
+      "pixel_y": 183.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 58.445945945945944,
+      "y": 5.904347826086957,
+      "pixel_x": 466.0,
+      "pixel_y": 183.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 58.78378378378378,
+      "y": 5.904347826086957,
+      "pixel_x": 467.0,
+      "pixel_y": 183.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 59.12162162162162,
+      "y": 5.904347826086957,
+      "pixel_x": 468.0,
+      "pixel_y": 183.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 59.45945945945946,
+      "y": 5.904347826086957,
+      "pixel_x": 469.0,
+      "pixel_y": 183.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 59.797297297297305,
+      "y": 5.904347826086957,
+      "pixel_x": 470.0,
+      "pixel_y": 183.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 60.13513513513513,
+      "y": 5.904347826086957,
+      "pixel_x": 471.0,
+      "pixel_y": 183.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 60.47297297297297,
+      "y": 5.904347826086957,
+      "pixel_x": 472.0,
+      "pixel_y": 183.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 60.810810810810814,
+      "y": 5.904347826086957,
+      "pixel_x": 473.0,
+      "pixel_y": 183.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 61.14864864864865,
+      "y": 5.9195652173913045,
+      "pixel_x": 474.0,
+      "pixel_y": 182.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 61.48648648648649,
+      "y": 5.904347826086957,
+      "pixel_x": 475.0,
+      "pixel_y": 183.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 61.82432432432432,
+      "y": 5.904347826086957,
+      "pixel_x": 476.0,
+      "pixel_y": 183.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 62.16216216216216,
+      "y": 5.9195652173913045,
+      "pixel_x": 477.0,
+      "pixel_y": 182.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 62.5,
+      "y": 5.904347826086957,
+      "pixel_x": 478.0,
+      "pixel_y": 183.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 62.83783783783784,
+      "y": 5.904347826086957,
+      "pixel_x": 479.0,
+      "pixel_y": 183.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 63.17567567567568,
+      "y": 5.9195652173913045,
+      "pixel_x": 480.0,
+      "pixel_y": 182.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 63.51351351351351,
+      "y": 5.9195652173913045,
+      "pixel_x": 481.0,
+      "pixel_y": 182.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 63.85135135135135,
+      "y": 5.904347826086957,
+      "pixel_x": 482.0,
+      "pixel_y": 183.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 64.1891891891892,
+      "y": 5.9195652173913045,
+      "pixel_x": 483.0,
+      "pixel_y": 182.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 64.52702702702703,
+      "y": 5.9195652173913045,
+      "pixel_x": 484.0,
+      "pixel_y": 182.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 64.86486486486487,
+      "y": 5.9195652173913045,
+      "pixel_x": 485.0,
+      "pixel_y": 182.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 65.2027027027027,
+      "y": 5.9195652173913045,
+      "pixel_x": 486.0,
+      "pixel_y": 182.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 65.54054054054053,
+      "y": 5.9195652173913045,
+      "pixel_x": 487.0,
+      "pixel_y": 182.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 65.87837837837837,
+      "y": 5.9195652173913045,
+      "pixel_x": 488.0,
+      "pixel_y": 182.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 66.21621621621621,
+      "y": 5.9195652173913045,
+      "pixel_x": 489.0,
+      "pixel_y": 182.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 66.55405405405406,
+      "y": 5.934782608695652,
+      "pixel_x": 490.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 66.8918918918919,
+      "y": 5.934782608695652,
+      "pixel_x": 491.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 67.22972972972973,
+      "y": 5.9195652173913045,
+      "pixel_x": 492.0,
+      "pixel_y": 182.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 67.56756756756756,
+      "y": 5.934782608695652,
+      "pixel_x": 493.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 67.9054054054054,
+      "y": 5.934782608695652,
+      "pixel_x": 494.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 68.24324324324324,
+      "y": 5.9195652173913045,
+      "pixel_x": 495.0,
+      "pixel_y": 182.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 68.58108108108108,
+      "y": 5.934782608695652,
+      "pixel_x": 496.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 68.91891891891892,
+      "y": 5.934782608695652,
+      "pixel_x": 497.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 69.25675675675676,
+      "y": 5.9195652173913045,
+      "pixel_x": 498.0,
+      "pixel_y": 182.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 69.5945945945946,
+      "y": 5.934782608695652,
+      "pixel_x": 499.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 69.93243243243244,
+      "y": 5.934782608695652,
+      "pixel_x": 500.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 70.27027027027027,
+      "y": 5.934782608695652,
+      "pixel_x": 501.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 70.6081081081081,
+      "y": 5.934782608695652,
+      "pixel_x": 502.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 70.94594594594594,
+      "y": 5.934782608695652,
+      "pixel_x": 503.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 71.28378378378379,
+      "y": 5.934782608695652,
+      "pixel_x": 504.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 71.62162162162163,
+      "y": 5.934782608695652,
+      "pixel_x": 505.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 71.95945945945947,
+      "y": 5.934782608695652,
+      "pixel_x": 506.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 72.2972972972973,
+      "y": 5.934782608695652,
+      "pixel_x": 507.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 72.63513513513513,
+      "y": 5.934782608695652,
+      "pixel_x": 508.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 72.97297297297297,
+      "y": 5.934782608695652,
+      "pixel_x": 509.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 73.3108108108108,
+      "y": 5.934782608695652,
+      "pixel_x": 510.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 73.64864864864865,
+      "y": 5.934782608695652,
+      "pixel_x": 511.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 73.98648648648648,
+      "y": 5.934782608695652,
+      "pixel_x": 512.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 74.32432432432432,
+      "y": 5.934782608695652,
+      "pixel_x": 513.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 74.66216216216216,
+      "y": 5.934782608695652,
+      "pixel_x": 514.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 75.0,
+      "y": 5.934782608695652,
+      "pixel_x": 515.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 75.33783783783784,
+      "y": 5.934782608695652,
+      "pixel_x": 516.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 75.67567567567568,
+      "y": 5.934782608695652,
+      "pixel_x": 517.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 76.01351351351352,
+      "y": 5.934782608695652,
+      "pixel_x": 518.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 76.35135135135135,
+      "y": 5.934782608695652,
+      "pixel_x": 519.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 76.6891891891892,
+      "y": 5.934782608695652,
+      "pixel_x": 520.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 77.02702702702703,
+      "y": 5.934782608695652,
+      "pixel_x": 521.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 77.36486486486487,
+      "y": 5.934782608695652,
+      "pixel_x": 522.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 77.7027027027027,
+      "y": 5.934782608695652,
+      "pixel_x": 523.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 78.04054054054053,
+      "y": 5.934782608695652,
+      "pixel_x": 524.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 78.37837837837837,
+      "y": 5.95,
+      "pixel_x": 525.0,
+      "pixel_y": 181.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 78.71621621621621,
+      "y": 5.934782608695652,
+      "pixel_x": 526.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 79.05405405405406,
+      "y": 5.934782608695652,
+      "pixel_x": 527.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 79.3918918918919,
+      "y": 5.95,
+      "pixel_x": 528.0,
+      "pixel_y": 181.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 79.72972972972973,
+      "y": 5.934782608695652,
+      "pixel_x": 529.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 80.06756756756756,
+      "y": 5.934782608695652,
+      "pixel_x": 530.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 80.4054054054054,
+      "y": 5.95,
+      "pixel_x": 531.0,
+      "pixel_y": 181.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 80.74324324324324,
+      "y": 5.934782608695652,
+      "pixel_x": 532.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 81.08108108108108,
+      "y": 5.934782608695652,
+      "pixel_x": 533.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 81.41891891891892,
+      "y": 5.95,
+      "pixel_x": 534.0,
+      "pixel_y": 181.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 81.75675675675676,
+      "y": 5.934782608695652,
+      "pixel_x": 535.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 82.0945945945946,
+      "y": 5.95,
+      "pixel_x": 536.0,
+      "pixel_y": 181.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 82.43243243243244,
+      "y": 5.95,
+      "pixel_x": 537.0,
+      "pixel_y": 181.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 82.77027027027027,
+      "y": 5.934782608695652,
+      "pixel_x": 538.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 83.1081081081081,
+      "y": 5.95,
+      "pixel_x": 539.0,
+      "pixel_y": 181.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 83.44594594594594,
+      "y": 5.95,
+      "pixel_x": 540.0,
+      "pixel_y": 181.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 83.78378378378379,
+      "y": 5.934782608695652,
+      "pixel_x": 541.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 84.12162162162163,
+      "y": 5.95,
+      "pixel_x": 542.0,
+      "pixel_y": 181.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 84.45945945945947,
+      "y": 5.95,
+      "pixel_x": 543.0,
+      "pixel_y": 181.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 84.7972972972973,
+      "y": 5.934782608695652,
+      "pixel_x": 544.0,
+      "pixel_y": 182.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 85.13513513513513,
+      "y": 5.95,
+      "pixel_x": 545.0,
+      "pixel_y": 181.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 85.47297297297297,
+      "y": 5.95,
+      "pixel_x": 546.0,
+      "pixel_y": 181.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 85.8108108108108,
+      "y": 5.965217391304348,
+      "pixel_x": 547.0,
+      "pixel_y": 181.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 86.14864864864865,
+      "y": 5.95,
+      "pixel_x": 548.0,
+      "pixel_y": 181.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 86.48648648648648,
+      "y": 5.95,
+      "pixel_x": 549.0,
+      "pixel_y": 181.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 86.82432432432432,
+      "y": 5.965217391304348,
+      "pixel_x": 550.0,
+      "pixel_y": 181.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 87.16216216216216,
+      "y": 5.95,
+      "pixel_x": 551.0,
+      "pixel_y": 181.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 87.5,
+      "y": 5.95,
+      "pixel_x": 552.0,
+      "pixel_y": 181.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 87.83783783783784,
+      "y": 5.965217391304348,
+      "pixel_x": 553.0,
+      "pixel_y": 181.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 88.17567567567568,
+      "y": 5.95,
+      "pixel_x": 554.0,
+      "pixel_y": 181.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 88.51351351351352,
+      "y": 5.95,
+      "pixel_x": 555.0,
+      "pixel_y": 181.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 88.85135135135135,
+      "y": 5.965217391304348,
+      "pixel_x": 556.0,
+      "pixel_y": 181.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 89.1891891891892,
+      "y": 5.95,
+      "pixel_x": 557.0,
+      "pixel_y": 181.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 89.52702702702703,
+      "y": 5.95,
+      "pixel_x": 558.0,
+      "pixel_y": 181.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 89.86486486486487,
+      "y": 5.965217391304348,
+      "pixel_x": 559.0,
+      "pixel_y": 181.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 90.2027027027027,
+      "y": 5.95,
+      "pixel_x": 560.0,
+      "pixel_y": 181.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 90.54054054054053,
+      "y": 5.95,
+      "pixel_x": 561.0,
+      "pixel_y": 181.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 90.87837837837837,
+      "y": 5.965217391304348,
+      "pixel_x": 562.0,
+      "pixel_y": 181.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 91.21621621621621,
+      "y": 5.965217391304348,
+      "pixel_x": 563.0,
+      "pixel_y": 181.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 91.55405405405406,
+      "y": 5.95,
+      "pixel_x": 564.0,
+      "pixel_y": 181.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 91.8918918918919,
+      "y": 5.965217391304348,
+      "pixel_x": 565.0,
+      "pixel_y": 181.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 92.22972972972973,
+      "y": 5.965217391304348,
+      "pixel_x": 566.0,
+      "pixel_y": 181.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 92.56756756756756,
+      "y": 5.95,
+      "pixel_x": 567.0,
+      "pixel_y": 181.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 92.9054054054054,
+      "y": 5.965217391304348,
+      "pixel_x": 568.0,
+      "pixel_y": 181.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 93.24324324324324,
+      "y": 5.965217391304348,
+      "pixel_x": 569.0,
+      "pixel_y": 181.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 93.58108108108108,
+      "y": 5.95,
+      "pixel_x": 570.0,
+      "pixel_y": 181.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 93.91891891891892,
+      "y": 5.965217391304348,
+      "pixel_x": 571.0,
+      "pixel_y": 181.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 94.25675675675676,
+      "y": 5.965217391304348,
+      "pixel_x": 572.0,
+      "pixel_y": 181.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 94.5945945945946,
+      "y": 5.965217391304348,
+      "pixel_x": 573.0,
+      "pixel_y": 181.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 94.93243243243244,
+      "y": 5.965217391304348,
+      "pixel_x": 574.0,
+      "pixel_y": 181.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 95.27027027027027,
+      "y": 5.965217391304348,
+      "pixel_x": 575.0,
+      "pixel_y": 181.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 95.6081081081081,
+      "y": 5.965217391304348,
+      "pixel_x": 576.0,
+      "pixel_y": 181.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 95.94594594594594,
+      "y": 5.965217391304348,
+      "pixel_x": 577.0,
+      "pixel_y": 181.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 96.28378378378379,
+      "y": 5.965217391304348,
+      "pixel_x": 578.0,
+      "pixel_y": 181.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 96.62162162162163,
+      "y": 5.965217391304348,
+      "pixel_x": 579.0,
+      "pixel_y": 181.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 96.95945945945947,
+      "y": 5.965217391304348,
+      "pixel_x": 580.0,
+      "pixel_y": 181.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 97.2972972972973,
+      "y": 5.965217391304348,
+      "pixel_x": 581.0,
+      "pixel_y": 181.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 97.63513513513513,
+      "y": 5.965217391304348,
+      "pixel_x": 582.0,
+      "pixel_y": 181.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 97.97297297297297,
+      "y": 5.965217391304348,
+      "pixel_x": 583.0,
+      "pixel_y": 181.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 98.3108108108108,
+      "y": 5.965217391304348,
+      "pixel_x": 584.0,
+      "pixel_y": 181.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 98.64864864864865,
+      "y": 5.965217391304348,
+      "pixel_x": 585.0,
+      "pixel_y": 181.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 98.98648648648648,
+      "y": 5.965217391304348,
+      "pixel_x": 586.0,
+      "pixel_y": 181.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 99.32432432432432,
+      "y": 5.965217391304348,
+      "pixel_x": 587.0,
+      "pixel_y": 181.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 99.66216216216216,
+      "y": 5.965217391304348,
+      "pixel_x": 588.0,
+      "pixel_y": 181.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 100.0,
+      "y": 5.965217391304348,
+      "pixel_x": 589.0,
+      "pixel_y": 181.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 100.33783783783782,
+      "y": 5.965217391304348,
+      "pixel_x": 590.0,
+      "pixel_y": 181.0,
+      "pixel_count": 7,
+      "outside_axis_range": true
+    },
+    {
+      "x": 100.67567567567568,
+      "y": 5.965217391304348,
+      "pixel_x": 591.0,
+      "pixel_y": 181.0,
+      "pixel_count": 5,
+      "outside_axis_range": true
+    },
+    {
+      "x": 101.01351351351352,
+      "y": 5.965217391304348,
+      "pixel_x": 592.0,
+      "pixel_y": 181.0,
+      "pixel_count": 3,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig 8a, digitized (in situDIW)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig8a_insituDIW.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

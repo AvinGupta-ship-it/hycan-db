@@ -1,0 +1,160 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T00:06:43+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0095",
+  "figure": "Figure_20_left_panel_main-24.png",
+  "series_name": "Run 2, Desorb",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0095/work/img_f20L_run2_des.png",
+    "sha256": "4445bc96459ca3325c02442a1866fb6160fd04f5c1e29330f806a1c20291ea98",
+    "width_px": 1275,
+    "height_px": 1650
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 251.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 579.0,
+        "value": 90.0
+      },
+      "scale": "linear",
+      "label": "Pressure_bar",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1083.0,
+        "value": -1.0
+      },
+      "reference_2": {
+        "pixel": 830.0,
+        "value": 7.0
+      },
+      "scale": "linear",
+      "label": "Excess_Concentration_wt_pct_H",
+      "decades_spanned": 0.8450980400142568
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 397.0,
+        "stated": 40.0,
+        "predicted": 40.0609756097561,
+        "relative_error": 0.0015243902439024738
+      },
+      {
+        "axis": "y",
+        "pixel": 957.0,
+        "stated": 3.0,
+        "predicted": 2.984189723320158,
+        "relative_error": 0.005270092226613936
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff0000",
+    "color_rgb": [
+      255,
+      0,
+      0
+    ],
+    "tolerance": 30.0,
+    "matched_pixels_in_image": 145,
+    "matched_pixels_in_region": 145,
+    "region": [
+      220,
+      832,
+      578,
+      1082
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 10.120000000000001,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 7,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 31.362804878048784,
+      "y": 5.333596837944663,
+      "pixel_x": 365.3,
+      "pixel_y": 882.7,
+      "pixel_count": 20,
+      "outside_axis_range": false
+    },
+    {
+      "x": 36.29172015404364,
+      "y": 5.402329935510715,
+      "pixel_x": 383.2631578947368,
+      "pixel_y": 880.5263157894736,
+      "pixel_count": 19,
+      "outside_axis_range": false
+    },
+    {
+      "x": 41.57012195121951,
+      "y": 5.434782608695652,
+      "pixel_x": 402.5,
+      "pixel_y": 879.5,
+      "pixel_count": 20,
+      "outside_axis_range": false
+    },
+    {
+      "x": 46.920731707317074,
+      "y": 5.466403162055336,
+      "pixel_x": 422.0,
+      "pixel_y": 878.5,
+      "pixel_count": 22,
+      "outside_axis_range": false
+    },
+    {
+      "x": 52.545731707317074,
+      "y": 5.434782608695652,
+      "pixel_x": 442.5,
+      "pixel_y": 879.5,
+      "pixel_count": 20,
+      "outside_axis_range": false
+    },
+    {
+      "x": 58.30792682926829,
+      "y": 5.403162055335969,
+      "pixel_x": 463.5,
+      "pixel_y": 880.5,
+      "pixel_count": 20,
+      "outside_axis_range": false
+    },
+    {
+      "x": 64.13871951219512,
+      "y": 5.339920948616601,
+      "pixel_x": 484.75,
+      "pixel_y": 882.5,
+      "pixel_count": 24,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure_20_left_panel_main-24.png, digitized (Run 2, Desorb)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: f20_left_run2_des.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

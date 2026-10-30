@@ -77,13 +77,42 @@ flags text, not actions: a `~` in a quotation or comment, a Python variable
 named `nc`, a path built inside the agent's own work directory. Those reviews
 say so.
 
+Two gaps in the access audit (`scripts/v1_audit_access.py`, shared with the
+earlier stages and left unchanged) showed up during the run: it accepts any
+command that names one of the two tool scripts, so it does not see a script's
+source being read, and it accepts any path that begins with `/dev/null`, so it
+does not see a file such as `/dev/null.png` being written. `extraction_runs.py`
+therefore adds its own checks, applied to every agent's transcript including
+those already checked. These checks flag a call that reads or lists a file in
+the tools directory, whether by an absolute path, a relative path while the
+tools directory is the working directory, or Python code that opens or imports
+one. They also flag a call that names a device path other than `/dev/null`,
+`/dev/stdout` and `/dev/stderr`. Their flags are reviewed like the audit's (the
+reason ends "(supplementary check)"). A check report is cached against
+everything it depends on (the transcript, the agent's run directory, its
+launcher, the prompts and the checking code) and recomputed when any of them
+changes. Reviews are applied afresh on every run.
+
 Under Amendment 1, item 26, an output is discarded only if its agent opened
 another agent's output for the same paper, a v0.1 row, a pilot output or the
-repository. An agent that went outside the launcher's list without reaching
-any of those keeps its output, and the breach is recorded in its review:
+repository. No agent has done so: no reviewed flag found such an access, and
+every report also lists each tool call that names the repository, the v0.1
+rows file, another agent's run directory or another stage's run folder
+(`cross_access`), which is empty for every agent. An agent that went outside the launcher's
+list without reaching any of those keeps its output, and the breach is
+recorded in its review:
 
 - listing the tools directory's `scripts/` folder, which holds only the two
-  scripts: extractor A on HYC-0068, HYC-0076 and HYC-0044 (all self-reported);
+  scripts: extractor A on HYC-0068, HYC-0076 and HYC-0044;
+- reading a tool script's source: extractor A on HYC-0094 (`sed` of
+  `digitize_figure.py`, piped to `head -0`, so nothing was printed) and
+  extractor A on HYC-0096 (`grep` of `validate_row_detail.py` for the message
+  its validator run had printed). Neither file holds paper data;
+- listing the folder that holds the run folders of every stage
+  (`/home/claude/work/runs`, reached as `ls ../../../../`): extractor A on
+  HYC-0095, which saw the five folder names (`elig`, `extract`, `screen`,
+  `setB`, `tiebreak`) and opened nothing inside them. This one was not
+  self-reported; the audit found it;
 - writing eight trial digitizations of the agent's own figure to a new folder
   `/work` at the container root, through a mistyped output path
   (`/../work/…` for its own work directory), and listing that folder:
@@ -98,17 +127,24 @@ any of those keeps its output, and the breach is recorded in its review:
   extractor B on HYC-0075, which used the same folder name (`trial/`) at the
   same time. Each agent read back and deleted only files it had named itself,
   no file names overlapped, and across every transcript no other agent opened
-  any of those folders, so no paper's rows contain another's digitizations;
-- writing scratch files to system folders (`/dev/null.png`, extractor B on
-  HYC-0048) and listing a system font folder (extractor B on HYC-0068).
+  any of those folders, so no paper's rows contain another's digitizations.
+  After the tools directory was made immutable (below), the same mistake by
+  extractor B on HYC-0093 (`trial/`) and extractor A on HYC-0098 (`dg/`) was
+  refused, and nothing was written;
+- writing a scratch image of the agent's own page to `/dev/null.png` and
+  removing it: extractor B on HYC-0048 and, hours later, extractor B on
+  HYC-0095. Neither read the file back as input. Listing a system font folder
+  (extractor B on HYC-0068 and on HYC-0099, which also loaded two DejaVu fonts
+  from it to label its own overlay images) and looking up programs on the
+  system path with `which` (reconciler C on HYC-0087) reach no paper data.
 
-All of these were reported by the agents themselves after their reply. The
-tools check above was added after the first, because the access audit sees a
-write made through a script's output argument only when the agent reports
-it. At 22:27 UTC on 29 Oct 2026 the tools directory was made immutable
-(`chattr +i`), so that a relative output path now fails at once instead of
-writing there; its files and MANIFEST are unchanged, and both scripts run as
-before.
+Except where stated, all of these were reported by the agents themselves
+after their reply. The tools check above was added after the first, because
+the access audit sees a write made through a script's output argument only
+when the agent reports it. At 22:27 UTC on 29 Oct 2026 the tools directory was
+made immutable (`chattr +i`), so that a relative output path now fails at once
+instead of writing there; its files and MANIFEST are unchanged, and both
+scripts run as before.
 
 ## Schema limits met in extraction
 
