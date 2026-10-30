@@ -1,0 +1,225 @@
+{
+ "tool": "digitize_figure.py",
+ "tool_version": "2.1",
+ "created_utc": "2026-10-30T00:10:06+00:00",
+ "status": "unchecked",
+ "paper_id": "HYC-0080",
+ "figure": "Fig. S3 (SI p.3)",
+ "series_name": "M-C-KOH-4-800 Last H2 isotherm (Fig. S3), highest-pressure marker",
+ "source_image": {
+  "path": "/home/claude/work/runs/extract/B/HYC-0080/in/pages/si1-03.png",
+  "sha256": "46c31f98b206727a789f05c93a08b3dbac216c58f2fbdd8bce92c80679ea3ef8",
+  "width_px": 1275,
+  "height_px": 1650
+ },
+ "calibration": {
+  "x": {
+   "axis": "x",
+   "reference_1": {
+    "pixel": 311.0,
+    "value": 0.0
+   },
+   "reference_2": {
+    "pixel": 927.0,
+    "value": 30.0
+   },
+   "scale": "linear",
+   "label": "Pressure (bar)",
+   "decades_spanned": 0.0
+  },
+  "y": {
+   "axis": "y",
+   "reference_1": {
+    "pixel": 1021.0,
+    "value": 0.0
+   },
+   "reference_2": {
+    "pixel": 571.0,
+    "value": 10.0
+   },
+   "scale": "linear",
+   "label": "H2 Uptaken [wt%]",
+   "decades_spanned": 0.0
+  },
+  "verification_ticks": [
+   {
+    "axis": "x",
+    "pixel": 619.0,
+    "stated": 15.0,
+    "predicted": 15.0,
+    "relative_error": 0.0
+   },
+   {
+    "axis": "y",
+    "pixel": 841.0,
+    "stated": 4.0,
+    "predicted": 4.0,
+    "relative_error": 0.0
+   }
+  ]
+ },
+ "isolation": {
+  "note": "assembled from the digitize_figure.py runs listed in runs[]; each point records its own colour, tolerance and region"
+ },
+ "extraction": {
+  "bin_width_px": 1,
+  "min_pixels_per_bin": 1,
+  "max_cluster_gap_px": 18.0,
+  "longest_multimodal_run": 0,
+  "mode": "markers",
+  "aggregation": "centroid of each connected marker after a 1-px opening",
+  "marker_size_px": [
+   6,
+   400
+  ],
+  "rejected_markers": [],
+  "n_points": 1,
+  "multimodal_bins": [],
+  "points_outside_axis_range": 0,
+  "assembled_from_runs": 1
+ },
+ "series": [
+  {
+   "x": 25.461468678380438,
+   "y": 4.490522875816994,
+   "pixel_x": 833.8088235294117,
+   "pixel_y": 818.9264705882352,
+   "pixel_count": 136,
+   "outside_axis_range": false,
+   "source_run": "s3_ball_top.json",
+   "roi": [
+    826,
+    811,
+    841,
+    826
+   ],
+   "color_hex": "#000000",
+   "tolerance": 100.0,
+   "open_px": null,
+   "note": "sphere marker with a light highlight; centroid of its dark pixels (tolerance 100 from black)"
+  }
+ ],
+ "checks": [],
+ "row_hint": {
+  "extraction_method": "figure_digitized",
+  "source_location": "Fig. S3 (SI p.3), digitized (M-C-KOH-4-800 Last H2 isotherm (Fig. S3), highest-pressure marker)",
+  "notes": "archive: figS3_M-C-KOH-4-800_last.json"
+ },
+ "runs": [
+  {
+   "file": "s3_ball_top.json",
+   "output": {
+    "tool": "digitize_figure.py",
+    "tool_version": "2.1",
+    "created_utc": "2026-10-30T00:10:06+00:00",
+    "status": "unchecked",
+    "paper_id": "HYC-0080",
+    "figure": "Fig. S3 (SI p.3)",
+    "series_name": "M-C-KOH-4-800 Last H2 isotherm (spheres), highest-pressure marker",
+    "source_image": {
+     "path": "/home/claude/work/runs/extract/B/HYC-0080/in/pages/si1-03.png",
+     "sha256": "46c31f98b206727a789f05c93a08b3dbac216c58f2fbdd8bce92c80679ea3ef8",
+     "width_px": 1275,
+     "height_px": 1650
+    },
+    "calibration": {
+     "x": {
+      "axis": "x",
+      "reference_1": {
+       "pixel": 311.0,
+       "value": 0.0
+      },
+      "reference_2": {
+       "pixel": 927.0,
+       "value": 30.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+     },
+     "y": {
+      "axis": "y",
+      "reference_1": {
+       "pixel": 1021.0,
+       "value": 0.0
+      },
+      "reference_2": {
+       "pixel": 571.0,
+       "value": 10.0
+      },
+      "scale": "linear",
+      "label": "H2 Uptaken [wt%]",
+      "decades_spanned": 0.0
+     },
+     "verification_ticks": [
+      {
+       "axis": "x",
+       "pixel": 619.0,
+       "stated": 15.0,
+       "predicted": 15.0,
+       "relative_error": 0.0
+      },
+      {
+       "axis": "y",
+       "pixel": 841.0,
+       "stated": 4.0,
+       "predicted": 4.0,
+       "relative_error": 0.0
+      }
+     ]
+    },
+    "isolation": {
+     "color_hex": "#000000",
+     "color_rgb": [
+      0,
+      0,
+      0
+     ],
+     "tolerance": 100.0,
+     "matched_pixels_in_image": 29798,
+     "matched_pixels_in_region": 136,
+     "region": [
+      826,
+      811,
+      841,
+      826
+     ],
+     "region_basis": "explicit (--roi)"
+    },
+    "extraction": {
+     "bin_width_px": 1,
+     "min_pixels_per_bin": 1,
+     "max_cluster_gap_px": 18.0,
+     "longest_multimodal_run": 0,
+     "mode": "markers",
+     "aggregation": "centroid of each connected marker after a 1-px opening",
+     "marker_size_px": [
+      6,
+      400
+     ],
+     "rejected_markers": [],
+     "n_points": 1,
+     "multimodal_bins": [],
+     "points_outside_axis_range": 0
+    },
+    "series": [
+     {
+      "x": 25.461468678380438,
+      "y": 4.490522875816994,
+      "pixel_x": 833.8088235294117,
+      "pixel_y": 818.9264705882352,
+      "pixel_count": 136,
+      "outside_axis_range": false
+     }
+    ],
+    "checks": [],
+    "row_hint": {
+     "extraction_method": "figure_digitized",
+     "source_location": "Fig. S3 (SI p.3), digitized (M-C-KOH-4-800 Last H2 isotherm (spheres), highest-pressure marker)",
+     "notes": "Digitized with digitize_figure.py v2.1; archive: s3_ball_top.json",
+     "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+    }
+   }
+  }
+ ]
+}

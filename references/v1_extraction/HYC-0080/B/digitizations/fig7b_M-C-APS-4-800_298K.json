@@ -1,0 +1,262 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T00:10:02+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0080",
+  "figure": "Fig. 7b (main p.37)",
+  "series_name": "M-C-APS-4-800 298 K adsorption, highest-pressure markers",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0080/in/pages/main-08.png",
+    "sha256": "2a6f1806c91d3154a1cd6db1760b0ed2a628b54a035c6c88c59bc6341f94e992",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 679.32,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1059.54,
+        "value": 30.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 642.91,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 360.69,
+        "value": 0.3
+      },
+      "scale": "linear",
+      "label": "H2 uptake (wt.%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 869.72,
+        "stated": 15.0,
+        "predicted": 15.02288148966388,
+        "relative_error": 0.00152543264425861
+      },
+      {
+        "axis": "y",
+        "pixel": 548.8,
+        "stated": 0.1,
+        "predicted": 0.10003897668485581,
+        "relative_error": 0.00038976684855807076
+      }
+    ]
+  },
+  "isolation": {
+    "note": "assembled from the digitize_figure.py runs listed in runs[]; each point records its own colour, tolerance and region"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 11.288799999999998,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 2-px opening",
+    "marker_size_px": [
+      6,
+      120
+    ],
+    "rejected_markers": [],
+    "n_points": 2,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0,
+    "assembled_from_runs": 1
+  },
+  "series": [
+    {
+      "x": 24.70604737608052,
+      "y": 0.09722793092858995,
+      "pixel_x": 992.4444444444445,
+      "pixel_y": 551.4444444444445,
+      "pixel_count": 63,
+      "outside_axis_range": false,
+      "source_run": "b7_o.json",
+      "roi": [
+        980,
+        540,
+        1015,
+        558
+      ],
+      "color_hex": "#d77222",
+      "tolerance": 60.0,
+      "open_px": null
+    },
+    {
+      "x": 26.1306611961496,
+      "y": 0.10142087732974273,
+      "pixel_x": 1010.5,
+      "pixel_y": 547.5,
+      "pixel_count": 64,
+      "outside_axis_range": false,
+      "source_run": "b7_o.json",
+      "roi": [
+        980,
+        540,
+        1015,
+        558
+      ],
+      "color_hex": "#d77222",
+      "tolerance": 60.0,
+      "open_px": null
+    }
+  ],
+  "checks": [
+    {
+      "at": 25.0,
+      "expected": 0.1,
+      "got": 0.09809309703831702,
+      "difference": -0.0019069029616829852,
+      "percent": 1.9069029616829851,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-10-30T00:11:05+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 7b (main p.37), digitized (M-C-APS-4-800 298 K adsorption, highest-pressure markers)",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 25.0."
+  },
+  "runs": [
+    {
+      "file": "b7_o.json",
+      "output": {
+        "tool": "digitize_figure.py",
+        "tool_version": "2.1",
+        "created_utc": "2026-10-30T00:10:02+00:00",
+        "status": "unchecked",
+        "paper_id": "HYC-0080",
+        "figure": "Fig. 7b (main p.37)",
+        "series_name": "M-C-APS-4-800 298 K, two highest-pressure markers",
+        "source_image": {
+          "path": "/home/claude/work/runs/extract/B/HYC-0080/in/pages/main-08.png",
+          "sha256": "2a6f1806c91d3154a1cd6db1760b0ed2a628b54a035c6c88c59bc6341f94e992",
+          "width_px": 1241,
+          "height_px": 1654
+        },
+        "calibration": {
+          "x": {
+            "axis": "x",
+            "reference_1": {
+              "pixel": 679.32,
+              "value": 0.0
+            },
+            "reference_2": {
+              "pixel": 1059.54,
+              "value": 30.0
+            },
+            "scale": "linear",
+            "label": "Pressure (bar)",
+            "decades_spanned": 0.0
+          },
+          "y": {
+            "axis": "y",
+            "reference_1": {
+              "pixel": 642.91,
+              "value": 0.0
+            },
+            "reference_2": {
+              "pixel": 360.69,
+              "value": 0.3
+            },
+            "scale": "linear",
+            "label": "H2 uptake (wt.%)",
+            "decades_spanned": 0.0
+          },
+          "verification_ticks": [
+            {
+              "axis": "x",
+              "pixel": 869.72,
+              "stated": 15.0,
+              "predicted": 15.02288148966388,
+              "relative_error": 0.00152543264425861
+            },
+            {
+              "axis": "y",
+              "pixel": 548.8,
+              "stated": 0.1,
+              "predicted": 0.10003897668485581,
+              "relative_error": 0.00038976684855807076
+            }
+          ]
+        },
+        "isolation": {
+          "color_hex": "#d77222",
+          "color_rgb": [
+            215,
+            114,
+            34
+          ],
+          "tolerance": 60.0,
+          "matched_pixels_in_image": 3291,
+          "matched_pixels_in_region": 134,
+          "region": [
+            980,
+            540,
+            1015,
+            558
+          ],
+          "region_basis": "explicit (--roi)"
+        },
+        "extraction": {
+          "bin_width_px": 1,
+          "min_pixels_per_bin": 1,
+          "max_cluster_gap_px": 11.288799999999998,
+          "longest_multimodal_run": 0,
+          "mode": "markers",
+          "aggregation": "centroid of each connected marker after a 2-px opening",
+          "marker_size_px": [
+            6,
+            120
+          ],
+          "rejected_markers": [],
+          "n_points": 2,
+          "multimodal_bins": [],
+          "points_outside_axis_range": 0
+        },
+        "series": [
+          {
+            "x": 24.70604737608052,
+            "y": 0.09722793092858995,
+            "pixel_x": 992.4444444444445,
+            "pixel_y": 551.4444444444445,
+            "pixel_count": 63,
+            "outside_axis_range": false
+          },
+          {
+            "x": 26.1306611961496,
+            "y": 0.10142087732974273,
+            "pixel_x": 1010.5,
+            "pixel_y": 547.5,
+            "pixel_count": 64,
+            "outside_axis_range": false
+          }
+        ],
+        "checks": [],
+        "row_hint": {
+          "extraction_method": "figure_digitized",
+          "source_location": "Fig. 7b (main p.37), digitized (M-C-APS-4-800 298 K, two highest-pressure markers)",
+          "notes": "Digitized with digitize_figure.py v2.1; archive: b7_o.json",
+          "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+        }
+      }
+    }
+  ]
+}

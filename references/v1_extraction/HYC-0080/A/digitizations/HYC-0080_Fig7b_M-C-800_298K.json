@@ -1,0 +1,178 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-29T22:52:55+00:00",
+  "status": "discarded",
+  "paper_id": "HYC-0080",
+  "figure": "Fig 7b (298 K)",
+  "series_name": "M-C-800",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0080/in/pages/main-08.png",
+    "sha256": "2a6f1806c91d3154a1cd6db1760b0ed2a628b54a035c6c88c59bc6341f94e992",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 679.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1059.5,
+        "value": 30.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 643.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 361.0,
+        "value": 0.3
+      },
+      "scale": "linear",
+      "label": "H2 uptake (wt.%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 870.0,
+        "stated": 15.0,
+        "predicted": 15.059132720105126,
+        "relative_error": 0.003942181340341714
+      },
+      {
+        "axis": "y",
+        "pixel": 454.0,
+        "stated": 0.2,
+        "predicted": 0.20106382978723406,
+        "relative_error": 0.0053191489361702204
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 50186,
+    "matched_pixels_in_region": 577,
+    "region": [
+      676,
+      363,
+      1058,
+      642
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 11.28,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      12,
+      140
+    ],
+    "rejected_markers": [],
+    "n_points": 8,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 14.253175646079724,
+      "y": 0.05661938534278954,
+      "pixel_x": 859.7777777777778,
+      "pixel_y": 589.7777777777778,
+      "pixel_count": 27,
+      "outside_axis_range": false
+    },
+    {
+      "x": 15.808147174770038,
+      "y": 0.06223404255319148,
+      "pixel_x": 879.5,
+      "pixel_y": 584.5,
+      "pixel_count": 32,
+      "outside_axis_range": false
+    },
+    {
+      "x": 17.266754270696453,
+      "y": 0.06702127659574468,
+      "pixel_x": 898.0,
+      "pixel_y": 580.0,
+      "pixel_count": 35,
+      "outside_axis_range": false
+    },
+    {
+      "x": 18.8042049934297,
+      "y": 0.07074468085106383,
+      "pixel_x": 917.5,
+      "pixel_y": 576.5,
+      "pixel_count": 48,
+      "outside_axis_range": false
+    },
+    {
+      "x": 20.223390275952692,
+      "y": 0.075531914893617,
+      "pixel_x": 935.5,
+      "pixel_y": 572.0,
+      "pixel_count": 56,
+      "outside_axis_range": false
+    },
+    {
+      "x": 21.91852825229961,
+      "y": 0.07925531914893617,
+      "pixel_x": 957.0,
+      "pixel_y": 568.5,
+      "pixel_count": 56,
+      "outside_axis_range": false
+    },
+    {
+      "x": 23.49540078843627,
+      "y": 0.08244680851063829,
+      "pixel_x": 977.0,
+      "pixel_y": 565.5,
+      "pixel_count": 56,
+      "outside_axis_range": false
+    },
+    {
+      "x": 24.993429697766096,
+      "y": 0.0851063829787234,
+      "pixel_x": 996.0,
+      "pixel_y": 563.0,
+      "pixel_count": 49,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 24.9,
+      "expected": 0.08,
+      "got": 0.08494050951847704,
+      "difference": 0.004940509518477035,
+      "percent": 6.175636898096293,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": false,
+      "checked_utc": "2026-10-29T22:53:34+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": null,
+    "notes": "DISCARDED by a failed \u00a73.4 step 6 check. No row may be written from this archive. Re-calibrate from the axis ticks or obtain a higher-resolution crop and extract again; do not adjust this one to fit."
+  }
+}

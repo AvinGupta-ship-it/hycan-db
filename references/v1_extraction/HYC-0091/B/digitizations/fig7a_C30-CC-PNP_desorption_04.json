@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T00:01:49+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0091",
+  "figure": "Fig. 7a (main-08.png)",
+  "series_name": "C30-CC-PNP, 77 K, desorption (open square 4, ROI 314,200,321,207)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0091/in/pages/main-08.png",
+    "sha256": "e55548feecad7129744b74c926adcbb17555b95c64a6331629eea2e4a15d1391",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 198.27,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 594.04,
+        "value": 30.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 408.04,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 158.32,
+        "value": 4.0
+      },
+      "scale": "linear",
+      "label": "Excess H2 uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 396.76,
+        "stated": 15.0,
+        "predicted": 15.045859969174014,
+        "relative_error": 0.0030573312782676016
+      },
+      {
+        "axis": "y",
+        "pixel": 283.4,
+        "stated": 2.0,
+        "predicted": 1.9964760531795616,
+        "relative_error": 0.0017619734102192197
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff0000",
+    "color_rgb": [
+      255,
+      0,
+      0
+    ],
+    "tolerance": 200.0,
+    "matched_pixels_in_image": 6091,
+    "matched_pixels_in_region": 30,
+    "region": [
+      314,
+      200,
+      321,
+      207
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 9.988800000000001,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 9.060565479950476,
+      "y": 3.2827166426397567,
+      "pixel_x": 317.8,
+      "pixel_y": 203.1,
+      "pixel_count": 30,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 7a (main-08.png), digitized (C30-CC-PNP, 77 K, desorption (open square 4, ROI 314,200,321,207))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig7a_C30-CC-PNP_desorption_04.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

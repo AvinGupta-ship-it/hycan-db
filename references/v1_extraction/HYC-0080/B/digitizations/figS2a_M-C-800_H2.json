@@ -1,0 +1,224 @@
+{
+ "tool": "digitize_figure.py",
+ "tool_version": "2.1",
+ "created_utc": "2026-10-30T00:10:04+00:00",
+ "status": "unchecked",
+ "paper_id": "HYC-0080",
+ "figure": "Fig. S2(a) (SI p.2)",
+ "series_name": "M-C-800 H2 isotherm (Fig. S2a), highest relative-pressure marker",
+ "source_image": {
+  "path": "/home/claude/work/runs/extract/B/HYC-0080/in/pages/si1-02.png",
+  "sha256": "36abbffb78e857c4c44bacc9982865f37a41b7f8edacb0f6e8bbc7e929280d6b",
+  "width_px": 1275,
+  "height_px": 1650
+ },
+ "calibration": {
+  "x": {
+   "axis": "x",
+   "reference_1": {
+    "pixel": 459.0,
+    "value": 0.0
+   },
+   "reference_2": {
+    "pixel": 864.0,
+    "value": 1.0
+   },
+   "scale": "linear",
+   "label": "Relative pressure (P/P0)",
+   "decades_spanned": 0.0
+  },
+  "y": {
+   "axis": "y",
+   "reference_1": {
+    "pixel": 1194.0,
+    "value": 0.0
+   },
+   "reference_2": {
+    "pixel": 874.0,
+    "value": 140.0
+   },
+   "scale": "linear",
+   "label": "Volume (cm3 g-1, STP)",
+   "decades_spanned": 0.0
+  },
+  "verification_ticks": [
+   {
+    "axis": "x",
+    "pixel": 621.0,
+    "stated": 0.4,
+    "predicted": 0.4,
+    "relative_error": 0.0
+   },
+   {
+    "axis": "y",
+    "pixel": 1012.0,
+    "stated": 80.0,
+    "predicted": 79.625,
+    "relative_error": 0.0046875
+   }
+  ]
+ },
+ "isolation": {
+  "note": "assembled from the digitize_figure.py runs listed in runs[]; each point records its own colour, tolerance and region"
+ },
+ "extraction": {
+  "bin_width_px": 1,
+  "min_pixels_per_bin": 1,
+  "max_cluster_gap_px": 12.8,
+  "longest_multimodal_run": 0,
+  "mode": "markers",
+  "aggregation": "centroid of each connected marker after a 1-px opening",
+  "marker_size_px": [
+   1,
+   90
+  ],
+  "rejected_markers": [],
+  "n_points": 1,
+  "multimodal_bins": [],
+  "points_outside_axis_range": 1,
+  "assembled_from_runs": 1
+ },
+ "series": [
+  {
+   "x": 1.0061728395061729,
+   "y": 126.65625,
+   "pixel_x": 866.5,
+   "pixel_y": 904.5,
+   "pixel_count": 36,
+   "outside_axis_range": true,
+   "source_run": "s2_top.json",
+   "roi": [
+    864,
+    902,
+    869,
+    907
+   ],
+   "color_hex": "#ffffff",
+   "tolerance": 30.0,
+   "open_px": null
+  }
+ ],
+ "checks": [],
+ "row_hint": {
+  "extraction_method": "figure_digitized",
+  "source_location": "Fig. S2(a) (SI p.2), digitized (M-C-800 H2 isotherm (Fig. S2a), highest relative-pressure marker)",
+  "notes": "archive: figS2a_M-C-800_H2.json"
+ },
+ "runs": [
+  {
+   "file": "s2_top.json",
+   "output": {
+    "tool": "digitize_figure.py",
+    "tool_version": "2.1",
+    "created_utc": "2026-10-30T00:10:04+00:00",
+    "status": "unchecked",
+    "paper_id": "HYC-0080",
+    "figure": "Fig. S2(a) (SI p.2)",
+    "series_name": "M-C-800 H2 isotherm, highest relative-pressure marker (open square, white interior)",
+    "source_image": {
+     "path": "/home/claude/work/runs/extract/B/HYC-0080/in/pages/si1-02.png",
+     "sha256": "36abbffb78e857c4c44bacc9982865f37a41b7f8edacb0f6e8bbc7e929280d6b",
+     "width_px": 1275,
+     "height_px": 1650
+    },
+    "calibration": {
+     "x": {
+      "axis": "x",
+      "reference_1": {
+       "pixel": 459.0,
+       "value": 0.0
+      },
+      "reference_2": {
+       "pixel": 864.0,
+       "value": 1.0
+      },
+      "scale": "linear",
+      "label": "Relative pressure (P/P0)",
+      "decades_spanned": 0.0
+     },
+     "y": {
+      "axis": "y",
+      "reference_1": {
+       "pixel": 1194.0,
+       "value": 0.0
+      },
+      "reference_2": {
+       "pixel": 874.0,
+       "value": 140.0
+      },
+      "scale": "linear",
+      "label": "Volume (cm3 g-1, STP)",
+      "decades_spanned": 0.0
+     },
+     "verification_ticks": [
+      {
+       "axis": "x",
+       "pixel": 621.0,
+       "stated": 0.4,
+       "predicted": 0.4,
+       "relative_error": 0.0
+      },
+      {
+       "axis": "y",
+       "pixel": 1012.0,
+       "stated": 80.0,
+       "predicted": 79.625,
+       "relative_error": 0.0046875
+      }
+     ]
+    },
+    "isolation": {
+     "color_hex": "#ffffff",
+     "color_rgb": [
+      255,
+      255,
+      255
+     ],
+     "tolerance": 30.0,
+     "matched_pixels_in_image": 2053794,
+     "matched_pixels_in_region": 36,
+     "region": [
+      864,
+      902,
+      869,
+      907
+     ],
+     "region_basis": "explicit (--roi)"
+    },
+    "extraction": {
+     "bin_width_px": 1,
+     "min_pixels_per_bin": 1,
+     "max_cluster_gap_px": 12.8,
+     "longest_multimodal_run": 0,
+     "mode": "markers",
+     "aggregation": "centroid of each connected marker after a 1-px opening",
+     "marker_size_px": [
+      1,
+      90
+     ],
+     "rejected_markers": [],
+     "n_points": 1,
+     "multimodal_bins": [],
+     "points_outside_axis_range": 1
+    },
+    "series": [
+     {
+      "x": 1.0061728395061729,
+      "y": 126.65625,
+      "pixel_x": 866.5,
+      "pixel_y": 904.5,
+      "pixel_count": 36,
+      "outside_axis_range": true
+     }
+    ],
+    "checks": [],
+    "row_hint": {
+     "extraction_method": "figure_digitized",
+     "source_location": "Fig. S2(a) (SI p.2), digitized (M-C-800 H2 isotherm, highest relative-pressure marker (open square, white interior))",
+     "notes": "Digitized with digitize_figure.py v2.1; archive: s2_top.json",
+     "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+    }
+   }
+  }
+ ]
+}
