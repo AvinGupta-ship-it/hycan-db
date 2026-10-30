@@ -130,8 +130,8 @@ recorded in its review:
   no file names overlapped, and across every transcript no other agent opened
   any of those folders, so no paper's rows contain another's digitizations.
   After the tools directory was made immutable (below), the same mistake by
-  extractor B on HYC-0093 (`trial/`) and extractor A on HYC-0098 (`dg/`) was
-  refused, and nothing was written;
+  extractor B on HYC-0093 (`trial/`), extractor A on HYC-0098 (`dg/`) and
+  extractor B on HYC-0111 (`trial/`) was refused, and nothing was written;
 - writing a scratch image of the agent's own page to `/dev/null.png` and
   removing it: extractor B on HYC-0048 and, hours later, extractor B on
   HYC-0095. Neither read the file back as input. Listing a system font folder
