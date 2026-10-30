@@ -7100,6 +7100,15 @@
       "reason": "command reads or lists a relative path in the tools directory (supplementary check)",
       "access": false,
       "note": "From the tools directory the command runs scripts/digitize_figure.py extract and check on its own image and digitizations ($W, $O: its own work and out directories), prints one with its own helper, and diffs two of its own digitizations' series through process substitution (the 'diff <(python3 -c ...)' the supplementary check read as relative paths); every file named is in $W or $O. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "C",
+      "batch": "HYC-0104",
+      "transcript": "agent-a0afdbe95627880c5.jsonl",
+      "call": 41,
+      "reason": "tool outside the allowed set",
+      "access": false,
+      "note": "The call is the harness's current-time tool with no arguments; it returns the date and time and opens no file."
     }
   ]
 }
