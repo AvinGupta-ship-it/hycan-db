@@ -6299,6 +6299,15 @@
       "reason": "command in the tools directory does more than run its two scripts: f9 adpc05 60 3 ADPC0.5",
       "access": false,
       "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0107",
+      "transcript": "agent-aba0720af527b6f32.jsonl",
+      "call": 61,
+      "reason": "tool outside the allowed set",
+      "access": false,
+      "note": "The call is the harness's current-time tool with no arguments; it returns the date and time and opens no file."
     }
   ]
 }
