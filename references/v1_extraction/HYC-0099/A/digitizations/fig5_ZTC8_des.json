@@ -1,0 +1,170 @@
+{
+ "tool": "digitize_figure.py",
+ "tool_version": "2.1",
+ "created_utc": "2026-10-30T00:43:49+00:00",
+ "status": "unchecked",
+ "paper_id": "HYC-0099",
+ "figure": "Fig 5",
+ "series_name": "Fig 5 ZTC8 desorption",
+ "source_image": {
+  "path": "/home/claude/work/runs/extract/A/HYC-0099/work/imgs/main-6_nolegend.png",
+  "sha256": "50d8b69ca640124bece29b29a43872a025f3ed718462110a25bec48cfb5b89d4",
+  "width_px": 1303,
+  "height_px": 1705
+ },
+ "calibration": {
+  "x": {
+   "axis": "x",
+   "reference_1": {
+    "pixel": 219.285,
+    "value": 0.0
+   },
+   "reference_2": {
+    "pixel": 569.197,
+    "value": 20.0
+   },
+   "scale": "linear",
+   "label": "Pressure (bar)",
+   "decades_spanned": 0.0
+  },
+  "y": {
+   "axis": "y",
+   "reference_1": {
+    "pixel": 499.422,
+    "value": 0.0
+   },
+   "reference_2": {
+    "pixel": 176.755,
+    "value": 5.0
+   },
+   "scale": "linear",
+   "label": "uptake (wt%)",
+   "decades_spanned": 0.0
+  },
+  "verification_ticks": [
+   {
+    "axis": "x",
+    "pixel": 394.274,
+    "stated": 10.0,
+    "predicted": 10.0018861885274,
+    "relative_error": 0.0001886188527400634
+   },
+   {
+    "axis": "y",
+    "pixel": 305.659,
+    "stated": 3.0,
+    "predicted": 3.002522724666607,
+    "relative_error": 0.0008409082222023597
+   }
+  ]
+ },
+ "isolation": {
+  "color_hex": "#ffffff",
+  "color_rgb": [
+   255,
+   255,
+   255
+  ],
+  "tolerance": 100.0,
+  "matched_pixels_in_image": 1978387,
+  "matched_pixels_in_region": 66946,
+  "region": [
+   222,
+   150,
+   585,
+   345
+  ],
+  "region_basis": "explicit (--roi)"
+ },
+ "extraction": {
+  "bin_width_px": 1,
+  "min_pixels_per_bin": 1,
+  "max_cluster_gap_px": 12.906680000000001,
+  "longest_multimodal_run": 0,
+  "mode": "markers",
+  "aggregation": "centroid of each connected marker after a 1-px opening",
+  "marker_size_px": [
+   1,
+   40
+  ],
+  "rejected_markers": "omitted in this derived file (3 listed in raw/f5_holes_t100b.json)",
+  "n_points": 103,
+  "multimodal_bins": [],
+  "points_outside_axis_range": 8
+ },
+ "series": [
+  {
+   "x": 12.015306705686,
+   "y": 4.035460707168691,
+   "pixel_x": 429.5,
+   "pixel_y": 239.0,
+   "pixel_count": 2,
+   "outside_axis_range": false,
+   "source_index": 53
+  },
+  {
+   "x": 13.015558197489653,
+   "y": 4.151679595372319,
+   "pixel_x": 447.0,
+   "pixel_y": 231.5,
+   "pixel_count": 2,
+   "outside_axis_range": false,
+   "source_index": 58
+  },
+  {
+   "x": 14.044388303344839,
+   "y": 4.252402631815463,
+   "pixel_x": 465.0,
+   "pixel_y": 225.0,
+   "pixel_count": 1,
+   "outside_axis_range": false,
+   "source_index": 65
+  },
+  {
+   "x": 15.016061181096962,
+   "y": 4.360873594138849,
+   "pixel_x": 482.0,
+   "pixel_y": 218.0,
+   "pixel_count": 1,
+   "outside_axis_range": false,
+   "source_index": 70
+  },
+  {
+   "x": 16.044891286952147,
+   "y": 4.453848704701751,
+   "pixel_x": 500.0,
+   "pixel_y": 212.0,
+   "pixel_count": 1,
+   "outside_axis_range": false,
+   "source_index": 76
+  },
+  {
+   "x": 17.01656416470427,
+   "y": 4.562319667025138,
+   "pixel_x": 517.0,
+   "pixel_y": 205.0,
+   "pixel_count": 1,
+   "outside_axis_range": false,
+   "source_index": 79
+  },
+  {
+   "x": 19.017067148311575,
+   "y": 4.748269888150942,
+   "pixel_x": 552.0,
+   "pixel_y": 193.0,
+   "pixel_count": 1,
+   "outside_axis_range": false,
+   "source_index": 94
+  }
+ ],
+ "checks": [],
+ "row_hint": {
+  "extraction_method": "figure_digitized",
+  "source_location": "Fig 5, ZTC8, desorption",
+  "notes": "archive: fig5_ZTC8_des.json",
+  "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+ },
+ "derived_from": "raw/f5_holes_t100b.json",
+ "curation": "open markers: centres of the white interiors (tool --color #ffffff, markers mode), attributed to the series by the colour of the ring around each hole; kept if the hole lies on the desorption pressure grid column; 77 K / 87 K curve (Fig S8) assigned by order of y at each pressure",
+ "n_points": 7
+}

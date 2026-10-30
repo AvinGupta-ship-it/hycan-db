@@ -1,0 +1,134 @@
+{
+ "tool": "digitize_figure.py",
+ "tool_version": "2.1",
+ "created_utc": "2026-10-30T00:19:11+00:00",
+ "status": "unchecked",
+ "paper_id": "HYC-0099",
+ "figure": "Fig S6",
+ "series_name": "Fig S6 ZTC8Pd-0.8 adsorption",
+ "source_image": {
+  "path": "/home/claude/work/runs/extract/A/HYC-0099/work/imgs/si1-10_nolegend.png",
+  "sha256": "b35368019b461dbba21c850b860d89c58e1120745ddc979c05bf88f157ee4fc0",
+  "width_px": 1275,
+  "height_px": 1650
+ },
+ "calibration": {
+  "x": {
+   "axis": "x",
+   "reference_1": {
+    "pixel": 525.5,
+    "value": 0.0
+   },
+   "reference_2": {
+    "pixel": 934.5,
+    "value": 20.0
+   },
+   "scale": "linear",
+   "label": "Pressure (bar)",
+   "decades_spanned": 0.0
+  },
+  "y": {
+   "axis": "y",
+   "reference_1": {
+    "pixel": 821.5,
+    "value": 0.0
+   },
+   "reference_2": {
+    "pixel": 206.5,
+    "value": 5.0
+   },
+   "scale": "linear",
+   "label": "uptake (wt%)",
+   "decades_spanned": 0.0
+  },
+  "verification_ticks": [
+   {
+    "axis": "x",
+    "pixel": 730.0,
+    "stated": 10.0,
+    "predicted": 10.0,
+    "relative_error": 0.0
+   },
+   {
+    "axis": "y",
+    "pixel": 452.5,
+    "stated": 3.0,
+    "predicted": 3.0,
+    "relative_error": 0.0
+   }
+  ]
+ },
+ "isolation": {
+  "color_hex": "#008000",
+  "color_rgb": [
+   0,
+   128,
+   0
+  ],
+  "tolerance": 90.0,
+  "matched_pixels_in_image": 2701,
+  "matched_pixels_in_region": 2600,
+  "region": [
+   530,
+   210,
+   932,
+   820
+  ],
+  "region_basis": "explicit (--roi)"
+ },
+ "extraction": {
+  "bin_width_px": 1,
+  "min_pixels_per_bin": 1,
+  "max_cluster_gap_px": 24.6,
+  "longest_multimodal_run": 0,
+  "mode": "markers",
+  "aggregation": "centroid of each connected marker after a 3-px opening",
+  "marker_size_px": [
+   25,
+   600
+  ],
+  "rejected_markers": "omitted in this derived file (3 listed in raw/s6_green_filled.json)",
+  "n_points": 22,
+  "multimodal_bins": [],
+  "points_outside_axis_range": 0
+ },
+ "series": [
+  {
+   "x": 2.5122249388753053,
+   "y": 2.3871951219512195,
+   "pixel_x": 576.875,
+   "pixel_y": 527.875,
+   "pixel_count": 80,
+   "outside_axis_range": false,
+   "source_index": 4
+  },
+  {
+   "x": 3.25616663055925,
+   "y": 2.582124112380364,
+   "pixel_x": 592.0886075949367,
+   "pixel_y": 503.8987341772152,
+   "pixel_count": 79,
+   "outside_axis_range": false,
+   "source_index": 5
+  },
+  {
+   "x": 19.488508557457212,
+   "y": 4.33040650406504,
+   "pixel_x": 924.04,
+   "pixel_y": 288.86,
+   "pixel_count": 100,
+   "outside_axis_range": false,
+   "source_index": 21
+  }
+ ],
+ "checks": [],
+ "row_hint": {
+  "extraction_method": "figure_digitized",
+  "source_location": "Fig S6, ZTC8Pd-0.8, adsorption",
+  "notes": "archive: figS6_ZTC8Pd-0.8_ads.json",
+  "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+ },
+ "derived_from": "raw/s6_green_filled.json",
+ "curation": "filled markers of this series isolated by colour (tool --color, 3-px opening); kept if on the adsorption pressure grid (+-0.10 bar) and 0.85-1.4 times the pixel_count of the same symbol in the legend (full marker, not a fragment hidden behind an open marker)",
+ "n_points": 3
+}

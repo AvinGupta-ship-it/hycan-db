@@ -1,0 +1,130 @@
+{
+ "tool": "digitize_figure.py",
+ "tool_version": "2.1",
+ "created_utc": "2026-10-30T00:31:04+00:00",
+ "status": "unchecked",
+ "paper_id": "HYC-0099",
+ "figure": "Figure S8",
+ "series_name": "ZTC8Pd-0.8 87 K curve (b), highest-pressure marker",
+ "source_image": {
+  "path": "/home/claude/work/runs/extract/B/HYC-0099/in/pages/si1-12.png",
+  "sha256": "f8d57ab57728e1f2b67eece9d36aa67a92e1f39840f38cb50ec446aa507e0885",
+  "width_px": 1275,
+  "height_px": 1650
+ },
+ "calibration": {
+  "x": {
+   "axis": "x",
+   "reference_1": {
+    "pixel": 392.0,
+    "value": 0.0
+   },
+   "reference_2": {
+    "pixel": 623.0,
+    "value": 20.0
+   },
+   "scale": "linear",
+   "label": "Pressure (bar)",
+   "decades_spanned": 0.0
+  },
+  "y": {
+   "axis": "y",
+   "reference_1": {
+    "pixel": 992.0,
+    "value": 0.0
+   },
+   "reference_2": {
+    "pixel": 650.49,
+    "value": 5.0
+   },
+   "scale": "linear",
+   "label": "Hydrogen uptake (wt%)",
+   "decades_spanned": 0.0
+  },
+  "verification_ticks": [
+   {
+    "axis": "x",
+    "pixel": 507.0,
+    "stated": 10.0,
+    "predicted": 9.956709956709958,
+    "relative_error": 0.004329004329004249
+   },
+   {
+    "axis": "y",
+    "pixel": 787.0,
+    "stated": 3.0,
+    "predicted": 3.001376240812861,
+    "relative_error": 0.0004587469376202691
+   }
+  ]
+ },
+ "isolation": {
+  "color_hex": "#ffffff",
+  "color_rgb": [
+   255,
+   255,
+   255
+  ],
+  "tolerance": 60.0,
+  "matched_pixels_in_image": 2055374,
+  "matched_pixels_in_region": 83807,
+  "region": [
+   391,
+   624,
+   628,
+   991
+  ],
+  "region_basis": "explicit (--roi)"
+ },
+ "extraction": {
+  "bin_width_px": 1,
+  "min_pixels_per_bin": 1,
+  "max_cluster_gap_px": 13.6604,
+  "longest_multimodal_run": 0,
+  "mode": "markers",
+  "aggregation": "centroid of each connected marker after a 1-px opening",
+  "marker_size_px": [
+   1,
+   30
+  ],
+  "rejected_markers": [
+   {
+    "pixel_x": 510.6022637061272,
+    "pixel_y": 809.7344896437249,
+    "pixels": 83138,
+    "reason": "too large"
+   },
+   {
+    "pixel_x": 534.6060606060606,
+    "pixel_y": 640.3636363636364,
+    "pixels": 33,
+    "reason": "too large"
+   }
+  ],
+  "n_points": 1,
+  "multimodal_bins": [],
+  "points_outside_axis_range": 9
+ },
+ "series": [
+  {
+   "x": 19.913419913419915,
+   "y": 4.545986940353138,
+   "pixel_x": 622.0,
+   "pixel_y": 681.5,
+   "pixel_count": 12,
+   "outside_axis_range": false
+  }
+ ],
+ "checks": [],
+ "row_hint": {
+  "extraction_method": "figure_digitized",
+  "source_location": "Figure S8, digitized (ZTC8Pd-0.8 panel, open-marker interiors (desorption), 77 K (a) and 87 K (b))",
+  "notes": "Digitized with digitize_figure.py v2.1; archive: FigS8_ZTC8Pd-0.8_open.json",
+  "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+ },
+ "subset_of": "FigS8_ZTC8Pd-0.8_open.json",
+ "subset_indices": [
+  62
+ ],
+ "selection_note": "Accepted markers of one series/branch selected from the tool output in subset_of (series assigned by colour, open markers by the colour of the ring around their white interior; artefacts, legend/text, slivers and merged blobs rejected; see log.md). Point values are the unmodified tool output."
+}

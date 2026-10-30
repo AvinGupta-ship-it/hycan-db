@@ -1,0 +1,183 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T00:29:29+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0099",
+  "figure": "Figure 5",
+  "series_name": "ZTC8Pd-2.0 total 77 K, adsorption branch (filled markers)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0099/in/pages/main-6.png",
+    "sha256": "824263106e1ed903766149c5b40299d671d49b29be4e140bdc258433b39adfb1",
+    "width_px": 1303,
+    "height_px": 1705
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 219.28,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 569.19,
+        "value": 20.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 499.42,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 176.75,
+        "value": 5.0
+      },
+      "scale": "linear",
+      "label": "Hydrogen uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 394.27,
+        "stated": 10.0,
+        "predicted": 10.00200051441799,
+        "relative_error": 0.00020005144179897628
+      },
+      {
+        "axis": "y",
+        "pixel": 305.66,
+        "stated": 3.0,
+        "predicted": 3.0024483218148568,
+        "relative_error": 0.0008161072716189229
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#960000",
+    "color_rgb": [
+      150,
+      0,
+      0
+    ],
+    "tolerance": 70.0,
+    "matched_pixels_in_image": 8024,
+    "matched_pixels_in_region": 792,
+    "region": [
+      220,
+      146,
+      577,
+      505
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 12.9068,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 2-px opening",
+    "marker_size_px": [
+      3,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 7,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 1.0985682032522646,
+      "y": 1.7885145814609356,
+      "pixel_x": 238.5,
+      "pixel_y": 384.0,
+      "pixel_count": 18,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.3016279374094688,
+      "y": 1.886382208970221,
+      "pixel_x": 242.05263157894737,
+      "pixel_y": 377.6842105263158,
+      "pixel_count": 19,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.4915263925009283,
+      "y": 1.9773685189202592,
+      "pixel_x": 245.375,
+      "pixel_y": 371.8125,
+      "pixel_count": 16,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.8773398873996165,
+      "y": 2.1313571140794,
+      "pixel_x": 252.125,
+      "pixel_y": 361.875,
+      "pixel_count": 8,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.4989282958475028,
+      "y": 2.323116496730406,
+      "pixel_x": 263.0,
+      "pixel_y": 349.5,
+      "pixel_count": 12,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.2648395301648976,
+      "y": 2.526110267455915,
+      "pixel_x": 276.4,
+      "pixel_y": 336.4,
+      "pixel_count": 15,
+      "outside_axis_range": false
+    },
+    {
+      "x": 19.503300848789685,
+      "y": 4.659647848974405,
+      "pixel_x": 560.5,
+      "pixel_y": 198.71428571428572,
+      "pixel_count": 14,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 19.5023,
+      "expected": 4.7,
+      "got": 4.659516349538325,
+      "difference": -0.04048365046167479,
+      "percent": 0.8613542651420169,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-10-30T00:36:50+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 5, digitized (ZTC8Pd-2.0 filled markers (adsorption))",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 19.5023."
+  },
+  "subset_of": "Fig5_ZTC8Pd-2.0_filled.json",
+  "subset_indices": [
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    18
+  ],
+  "selection_note": "Accepted markers of one series/branch selected from the tool output in subset_of (series assigned by colour, open markers by the colour of the ring around their white interior; artefacts, legend/text, slivers and merged blobs rejected; see log.md). Point values are the unmodified tool output."
+}

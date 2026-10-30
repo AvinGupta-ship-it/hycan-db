@@ -1,0 +1,117 @@
+{
+ "tool": "digitize_figure.py",
+ "tool_version": "2.1",
+ "created_utc": "2026-10-30T00:19:15+00:00",
+ "status": "unchecked",
+ "paper_id": "HYC-0099",
+ "figure": "Figure S6",
+ "series_name": "ZTC8 excess 77 K, adsorption branch (filled markers)",
+ "source_image": {
+  "path": "/home/claude/work/runs/extract/B/HYC-0099/in/pages/si1-10.png",
+  "sha256": "9fade62d58443b353552982d7ccaadd8607da579fc2ad67f6680a69e6df68a62",
+  "width_px": 1275,
+  "height_px": 1650
+ },
+ "calibration": {
+  "x": {
+   "axis": "x",
+   "reference_1": {
+    "pixel": 525.5,
+    "value": 0.0
+   },
+   "reference_2": {
+    "pixel": 934.5,
+    "value": 20.0
+   },
+   "scale": "linear",
+   "label": "Pressure (bar)",
+   "decades_spanned": 0.0
+  },
+  "y": {
+   "axis": "y",
+   "reference_1": {
+    "pixel": 821.5,
+    "value": 0.0
+   },
+   "reference_2": {
+    "pixel": 206.5,
+    "value": 5.0
+   },
+   "scale": "linear",
+   "label": "Excess hydrogen uptake (wt%)",
+   "decades_spanned": 0.0
+  },
+  "verification_ticks": [
+   {
+    "axis": "x",
+    "pixel": 730.0,
+    "stated": 10.0,
+    "predicted": 10.0,
+    "relative_error": 0.0
+   },
+   {
+    "axis": "y",
+    "pixel": 452.5,
+    "stated": 3.0,
+    "predicted": 3.0,
+    "relative_error": 0.0
+   }
+  ]
+ },
+ "isolation": {
+  "color_hex": "#000000",
+  "color_rgb": [
+   0,
+   0,
+   0
+  ],
+  "tolerance": 60.0,
+  "matched_pixels_in_image": 18250,
+  "matched_pixels_in_region": 4724,
+  "region": [
+   527,
+   208,
+   933,
+   820
+  ],
+  "region_basis": "explicit (--roi)"
+ },
+ "extraction": {
+  "bin_width_px": 1,
+  "min_pixels_per_bin": 1,
+  "max_cluster_gap_px": 24.6,
+  "longest_multimodal_run": 0,
+  "mode": "markers",
+  "aggregation": "centroid of each connected marker after a 3-px opening",
+  "marker_size_px": [
+   3,
+   2000
+  ],
+  "rejected_markers": [],
+  "n_points": 1,
+  "multimodal_bins": [],
+  "points_outside_axis_range": 0
+ },
+ "series": [
+  {
+   "x": 19.505978497504774,
+   "y": 4.050172625013921,
+   "pixel_x": 924.3972602739726,
+   "pixel_y": 323.32876712328766,
+   "pixel_count": 73,
+   "outside_axis_range": false
+  }
+ ],
+ "checks": [],
+ "row_hint": {
+  "extraction_method": "figure_digitized",
+  "source_location": "Figure S6, digitized (ZTC8 filled markers (adsorption))",
+  "notes": "Digitized with digitize_figure.py v2.1; archive: FigS6_ZTC8_filled.json",
+  "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+ },
+ "subset_of": "FigS6_ZTC8_filled.json",
+ "subset_indices": [
+  28
+ ],
+ "selection_note": "Accepted markers of one series/branch selected from the tool output in subset_of (series assigned by colour, open markers by the colour of the ring around their white interior; artefacts, legend/text, slivers and merged blobs rejected; see log.md). Point values are the unmodified tool output."
+}

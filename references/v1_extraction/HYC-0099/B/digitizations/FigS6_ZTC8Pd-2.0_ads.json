@@ -1,0 +1,156 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T00:19:19+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0099",
+  "figure": "Figure S6",
+  "series_name": "ZTC8Pd-2.0 excess 77 K, adsorption branch (filled markers)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0099/in/pages/si1-10.png",
+    "sha256": "9fade62d58443b353552982d7ccaadd8607da579fc2ad67f6680a69e6df68a62",
+    "width_px": 1275,
+    "height_px": 1650
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 525.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 934.5,
+        "value": 20.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 821.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 206.5,
+        "value": 5.0
+      },
+      "scale": "linear",
+      "label": "Excess hydrogen uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 730.0,
+        "stated": 10.0,
+        "predicted": 10.0,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 452.5,
+        "stated": 3.0,
+        "predicted": 3.0,
+        "relative_error": 0.0
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#800000",
+    "color_rgb": [
+      128,
+      0,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 3560,
+    "matched_pixels_in_region": 3367,
+    "region": [
+      527,
+      208,
+      933,
+      820
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 24.6,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      3,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 4,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 1.8478674273295301,
+      "y": 2.0895212285456184,
+      "pixel_x": 563.2888888888889,
+      "pixel_y": 564.4888888888889,
+      "pixel_count": 45,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.4981662591687033,
+      "y": 2.285365853658537,
+      "pixel_x": 576.5875,
+      "pixel_y": 540.4,
+      "pixel_count": 80,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.2455791209416063,
+      "y": 2.458404235205143,
+      "pixel_x": 591.8720930232558,
+      "pixel_y": 519.1162790697674,
+      "pixel_count": 86,
+      "outside_axis_range": false
+    },
+    {
+      "x": 19.505405485020766,
+      "y": 3.9501910079341758,
+      "pixel_x": 924.3855421686746,
+      "pixel_y": 335.6265060240964,
+      "pixel_count": 83,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 19.505405,
+      "expected": 4.0,
+      "got": 3.9501909634350802,
+      "difference": -0.04980903656491975,
+      "percent": 1.2452259141229938,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-10-30T00:36:35+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure S6, digitized (ZTC8Pd-2.0 filled markers (adsorption))",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 19.505405."
+  },
+  "subset_of": "FigS6_ZTC8Pd-2.0_filled.json",
+  "subset_indices": [
+    6,
+    7,
+    8,
+    30
+  ],
+  "selection_note": "Accepted markers of one series/branch selected from the tool output in subset_of (series assigned by colour, open markers by the colour of the ring around their white interior; artefacts, legend/text, slivers and merged blobs rejected; see log.md). Point values are the unmodified tool output."
+}

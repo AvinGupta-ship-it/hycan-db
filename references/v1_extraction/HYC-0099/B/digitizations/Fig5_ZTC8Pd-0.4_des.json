@@ -1,0 +1,157 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T00:29:33+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0099",
+  "figure": "Figure 5",
+  "series_name": "ZTC8Pd-0.4 total 77 K, desorption branch (open markers)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0099/in/pages/main-6.png",
+    "sha256": "824263106e1ed903766149c5b40299d671d49b29be4e140bdc258433b39adfb1",
+    "width_px": 1303,
+    "height_px": 1705
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 219.28,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 569.19,
+        "value": 20.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 499.42,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 176.75,
+        "value": 5.0
+      },
+      "scale": "linear",
+      "label": "Hydrogen uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 394.27,
+        "stated": 10.0,
+        "predicted": 10.00200051441799,
+        "relative_error": 0.00020005144179897628
+      },
+      {
+        "axis": "y",
+        "pixel": 305.66,
+        "stated": 3.0,
+        "predicted": 3.0024483218148568,
+        "relative_error": 0.0008161072716189229
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ffffff",
+    "color_rgb": [
+      255,
+      255,
+      255
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 1951469,
+    "matched_pixels_in_region": 120965,
+    "region": [
+      220,
+      146,
+      577,
+      505
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 12.9068,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      1,
+      30
+    ],
+    "rejected_markers": [
+      {
+        "pixel_x": 397.04570291026005,
+        "pixel_y": 326.4874310749804,
+        "pixels": 120058,
+        "reason": "too large"
+      },
+      {
+        "pixel_x": 386.52777777777777,
+        "pixel_y": 255.36111111111111,
+        "pixels": 36,
+        "reason": "too large"
+      },
+      {
+        "pixel_x": 298.6511627906977,
+        "pixel_y": 302.5581395348837,
+        "pixels": 43,
+        "reason": "too large"
+      }
+    ],
+    "n_points": 2,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 7
+  },
+  "series": [
+    {
+      "x": 19.01746163299134,
+      "y": 4.980630365388787,
+      "pixel_x": 552.0,
+      "pixel_y": 178.0,
+      "pixel_count": 1,
+      "outside_axis_range": false
+    },
+    {
+      "x": 19.931982509788227,
+      "y": 5.081352465367094,
+      "pixel_x": 568.0,
+      "pixel_y": 171.5,
+      "pixel_count": 2,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [
+    {
+      "at": 19.931,
+      "expected": 5.1,
+      "got": 5.081244255208496,
+      "difference": -0.01875574479150366,
+      "percent": 0.36775970179418943,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-10-30T00:36:50+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 5, digitized (open-marker interiors, all series (desorption), white tolerance 60)",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 19.931."
+  },
+  "subset_of": "Fig5_open_markers_t60.json",
+  "subset_indices": [
+    151,
+    156
+  ],
+  "selection_note": "Accepted markers of one series/branch selected from the tool output in subset_of (series assigned by colour, open markers by the colour of the ring around their white interior; artefacts, legend/text, slivers and merged blobs rejected; see log.md). Point values are the unmodified tool output."
+}

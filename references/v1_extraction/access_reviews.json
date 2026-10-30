@@ -6893,6 +6893,15 @@
       "reason": "command opens the tools directory: /home/claude/work/v1_tools_frozen",
       "access": false,
       "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "C",
+      "batch": "HYC-0099",
+      "transcript": "agent-a20ea715d96949b13.jsonl",
+      "call": 35,
+      "reason": "command names the home directory",
+      "access": false,
+      "note": "The flagged '~' appears only inside quoted text (a quotation from the paper, the agent's notes or a comment) or as an awk/regex match operator; no '~/' path and no $HOME occurs, so it is never a path."
     }
   ]
 }

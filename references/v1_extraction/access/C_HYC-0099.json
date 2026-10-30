@@ -1,0 +1,32 @@
+{
+  "screener": "C",
+  "batch": "HYC-0099",
+  "transcript": "agent-a20ea715d96949b13.jsonl",
+  "launcher_exact": true,
+  "prompt_sha256_ok": true,
+  "models": [
+    "claude-opus-5-5"
+  ],
+  "model_ok": true,
+  "flags": [
+    {
+      "call": 35,
+      "tool": "Bash",
+      "reason": "command names the home directory",
+      "detail": "cd /home/claude/work/runs/extract/C/HYC-0099 && python3 -I -c \"\nfrom PIL import Image\nim=Image.open('in/pages/si1-12.png')\n# ZTC8 panel top right: x ~ 600-645, y ~ 160-230\nim.crop((590,160,650,230)).resize((600,700),Image.NEAREST).save('work/s8_ztc8_tr.png')\nim.crop((940,160,995,240)).resize((550,80",
+      "review": {
+        "access": false,
+        "note": "The flagged '~' appears only inside quoted text (a quotation from the paper, the agent's notes or a comment) or as an awk/regex match operator; no '~/' path and no $HOME occurs, so it is never a path."
+      }
+    }
+  ],
+  "cross_access": [],
+  "tool_calls": 68,
+  "output_problems": [],
+  "flags_unreviewed": 0,
+  "flags_access": 0,
+  "access_ok": true,
+  "ok": true,
+  "earlier_agents": [],
+  "unfinished_agents": []
+}

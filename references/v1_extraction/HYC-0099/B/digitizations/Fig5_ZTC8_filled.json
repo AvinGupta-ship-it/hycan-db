@@ -1,0 +1,128 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T00:29:22+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0099",
+  "figure": "Figure 5",
+  "series_name": "ZTC8 filled markers (adsorption)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0099/in/pages/main-6.png",
+    "sha256": "824263106e1ed903766149c5b40299d671d49b29be4e140bdc258433b39adfb1",
+    "width_px": 1303,
+    "height_px": 1705
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 219.28,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 569.19,
+        "value": 20.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 499.42,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 176.75,
+        "value": 5.0
+      },
+      "scale": "linear",
+      "label": "Hydrogen uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 394.27,
+        "stated": 10.0,
+        "predicted": 10.00200051441799,
+        "relative_error": 0.00020005144179897628
+      },
+      {
+        "axis": "y",
+        "pixel": 305.66,
+        "stated": 3.0,
+        "predicted": 3.0024483218148568,
+        "relative_error": 0.0008161072716189229
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 70.0,
+    "matched_pixels_in_image": 75352,
+    "matched_pixels_in_region": 893,
+    "region": [
+      220,
+      146,
+      577,
+      505
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 12.9068,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 2-px opening",
+    "marker_size_px": [
+      3,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 3,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 12.615815495413102,
+      "y": 2.044193758328943,
+      "pixel_x": 440.0,
+      "pixel_y": 367.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 16.016690006001543,
+      "y": 4.430532742430347,
+      "pixel_x": 499.5,
+      "pixel_y": 213.5,
+      "pixel_count": 8,
+      "outside_axis_range": false
+    },
+    {
+      "x": 19.524734931839614,
+      "y": 4.7772492019710535,
+      "pixel_x": 560.875,
+      "pixel_y": 191.125,
+      "pixel_count": 8,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 5, digitized (ZTC8 filled markers (adsorption))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: Fig5_ZTC8_filled.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

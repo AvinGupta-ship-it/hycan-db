@@ -1,0 +1,170 @@
+{
+ "tool": "digitize_figure.py",
+ "tool_version": "2.1",
+ "created_utc": "2026-10-30T00:22:23+00:00",
+ "status": "unchecked",
+ "paper_id": "HYC-0099",
+ "figure": "Fig 5",
+ "series_name": "Fig 5 ZTC8Pd-2.0 adsorption",
+ "source_image": {
+  "path": "/home/claude/work/runs/extract/A/HYC-0099/work/imgs/main-6_nolegend.png",
+  "sha256": "50d8b69ca640124bece29b29a43872a025f3ed718462110a25bec48cfb5b89d4",
+  "width_px": 1303,
+  "height_px": 1705
+ },
+ "calibration": {
+  "x": {
+   "axis": "x",
+   "reference_1": {
+    "pixel": 219.285,
+    "value": 0.0
+   },
+   "reference_2": {
+    "pixel": 569.197,
+    "value": 20.0
+   },
+   "scale": "linear",
+   "label": "Pressure (bar)",
+   "decades_spanned": 0.0
+  },
+  "y": {
+   "axis": "y",
+   "reference_1": {
+    "pixel": 499.422,
+    "value": 0.0
+   },
+   "reference_2": {
+    "pixel": 176.755,
+    "value": 5.0
+   },
+   "scale": "linear",
+   "label": "uptake (wt%)",
+   "decades_spanned": 0.0
+  },
+  "verification_ticks": [
+   {
+    "axis": "x",
+    "pixel": 394.274,
+    "stated": 10.0,
+    "predicted": 10.0018861885274,
+    "relative_error": 0.0001886188527400634
+   },
+   {
+    "axis": "y",
+    "pixel": 305.659,
+    "stated": 3.0,
+    "predicted": 3.002522724666607,
+    "relative_error": 0.0008409082222023597
+   }
+  ]
+ },
+ "isolation": {
+  "color_hex": "#970000",
+  "color_rgb": [
+   151,
+   0,
+   0
+  ],
+  "tolerance": 90.0,
+  "matched_pixels_in_image": 8352,
+  "matched_pixels_in_region": 848,
+  "region": [
+   222,
+   147,
+   585,
+   503
+  ],
+  "region_basis": "explicit (--roi)"
+ },
+ "extraction": {
+  "bin_width_px": 1,
+  "min_pixels_per_bin": 1,
+  "max_cluster_gap_px": 12.906680000000001,
+  "longest_multimodal_run": 0,
+  "mode": "markers",
+  "aggregation": "centroid of each connected marker after a 3-px opening",
+  "marker_size_px": [
+   5,
+   400
+  ],
+  "rejected_markers": "omitted in this derived file (0 listed in raw/f5_dred_filled.json)",
+  "n_points": 11,
+  "multimodal_bins": [],
+  "points_outside_axis_range": 0
+ },
+ "series": [
+  {
+   "x": 1.0982761380004116,
+   "y": 1.7885622018985519,
+   "pixel_x": 238.5,
+   "pixel_y": 384.0,
+   "pixel_count": 18,
+   "outside_axis_range": false,
+   "source_index": 4
+  },
+  {
+   "x": 1.321189327602369,
+   "y": 1.890834823517745,
+   "pixel_x": 242.4,
+   "pixel_y": 377.4,
+   "pixel_count": 15,
+   "outside_axis_range": false,
+   "source_index": 5
+  },
+  {
+   "x": 1.498376734721873,
+   "y": 1.9745124230243567,
+   "pixel_x": 245.5,
+   "pixel_y": 372.0,
+   "pixel_count": 18,
+   "outside_axis_range": false,
+   "source_index": 6
+  },
+  {
+   "x": 1.8698987173918014,
+   "y": 2.1294709406291936,
+   "pixel_x": 252.0,
+   "pixel_y": 362.0,
+   "pixel_count": 9,
+   "outside_axis_range": false,
+   "source_index": 7
+  },
+  {
+   "x": 2.4986282265255264,
+   "y": 2.32316908763524,
+   "pixel_x": 263.0,
+   "pixel_y": 349.5,
+   "pixel_count": 12,
+   "outside_axis_range": false,
+   "source_index": 8
+  },
+  {
+   "x": 3.2645350831066082,
+   "y": 2.526164745697577,
+   "pixel_x": 276.4,
+   "pixel_y": 336.4,
+   "pixel_count": 15,
+   "outside_axis_range": false,
+   "source_index": 9
+  },
+  {
+   "x": 19.502903587187635,
+   "y": 4.65529477758804,
+   "pixel_x": 560.5,
+   "pixel_y": 199.0,
+   "pixel_count": 12,
+   "outside_axis_range": false,
+   "source_index": 10
+  }
+ ],
+ "checks": [],
+ "row_hint": {
+  "extraction_method": "figure_digitized",
+  "source_location": "Fig 5, ZTC8Pd-2.0, adsorption",
+  "notes": "archive: fig5_ZTC8Pd-2.0_ads.json",
+  "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+ },
+ "derived_from": "raw/f5_dred_filled.json",
+ "curation": "filled markers of this series isolated by colour (tool --color, 3-px opening); kept if on the adsorption pressure grid (+-0.08 bar) and pixel_count >= 9 (the full 3x3 core of a Fig 5 marker, measured on the legend symbols); markers hidden by other symbols are not included",
+ "n_points": 7
+}

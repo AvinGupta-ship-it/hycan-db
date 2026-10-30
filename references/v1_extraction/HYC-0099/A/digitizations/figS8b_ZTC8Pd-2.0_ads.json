@@ -1,0 +1,116 @@
+{
+ "tool": "digitize_figure.py",
+ "tool_version": "2.1",
+ "created_utc": "2026-10-30T00:27:08+00:00",
+ "status": "unchecked",
+ "paper_id": "HYC-0099",
+ "figure": "Fig S8b",
+ "series_name": "Fig S8b ZTC8Pd-2.0 adsorption",
+ "source_image": {
+  "path": "/home/claude/work/runs/extract/A/HYC-0099/in/pages/si1-12.png",
+  "sha256": "f8d57ab57728e1f2b67eece9d36aa67a92e1f39840f38cb50ec446aa507e0885",
+  "width_px": 1275,
+  "height_px": 1650
+ },
+ "calibration": {
+  "x": {
+   "axis": "x",
+   "reference_1": {
+    "pixel": 736.0,
+    "value": 0.0
+   },
+   "reference_2": {
+    "pixel": 980.0,
+    "value": 20.0
+   },
+   "scale": "linear",
+   "label": "Pressure (bar)",
+   "decades_spanned": 0.0
+  },
+  "y": {
+   "axis": "y",
+   "reference_1": {
+    "pixel": 983.428,
+    "value": 0.0
+   },
+   "reference_2": {
+    "pixel": 625.0,
+    "value": 5.0
+   },
+   "scale": "linear",
+   "label": "uptake (wt%)",
+   "decades_spanned": 0.0
+  },
+  "verification_ticks": [
+   {
+    "axis": "x",
+    "pixel": 858.0,
+    "stated": 10.0,
+    "predicted": 10.0,
+    "relative_error": 0.0
+   },
+   {
+    "axis": "y",
+    "pixel": 768.5,
+    "stated": 3.0,
+    "predicted": 2.9982032653698933,
+    "relative_error": 0.0005989115433688852
+   }
+  ]
+ },
+ "isolation": {
+  "color_hex": "#800000",
+  "color_rgb": [
+   128,
+   0,
+   0
+  ],
+  "tolerance": 90.0,
+  "matched_pixels_in_image": 2457,
+  "matched_pixels_in_region": 2236,
+  "region": [
+   739,
+   628,
+   983,
+   989
+  ],
+  "region_basis": "explicit (--roi)"
+ },
+ "extraction": {
+  "bin_width_px": 1,
+  "min_pixels_per_bin": 1,
+  "max_cluster_gap_px": 14.33712,
+  "longest_multimodal_run": 0,
+  "mode": "markers",
+  "aggregation": "centroid of each connected marker after a 3-px opening",
+  "marker_size_px": [
+   6,
+   400
+  ],
+  "rejected_markers": "omitted in this derived file (0 listed in raw/s8p4_filled.json)",
+  "n_points": 29,
+  "multimodal_bins": [],
+  "points_outside_axis_range": 0
+ },
+ "series": [
+  {
+   "x": 0.359744990892534,
+   "y": 0.7383351747073331,
+   "pixel_x": 740.3888888888889,
+   "pixel_y": 930.5,
+   "pixel_count": 54,
+   "outside_axis_range": false,
+   "source_index": 0
+  }
+ ],
+ "checks": [],
+ "row_hint": {
+  "extraction_method": "figure_digitized",
+  "source_location": "Fig S8b, ZTC8Pd-2.0, adsorption",
+  "notes": "archive: figS8b_ZTC8Pd-2.0_ads.json",
+  "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+ },
+ "derived_from": "raw/s8p4_filled.json",
+ "curation": "filled markers of this series isolated by colour (tool --color, 3-px opening); kept if on the adsorption pressure grid (+-0.12 bar), pixel_count in the full-marker range of the panel, and the nearest desorption curve unambiguously fixes the 77 K / 87 K curve",
+ "n_points": 1
+}

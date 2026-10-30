@@ -1,0 +1,143 @@
+{
+ "tool": "digitize_figure.py",
+ "tool_version": "2.1",
+ "created_utc": "2026-10-30T00:22:22+00:00",
+ "status": "unchecked",
+ "paper_id": "HYC-0099",
+ "figure": "Fig 5",
+ "series_name": "Fig 5 ZTC8Pd-0.4 adsorption",
+ "source_image": {
+  "path": "/home/claude/work/runs/extract/A/HYC-0099/work/imgs/main-6_nolegend.png",
+  "sha256": "50d8b69ca640124bece29b29a43872a025f3ed718462110a25bec48cfb5b89d4",
+  "width_px": 1303,
+  "height_px": 1705
+ },
+ "calibration": {
+  "x": {
+   "axis": "x",
+   "reference_1": {
+    "pixel": 219.285,
+    "value": 0.0
+   },
+   "reference_2": {
+    "pixel": 569.197,
+    "value": 20.0
+   },
+   "scale": "linear",
+   "label": "Pressure (bar)",
+   "decades_spanned": 0.0
+  },
+  "y": {
+   "axis": "y",
+   "reference_1": {
+    "pixel": 499.422,
+    "value": 0.0
+   },
+   "reference_2": {
+    "pixel": 176.755,
+    "value": 5.0
+   },
+   "scale": "linear",
+   "label": "uptake (wt%)",
+   "decades_spanned": 0.0
+  },
+  "verification_ticks": [
+   {
+    "axis": "x",
+    "pixel": 394.274,
+    "stated": 10.0,
+    "predicted": 10.0018861885274,
+    "relative_error": 0.0001886188527400634
+   },
+   {
+    "axis": "y",
+    "pixel": 305.659,
+    "stated": 3.0,
+    "predicted": 3.002522724666607,
+    "relative_error": 0.0008409082222023597
+   }
+  ]
+ },
+ "isolation": {
+  "color_hex": "#0000ff",
+  "color_rgb": [
+   0,
+   0,
+   255
+  ],
+  "tolerance": 90.0,
+  "matched_pixels_in_image": 8777,
+  "matched_pixels_in_region": 197,
+  "region": [
+   222,
+   147,
+   585,
+   503
+  ],
+  "region_basis": "explicit (--roi)"
+ },
+ "extraction": {
+  "bin_width_px": 1,
+  "min_pixels_per_bin": 1,
+  "max_cluster_gap_px": 12.906680000000001,
+  "longest_multimodal_run": 0,
+  "mode": "markers",
+  "aggregation": "centroid of each connected marker after a 3-px opening",
+  "marker_size_px": [
+   5,
+   400
+  ],
+  "rejected_markers": "omitted in this derived file (0 listed in raw/f5_blue_filled.json)",
+  "n_points": 4,
+  "multimodal_bins": [],
+  "points_outside_axis_range": 0
+ },
+ "series": [
+  {
+   "x": 2.4986282265255264,
+   "y": 2.5013713828808033,
+   "pixel_x": 263.0,
+   "pixel_y": 338.0,
+   "pixel_count": 9,
+   "outside_axis_range": false,
+   "source_index": 0
+  },
+  {
+   "x": 3.241672191865383,
+   "y": 2.718313307527575,
+   "pixel_x": 276.0,
+   "pixel_y": 324.0,
+   "pixel_count": 9,
+   "outside_axis_range": false,
+   "source_index": 1
+  },
+  {
+   "x": 3.9847161572052396,
+   "y": 2.9042635286533796,
+   "pixel_x": 289.0,
+   "pixel_y": 312.0,
+   "pixel_count": 9,
+   "outside_axis_range": false,
+   "source_index": 2
+  },
+  {
+   "x": 5.985219140812546,
+   "y": 3.3071556744259563,
+   "pixel_x": 324.0,
+   "pixel_y": 286.0,
+   "pixel_count": 9,
+   "outside_axis_range": false,
+   "source_index": 3
+  }
+ ],
+ "checks": [],
+ "row_hint": {
+  "extraction_method": "figure_digitized",
+  "source_location": "Fig 5, ZTC8Pd-0.4, adsorption",
+  "notes": "archive: fig5_ZTC8Pd-0.4_ads.json",
+  "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+ },
+ "derived_from": "raw/f5_blue_filled.json",
+ "curation": "filled markers of this series isolated by colour (tool --color, 3-px opening); kept if on the adsorption pressure grid (+-0.08 bar) and pixel_count >= 9 (the full 3x3 core of a Fig 5 marker, measured on the legend symbols); markers hidden by other symbols are not included",
+ "n_points": 4
+}
