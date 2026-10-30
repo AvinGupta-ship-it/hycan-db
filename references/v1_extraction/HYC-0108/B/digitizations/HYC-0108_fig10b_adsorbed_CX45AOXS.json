@@ -1,0 +1,176 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T01:09:34+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0108",
+  "figure": "Fig. 10b",
+  "series_name": "Adsorbed hydrogen (open triangles), CX45AOXS, -196 C",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0108/work/f10b_x4_open.png",
+    "sha256": "974fc785af1a7944845bdcee3bec47df0a9eeb02ed3b389a2f2954956b1f7405",
+    "width_px": 1720,
+    "height_px": 1000
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 62.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1661.5,
+        "value": 40.0
+      },
+      "scale": "linear",
+      "label": "Pressure_bar",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 933.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 53.5,
+        "value": 8.0
+      },
+      "scale": "linear",
+      "label": "Hydrogen_uptake_wt_pct",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 861.5,
+        "stated": 20.0,
+        "predicted": 19.993748046264457,
+        "relative_error": 0.0003125976867771385
+      },
+      {
+        "axis": "y",
+        "pixel": 494.0,
+        "stated": 4.0,
+        "predicted": 3.9954545454545456,
+        "relative_error": 0.001136363636363602
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff0000",
+    "color_rgb": [
+      255,
+      0,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 3170,
+    "matched_pixels_in_region": 3170,
+    "region": [
+      70,
+      240,
+      1700,
+      925
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 35.2,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 9,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 1.0390060080588368,
+      "y": 1.9645654345654344,
+      "pixel_x": 103.54725274725274,
+      "pixel_y": 717.3978021978022,
+      "pixel_count": 455,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.002578930915911,
+      "y": 2.411051136363637,
+      "pixel_x": 142.078125,
+      "pixel_y": 668.284375,
+      "pixel_count": 320,
+      "outside_axis_range": false
+    },
+    {
+      "x": 4.0111958618192105,
+      "y": 2.8955593397956507,
+      "pixel_x": 222.39769452449568,
+      "pixel_y": 614.9884726224784,
+      "pixel_count": 347,
+      "outside_axis_range": false
+    },
+    {
+      "x": 5.995206835469418,
+      "y": 3.2132782369146007,
+      "pixel_x": 301.73333333333335,
+      "pixel_y": 580.0393939393939,
+      "pixel_count": 330,
+      "outside_axis_range": false
+    },
+    {
+      "x": 9.999553431876032,
+      "y": 3.4689898989898986,
+      "pixel_x": 461.85714285714283,
+      "pixel_y": 551.9111111111112,
+      "pixel_count": 315,
+      "outside_axis_range": false
+    },
+    {
+      "x": 14.993971330326442,
+      "y": 3.6157831963954417,
+      "pixel_x": 661.5714285714286,
+      "pixel_y": 535.7638483965014,
+      "pixel_count": 343,
+      "outside_axis_range": false
+    },
+    {
+      "x": 20.000686834354045,
+      "y": 3.668950064020487,
+      "pixel_x": 861.7774647887323,
+      "pixel_y": 529.9154929577464,
+      "pixel_count": 355,
+      "outside_axis_range": false
+    },
+    {
+      "x": 29.99001473674809,
+      "y": 3.8145714285714285,
+      "pixel_x": 1261.2257142857143,
+      "pixel_y": 513.8971428571429,
+      "pixel_count": 350,
+      "outside_axis_range": false
+    },
+    {
+      "x": 39.951258653679595,
+      "y": 3.835929357266937,
+      "pixel_x": 1659.5509554140128,
+      "pixel_y": 511.54777070063693,
+      "pixel_count": 314,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 10b, digitized (Adsorbed hydrogen (open triangles), CX45AOXS, -196 C)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0108_fig10b_adsorbed_CX45AOXS.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

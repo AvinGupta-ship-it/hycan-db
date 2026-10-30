@@ -1,0 +1,43 @@
+# HYC-0108 extraction log (agent A)
+
+Paper: Zubizarreta et al., Carbon 48 (2010) 2722-2733, "Ni-doped carbon xerogels for H2 storage". Input: main article only (12 pages, no SI). 23 rows written. rows.csv passes `validate_row_detail.py --errors-only` (0 rows reported).
+
+## Decisions that affect coding
+- Sample numbering: only the four samples that have H2 uptake values get ids, in Table 1 order: S1 CX16AOXI, S2 CX45AOXI, S3 CX16AOXS, S4 CX45AOXS.
+- Labels: Table 1 / Fig. 6 / Fig. 7 labels used. Variants printed elsewhere: Fig. 9 legend "CX45OXAS" (= CX45AOXS) and "CX45OXAI" (= CX45AOXI); Fig. 8 legend "CX16OXAS", "CX45OXAS"; Table 4 "CX45OXS"; Sec. 2.5 example "CXA16OXI"; p. 2732 "CX684OXI" (Fig. 11 sample, taken as CX16AOXI). No table reports uptake; the first figure legends showing these samples (Fig. 1, Fig. 6) print the Table 1 labels.
+- Sample identity of Fig. 10: caption (a)(b) and the "31.8 g ... sample CX45AOXS" sentence name CX45AOXS; one sentence on p. 2731 says "sample CX16AOXI" for Fig. 10. CX45AOXS used.
+- Temperature: Sec. 2.7 prints "298 K" and "77 K"; captions print 25 °C and -196 °C. Kelvin values as printed were stored (temperature_inferred false).
+- Basis: paper names "excess" (Fig. 7, Fig. 9 captions; text) and defines "total" as adsorbed plus gas compressed in the voids; Fig. 10 and Fig. 11 plot both for CX45AOXS (77 K) and CX16AOXI (25 °C). Coded basis_stated true for all isotherms. For CX16AOXS, CX45AOXS and CX45AOXI at 25 °C (Fig. 9 only) the support is the Fig. 9 text gloss ("excess adsorption ... corresponds to the amount of hydrogen stored by adsorption") plus the excess/total contrast in Sec. 3.4; a stricter reading would give basis_stated false for those three (basis_inferred excess either way).
+- wt% convention: paper never defines it and gives no mmol/g, mg/g or cm3/g value, so wt_pct_convention unknown, source none on every row.
+- Total-basis curves (Fig. 10, Fig. 11) are computed by the authors from the excess isotherm of the same run (Vs = 1 - rho_e/rho_r); they were extracted as separate isotherms (I6, I7) because basis is coded once per isotherm.
+- measuring_lab_id: paper does not say which laboratory made the H2 measurements (refs. 10 and 39 for the apparatus are Alicante work, but no statement); corresponding author (Zubizarreta, marked *) first affiliation used.
+- instrument_identified false at both temperatures ("automatic volumetric apparatus", ref. 39; "DMT high-pressure microbalance", no model). calibration_described true (He isotherms to calibrate manifold volume at 298 K; buoyancy correction at 77 K).
+
+## Extracted from
+- Abstract p. 2722, Sec. 3.4 text p. 2731, Conclusions p. 2732: "6 wt.% and 31.8 g l-1 at -196 °C and 40 bar" -> M22 (text_direct), merged with the 40 bar "Total hydrogen" marker of Fig. 10b/10a (digitized 39.95 bar, 5.9636 wt%; 40.05 bar, 31.8143 g/L).
+- Table 1 (p. 2724): S_BET, W0-N2, VT, dp, W0-CO2 of the four Ni-doped samples on every row of the sample. Basis: per total sample mass.
+- Table 4 (p. 2726): carbon-mass-basis values, in notes only. Table 5 (p. 2727): Ni ICP wt% -> metal_loading_wt_pct; XPS and XRD in notes. Sec. 2.2-2.6: synthesis, activation, washing, doping, characterization. Sec. 2.7: degassing 150 °C, H2 pretreatment, purity 99.9995%, calibration, instruments.
+- Fig. 9 (p. 2730, 25 °C, excess, 4 curves, 14 markers each incl. origin): highest-pressure marker of each curve -> M1-M4.
+- Fig. 10b (p. 2731, 77 K, CX45AOXS): "Adsorbed hydrogen" 9 markers -> M5-M13 (I5); "Total hydrogen" 9 markers -> M14-M22 (I6). Fig. 10a volumetric (g H2/L, 1 L tank) attached to the same rows (see below).
+- Fig. 11b (p. 2731, 25 °C, CX16AOXI): "Total hydrogen" highest-pressure marker -> M23 (I7, with Fig. 11a volumetric). "Adsorbed hydrogen" highest-pressure marker digitizes to 195.1475 bar, 1.0313 wt% (Fig. 9 CX16AOXI: 195.3645 bar, 1.0329 wt%, 0.15% apart) and was taken as the same measurement as M1; Fig. 11a adsorbed volumetric (194.9893 bar, 6.5166 g/L) is on M1.
+
+## Seen but not extracted
+- Fig. 7 (bar chart, 77 K, 40 bar, "hydrogen excess adsorption"): bars for CX16AOX, CX45AOX, CX16AOXI, CX16AOXS, CX45AOXI, CX45AOXS; no numerical labels; not an isotherm, not digitized. The undoped supports CX16AOX and CX45AOX and the 77 K values of CX16AOXI, CX16AOXS and CX45AOXI are given only here, so they have no rows. Text "increase ... approximately 1 wt.% in the best case (CX16AOXS)" is a difference between a doped sample and its support, not an uptake.
+- Fig. 6 and Fig. 8 (H2 TPD profiles, µmol H2 g-1 s-1): no amount of desorbed H2 is printed anywhere; not isotherms, not digitized. Text "no desorption peaks" for undoped supports: no value.
+- Gas stored by compression in an empty 1 L tank (13.1 g at 77 K, 40 bar; "Compressed hydrogen" line in Fig. 10a and Fig. 11a): not a sorbent value.
+- Fig. 9 and Fig. 11 markers below the highest pressure (25 °C isotherms): not extracted by protocol §9 (counted for isotherm_point_count).
+- Origin markers (0 bar) of all curves: counted as markers (Fig. 9: 14, Fig. 10: 10, Fig. 11b: 16) but no row. Fig. 10b total origin digitizes to 0.05 bar, -0.026 wt% (outside the calibrated axes, flagged by the tool as an extrapolation, and below the schema floor), an anchor and not a reading.
+- Fig. 10a "Adsorbed hydrogen" markers at 1 and 2 bar are hidden behind the filled "Total hydrogen" markers (separation under 4 px); not separable, so M5 and M6 carry no volumetric value.
+- Fig. 9 last markers of CX16AOXS (open circle) and CX45OXAI (open triangle) overlap and could not be separated; the same blob centre (195.132 bar, 0.9319 wt%) is recorded for both (M2, M4, extraction_confidence 2). Each of their two archives holds that point plus a 3-pixel ring fragment at (196.37, 0.9154) that was not used. The lower edge of the filled square (M3) is partly covered by them.
+- Fig. 11 plots 16 markers per curve (two near-coincident markers at about 120 and 160 bar), Fig. 9 shows 14; isotherm_point_count 14 for I1-I4 and 16 for I7.
+- Observed in Fig. 10: the adsorbed gravimetric curve is flat from 30 to 40 bar while the adsorbed volumetric curve still rises (g/L per wt% 5.55 at 30 bar, 5.85 at 40 bar); recorded as digitized.
+- Samples with characterization but no H2 uptake value (no row). Table 1 (S_BET m2/g, W0-N2, VT cm3/g, dp nm, W0-CO2 cm3/g): CX16A 1803, 0.69, 2.11, 16, 0.47; CX45A 1684, 0.72, 2.37, 45, 0.47; CX16AOX 1822, 0.69, 1.72, 16, 0.57; CX45AOX 1587, 0.67, 1.89, 45, 0.47. Pristine CX16 and CX45: PZC 9 only.
+- Fig. 1 (N2 isotherms), Fig. 2 (CO2/CO TPD), Fig. 3 (Ni adsorption vs pH), Fig. 4-5 (TEM, particle size), Tables 2-3: not H2 uptake.
+
+## Digitization
+- Page images 150 dpi; all four plots are grayscale. Axes calibrated on the lowest and highest labelled ticks, third tick as check (all residuals under 0.3%). Tick pixels from pixel-row/column inspection: Fig. 10b x 715 (0) / 1115 (40), y 663 (0.0) / 443 (8.0); Fig. 10a x 715 / 1116, y 364.65 (0) / 151.35 (40); Fig. 9 x 701 (0) / 1105 (200), y 1460.5 (0.0) / 1230 (1.2); Fig. 11a x 711 / 1113, y 1099 (0) / 880 (18); Fig. 11b x 710 / 1113, y 1391 (0.0) / 1172.65 (4.0).
+- Filled markers (Fig. 10b total, Fig. 10a total, Fig. 9 CX16AOXI and CX45AOXS, Fig. 11a/b total): one `--mode markers` run, colour #000000, tolerance 60, 2-3 px opening. Marker counts matched the plot (Fig. 10: 10 incl. origin).
+- Hollow markers (Fig. 10b adsorbed, Fig. 10a adsorbed, Fig. 11a/b adsorbed, Fig. 9 open series): a whole-series run cannot separate the thin ring from the connecting line, so each marker was extracted in its own small `--roi` (tolerance 400, no opening) and the single points were concatenated into one archive (`assembled_from` and `assembly_note` fields in fig10b_adsorbed_77K.json and fig10a_adsorbed_77K.json). No value was edited. Overlays of all points on the page crops were inspected: each point sits on its marker.
+- `check`: fig10b_total_77K.json passed (39.95 bar, 5.9636 vs stated 6 wt.%, 0.61%); fig10a_total_77K.json passed (40 bar, 31.7962 vs stated 31.8 g/L, 0.01%). Other series have no value stated in the paper, so their status stays "unchecked". Calibration cross-check in the work directory: the Fig. 10a compressed-gas line digitizes to 12.874 g/L at 39.3 bar, the stated 13.1 g/L at 40 bar scaled proportionally (12.87); the `check` command itself could not be run there because 40 bar is outside the extracted range.
+- One marker (Fig. 10a total, 40 bar) lies on the right axis frame and is flagged "outside axis range" by 0.05 bar.
+- extraction_date is the user's local date (2026-10-29); the container clock is already on 2026-10-30 UTC.

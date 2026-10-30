@@ -1,0 +1,256 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T01:04:31+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0108",
+  "figure": "Fig. 10a",
+  "series_name": "Adsorbed hydrogen (volumetric, CX45AOXS, 77 K)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0108/in/pages/main-10.png",
+    "sha256": "f873ed994cf584d91e7a75c3871ab91a97fd84ec27e8c5f4e22d8a885f5c46ba",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 715.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1116.0,
+        "value": 40.0
+      },
+      "scale": "linear",
+      "label": "",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 364.65,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 151.35,
+        "value": 40.0
+      },
+      "scale": "linear",
+      "label": "",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 916.0,
+        "stated": 20.0,
+        "predicted": 20.049875311720697,
+        "relative_error": 0.0024937655860348684
+      },
+      {
+        "axis": "y",
+        "pixel": 258.0,
+        "stated": 20.0,
+        "predicted": 19.999999999999996,
+        "relative_error": 1.7763568394002506e-16
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 400,
+    "matched_pixels_in_image": 198967,
+    "matched_pixels_in_region": 28,
+    "region": "per-marker regions, see assembled_from",
+    "region_basis": "explicit (--roi), one per marker"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 8.532,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      3,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 7,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 4.0327752048450325,
+      "y": 16.075279619583412,
+      "pixel_x": 755.4285714285714,
+      "pixel_y": 278.92857142857144,
+      "pixel_count": 28,
+      "outside_axis_range": false
+    },
+    {
+      "x": 6.027787673672962,
+      "y": 17.846092023307214,
+      "pixel_x": 775.4285714285714,
+      "pixel_y": 269.48571428571427,
+      "pixel_count": 35,
+      "outside_axis_range": false
+    },
+    {
+      "x": 10.026362664766657,
+      "y": 19.142723193356105,
+      "pixel_x": 815.5142857142857,
+      "pixel_y": 262.57142857142856,
+      "pixel_count": 35,
+      "outside_axis_range": false
+    },
+    {
+      "x": 15.040523690773068,
+      "y": 20.082044069385837,
+      "pixel_x": 865.78125,
+      "pixel_y": 257.5625,
+      "pixel_count": 32,
+      "outside_axis_range": false
+    },
+    {
+      "x": 20.037406483790523,
+      "y": 20.27543366150961,
+      "pixel_x": 915.875,
+      "pixel_y": 256.53125,
+      "pixel_count": 32,
+      "outside_axis_range": false
+    },
+    {
+      "x": 30.06234413965087,
+      "y": 21.201359587435533,
+      "pixel_x": 1016.375,
+      "pixel_y": 251.59375,
+      "pixel_count": 32,
+      "outside_axis_range": false
+    },
+    {
+      "x": 39.99783150818606,
+      "y": 22.30334902872052,
+      "pixel_x": 1115.9782608695652,
+      "pixel_y": 245.7173913043478,
+      "pixel_count": 46,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 10a, digitized (Adsorbed hydrogen (volumetric, CX45AOXS, 77 K))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig10a_adsorbed_77K_P4.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  },
+  "assembled_from": [
+    {
+      "nominal_pressure_bar": 4,
+      "roi": [
+        752,
+        277,
+        760,
+        283
+      ],
+      "tolerance": 400,
+      "open_px": 0,
+      "marker_min_px": 3,
+      "source_run_status": "unchecked",
+      "created_utc": "2026-10-30T01:04:31+00:00"
+    },
+    {
+      "nominal_pressure_bar": 6,
+      "roi": [
+        771,
+        266,
+        780,
+        273
+      ],
+      "tolerance": 400,
+      "open_px": 0,
+      "marker_min_px": 3,
+      "source_run_status": "unchecked",
+      "created_utc": "2026-10-30T01:04:34+00:00"
+    },
+    {
+      "nominal_pressure_bar": 10,
+      "roi": [
+        811,
+        259,
+        820,
+        266
+      ],
+      "tolerance": 400,
+      "open_px": 0,
+      "marker_min_px": 3,
+      "source_run_status": "unchecked",
+      "created_utc": "2026-10-30T01:04:37+00:00"
+    },
+    {
+      "nominal_pressure_bar": 15,
+      "roi": [
+        862,
+        254,
+        871,
+        262
+      ],
+      "tolerance": 400,
+      "open_px": 0,
+      "marker_min_px": 3,
+      "source_run_status": "unchecked",
+      "created_utc": "2026-10-30T01:04:39+00:00"
+    },
+    {
+      "nominal_pressure_bar": 20,
+      "roi": [
+        912,
+        253,
+        921,
+        261
+      ],
+      "tolerance": 400,
+      "open_px": 0,
+      "marker_min_px": 3,
+      "source_run_status": "unchecked",
+      "created_utc": "2026-10-30T01:04:41+00:00"
+    },
+    {
+      "nominal_pressure_bar": 30,
+      "roi": [
+        1012,
+        248,
+        1021,
+        256
+      ],
+      "tolerance": 400,
+      "open_px": 0,
+      "marker_min_px": 3,
+      "source_run_status": "unchecked",
+      "created_utc": "2026-10-30T01:04:43+00:00"
+    },
+    {
+      "nominal_pressure_bar": 40,
+      "roi": [
+        1111,
+        242,
+        1121,
+        250
+      ],
+      "tolerance": 400,
+      "open_px": 0,
+      "marker_min_px": 3,
+      "source_run_status": "unchecked",
+      "created_utc": "2026-10-30T01:04:45+00:00"
+    }
+  ],
+  "assembly_note": "Hollow (open) markers cannot be isolated from the connecting line in one whole-series run; each marker was extracted with digitize_figure.py extract --mode markers in its own small --roi and the single point from each run was concatenated here. No value was edited."
+}

@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T01:03:38+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0108",
+  "figure": "Fig. 11a",
+  "series_name": "Total hydrogen (volumetric, CX16AOXI, 25 C; highest-pressure marker)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0108/in/pages/main-10.png",
+    "sha256": "f873ed994cf584d91e7a75c3871ab91a97fd84ec27e8c5f4e22d8a885f5c46ba",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 711.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1113.0,
+        "value": 200.0
+      },
+      "scale": "linear",
+      "label": "",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1099.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 880.0,
+        "value": 18.0
+      },
+      "scale": "linear",
+      "label": "",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 911.65,
+        "stated": 100.0,
+        "predicted": 99.82587064676616,
+        "relative_error": 0.0017412935323383749
+      },
+      {
+        "axis": "y",
+        "pixel": 977.0,
+        "stated": 10.0,
+        "predicted": 10.027397260273972,
+        "relative_error": 0.0027397260273971822
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 58728,
+    "matched_pixels_in_region": 26,
+    "region": [
+      1099,
+      887,
+      1109,
+      896
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 8.76,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      8,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 195.5223880597015,
+      "y": 17.0958904109589,
+      "pixel_x": 1104.0,
+      "pixel_y": 891.0,
+      "pixel_count": 25,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 11a, digitized (Total hydrogen (volumetric, CX16AOXI, 25 C; highest-pressure marker))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig11a_total_last_25C.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

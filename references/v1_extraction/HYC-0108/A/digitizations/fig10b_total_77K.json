@@ -1,0 +1,196 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T01:03:16+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0108",
+  "figure": "Fig. 10b",
+  "series_name": "Total hydrogen (gravimetric, CX45AOXS, 77 K)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0108/in/pages/main-10.png",
+    "sha256": "f873ed994cf584d91e7a75c3871ab91a97fd84ec27e8c5f4e22d8a885f5c46ba",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 715.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1115.0,
+        "value": 40.0
+      },
+      "scale": "linear",
+      "label": "",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 663.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 443.0,
+        "value": 8.0
+      },
+      "scale": "linear",
+      "label": "",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 915.0,
+        "stated": 20.0,
+        "predicted": 20.0,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 580.65,
+        "stated": 3.0,
+        "predicted": 2.9945454545454555,
+        "relative_error": 0.0018181818181814968
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 58728,
+    "matched_pixels_in_region": 879,
+    "region": [
+      705,
+      490,
+      1125,
+      670
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 8.8,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 2-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 10,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 0.05,
+      "y": -0.025974025974024203,
+      "pixel_x": 715.5,
+      "pixel_y": 663.7142857142857,
+      "pixel_count": 14,
+      "outside_axis_range": true
+    },
+    {
+      "x": 1.0200000000000045,
+      "y": 2.156363636363635,
+      "pixel_x": 725.2,
+      "pixel_y": 603.7,
+      "pixel_count": 10,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.05,
+      "y": 2.690909090909091,
+      "pixel_x": 735.5,
+      "pixel_y": 589.0,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 4.0125,
+      "y": 3.268181818181818,
+      "pixel_x": 755.125,
+      "pixel_y": 573.125,
+      "pixel_count": 8,
+      "outside_axis_range": false
+    },
+    {
+      "x": 6.012499999999999,
+      "y": 3.668181818181818,
+      "pixel_x": 775.125,
+      "pixel_y": 562.125,
+      "pixel_count": 8,
+      "outside_axis_range": false
+    },
+    {
+      "x": 10.0,
+      "y": 4.090909090909091,
+      "pixel_x": 815.0,
+      "pixel_y": 550.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 15.0,
+      "y": 4.454545454545454,
+      "pixel_x": 865.0,
+      "pixel_y": 540.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 20.012500000000003,
+      "y": 4.722727272727273,
+      "pixel_x": 915.125,
+      "pixel_y": 533.125,
+      "pixel_count": 8,
+      "outside_axis_range": false
+    },
+    {
+      "x": 29.987499999999997,
+      "y": 5.304545454545455,
+      "pixel_x": 1014.875,
+      "pixel_y": 517.125,
+      "pixel_count": 8,
+      "outside_axis_range": false
+    },
+    {
+      "x": 39.95,
+      "y": 5.963636363636364,
+      "pixel_x": 1114.5,
+      "pixel_y": 499.0,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 39.95,
+      "expected": 6.0,
+      "got": 5.963636363636364,
+      "difference": -0.036363636363636154,
+      "percent": 0.6060606060606025,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-10-30T01:05:09+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 10b, digitized (Total hydrogen (gravimetric, CX45AOXS, 77 K))",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 39.95."
+  }
+}

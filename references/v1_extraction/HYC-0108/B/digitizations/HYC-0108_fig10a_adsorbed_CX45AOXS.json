@@ -1,0 +1,167 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T01:09:40+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0108",
+  "figure": "Fig. 10a",
+  "series_name": "Adsorbed hydrogen (open squares), CX45AOXS, -196 C",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0108/work/f10a_x4_open.png",
+    "sha256": "f2bf7a3254329f8d040eac5e090974456631242bb2e3b4f05fb64415b8b9b305",
+    "width_px": 1720,
+    "height_px": 960
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 61.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1666.0,
+        "value": 40.0
+      },
+      "scale": "linear",
+      "label": "Pressure_bar",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 901.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 46.0,
+        "value": 40.0
+      },
+      "scale": "linear",
+      "label": "g_H2_per_l",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 865.5,
+        "stated": 20.0,
+        "predicted": 20.043627298223747,
+        "relative_error": 0.0021813649111873446
+      },
+      {
+        "axis": "y",
+        "pixel": 473.5,
+        "stated": 20.0,
+        "predicted": 20.0,
+        "relative_error": 0.0
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff0000",
+    "color_rgb": [
+      255,
+      0,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 3787,
+    "matched_pixels_in_region": 3787,
+    "region": [
+      70,
+      310,
+      1719,
+      890
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 34.2,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      200,
+      2000
+    ],
+    "rejected_markers": [
+      {
+        "pixel_x": 148.0,
+        "pixel_y": 620.0,
+        "pixels": 45,
+        "reason": "too small"
+      }
+    ],
+    "n_points": 7,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 4.046129856706994,
+      "y": 16.0698611532029,
+      "pixel_x": 223.8003838771593,
+      "pixel_y": 557.5067178502879,
+      "pixel_count": 521,
+      "outside_axis_range": false
+    },
+    {
+      "x": 6.028778773702905,
+      "y": 17.763936468389907,
+      "pixel_x": 303.3293885601578,
+      "pixel_y": 521.2958579881657,
+      "pixel_count": 507,
+      "outside_axis_range": false
+    },
+    {
+      "x": 10.009170953573644,
+      "y": 19.18920891057114,
+      "pixel_x": 462.9928698752228,
+      "pixel_y": 490.8306595365419,
+      "pixel_count": 561,
+      "outside_axis_range": false
+    },
+    {
+      "x": 15.008680941993502,
+      "y": 19.99322868574946,
+      "pixel_x": 663.5357142857143,
+      "pixel_y": 473.64473684210526,
+      "pixel_count": 532,
+      "outside_axis_range": false
+    },
+    {
+      "x": 20.039618963821116,
+      "y": 20.305194358445135,
+      "pixel_x": 865.3392156862745,
+      "pixel_y": 466.9764705882353,
+      "pixel_count": 510,
+      "outside_axis_range": false
+    },
+    {
+      "x": 30.013824373981734,
+      "y": 21.115742376074415,
+      "pixel_x": 1265.4295302013422,
+      "pixel_y": 449.6510067114094,
+      "pixel_count": 447,
+      "outside_axis_range": false
+    },
+    {
+      "x": 40.02312337131528,
+      "y": 22.354286144776864,
+      "pixel_x": 1666.927536231884,
+      "pixel_y": 423.1771336553945,
+      "pixel_count": 621,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 10a, digitized (Adsorbed hydrogen (open squares), CX45AOXS, -196 C)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0108_fig10a_adsorbed_CX45AOXS.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

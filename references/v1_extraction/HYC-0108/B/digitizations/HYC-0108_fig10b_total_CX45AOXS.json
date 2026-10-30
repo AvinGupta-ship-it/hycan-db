@@ -1,0 +1,188 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T01:09:30+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0108",
+  "figure": "Fig. 10b",
+  "series_name": "Total hydrogen (filled triangles), CX45AOXS, -196 C",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0108/work/f10b_x4.png",
+    "sha256": "fe5c7a670a7e7e2aabc6c6af63f4907e51e3a5745aba902aab5d01386b2e484c",
+    "width_px": 1720,
+    "height_px": 1000
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 62.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1661.5,
+        "value": 40.0
+      },
+      "scale": "linear",
+      "label": "Pressure_bar",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 933.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 53.5,
+        "value": 8.0
+      },
+      "scale": "linear",
+      "label": "Hydrogen_uptake_wt_pct",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 861.5,
+        "stated": 20.0,
+        "predicted": 19.993748046264457,
+        "relative_error": 0.0003125976867771385
+      },
+      {
+        "axis": "y",
+        "pixel": 494.0,
+        "stated": 4.0,
+        "predicted": 3.9954545454545456,
+        "relative_error": 0.001136363636363602
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#111212",
+    "color_rgb": [
+      17,
+      18,
+      18
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 15471,
+    "matched_pixels_in_region": 2992,
+    "region": [
+      70,
+      240,
+      1700,
+      925
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 35.2,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 7-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 9,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 1.0114811363988139,
+      "y": 2.1475286849073263,
+      "pixel_x": 102.44660194174757,
+      "pixel_y": 697.2718446601941,
+      "pixel_count": 103,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.001976969154212,
+      "y": 2.664905814905815,
+      "pixel_x": 142.05405405405406,
+      "pixel_y": 640.3603603603603,
+      "pixel_count": 111,
+      "outside_axis_range": false
+    },
+    {
+      "x": 4.010064620603774,
+      "y": 3.260581222056632,
+      "pixel_x": 222.35245901639345,
+      "pixel_y": 574.8360655737705,
+      "pixel_count": 122,
+      "outside_axis_range": false
+    },
+    {
+      "x": 6.006358118987656,
+      "y": 3.671440823327616,
+      "pixel_x": 302.1792452830189,
+      "pixel_y": 529.6415094339623,
+      "pixel_count": 106,
+      "outside_axis_range": false
+    },
+    {
+      "x": 10.011530242545057,
+      "y": 4.083383010432191,
+      "pixel_x": 462.3360655737705,
+      "pixel_y": 484.327868852459,
+      "pixel_count": 122,
+      "outside_axis_range": false
+    },
+    {
+      "x": 14.977372736672516,
+      "y": 4.45958041958042,
+      "pixel_x": 660.9076923076923,
+      "pixel_y": 442.94615384615383,
+      "pixel_count": 130,
+      "outside_axis_range": false
+    },
+    {
+      "x": 19.994884765125466,
+      "y": 4.726859504132232,
+      "pixel_x": 861.5454545454545,
+      "pixel_y": 413.54545454545456,
+      "pixel_count": 99,
+      "outside_axis_range": false
+    },
+    {
+      "x": 29.985584087260282,
+      "y": 5.30666372462489,
+      "pixel_x": 1261.0485436893205,
+      "pixel_y": 349.7669902912621,
+      "pixel_count": 103,
+      "outside_axis_range": false
+    },
+    {
+      "x": 39.95360869112177,
+      "y": 5.936561264822134,
+      "pixel_x": 1659.644927536232,
+      "pixel_y": 280.4782608695652,
+      "pixel_count": 138,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 39.95,
+      "expected": 6.0,
+      "got": 5.936333225089964,
+      "difference": -0.06366677491003614,
+      "percent": 1.061112915167269,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-10-30T01:10:12+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 10b, digitized (Total hydrogen (filled triangles), CX45AOXS, -196 C)",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 39.95."
+  }
+}

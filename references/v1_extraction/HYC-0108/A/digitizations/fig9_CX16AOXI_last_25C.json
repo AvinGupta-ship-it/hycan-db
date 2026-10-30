@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T01:03:21+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0108",
+  "figure": "Fig. 9",
+  "series_name": "CX16AOXI (highest-pressure marker)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0108/in/pages/main-09.png",
+    "sha256": "3368d857a659e35a7e37c0813df10f4a3af49c54c96047d3b10ed96ed452883a",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 701.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1105.0,
+        "value": 200.0
+      },
+      "scale": "linear",
+      "label": "",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1460.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1230.0,
+        "value": 1.2
+      },
+      "scale": "linear",
+      "label": "",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 903.0,
+        "stated": 100.0,
+        "predicted": 100.0,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 1307.0,
+        "stated": 0.8,
+        "predicted": 0.7991323210412148,
+        "relative_error": 0.0010845986984815703
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 74902,
+    "matched_pixels_in_region": 16,
+    "region": [
+      1092,
+      1255,
+      1101,
+      1268
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 9.22,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 2-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 195.36453645364543,
+      "y": 1.0329323604811678,
+      "pixel_x": 1095.6363636363637,
+      "pixel_y": 1262.090909090909,
+      "pixel_count": 11,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 9, digitized (CX16AOXI (highest-pressure marker))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig9_CX16AOXI_last_25C.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}
