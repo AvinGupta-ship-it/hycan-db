@@ -160,3 +160,11 @@ def test_cross_access_lists_other_agents_and_the_repository(tmp_path):
     ])
     hits = runs.cross_access(t, run, "A", "HYC-0001")
     assert [h.split(":")[0] for h in hits] == ["call 2 Read", "call 3 Bash", "call 3 Bash", "call 4 Bash"]
+
+
+def test_device_check_ignores_folders_named_dev(tmp_path):
+    t = _transcript(tmp_path, [
+        ("Bash", {"command": "python3 - <<'EOF'\nout = WORK+'/dev'\nprint(open('/w/work/dev/x.json').read())\nEOF"}),
+        ("Bash", {"command": "python3 a.py p.png /dev/null.png && ls /dev/shm"}),
+    ])
+    assert sorted({f["call"] for f in runs.supplementary_flags(t, "/w/tools")}) == [2]

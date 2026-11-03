@@ -338,9 +338,34 @@ def cmd_collect(args) -> int:
     return 0
 
 
+def interrupted(transcript: Path) -> bool:
+    """True when an agent stopped on an API error (for example the account's
+    usage limit) instead of ending its task: its last assistant entry is the
+    harness's error message. Such an agent is resumed in its own session."""
+    last = None
+    try:
+        with transcript.open("rb") as fh:
+            fh.seek(0, 2)
+            size = fh.tell()
+            fh.seek(max(0, size - 262144))
+            lines = fh.read().decode("utf-8", errors="replace").splitlines()
+    except OSError:
+        return False
+    for line in reversed(lines):
+        try:
+            d = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        if d.get("type") == "assistant":
+            last = d
+            break
+    return bool(last and last.get("isApiErrorMessage"))
+
+
 def agent_states(transcripts: Path) -> dict[tuple[str, str], str]:
-    """(role, paper_id) -> 'running' or 'finished', from the agents' metadata
-    (the description each agent is started with: 'Extraction <R> <paper_id>')."""
+    """(role, paper_id) -> 'running', 'interrupted' or 'finished', from the
+    agents' metadata (the description each agent is started with:
+    'Extraction <R> <paper_id>') and, for a stopped agent, its transcript."""
     out: dict[tuple[str, str], str] = {}
     for meta_path in sorted(transcripts.glob("*.meta.json")):
         meta = json.loads(meta_path.read_text())
@@ -348,6 +373,8 @@ def agent_states(transcripts: Path) -> dict[tuple[str, str], str]:
         if m:
             key = (m.group(1), m.group(2))
             state = "finished" if meta.get("finished") else "running"
+            if state == "finished" and interrupted(meta_path.with_name(meta_path.name.replace(".meta.json", ".jsonl"))):
+                state = "interrupted"
             if out.get(key) != "finished":
                 out[key] = state
     return out
@@ -359,7 +386,8 @@ def cmd_status(args) -> int:
     states = agent_states(Path(args.transcripts))
     papers = [r for r in read(PAPERS) if r["mode"] != "none"]
     running = sum(1 for v in states.values() if v == "running")
-    todo = {"prepare": [], "launch_first": [], "assemble": [], "launch_C": [], "collect": []}
+    todo = {"resume": sorted(f"{r}:{pid}" for (r, pid), v in states.items() if v == "interrupted"),
+            "prepare": [], "launch_first": [], "assemble": [], "launch_C": [], "collect": []}
     done = 0
     for p in papers:
         pid = p["paper_id"]

@@ -63,7 +63,7 @@ def agents(transcripts: Path) -> tuple[dict, dict]:
             continue
         key = (m.group(1), m.group(2))
         t = meta_path.with_name(meta_path.name.replace(".meta.json", ".jsonl"))
-        if meta.get("finished") and t.exists():
+        if meta.get("finished") and t.exists() and not extraction.interrupted(t):
             found.setdefault(key, []).append((screening_runs.started(t), t))
         else:
             stopped.setdefault(key, []).append(t.name)
@@ -142,7 +142,9 @@ PY_TOOLS_READ = re.compile(
     r"open\(\s*[rbuf]*['\"][^'\"]*(v1_tools_frozen|scripts/(digitize_figure|validate_row_detail)\.py)"
     r"|^\s*(?:import\s+(?:scripts\.)?(?:digitize_figure|validate_row_detail)\b"
     r"|from\s+(?:scripts\.)?(?:digitize_figure|validate_row_detail)\s+import\b)|inspect\.getsource", re.MULTILINE)
-DEVICE = re.compile(r"/dev/(?!(?:null|stdout|stderr|tty|zero|urandom|random)(?![\w.])|fd/)[\w./-]*")
+# An absolute /dev path: not the tail of a longer path ("work/dev/x") and not a
+# string joined to a variable (WORK + '/dev').
+DEVICE = re.compile(r"(?<![\w/.+])(?<!\+')(?<!\+\")/dev/(?!(?:null|stdout|stderr|tty|zero|urandom|random)(?![\w.])|fd/)[\w./-]*")
 
 
 def supplementary_flags(transcript: Path, tools: str) -> list[dict]:
@@ -224,6 +226,46 @@ def cross_access(transcript: Path, run: Path, role: str, pid: str) -> list[str]:
     return hits
 
 
+RESUME = ("Your session stopped on an API usage limit, not by your choice. Continue your task from where you "
+          "stopped; your instruction file, input, output and work directory are unchanged, and the same rules apply.")
+
+
+def session(transcript: Path) -> dict:
+    """The models that wrote the agent's turns, leaving out the harness's own
+    API-error entries (model "<synthetic>"); how often the agent was stopped by
+    an API error; how often the harness compacted its context (an automatic
+    summary, written by the same session, when the context fills); and every
+    message the operator sent after the launcher, each of which must be the
+    fixed resume text (README, "Run")."""
+    models, stops, sent, first, compactions = set(), 0, [], True, 0
+    for line in transcript.read_text(encoding="utf-8").splitlines():
+        try:
+            d = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        if d.get("type") == "assistant":
+            if d.get("isApiErrorMessage"):
+                stops += 1
+            elif d.get("message", {}).get("model"):
+                models.add(d["message"]["model"])
+        elif d.get("type") == "user" and d.get("isCompactSummary"):
+            compactions += 1  # the harness's own summary when the context fills
+        elif d.get("type") == "user" and not d.get("isMeta"):
+            content = d.get("message", {}).get("content")
+            if isinstance(content, list):
+                if any(isinstance(c, dict) and c.get("type") == "tool_result" for c in content):
+                    continue
+                content = "".join(c.get("text", "") for c in content if isinstance(c, dict))
+            if not isinstance(content, str) or not content.strip():
+                continue
+            if first:
+                first = False
+                continue
+            sent.append(content.strip())
+    return {"models": sorted(models), "api_error_stops": stops, "compactions": compactions,
+            "operator_messages": sent}
+
+
 def check_agent(run: Path, role: str, pid: str, mode: str, transcript: Path,
                 harness: list[str]) -> dict:
     d = run / role / pid
@@ -234,9 +276,10 @@ def check_agent(run: Path, role: str, pid: str, mode: str, transcript: Path,
         "launcher_exact": screening_runs.first_user_text(transcript) == launch.removesuffix("\n"),
         "prompt_sha256_ok": (hashlib.sha256(prompt.read_bytes()).hexdigest()
                              == extraction.SHA256[prompt.name]),
-        "models": v1_audit_access.models(transcript),
     }
+    report.update(session(transcript))
     report["model_ok"] = report["models"] == [extraction.MODEL[role]]
+    report["operator_messages_ok"] = all(m == RESUME for m in report["operator_messages"])
     report["flags"] = v1_audit_access.audit(
         transcript, str(prompt), [str(d / "in"), str(d / "out"), str(d / "work")],
         str(extraction.TOOLS), harness, own=[str(d)])
@@ -320,7 +363,7 @@ def main(argv: list[str] | None = None) -> int:
             report = check_agent(run, role, pid, modes[pid], transcripts[-1], args.harness)
             cached.write_text(json.dumps({"key": key, "report": report}) + "\n")
         screening_runs.apply_reviews(report, reviews, used)
-        if report["cross_access"]:
+        if report["cross_access"] or not report["operator_messages_ok"]:
             report["ok"] = False
         report["earlier_agents"] = [t.name for t in transcripts[:-1]]
         report["unfinished_agents"] = stopped.get((role, pid), [])
@@ -330,7 +373,9 @@ def main(argv: list[str] | None = None) -> int:
             print(f"{role} {pid}: " + json.dumps(
                 {k: report[k] for k in ("launcher_exact", "prompt_sha256_ok", "models",
                                         "flags", "output_problems", "cross_access")})[:900])
-    stale = sorted(set(reviews) - used)
+    # A review of an agent that is running again (resumed after an API error)
+    # waits until that agent has finished; only checked agents' reviews count.
+    stale = sorted(k for k in set(reviews) - used if (k[0], k[1]) in found)
     for key in stale:
         print("review matches no flag: " + json.dumps(key))
     tools = tools_problems()
