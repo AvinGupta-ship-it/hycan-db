@@ -17,13 +17,21 @@
       "call": 44,
       "tool": "Bash",
       "reason": "command climbs with ..",
-      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/A/HYC-0022/work && O=/home/claude/work/runs/extract/A/HYC-0022/out/digitizations && python3 -I - <<'EOF'\n# rebuild AC isolation with only p=1,6,8,10,20\nimport numpy as np\nfrom PIL import Image\nW='/home/claude/work/runs/extract/"
+      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/A/HYC-0022/work && O=/home/claude/work/runs/extract/A/HYC-0022/out/digitizations && python3 -I - <<'EOF'\n# rebuild AC isolation with only p=1,6,8,10,20\nimport numpy as np\nfrom PIL import Image\nW='/home/claude/work/runs/extract/",
+      "review": {
+        "access": false,
+        "note": "From the tools directory the command runs digitize_figure.py extract on the agent's own derived images ($W) and lists its own out/digitizations ($O); the '..' path is W+'/../in/pages/main-5.png', its own input page read from its own work directory. Nothing in the tools directory is opened or listed."
+      }
     },
     {
       "call": 44,
       "tool": "Bash",
       "reason": "command names a path outside the allowed paths: /../in/pages/main-5.png",
-      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/A/HYC-0022/work && O=/home/claude/work/runs/extract/A/HYC-0022/out/digitizations && python3 -I - <<'EOF'\n# rebuild AC isolation with only p=1,6,8,10,20\nimport numpy as np\nfrom PIL import Image\nW='/home/claude/work/runs/extract/"
+      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/A/HYC-0022/work && O=/home/claude/work/runs/extract/A/HYC-0022/out/digitizations && python3 -I - <<'EOF'\n# rebuild AC isolation with only p=1,6,8,10,20\nimport numpy as np\nfrom PIL import Image\nW='/home/claude/work/runs/extract/",
+      "review": {
+        "access": false,
+        "note": "From the tools directory the command runs digitize_figure.py extract on the agent's own derived images ($W) and lists its own out/digitizations ($O); the '..' path is W+'/../in/pages/main-5.png', its own input page read from its own work directory. Nothing in the tools directory is opened or listed."
+      }
     },
     {
       "call": 86,
@@ -79,28 +87,40 @@
       "call": 96,
       "tool": "Bash",
       "reason": "command climbs with ..",
-      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/A/HYC-0022/work && python3 scripts/digitize_figure.py extract --image /home/claude/work/runs/extract/A/HYC-0022/in/pages/si1-4.png --out $W/t_S1.json --overwrite --color '#000000' --tolerance 40 --x1-px 343.5 --x1-val 0 --x2-px"
+      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/A/HYC-0022/work && python3 scripts/digitize_figure.py extract --image /home/claude/work/runs/extract/A/HYC-0022/in/pages/si1-4.png --out $W/t_S1.json --overwrite --color '#000000' --tolerance 40 --x1-px 343.5 --x1-val 0 --x2-px",
+      "review": {
+        "access": false,
+        "note": "From the tools directory the command runs digitize_figure.py extract on its own input page with output in its own work directory, then 'cd $W' (its own work directory, the move the audit reads as within the tools directory) and runs its own overlay helper on '../in/pages/si1-4.png', its own input. Nothing in the tools directory is opened or listed."
+      }
     },
     {
       "call": 96,
       "tool": "Bash",
       "reason": "command moves within the tools directory",
-      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/A/HYC-0022/work && python3 scripts/digitize_figure.py extract --image /home/claude/work/runs/extract/A/HYC-0022/in/pages/si1-4.png --out $W/t_S1.json --overwrite --color '#000000' --tolerance 40 --x1-px 343.5 --x1-val 0 --x2-px"
+      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/A/HYC-0022/work && python3 scripts/digitize_figure.py extract --image /home/claude/work/runs/extract/A/HYC-0022/in/pages/si1-4.png --out $W/t_S1.json --overwrite --color '#000000' --tolerance 40 --x1-px 343.5 --x1-val 0 --x2-px",
+      "review": {
+        "access": false,
+        "note": "From the tools directory the command runs digitize_figure.py extract on its own input page with output in its own work directory, then 'cd $W' (its own work directory, the move the audit reads as within the tools directory) and runs its own overlay helper on '../in/pages/si1-4.png', its own input. Nothing in the tools directory is opened or listed."
+      }
     },
     {
       "call": 102,
       "tool": "Bash",
       "reason": "code opens or imports a file in the tools directory (supplementary check)",
-      "detail": "open('/home/claude/work/v1_tools_frozen/scripts/validate_row_detail.py"
+      "detail": "open('/home/claude/work/v1_tools_frozen/scripts/validate_row_detail.py",
+      "review": {
+        "access": false,
+        "note": "The command reads its own out/digitizations; its last part, python3 -c \"print(open('.../scripts/validate_row_detail.py').readline() if False else 'skip')\", names the validator's source but the condition is False, so the file is never opened (it prints 'skip'). grep -c of /dev/null reads nothing."
+      }
     }
   ],
   "cross_access": [],
   "tool_calls": 111,
   "output_problems": [],
-  "flags_unreviewed": 5,
+  "flags_unreviewed": 0,
   "flags_access": 0,
-  "access_ok": false,
-  "ok": false,
+  "access_ok": true,
+  "ok": true,
   "earlier_agents": [],
   "unfinished_agents": []
 }

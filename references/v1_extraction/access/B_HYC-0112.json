@@ -197,16 +197,20 @@
       "call": 162,
       "tool": "Bash",
       "reason": "command in the tools directory does more than run its two scripts: timeout 600 python3 scripts/validate_row_detail.py /home/claude/work/runs/extract/B/HYC-0112/out/rows.csv --errors-only",
-      "detail": "cd /home/claude/work/runs/extract/B/HYC-0112/work/scripts && python3 - <<'EOF'\ns=open('build_rows.py').read()\ns=s.replace(\"rows = []\\ndef add(sid, iso, T, p, w, branch, count, src, method, conf, note, repl=False):\\n\",\n\"rows = []\\nDROPPED = []\\ndef add(sid, iso, T, p, w, branch, count, src, method, c"
+      "detail": "cd /home/claude/work/runs/extract/B/HYC-0112/work/scripts && python3 - <<'EOF'\ns=open('build_rows.py').read()\ns=s.replace(\"rows = []\\ndef add(sid, iso, T, p, w, branch, count, src, method, conf, note, repl=False):\\n\",\n\"rows = []\\nDROPPED = []\\ndef add(sid, iso, T, p, w, branch, count, src, method, c",
+      "review": {
+        "access": false,
+        "note": "The agent edits and runs its own work/scripts/build_rows.py, then from the tools directory runs scripts/validate_row_detail.py (under timeout) on its own out/rows.csv. Nothing in the tools directory is opened, listed or searched."
+      }
     }
   ],
   "cross_access": [],
   "tool_calls": 164,
   "output_problems": [],
-  "flags_unreviewed": 1,
+  "flags_unreviewed": 0,
   "flags_access": 0,
-  "access_ok": false,
-  "ok": false,
+  "access_ok": true,
+  "ok": true,
   "earlier_agents": [],
   "unfinished_agents": []
 }

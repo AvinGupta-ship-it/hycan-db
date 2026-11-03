@@ -8603,6 +8603,105 @@
       "reason": "command names a path outside the allowed paths: /tmp/claude-0/-home-claude/663fb236-481a-5f2f-b02f-82bfd72801cf/tasks/bge4odzc0.output",
       "access": false,
       "note": "The file is /tmp/claude-0/.../tasks/bge4odzc0.output, in which the agent's own tool environment saved the output of the agent's own background command (the harness gave it that ID and path in its own transcript). The launcher allows such files. The flagged paths are the ends of paths the command builds from the agent's own run directory (e.g. BASE + '/out/digitizations'); every absolute path it names is in the agent's own run directory, the tools directory's two scripts or its own instruction file. Nothing outside those is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0022",
+      "transcript": "agent-a7936bc6a505481d2.jsonl",
+      "call": 44,
+      "reason": "command climbs with ..",
+      "access": false,
+      "note": "From the tools directory the command runs digitize_figure.py extract on the agent's own derived images ($W) and lists its own out/digitizations ($O); the '..' path is W+'/../in/pages/main-5.png', its own input page read from its own work directory. Nothing in the tools directory is opened or listed."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0022",
+      "transcript": "agent-a7936bc6a505481d2.jsonl",
+      "call": 44,
+      "reason": "command names a path outside the allowed paths: /../in/pages/main-5.png",
+      "access": false,
+      "note": "From the tools directory the command runs digitize_figure.py extract on the agent's own derived images ($W) and lists its own out/digitizations ($O); the '..' path is W+'/../in/pages/main-5.png', its own input page read from its own work directory. Nothing in the tools directory is opened or listed."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0022",
+      "transcript": "agent-a7936bc6a505481d2.jsonl",
+      "call": 96,
+      "reason": "command climbs with ..",
+      "access": false,
+      "note": "From the tools directory the command runs digitize_figure.py extract on its own input page with output in its own work directory, then 'cd $W' (its own work directory, the move the audit reads as within the tools directory) and runs its own overlay helper on '../in/pages/si1-4.png', its own input. Nothing in the tools directory is opened or listed."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0022",
+      "transcript": "agent-a7936bc6a505481d2.jsonl",
+      "call": 96,
+      "reason": "command moves within the tools directory",
+      "access": false,
+      "note": "From the tools directory the command runs digitize_figure.py extract on its own input page with output in its own work directory, then 'cd $W' (its own work directory, the move the audit reads as within the tools directory) and runs its own overlay helper on '../in/pages/si1-4.png', its own input. Nothing in the tools directory is opened or listed."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0022",
+      "transcript": "agent-a7936bc6a505481d2.jsonl",
+      "call": 102,
+      "reason": "code opens or imports a file in the tools directory (supplementary check)",
+      "access": false,
+      "note": "The command reads its own out/digitizations; its last part, python3 -c \"print(open('.../scripts/validate_row_detail.py').readline() if False else 'skip')\", names the validator's source but the condition is False, so the file is never opened (it prints 'skip'). grep -c of /dev/null reads nothing."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0031",
+      "transcript": "agent-aa78c3cbb7b6529f8.jsonl",
+      "call": 17,
+      "reason": "command opens the tools directory: /home/claude/work/v1_tools_frozen",
+      "access": false,
+      "note": "Breach, self-reported: after printing the sizes of its own page images, the command listed the tools directory and its scripts/ folder (names only, piped to head). No file there was opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0031",
+      "transcript": "agent-aa78c3cbb7b6529f8.jsonl",
+      "call": 17,
+      "reason": "command opens the tools directory: /home/claude/work/v1_tools_frozen/scripts",
+      "access": false,
+      "note": "Breach, self-reported: after printing the sizes of its own page images, the command listed the tools directory and its scripts/ folder (names only, piped to head). No file there was opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0031",
+      "transcript": "agent-aa78c3cbb7b6529f8.jsonl",
+      "call": 17,
+      "reason": "command reads or lists a file in the tools directory (supplementary check)",
+      "access": false,
+      "note": "Breach, self-reported: after printing the sizes of its own page images, the command listed the tools directory and its scripts/ folder (names only, piped to head). No file there was opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0106",
+      "transcript": "agent-a7c6fc81e80067185.jsonl",
+      "call": 15,
+      "reason": "command opens the tools directory: /home/claude/work/v1_tools_frozen/scripts",
+      "access": false,
+      "note": "Breach, not self-reported: after printing its own page sizes and grepping its own text layer, the command listed the tools directory's scripts/ folder, which holds only the two scripts. No file there was opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0106",
+      "transcript": "agent-a7c6fc81e80067185.jsonl",
+      "call": 15,
+      "reason": "command reads or lists a file in the tools directory (supplementary check)",
+      "access": false,
+      "note": "Breach, not self-reported: after printing its own page sizes and grepping its own text layer, the command listed the tools directory's scripts/ folder, which holds only the two scripts. No file there was opened."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0112",
+      "transcript": "agent-a0c5fefb04408f8ec.jsonl",
+      "call": 162,
+      "reason": "command in the tools directory does more than run its two scripts: timeout 600 python3 scripts/validate_row_detail.py /home/claude/work/runs/extract/B/HYC-0112/out/rows.csv --errors-only",
+      "access": false,
+      "note": "The agent edits and runs its own work/scripts/build_rows.py, then from the tools directory runs scripts/validate_row_detail.py (under timeout) on its own out/rows.csv. Nothing in the tools directory is opened, listed or searched."
     }
   ]
 }
