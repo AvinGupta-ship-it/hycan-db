@@ -123,8 +123,9 @@ recorded in its review:
 
 - listing the tools directory's `scripts/` folder, which holds only the two
   scripts: extractor A on HYC-0068, HYC-0076, HYC-0044, HYC-0031 (with the
-  tools directory itself), HYC-0106 (not self-reported) and HYC-0101 (the tools
-  directory itself), and reconciler C on HYC-0100 (whose listing went to
+  tools directory itself), HYC-0106 (not self-reported), HYC-0101 (the tools
+  directory itself) and HYC-0116 (the tools directory itself, not
+  self-reported), and reconciler C on HYC-0100 (whose listing went to
   `head -0`, so it saw nothing);
 - reading a tool script's source: extractor A on HYC-0094 (`sed` of
   `digitize_figure.py`, piped to `head -0`, so nothing was printed) and

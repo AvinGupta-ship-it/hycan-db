@@ -17,7 +17,11 @@
       "call": 16,
       "tool": "Bash",
       "reason": "command in the tools directory does more than run its two scripts: ls",
-      "detail": "cd /home/claude/work/runs/extract/A/HYC-0116 && python3 -I -c \"\nfrom PIL import Image\nimport glob\nfor f in sorted(glob.glob('in/pages/*.png')):\n    im=Image.open(f); print(f.split('/')[-1], im.size)\n\" | head -60; cd /home/claude/work/v1_tools_frozen && ls; python3 scripts/digitize_figure.py --help"
+      "detail": "cd /home/claude/work/runs/extract/A/HYC-0116 && python3 -I -c \"\nfrom PIL import Image\nimport glob\nfor f in sorted(glob.glob('in/pages/*.png')):\n    im=Image.open(f); print(f.split('/')[-1], im.size)\n\" | head -60; cd /home/claude/work/v1_tools_frozen && ls; python3 scripts/digitize_figure.py --help",
+      "review": {
+        "access": false,
+        "note": "Breach, not self-reported (the agent's reply says it opened no path outside its list): after printing its own page sizes, the command changed into the tools directory and ran a bare 'ls', listing its top level, then ran digitize_figure.py --help. No file there was opened."
+      }
     },
     {
       "call": 47,
@@ -173,16 +177,20 @@
       "call": 16,
       "tool": "Bash",
       "reason": "command reads or lists a relative path in the tools directory (supplementary check)",
-      "detail": "ls"
+      "detail": "ls",
+      "review": {
+        "access": false,
+        "note": "Breach, not self-reported (the agent's reply says it opened no path outside its list): after printing its own page sizes, the command changed into the tools directory and ran a bare 'ls', listing its top level, then ran digitize_figure.py --help. No file there was opened."
+      }
     }
   ],
   "cross_access": [],
   "tool_calls": 83,
   "output_problems": [],
-  "flags_unreviewed": 2,
+  "flags_unreviewed": 0,
   "flags_access": 0,
-  "access_ok": false,
-  "ok": false,
+  "access_ok": true,
+  "ok": true,
   "earlier_agents": [],
   "unfinished_agents": []
 }
