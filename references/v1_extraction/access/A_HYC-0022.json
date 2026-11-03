@@ -29,31 +29,51 @@
       "call": 86,
       "tool": "Bash",
       "reason": "command in the tools directory does more than run its two scripts: [ $s = AC ]",
-      "detail": "cd /home/claude/work/runs/extract/A/HYC-0022/work && cat > fig4_isolate.py <<'EOF'\nimport numpy as np, json, math\nfrom PIL import Image\ng=np.array(Image.open('../in/pages/main-5.png').convert('L'))\nsets=json.load(open('fig4_sets.json'))\nfor name,pts in sets.items():\n    out=np.full_like(g,255)\n    f"
+      "detail": "cd /home/claude/work/runs/extract/A/HYC-0022/work && cat > fig4_isolate.py <<'EOF'\nimport numpy as np, json, math\nfrom PIL import Image\ng=np.array(Image.open('../in/pages/main-5.png').convert('L'))\nsets=json.load(open('fig4_sets.json'))\nfor name,pts in sets.items():\n    out=np.full_like(g,255)\n    f",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
     },
     {
       "call": 88,
       "tool": "Bash",
       "reason": "command moves within the tools directory",
-      "detail": "cd /home/claude/work/runs/extract/A/HYC-0022/work && cat > fig4_isolate.py <<'EOF'\nimport numpy as np, json, math\nfrom PIL import Image\ng=np.array(Image.open('../in/pages/main-5.png').convert('L'))\nsets=json.load(open('fig4_sets.json'))\nfor name,pts in sets.items():\n    pts=sorted(pts)\n    out=np.fu"
+      "detail": "cd /home/claude/work/runs/extract/A/HYC-0022/work && cat > fig4_isolate.py <<'EOF'\nimport numpy as np, json, math\nfrom PIL import Image\ng=np.array(Image.open('../in/pages/main-5.png').convert('L'))\nsets=json.load(open('fig4_sets.json'))\nfor name,pts in sets.items():\n    pts=sorted(pts)\n    out=np.fu",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
     },
     {
       "call": 88,
       "tool": "Bash",
       "reason": "command in the tools directory does more than run its two scripts: [ $s = AC ]",
-      "detail": "cd /home/claude/work/runs/extract/A/HYC-0022/work && cat > fig4_isolate.py <<'EOF'\nimport numpy as np, json, math\nfrom PIL import Image\ng=np.array(Image.open('../in/pages/main-5.png').convert('L'))\nsets=json.load(open('fig4_sets.json'))\nfor name,pts in sets.items():\n    pts=sorted(pts)\n    out=np.fu"
+      "detail": "cd /home/claude/work/runs/extract/A/HYC-0022/work && cat > fig4_isolate.py <<'EOF'\nimport numpy as np, json, math\nfrom PIL import Image\ng=np.array(Image.open('../in/pages/main-5.png').convert('L'))\nsets=json.load(open('fig4_sets.json'))\nfor name,pts in sets.items():\n    pts=sorted(pts)\n    out=np.fu",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
     },
     {
       "call": 88,
       "tool": "Bash",
       "reason": "command in the tools directory does more than run its two scripts: [ $s = AC-C4 ]",
-      "detail": "cd /home/claude/work/runs/extract/A/HYC-0022/work && cat > fig4_isolate.py <<'EOF'\nimport numpy as np, json, math\nfrom PIL import Image\ng=np.array(Image.open('../in/pages/main-5.png').convert('L'))\nsets=json.load(open('fig4_sets.json'))\nfor name,pts in sets.items():\n    pts=sorted(pts)\n    out=np.fu"
+      "detail": "cd /home/claude/work/runs/extract/A/HYC-0022/work && cat > fig4_isolate.py <<'EOF'\nimport numpy as np, json, math\nfrom PIL import Image\ng=np.array(Image.open('../in/pages/main-5.png').convert('L'))\nsets=json.load(open('fig4_sets.json'))\nfor name,pts in sets.items():\n    pts=sorted(pts)\n    out=np.fu",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
     },
     {
       "call": 89,
       "tool": "Bash",
       "reason": "command moves within the tools directory",
-      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/A/HYC-0022/work && for tol in 100 140 180 220; do echo \"== AC tol $tol\"; python3 scripts/digitize_figure.py extract --image $W/fig4_iso_AC.png --out $W/t4_AC_$tol.json --overwrite --color '#000000' --tolerance $tol --x1-px 191."
+      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/A/HYC-0022/work && for tol in 100 140 180 220; do echo \"== AC tol $tol\"; python3 scripts/digitize_figure.py extract --image $W/fig4_iso_AC.png --out $W/t4_AC_$tol.json --overwrite --color '#000000' --tolerance $tol --x1-px 191.",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
     },
     {
       "call": 96,
@@ -77,7 +97,7 @@
   "cross_access": [],
   "tool_calls": 111,
   "output_problems": [],
-  "flags_unreviewed": 10,
+  "flags_unreviewed": 5,
   "flags_access": 0,
   "access_ok": false,
   "ok": false,
