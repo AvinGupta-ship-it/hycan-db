@@ -1,0 +1,168 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T01:17:05+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0109",
+  "figure": "Figure 7 top-right (main p.7)",
+  "series_name": "Batch 5.1 absolute, 303 K Adsorption",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0109/work/p08_f7_legendmasked.png",
+    "sha256": "263818484d2a41c2a53b187a345cd9833847738ff8b9778e4d50e4db5f9b9fc6",
+    "width_px": 1240,
+    "height_px": 1755
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 689.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 951.0,
+        "value": 100.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 375.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 206.0,
+        "value": 60.0
+      },
+      "scale": "linear",
+      "label": "Absolute Mass Hydrogen for Mass Sample (g/kg)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 846.0,
+        "stated": 60.0,
+        "predicted": 59.92366412213741,
+        "relative_error": 0.0012722646310431667
+      },
+      {
+        "axis": "y",
+        "pixel": 262.0,
+        "stated": 40.0,
+        "predicted": 40.11834319526627,
+        "relative_error": 0.002958579881656753
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff0000",
+    "color_rgb": [
+      255,
+      0,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 1739,
+    "matched_pixels_in_region": 349,
+    "region": [
+      685,
+      160,
+      955,
+      378
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 6.76,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 8,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.9541984732824428,
+      "y": 1.0650887573964498,
+      "pixel_x": 691.5,
+      "pixel_y": 372.0,
+      "pixel_count": 18,
+      "outside_axis_range": false
+    },
+    {
+      "x": 4.041311180960946,
+      "y": 0.7309432648799177,
+      "pixel_x": 699.5882352941177,
+      "pixel_y": 372.94117647058823,
+      "pixel_count": 17,
+      "outside_axis_range": false
+    },
+    {
+      "x": 6.731436502428865,
+      "y": 1.1780527165142531,
+      "pixel_x": 706.6363636363636,
+      "pixel_y": 371.6818181818182,
+      "pixel_count": 22,
+      "outside_axis_range": false
+    },
+    {
+      "x": 20.26370575988898,
+      "y": 3.114577729962338,
+      "pixel_x": 742.0909090909091,
+      "pixel_y": 366.22727272727275,
+      "pixel_count": 22,
+      "outside_axis_range": false
+    },
+    {
+      "x": 50.903307888040715,
+      "y": 7.147928994082838,
+      "pixel_x": 822.3666666666667,
+      "pixel_y": 354.8666666666667,
+      "pixel_count": 30,
+      "outside_axis_range": false
+    },
+    {
+      "x": 60.178117048346046,
+      "y": 8.461538461538455,
+      "pixel_x": 846.6666666666666,
+      "pixel_y": 351.1666666666667,
+      "pixel_count": 18,
+      "outside_axis_range": false
+    },
+    {
+      "x": 80.91603053435115,
+      "y": 10.47337278106509,
+      "pixel_x": 901.0,
+      "pixel_y": 345.5,
+      "pixel_count": 12,
+      "outside_axis_range": false
+    },
+    {
+      "x": 90.07633587786259,
+      "y": 12.009261641368669,
+      "pixel_x": 925.0,
+      "pixel_y": 341.17391304347825,
+      "pixel_count": 23,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 7 top-right (main p.7), digitized (Batch 5.1 absolute, 303 K Adsorption)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: f7TR_B51_absolute_303K_ads.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

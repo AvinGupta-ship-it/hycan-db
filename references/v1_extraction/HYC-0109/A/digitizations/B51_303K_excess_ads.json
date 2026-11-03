@@ -1,0 +1,176 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T01:04:06+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0109",
+  "figure": "Figure 1 top-right (Batch 5.1 excess)",
+  "series_name": "Batch 5.1 303 K adsorption (excess), red triangles",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0109/in/pages/main-04.png",
+    "sha256": "26694a496572a5db96ccb8178d287c0486867e9f1e80ddee8d2720707682c9c6",
+    "width_px": 1240,
+    "height_px": 1755
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 696.3,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 906.0,
+        "value": 80.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 371.87,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 180.0,
+        "value": 50.0
+      },
+      "scale": "linear",
+      "label": "Excess mass hydrogen (g/kg)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 801.0,
+        "stated": 40.0,
+        "predicted": 39.94277539341918,
+        "relative_error": 0.0014306151645204323
+      },
+      {
+        "axis": "y",
+        "pixel": 296.0,
+        "stated": 20.0,
+        "predicted": 19.771199249491843,
+        "relative_error": 0.011440037525407832
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff0000",
+    "color_rgb": [
+      255,
+      0,
+      0
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 8483,
+    "matched_pixels_in_region": 446,
+    "region": [
+      696,
+      335,
+      958,
+      372
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 7.6748,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      200
+    ],
+    "rejected_markers": [],
+    "n_points": 9,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 7.339422618392595,
+      "y": 0.4171494321074766,
+      "pixel_x": 715.5384615384615,
+      "pixel_y": 370.2692307692308,
+      "pixel_count": 26,
+      "outside_axis_range": false
+    },
+    {
+      "x": 11.711969480209838,
+      "y": 0.617605670506073,
+      "pixel_x": 727.0,
+      "pixel_y": 369.5,
+      "pixel_count": 12,
+      "outside_axis_range": false
+    },
+    {
+      "x": 23.91988555078685,
+      "y": 1.790274665137855,
+      "pixel_x": 759.0,
+      "pixel_y": 365.0,
+      "pixel_count": 9,
+      "outside_axis_range": false
+    },
+    {
+      "x": 33.45731998092514,
+      "y": 2.3114608849742027,
+      "pixel_x": 784.0,
+      "pixel_y": 363.0,
+      "pixel_count": 9,
+      "outside_axis_range": false
+    },
+    {
+      "x": 41.69483742206681,
+      "y": 3.305575341328723,
+      "pixel_x": 805.5925925925926,
+      "pixel_y": 359.18518518518516,
+      "pixel_count": 27,
+      "outside_axis_range": false
+    },
+    {
+      "x": 51.42785432823832,
+      "y": 3.9847429591856374,
+      "pixel_x": 831.1052631578947,
+      "pixel_y": 356.57894736842104,
+      "pixel_count": 19,
+      "outside_axis_range": false
+    },
+    {
+      "x": 60.95981271946939,
+      "y": 4.597573167438176,
+      "pixel_x": 856.0909090909091,
+      "pixel_y": 354.22727272727275,
+      "pixel_count": 22,
+      "outside_axis_range": false
+    },
+    {
+      "x": 70.68863808968722,
+      "y": 5.1297271107559395,
+      "pixel_x": 881.5925925925926,
+      "pixel_y": 352.18518518518516,
+      "pixel_count": 27,
+      "outside_axis_range": false
+    },
+    {
+      "x": 80.25728892881303,
+      "y": 6.062789606819547,
+      "pixel_x": 906.6744186046511,
+      "pixel_y": 348.6046511627907,
+      "pixel_count": 43,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 1 top-right (Batch 5.1 excess), digitized (Batch 5.1 303 K adsorption (excess), red triangles)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: B51_303K_excess_ads.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

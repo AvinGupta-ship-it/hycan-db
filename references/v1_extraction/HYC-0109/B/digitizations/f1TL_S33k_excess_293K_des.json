@@ -1,0 +1,184 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T01:16:46+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0109",
+  "figure": "Figure 1 top-left (main p.3)",
+  "series_name": "S-33/k excess, 293 K Desorption",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0109/work/p04_f1_legendmasked.png",
+    "sha256": "4bca1d96f37d8972c3f5cbad8e0fdc9ad8c4d4d87e9cfb6da05a83de170f9527",
+    "width_px": 1240,
+    "height_px": 1755
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 322.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 555.0,
+        "value": 20.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 376.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 156.0,
+        "value": 60.0
+      },
+      "scale": "linear",
+      "label": "Excess Mass Hydrogen for Mass Sample (g/kg)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 439.0,
+        "stated": 10.0,
+        "predicted": 10.042918454935624,
+        "relative_error": 0.004291845493562363
+      },
+      {
+        "axis": "y",
+        "pixel": 266.0,
+        "stated": 30.0,
+        "predicted": 30.0,
+        "relative_error": 0.0
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff8000",
+    "color_rgb": [
+      255,
+      128,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 1744,
+    "matched_pixels_in_region": 361,
+    "region": [
+      318,
+      350,
+      590,
+      380
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 8.8,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 10,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.5150214592274678,
+      "y": 0.6701298701298697,
+      "pixel_x": 328.0,
+      "pixel_y": 373.54285714285714,
+      "pixel_count": 35,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.4981500665976046,
+      "y": 0.8652037617554811,
+      "pixel_x": 351.1034482758621,
+      "pixel_y": 372.82758620689657,
+      "pixel_count": 29,
+      "outside_axis_range": false
+    },
+    {
+      "x": 4.506437768240343,
+      "y": 1.0588235294117627,
+      "pixel_x": 374.5,
+      "pixel_y": 372.11764705882354,
+      "pixel_count": 34,
+      "outside_axis_range": false
+    },
+    {
+      "x": 6.499080318822808,
+      "y": 1.4155844155844193,
+      "pixel_x": 397.7142857142857,
+      "pixel_y": 370.8095238095238,
+      "pixel_count": 42,
+      "outside_axis_range": false
+    },
+    {
+      "x": 8.52044273774565,
+      "y": 1.6650717703349291,
+      "pixel_x": 421.2631578947368,
+      "pixel_y": 369.89473684210526,
+      "pixel_count": 38,
+      "outside_axis_range": false
+    },
+    {
+      "x": 10.493562231759658,
+      "y": 1.9015151515151534,
+      "pixel_x": 444.25,
+      "pixel_y": 369.02777777777777,
+      "pixel_count": 36,
+      "outside_axis_range": false
+    },
+    {
+      "x": 12.489270386266094,
+      "y": 2.1818181818181817,
+      "pixel_x": 467.5,
+      "pixel_y": 368.0,
+      "pixel_count": 36,
+      "outside_axis_range": false
+    },
+    {
+      "x": 14.486475696177264,
+      "y": 2.5243128964059194,
+      "pixel_x": 490.7674418604651,
+      "pixel_y": 366.74418604651163,
+      "pixel_count": 43,
+      "outside_axis_range": false
+    },
+    {
+      "x": 16.478162080282758,
+      "y": 2.5588235294117627,
+      "pixel_x": 513.9705882352941,
+      "pixel_y": 366.61764705882354,
+      "pixel_count": 34,
+      "outside_axis_range": false
+    },
+    {
+      "x": 18.50290330724564,
+      "y": 2.7914438502673833,
+      "pixel_x": 537.5588235294117,
+      "pixel_y": 365.7647058823529,
+      "pixel_count": 34,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 1 top-left (main p.3), digitized (S-33/k excess, 293 K Desorption)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: f1TL_S33k_excess_293K_des.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

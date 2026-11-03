@@ -1,0 +1,184 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T01:12:36+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0109",
+  "figure": "Figure 7 top-left (S-33/k absolute, one-binding-energy-fit panel)",
+  "series_name": "S-33/k 293 K adsorption (absolute), red triangles",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0109/in/pages/main-08.png",
+    "sha256": "6fa7d777b09e088bd2af157d848d22fc0ef2837bf80e6169362c2f4fe669aa7a",
+    "width_px": 1240,
+    "height_px": 1755
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 330.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 563.0,
+        "value": 20.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 375.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 180.0,
+        "value": 60.0
+      },
+      "scale": "linear",
+      "label": "Absolute mass hydrogen for mass sample (g/kg)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 446.0,
+        "stated": 10.0,
+        "predicted": 9.957081545064378,
+        "relative_error": 0.004291845493562185
+      },
+      {
+        "axis": "y",
+        "pixel": 245.0,
+        "stated": 40.0,
+        "predicted": 40.0,
+        "relative_error": 0.0
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff0000",
+    "color_rgb": [
+      255,
+      0,
+      0
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 1616,
+    "matched_pixels_in_region": 407,
+    "region": [
+      330,
+      335,
+      592,
+      375
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 7.8,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      300
+    ],
+    "rejected_markers": [],
+    "n_points": 10,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.12875536480686695,
+      "y": 0.9230769230769231,
+      "pixel_x": 331.5,
+      "pixel_y": 372.0,
+      "pixel_count": 12,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.978540772532187,
+      "y": 0.4307692307692238,
+      "pixel_x": 341.4,
+      "pixel_y": 373.6,
+      "pixel_count": 15,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.96137339055794,
+      "y": 0.5443786982248534,
+      "pixel_x": 364.5,
+      "pixel_y": 373.2307692307692,
+      "pixel_count": 26,
+      "outside_axis_range": false
+    },
+    {
+      "x": 4.942398915744295,
+      "y": 1.1983805668016183,
+      "pixel_x": 387.57894736842104,
+      "pixel_y": 371.10526315789474,
+      "pixel_count": 19,
+      "outside_axis_range": false
+    },
+    {
+      "x": 7.9513590844062945,
+      "y": 1.5794871794871772,
+      "pixel_x": 422.6333333333333,
+      "pixel_y": 369.8666666666667,
+      "pixel_count": 30,
+      "outside_axis_range": false
+    },
+    {
+      "x": 9.957081545064378,
+      "y": 2.0659340659340684,
+      "pixel_x": 446.0,
+      "pixel_y": 368.2857142857143,
+      "pixel_count": 21,
+      "outside_axis_range": false
+    },
+    {
+      "x": 11.84549356223176,
+      "y": 2.1538461538461537,
+      "pixel_x": 468.0,
+      "pixel_y": 368.0,
+      "pixel_count": 9,
+      "outside_axis_range": false
+    },
+    {
+      "x": 13.004291845493563,
+      "y": 2.769230769230769,
+      "pixel_x": 481.5,
+      "pixel_y": 366.0,
+      "pixel_count": 16,
+      "outside_axis_range": false
+    },
+    {
+      "x": 14.935622317596566,
+      "y": 2.871794871794866,
+      "pixel_x": 504.0,
+      "pixel_y": 365.6666666666667,
+      "pixel_count": 18,
+      "outside_axis_range": false
+    },
+    {
+      "x": 19.942775393419176,
+      "y": 3.641025641025635,
+      "pixel_x": 562.3333333333334,
+      "pixel_y": 363.1666666666667,
+      "pixel_count": 18,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 7 top-left (S-33/k absolute, one-binding-energy-fit panel), digitized (S-33/k 293 K adsorption (absolute), red triangles)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: S33k_293K_absolute_ads_fig7.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}
