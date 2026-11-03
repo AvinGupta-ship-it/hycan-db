@@ -1,0 +1,232 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T01:24:45+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0113",
+  "figure": "Fig. 8b",
+  "series_name": "HPCDCM 77 K high-pressure isotherm, desorption (open blue squares; centres from occlusion-aware template match, see log.md)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0113/work/main-6_fig8b_desorption_centres.png",
+    "sha256": "ad4867de2851db156117ba77b106ddc8d3ddbf01b21800c78e0681b0f7a9c040",
+    "width_px": 1241,
+    "height_px": 1625
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 196.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 546.0,
+        "value": 100.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 863.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 749.0,
+        "value": 40.0
+      },
+      "scale": "linear",
+      "label": "H2 uptake (mg/g)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 336.0,
+        "stated": 40.0,
+        "predicted": 39.91416309012876,
+        "relative_error": 0.002145922746781004
+      },
+      {
+        "axis": "y",
+        "pixel": 806.0,
+        "stated": 20.0,
+        "predicted": 20.0,
+        "relative_error": 0.0
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#00a000",
+    "color_rgb": [
+      0,
+      160,
+      0
+    ],
+    "tolerance": 30.0,
+    "matched_pixels_in_image": 337,
+    "matched_pixels_in_region": 337,
+    "region": [
+      181,
+      722,
+      563,
+      876
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 5.0,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 16,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 9
+  },
+  "series": [
+    {
+      "x": 0.7153075822603719,
+      "y": 20.701754385964914,
+      "pixel_x": 199.0,
+      "pixel_y": 804.0,
+      "pixel_count": 25,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.144492131616595,
+      "y": 22.63157894736842,
+      "pixel_x": 200.5,
+      "pixel_y": 798.5,
+      "pixel_count": 16,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.4306151645207439,
+      "y": 25.087719298245613,
+      "pixel_x": 201.5,
+      "pixel_y": 791.5,
+      "pixel_count": 16,
+      "outside_axis_range": false
+    },
+    {
+      "x": 4.721030042918455,
+      "y": 33.333333333333336,
+      "pixel_x": 213.0,
+      "pixel_y": 768.0,
+      "pixel_count": 25,
+      "outside_axis_range": false
+    },
+    {
+      "x": 7.439198855507868,
+      "y": 36.666666666666664,
+      "pixel_x": 222.5,
+      "pixel_y": 758.5,
+      "pixel_count": 16,
+      "outside_axis_range": false
+    },
+    {
+      "x": 34.47782546494993,
+      "y": 43.85964912280702,
+      "pixel_x": 317.0,
+      "pixel_y": 738.0,
+      "pixel_count": 25,
+      "outside_axis_range": true
+    },
+    {
+      "x": 39.34191702432045,
+      "y": 43.85964912280702,
+      "pixel_x": 334.0,
+      "pixel_y": 738.0,
+      "pixel_count": 25,
+      "outside_axis_range": true
+    },
+    {
+      "x": 44.49213161659514,
+      "y": 43.50877192982456,
+      "pixel_x": 352.0,
+      "pixel_y": 739.0,
+      "pixel_count": 25,
+      "outside_axis_range": true
+    },
+    {
+      "x": 47.92560801144492,
+      "y": 43.15789473684211,
+      "pixel_x": 364.0,
+      "pixel_y": 740.0,
+      "pixel_count": 25,
+      "outside_axis_range": true
+    },
+    {
+      "x": 54.64949928469242,
+      "y": 42.631578947368425,
+      "pixel_x": 387.5,
+      "pixel_y": 741.5,
+      "pixel_count": 16,
+      "outside_axis_range": true
+    },
+    {
+      "x": 58.0829756795422,
+      "y": 42.280701754385966,
+      "pixel_x": 399.5,
+      "pixel_y": 742.5,
+      "pixel_count": 16,
+      "outside_axis_range": true
+    },
+    {
+      "x": 61.659513590844064,
+      "y": 41.754385964912274,
+      "pixel_x": 412.0,
+      "pixel_y": 744.0,
+      "pixel_count": 25,
+      "outside_axis_range": true
+    },
+    {
+      "x": 69.09871244635193,
+      "y": 40.70175438596492,
+      "pixel_x": 438.0,
+      "pixel_y": 747.0,
+      "pixel_count": 25,
+      "outside_axis_range": true
+    },
+    {
+      "x": 73.24749642346208,
+      "y": 40.175438596491226,
+      "pixel_x": 452.5,
+      "pixel_y": 748.5,
+      "pixel_count": 16,
+      "outside_axis_range": true
+    },
+    {
+      "x": 77.25321888412017,
+      "y": 39.473684210526315,
+      "pixel_x": 466.5,
+      "pixel_y": 750.5,
+      "pixel_count": 16,
+      "outside_axis_range": false
+    },
+    {
+      "x": 81.68812589413447,
+      "y": 38.94736842105263,
+      "pixel_x": 482.0,
+      "pixel_y": 752.0,
+      "pixel_count": 25,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 8b, digitized (HPCDCM 77 K high-pressure isotherm, desorption (open blue squares; centres from occlusion-aware template match, see log.md))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig8b_HPCDCM_77K_highP_desorption.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

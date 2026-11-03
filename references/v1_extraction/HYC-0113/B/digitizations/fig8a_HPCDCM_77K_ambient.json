@@ -1,0 +1,204 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T01:17:39+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0113",
+  "figure": "Fig. 8a",
+  "series_name": "HPCDCM 77 K ambient-pressure isotherm",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0113/in/pages/main-6.png",
+    "sha256": "51cd2fc92864df0ccc93d8660ef1c351b3dfc37f3fee1e73dc3166e79d6962e8",
+    "width_px": 1241,
+    "height_px": 1625
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 179.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 529.0,
+        "value": 1.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 664.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 507.0,
+        "value": 30.0
+      },
+      "scale": "linear",
+      "label": "H2 uptake (mg/g)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 389.0,
+        "stated": 0.6,
+        "predicted": 0.6,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 611.5,
+        "stated": 10.0,
+        "predicted": 10.031847133757962,
+        "relative_error": 0.0031847133757961998
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#cc60a8",
+    "color_rgb": [
+      204,
+      96,
+      168
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 590,
+    "matched_pixels_in_region": 551,
+    "region": [
+      181,
+      509,
+      563,
+      662
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 6.28,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 11,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.023963133640552962,
+      "y": 2.157386480378049,
+      "pixel_x": 187.38709677419354,
+      "pixel_y": 652.7096774193549,
+      "pixel_count": 31,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.0840692640692641,
+      "y": 6.960046323103639,
+      "pixel_x": 208.42424242424244,
+      "pixel_y": 627.5757575757576,
+      "pixel_count": 33,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.1957142857142857,
+      "y": 11.628753412192909,
+      "pixel_x": 247.5,
+      "pixel_y": 603.1428571428571,
+      "pixel_count": 28,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.2965714285714286,
+      "y": 14.43494085532301,
+      "pixel_x": 282.8,
+      "pixel_y": 588.4571428571429,
+      "pixel_count": 35,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.39234693877551013,
+      "y": 16.81528662420382,
+      "pixel_x": 316.32142857142856,
+      "pixel_y": 576.0,
+      "pixel_count": 28,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.5,
+      "y": 18.866616710378423,
+      "pixel_x": 354.0,
+      "pixel_y": 565.2647058823529,
+      "pixel_count": 34,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.5927188940092165,
+      "y": 20.3349085679063,
+      "pixel_x": 386.4516129032258,
+      "pixel_y": 557.5806451612904,
+      "pixel_count": 31,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.6957142857142857,
+      "y": 21.810737033666964,
+      "pixel_x": 422.5,
+      "pixel_y": 549.8571428571429,
+      "pixel_count": 28,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.7985714285714286,
+      "y": 22.834394904458602,
+      "pixel_x": 458.5,
+      "pixel_y": 544.5,
+      "pixel_count": 32,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.8981904761904762,
+      "y": 23.62420382165605,
+      "pixel_x": 493.3666666666667,
+      "pixel_y": 540.3666666666667,
+      "pixel_count": 30,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.9957142857142857,
+      "y": 24.171974522292995,
+      "pixel_x": 527.5,
+      "pixel_y": 537.5,
+      "pixel_count": 32,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 0.995,
+      "expected": 24.0,
+      "got": 24.16796252985669,
+      "difference": 0.16796252985669113,
+      "percent": 0.6998438744028798,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-10-30T01:17:44+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 8a, digitized (HPCDCM 77 K ambient-pressure isotherm)",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 0.995."
+  }
+}
