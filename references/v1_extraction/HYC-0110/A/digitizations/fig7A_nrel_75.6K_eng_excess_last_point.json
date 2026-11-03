@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T01:13:56+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0110",
+  "figure": "Figure 7A",
+  "series_name": "Eng. Excess (NREL, 75.6 K)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0110/work/A_end_blue.png",
+    "sha256": "420277990379150377ae583ec599f30ba42f405c6d863409fb4b3355b83dfd51",
+    "width_px": 1228,
+    "height_px": 1632
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 164.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 553.0,
+        "value": 150.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 927.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 623.5,
+        "value": 6.0
+      },
+      "scale": "linear",
+      "label": "H2 Gravimetric Uptake (wt.%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 423.5,
+        "stated": 100.0,
+        "predicted": 100.0,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 724.5,
+        "stated": 4.0,
+        "predicted": 4.003294892915981,
+        "relative_error": 0.0008237232289951546
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#242a76",
+    "color_rgb": [
+      36,
+      42,
+      118
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 81,
+    "matched_pixels_in_region": 81,
+    "region": [
+      156,
+      617,
+      561,
+      934
+    ],
+    "region_basis": "derived from the calibration box, padded 2%"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 12.14,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      20,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 147.2972972972973,
+      "y": 1.8583196046128498,
+      "pixel_x": 546.0,
+      "pixel_y": 833.0,
+      "pixel_count": 81,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 7A, digitized (Eng. Excess (NREL, 75.6 K))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig7A_nrel_75.6K_eng_excess_last_point.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

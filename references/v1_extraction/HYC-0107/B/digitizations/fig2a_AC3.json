@@ -1,0 +1,172 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T01:04:43+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0107",
+  "figure": "Fig. 2a (main-04.png)",
+  "series_name": "AC3",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0107/work/series_imgs/fig2a_AC3.png",
+    "sha256": "1dec925f33ca34d5ec9efdf4ac33ae45bab1240900ccd298ec5b092e0c6d8034",
+    "width_px": 1241,
+    "height_px": 1625
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 199.45,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 571.39,
+        "value": 20.0
+      },
+      "scale": "linear",
+      "label": "pressure / MPa",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 392.49,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 120.53,
+        "value": 10.0
+      },
+      "scale": "linear",
+      "label": "excess adsorbed amount / wt.-%",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 385.66,
+        "stated": 10.0,
+        "predicted": 10.012905307307632,
+        "relative_error": 0.001290530730763173
+      },
+      {
+        "axis": "y",
+        "pixel": 256.54,
+        "stated": 5.0,
+        "predicted": 4.9988968966024405,
+        "relative_error": 0.0002206206795118959
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff0000",
+    "color_rgb": [
+      255,
+      0,
+      0
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 148,
+    "matched_pixels_in_region": 148,
+    "region": [
+      201,
+      122,
+      570,
+      391
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 10.878400000000001,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 7,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 2.001218834579054,
+      "y": 2.8370593714761982,
+      "pixel_x": 236.66666666666666,
+      "pixel_y": 315.3333333333333,
+      "pixel_count": 21,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.708719289755282,
+      "y": 2.8744745744343203,
+      "pixel_x": 268.42105263157896,
+      "pixel_y": 314.3157894736842,
+      "pixel_count": 19,
+      "outside_axis_range": false
+    },
+    {
+      "x": 5.634095430836843,
+      "y": 2.8008463811523088,
+      "pixel_x": 304.22727272727275,
+      "pixel_y": 316.3181818181818,
+      "pixel_count": 22,
+      "outside_axis_range": false
+    },
+    {
+      "x": 7.54870857306734,
+      "y": 2.621034956120999,
+      "pixel_x": 339.8333333333333,
+      "pixel_y": 321.2083333333333,
+      "pixel_count": 24,
+      "outside_axis_range": false
+    },
+    {
+      "x": 9.774979519150781,
+      "y": 2.3583269165880787,
+      "pixel_x": 381.2352941176471,
+      "pixel_y": 328.3529411764706,
+      "pixel_count": 17,
+      "outside_axis_range": false
+    },
+    {
+      "x": 11.99971477400516,
+      "y": 2.1810592350537488,
+      "pixel_x": 422.60869565217394,
+      "pixel_y": 333.17391304347825,
+      "pixel_count": 23,
+      "outside_axis_range": false
+    },
+    {
+      "x": 14.709361725009412,
+      "y": 1.956805145141666,
+      "pixel_x": 473.0,
+      "pixel_y": 339.27272727272725,
+      "pixel_count": 22,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 3.7087,
+      "expected": 2.9,
+      "got": 2.8744741517520853,
+      "difference": -0.025525848247914595,
+      "percent": 0.880201663721193,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-10-30T01:05:31+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 2a (main-04.png), digitized (AC3)",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 3.7087."
+  }
+}

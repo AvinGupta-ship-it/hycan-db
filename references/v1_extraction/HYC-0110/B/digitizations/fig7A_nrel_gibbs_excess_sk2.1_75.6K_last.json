@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T01:20:06+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0110",
+  "figure": "Figure 7A (main p.13907)",
+  "series_name": "Gibbs Excess (sk=2.1g/cc) (NREL, 75.6K) - highest-pressure marker only",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0110/in/pages/main-6.png",
+    "sha256": "378aff8470233770abebe174212e7a1948d36e3c8f5ee8c1223582ae57069261",
+    "width_px": 1228,
+    "height_px": 1632
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 164.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 553.0,
+        "value": 150.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 927.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 623.5,
+        "value": 6.0
+      },
+      "scale": "linear",
+      "label": "H2 Gravimetric Uptake (wt.%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 423.5,
+        "stated": 100.0,
+        "predicted": 100.0,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 775.0,
+        "stated": 3.0,
+        "predicted": 3.0049423393739705,
+        "relative_error": 0.001647446457990161
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#878686",
+    "color_rgb": [
+      135,
+      134,
+      134
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 46738,
+    "matched_pixels_in_region": 46,
+    "region": [
+      541,
+      729,
+      552,
+      741
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 12.14,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 147.3560517038778,
+      "y": 3.7948571019267945,
+      "pixel_x": 546.1521739130435,
+      "pixel_y": 735.0434782608696,
+      "pixel_count": 46,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 7A (main p.13907), digitized (Gibbs Excess (sk=2.1g/cc) (NREL, 75.6K) - highest-pressure marker only)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig7A_nrel_gibbs_excess_sk2.1_75.6K_last.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

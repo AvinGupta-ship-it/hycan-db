@@ -67,6 +67,25 @@ before any reconciler was started, and the paper was assembled again once B
 had finished (B's `rows.csv` had not changed). For every other assembled
 paper the reconciler's copies equal the extractors' final outputs.
 
+### Interruptions
+
+On 29 Oct 2026 the account's five-hour usage limit, and an hour later its
+weekly limit, stopped every running agent mid-task (an API error, not an end
+of the task). No such agent was restarted. Each was resumed in its own session
+once the limit had reset, with one fixed message: "Your session stopped on an
+API usage limit, not by your choice. Continue your task from where you
+stopped; your instruction file, input, output and work directory are
+unchanged, and the same rules apply." Every check report records the number of
+such stops (`api_error_stops`), and every message the operator sent after the
+launcher (`operator_messages`); a report fails if any of those is not that
+fixed text. The harness's own error entries (model `<synthetic>`) are left out
+of the model check. An interrupted agent is not treated as finished, so
+nothing is assembled or collected from it until it ends its task.
+
+Some agents' contexts filled and were compacted automatically by the harness
+(a summary written in the same session); each report counts these
+(`compactions`).
+
 ## Agent checks
 
 `extraction_runs.py` checks every finished agent (launcher, frozen prompt,

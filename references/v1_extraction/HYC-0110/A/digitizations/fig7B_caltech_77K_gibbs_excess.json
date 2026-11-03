@@ -1,0 +1,172 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T01:13:47+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0110",
+  "figure": "Figure 7B",
+  "series_name": "Gibbs Excess (Caltech, 77 K)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0110/work/B_caltech_singles.png",
+    "sha256": "1055ec90ecff9c286ddb85c098911decd169d29d2c88aa92c1900ca7235add26",
+    "width_px": 1228,
+    "height_px": 1632
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 164.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 553.0,
+        "value": 50.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1340.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1039.5,
+        "value": 6.0
+      },
+      "scale": "linear",
+      "label": "H2 Gravimetric Uptake (wt.%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 319.5,
+        "stated": 20.0,
+        "predicted": 19.948519948519948,
+        "relative_error": 0.0025740025740025986
+      },
+      {
+        "axis": "y",
+        "pixel": 1139.5,
+        "stated": 4.0,
+        "predicted": 4.0066445182724255,
+        "relative_error": 0.0016611295681063787
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ec1b24",
+    "color_rgb": [
+      236,
+      27,
+      36
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 561,
+    "matched_pixels_in_region": 561,
+    "region": [
+      156,
+      1033,
+      561,
+      1347
+    ],
+    "region_basis": "derived from the calibration box, padded 2%"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 12.040000000000001,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      20,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 7,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 4.316816816816815,
+      "y": 3.736710963455148,
+      "pixel_x": 198.04166666666666,
+      "pixel_y": 1153.0416666666667,
+      "pixel_count": 96,
+      "outside_axis_range": false
+    },
+    {
+      "x": 14.518089518089516,
+      "y": 4.678294573643409,
+      "pixel_x": 277.30555555555554,
+      "pixel_y": 1105.8055555555557,
+      "pixel_count": 72,
+      "outside_axis_range": false
+    },
+    {
+      "x": 19.595816431259465,
+      "y": 4.85710080322974,
+      "pixel_x": 316.75949367088606,
+      "pixel_y": 1096.8354430379748,
+      "pixel_count": 79,
+      "outside_axis_range": false
+    },
+    {
+      "x": 22.210564601868953,
+      "y": 4.940271558572875,
+      "pixel_x": 337.07608695652175,
+      "pixel_y": 1092.6630434782608,
+      "pixel_count": 92,
+      "outside_axis_range": false
+    },
+    {
+      "x": 24.903474903474905,
+      "y": 4.9734219269103,
+      "pixel_x": 358.0,
+      "pixel_y": 1091.0,
+      "pixel_count": 81,
+      "outside_axis_range": false
+    },
+    {
+      "x": 27.634777634777635,
+      "y": 4.9994462901439665,
+      "pixel_x": 379.22222222222223,
+      "pixel_y": 1089.6944444444443,
+      "pixel_count": 72,
+      "outside_axis_range": false
+    },
+    {
+      "x": 31.0120679685897,
+      "y": 4.996822186913188,
+      "pixel_x": 405.463768115942,
+      "pixel_y": 1089.8260869565217,
+      "pixel_count": 69,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 20.0,
+      "expected": 5.0,
+      "got": 4.869957204885276,
+      "difference": -0.13004279511472383,
+      "percent": 2.6008559022944766,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-10-30T01:13:48+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 7B, digitized (Gibbs Excess (Caltech, 77 K))",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 20.0."
+  }
+}
