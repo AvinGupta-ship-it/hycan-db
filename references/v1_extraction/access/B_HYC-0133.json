@@ -1,0 +1,57 @@
+{
+  "screener": "B",
+  "batch": "HYC-0133",
+  "transcript": "agent-a62f1659b9824a216.jsonl",
+  "launcher_exact": true,
+  "prompt_sha256_ok": true,
+  "models": [
+    "claude-opus-5-5"
+  ],
+  "api_error_stops": 0,
+  "operator_stops": 0,
+  "compactions": 0,
+  "operator_messages": [],
+  "operator_messages_ok": true,
+  "model_ok": true,
+  "flags": [
+    {
+      "call": 72,
+      "tool": "ToolSearch",
+      "reason": "tool outside the allowed set",
+      "detail": "{\"query\": \"select:TaskStop\", \"max_results\": 1}",
+      "review": {
+        "access": false,
+        "note": "The agent loaded the schema of a harness tool (select:TaskStop); this reads no file."
+      }
+    },
+    {
+      "call": 73,
+      "tool": "TaskStop",
+      "reason": "tool outside the allowed set",
+      "detail": "{\"task_id\": \"buib730di\"}",
+      "review": {
+        "access": false,
+        "note": "The agent stopped its own background command buib730di (the harness gave it that ID in its own transcript); no other agent's task was touched and no file was opened."
+      }
+    },
+    {
+      "call": 77,
+      "tool": "Bash",
+      "reason": "command opens the tools directory: /home/claude/work/v1_tools_frozen",
+      "detail": "cd /home/claude/work/runs/extract/B/HYC-0133/work && cat > run_markers.py << 'EOF'\nimport sys, json, subprocess, math, os\nTOOLS='/home/claude/work/v1_tools_frozen'\ndef run(image, out, color, tol, roi, cal, series, figure, open_px=0, extra=()):\n    cmd=['python3','scripts/digitize_figure.py','extract",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
+    }
+  ],
+  "cross_access": [],
+  "tool_calls": 129,
+  "output_problems": [],
+  "flags_unreviewed": 0,
+  "flags_access": 0,
+  "access_ok": true,
+  "ok": true,
+  "earlier_agents": [],
+  "unfinished_agents": []
+}
