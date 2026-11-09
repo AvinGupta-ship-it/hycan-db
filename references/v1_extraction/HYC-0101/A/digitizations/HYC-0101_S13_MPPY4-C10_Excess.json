@@ -1,0 +1,107 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T01:15:42+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0101",
+  "figure": "Fig S13",
+  "series_name": "MPPY4-C10 Excess",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0101/work/synth/S13_MPPY4-C10_Excess.png",
+    "sha256": "9bcc0d085706a0b38cd95357d532478c296f91967ffe6468f89d8099e7fe9b9d",
+    "width_px": 1241,
+    "height_px": 1754
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 419.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1012.0,
+        "value": 20.0
+      },
+      "scale": "linear",
+      "label": "",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 788.61,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 223.0,
+        "value": 0.6
+      },
+      "scale": "linear",
+      "label": "",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 716.0,
+        "stated": 10.0,
+        "predicted": 10.016863406408094,
+        "relative_error": 0.0016863406408093695
+      },
+      {
+        "axis": "y",
+        "pixel": 506.42,
+        "stated": 0.3,
+        "predicted": 0.29934760700836266,
+        "relative_error": 0.002174643305457765
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff0000",
+    "color_rgb": [
+      255,
+      0,
+      0
+    ],
+    "tolerance": 30.0,
+    "matched_pixels_in_image": 39,
+    "matched_pixels_in_region": 39,
+    "region": null,
+    "region_basis": "disabled (--no-roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 22.6244,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      3,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 20.0,
+      "y": 0.34434681140715334,
+      "pixel_x": 1012.0,
+      "pixel_y": 464.0,
+      "pixel_count": 39,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig S13, digitized (MPPY4-C10 Excess)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0101_S13_MPPY4-C10_Excess.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

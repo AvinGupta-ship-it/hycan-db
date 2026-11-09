@@ -1,0 +1,127 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T01:23:41+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0031",
+  "figure": "Supplementary Fig. 14 (SI p.14)",
+  "series_name": "CA-4600 excess (25 C)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0031/work/layers/S14_CA-4600_excess.png",
+    "sha256": "7cee5e85afb9b103d4e5644a0565e6757e657c5d52a60a87d1eac759021b944e",
+    "width_px": 2440,
+    "height_px": 2420
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 23.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 2383.5,
+        "value": 30.0
+      },
+      "scale": "linear",
+      "label": "pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 2393.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 209.5,
+        "value": 1.2
+      },
+      "scale": "linear",
+      "label": "H2 uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 1203.5,
+        "stated": 15.0,
+        "predicted": 15.0,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 1301.5,
+        "stated": 0.6,
+        "predicted": 0.6,
+        "relative_error": 0.0
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 59,
+    "matched_pixels_in_region": 59,
+    "region": null,
+    "region_basis": "disabled (--no-roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 87.36,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      10,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 2,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 19.962570621468927,
+      "y": 0.4208689458689459,
+      "pixel_x": 1593.888888888889,
+      "pixel_y": 1627.5185185185185,
+      "pixel_count": 27,
+      "outside_axis_range": false
+    },
+    {
+      "x": 29.9364406779661,
+      "y": 0.49725274725274726,
+      "pixel_x": 2378.5,
+      "pixel_y": 1488.5,
+      "pixel_count": 32,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 20.0,
+      "expected": 0.42,
+      "got": 0.42115559470229164,
+      "difference": 0.0011555947022916513,
+      "percent": 0.2751415957837265,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-10-30T01:25:20+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Supplementary Fig. 14 (SI p.14), digitized (CA-4600 excess (25 C))",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 20.0."
+  }
+}

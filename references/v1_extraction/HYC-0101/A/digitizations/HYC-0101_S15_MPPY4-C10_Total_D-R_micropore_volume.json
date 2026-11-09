@@ -1,0 +1,119 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T01:15:47+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0101",
+  "figure": "Fig S15",
+  "series_name": "MPPY4-C10 Total (D-R micropore volume)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0101/work/synth/S15_MPPY4-C10_Total_D-R_micropore_volume.png",
+    "sha256": "ed5d88b7c817e36a87c7bdf24b914187bfd73f2b9563d4a7bdc7cbaa4f8eacb8",
+    "width_px": 1241,
+    "height_px": 1754
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 309.04,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1000.0,
+        "value": 160.0
+      },
+      "scale": "linear",
+      "label": "",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 989.63,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 334.53,
+        "value": 5.0
+      },
+      "scale": "linear",
+      "label": "",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 654.62,
+        "stated": 80.0,
+        "predicted": 80.02315618849137,
+        "relative_error": 0.00028945235614212804
+      },
+      {
+        "axis": "y",
+        "pixel": 596.7,
+        "stated": 3.0,
+        "predicted": 2.9990077850709813,
+        "relative_error": 0.0003307383096728955
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff0000",
+    "color_rgb": [
+      255,
+      0,
+      0
+    ],
+    "tolerance": 30.0,
+    "matched_pixels_in_image": 107,
+    "matched_pixels_in_region": 107,
+    "region": null,
+    "region_basis": "disabled (--no-roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 26.204,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      3,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 149.83508249121633,
+      "y": 3.3980978861756137,
+      "pixel_x": 956.1028037383178,
+      "pixel_y": 544.411214953271,
+      "pixel_count": 107,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 149.83508249121633,
+      "expected": 3.4,
+      "got": 3.3980978861756137,
+      "difference": -0.001902113824386209,
+      "percent": 0.05594452424665321,
+      "tolerance_pct": null,
+      "tolerance_abs": 0.152,
+      "passed": true,
+      "checked_utc": "2026-10-30T01:24:34+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig S15, digitized (MPPY4-C10 Total (D-R micropore volume))",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 149.83508249121633."
+  }
+}

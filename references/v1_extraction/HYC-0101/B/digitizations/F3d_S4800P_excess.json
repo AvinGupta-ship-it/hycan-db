@@ -1,0 +1,324 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T00:54:27+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0101",
+  "figure": "Figure 3d",
+  "series_name": "S4800P Excess",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0101/work/seg/f3d/S4800P_excess_paint.png",
+    "sha256": "d355e5cc500cc706d51ebfdb00443e99a16d7286c314ddf766280d77d789d072",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 695.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 960.0,
+        "value": 20.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1174.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 909.0,
+        "value": 8.0
+      },
+      "scale": "linear",
+      "label": "H2 uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 827.0,
+        "stated": 10.0,
+        "predicted": 9.962264150943396,
+        "relative_error": 0.0037735849056604208
+      },
+      {
+        "axis": "y",
+        "pixel": 1041.0,
+        "stated": 4.0,
+        "predicted": 4.0150943396226415,
+        "relative_error": 0.0037735849056603765
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff0000",
+    "color_rgb": [
+      255,
+      0,
+      0
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 135,
+    "matched_pixels_in_region": 135,
+    "region": [
+      685,
+      903,
+      966,
+      1182
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 10.6,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      3,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 26,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": -0.030188679245281305,
+      "y": 0.4588679245283033,
+      "pixel_x": 694.6,
+      "pixel_y": 1158.8,
+      "pixel_count": 5,
+      "outside_axis_range": true
+    },
+    {
+      "x": 0.8679245283018867,
+      "y": 2.490566037735849,
+      "pixel_x": 706.5,
+      "pixel_y": 1091.5,
+      "pixel_count": 4,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.9962264150943432,
+      "y": 2.6143396226415065,
+      "pixel_x": 708.2,
+      "pixel_y": 1087.4,
+      "pixel_count": 5,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.1949685534591223,
+      "y": 2.7823899371069207,
+      "pixel_x": 710.8333333333334,
+      "pixel_y": 1081.8333333333333,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.4490566037735884,
+      "y": 2.9705660377358516,
+      "pixel_x": 714.2,
+      "pixel_y": 1075.6,
+      "pixel_count": 5,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.826415094339626,
+      "y": 3.212075471698116,
+      "pixel_x": 719.2,
+      "pixel_y": 1067.6,
+      "pixel_count": 5,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.42767295597484,
+      "y": 3.4968553459119476,
+      "pixel_x": 727.1666666666666,
+      "pixel_y": 1058.1666666666667,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.184905660377362,
+      "y": 3.7615094339622615,
+      "pixel_x": 737.2,
+      "pixel_y": 1049.4,
+      "pixel_count": 5,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.9371069182389906,
+      "y": 3.9798742138364758,
+      "pixel_x": 747.1666666666666,
+      "pixel_y": 1042.1666666666667,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 4.943396226415095,
+      "y": 4.211320754716981,
+      "pixel_x": 760.5,
+      "pixel_y": 1034.5,
+      "pixel_count": 4,
+      "outside_axis_range": false
+    },
+    {
+      "x": 5.947169811320752,
+      "y": 4.389433962264154,
+      "pixel_x": 773.8,
+      "pixel_y": 1028.6,
+      "pixel_count": 5,
+      "outside_axis_range": false
+    },
+    {
+      "x": 6.955974842767293,
+      "y": 4.553459119496856,
+      "pixel_x": 787.1666666666666,
+      "pixel_y": 1023.1666666666666,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 7.954716981132074,
+      "y": 4.685283018867926,
+      "pixel_x": 800.4,
+      "pixel_y": 1018.8,
+      "pixel_count": 5,
+      "outside_axis_range": false
+    },
+    {
+      "x": 8.950943396226418,
+      "y": 4.806037735849058,
+      "pixel_x": 813.6,
+      "pixel_y": 1014.8,
+      "pixel_count": 5,
+      "outside_axis_range": false
+    },
+    {
+      "x": 9.947169811320752,
+      "y": 4.902641509433962,
+      "pixel_x": 826.8,
+      "pixel_y": 1011.6,
+      "pixel_count": 5,
+      "outside_axis_range": false
+    },
+    {
+      "x": 10.958490566037739,
+      "y": 4.993207547169811,
+      "pixel_x": 840.2,
+      "pixel_y": 1008.6,
+      "pixel_count": 5,
+      "outside_axis_range": false
+    },
+    {
+      "x": 11.969811320754719,
+      "y": 5.077735849056605,
+      "pixel_x": 853.6,
+      "pixel_y": 1005.8,
+      "pixel_count": 5,
+      "outside_axis_range": false
+    },
+    {
+      "x": 12.966037735849055,
+      "y": 5.150188679245284,
+      "pixel_x": 866.8,
+      "pixel_y": 1003.4,
+      "pixel_count": 5,
+      "outside_axis_range": false
+    },
+    {
+      "x": 13.974842767295595,
+      "y": 5.217610062893083,
+      "pixel_x": 880.1666666666666,
+      "pixel_y": 1001.1666666666666,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 14.973584905660376,
+      "y": 5.276981132075471,
+      "pixel_x": 893.4,
+      "pixel_y": 999.2,
+      "pixel_count": 5,
+      "outside_axis_range": false
+    },
+    {
+      "x": 15.987421383647803,
+      "y": 5.338364779874215,
+      "pixel_x": 906.8333333333334,
+      "pixel_y": 997.1666666666666,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 16.99622641509434,
+      "y": 5.38566037735849,
+      "pixel_x": 920.2,
+      "pixel_y": 995.6,
+      "pixel_count": 5,
+      "outside_axis_range": false
+    },
+    {
+      "x": 17.992452830188675,
+      "y": 5.440000000000001,
+      "pixel_x": 933.4,
+      "pixel_y": 993.8,
+      "pixel_count": 5,
+      "outside_axis_range": false
+    },
+    {
+      "x": 19.003773584905655,
+      "y": 5.482264150943397,
+      "pixel_x": 946.8,
+      "pixel_y": 992.4,
+      "pixel_count": 5,
+      "outside_axis_range": false
+    },
+    {
+      "x": 19.50188679245283,
+      "y": 5.500377358490567,
+      "pixel_x": 953.4,
+      "pixel_y": 991.8,
+      "pixel_count": 5,
+      "outside_axis_range": false
+    },
+    {
+      "x": 19.937106918238992,
+      "y": 5.519496855345913,
+      "pixel_x": 959.1666666666666,
+      "pixel_y": 991.1666666666666,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 19.937,
+      "expected": 5.5,
+      "got": 5.519492158359692,
+      "difference": 0.01949215835969209,
+      "percent": 0.35440287926712893,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-10-30T00:54:28+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 3d, digitized (S4800P Excess)",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 19.937."
+  }
+}

@@ -1,0 +1,340 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T00:54:22+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0101",
+  "figure": "Figure 3d",
+  "series_name": "S400 Excess",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0101/work/seg/f3d/S4800_excess_paint.png",
+    "sha256": "ad6ee5b4e4f990d5236baa9c7951e990374fa235cc6a23d09caf71ba4ca0ea30",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 695.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 960.0,
+        "value": 20.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1174.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 909.0,
+        "value": 8.0
+      },
+      "scale": "linear",
+      "label": "H2 uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 827.0,
+        "stated": 10.0,
+        "predicted": 9.962264150943396,
+        "relative_error": 0.0037735849056604208
+      },
+      {
+        "axis": "y",
+        "pixel": 1041.0,
+        "stated": 4.0,
+        "predicted": 4.0150943396226415,
+        "relative_error": 0.0037735849056603765
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff0000",
+    "color_rgb": [
+      255,
+      0,
+      0
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 143,
+    "matched_pixels_in_region": 143,
+    "region": [
+      685,
+      903,
+      966,
+      1182
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 10.6,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      3,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 28,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": -0.06289308176100915,
+      "y": 0.005031446540882791,
+      "pixel_x": 694.1666666666666,
+      "pixel_y": 1173.8333333333333,
+      "pixel_count": 6,
+      "outside_axis_range": true
+    },
+    {
+      "x": 0.13584905660377014,
+      "y": 1.3464150943396198,
+      "pixel_x": 696.8,
+      "pixel_y": 1129.4,
+      "pixel_count": 5,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.2113207547169777,
+      "y": 1.4913207547169838,
+      "pixel_x": 697.8,
+      "pixel_y": 1124.6,
+      "pixel_count": 5,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.5584905660377342,
+      "y": 1.9984905660377372,
+      "pixel_x": 702.4,
+      "pixel_y": 1107.8,
+      "pixel_count": 5,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.9207547169811354,
+      "y": 2.3969811320754744,
+      "pixel_x": 707.2,
+      "pixel_y": 1094.6,
+      "pixel_count": 5,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.0440251572327073,
+      "y": 2.510691823899373,
+      "pixel_x": 708.8333333333334,
+      "pixel_y": 1090.8333333333333,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.220125786163519,
+      "y": 2.651572327044023,
+      "pixel_x": 711.1666666666666,
+      "pixel_y": 1086.1666666666667,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.421383647798745,
+      "y": 2.7823899371069207,
+      "pixel_x": 713.8333333333334,
+      "pixel_y": 1081.8333333333333,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.8490566037735847,
+      "y": 3.0037735849056606,
+      "pixel_x": 719.5,
+      "pixel_y": 1074.5,
+      "pixel_count": 4,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.42767295597484,
+      "y": 3.265408805031449,
+      "pixel_x": 727.1666666666666,
+      "pixel_y": 1065.8333333333333,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.1823899371069153,
+      "y": 3.506918238993713,
+      "pixel_x": 737.1666666666666,
+      "pixel_y": 1057.8333333333333,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.9396226415094375,
+      "y": 3.6709433962264124,
+      "pixel_x": 747.2,
+      "pixel_y": 1052.4,
+      "pixel_count": 5,
+      "outside_axis_range": false
+    },
+    {
+      "x": 4.943396226415095,
+      "y": 3.879245283018868,
+      "pixel_x": 760.5,
+      "pixel_y": 1045.5,
+      "pixel_count": 4,
+      "outside_axis_range": false
+    },
+    {
+      "x": 5.947169811320752,
+      "y": 4.033207547169809,
+      "pixel_x": 773.8,
+      "pixel_y": 1040.4,
+      "pixel_count": 5,
+      "outside_axis_range": false
+    },
+    {
+      "x": 6.955974842767293,
+      "y": 4.17106918238994,
+      "pixel_x": 787.1666666666666,
+      "pixel_y": 1035.8333333333333,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 7.954716981132074,
+      "y": 4.292830188679247,
+      "pixel_x": 800.4,
+      "pixel_y": 1031.8,
+      "pixel_count": 5,
+      "outside_axis_range": false
+    },
+    {
+      "x": 8.943396226415095,
+      "y": 4.392452830188679,
+      "pixel_x": 813.5,
+      "pixel_y": 1028.5,
+      "pixel_count": 4,
+      "outside_axis_range": false
+    },
+    {
+      "x": 9.947169811320752,
+      "y": 4.480000000000003,
+      "pixel_x": 826.8,
+      "pixel_y": 1025.6,
+      "pixel_count": 5,
+      "outside_axis_range": false
+    },
+    {
+      "x": 10.973584905660376,
+      "y": 4.5524528301886775,
+      "pixel_x": 840.4,
+      "pixel_y": 1023.2,
+      "pixel_count": 5,
+      "outside_axis_range": false
+    },
+    {
+      "x": 11.962264150943396,
+      "y": 4.633962264150943,
+      "pixel_x": 853.5,
+      "pixel_y": 1020.5,
+      "pixel_count": 4,
+      "outside_axis_range": false
+    },
+    {
+      "x": 12.966037735849055,
+      "y": 4.697358490566039,
+      "pixel_x": 866.8,
+      "pixel_y": 1018.4,
+      "pixel_count": 5,
+      "outside_axis_range": false
+    },
+    {
+      "x": 13.97735849056604,
+      "y": 4.757735849056605,
+      "pixel_x": 880.2,
+      "pixel_y": 1016.4,
+      "pixel_count": 5,
+      "outside_axis_range": false
+    },
+    {
+      "x": 14.981132075471697,
+      "y": 4.815094339622641,
+      "pixel_x": 893.5,
+      "pixel_y": 1014.5,
+      "pixel_count": 4,
+      "outside_axis_range": false
+    },
+    {
+      "x": 15.987421383647803,
+      "y": 4.8654088050314455,
+      "pixel_x": 906.8333333333334,
+      "pixel_y": 1012.8333333333334,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 16.99622641509434,
+      "y": 4.90867924528302,
+      "pixel_x": 920.2,
+      "pixel_y": 1011.4,
+      "pixel_count": 5,
+      "outside_axis_range": false
+    },
+    {
+      "x": 17.992452830188675,
+      "y": 4.956981132075473,
+      "pixel_x": 933.4,
+      "pixel_y": 1009.8,
+      "pixel_count": 5,
+      "outside_axis_range": false
+    },
+    {
+      "x": 19.50188679245283,
+      "y": 5.005283018867924,
+      "pixel_x": 953.4,
+      "pixel_y": 1008.2,
+      "pixel_count": 5,
+      "outside_axis_range": false
+    },
+    {
+      "x": 19.939622641509438,
+      "y": 5.023396226415094,
+      "pixel_x": 959.2,
+      "pixel_y": 1007.6,
+      "pixel_count": 5,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 19.9395,
+      "expected": 5.0,
+      "got": 5.023391151594014,
+      "difference": 0.023391151594013948,
+      "percent": 0.46782303188027896,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-10-30T00:54:23+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 3d, digitized (S400 Excess)",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 19.9395."
+  }
+}
