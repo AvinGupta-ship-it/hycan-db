@@ -1,0 +1,183 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:21:29+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0023",
+  "figure": "Fig. 5a (main-5.png; merged end markers split by a 1-px white column)",
+  "series_name": "Toutgas= 200 \u00b0C, 77 K, adsorption (filled squares)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0023/work/main-5_fig5_ads_split.png",
+    "sha256": "27f0e39502fc4be9171a1ddc99f6cf6315bbf73d4297e8ede020b2eabf4e4f0e",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 238.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 586.5,
+        "value": 50.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1024.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 727.0,
+        "value": 6.0
+      },
+      "scale": "linear",
+      "label": "Excess capacity (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 378.0,
+        "stated": 20.0,
+        "predicted": 20.04310344827586,
+        "relative_error": 0.0021551724137930605
+      },
+      {
+        "axis": "y",
+        "pixel": 875.5,
+        "stated": 3.0,
+        "predicted": 3.0,
+        "relative_error": 0.0
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 80.0,
+    "matched_pixels_in_image": 44287,
+    "matched_pixels_in_region": 600,
+    "region": [
+      242,
+      805,
+      600,
+      1022
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 11.88,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      32,
+      2000
+    ],
+    "rejected_markers": [
+      {
+        "pixel_x": 359.5,
+        "pixel_y": 855.0,
+        "pixels": 12,
+        "reason": "too small"
+      }
+    ],
+    "n_points": 9,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 9.449467339500979,
+      "y": 3.2919438285291953,
+      "pixel_x": 304.2682926829268,
+      "pixel_y": 861.0487804878048,
+      "pixel_count": 41,
+      "outside_axis_range": false
+    },
+    {
+      "x": 13.14655172413793,
+      "y": 3.3939393939393936,
+      "pixel_x": 330.0,
+      "pixel_y": 856.0,
+      "pixel_count": 35,
+      "outside_axis_range": false
+    },
+    {
+      "x": 22.557471264367816,
+      "y": 3.5050505050505047,
+      "pixel_x": 395.5,
+      "pixel_y": 850.5,
+      "pixel_count": 64,
+      "outside_axis_range": false
+    },
+    {
+      "x": 27.467260222347846,
+      "y": 3.5277363801953974,
+      "pixel_x": 429.672131147541,
+      "pixel_y": 849.3770491803278,
+      "pixel_count": 61,
+      "outside_axis_range": false
+    },
+    {
+      "x": 33.47701149425287,
+      "y": 3.5050505050505047,
+      "pixel_x": 471.5,
+      "pixel_y": 850.5,
+      "pixel_count": 64,
+      "outside_axis_range": false
+    },
+    {
+      "x": 39.439655172413794,
+      "y": 3.4848484848484844,
+      "pixel_x": 513.0,
+      "pixel_y": 851.5,
+      "pixel_count": 56,
+      "outside_axis_range": false
+    },
+    {
+      "x": 42.81609195402299,
+      "y": 3.4848484848484844,
+      "pixel_x": 536.5,
+      "pixel_y": 851.5,
+      "pixel_count": 64,
+      "outside_axis_range": false
+    },
+    {
+      "x": 44.396551724137936,
+      "y": 3.4848484848484844,
+      "pixel_x": 547.5,
+      "pixel_y": 851.5,
+      "pixel_count": 64,
+      "outside_axis_range": false
+    },
+    {
+      "x": 45.689655172413794,
+      "y": 3.4646464646464645,
+      "pixel_x": 556.5,
+      "pixel_y": 852.5,
+      "pixel_count": 64,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 5a (main-5.png; merged end markers split by a 1-px white column), digitized (Toutgas= 200 \u00b0C, 77 K, adsorption (filled squares))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig5a_77K_adsorption.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

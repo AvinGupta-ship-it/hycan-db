@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:25:59+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0024",
+  "figure": "Fig. 1 (main-2)",
+  "series_name": "KUA1, 293 K, highest-pressure marker (filled circle with error bar)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0024/in/pages/main-2.png",
+    "sha256": "ecd1dd10e3d29031ad33989411b6876206bd8f4d0ec69f9a3289295c719f4d12",
+    "width_px": 1275,
+    "height_px": 1650
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 170.4,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 604.5,
+        "value": 80.0
+      },
+      "scale": "linear",
+      "label": "Pressure (MPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 434.45,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 105.8,
+        "value": 12.0
+      },
+      "scale": "linear",
+      "label": "mmol H2 / g C",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 388.0,
+        "stated": 40.0,
+        "predicted": 40.10135913384013,
+        "relative_error": 0.002533978346003174
+      },
+      {
+        "axis": "y",
+        "pixel": 270.2,
+        "stated": 6.0,
+        "predicted": 5.997261524418074,
+        "relative_error": 0.00045641259698762465
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 150.0,
+    "matched_pixels_in_image": 108960,
+    "matched_pixels_in_region": 56,
+    "region": [
+      540,
+      108,
+      556,
+      124
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 13.145999999999999,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 69.78869552470105,
+      "y": 11.59437367744077,
+      "pixel_x": 549.0909090909091,
+      "pixel_y": 116.9090909090909,
+      "pixel_count": 22,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 1 (main-2), digitized (KUA1, 293 K, highest-pressure marker (filled circle with error bar))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig1_KUA1.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

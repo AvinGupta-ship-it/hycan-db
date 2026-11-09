@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:22:15+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0023",
+  "figure": "Fig. 5b (main-5.png; ROI restricted to the last, highest-pressure marker)",
+  "series_name": "Toutgas= 600 \u00b0C, 300 K, highest-pressure point (filled star)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0023/in/pages/main-5.png",
+    "sha256": "c60e3f14068adf1211f1f71776246d8be5babaad392db5e23c1bf6a33e448066",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 687.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1035.0,
+        "value": 50.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1024.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 727.5,
+        "value": 6.0
+      },
+      "scale": "linear",
+      "label": "Excess capacity (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 826.5,
+        "stated": 20.0,
+        "predicted": 20.04310344827586,
+        "relative_error": 0.0021551724137930605
+      },
+      {
+        "axis": "y",
+        "pixel": 875.5,
+        "stated": 3.0,
+        "predicted": 3.0050590219224285,
+        "relative_error": 0.0016863406408094879
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#0000ff",
+    "color_rgb": [
+      0,
+      0,
+      255
+    ],
+    "tolerance": 90.0,
+    "matched_pixels_in_image": 3262,
+    "matched_pixels_in_region": 28,
+    "region": [
+      1008,
+      995,
+      1021,
+      1012
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 11.86,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 46.9365763546798,
+      "y": 0.40761262346422483,
+      "pixel_x": 1013.6785714285714,
+      "pixel_y": 1003.8571428571429,
+      "pixel_count": 28,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 5b (main-5.png; ROI restricted to the last, highest-pressure marker), digitized (Toutgas= 600 \u00b0C, 300 K, highest-pressure point (filled star))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig5b_300K_highest_pressure_point.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}
