@@ -8,10 +8,14 @@
     "claude-sonnet-5-5"
   ],
   "api_error_stops": 2,
+  "operator_stops": 0,
   "compactions": 0,
-  "operator_messages": [],
+  "operator_messages": [
+    "Your session stopped on an API usage limit, not by your choice. Continue your task from where you stopped; your instruction file, input, output and work directory are unchanged, and the same rules apply.\n\nAddress this before completing your current task.",
+    "Your session stopped on an API usage limit, not by your choice. Continue your task from where you stopped; your instruction file, input, output and work directory are unchanged, and the same rules apply.\n\nAddress this before completing your current task."
+  ],
+  "operator_messages_ok": false,
   "model_ok": true,
-  "operator_messages_ok": true,
   "flags": [
     {
       "call": 53,
@@ -60,7 +64,7 @@
   "flags_unreviewed": 0,
   "flags_access": 0,
   "access_ok": true,
-  "ok": true,
+  "ok": false,
   "earlier_agents": [],
   "unfinished_agents": []
 }
