@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:59:11+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0050",
+  "figure": "Fig. 6",
+  "series_name": "WKL20 (highest-pressure point)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0050/in/pages/main-07.png",
+    "sha256": "c9cb38ccd02443cddc088d6e666dc852bf9b4a50d8ab819f6c976d161358976b",
+    "width_px": 1241,
+    "height_px": 1648
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 286.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 931.0,
+        "value": 100.0
+      },
+      "scale": "linear",
+      "label": "P (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 510.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 105.67,
+        "value": 0.6
+      },
+      "scale": "linear",
+      "label": "H2 storage (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 544.0,
+        "stated": 40.0,
+        "predicted": 40.0,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 308.0,
+        "stated": 0.3,
+        "predicted": 0.3001259788059185,
+        "relative_error": 0.0004199293530617506
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 260.0,
+    "matched_pixels_in_image": 119987,
+    "matched_pixels_in_region": 81,
+    "region": [
+      871,
+      291,
+      887,
+      307
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 16.1932,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      4,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 91.93798449612403,
+      "y": 0.3134649111972927,
+      "pixel_x": 879.0,
+      "pixel_y": 299.0,
+      "pixel_count": 81,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 6, digitized (WKL20 (highest-pressure point))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig6_WKL20.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}
