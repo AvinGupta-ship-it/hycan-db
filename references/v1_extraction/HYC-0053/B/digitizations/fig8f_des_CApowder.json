@@ -1,0 +1,223 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:58:05+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0053",
+  "figure": "Fig. 8f",
+  "series_name": "CA carbon powder (des.)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0053/work/masked/main-10_fig8.png",
+    "sha256": "e8302d3e1acda852385939a9623978954c23891931376d527a3194195aed7f56",
+    "width_px": 1241,
+    "height_px": 1625
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 689.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1056.0,
+        "value": 1.2
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1353.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1134.0,
+        "value": 3.0
+      },
+      "scale": "linear",
+      "label": "H2 uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 872.5,
+        "stated": 0.6,
+        "predicted": 0.6,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 1243.0,
+        "stated": 1.5,
+        "predicted": 1.506849315068493,
+        "relative_error": 0.004566210045661971
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#008000",
+    "color_rgb": [
+      0,
+      128,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 1549,
+    "matched_pixels_in_region": 463,
+    "region": [
+      690,
+      1135,
+      1055,
+      1352
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 8.76,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 2-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [
+      {
+        "pixel_x": 695.5,
+        "pixel_y": 1325.5,
+        "pixels": 4,
+        "reason": "too small"
+      }
+    ],
+    "n_points": 14,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.031716621253406144,
+      "y": 0.5502935420743641,
+      "pixel_x": 698.7,
+      "pixel_y": 1312.8285714285714,
+      "pixel_count": 70,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.047995328921759485,
+      "y": 0.7216242661448128,
+      "pixel_x": 703.6785714285714,
+      "pixel_y": 1300.3214285714287,
+      "pixel_count": 28,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.06212534059945504,
+      "y": 0.821917808219178,
+      "pixel_x": 708.0,
+      "pixel_y": 1293.0,
+      "pixel_count": 25,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.1022643991355819,
+      "y": 1.0467642890883337,
+      "pixel_x": 720.2758620689655,
+      "pixel_y": 1276.5862068965516,
+      "pixel_count": 29,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.12289767922578226,
+      "y": 1.146905999055266,
+      "pixel_x": 726.5862068965517,
+      "pixel_y": 1269.2758620689656,
+      "pixel_count": 29,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.19156252936202203,
+      "y": 1.3934813415210194,
+      "pixel_x": 747.5862068965517,
+      "pixel_y": 1251.2758620689656,
+      "pixel_count": 29,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.2400242204056917,
+      "y": 1.5332318619989844,
+      "pixel_x": 762.4074074074074,
+      "pixel_y": 1241.0740740740741,
+      "pixel_count": 27,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.3136542537087498,
+      "y": 1.7067478437341452,
+      "pixel_x": 784.925925925926,
+      "pixel_y": 1228.4074074074074,
+      "pixel_count": 27,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.3662125340599455,
+      "y": 1.815068493150685,
+      "pixel_x": 801.0,
+      "pixel_y": 1220.5,
+      "pixel_count": 26,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.4192292720903073,
+      "y": 1.910958904109589,
+      "pixel_x": 817.2142857142857,
+      "pixel_y": 1213.5,
+      "pixel_count": 28,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.5002724795640326,
+      "y": 2.0342465753424657,
+      "pixel_x": 842.0,
+      "pixel_y": 1204.5,
+      "pixel_count": 26,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.5277626400242204,
+      "y": 2.0695078640284126,
+      "pixel_x": 850.4074074074074,
+      "pixel_y": 1201.9259259259259,
+      "pixel_count": 27,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.6112019376324554,
+      "y": 2.1836631151699644,
+      "pixel_x": 875.925925925926,
+      "pixel_y": 1193.5925925925926,
+      "pixel_count": 27,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.7230517711171662,
+      "y": 2.2949771689497713,
+      "pixel_x": 910.1333333333333,
+      "pixel_y": 1185.4666666666667,
+      "pixel_count": 15,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 8f, digitized (CA carbon powder (des.))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig8f_des_CApowder.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

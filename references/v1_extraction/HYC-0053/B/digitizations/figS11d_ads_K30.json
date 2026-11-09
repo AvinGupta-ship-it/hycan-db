@@ -1,0 +1,184 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T19:01:13+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0053",
+  "figure": "Fig. S11d",
+  "series_name": "pellet (PVP K30) (hollow, adsorption)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0053/work/masked/si1-19_figS11d_ads_K30_holes.png",
+    "sha256": "14ac0d2ea548132ca1f900ea693f24d1761d87422566c6da52dd4525c71df742",
+    "width_px": 1241,
+    "height_px": 1754
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 704.0,
+        "value": 0.0001
+      },
+      "reference_2": {
+        "pixel": 1057.0,
+        "value": 1.0
+      },
+      "scale": "log10",
+      "label": "Pressure (bar)",
+      "decades_spanned": 4.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 893.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 599.0,
+        "value": 3.0
+      },
+      "scale": "linear",
+      "label": "H2 uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 880.5,
+        "stated": 0.01,
+        "predicted": 0.01,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 746.0,
+        "stated": 1.5,
+        "predicted": 1.5,
+        "relative_error": 0.0
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff80ff",
+    "color_rgb": [
+      255,
+      128,
+      255
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 80,
+    "matched_pixels_in_region": 80,
+    "region": [
+      705,
+      600,
+      1062,
+      892
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 11.76,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      2,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 10,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.08834371078573856,
+      "y": 0.9795918367346939,
+      "pixel_x": 964.0,
+      "pixel_y": 797.0,
+      "pixel_count": 9,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.10604635623686384,
+      "y": 1.030612244897959,
+      "pixel_x": 971.0,
+      "pixel_y": 792.0,
+      "pixel_count": 9,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.15684382393895918,
+      "y": 1.183673469387755,
+      "pixel_x": 986.0,
+      "pixel_y": 777.0,
+      "pixel_count": 9,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.2642994852380611,
+      "y": 1.4081632653061225,
+      "pixel_x": 1006.0,
+      "pixel_y": 755.0,
+      "pixel_count": 9,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.3172608113864712,
+      "y": 1.510204081632653,
+      "pixel_x": 1013.0,
+      "pixel_y": 745.0,
+      "pixel_count": 9,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.3808347275097419,
+      "y": 1.6071428571428572,
+      "pixel_x": 1020.0,
+      "pixel_y": 735.5,
+      "pixel_count": 2,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.42272927320687786,
+      "y": 1.6581632653061225,
+      "pixel_x": 1024.0,
+      "pixel_y": 730.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.5208514541817925,
+      "y": 1.7346938775510203,
+      "pixel_x": 1032.0,
+      "pixel_y": 723.0,
+      "pixel_count": 9,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.625221629988034,
+      "y": 1.8265306122448979,
+      "pixel_x": 1039.0,
+      "pixel_y": 714.0,
+      "pixel_count": 9,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.8330669145143954,
+      "y": 2.020408163265306,
+      "pixel_x": 1050.0,
+      "pixel_y": 695.0,
+      "pixel_count": 9,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. S11d, digitized (pellet (PVP K30) (hollow, adsorption))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: figS11d_ads_K30.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

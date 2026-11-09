@@ -14966,6 +14966,15 @@
       "reason": "command uses the network",
       "access": false,
       "note": "The flagged network-client name is a variable or word in the agent's own code (e.g. a Python variable 'nc'); no network client runs and no URL appears."
+    },
+    {
+      "screener": "C",
+      "batch": "HYC-0053",
+      "transcript": "agent-afc324c91e8d1865d.jsonl",
+      "call": 68,
+      "reason": "command climbs with ..",
+      "access": false,
+      "note": "Runs its own work/build.py, then from the tools dir validate_row_detail.py on its own output and a check reading its own output and input by absolute path. The '..' is a string literal (notes ending with '..'), not a path. No outside access."
     }
   ]
 }

@@ -1,0 +1,171 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:57:27+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0053",
+  "figure": "Fig. S4b",
+  "series_name": "0.3 L/min",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0053/work/masked/si1-07_figS4.png",
+    "sha256": "aa77a089b05c433d9c113618e1f30b77bb5a86772630210f3969ec67bee2c393",
+    "width_px": 1241,
+    "height_px": 1754
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 680.0,
+        "value": 0.0001
+      },
+      "reference_2": {
+        "pixel": 1048.0,
+        "value": 1.0
+      },
+      "scale": "log10",
+      "label": "Pressure (bar)",
+      "decades_spanned": 4.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 521.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 260.0,
+        "value": 3.0
+      },
+      "scale": "linear",
+      "label": "H2 uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 864.0,
+        "stated": 0.01,
+        "predicted": 0.01,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 391.0,
+        "stated": 1.5,
+        "predicted": 1.4942528735632183,
+        "relative_error": 0.003831417624521105
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#1a6fdf",
+    "color_rgb": [
+      26,
+      111,
+      223
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 316,
+    "matched_pixels_in_region": 175,
+    "region": [
+      681,
+      239,
+      1054,
+      520
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 10.44,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 2-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [
+      {
+        "pixel_x": 906.5,
+        "pixel_y": 465.5,
+        "pixels": 4,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 890.5,
+        "pixel_y": 476.5,
+        "pixels": 4,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 835.5,
+        "pixel_y": 500.5,
+        "pixels": 4,
+        "reason": "too small"
+      }
+    ],
+    "n_points": 6,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 0.023713737056616554,
+      "y": 0.5862068965517242,
+      "pixel_x": 898.5,
+      "pixel_y": 470.0,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.6215531343872611,
+      "y": 2.2701149425287355,
+      "pixel_x": 1029.0,
+      "pixel_y": 323.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.7321912017114663,
+      "y": 2.375130616509927,
+      "pixel_x": 1035.5454545454545,
+      "pixel_y": 314.3636363636364,
+      "pixel_count": 11,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.8318232517032602,
+      "y": 2.48111658456486,
+      "pixel_x": 1040.642857142857,
+      "pixel_y": 305.14285714285717,
+      "pixel_count": 14,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.9161287696853199,
+      "y": 2.555008210180624,
+      "pixel_x": 1044.5,
+      "pixel_y": 298.7142857142857,
+      "pixel_count": 14,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.0382557568283646,
+      "y": 2.633141762452107,
+      "pixel_x": 1049.5,
+      "pixel_y": 291.9166666666667,
+      "pixel_count": 24,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. S4b, digitized (0.3 L/min)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: figS4b_0.3.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

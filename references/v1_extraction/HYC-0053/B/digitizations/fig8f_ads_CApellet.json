@@ -1,0 +1,160 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T19:01:39+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0053",
+  "figure": "Fig. 8f",
+  "series_name": "CA carbon pellet (ads.)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0053/work/masked/main-10_fig8f_ads_CApellet_holes.png",
+    "sha256": "6a474f05428f63b537a394d4a43c61446f56d0422eb4b9f049803ff9ce93660b",
+    "width_px": 1241,
+    "height_px": 1625
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 689.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1056.0,
+        "value": 1.2
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1353.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1134.0,
+        "value": 3.0
+      },
+      "scale": "linear",
+      "label": "H2 uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 872.5,
+        "stated": 0.6,
+        "predicted": 0.6,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 1243.0,
+        "stated": 1.5,
+        "predicted": 1.506849315068493,
+        "relative_error": 0.004566210045661971
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff0000",
+    "color_rgb": [
+      255,
+      0,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 210,
+    "matched_pixels_in_region": 210,
+    "region": [
+      690,
+      1135,
+      1055,
+      1352
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 8.76,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      2,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 7,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.05205962493989407,
+      "y": 0.9529948965887717,
+      "pixel_x": 704.9215686274509,
+      "pixel_y": 1283.4313725490197,
+      "pixel_count": 102,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.088283378746594,
+      "y": 1.2054794520547945,
+      "pixel_x": 716.0,
+      "pixel_y": 1265.0,
+      "pixel_count": 21,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.10626702997275204,
+      "y": 1.2798434442270046,
+      "pixel_x": 721.5,
+      "pixel_y": 1259.5714285714287,
+      "pixel_count": 14,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.15694822888283377,
+      "y": 1.465753424657534,
+      "pixel_x": 737.0,
+      "pixel_y": 1246.0,
+      "pixel_count": 21,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.20910081743869224,
+      "y": 1.6260273972602746,
+      "pixel_x": 752.95,
+      "pixel_y": 1234.3,
+      "pixel_count": 20,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.3153496821071753,
+      "y": 1.8477929984779302,
+      "pixel_x": 785.4444444444445,
+      "pixel_y": 1218.111111111111,
+      "pixel_count": 18,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.36667964188400143,
+      "y": 1.935420743639921,
+      "pixel_x": 801.1428571428571,
+      "pixel_y": 1211.7142857142858,
+      "pixel_count": 14,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 8f, digitized (CA carbon pellet (ads.))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig8f_ads_CApellet.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

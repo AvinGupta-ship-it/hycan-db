@@ -1,0 +1,168 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T19:01:38+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0053",
+  "figure": "Fig. 8f",
+  "series_name": "CA carbon powder (ads.)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0053/work/masked/main-10_fig8f_ads_CApowder_holes.png",
+    "sha256": "ae242c4ec9339a70ad3a9e82f9ddf76a6aef8081195932630b6ce0c9450a74cb",
+    "width_px": 1241,
+    "height_px": 1625
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 689.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1056.0,
+        "value": 1.2
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1353.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1134.0,
+        "value": 3.0
+      },
+      "scale": "linear",
+      "label": "H2 uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 872.5,
+        "stated": 0.6,
+        "predicted": 0.6,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 1243.0,
+        "stated": 1.5,
+        "predicted": 1.506849315068493,
+        "relative_error": 0.004566210045661971
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#008000",
+    "color_rgb": [
+      0,
+      128,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 93,
+    "matched_pixels_in_region": 93,
+    "region": [
+      690,
+      1135,
+      1055,
+      1352
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 8.76,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      2,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 8,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.04741144414168937,
+      "y": 0.6575342465753424,
+      "pixel_x": 703.5,
+      "pixel_y": 1305.0,
+      "pixel_count": 2,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.07111716621253406,
+      "y": 0.8758561643835616,
+      "pixel_x": 710.75,
+      "pixel_y": 1289.0625,
+      "pixel_count": 16,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.08484153162197036,
+      "y": 0.9538572458543606,
+      "pixel_x": 714.9473684210526,
+      "pixel_y": 1283.3684210526317,
+      "pixel_count": 19,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.14968210717529534,
+      "y": 1.2473363774733652,
+      "pixel_x": 734.7777777777778,
+      "pixel_y": 1261.9444444444443,
+      "pixel_count": 18,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.20555858310626707,
+      "y": 1.4310502283105029,
+      "pixel_x": 751.8666666666667,
+      "pixel_y": 1248.5333333333333,
+      "pixel_count": 15,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.2615803814713896,
+      "y": 1.5898972602739727,
+      "pixel_x": 769.0,
+      "pixel_y": 1236.9375,
+      "pixel_count": 16,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.379291553133515,
+      "y": 1.8219178082191783,
+      "pixel_x": 805.0,
+      "pixel_y": 1220.0,
+      "pixel_count": 3,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.5149863760217983,
+      "y": 2.054794520547945,
+      "pixel_x": 846.5,
+      "pixel_y": 1203.0,
+      "pixel_count": 4,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 8f, digitized (CA carbon powder (ads.))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig8f_ads_CApowder.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

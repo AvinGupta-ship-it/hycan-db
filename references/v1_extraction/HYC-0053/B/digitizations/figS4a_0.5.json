@@ -1,0 +1,137 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:57:24+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0053",
+  "figure": "Fig. S4a",
+  "series_name": "0.5 L/min",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0053/work/masked/si1-07_figS4.png",
+    "sha256": "aa77a089b05c433d9c113618e1f30b77bb5a86772630210f3969ec67bee2c393",
+    "width_px": 1241,
+    "height_px": 1754
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 328.0,
+        "value": 0.2
+      },
+      "reference_2": {
+        "pixel": 616.0,
+        "value": 1.2
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.7781512503836435
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 521.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 260.0,
+        "value": 3.0
+      },
+      "scale": "linear",
+      "label": "H2 uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 443.0,
+        "stated": 0.6,
+        "predicted": 0.5993055555555555,
+        "relative_error": 0.0011574074074074034
+      },
+      {
+        "axis": "y",
+        "pixel": 391.0,
+        "stated": 1.5,
+        "predicted": 1.4942528735632183,
+        "relative_error": 0.003831417624521105
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#00ffff",
+    "color_rgb": [
+      0,
+      255,
+      255
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 225,
+    "matched_pixels_in_region": 89,
+    "region": [
+      242,
+      239,
+      615,
+      520
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 10.44,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 2-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [
+      {
+        "pixel_x": 512.5,
+        "pixel_y": 313.5,
+        "pixels": 4,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 482.5,
+        "pixel_y": 321.5,
+        "pixels": 4,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 392.5,
+        "pixel_y": 353.5,
+        "pixels": 4,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 361.5,
+        "pixel_y": 369.5,
+        "pixels": 4,
+        "reason": "too small"
+      }
+    ],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.3684027777777778,
+      "y": 1.839080459770115,
+      "pixel_x": 376.5,
+      "pixel_y": 361.0,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. S4a, digitized (0.5 L/min)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: figS4a_0.5.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

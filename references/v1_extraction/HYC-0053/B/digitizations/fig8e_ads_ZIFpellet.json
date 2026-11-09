@@ -1,0 +1,176 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T19:01:38+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0053",
+  "figure": "Fig. 8e",
+  "series_name": "ZIF-8 carbon pellet (ads.)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0053/work/masked/main-10_fig8e_ads_ZIFpellet_holes.png",
+    "sha256": "a72d1f75a3ff957409684e09b08b45027a79a68f356c20b273dabd90e92ca25d",
+    "width_px": 1241,
+    "height_px": 1625
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 234.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 601.0,
+        "value": 1.2
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1353.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1134.0,
+        "value": 3.0
+      },
+      "scale": "linear",
+      "label": "H2 uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 417.0,
+        "stated": 0.6,
+        "predicted": 0.5983651226158038,
+        "relative_error": 0.0027247956403270157
+      },
+      {
+        "axis": "y",
+        "pixel": 1243.0,
+        "stated": 1.5,
+        "predicted": 1.506849315068493,
+        "relative_error": 0.004566210045661971
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#0000ff",
+    "color_rgb": [
+      0,
+      0,
+      255
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 94,
+    "matched_pixels_in_region": 94,
+    "region": [
+      235,
+      1135,
+      600,
+      1352
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 8.76,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      2,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 9,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.04577656675749319,
+      "y": 0.5890410958904109,
+      "pixel_x": 248.0,
+      "pixel_y": 1310.0,
+      "pixel_count": 5,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.09108602569093024,
+      "y": 0.8140900195694702,
+      "pixel_x": 261.85714285714283,
+      "pixel_y": 1293.5714285714287,
+      "pixel_count": 14,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.1536784741144414,
+      "y": 1.043664383561644,
+      "pixel_x": 281.0,
+      "pixel_y": 1276.8125,
+      "pixel_count": 16,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.30980926430517713,
+      "y": 1.3869863013698631,
+      "pixel_x": 328.75,
+      "pixel_y": 1251.75,
+      "pixel_count": 8,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.3662125340599455,
+      "y": 1.4856787048567877,
+      "pixel_x": 346.0,
+      "pixel_y": 1244.5454545454545,
+      "pixel_count": 11,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.4250681198910082,
+      "y": 1.5547945205479452,
+      "pixel_x": 364.0,
+      "pixel_y": 1239.5,
+      "pixel_count": 4,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.6206589051275699,
+      "y": 1.7733499377334998,
+      "pixel_x": 423.8181818181818,
+      "pixel_y": 1223.5454545454545,
+      "pixel_count": 11,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.8370572207084468,
+      "y": 1.9726027397260273,
+      "pixel_x": 490.0,
+      "pixel_y": 1209.0,
+      "pixel_count": 15,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.9361307901907355,
+      "y": 2.0273972602739727,
+      "pixel_x": 520.3,
+      "pixel_y": 1205.0,
+      "pixel_count": 10,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 8e, digitized (ZIF-8 carbon pellet (ads.))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig8e_ads_ZIFpellet.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

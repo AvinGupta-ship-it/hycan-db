@@ -1,0 +1,197 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:57:53+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0053",
+  "figure": "Fig. S9d",
+  "series_name": "200 \u00b0C-pellet (filled, desorption)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0053/work/masked/si1-13_figS9.png",
+    "sha256": "1e2518cf6392d9348c73a9f748c28f017785713dcb8510af9908ee86f56ab2a5",
+    "width_px": 1241,
+    "height_px": 1754
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 682.0,
+        "value": 0.0001
+      },
+      "reference_2": {
+        "pixel": 1043.0,
+        "value": 1.0
+      },
+      "scale": "log10",
+      "label": "Pressure (bar)",
+      "decades_spanned": 4.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 794.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 577.0,
+        "value": 3.0
+      },
+      "scale": "linear",
+      "label": "H2 uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 862.0,
+        "stated": 0.01,
+        "predicted": 0.009873243177437426,
+        "relative_error": 0.012675682256257405
+      },
+      {
+        "axis": "y",
+        "pixel": 685.0,
+        "stated": 1.5,
+        "predicted": 1.5069124423963136,
+        "relative_error": 0.004608294930875741
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#008000",
+    "color_rgb": [
+      0,
+      128,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 580,
+    "matched_pixels_in_region": 154,
+    "region": [
+      683,
+      560,
+      1049,
+      811
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 8.68,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 2-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [
+      {
+        "pixel_x": 998.5,
+        "pixel_y": 691.5,
+        "pixels": 4,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 976.5,
+        "pixel_y": 704.5,
+        "pixels": 4,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 961.5,
+        "pixel_y": 714.5,
+        "pixels": 4,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 949.5,
+        "pixel_y": 719.5,
+        "pixels": 4,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 935.5,
+        "pixel_y": 727.5,
+        "pixels": 4,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 903.5,
+        "pixel_y": 743.5,
+        "pixels": 4,
+        "reason": "too small"
+      }
+    ],
+    "n_points": 7,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.004771669550500958,
+      "y": 0.3525345622119816,
+      "pixel_x": 833.5,
+      "pixel_y": 768.5,
+      "pixel_count": 8,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.006417971014289323,
+      "y": 0.3830306316074823,
+      "pixel_x": 845.1176470588235,
+      "pixel_y": 766.2941176470588,
+      "pixel_count": 17,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.010128384179630297,
+      "y": 0.4769585253456221,
+      "pixel_x": 863.0,
+      "pixel_y": 759.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.0174179576356959,
+      "y": 0.5841013824884792,
+      "pixel_x": 884.25,
+      "pixel_y": 751.75,
+      "pixel_count": 12,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.04681231414492164,
+      "y": 0.836405529953917,
+      "pixel_x": 923.0,
+      "pixel_y": 733.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.16763964454352748,
+      "y": 1.1820276497695854,
+      "pixel_x": 973.0,
+      "pixel_y": 708.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.23960803912555287,
+      "y": 1.3133640552995391,
+      "pixel_x": 987.0,
+      "pixel_y": 699.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. S9d, digitized (200 \u00b0C-pellet (filled, desorption))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: figS9d_des_200.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T19:01:13+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0053",
+  "figure": "Fig. S11d",
+  "series_name": "pellet (HPC) (hollow, adsorption)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0053/work/masked/si1-19_figS11d_ads_HPC_holes.png",
+    "sha256": "a4fa7162984528e59ad2a50faf7ff0419331f9ac141d88813c17f76bb26b1d17",
+    "width_px": 1241,
+    "height_px": 1754
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 704.0,
+        "value": 0.0001
+      },
+      "reference_2": {
+        "pixel": 1057.0,
+        "value": 1.0
+      },
+      "scale": "log10",
+      "label": "Pressure (bar)",
+      "decades_spanned": 4.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 893.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 599.0,
+        "value": 3.0
+      },
+      "scale": "linear",
+      "label": "H2 uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 880.5,
+        "stated": 0.01,
+        "predicted": 0.01,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 746.0,
+        "stated": 1.5,
+        "predicted": 1.5,
+        "relative_error": 0.0
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#00ffff",
+    "color_rgb": [
+      0,
+      255,
+      255
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 11,
+    "matched_pixels_in_region": 11,
+    "region": [
+      705,
+      600,
+      1062,
+      892
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 11.76,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      2,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 3,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.30909002226946297,
+      "y": 1.4591836734693877,
+      "pixel_x": 1012.0,
+      "pixel_y": 750.0,
+      "pixel_count": 3,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.42272927320687786,
+      "y": 1.6071428571428572,
+      "pixel_x": 1024.0,
+      "pixel_y": 735.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.7407785275763811,
+      "y": 1.8775510204081634,
+      "pixel_x": 1045.5,
+      "pixel_y": 709.0,
+      "pixel_count": 2,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. S11d, digitized (pellet (HPC) (hollow, adsorption))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: figS11d_ads_HPC.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}
