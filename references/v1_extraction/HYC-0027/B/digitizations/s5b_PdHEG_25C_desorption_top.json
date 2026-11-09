@@ -1,0 +1,128 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:37:31+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0027",
+  "figure": "Figure S5b (SI p.4)",
+  "series_name": "Pd-HEG Desor. 25 C (brown stars), highest-pressure marker",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0027/in/pages/si1-4.png",
+    "sha256": "78294bcc930f0a62d157545f30226a7ac8fecc4ef02a90a6604ff0b7c30c3d8e",
+    "width_px": 1241,
+    "height_px": 1754
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 458.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 829.04,
+        "value": 4.0
+      },
+      "scale": "linear",
+      "label": "Pressure (MPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 670.3,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 407.67,
+        "value": 0.9
+      },
+      "scale": "linear",
+      "label": "H (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 643.33,
+        "stated": 2.0,
+        "predicted": 1.9979517033203973,
+        "relative_error": 0.0010241483398013562
+      },
+      {
+        "axis": "y",
+        "pixel": 583.0,
+        "stated": 0.3,
+        "predicted": 0.29916612725126596,
+        "relative_error": 0.002779575829113442
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#800000",
+    "color_rgb": [
+      128,
+      0,
+      0
+    ],
+    "tolerance": 260.0,
+    "matched_pixels_in_image": 70972,
+    "matched_pixels_in_region": 90,
+    "region": [
+      811,
+      427,
+      826,
+      453
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 10.505199999999999,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      1,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 3,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 3.848641655886158,
+      "y": 0.809770399421239,
+      "pixel_x": 815.0,
+      "pixel_y": 434.0,
+      "pixel_count": 1,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.8681813281586894,
+      "y": 0.7930643871606443,
+      "pixel_x": 816.8125,
+      "pixel_y": 438.875,
+      "pixel_count": 80,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.877389679459537,
+      "y": 0.7537981190267677,
+      "pixel_x": 817.6666666666666,
+      "pixel_y": 450.3333333333333,
+      "pixel_count": 9,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure S5b (SI p.4), digitized (Pd-HEG Desor. 25 C (brown stars), highest-pressure marker)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: s5b_PdHEG_25C_desorption_top.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

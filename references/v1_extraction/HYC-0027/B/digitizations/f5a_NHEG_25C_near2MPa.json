@@ -1,0 +1,136 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:37:43+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0027",
+  "figure": "Figure 5a (main p.7829)",
+  "series_name": "N-HEG 25 C adsorption (blue diamonds), marker nearest 2 MPa",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0027/in/pages/main-4.png",
+    "sha256": "b6beb2da19e092916bd5109b4645e2a330b35b63f274fe8b2591cb9f7d345e93",
+    "width_px": 1303,
+    "height_px": 1705
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 829.88,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1048.3,
+        "value": 4.0
+      },
+      "scale": "linear",
+      "label": "Pressure (MPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 756.72,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 611.76,
+        "value": 1.5
+      },
+      "scale": "linear",
+      "label": "H (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 939.13,
+        "stated": 2.0,
+        "predicted": 2.000732533650765,
+        "relative_error": 0.00036626682538254407
+      },
+      {
+        "axis": "y",
+        "pixel": 660.3,
+        "stated": 1.0,
+        "predicted": 0.9977235099337753,
+        "relative_error": 0.0022764900662246568
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#3448a4",
+    "color_rgb": [
+      52,
+      72,
+      164
+    ],
+    "tolerance": 150.0,
+    "matched_pixels_in_image": 139035,
+    "matched_pixels_in_region": 23,
+    "region": [
+      932,
+      667,
+      940,
+      680
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 5.798400000000002,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      1,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 4,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 1.888471751671093,
+      "y": 0.814569536423841,
+      "pixel_x": 933.0,
+      "pixel_y": 678.0,
+      "pixel_count": 1,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.9167741881779055,
+      "y": 0.8437311860325111,
+      "pixel_x": 934.5454545454545,
+      "pixel_y": 675.1818181818181,
+      "pixel_count": 11,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.9525684461129937,
+      "y": 0.814569536423841,
+      "pixel_x": 936.5,
+      "pixel_y": 678.0,
+      "pixel_count": 2,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.000386614982348,
+      "y": 0.8916022810890363,
+      "pixel_x": 939.1111111111111,
+      "pixel_y": 670.5555555555555,
+      "pixel_count": 9,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 5a (main p.7829), digitized (N-HEG 25 C adsorption (blue diamonds), marker nearest 2 MPa)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: f5a_NHEG_25C_near2MPa.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

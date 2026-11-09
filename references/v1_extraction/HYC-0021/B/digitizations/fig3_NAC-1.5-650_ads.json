@@ -1,0 +1,168 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:25:25+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0021",
+  "figure": "Fig. 3",
+  "series_name": "NAC-1.5-650 adsorption (filled down-triangles)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0021/work/der/fig3_NAC-1.5-650_ads.png",
+    "sha256": "083bc1c7bb8b2d335b52c3a862734848f2f508def3958ea66bc427839c79efb9",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 133.79,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 557.29,
+        "value": 800.0
+      },
+      "scale": "linear",
+      "label": "Pressure (mmHg)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1428.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1117.76,
+        "value": 3.0
+      },
+      "scale": "linear",
+      "label": "Hydrogen uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 345.54,
+        "stated": 400.0,
+        "predicted": 400.0000000000001,
+        "relative_error": 2.842170943040401e-16
+      },
+      {
+        "axis": "y",
+        "pixel": 1272.5,
+        "stated": 1.5,
+        "predicted": 1.5036745745229498,
+        "relative_error": 0.002449716348633224
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ffff00",
+    "color_rgb": [
+      255,
+      255,
+      0
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 230,
+    "matched_pixels_in_region": 230,
+    "region": [
+      136,
+      1080,
+      600,
+      1436
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 12.409600000000001,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      3,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 8,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 31.136202640334904,
+      "y": 0.874103333489616,
+      "pixel_x": 150.27272727272728,
+      "pixel_y": 1337.6060606060605,
+      "pixel_count": 33,
+      "outside_axis_range": false
+    },
+    {
+      "x": 67.45690672963401,
+      "y": 1.1763189030124694,
+      "pixel_x": 169.5,
+      "pixel_y": 1306.3529411764705,
+      "pixel_count": 34,
+      "outside_axis_range": false
+    },
+    {
+      "x": 79.34662129314535,
+      "y": 1.2442928434911877,
+      "pixel_x": 175.7941176470588,
+      "pixel_y": 1299.3235294117646,
+      "pixel_count": 34,
+      "outside_axis_range": false
+    },
+    {
+      "x": 141.07897843783016,
+      "y": 1.5143623951575695,
+      "pixel_x": 208.47368421052633,
+      "pixel_y": 1271.3947368421052,
+      "pixel_count": 38,
+      "outside_axis_range": false
+    },
+    {
+      "x": 179.52976893236635,
+      "y": 1.6325609666249168,
+      "pixel_x": 228.82857142857142,
+      "pixel_y": 1259.1714285714286,
+      "pixel_count": 35,
+      "outside_axis_range": false
+    },
+    {
+      "x": 601.4648900882668,
+      "y": 2.286248434391806,
+      "pixel_x": 452.1904761904762,
+      "pixel_y": 1191.5714285714287,
+      "pixel_count": 21,
+      "outside_axis_range": false
+    },
+    {
+      "x": 651.0696576151121,
+      "y": 2.341574265085096,
+      "pixel_x": 478.45,
+      "pixel_y": 1185.85,
+      "pixel_count": 20,
+      "outside_axis_range": false
+    },
+    {
+      "x": 700.3415977961432,
+      "y": 2.392341413099537,
+      "pixel_x": 504.53333333333336,
+      "pixel_y": 1180.6,
+      "pixel_count": 15,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 3, digitized (NAC-1.5-650 adsorption (filled down-triangles))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig3_NAC-1.5-650_ads.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

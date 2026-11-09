@@ -1,0 +1,184 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:21:44+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0021",
+  "figure": "Fig. 3",
+  "series_name": "CP-400 adsorption (filled squares)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0021/work/der/fig3_CP-400_ads.png",
+    "sha256": "425b7d2303afb3ba66076b50f22828a1f9a497b3f0251adb3386734eb13320a0",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 133.79,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 557.29,
+        "value": 800.0
+      },
+      "scale": "linear",
+      "label": "Pressure (mmHg)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1428.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1117.76,
+        "value": 3.0
+      },
+      "scale": "linear",
+      "label": "Hydrogen uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 345.54,
+        "stated": 400.0,
+        "predicted": 400.0000000000001,
+        "relative_error": 2.842170943040401e-16
+      },
+      {
+        "axis": "y",
+        "pixel": 1272.5,
+        "stated": 1.5,
+        "predicted": 1.5036745745229498,
+        "relative_error": 0.002449716348633224
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ffff00",
+    "color_rgb": [
+      255,
+      255,
+      0
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 352,
+    "matched_pixels_in_region": 352,
+    "region": [
+      136,
+      1080,
+      600,
+      1436
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 12.409600000000001,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      3,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 10,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 31.492870765598035,
+      "y": -0.0003719204982732741,
+      "pixel_x": 150.46153846153845,
+      "pixel_y": 1428.0384615384614,
+      "pixel_count": 26,
+      "outside_axis_range": true
+    },
+    {
+      "x": 68.04722550177097,
+      "y": 0.004834966477565756,
+      "pixel_x": 169.8125,
+      "pixel_y": 1427.5,
+      "pixel_count": 32,
+      "outside_axis_range": false
+    },
+    {
+      "x": 79.59560977742797,
+      "y": 0.0017907283250246796,
+      "pixel_x": 175.92592592592592,
+      "pixel_y": 1427.8148148148148,
+      "pixel_count": 27,
+      "outside_axis_range": false
+    },
+    {
+      "x": 102.40377804014169,
+      "y": 0.004834966477565756,
+      "pixel_x": 188.0,
+      "pixel_y": 1427.5,
+      "pixel_count": 38,
+      "outside_axis_range": false
+    },
+    {
+      "x": 179.22392758756396,
+      "y": 0.015310727178957494,
+      "pixel_x": 228.66666666666666,
+      "pixel_y": 1426.4166666666667,
+      "pixel_count": 36,
+      "outside_axis_range": false
+    },
+    {
+      "x": 300.7508854781582,
+      "y": 0.016981345677304062,
+      "pixel_x": 293.0,
+      "pixel_y": 1426.2439024390244,
+      "pixel_count": 41,
+      "outside_axis_range": false
+    },
+    {
+      "x": 399.9244391971665,
+      "y": 0.024174832387828776,
+      "pixel_x": 345.5,
+      "pixel_y": 1425.5,
+      "pixel_count": 40,
+      "outside_axis_range": false
+    },
+    {
+      "x": 600.1605667060213,
+      "y": 0.024429304307701353,
+      "pixel_x": 451.5,
+      "pixel_y": 1425.4736842105262,
+      "pixel_count": 38,
+      "outside_axis_range": false
+    },
+    {
+      "x": 650.219598583235,
+      "y": 0.033844765342960284,
+      "pixel_x": 478.0,
+      "pixel_y": 1424.5,
+      "pixel_count": 38,
+      "outside_axis_range": false
+    },
+    {
+      "x": 700.2786304604487,
+      "y": 0.033844765342960284,
+      "pixel_x": 504.5,
+      "pixel_y": 1424.5,
+      "pixel_count": 36,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 3, digitized (CP-400 adsorption (filled squares))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig3_CP-400_ads.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

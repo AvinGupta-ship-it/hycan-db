@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:29:48+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0039",
+  "figure": "Fig 11a (77 K)",
+  "series_name": "Pd-decorated, ammonia-treated AC (blue diamonds) [targeted ROI t1]",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0039/work/masked/p11_f11a.png",
+    "sha256": "ea5b4caf34bd08886851321b8b0a777786461333cb202262839a97f508b79b14",
+    "width_px": 1241,
+    "height_px": 1754
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 230.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 594.0,
+        "value": 55.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 556.0,
+        "value": -0.5
+      },
+      "reference_2": {
+        "pixel": 250.0,
+        "value": 2.5
+      },
+      "scale": "linear",
+      "label": "Excess Hydrogen wt.%",
+      "decades_spanned": 0.6989700043360189
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 395.0,
+        "stated": 25.0,
+        "predicted": 24.931318681318682,
+        "relative_error": 0.002747252747252702
+      },
+      {
+        "axis": "y",
+        "pixel": 403.0,
+        "stated": 1.0,
+        "predicted": 1.0,
+        "relative_error": 0.0
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#0000ff",
+    "color_rgb": [
+      0,
+      0,
+      255
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 5303,
+    "matched_pixels_in_region": 44,
+    "region": [
+      336,
+      263,
+      351,
+      277
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 12.24,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 2-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 17.340397697540553,
+      "y": 2.2598039215686274,
+      "pixel_x": 344.76190476190476,
+      "pixel_y": 274.5,
+      "pixel_count": 42,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig 11a (77 K), digitized (Pd-decorated, ammonia-treated AC (blue diamonds) [targeted ROI t1])",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0039_fig11a_Pd-NH3-AC__t1.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

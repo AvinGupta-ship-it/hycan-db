@@ -1,0 +1,183 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:26:43+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0039",
+  "figure": "Fig 10b (298 K)",
+  "series_name": "red squares/black line (Fig 10a style of AC; Fig 10b legend text: Pt-decorated, ammonia treated AC)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0039/work/masked/p10_f10b.png",
+    "sha256": "bdf1e45836883455bda13f0c21d394fa288d1b169c9e54d973efd2d1c84dfd20",
+    "width_px": 1241,
+    "height_px": 1754
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 667.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1034.0,
+        "value": 90.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1492.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1193.0,
+        "value": 0.5
+      },
+      "scale": "linear",
+      "label": "Excess Hydrogen wt.%",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 851.0,
+        "stated": 45.0,
+        "predicted": 45.12261580381471,
+        "relative_error": 0.0027247956403269
+      },
+      {
+        "axis": "y",
+        "pixel": 1313.0,
+        "stated": 0.3,
+        "predicted": 0.2993311036789298,
+        "relative_error": 0.0022296544035673347
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff0000",
+    "color_rgb": [
+      255,
+      0,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 1862,
+    "matched_pixels_in_region": 269,
+    "region": [
+      668,
+      1186,
+      1048,
+      1491
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 11.96,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 2-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [
+      {
+        "pixel_x": 684.5,
+        "pixel_y": 1478.5,
+        "pixels": 4,
+        "reason": "too small"
+      }
+    ],
+    "n_points": 9,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 2.9953289217594277,
+      "y": 0.0489727663640706,
+      "pixel_x": 679.2142857142857,
+      "pixel_y": 1462.7142857142858,
+      "pixel_count": 14,
+      "outside_axis_range": false
+    },
+    {
+      "x": 9.756714674970818,
+      "y": 0.04634495938843776,
+      "pixel_x": 706.7857142857143,
+      "pixel_y": 1464.2857142857142,
+      "pixel_count": 14,
+      "outside_axis_range": false
+    },
+    {
+      "x": 19.863760217983653,
+      "y": 0.08862876254180602,
+      "pixel_x": 748.0,
+      "pixel_y": 1439.0,
+      "pixel_count": 25,
+      "outside_axis_range": false
+    },
+    {
+      "x": 29.059945504087192,
+      "y": 0.1479933110367893,
+      "pixel_x": 785.5,
+      "pixel_y": 1403.5,
+      "pixel_count": 36,
+      "outside_axis_range": false
+    },
+    {
+      "x": 40.09536784741144,
+      "y": 0.14715719063545152,
+      "pixel_x": 830.5,
+      "pixel_y": 1404.0,
+      "pixel_count": 30,
+      "outside_axis_range": false
+    },
+    {
+      "x": 52.32629427792916,
+      "y": 0.19262123745819398,
+      "pixel_x": 880.375,
+      "pixel_y": 1376.8125,
+      "pixel_count": 32,
+      "outside_axis_range": false
+    },
+    {
+      "x": 64.12806539509538,
+      "y": 0.18979933110367894,
+      "pixel_x": 928.5,
+      "pixel_y": 1378.5,
+      "pixel_count": 36,
+      "outside_axis_range": false
+    },
+    {
+      "x": 76.51226158038148,
+      "y": 0.21321070234113712,
+      "pixel_x": 979.0,
+      "pixel_y": 1364.5,
+      "pixel_count": 30,
+      "outside_axis_range": false
+    },
+    {
+      "x": 85.83106267029973,
+      "y": 0.20735785953177258,
+      "pixel_x": 1017.0,
+      "pixel_y": 1368.0,
+      "pixel_count": 25,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig 10b (298 K), digitized (red squares/black line (Fig 10a style of AC; Fig 10b legend text: Pt-decorated, ammonia treated AC))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0039_fig10b_AC.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

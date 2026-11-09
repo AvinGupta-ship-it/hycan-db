@@ -1,0 +1,168 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:26:44+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0039",
+  "figure": "Fig 10b (298 K)",
+  "series_name": "green stars/green line (Fig 10a style of Ammonia treated AC; Fig 10b legend text: Pt-decorated AC)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0039/work/masked/p10_f10b.png",
+    "sha256": "bdf1e45836883455bda13f0c21d394fa288d1b169c9e54d973efd2d1c84dfd20",
+    "width_px": 1241,
+    "height_px": 1754
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 667.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1034.0,
+        "value": 90.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1492.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1193.0,
+        "value": 0.5
+      },
+      "scale": "linear",
+      "label": "Excess Hydrogen wt.%",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 851.0,
+        "stated": 45.0,
+        "predicted": 45.12261580381471,
+        "relative_error": 0.0027247956403269
+      },
+      {
+        "axis": "y",
+        "pixel": 1313.0,
+        "stated": 0.3,
+        "predicted": 0.2993311036789298,
+        "relative_error": 0.0022296544035673347
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#00ff00",
+    "color_rgb": [
+      0,
+      255,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 1054,
+    "matched_pixels_in_region": 166,
+    "region": [
+      668,
+      1186,
+      1048,
+      1491
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 11.96,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 2-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 8,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 9.686648501362397,
+      "y": 0.06438127090301003,
+      "pixel_x": 706.5,
+      "pixel_y": 1453.5,
+      "pixel_count": 8,
+      "outside_axis_range": false
+    },
+    {
+      "x": 19.958080067071887,
+      "y": 0.11937226652945732,
+      "pixel_x": 748.3846153846154,
+      "pixel_y": 1420.6153846153845,
+      "pixel_count": 13,
+      "outside_axis_range": false
+    },
+    {
+      "x": 29.30517711171662,
+      "y": 0.18776875298614418,
+      "pixel_x": 786.5,
+      "pixel_y": 1379.7142857142858,
+      "pixel_count": 14,
+      "outside_axis_range": false
+    },
+    {
+      "x": 40.12880852117909,
+      "y": 0.2141988446336271,
+      "pixel_x": 830.6363636363636,
+      "pixel_y": 1363.909090909091,
+      "pixel_count": 11,
+      "outside_axis_range": false
+    },
+    {
+      "x": 52.479564032697546,
+      "y": 0.27842809364548493,
+      "pixel_x": 881.0,
+      "pixel_y": 1325.5,
+      "pixel_count": 12,
+      "outside_axis_range": false
+    },
+    {
+      "x": 64.27297498142185,
+      "y": 0.29325022803283657,
+      "pixel_x": 929.0909090909091,
+      "pixel_y": 1316.6363636363637,
+      "pixel_count": 11,
+      "outside_axis_range": false
+    },
+    {
+      "x": 76.63487738419619,
+      "y": 0.33492594362159567,
+      "pixel_x": 979.5,
+      "pixel_y": 1291.7142857142858,
+      "pixel_count": 14,
+      "outside_axis_range": false
+    },
+    {
+      "x": 85.95367847411444,
+      "y": 0.3474544778892606,
+      "pixel_x": 1017.5,
+      "pixel_y": 1284.2222222222222,
+      "pixel_count": 18,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig 10b (298 K), digitized (green stars/green line (Fig 10a style of Ammonia treated AC; Fig 10b legend text: Pt-decorated AC))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0039_fig10b_NH3-AC.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

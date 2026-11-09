@@ -1,0 +1,128 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:37:46+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0027",
+  "figure": "Figure 5a (main p.7829)",
+  "series_name": "N-HEG 75 C (red circles), highest-pressure marker",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0027/in/pages/main-4.png",
+    "sha256": "b6beb2da19e092916bd5109b4645e2a330b35b63f274fe8b2591cb9f7d345e93",
+    "width_px": 1303,
+    "height_px": 1705
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 829.88,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1048.3,
+        "value": 4.0
+      },
+      "scale": "linear",
+      "label": "Pressure (MPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 756.72,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 611.76,
+        "value": 1.5
+      },
+      "scale": "linear",
+      "label": "H (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 939.13,
+        "stated": 2.0,
+        "predicted": 2.000732533650765,
+        "relative_error": 0.00036626682538254407
+      },
+      {
+        "axis": "y",
+        "pixel": 660.3,
+        "stated": 1.0,
+        "predicted": 0.9977235099337753,
+        "relative_error": 0.0022764900662246568
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ec1b24",
+    "color_rgb": [
+      236,
+      27,
+      36
+    ],
+    "tolerance": 238.0,
+    "matched_pixels_in_image": 324422,
+    "matched_pixels_in_region": 24,
+    "region": [
+      1050,
+      687,
+      1058,
+      700
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 5.798400000000002,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      1,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 3,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 3
+  },
+  "series": [
+    {
+      "x": 4.082638952476881,
+      "y": 0.6522402731788081,
+      "pixel_x": 1052.8125,
+      "pixel_y": 693.6875,
+      "pixel_count": 16,
+      "outside_axis_range": true
+    },
+    {
+      "x": 4.095229374599397,
+      "y": 0.7007450331125828,
+      "pixel_x": 1053.5,
+      "pixel_y": 689.0,
+      "pixel_count": 4,
+      "outside_axis_range": true
+    },
+    {
+      "x": 4.095229374599397,
+      "y": 0.5972682119205299,
+      "pixel_x": 1053.5,
+      "pixel_y": 699.0,
+      "pixel_count": 4,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 5a (main p.7829), digitized (N-HEG 75 C (red circles), highest-pressure marker)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: f5a_NHEG_75C_top.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

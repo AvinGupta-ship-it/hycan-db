@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:42:21+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0033",
+  "figure": "Figure 4",
+  "series_name": "B-doped Excess adsorption (open black squares), highest-pressure marker only, cross-check",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0033/work/main-5_fig4_legendmasked.png",
+    "sha256": "0738808261b2887e220425cd57ab35a6587ba8aa2eb7c43220e0905ff34270d1",
+    "width_px": 1241,
+    "height_px": 1630
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 382.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 813.0,
+        "value": 100.0
+      },
+      "scale": "linear",
+      "label": "Pressure_bar",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 925.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 583.0,
+        "value": 100.0
+      },
+      "scale": "linear",
+      "label": "Gravimetric_adsorption_gH2_per_kg_carbon",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 554.0,
+        "stated": 40.0,
+        "predicted": 39.90719257540603,
+        "relative_error": 0.0023201856148492793
+      },
+      {
+        "axis": "y",
+        "pixel": 754.0,
+        "stated": 50.0,
+        "predicted": 50.0,
+        "relative_error": 0.0
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#808080",
+    "color_rgb": [
+      128,
+      128,
+      128
+    ],
+    "tolerance": 80.0,
+    "matched_pixels_in_image": 108934,
+    "matched_pixels_in_region": 14,
+    "region": [
+      794,
+      776,
+      800,
+      786
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 13.68,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 96.08882996353994,
+      "y": 42.126148705096064,
+      "pixel_x": 796.1428571428571,
+      "pixel_y": 780.9285714285714,
+      "pixel_count": 14,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 4, digitized (B-doped Excess adsorption (open black squares), highest-pressure marker only, cross-check)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig4_Bdoped_excess_lastpoint_crosscheck.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

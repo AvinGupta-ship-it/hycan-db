@@ -1,0 +1,176 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:33:22+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0039",
+  "figure": "Fig 12b (298 K)",
+  "series_name": "Ni-decorated AC (yellow diamonds)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0039/work/masked/p11_f12b.png",
+    "sha256": "6bc2ba16cf297c09070fc7b2d69916f172c9a715ee05e1c9fd3a0dd9b5099ad8",
+    "width_px": 1241,
+    "height_px": 1754
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 684.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1073.0,
+        "value": 90.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1021.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 708.0,
+        "value": 0.5
+      },
+      "scale": "linear",
+      "label": "Excess Hydrogen wt.%",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 879.0,
+        "stated": 45.0,
+        "predicted": 45.11568123393316,
+        "relative_error": 0.002570694087403543
+      },
+      {
+        "axis": "y",
+        "pixel": 833.0,
+        "stated": 0.3,
+        "predicted": 0.3003194888178914,
+        "relative_error": 0.0010649627263046673
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ffff00",
+    "color_rgb": [
+      255,
+      255,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 7293,
+    "matched_pixels_in_region": 1109,
+    "region": [
+      686,
+      705,
+      1078,
+      1019
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 12.52,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 2-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 9,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 6.157373626250257,
+      "y": 0.048014007282670836,
+      "pixel_x": 710.6135371179039,
+      "pixel_y": 990.943231441048,
+      "pixel_count": 458,
+      "outside_axis_range": false
+    },
+    {
+      "x": 13.65038560411311,
+      "y": 0.09824281150159744,
+      "pixel_x": 743.0,
+      "pixel_y": 959.5,
+      "pixel_count": 48,
+      "outside_axis_range": false
+    },
+    {
+      "x": 19.66580976863753,
+      "y": 0.13019169329073482,
+      "pixel_x": 769.0,
+      "pixel_y": 939.5,
+      "pixel_count": 90,
+      "outside_axis_range": false
+    },
+    {
+      "x": 29.73007712082262,
+      "y": 0.19488817891373802,
+      "pixel_x": 812.5,
+      "pixel_y": 899.0,
+      "pixel_count": 88,
+      "outside_axis_range": false
+    },
+    {
+      "x": 41.41388174807198,
+      "y": 0.25,
+      "pixel_x": 863.0,
+      "pixel_y": 864.5,
+      "pixel_count": 90,
+      "outside_axis_range": false
+    },
+    {
+      "x": 52.34376385072247,
+      "y": 0.29435202526532267,
+      "pixel_x": 910.2413793103449,
+      "pixel_y": 836.735632183908,
+      "pixel_count": 87,
+      "outside_axis_range": false
+    },
+    {
+      "x": 62.065496814574715,
+      "y": 0.33424781219613836,
+      "pixel_x": 952.2608695652174,
+      "pixel_y": 811.7608695652174,
+      "pixel_count": 92,
+      "outside_axis_range": false
+    },
+    {
+      "x": 71.25964010282777,
+      "y": 0.36421725239616615,
+      "pixel_x": 992.0,
+      "pixel_y": 793.0,
+      "pixel_count": 89,
+      "outside_axis_range": false
+    },
+    {
+      "x": 80.74550128534705,
+      "y": 0.39217252396166136,
+      "pixel_x": 1033.0,
+      "pixel_y": 775.5,
+      "pixel_count": 48,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig 12b (298 K), digitized (Ni-decorated AC (yellow diamonds))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0039_fig12b_Ni-AC.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:29:51+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0021",
+  "figure": "Fig. S4",
+  "series_name": "NAC-1.5-600 1st run adsorption (filled stars)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0021/work/der/figS4_run1_ads.png",
+    "sha256": "18d55ae26187e92fec442b7fae228ee8c02ef38e5ae20e0b60eeaedd3c0defd7",
+    "width_px": 1241,
+    "height_px": 1754
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 234.9,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 758.83,
+        "value": 800.0
+      },
+      "scale": "linear",
+      "label": "Pressure (mmHg)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 616.32,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 208.95,
+        "value": 3.0
+      },
+      "scale": "linear",
+      "label": "Hydrogen uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 497.16,
+        "stated": 400.0,
+        "predicted": 400.45044185291925,
+        "relative_error": 0.0011261046322981372
+      },
+      {
+        "axis": "y",
+        "pixel": 413.04,
+        "stated": 1.5,
+        "predicted": 1.4970174534207232,
+        "relative_error": 0.001988364386184512
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ffff00",
+    "color_rgb": [
+      255,
+      255,
+      0
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 111,
+    "matched_pixels_in_region": 111,
+    "region": [
+      237,
+      205,
+      800,
+      614
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 16.294800000000002,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      3,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 3,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 599.7789058885006,
+      "y": 2.7848725078270697,
+      "pixel_x": 627.7027027027027,
+      "pixel_y": 238.16216216216216,
+      "pixel_count": 37,
+      "outside_axis_range": false
+    },
+    {
+      "x": 648.9377373274077,
+      "y": 2.8402605078354397,
+      "pixel_x": 659.8974358974359,
+      "pixel_y": 230.64102564102564,
+      "pixel_count": 39,
+      "outside_axis_range": false
+    },
+    {
+      "x": 700.4861609102634,
+      "y": 2.8952689552144593,
+      "pixel_x": 693.6571428571428,
+      "pixel_y": 223.17142857142858,
+      "pixel_count": 35,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. S4, digitized (NAC-1.5-600 1st run adsorption (filled stars))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: figS4_run1_ads.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

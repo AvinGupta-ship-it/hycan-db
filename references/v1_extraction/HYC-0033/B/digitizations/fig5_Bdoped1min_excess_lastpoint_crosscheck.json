@@ -1,0 +1,125 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:42:02+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0033",
+  "figure": "Figure 5",
+  "series_name": "B-doped and 1 min irradiation (open blue squares), highest-pressure marker only, cross-check",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0033/work/main-6_fig5_legendmasked.png",
+    "sha256": "cc2d7c9331486bf310b43717c07066ffad74aa593ffdce05dad9742f07835979",
+    "width_px": 1241,
+    "height_px": 1630
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 377.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 813.0,
+        "value": 100.0
+      },
+      "scale": "linear",
+      "label": "Pressure_bar",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 456.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 101.0,
+        "value": 60.0
+      },
+      "scale": "linear",
+      "label": "Gravimetric_excess_adsorption_g_per_kg",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 595.0,
+        "stated": 50.0,
+        "predicted": 50.0,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 278.0,
+        "stated": 30.0,
+        "predicted": 30.08450704225352,
+        "relative_error": 0.002816901408450671
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#4c4cff",
+    "color_rgb": [
+      76,
+      76,
+      255
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 634,
+    "matched_pixels_in_region": 13,
+    "region": [
+      786,
+      270,
+      808,
+      290
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 14.200000000000001,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [
+      {
+        "pixel_x": 787.5,
+        "pixel_y": 277.5,
+        "pixels": 2,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 790.0,
+        "pixel_y": 279.0,
+        "pixels": 1,
+        "reason": "too small"
+      }
+    ],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 95.48165137614679,
+      "y": 29.83098591549296,
+      "pixel_x": 793.3,
+      "pixel_y": 279.5,
+      "pixel_count": 10,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure 5, digitized (B-doped and 1 min irradiation (open blue squares), highest-pressure marker only, cross-check)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig5_Bdoped1min_excess_lastpoint_crosscheck.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

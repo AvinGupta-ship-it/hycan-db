@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:25:39+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0039",
+  "figure": "Fig 10a (77 K)",
+  "series_name": "Pt-decorated AC (yellow diamonds) [targeted ROI t1]",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0039/work/masked/p10_f10a.png",
+    "sha256": "8759099c6b5188ca65b18020bcca20f645f639d079b1277022d5e04c50111088",
+    "width_px": 1241,
+    "height_px": 1754
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 250.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 621.0,
+        "value": 70.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1442.0,
+        "value": 1.0
+      },
+      "reference_2": {
+        "pixel": 1223.5,
+        "value": 2.5
+      },
+      "scale": "linear",
+      "label": "Excess Hydrogen wt.%",
+      "decades_spanned": 0.3979400086720376
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 435.5,
+        "stated": 35.0,
+        "predicted": 35.0,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 1369.0,
+        "stated": 1.5,
+        "predicted": 1.5011441647597255,
+        "relative_error": 0.0007627765064836348
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ffff00",
+    "color_rgb": [
+      255,
+      255,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 2475,
+    "matched_pixels_in_region": 45,
+    "region": [
+      269,
+      1246,
+      279,
+      1263
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 8.74,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 2-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 4.778411584028079,
+      "y": 2.2815177478580178,
+      "pixel_x": 275.3255813953488,
+      "pixel_y": 1255.3255813953488,
+      "pixel_count": 43,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig 10a (77 K), digitized (Pt-decorated AC (yellow diamonds) [targeted ROI t1])",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0039_fig10a_Pt-AC__t1.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

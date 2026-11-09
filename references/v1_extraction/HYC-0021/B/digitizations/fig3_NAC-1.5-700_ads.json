@@ -1,0 +1,152 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:25:20+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0021",
+  "figure": "Fig. 3",
+  "series_name": "NAC-1.5-700 adsorption (filled diamonds)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0021/work/der/fig3_NAC-1.5-700_ads.png",
+    "sha256": "1f4a4d7c41c53eb719bbdb99d704fceb747613c9b1acee9454c85da560f2e7f0",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 133.79,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 557.29,
+        "value": 800.0
+      },
+      "scale": "linear",
+      "label": "Pressure (mmHg)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1428.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1117.76,
+        "value": 3.0
+      },
+      "scale": "linear",
+      "label": "Hydrogen uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 345.54,
+        "stated": 400.0,
+        "predicted": 400.0000000000001,
+        "relative_error": 2.842170943040401e-16
+      },
+      {
+        "axis": "y",
+        "pixel": 1272.5,
+        "stated": 1.5,
+        "predicted": 1.5036745745229498,
+        "relative_error": 0.002449716348633224
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ffff00",
+    "color_rgb": [
+      255,
+      255,
+      0
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 240,
+    "matched_pixels_in_region": 240,
+    "region": [
+      136,
+      1080,
+      600,
+      1436
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 12.409600000000001,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      3,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 6,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 66.09773375183576,
+      "y": 0.8875111636624357,
+      "pixel_x": 168.78048780487805,
+      "pixel_y": 1336.219512195122,
+      "pixel_count": 41,
+      "outside_axis_range": false
+    },
+    {
+      "x": 139.4543307931738,
+      "y": 1.2630251066622897,
+      "pixel_x": 207.61363636363637,
+      "pixel_y": 1297.3863636363637,
+      "pixel_count": 44,
+      "outside_axis_range": false
+    },
+    {
+      "x": 179.40383426097713,
+      "y": 1.408817136963088,
+      "pixel_x": 228.76190476190476,
+      "pixel_y": 1282.3095238095239,
+      "pixel_count": 42,
+      "outside_axis_range": false
+    },
+    {
+      "x": 599.894166439621,
+      "y": 2.234746300630778,
+      "pixel_x": 451.35897435897436,
+      "pixel_y": 1196.8974358974358,
+      "pixel_count": 39,
+      "outside_axis_range": false
+    },
+    {
+      "x": 649.6948707857799,
+      "y": 2.2955346398487193,
+      "pixel_x": 477.72222222222223,
+      "pixel_y": 1190.611111111111,
+      "pixel_count": 36,
+      "outside_axis_range": false
+    },
+    {
+      "x": 700.2289194059529,
+      "y": 2.3525928992155487,
+      "pixel_x": 504.4736842105263,
+      "pixel_y": 1184.7105263157894,
+      "pixel_count": 38,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 3, digitized (NAC-1.5-700 adsorption (filled diamonds))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig3_NAC-1.5-700_ads.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

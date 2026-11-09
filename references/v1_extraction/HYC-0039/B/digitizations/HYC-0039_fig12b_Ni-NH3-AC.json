@@ -1,0 +1,184 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:33:22+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0039",
+  "figure": "Fig 12b (298 K)",
+  "series_name": "Ni-decorated, ammonia treated AC (blue diamonds)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0039/work/masked/p11_f12b.png",
+    "sha256": "6bc2ba16cf297c09070fc7b2d69916f172c9a715ee05e1c9fd3a0dd9b5099ad8",
+    "width_px": 1241,
+    "height_px": 1754
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 684.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1073.0,
+        "value": 90.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1021.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 708.0,
+        "value": 0.5
+      },
+      "scale": "linear",
+      "label": "Excess Hydrogen wt.%",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 879.0,
+        "stated": 45.0,
+        "predicted": 45.11568123393316,
+        "relative_error": 0.002570694087403543
+      },
+      {
+        "axis": "y",
+        "pixel": 833.0,
+        "stated": 0.3,
+        "predicted": 0.3003194888178914,
+        "relative_error": 0.0010649627263046673
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#0000ff",
+    "color_rgb": [
+      0,
+      0,
+      255
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 5301,
+    "matched_pixels_in_region": 651,
+    "region": [
+      686,
+      705,
+      1078,
+      1019
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 12.52,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 2-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 10,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 5.552699228791774,
+      "y": 0.06070287539936102,
+      "pixel_x": 708.0,
+      "pixel_y": 983.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    },
+    {
+      "x": 10.06426735218509,
+      "y": 0.08920127795527162,
+      "pixel_x": 727.5,
+      "pixel_y": 965.16,
+      "pixel_count": 50,
+      "outside_axis_range": false
+    },
+    {
+      "x": 13.534704370179947,
+      "y": 0.10717397618356089,
+      "pixel_x": 742.5,
+      "pixel_y": 953.9090909090909,
+      "pixel_count": 22,
+      "outside_axis_range": false
+    },
+    {
+      "x": 19.671742139608458,
+      "y": 0.15061030556238222,
+      "pixel_x": 769.025641025641,
+      "pixel_y": 926.7179487179487,
+      "pixel_count": 78,
+      "outside_axis_range": false
+    },
+    {
+      "x": 29.709662785422644,
+      "y": 0.21464480360834431,
+      "pixel_x": 812.4117647058823,
+      "pixel_y": 886.6323529411765,
+      "pixel_count": 68,
+      "outside_axis_range": false
+    },
+    {
+      "x": 41.41388174807198,
+      "y": 0.273961661341853,
+      "pixel_x": 863.0,
+      "pixel_y": 849.5,
+      "pixel_count": 90,
+      "outside_axis_range": false
+    },
+    {
+      "x": 52.41974053924792,
+      "y": 0.3259343190430195,
+      "pixel_x": 910.5697674418604,
+      "pixel_y": 816.9651162790698,
+      "pixel_count": 86,
+      "outside_axis_range": false
+    },
+    {
+      "x": 62.153874403231725,
+      "y": 0.365814696485623,
+      "pixel_x": 952.6428571428571,
+      "pixel_y": 792.0,
+      "pixel_count": 84,
+      "outside_axis_range": false
+    },
+    {
+      "x": 71.41122240936087,
+      "y": 0.39696485623003197,
+      "pixel_x": 992.6551724137931,
+      "pixel_y": 772.5,
+      "pixel_count": 58,
+      "outside_axis_range": false
+    },
+    {
+      "x": 80.74550128534705,
+      "y": 0.4273162939297125,
+      "pixel_x": 1033.0,
+      "pixel_y": 753.5,
+      "pixel_count": 48,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig 12b (298 K), digitized (Ni-decorated, ammonia treated AC (blue diamonds))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0039_fig12b_Ni-NH3-AC.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}
