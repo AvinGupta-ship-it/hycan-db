@@ -18,16 +18,20 @@
       "call": 16,
       "tool": "Bash",
       "reason": "command reads or lists a file in the tools directory (supplementary check)",
-      "detail": "ls /home/claude/work/v1_tools_frozen/scripts/digitize_figure.py"
+      "detail": "ls /home/claude/work/v1_tools_frozen/scripts/digitize_figure.py",
+      "review": {
+        "access": false,
+        "note": "Reads its own page image size, then lists scripts/digitize_figure.py itself by absolute path (printed only that path) before running it with --help. Breach of the launcher's no-listing rule, self-reported; recorded in the README. Reaches no paper data."
+      }
     }
   ],
   "cross_access": [],
   "tool_calls": 38,
   "output_problems": [],
-  "flags_unreviewed": 1,
+  "flags_unreviewed": 0,
   "flags_access": 0,
-  "access_ok": false,
-  "ok": false,
+  "access_ok": true,
+  "ok": true,
   "earlier_agents": [],
   "unfinished_agents": []
 }

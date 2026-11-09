@@ -18,16 +18,20 @@
       "call": 40,
       "tool": "Bash",
       "reason": "command in the tools directory reads more than its scripts' output: cmp - <(head -1 /home/claude/work/runs/extract/C/HYC-0016/in/first/rows.csv)",
-      "detail": "cd /home/claude/work/v1_tools_frozen && python3 scripts/validate_row_detail.py /home/claude/work/runs/extract/C/HYC-0016/out/rows.csv --errors-only | tail -3; head -1 /home/claude/work/runs/extract/C/HYC-0016/out/rows.csv | cmp - <(head -1 /home/claude/work/runs/extract/C/HYC-0016/in/first/rows.csv)"
+      "detail": "cd /home/claude/work/v1_tools_frozen && python3 scripts/validate_row_detail.py /home/claude/work/runs/extract/C/HYC-0016/out/rows.csv --errors-only | tail -3; head -1 /home/claude/work/runs/extract/C/HYC-0016/out/rows.csv | cmp - <(head -1 /home/claude/work/runs/extract/C/HYC-0016/in/first/rows.csv)",
+      "review": {
+        "access": false,
+        "note": "From the tools dir runs validate_row_detail.py on its own output, then head, cmp and ls of its own input, output and work by absolute path. No outside access."
+      }
     }
   ],
   "cross_access": [],
   "tool_calls": 41,
   "output_problems": [],
-  "flags_unreviewed": 1,
+  "flags_unreviewed": 0,
   "flags_access": 0,
-  "access_ok": false,
-  "ok": false,
+  "access_ok": true,
+  "ok": true,
   "earlier_agents": [],
   "unfinished_agents": []
 }
