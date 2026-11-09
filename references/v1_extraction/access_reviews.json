@@ -14876,6 +14876,78 @@
       "reason": "command names a path outside the allowed paths: /second/rows.csv",
       "access": false,
       "note": "The flagged paths are the ends of paths the command builds from the agent's own run directory (e.g. BASE + '/out/digitizations'); every absolute path it names is in the agent's own run directory, the tools directory's two scripts or its own instruction file. Nothing outside those is opened."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0053",
+      "transcript": "agent-adf4d76894fe9bf34.jsonl",
+      "call": 74,
+      "reason": "command opens the tools directory: /home/claude/work/v1_tools_frozen",
+      "access": false,
+      "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0053",
+      "transcript": "agent-adf4d76894fe9bf34.jsonl",
+      "call": 150,
+      "reason": "command in the tools directory reads more than its scripts' output: tr \\n  )",
+      "access": false,
+      "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0053",
+      "transcript": "agent-adf4d76894fe9bf34.jsonl",
+      "call": 151,
+      "reason": "command in the tools directory reads more than its scripts' output: tr \\n  )",
+      "access": false,
+      "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0053",
+      "transcript": "agent-adf4d76894fe9bf34.jsonl",
+      "call": 87,
+      "reason": "command climbs with ..",
+      "access": false,
+      "note": "From its own work dir: ../out/digitizations is its own output and ../../work/scripts its own work dir. No outside access."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0053",
+      "transcript": "agent-adf4d76894fe9bf34.jsonl",
+      "call": 96,
+      "reason": "command climbs with ..",
+      "access": false,
+      "note": "From its own work dir: ../out/digitizations is its own output and ../../work/scripts its own work dir. No outside access."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0053",
+      "transcript": "agent-adf4d76894fe9bf34.jsonl",
+      "call": 153,
+      "reason": "command climbs with ..",
+      "access": false,
+      "note": "build.py in its own work dir; W + '/../in/paper.json' resolves to its own input. No outside access."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0053",
+      "transcript": "agent-adf4d76894fe9bf34.jsonl",
+      "call": 130,
+      "reason": "command names a path outside the allowed paths: /tmp/x.png",
+      "access": false,
+      "note": "Breach (self-reported): its own helper wrote a test image of its own figure to /tmp/x.png, a shared temporary folder. Only output was written there; the file was not read back, and no other transcript names it. Recorded in the README."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0053",
+      "transcript": "agent-adf4d76894fe9bf34.jsonl",
+      "call": 131,
+      "reason": "command names a path outside the allowed paths: /tmp/x.png",
+      "access": false,
+      "note": "Breach (self-reported), continued: deletes its own /tmp/x.png from call 130, then reruns the helper with an output in its own work dir. Recorded in the README."
     }
   ]
 }

@@ -210,7 +210,10 @@ recorded in its review:
   removing it: extractor B on HYC-0048 and, hours later, extractor B on
   HYC-0095. Neither read the file back as input. Extractor B on HYC-0021
   passed `/dev/null` as the image output path of its own helper script; the
-  command failed and nothing was written. Listing a system font folder
+  command failed and nothing was written. Extractor B on HYC-0053 had its own
+  helper write a test image of its own figure to `/tmp/x.png`, a shared
+  temporary folder, and deleted it in its next call; it never read the file,
+  and no other transcript names it. Listing a system font folder
   (extractor B on HYC-0068 and on HYC-0099, which also loaded two DejaVu fonts
   from it to label its own overlay images), loading one of those fonts to
   label its own check images (reconciler C on HYC-0039 and extractor B on
