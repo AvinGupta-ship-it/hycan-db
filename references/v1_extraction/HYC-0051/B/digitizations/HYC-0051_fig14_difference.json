@@ -1,0 +1,124 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:44:22+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0051",
+  "figure": "Fig. 14",
+  "series_name": "Difference (highest-pressure point only)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0051/in/pages/main-08.png",
+    "sha256": "8139e5920dd45a9edd5ac7138c76f9fc0504ee654209fd4bd618d521dd7cb22e",
+    "width_px": 1275,
+    "height_px": 1650
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 727.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1100.0,
+        "value": 0.12
+      },
+      "scale": "linear",
+      "label": "x in CH_x",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1239.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1033.5,
+        "value": 4000.0
+      },
+      "scale": "linear",
+      "label": "P (kPa)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 914.5,
+        "stated": 0.06,
+        "predicted": 0.06032171581769437,
+        "relative_error": 0.005361930294906179
+      },
+      {
+        "axis": "y",
+        "pixel": 1136.5,
+        "stated": 2000.0,
+        "predicted": 1995.1338199513382,
+        "relative_error": 0.002433090024330909
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#8c8c8c",
+    "color_rgb": [
+      140,
+      140,
+      140
+    ],
+    "tolerance": 70.0,
+    "matched_pixels_in_image": 39319,
+    "matched_pixels_in_region": 14,
+    "region": [
+      754,
+      1048,
+      769,
+      1057
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 8.22,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.01082343929528915,
+      "y": 3591.2408759124087,
+      "pixel_x": 760.6428571428571,
+      "pixel_y": 1054.5,
+      "pixel_count": 14,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 0.01082343929528915,
+      "expected": 3590.0,
+      "got": 3591.2408759124087,
+      "difference": 1.2408759124086828,
+      "percent": 0.034564788646481416,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-11-09T18:44:43+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 14, digitized (Difference (highest-pressure point only))",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 0.01082343929528915."
+  }
+}

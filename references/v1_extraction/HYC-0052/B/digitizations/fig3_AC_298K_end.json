@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:48:39+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0052",
+  "figure": "Fig. 3 (main-2)",
+  "series_name": "Activated carbon 298 K (hatched square), highest-pressure marker",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0052/in/pages/main-2.png",
+    "sha256": "bcaefee8573cfc54cda6e28ab6e93024ec51883b2d05f8ee27959dc7a94ba076",
+    "width_px": 1134,
+    "height_px": 1548
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 654.38,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 987.83,
+        "value": 12.0
+      },
+      "scale": "linear",
+      "label": "p_MPa",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1303.2,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 960.7,
+        "value": 1.0
+      },
+      "scale": "linear",
+      "label": "wt%_left_axis_activated_carbon",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 820.61,
+        "stated": 6.0,
+        "predicted": 5.982186234817814,
+        "relative_error": 0.0029689608636977263
+      },
+      {
+        "axis": "y",
+        "pixel": 1133.0,
+        "stated": 0.5,
+        "predicted": 0.4969343065693432,
+        "relative_error": 0.006131386861313648
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 250.0,
+    "matched_pixels_in_image": 123470,
+    "matched_pixels_in_region": 47,
+    "region": [
+      818,
+      1129,
+      826,
+      1137
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 13.700000000000001,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      5,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 6.012300801102593,
+      "y": 0.49749339959621103,
+      "pixel_x": 821.4468085106383,
+      "pixel_y": 1132.8085106382978,
+      "pixel_count": 47,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 3 (main-2), digitized (Activated carbon 298 K (hatched square), highest-pressure marker)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig3_AC_298K_end.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}
