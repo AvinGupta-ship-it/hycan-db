@@ -18,13 +18,21 @@
       "call": 119,
       "tool": "Bash",
       "reason": "command climbs with ..",
-      "detail": "cd /home/claude/work/v1_tools_frozen && CAL=\"--x1-px 206.34 --x1-val 0 --x2-px 565.27 --x2-val 50 --y1-px 831.41 --y1-val 0 --y2-px 569.28 --y2-val 0.6 --x-verify-px 349.64 --x-verify-val 20 --y-verify-px 700.34 --y-verify-val 0.3\"; W=/home/claude/work/runs/extract/B/HYC-0137/work; P=/home/claude/wo"
+      "detail": "cd /home/claude/work/v1_tools_frozen && CAL=\"--x1-px 206.34 --x1-val 0 --x2-px 565.27 --x2-val 50 --y1-px 831.41 --y1-val 0 --y2-px 569.28 --y2-val 0.6 --x-verify-px 349.64 --x-verify-val 20 --y-verify-px 700.34 --y-verify-val 0.3\"; W=/home/claude/work/runs/extract/B/HYC-0137/work; P=/home/claude/wo",
+      "review": {
+        "access": false,
+        "note": "Runs digitize_figure.py from the tools dir with absolute own input/work paths, then cd to its own work dir and reads ../in/pages/main-11.png, its own input. No outside access."
+      }
     },
     {
       "call": 119,
       "tool": "Bash",
       "reason": "command moves within the tools directory",
-      "detail": "cd /home/claude/work/v1_tools_frozen && CAL=\"--x1-px 206.34 --x1-val 0 --x2-px 565.27 --x2-val 50 --y1-px 831.41 --y1-val 0 --y2-px 569.28 --y2-val 0.6 --x-verify-px 349.64 --x-verify-val 20 --y-verify-px 700.34 --y-verify-val 0.3\"; W=/home/claude/work/runs/extract/B/HYC-0137/work; P=/home/claude/wo"
+      "detail": "cd /home/claude/work/v1_tools_frozen && CAL=\"--x1-px 206.34 --x1-val 0 --x2-px 565.27 --x2-val 50 --y1-px 831.41 --y1-val 0 --y2-px 569.28 --y2-val 0.6 --x-verify-px 349.64 --x-verify-val 20 --y-verify-px 700.34 --y-verify-val 0.3\"; W=/home/claude/work/runs/extract/B/HYC-0137/work; P=/home/claude/wo",
+      "review": {
+        "access": false,
+        "note": "Runs digitize_figure.py from the tools dir with absolute own input/work paths, then cd to its own work dir and reads ../in/pages/main-11.png, its own input. No outside access."
+      }
     },
     {
       "call": 125,
@@ -240,31 +248,51 @@
       "call": 126,
       "tool": "Bash",
       "reason": "command climbs with ..",
-      "detail": "cd /home/claude/work/runs/extract/B/HYC-0137/work && cat > build.py <<'EOF'\nimport csv, json, os\nfrom accept import ACCEPT, CORROB, LOWP_CONF2, SAMPLES\n\nW = '/home/claude/work/runs/extract/B/HYC-0137/work'\nOUT = '/home/claude/work/runs/extract/B/HYC-0137/out'\nDIG = OUT + '/digitizations'\nPJ = json.l"
+      "detail": "cd /home/claude/work/runs/extract/B/HYC-0137/work && cat > build.py <<'EOF'\nimport csv, json, os\nfrom accept import ACCEPT, CORROB, LOWP_CONF2, SAMPLES\n\nW = '/home/claude/work/runs/extract/B/HYC-0137/work'\nOUT = '/home/claude/work/runs/extract/B/HYC-0137/out'\nDIG = OUT + '/digitizations'\nPJ = json.l",
+      "review": {
+        "access": false,
+        "note": "build.py in own work dir; W + '/../in/paper.json' resolves to its own input; other paths are its own work and output. No outside access."
+      }
     },
     {
       "call": 126,
       "tool": "Bash",
       "reason": "command names a path outside the allowed paths: /../in/paper.json",
-      "detail": "cd /home/claude/work/runs/extract/B/HYC-0137/work && cat > build.py <<'EOF'\nimport csv, json, os\nfrom accept import ACCEPT, CORROB, LOWP_CONF2, SAMPLES\n\nW = '/home/claude/work/runs/extract/B/HYC-0137/work'\nOUT = '/home/claude/work/runs/extract/B/HYC-0137/out'\nDIG = OUT + '/digitizations'\nPJ = json.l"
+      "detail": "cd /home/claude/work/runs/extract/B/HYC-0137/work && cat > build.py <<'EOF'\nimport csv, json, os\nfrom accept import ACCEPT, CORROB, LOWP_CONF2, SAMPLES\n\nW = '/home/claude/work/runs/extract/B/HYC-0137/work'\nOUT = '/home/claude/work/runs/extract/B/HYC-0137/out'\nDIG = OUT + '/digitizations'\nPJ = json.l",
+      "review": {
+        "access": false,
+        "note": "build.py in own work dir; W + '/../in/paper.json' resolves to its own input; other paths are its own work and output. No outside access."
+      }
     },
     {
       "call": 139,
       "tool": "Bash",
       "reason": "command climbs with ..",
-      "detail": "cd /home/claude/work/runs/extract/B/HYC-0137/work && cat > rows.py <<'EOF'\nimport csv, json\nW = '/home/claude/work/runs/extract/B/HYC-0137/work'\nOUT = '/home/claude/work/runs/extract/B/HYC-0137/out'\nPJ = json.load(open(W + '/../in/paper.json'))\nCOLS = \"paper_id,doi,first_author,year,journal,title,sa"
+      "detail": "cd /home/claude/work/runs/extract/B/HYC-0137/work && cat > rows.py <<'EOF'\nimport csv, json\nW = '/home/claude/work/runs/extract/B/HYC-0137/work'\nOUT = '/home/claude/work/runs/extract/B/HYC-0137/out'\nPJ = json.load(open(W + '/../in/paper.json'))\nCOLS = \"paper_id,doi,first_author,year,journal,title,sa",
+      "review": {
+        "access": false,
+        "note": "rows.py in own work dir; W + '/../in/paper.json' resolves to its own input; other paths are its own work and output. No outside access."
+      }
     },
     {
       "call": 139,
       "tool": "Bash",
       "reason": "command names a path outside the allowed paths: /../in/paper.json",
-      "detail": "cd /home/claude/work/runs/extract/B/HYC-0137/work && cat > rows.py <<'EOF'\nimport csv, json\nW = '/home/claude/work/runs/extract/B/HYC-0137/work'\nOUT = '/home/claude/work/runs/extract/B/HYC-0137/out'\nPJ = json.load(open(W + '/../in/paper.json'))\nCOLS = \"paper_id,doi,first_author,year,journal,title,sa"
+      "detail": "cd /home/claude/work/runs/extract/B/HYC-0137/work && cat > rows.py <<'EOF'\nimport csv, json\nW = '/home/claude/work/runs/extract/B/HYC-0137/work'\nOUT = '/home/claude/work/runs/extract/B/HYC-0137/out'\nPJ = json.load(open(W + '/../in/paper.json'))\nCOLS = \"paper_id,doi,first_author,year,journal,title,sa",
+      "review": {
+        "access": false,
+        "note": "rows.py in own work dir; W + '/../in/paper.json' resolves to its own input; other paths are its own work and output. No outside access."
+      }
     },
     {
       "call": 139,
       "tool": "Bash",
       "reason": "command names a path outside the allowed paths: /digitizations/HYC-0137_Fig12_d-900-4_top.json",
-      "detail": "cd /home/claude/work/runs/extract/B/HYC-0137/work && cat > rows.py <<'EOF'\nimport csv, json\nW = '/home/claude/work/runs/extract/B/HYC-0137/work'\nOUT = '/home/claude/work/runs/extract/B/HYC-0137/out'\nPJ = json.load(open(W + '/../in/paper.json'))\nCOLS = \"paper_id,doi,first_author,year,journal,title,sa"
+      "detail": "cd /home/claude/work/runs/extract/B/HYC-0137/work && cat > rows.py <<'EOF'\nimport csv, json\nW = '/home/claude/work/runs/extract/B/HYC-0137/work'\nOUT = '/home/claude/work/runs/extract/B/HYC-0137/out'\nPJ = json.load(open(W + '/../in/paper.json'))\nCOLS = \"paper_id,doi,first_author,year,journal,title,sa",
+      "review": {
+        "access": false,
+        "note": "rows.py in own work dir; W + '/../in/paper.json' resolves to its own input; other paths are its own work and output. No outside access."
+      }
     },
     {
       "call": 144,
@@ -280,10 +308,10 @@
   "cross_access": [],
   "tool_calls": 150,
   "output_problems": [],
-  "flags_unreviewed": 7,
+  "flags_unreviewed": 0,
   "flags_access": 0,
-  "access_ok": false,
-  "ok": false,
+  "access_ok": true,
+  "ok": true,
   "earlier_agents": [],
   "unfinished_agents": []
 }

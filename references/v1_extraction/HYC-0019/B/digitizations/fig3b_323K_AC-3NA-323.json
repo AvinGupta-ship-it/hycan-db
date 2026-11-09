@@ -1,0 +1,172 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:12:17+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0019",
+  "figure": "Fig.3b",
+  "series_name": "323K (AC-3NA-323), open circles",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0019/work/p4_fig3b_circles_only.png",
+    "sha256": "b63abe827267eac7fa54bf903a2dd33a645bae68e5a1feb18baf9e33fe7c0ed9",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 171.55,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 535.67,
+        "value": 6.0
+      },
+      "scale": "linear",
+      "label": "Pressure (MPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 901.4,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 537.87,
+        "value": 0.5
+      },
+      "scale": "linear",
+      "label": "H2 capacity (wt.%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 353.83,
+        "stated": 3.0,
+        "predicted": 3.0036251785125785,
+        "relative_error": 0.0012083928375261621
+      },
+      {
+        "axis": "y",
+        "pixel": 756.12,
+        "stated": 0.2,
+        "predicted": 0.19981844689571698,
+        "relative_error": 0.0009077655214151381
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 250.0,
+    "matched_pixels_in_image": 113988,
+    "matched_pixels_in_region": 265,
+    "region": [
+      174,
+      540,
+      534,
+      899
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 14.5412,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 7,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.5786553883335162,
+      "y": 0.031309157928694126,
+      "pixel_x": 206.66666666666666,
+      "pixel_y": 878.6363636363636,
+      "pixel_count": 33,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.3503789959354058,
+      "y": 0.07812940046868472,
+      "pixel_x": 253.5,
+      "pixel_y": 844.5952380952381,
+      "pixel_count": 42,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.175339490784948,
+      "y": 0.1300495779630927,
+      "pixel_x": 303.56410256410254,
+      "pixel_y": 806.8461538461538,
+      "pixel_count": 39,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.0597634094023376,
+      "y": 0.18293574554767786,
+      "pixel_x": 357.2368421052632,
+      "pixel_y": 768.3947368421053,
+      "pixel_count": 38,
+      "outside_axis_range": false
+    },
+    {
+      "x": 4.003762495880479,
+      "y": 0.23099881715401746,
+      "pixel_x": 414.525,
+      "pixel_y": 733.45,
+      "pixel_count": 40,
+      "outside_axis_range": false
+    },
+    {
+      "x": 4.891713139171961,
+      "y": 0.2761969640825823,
+      "pixel_x": 468.4117647058824,
+      "pixel_y": 700.5882352941177,
+      "pixel_count": 34,
+      "outside_axis_range": false
+    },
+    {
+      "x": 5.78572997912776,
+      "y": 0.32006669643178315,
+      "pixel_x": 522.6666666666666,
+      "pixel_y": 668.6923076923077,
+      "pixel_count": 39,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 5.7,
+      "expected": 0.321,
+      "got": 0.3158598950936525,
+      "difference": -0.005140104906347531,
+      "percent": 1.601278787024153,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-11-09T18:12:30+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig.3b, digitized (323K (AC-3NA-323), open circles)",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 5.7."
+  }
+}

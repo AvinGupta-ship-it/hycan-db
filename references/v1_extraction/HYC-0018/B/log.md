@@ -1,0 +1,42 @@
+# HYC-0018 extraction log (agent B)
+
+## Sources extracted from
+- main-02.png, Table 1 (EDX C/O weight and atomic %): composition of EGR (200)-(500) carried in `notes` on every row of each sample.
+- main-02.png/main-03.png, Sections 2.1-2.3: exfoliation route (Ar, 10 °C/min, H2 at target temperature), N2 sorption at -196 °C, BET P/Po 0.05-0.30, BJH PSD, volumetric Quantachrome iSorbHP1-XKRLSPN100, isotherms at -196 °C up to 30 bar, blank run, about 0.1 gm sample degassed 3 h at 150 °C under high vacuum.
+- SI si1-2.png, Fig. S1 text: GO by modified Hummers method from Sigma-Aldrich graphite powder (3-20 um).
+- main-04.png/main-05.png/main-06.png, FTIR and XPS text (Figs. 3, 4): functional groups per sample.
+- main-06.png, Table 2: d(002), S_BET, V_T, A_P for EGR (200)-(500).
+- main-09.png, Table 3, row EGR(300): 3.12 wt% at -196 °C and 30 bar (M22); 0.2 wt% in column 25-30 °C (merged into M23).
+- main-01.png Highlights and Abstract, main-10.png Section 3.3 and Conclusion: 3.12 wt% at -196 °C and 30 bar for GO exfoliated at 300 °C (same measurement as M22).
+- main-10.png, Section 3.3: 25 °C, 30 bar uptakes in the range 0.07-0.20 wt%, highest 0.20 wt% for EGR (300) (M11 for EGR (200), M23 for EGR (300)).
+- main-08.png, Fig. 9a: four 77 K (-196 °C) isotherms drawn as lines without markers; 10 points each at k/10 x p_end (M1-M10, M12-M21, M24-M33, M35-M44). Archives fig9a_EGR200/300/400/500.json.
+- si1-6.png, Fig. S5a: four 25 °C isotherms drawn as lines without markers; highest-pressure end only (merged into M11 and M23; M34, M45). Archives figS5a_EGR200/300/400/500.json.
+
+## Digitization notes
+- Fig. 9a: x calibrated on 0 bar (px 232.5) and 30 bar (px 575.5), checked on 15 bar (px 403.5, predicted 14.956); y on 0.0 (px 447.5) and 3.5 wt% (px 125.5), checked on 1.5 (px 309.5, exact). Tick pixels found by scanning pixel rows/columns.
+- Fig. 9a: all four curves are black and differ only by dash pattern. Each series was isolated before running `digitize_figure.py extract --mode curve` by labelling connected dark components (grey < 160) in the plot area (legend and "(a)" label masked) and chaining them from the well-separated high-pressure ends with a slope-aware nearest-neighbour tracker; every component was assigned. The steep shared rise near the origin (component at 1.0-1.4 bar, 0.12-0.30 wt%, most likely the EGR (300) dash-dot line) was left unassigned; it lies below the first read pressure (2.86 bar) and does not affect any row. Masked images are in work/masked/.
+- Fig. 9a: every line starts at the origin, so the lines were read at k/10 x p_end, k = 1-10. p_end: EGR (200) 29.6064 bar, EGR (300) 28.6443, EGR (400) 28.6443, EGR (500) 28.9942.
+- Fig. S5a: x calibrated on 0 (px 242.5) and 30 bar (px 593.5), checked on 15 (px 418.5, predicted 15.043); y on 0.00 (px 549) and 0.25 wt% (px 237.5), checked on 0.10 (px 424.5, predicted 0.0999). Major ticks identified by tick length (8 px vs 5 px minor). Each series' high-pressure end digitized in its own ROI containing only that line. The EGR (300) end lies at px 594, 0.5 px beyond the 30-bar tick (30.04 bar); the tool flags it as outside the calibrated range.
+- `digitize_figure.py check`: Fig. S5a EGR (300) at 30 bar against the stated 0.20 wt% passed (0.2061, +3.0%). Checks of Fig. 9a EGR (300) against 3.12 wt% at 30 bar and of Fig. S5a EGR (200) at 30 bar could not run because 30 bar lies beyond the digitized trace.
+- Marker counts (step 6): not applicable; every isotherm in the paper is a line without markers, so `isotherm_point_count` is empty.
+- Colour tolerance 250 on #000000 on the masked/ROI-restricted images, so the anti-aliased edges of the grey lines are included; curve mode takes the median y per 1-px x bin.
+
+## Values seen but not extracted, and coding decisions
+- Discrepancy: the Fig. 9a EGR (300) line ends at 28.64 bar, 2.98 wt%, while Table 3/Abstract print 3.12 wt% at 30 bar. Because 30 bar is more than 2% from 28.64 bar and the paper does not say the value comes from the curve, M22 is a separate row with no isotherm_id. A reconciler may decide that the 3.12 value is the curve's 30-bar end.
+- Fig. 9b, 9c (uptake and surface area or pore volume against exfoliation temperature), Fig. 9d (uptake against surface area), Fig. 9e (uptake against pore volume): not isotherms and not digitized. They show 77 K uptakes for EGR (200), EGR (400) and EGR (500) (and 3.12 for EGR (300)) that tables and text do not give; the curve ends of Fig. 9a give the corresponding isotherm values. The graphical abstract (main-01.png) repeats Fig. 9b/9c.
+- Fig. 10 and the graphical abstract (schematics) print 0.71 wt% (200 °C sample), 3.12 wt% (300 °C) and 1.53 wt% (500 °C), with no temperature or pressure in the figure. Not an isotherm; 3.12 is M22; 0.71 and 1.53 are given by no table or text, so they are listed here and not extracted. They agree with the Fig. 9a ends of EGR (200) (29.61 bar, 0.712 wt%, M10) and roughly with EGR (500) (28.99 bar, 1.495 wt%, M44).
+- Fig. 9f: isosteric heat against hydrogen uptake (0.05-0.25 mmol/g); not an isotherm. Text gives Qst 3.5-8.5 kJ/mol at low coverage and 2.4-4.1 kJ/mol at higher coverage; these are not uptake values. The paper does not say how Qst was derived.
+- Fig. S5b, S5c (25 °C uptake against surface area and pore volume): not isotherms; they show 25 °C uptakes for EGR (400) and EGR (500) not given in the text (Fig. S5a ends extracted as M34, M45). S5b/S5c label EGR (200) at 0.07, which is the basis for attributing the text's lower range limit 0.07 wt% to EGR (200) (M11).
+- Table 3 rows other than EGR(300) (expanded graphite [29], thermally expanded graphene sheets [42], thermally reduced graphene oxide [43], exfoliated graphite oxide [44], Pt/5GO/HKUST-1 composite [47], ZIF-8/5GO composite [48] incl. note b 0.367 mmol/g): values from other papers, two of them MOF composites; not this paper's measurements.
+- Introduction literature values (Wang et al. [42] 1.75 wt% at 54 bar; Rao et al. [44] 3.0 wt% at 100 bar; ranges 0.4-1.4 wt%, 0.1-0.7 wt%, 0.007-0.77 wt% from refs): cited work, not extracted.
+- Fig. S2: blank run without sample at 25 °C up to 30 bar (negligible uptake): no sorbent, not extracted. Section 2.3 does not state its temperature; the S2 caption gives 25 °C.
+- GO (parent graphene oxide): characterization only, no H2 uptake, so no row and no sample_id. Table 1: C 60.2 wt%, O 39.8 wt%; C 66.8 at%, O 33.2 at%; C/O 2.01. Table 2: d(002) 0.849 nm, S_BET 41 m2/g, V_T 0.14 cm3/g, A_P 1.8 nm, ID/IG 0.99. Text: N2 isotherm type II with H4 loop, pore range 0.5-3 nm, average pore 1.8 nm (Fig. 1d caption calls its PSD DFT).
+- Table 2 columns not stored for lack of fields: D_c crystallite size (1.01, 1.19, 1.88, 2.52 nm), N_IX layers by XRD (2, 3, 5, 6), N_IA layers by AFM (5, 4, 3, 3), A_F AFM thickness (2.2, 1.6, 1.4, 1.30 nm), ID/IG (0.98, 0.96, 0.94, 0.90) for EGR (200)-(500). TGA mass losses 23.8, 22.4, 21.7, 20.5% likewise.
+- EGR (300) total pore volume: Table 2 gives 1.63 cm3/g; the Abstract, Highlights, Section 3.2 and Conclusion give 1.64 cm3/g. Table 2 value stored, discrepancy noted in the rows.
+- Labels: the EGR (300) rows use "EGR(300)", as printed in Table 3, the first table reporting its uptake; the other samples use the Fig. 9a legend labels "EGR (200)", "EGR (400)", "EGR (500)". Fig. 9c and 9f legends print "EGO (...)" for the same samples.
+- Sample numbering: S1-S4 follow the order EGR (200), (300), (400), (500) of Section 2.1 and Table 1; GO has no rows and no sample_id.
+- Class and composition: EGR samples coded `reduced_graphene_oxide` with `synthesis_method = thermal_reduction` (thermal exfoliation/reduction of GO). Residual oxygen is not coded as a dopant; EDX composition and FTIR/XPS groups are in `notes` and `functional_groups`.
+- Atmosphere: Abstract and Conclusion say exfoliation "in hydrogen flow"; Section 2.1 says heating in argon with hydrogen introduced at the target temperature. Recorded as in Section 2.1.
+- Basis: the paper never names excess, absolute or total uptake; `basis_stated = false`, `basis_inferred = excess` (volumetric default), `uptake_type = unspecified`.
+- Calibration: no free-volume (helium) determination is described; the blank run is a leak/zero check, so `calibration_described = false`.
+- measuring_lab_id: corresponding author M. De (asterisk); affiliation printed "Indian Institute of Technology, Guwahati" (Guwahati kept as part of the institute name).

@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:14:25+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0007",
+  "figure": "Fig. 3a (main p.146)",
+  "series_name": "SWCNT (highest-pressure point only)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0007/work/iso_3a_SWCNT_end.png",
+    "sha256": "f7ec79dcfa13e76790a1cab1c9c18917b8a69d221162b57b829fed393cfb861c",
+    "width_px": 1755,
+    "height_px": 2482
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 346.59,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 564.5,
+        "value": 3.0
+      },
+      "scale": "linear",
+      "label": "Pressure (MPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1133.86,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 881.0,
+        "value": 0.3
+      },
+      "scale": "linear",
+      "label": "Amount of adsorbed H2 (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 418.76,
+        "stated": 1.0,
+        "predicted": 0.9935753292643752,
+        "relative_error": 0.0064246707356248045
+      },
+      {
+        "axis": "y",
+        "pixel": 1050.08,
+        "stated": 0.1,
+        "predicted": 0.09939887684884917,
+        "relative_error": 0.006011231511508369
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 29,
+    "matched_pixels_in_region": 29,
+    "region": [
+      348,
+      883,
+      600,
+      1132
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 10.114399999999996,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      200
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 3.1044008994539034,
+      "y": 0.13736059479553892,
+      "pixel_x": 572.0833333333334,
+      "pixel_y": 1018.0833333333334,
+      "pixel_count": 24,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 3a (main p.146), digitized (SWCNT (highest-pressure point only))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0007_fig3a_SWCNT_highest.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

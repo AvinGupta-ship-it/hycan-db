@@ -1,0 +1,180 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:13:08+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0019",
+  "figure": "Fig.4",
+  "series_name": "AC-3NA-323, red circles",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0019/work/p4_fig4_nolegend.png",
+    "sha256": "9ab9cd6cc4e27409b551fcbdf1824237c4e4b64acbb1e3c4a5d185f41de4d8fd",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 135.45,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 548.3,
+        "value": 800.0
+      },
+      "scale": "linear",
+      "label": "P (torr)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1471.51,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1150.17,
+        "value": 3.0
+      },
+      "scale": "linear",
+      "label": "H2 capacity (wt.%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 341.9,
+        "stated": 400.0,
+        "predicted": 400.0484437447015,
+        "relative_error": 0.00012110936175375287
+      },
+      {
+        "axis": "y",
+        "pixel": 1310.95,
+        "stated": 1.5,
+        "predicted": 1.4989730503516523,
+        "relative_error": 0.000684633098898472
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#fb0000",
+    "color_rgb": [
+      251,
+      0,
+      0
+    ],
+    "tolerance": 120.0,
+    "matched_pixels_in_image": 358,
+    "matched_pixels_in_region": 358,
+    "region": [
+      138,
+      1153,
+      571,
+      1469
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 12.853599999999997,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 8,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 54.61092999631732,
+      "y": 1.0366647063381287,
+      "pixel_x": 163.6326530612245,
+      "pixel_y": 1360.469387755102,
+      "pixel_count": 49,
+      "outside_axis_range": false
+    },
+    {
+      "x": 111.88659550049891,
+      "y": 1.3497986111728577,
+      "pixel_x": 193.1904761904762,
+      "pixel_y": 1326.9285714285713,
+      "pixel_count": 42,
+      "outside_axis_range": false
+    },
+    {
+      "x": 198.71624076541121,
+      "y": 1.5731935022094978,
+      "pixel_x": 238.0,
+      "pixel_y": 1303.0,
+      "pixel_count": 45,
+      "outside_axis_range": false
+    },
+    {
+      "x": 303.58004906337396,
+      "y": 1.7494901437440027,
+      "pixel_x": 292.1162790697674,
+      "pixel_y": 1284.1162790697674,
+      "pixel_count": 43,
+      "outside_axis_range": false
+    },
+    {
+      "x": 406.0554680876832,
+      "y": 1.85793863197859,
+      "pixel_x": 345.0,
+      "pixel_y": 1272.5,
+      "pixel_count": 38,
+      "outside_axis_range": false
+    },
+    {
+      "x": 513.4498674525319,
+      "y": 1.918207091139188,
+      "pixel_x": 400.4222222222222,
+      "pixel_y": 1266.0444444444445,
+      "pixel_count": 45,
+      "outside_axis_range": false
+    },
+    {
+      "x": 617.0174450137171,
+      "y": 1.9512976909192759,
+      "pixel_x": 453.8695652173913,
+      "pixel_y": 1262.5,
+      "pixel_count": 46,
+      "outside_axis_range": false
+    },
+    {
+      "x": 743.4943149012396,
+      "y": 1.9442414829760852,
+      "pixel_x": 519.1395348837209,
+      "pixel_y": 1263.2558139534883,
+      "pixel_count": 43,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 743.4,
+      "expected": 1.941,
+      "got": 1.9442467448516825,
+      "difference": 0.003246744851682415,
+      "percent": 0.16727175948904766,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-11-09T18:13:45+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig.4, digitized (AC-3NA-323, red circles)",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 743.4."
+  }
+}
