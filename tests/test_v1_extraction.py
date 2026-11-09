@@ -168,3 +168,47 @@ def test_device_check_ignores_folders_named_dev(tmp_path):
         ("Bash", {"command": "python3 a.py p.png /dev/null.png && ls /dev/shm"}),
     ])
     assert sorted({f["call"] for f in runs.supplementary_flags(t, "/w/tools")}) == [2]
+
+
+def _session_transcript(tmp_path, entries):
+    import json as _json
+    p = tmp_path / "s.jsonl"
+    p.write_text("\n".join(_json.dumps(e) for e in entries) + "\n")
+    return p
+
+
+def _user(text, **kw):
+    return {"type": "user", "message": {"content": text}, **kw}
+
+
+def _coord(text):
+    return _user(runs.COORDINATOR_PREFIX + text, isMeta=True, origin={"kind": "coordinator"})
+
+
+_API_ERROR = {"type": "assistant", "isApiErrorMessage": True, "message": {"model": "<synthetic>"}}
+_TURN = {"type": "assistant", "message": {"model": "m", "content": []}}
+_STOP = _user([{"type": "text", "text": "[Request interrupted by user]"}])
+_TOOL_STOP = _user([{"type": "text", "text": "[Request interrupted by user for tool use]"}])
+
+
+def test_session_reads_resume_messages_the_harness_records_as_metadata(tmp_path):
+    t = _session_transcript(tmp_path, [
+        _user("launcher"), _user("<system-reminder>handback</system-reminder>", isMeta=True), _TURN,
+        _API_ERROR, _coord(runs.RESUME), _TURN, _STOP, _coord(runs.RESUME_PAUSED), _TURN,
+        _TOOL_STOP, _coord(runs.RESUME_PAUSED), _TURN])
+    s = runs.session(t)
+    assert s["operator_messages"] == [runs.RESUME, runs.RESUME_PAUSED, runs.RESUME_PAUSED]
+    assert (s["api_error_stops"], s["operator_stops"], s["models"]) == (1, 2, ["m"])
+    assert s["operator_messages_ok"]
+
+
+@pytest.mark.parametrize("entries", [
+    [_TURN, _coord("Also extract Table 3.")],                       # any other text
+    [_TURN, _coord(runs.RESUME)],                                    # resume with no stop before it
+    [_TURN, _STOP, _coord(runs.RESUME)],                             # the wrong resume for the stop
+    [_TURN, _API_ERROR, _coord(runs.RESUME), _coord(runs.RESUME)],   # two resumes for one stop
+    [_TURN, _user("a typed message")],                               # a plain user turn
+])
+def test_session_fails_messages_that_are_not_a_matching_resume(tmp_path, entries):
+    s = runs.session(_session_transcript(tmp_path, [_user("launcher")] + entries))
+    assert not s["operator_messages_ok"]

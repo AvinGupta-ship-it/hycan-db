@@ -75,12 +75,34 @@ of the task). No such agent was restarted. Each was resumed in its own session
 once the limit had reset, with one fixed message: "Your session stopped on an
 API usage limit, not by your choice. Continue your task from where you
 stopped; your instruction file, input, output and work directory are
-unchanged, and the same rules apply." Every check report records the number of
-such stops (`api_error_stops`), and every message the operator sent after the
-launcher (`operator_messages`); a report fails if any of those is not that
-fixed text. The harness's own error entries (model `<synthetic>`) are left out
-of the model check. An interrupted agent is not treated as finished, so
+unchanged, and the same rules apply."
+
+On 3 Nov 2026 (01:32 UTC) the operator paused the run to free the account's
+usage for other work. The 13 agents then running (extractor A on HYC-0121,
+HYC-0122 and HYC-0124; extractor B on HYC-0115, HYC-0116, HYC-0118, HYC-0119,
+HYC-0121, HYC-0122 and HYC-0123; reconciler C on HYC-0022, HYC-0031 and
+HYC-0101) were stopped with the harness's task stop, which writes "[Request
+interrupted by user]" (or, during a tool call, "[Request interrupted by user
+for tool use]") into the transcript. None was restarted. Each was resumed in
+its own session on 9 Nov 2026 with a second fixed message: "Your session was
+paused by the run operator to free account usage, not by your choice. Continue
+your task from where you stopped; your instruction file, input, output and
+work directory are unchanged, and the same rules apply."
+
+Every check report records the number of stops of each kind
+(`api_error_stops`, `operator_stops`) and every message the operator sent
+after the launcher (`operator_messages`). A report fails if any such message
+is not one of the two fixed texts, or does not answer a stop of its own kind
+since the previous message (the first text an API-error stop, the second an
+operator stop). The harness's own error entries (model `<synthetic>`) are left
+out of the model check. An interrupted agent is not treated as finished, so
 nothing is assembled or collected from it until it ends its task.
+
+Until 9 Nov 2026 this check read the operator's messages from the agent's
+ordinary user entries only. The harness records a message sent to an agent as a
+metadata entry of origin "coordinator", so no report listed the resume
+messages and the check passed without testing them. It now reads those
+entries, and every report was recomputed with it.
 
 Some agents' contexts filled and were compacted automatically by the harness
 (a summary written in the same session); each report counts these

@@ -228,16 +228,39 @@ def cross_access(transcript: Path, run: Path, role: str, pid: str) -> list[str]:
 
 RESUME = ("Your session stopped on an API usage limit, not by your choice. Continue your task from where you "
           "stopped; your instruction file, input, output and work directory are unchanged, and the same rules apply.")
+# Sent to an agent the operator stopped (the harness's task stop) to pause the
+# run, once the run went on (README, "Interruptions").
+RESUME_PAUSED = ("Your session was paused by the run operator to free account usage, not by your choice. Continue "
+                 "your task from where you stopped; your instruction file, input, output and work directory are "
+                 "unchanged, and the same rules apply.")
+# The harness writes an operator's message into the agent's transcript as a
+# metadata entry of origin "coordinator", behind this line.
+COORDINATOR_PREFIX = "The coordinator sent a message while you were working:\n"
+# What the harness writes into the transcript when the operator stops an agent
+# (the second when the stop came during a tool call).
+OPERATOR_STOP = ("[Request interrupted by user]", "[Request interrupted by user for tool use]")
+
+
+def _text(content) -> str | None:
+    """A user entry's text, or None for a tool result."""
+    if isinstance(content, list):
+        if any(isinstance(c, dict) and c.get("type") == "tool_result" for c in content):
+            return None
+        content = "".join(c.get("text", "") for c in content if isinstance(c, dict))
+    return content if isinstance(content, str) else None
 
 
 def session(transcript: Path) -> dict:
     """The models that wrote the agent's turns, leaving out the harness's own
     API-error entries (model "<synthetic>"); how often the agent was stopped by
-    an API error; how often the harness compacted its context (an automatic
-    summary, written by the same session, when the context fills); and every
-    message the operator sent after the launcher, each of which must be the
-    fixed resume text (README, "Run")."""
-    models, stops, sent, first, compactions = set(), 0, [], True, 0
+    an API error, and how often by the operator; how often the harness
+    compacted its context (an automatic summary, written by the same session,
+    when the context fills); and every message the operator sent after the
+    launcher. Each such message must be one of the two fixed resume texts, and
+    must answer a stop of its own kind since the previous message: RESUME an
+    API-error stop, RESUME_PAUSED an operator stop (README, "Interruptions")."""
+    models, stops, op_stops, sent, first, compactions = set(), 0, 0, [], True, 0
+    pending, misplaced = set(), []
     for line in transcript.read_text(encoding="utf-8").splitlines():
         try:
             d = json.loads(line)
@@ -246,24 +269,39 @@ def session(transcript: Path) -> dict:
         if d.get("type") == "assistant":
             if d.get("isApiErrorMessage"):
                 stops += 1
+                pending.add(RESUME)
             elif d.get("message", {}).get("model"):
                 models.add(d["message"]["model"])
-        elif d.get("type") == "user" and d.get("isCompactSummary"):
+            continue
+        if d.get("type") != "user":
+            continue
+        if d.get("isCompactSummary"):
             compactions += 1  # the harness's own summary when the context fills
-        elif d.get("type") == "user" and not d.get("isMeta"):
-            content = d.get("message", {}).get("content")
-            if isinstance(content, list):
-                if any(isinstance(c, dict) and c.get("type") == "tool_result" for c in content):
-                    continue
-                content = "".join(c.get("text", "") for c in content if isinstance(c, dict))
-            if not isinstance(content, str) or not content.strip():
-                continue
-            if first:
-                first = False
-                continue
-            sent.append(content.strip())
-    return {"models": sorted(models), "api_error_stops": stops, "compactions": compactions,
-            "operator_messages": sent}
+            continue
+        text = _text(d.get("message", {}).get("content"))
+        if text is None or not text.strip():
+            continue
+        if (d.get("origin") or {}).get("kind") == "coordinator":
+            message = text.removeprefix(COORDINATOR_PREFIX).strip()
+            sent.append(message)
+            if message not in pending:
+                misplaced.append(message)
+            pending.clear()
+            continue
+        if d.get("isMeta"):
+            continue  # the harness's own notes (reminders, image sizes)
+        if first:
+            first = False
+            continue
+        if text.strip() in OPERATOR_STOP:
+            op_stops += 1
+            pending.add(RESUME_PAUSED)
+            continue
+        sent.append(text.strip())
+        misplaced.append(text.strip())
+    return {"models": sorted(models), "api_error_stops": stops, "operator_stops": op_stops,
+            "compactions": compactions, "operator_messages": sent,
+            "operator_messages_ok": not misplaced}
 
 
 def check_agent(run: Path, role: str, pid: str, mode: str, transcript: Path,
@@ -279,7 +317,6 @@ def check_agent(run: Path, role: str, pid: str, mode: str, transcript: Path,
     }
     report.update(session(transcript))
     report["model_ok"] = report["models"] == [extraction.MODEL[role]]
-    report["operator_messages_ok"] = all(m == RESUME for m in report["operator_messages"])
     report["flags"] = v1_audit_access.audit(
         transcript, str(prompt), [str(d / "in"), str(d / "out"), str(d / "work")],
         str(extraction.TOOLS), harness, own=[str(d)])
