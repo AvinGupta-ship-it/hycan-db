@@ -1,0 +1,163 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T17:54:04+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0130",
+  "figure": "Fig. 7a",
+  "series_name": "ACK-2-8 (p1)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0130/in/pages/main-08.png",
+    "sha256": "7309e4ed0a75bc3618ac1fda9c7cf0416b58f49bfcc84df170fff8ac012ca4d7",
+    "width_px": 1241,
+    "height_px": 1625
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 269.48,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 612.5,
+        "value": 1.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 353.54,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 121.82,
+        "value": 200.0
+      },
+      "scale": "linear",
+      "label": "Adsorbed H2 Volume (cm3/g)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 475.37,
+        "stated": 0.6,
+        "predicted": 0.6002273919888053,
+        "relative_error": 0.0003789866480088019
+      },
+      {
+        "axis": "y",
+        "pixel": 237.54,
+        "stated": 100.0,
+        "predicted": 100.12083549110997,
+        "relative_error": 0.0012083549110997183
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#c84648",
+    "color_rgb": [
+      200,
+      70,
+      72
+    ],
+    "tolerance": 90.0,
+    "matched_pixels_in_image": 1258,
+    "matched_pixels_in_region": 52,
+    "region": [
+      308,
+      195,
+      368,
+      252
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 9.2688,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [
+      {
+        "pixel_x": 326.0,
+        "pixel_y": 239.5,
+        "pixels": 2,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 316.0,
+        "pixel_y": 251.0,
+        "pixels": 1,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 318.0,
+        "pixel_y": 251.0,
+        "pixels": 1,
+        "reason": "too small"
+      }
+    ],
+    "n_points": 5,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.13513303403105736,
+      "y": 91.8119569595489,
+      "pixel_x": 315.8333333333333,
+      "pixel_y": 247.16666666666666,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.1717684100052474,
+      "y": 101.27740376316245,
+      "pixel_x": 328.4,
+      "pixel_y": 236.2,
+      "pixel_count": 10,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.21007072922413134,
+      "y": 109.68277363927288,
+      "pixel_x": 341.53846153846155,
+      "pixel_y": 226.46153846153845,
+      "pixel_count": 13,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.24024514281642148,
+      "y": 115.83520340641003,
+      "pixel_x": 351.8888888888889,
+      "pixel_y": 219.33333333333334,
+      "pixel_count": 9,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.2740948049676403,
+      "y": 121.12894873122735,
+      "pixel_x": 363.5,
+      "pixel_y": 213.2,
+      "pixel_count": 10,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 7a, digitized (ACK-2-8 (p1))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig7a_ACK-2-8_p1.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

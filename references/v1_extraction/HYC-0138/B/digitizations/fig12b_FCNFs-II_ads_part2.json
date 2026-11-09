@@ -1,0 +1,119 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T17:59:13+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0138",
+  "figure": "Fig. 12b (p. 77)",
+  "series_name": "FCNFs-II adsorption boundary curve, part 2 (0-0.14 atm; region excludes legend marker)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0138/in/pages/main-09.png",
+    "sha256": "7fcff32f46858347366073a436633c55b6cc07a854b0550c6298812a33d2fe35",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 699.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1084.0,
+        "value": 1.1
+      },
+      "scale": "linear",
+      "label": "Absolute Pressure (atm)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 502.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 183.0,
+        "value": 4.0
+      },
+      "scale": "linear",
+      "label": "H2 storage capacity (wt.%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 874.0,
+        "stated": 0.5,
+        "predicted": 0.5,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 342.5,
+        "stated": 2.0,
+        "predicted": 2.0,
+        "relative_error": 0.0
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#2700f7",
+    "color_rgb": [
+      39,
+      0,
+      247
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 2946,
+    "matched_pixels_in_region": 341,
+    "region": [
+      693,
+      405,
+      770,
+      501
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 12.76,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      20,
+      120
+    ],
+    "rejected_markers": [
+      {
+        "pixel_x": 700.8736842105263,
+        "pixel_y": 484.83508771929826,
+        "pixels": 285,
+        "reason": "too large"
+      }
+    ],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.13579220779220774,
+      "y": 0.9627814192077518,
+      "pixel_x": 746.5272727272727,
+      "pixel_y": 425.2181818181818,
+      "pixel_count": 55,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 12b (p. 77), digitized (FCNFs-II adsorption boundary curve, part 2 (0-0.14 atm; region excludes legend marker))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig12b_FCNFs-II_ads_part2.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

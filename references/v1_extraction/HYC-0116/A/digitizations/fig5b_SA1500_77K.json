@@ -1,0 +1,128 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-03T01:25:57+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0116",
+  "figure": "Fig 5b (77 K, up to 1.5 kPa)",
+  "series_name": "SA1500 77 K",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0116/in/pages/main-22.png",
+    "sha256": "1b84d6da11e2b5267abe62323e29574aa547cdac7f9ff829e65df8912c221524",
+    "width_px": 1241,
+    "height_px": 1754
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 561.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 755.0,
+        "value": 1.5
+      },
+      "scale": "linear",
+      "label": "Pressure (kPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 706.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 246.0,
+        "value": 0.25
+      },
+      "scale": "linear",
+      "label": "Excess H2 (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 691.0,
+        "stated": 1.0,
+        "predicted": 1.0051546391752577,
+        "relative_error": 0.005154639175257714
+      },
+      {
+        "axis": "y",
+        "pixel": 522.0,
+        "stated": 0.1,
+        "predicted": 0.1,
+        "relative_error": 0.0
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#0000f5",
+    "color_rgb": [
+      0,
+      0,
+      245
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 996,
+    "matched_pixels_in_region": 183,
+    "region": [
+      559,
+      190,
+      757,
+      705
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 18.400000000000002,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 3,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.3402061855670103,
+      "y": 0.07527173913043478,
+      "pixel_x": 605.0,
+      "pixel_y": 567.5,
+      "pixel_count": 12,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.6451353092783505,
+      "y": 0.12347146739130435,
+      "pixel_x": 644.4375,
+      "pixel_y": 478.8125,
+      "pixel_count": 48,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.0012064049133582,
+      "y": 0.16672062904717852,
+      "pixel_x": 690.4893617021277,
+      "pixel_y": 399.2340425531915,
+      "pixel_count": 47,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig 5b (77 K, up to 1.5 kPa), digitized (SA1500 77 K)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig5b_SA1500_77K.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

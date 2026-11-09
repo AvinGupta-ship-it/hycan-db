@@ -1,0 +1,180 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T17:54:07+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0130",
+  "figure": "Fig. 7a",
+  "series_name": "ACK-3-8 (p2)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0130/in/pages/main-08.png",
+    "sha256": "7309e4ed0a75bc3618ac1fda9c7cf0416b58f49bfcc84df170fff8ac012ca4d7",
+    "width_px": 1241,
+    "height_px": 1625
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 269.48,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 612.5,
+        "value": 1.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 353.54,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 121.82,
+        "value": 200.0
+      },
+      "scale": "linear",
+      "label": "Adsorbed H2 Volume (cm3/g)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 475.37,
+        "stated": 0.6,
+        "predicted": 0.6002273919888053,
+        "relative_error": 0.0003789866480088019
+      },
+      {
+        "axis": "y",
+        "pixel": 237.54,
+        "stated": 100.0,
+        "predicted": 100.12083549110997,
+        "relative_error": 0.0012083549110997183
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#3a529f",
+    "color_rgb": [
+      58,
+      82,
+      159
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 1543,
+    "matched_pixels_in_region": 178,
+    "region": [
+      522,
+      113,
+      611,
+      268
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 9.2688,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      7,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 8,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.7531516732450637,
+      "y": 173.46347540885176,
+      "pixel_x": 527.8260869565217,
+      "pixel_y": 152.56521739130434,
+      "pixel_count": 23,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.796500647699589,
+      "y": 176.12786046127636,
+      "pixel_x": 542.695652173913,
+      "pixel_y": 149.47826086956522,
+      "pixel_count": 23,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.8241324501296666,
+      "y": 178.64213931356434,
+      "pixel_x": 552.1739130434783,
+      "pixel_y": 146.56521739130434,
+      "pixel_count": 23,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.8594039043575513,
+      "y": 182.07240713714043,
+      "pixel_x": 564.2727272727273,
+      "pixel_y": 142.5909090909091,
+      "pixel_count": 22,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.8910933973029477,
+      "y": 185.54166358412863,
+      "pixel_x": 575.1428571428571,
+      "pixel_y": 138.57142857142858,
+      "pixel_count": 21,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.9214956229124499,
+      "y": 187.30898539287975,
+      "pixel_x": 585.5714285714286,
+      "pixel_y": 136.52380952380952,
+      "pixel_count": 21,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.9565876498518275,
+      "y": 189.9751574238774,
+      "pixel_x": 597.6086956521739,
+      "pixel_y": 133.43478260869566,
+      "pixel_count": 23,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.9890014364389037,
+      "y": 191.68432120270543,
+      "pixel_x": 608.7272727272727,
+      "pixel_y": 131.45454545454547,
+      "pixel_count": 22,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 0.9890014364389037,
+      "expected": 190.13,
+      "got": 191.68432120270543,
+      "difference": 1.554321202705438,
+      "percent": 0.8175044457505065,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-11-09T17:54:43+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 7a, digitized (ACK-3-8 (p2))",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 0.9890014364389037."
+  }
+}

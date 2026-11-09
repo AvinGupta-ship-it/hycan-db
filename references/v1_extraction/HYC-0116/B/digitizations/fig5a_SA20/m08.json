@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T17:36:48+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0116",
+  "figure": "Fig 5a (main p.21)",
+  "series_name": "SA20 marker 8 (single-marker ROI)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0116/work/../in/pages/main-22.png",
+    "sha256": "1b84d6da11e2b5267abe62323e29574aa547cdac7f9ff829e65df8912c221524",
+    "width_px": 1241,
+    "height_px": 1754
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 246.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 444.5,
+        "value": 100.0
+      },
+      "scale": "linear",
+      "label": "Pressure (kPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 706.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 246.0,
+        "value": 2.5
+      },
+      "scale": "linear",
+      "label": "Excess H2 (wt.%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 365.5,
+        "stated": 60.0,
+        "predicted": 60.1010101010101,
+        "relative_error": 0.001683501683501613
+      },
+      {
+        "axis": "y",
+        "pixel": 429.5,
+        "stated": 1.5,
+        "predicted": 1.502717391304348,
+        "relative_error": 0.0018115942028985958
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#7f0ff0",
+    "color_rgb": [
+      127,
+      15,
+      240
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 1430,
+    "matched_pixels_in_region": 40,
+    "region": [
+      313,
+      519,
+      323,
+      529
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 18.400000000000002,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 36.47586980920315,
+      "y": 0.9870169082125603,
+      "pixel_x": 318.72222222222223,
+      "pixel_y": 524.3888888888889,
+      "pixel_count": 36,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig 5a (main p.21), digitized (SA20 marker 8 (single-marker ROI))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: m08.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

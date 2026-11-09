@@ -1,0 +1,479 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T17:50:46+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0130",
+  "figure": "Fig. 8",
+  "series_name": "ACK-2-8",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0130/in/pages/main-08.png",
+    "sha256": "7309e4ed0a75bc3618ac1fda9c7cf0416b58f49bfcc84df170fff8ac012ca4d7",
+    "width_px": 1241,
+    "height_px": 1625
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 160.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 582.5,
+        "value": 1.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1418.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1105.5,
+        "value": 300.0
+      },
+      "scale": "linear",
+      "label": "Adsorbed H2 volume (cm3/g)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 329.0,
+        "stated": 0.4,
+        "predicted": 0.39928909952606634,
+        "relative_error": 0.001777251184834211
+      },
+      {
+        "axis": "y",
+        "pixel": 1261.5,
+        "stated": 150.0,
+        "predicted": 150.24,
+        "relative_error": 0.0016000000000000606
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 43487,
+    "matched_pixels_in_region": 752,
+    "region": [
+      163,
+      1108,
+      436,
+      1415
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 12.5,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      3,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 30,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0,
+    "multi_roi_note": "Final series assembled from several tool runs (parameters below) and cleaned by the extractor; see cleanup",
+    "runs": "color #000000 tol 90 min-px 5 open-px 1; ROIs x163-436 (y1108-1415) and x440-580 (y1108-1290); legend excluded"
+  },
+  "series": [
+    {
+      "x": 0.008293838862559242,
+      "y": 10.08,
+      "pixel_x": 164.0,
+      "pixel_y": 1407.5,
+      "pixel_count": 18,
+      "outside_axis_range": false,
+      "source_detection_indices": [
+        0
+      ],
+      "partially_covered": true
+    },
+    {
+      "x": 0.03420221169036336,
+      "y": 46.335999999999984,
+      "pixel_x": 174.93333333333334,
+      "pixel_y": 1369.7333333333333,
+      "pixel_count": 45,
+      "outside_axis_range": false,
+      "source_detection_indices": [
+        1
+      ],
+      "partially_covered": false
+    },
+    {
+      "x": 0.07453433263529155,
+      "y": 68.56186046511618,
+      "pixel_x": 191.95348837209303,
+      "pixel_y": 1346.5813953488373,
+      "pixel_count": 43,
+      "outside_axis_range": false,
+      "source_detection_indices": [
+        2
+      ],
+      "partially_covered": false
+    },
+    {
+      "x": 0.10407252287005399,
+      "y": 77.69302325581397,
+      "pixel_x": 204.41860465116278,
+      "pixel_y": 1337.0697674418604,
+      "pixel_count": 43,
+      "outside_axis_range": false,
+      "source_detection_indices": [
+        3
+      ],
+      "partially_covered": false
+    },
+    {
+      "x": 0.14099526066350712,
+      "y": 91.2,
+      "pixel_x": 220.0,
+      "pixel_y": 1323.0,
+      "pixel_count": 49,
+      "outside_axis_range": false,
+      "source_detection_indices": [
+        4
+      ],
+      "partially_covered": false
+    },
+    {
+      "x": 0.17084027155117198,
+      "y": 100.35891891891902,
+      "pixel_x": 232.59459459459458,
+      "pixel_y": 1313.4594594594594,
+      "pixel_count": 37,
+      "outside_axis_range": false,
+      "source_detection_indices": [
+        5
+      ],
+      "partially_covered": false
+    },
+    {
+      "x": 0.2095675355450237,
+      "y": 108.54,
+      "pixel_x": 248.9375,
+      "pixel_y": 1304.9375,
+      "pixel_count": 48,
+      "outside_axis_range": false,
+      "source_detection_indices": [
+        6
+      ],
+      "partially_covered": false
+    },
+    {
+      "x": 0.23956065069809143,
+      "y": 114.75891891891901,
+      "pixel_x": 261.5945945945946,
+      "pixel_y": 1298.4594594594594,
+      "pixel_count": 37,
+      "outside_axis_range": false,
+      "source_detection_indices": [
+        7
+      ],
+      "partially_covered": false
+    },
+    {
+      "x": 0.2733412322274882,
+      "y": 120.40799999999994,
+      "pixel_x": 275.85,
+      "pixel_y": 1292.575,
+      "pixel_count": 40,
+      "outside_axis_range": false,
+      "source_detection_indices": [
+        8
+      ],
+      "partially_covered": false
+    },
+    {
+      "x": 0.3068720379146919,
+      "y": 127.2,
+      "pixel_x": 290.0,
+      "pixel_y": 1285.5,
+      "pixel_count": 42,
+      "outside_axis_range": false,
+      "source_detection_indices": [
+        9
+      ],
+      "partially_covered": false
+    },
+    {
+      "x": 0.3412322274881517,
+      "y": 132.0,
+      "pixel_x": 304.5,
+      "pixel_y": 1280.5,
+      "pixel_count": 36,
+      "outside_axis_range": false,
+      "source_detection_indices": [
+        10
+      ],
+      "partially_covered": false
+    },
+    {
+      "x": 0.37655309337773796,
+      "y": 136.761081081081,
+      "pixel_x": 319.4054054054054,
+      "pixel_y": 1275.5405405405406,
+      "pixel_count": 37,
+      "outside_axis_range": false,
+      "source_detection_indices": [
+        11
+      ],
+      "partially_covered": false
+    },
+    {
+      "x": 0.4099526066350711,
+      "y": 141.6,
+      "pixel_x": 333.5,
+      "pixel_y": 1270.5,
+      "pixel_count": 36,
+      "outside_axis_range": false,
+      "source_detection_indices": [
+        12
+      ],
+      "partially_covered": false
+    },
+    {
+      "x": 0.4419431279620853,
+      "y": 144.96,
+      "pixel_x": 347.0,
+      "pixel_y": 1267.0,
+      "pixel_count": 49,
+      "outside_axis_range": false,
+      "source_detection_indices": [
+        13
+      ],
+      "partially_covered": false
+    },
+    {
+      "x": 0.4774881516587678,
+      "y": 149.28,
+      "pixel_x": 362.0,
+      "pixel_y": 1262.5,
+      "pixel_count": 42,
+      "outside_axis_range": false,
+      "source_detection_indices": [
+        14
+      ],
+      "partially_covered": false
+    },
+    {
+      "x": 0.514218009478673,
+      "y": 153.11999999999998,
+      "pixel_x": 377.5,
+      "pixel_y": 1258.5,
+      "pixel_count": 36,
+      "outside_axis_range": false,
+      "source_detection_indices": [
+        15
+      ],
+      "partially_covered": false
+    },
+    {
+      "x": 0.5452165766560123,
+      "y": 156.50232558139535,
+      "pixel_x": 390.5813953488372,
+      "pixel_y": 1254.9767441860465,
+      "pixel_count": 43,
+      "outside_axis_range": false,
+      "source_detection_indices": [
+        16
+      ],
+      "partially_covered": false
+    },
+    {
+      "x": 0.5770142180094787,
+      "y": 159.84,
+      "pixel_x": 404.0,
+      "pixel_y": 1251.5,
+      "pixel_count": 42,
+      "outside_axis_range": false,
+      "source_detection_indices": [
+        17
+      ],
+      "partially_covered": false
+    },
+    {
+      "x": 0.6111815276093906,
+      "y": 163.17767441860465,
+      "pixel_x": 418.4186046511628,
+      "pixel_y": 1248.0232558139535,
+      "pixel_count": 43,
+      "outside_axis_range": false,
+      "source_detection_indices": [
+        18
+      ],
+      "partially_covered": false
+    },
+    {
+      "x": 0.6481042654028436,
+      "y": 166.56,
+      "pixel_x": 434.0,
+      "pixel_y": 1244.5,
+      "pixel_count": 30,
+      "outside_axis_range": false,
+      "source_detection_indices": [
+        19
+      ],
+      "partially_covered": false
+    },
+    {
+      "x": 0.6822715750027555,
+      "y": 168.93767441860464,
+      "pixel_x": 448.4186046511628,
+      "pixel_y": 1242.0232558139535,
+      "pixel_count": 43,
+      "outside_axis_range": false,
+      "source_detection_indices": [
+        20
+      ],
+      "partially_covered": false
+    },
+    {
+      "x": 0.7134942999871909,
+      "y": 172.332972972973,
+      "pixel_x": 461.5945945945946,
+      "pixel_y": 1238.4864864864865,
+      "pixel_count": 37,
+      "outside_axis_range": false,
+      "source_detection_indices": [
+        21
+      ],
+      "partially_covered": false
+    },
+    {
+      "x": 0.7488151658767772,
+      "y": 175.68,
+      "pixel_x": 476.5,
+      "pixel_y": 1235.0,
+      "pixel_count": 42,
+      "outside_axis_range": false,
+      "source_detection_indices": [
+        22
+      ],
+      "partially_covered": false
+    },
+    {
+      "x": 0.7819905213270142,
+      "y": 178.55999999999997,
+      "pixel_x": 490.5,
+      "pixel_y": 1232.0,
+      "pixel_count": 42,
+      "outside_axis_range": false,
+      "source_detection_indices": [
+        23
+      ],
+      "partially_covered": false
+    },
+    {
+      "x": 0.814941718970155,
+      "y": 180.947027027027,
+      "pixel_x": 504.4054054054054,
+      "pixel_y": 1229.5135135135135,
+      "pixel_count": 37,
+      "outside_axis_range": false,
+      "source_detection_indices": [
+        24
+      ],
+      "partially_covered": false
+    },
+    {
+      "x": 0.8541172985781991,
+      "y": 184.26,
+      "pixel_x": 520.9375,
+      "pixel_y": 1226.0625,
+      "pixel_count": 48,
+      "outside_axis_range": false,
+      "source_detection_indices": [
+        25
+      ],
+      "partially_covered": false
+    },
+    {
+      "x": 0.8850710900473934,
+      "y": 187.68,
+      "pixel_x": 534.0,
+      "pixel_y": 1222.5,
+      "pixel_count": 42,
+      "outside_axis_range": false,
+      "source_detection_indices": [
+        26
+      ],
+      "partially_covered": false
+    },
+    {
+      "x": 0.9196554374279492,
+      "y": 189.612972972973,
+      "pixel_x": 548.5945945945946,
+      "pixel_y": 1220.4864864864865,
+      "pixel_count": 37,
+      "outside_axis_range": false,
+      "source_detection_indices": [
+        27
+      ],
+      "partially_covered": false
+    },
+    {
+      "x": 0.9502369668246445,
+      "y": 192.48,
+      "pixel_x": 561.5,
+      "pixel_y": 1217.5,
+      "pixel_count": 36,
+      "outside_axis_range": false,
+      "source_detection_indices": [
+        28
+      ],
+      "partially_covered": false
+    },
+    {
+      "x": 0.9881516587677726,
+      "y": 193.92,
+      "pixel_x": 577.5,
+      "pixel_y": 1216.0,
+      "pixel_count": 42,
+      "outside_axis_range": false,
+      "source_detection_indices": [
+        29
+      ],
+      "partially_covered": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 0.9881516587677726,
+      "expected": 192.35381074270296,
+      "got": 193.92,
+      "difference": 1.566189257297026,
+      "percent": 0.8142231501677906,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-11-09T17:51:02+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 8, digitized (ACK-2-8)",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 0.9881516587677726."
+  },
+  "cleanup": []
+}

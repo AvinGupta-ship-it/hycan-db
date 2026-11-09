@@ -1,0 +1,131 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T17:42:57+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0116",
+  "figure": "Fig 6a (main p.22)",
+  "series_name": "SA20 253 K highest-pressure point",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0116/work/../in/pages/main-23.png",
+    "sha256": "4ad582353489fbf2b733f4ddac9d8486f0c7b5eef4ff03df91d02060fc030148",
+    "width_px": 1241,
+    "height_px": 1754
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 299.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 555.5,
+        "value": 14.0
+      },
+      "scale": "linear",
+      "label": "Pressure (MPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 658.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 183.5,
+        "value": 4.5
+      },
+      "scale": "linear",
+      "label": "Excess H2 (wt.%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 445.5,
+        "stated": 8.0,
+        "predicted": 7.996101364522417,
+        "relative_error": 0.0004873294346978696
+      },
+      {
+        "axis": "y",
+        "pixel": 447.5,
+        "stated": 2.0,
+        "predicted": 1.9989473684210528,
+        "relative_error": 0.000526315789473597
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#d10923",
+    "color_rgb": [
+      209,
+      9,
+      35
+    ],
+    "tolerance": 50.0,
+    "matched_pixels_in_image": 4642,
+    "matched_pixels_in_region": 93,
+    "region": [
+      545,
+      552,
+      568,
+      572
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 19.0,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [
+      {
+        "pixel_x": 562.5,
+        "pixel_y": 560.0,
+        "pixels": 2,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 545.0,
+        "pixel_y": 564.0,
+        "pixels": 1,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 567.0,
+        "pixel_y": 572.0,
+        "pixels": 3,
+        "reason": "too small"
+      }
+    ],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 14.025408348457349,
+      "y": 0.9040834845735025,
+      "pixel_x": 555.9655172413793,
+      "pixel_y": 563.0689655172414,
+      "pixel_count": 87,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig 6a (main p.22), digitized (SA20 253 K highest-pressure point)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig6a_SA20_253K_highest.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

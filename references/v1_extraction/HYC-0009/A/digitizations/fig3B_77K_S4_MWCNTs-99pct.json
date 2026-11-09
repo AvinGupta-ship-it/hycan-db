@@ -1,0 +1,170 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T17:33:21+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0009",
+  "figure": "Fig. 3B (77 K)",
+  "series_name": "MWCNTs-99% (separable markers only)",
+  "source_image": {
+    "path": "mask_diam.png",
+    "sha256": "ea09ad54801fc741be855dd2a36589765ac3c1c70d861b40d94044f2f72dee2f",
+    "width_px": 1530,
+    "height_px": 1530
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 229.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1421.5,
+        "value": 800.0
+      },
+      "scale": "linear",
+      "label": "P (Torr)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1340.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 29.5,
+        "value": 400.0
+      },
+      "scale": "linear",
+      "label": "V (cm3/gr)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 826.0,
+        "stated": 400.0,
+        "predicted": 400.50314465408803,
+        "relative_error": 0.001257861635220081
+      },
+      {
+        "axis": "y",
+        "pixel": 685.0,
+        "stated": 200.0,
+        "predicted": 200.0,
+        "relative_error": 0.0
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#231f20",
+    "color_rgb": [
+      35,
+      31,
+      32
+    ],
+    "tolerance": 35.0,
+    "matched_pixels_in_image": 2129,
+    "matched_pixels_in_region": 2129,
+    "region": [
+      255,
+      800,
+      1420,
+      1337
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 52.44,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      300,
+      5000
+    ],
+    "rejected_markers": [
+      {
+        "pixel_x": 1309.312925170068,
+        "pixel_y": 1060.6054421768708,
+        "pixels": 147,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 1238.635838150289,
+        "pixel_y": 1067.9190751445087,
+        "pixels": 173,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 1166.6966292134832,
+        "pixel_y": 1072.691011235955,
+        "pixels": 178,
+        "reason": "too small"
+      }
+    ],
+    "n_points": 3,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 641.0525040764036,
+      "y": 85.51504364776673,
+      "pixel_x": 1184.568888888889,
+      "pixel_y": 1060.2244444444445,
+      "pixel_count": 450,
+      "outside_axis_range": false
+    },
+    {
+      "x": 689.2712160636688,
+      "y": 87.20866615603458,
+      "pixel_x": 1256.4449064449063,
+      "pixel_y": 1054.6735966735966,
+      "pixel_count": 481,
+      "outside_axis_range": false
+    },
+    {
+      "x": 736.5980274646591,
+      "y": 89.7845115535324,
+      "pixel_x": 1326.9914346895075,
+      "pixel_y": 1046.2312633832976,
+      "pixel_count": 467,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 736.5980274646591,
+      "expected": 89.792,
+      "got": 89.7845115535324,
+      "difference": -0.007488446467604604,
+      "percent": 0.00833977021071432,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-11-09T17:35:50+00:00"
+    },
+    {
+      "at": 736.5980274646591,
+      "expected": 89.792,
+      "got": 89.7845115535324,
+      "difference": -0.007488446467604604,
+      "percent": 0.00833977021071432,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-11-09T17:36:12+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 3B (77 K), digitized (MWCNTs-99% (separable markers only))",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 736.5980274646591."
+  }
+}

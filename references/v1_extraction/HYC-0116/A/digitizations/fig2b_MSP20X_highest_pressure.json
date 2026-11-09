@@ -1,0 +1,132 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-03T01:23:24+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0116",
+  "figure": "Fig 2b (273 K), highest-pressure marker (open symbol; centre from enclosed marker interior)",
+  "series_name": "MSP20X 273 K highest pressure",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0116/work/img/f2b_hole_MSP20X.png",
+    "sha256": "d8f0cbda3b7560204e9f2c065b2616866cfb6482d8a21f008dc0f7c419379d13",
+    "width_px": 1241,
+    "height_px": 1754
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 736.75,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1024.62,
+        "value": 12.5
+      },
+      "scale": "linear",
+      "label": "Pressure (MPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1203.04,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 821.65,
+        "value": 1.0
+      },
+      "scale": "linear",
+      "label": "Excess H2 (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 851.62,
+        "stated": 5.0,
+        "predicted": 4.98792857887241,
+        "relative_error": 0.0024142842255180596
+      },
+      {
+        "axis": "y",
+        "pixel": 974.47,
+        "stated": 0.6,
+        "predicted": 0.599307795170298,
+        "relative_error": 0.0011536747161700056
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#008300",
+    "color_rgb": [
+      0,
+      131,
+      0
+    ],
+    "tolerance": 20.0,
+    "matched_pixels_in_image": 115,
+    "matched_pixels_in_region": 115,
+    "region": [
+      1010,
+      785,
+      1069,
+      1211
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 15.2556,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 2,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 2
+  },
+  "series": [
+    {
+      "x": 12.572329275615482,
+      "y": 0.9322216104250242,
+      "pixel_x": 1026.2857142857142,
+      "pixel_y": 847.5,
+      "pixel_count": 56,
+      "outside_axis_range": true
+    },
+    {
+      "x": 14.0605708320552,
+      "y": 0.955930603532751,
+      "pixel_x": 1060.5593220338983,
+      "pixel_y": 838.457627118644,
+      "pixel_count": 59,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [
+    {
+      "at": 14.0,
+      "expected": 0.95,
+      "got": 0.9549656570605121,
+      "difference": 0.0049656570605121075,
+      "percent": 0.5227007432118008,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-11-03T01:23:35+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig 2b (273 K), highest-pressure marker (open symbol; centre from enclosed marker interior), digitized (MSP20X 273 K highest pressure)",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 14.0."
+  }
+}

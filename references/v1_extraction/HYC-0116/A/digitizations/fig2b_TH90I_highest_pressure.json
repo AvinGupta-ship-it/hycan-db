@@ -1,0 +1,132 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-03T01:23:30+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0116",
+  "figure": "Fig 2b (273 K), highest-pressure marker (filled symbol)",
+  "series_name": "TH90I 273 K highest pressure",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0116/in/pages/main-17.png",
+    "sha256": "d768dadd47c45a6a10510d0cd903e38dc188f0555c8b771b22f2e7e5a918b113",
+    "width_px": 1241,
+    "height_px": 1754
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 736.75,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1024.62,
+        "value": 12.5
+      },
+      "scale": "linear",
+      "label": "Pressure (MPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1203.04,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 821.65,
+        "value": 1.0
+      },
+      "scale": "linear",
+      "label": "Excess H2 (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 851.62,
+        "stated": 5.0,
+        "predicted": 4.98792857887241,
+        "relative_error": 0.0024142842255180596
+      },
+      {
+        "axis": "y",
+        "pixel": 974.47,
+        "stated": 0.6,
+        "predicted": 0.599307795170298,
+        "relative_error": 0.0011536747161700056
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#7a007c",
+    "color_rgb": [
+      122,
+      0,
+      124
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 1338,
+    "matched_pixels_in_region": 108,
+    "region": [
+      1010,
+      785,
+      1069,
+      1211
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 15.2556,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 2,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 2
+  },
+  "series": [
+    {
+      "x": 12.554912607453694,
+      "y": 0.6561565286492526,
+      "pixel_x": 1025.8846153846155,
+      "pixel_y": 952.7884615384615,
+      "pixel_count": 52,
+      "outside_axis_range": true
+    },
+    {
+      "x": 14.027044935324678,
+      "y": 0.6719474620550917,
+      "pixel_x": 1059.787234042553,
+      "pixel_y": 946.7659574468086,
+      "pixel_count": 47,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [
+    {
+      "at": 14.0,
+      "expected": 0.67,
+      "got": 0.6716573626091439,
+      "difference": 0.001657362609143842,
+      "percent": 0.2473675536035585,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-11-03T01:23:41+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig 2b (273 K), highest-pressure marker (filled symbol), digitized (TH90I 273 K highest pressure)",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 14.0."
+  }
+}

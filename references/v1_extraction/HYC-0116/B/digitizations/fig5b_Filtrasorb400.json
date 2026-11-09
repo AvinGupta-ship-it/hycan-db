@@ -1,0 +1,136 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T17:38:21+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0116",
+  "figure": "Fig 5b (main p.21)",
+  "series_name": "Filtrasorb400",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0116/work/../in/pages/main-22.png",
+    "sha256": "1b84d6da11e2b5267abe62323e29574aa547cdac7f9ff829e65df8912c221524",
+    "width_px": 1241,
+    "height_px": 1754
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 561.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 755.5,
+        "value": 1.5
+      },
+      "scale": "linear",
+      "label": "Pressure (kPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 706.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 246.0,
+        "value": 0.25
+      },
+      "scale": "linear",
+      "label": "Excess H2 (wt.%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 626.0,
+        "stated": 0.5,
+        "predicted": 0.49871134020618557,
+        "relative_error": 0.002577319587628857
+      },
+      {
+        "axis": "y",
+        "pixel": 429.5,
+        "stated": 0.15,
+        "predicted": 0.1502717391304348,
+        "relative_error": 0.001811594202898633
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#fa7f05",
+    "color_rgb": [
+      250,
+      127,
+      5
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 2178,
+    "matched_pixels_in_region": 848,
+    "region": [
+      559,
+      192,
+      755,
+      704
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 18.400000000000002,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 4,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.005732314255243937,
+      "y": 0.026630434782608695,
+      "pixel_x": 562.2413793103449,
+      "pixel_y": 657.0,
+      "pixel_count": 29,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.059707903780068336,
+      "y": 0.06989734299516907,
+      "pixel_x": 569.2222222222222,
+      "pixel_y": 577.3888888888889,
+      "pixel_count": 36,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.2551546391752577,
+      "y": 0.1546195652173913,
+      "pixel_x": 594.5,
+      "pixel_y": 421.5,
+      "pixel_count": 22,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.6219394329896908,
+      "y": 0.23434952445652174,
+      "pixel_x": 641.9375,
+      "pixel_y": 274.796875,
+      "pixel_count": 64,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig 5b (main p.21), digitized (Filtrasorb400)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig5b_Filtrasorb400.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

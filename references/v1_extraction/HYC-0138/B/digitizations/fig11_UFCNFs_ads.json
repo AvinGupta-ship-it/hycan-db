@@ -1,0 +1,183 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T17:58:23+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0138",
+  "figure": "Fig. 11 (p. 76)",
+  "series_name": "UFCNFs adsorption boundary curve",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0138/in/pages/main-08.png",
+    "sha256": "4bca066df8fb6fdef0b7250dfe6c958872bb93db4971b60fca298fbe12eab93d",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 700.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1137.0,
+        "value": 1.1
+      },
+      "scale": "linear",
+      "label": "Absolute Pressure (atm)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1446.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1139.0,
+        "value": 4.0
+      },
+      "scale": "linear",
+      "label": "H2 storage capacity (wt.%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 899.0,
+        "stated": 0.5,
+        "predicted": 0.5002290950744559,
+        "relative_error": 0.00045819014891179677
+      },
+      {
+        "axis": "y",
+        "pixel": 1292.0,
+        "stated": 2.0,
+        "predicted": 2.006514657980456,
+        "relative_error": 0.0032573289902280145
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#2700f7",
+    "color_rgb": [
+      39,
+      0,
+      247
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 1987,
+    "matched_pixels_in_region": 852,
+    "region": [
+      694,
+      1200,
+      1136,
+      1445
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 12.280000000000001,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      20,
+      120
+    ],
+    "rejected_markers": [
+      {
+        "pixel_x": 709.8918205804749,
+        "pixel_y": 1413.0369393139842,
+        "pixels": 379,
+        "reason": "too large"
+      }
+    ],
+    "n_points": 9,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.08020618556701042,
+      "y": 0.7109268581581277,
+      "pixel_x": 732.3272727272728,
+      "pixel_y": 1391.4363636363637,
+      "pixel_count": 55,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.11060201094565364,
+      "y": 0.7897213174086135,
+      "pixel_x": 744.3888888888889,
+      "pixel_y": 1385.388888888889,
+      "pixel_count": 54,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.1512027491408935,
+      "y": 0.8664495114006515,
+      "pixel_x": 760.5,
+      "pixel_y": 1379.5,
+      "pixel_count": 52,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.2066437571592211,
+      "y": 0.9463143925684634,
+      "pixel_x": 782.5,
+      "pixel_y": 1373.3703703703704,
+      "pixel_count": 54,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.2826968380557177,
+      "y": 1.0376743900190522,
+      "pixel_x": 812.6792452830189,
+      "pixel_y": 1366.3584905660377,
+      "pixel_count": 53,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.3886201427438541,
+      "y": 1.1297920320721637,
+      "pixel_x": 854.7115384615385,
+      "pixel_y": 1359.2884615384614,
+      "pixel_count": 52,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.5407141789929778,
+      "y": 1.2256054383231825,
+      "pixel_x": 915.0652173913044,
+      "pixel_y": 1351.9347826086957,
+      "pixel_count": 46,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.7397877364004022,
+      "y": 1.3250016619025469,
+      "pixel_x": 994.0612244897959,
+      "pixel_y": 1344.3061224489795,
+      "pixel_count": 49,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.0141641536339623,
+      "y": 1.424184005849896,
+      "pixel_x": 1102.938775510204,
+      "pixel_y": 1336.6938775510205,
+      "pixel_count": 49,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 11 (p. 76), digitized (UFCNFs adsorption boundary curve)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig11_UFCNFs_ads.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

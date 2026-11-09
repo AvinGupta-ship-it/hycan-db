@@ -1,0 +1,128 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T17:38:20+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0116",
+  "figure": "Fig 5b (main p.21)",
+  "series_name": "MSC30",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0116/work/../in/pages/main-22.png",
+    "sha256": "1b84d6da11e2b5267abe62323e29574aa547cdac7f9ff829e65df8912c221524",
+    "width_px": 1241,
+    "height_px": 1754
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 561.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 755.5,
+        "value": 1.5
+      },
+      "scale": "linear",
+      "label": "Pressure (kPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 706.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 246.0,
+        "value": 0.25
+      },
+      "scale": "linear",
+      "label": "Excess H2 (wt.%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 626.0,
+        "stated": 0.5,
+        "predicted": 0.49871134020618557,
+        "relative_error": 0.002577319587628857
+      },
+      {
+        "axis": "y",
+        "pixel": 429.5,
+        "stated": 0.15,
+        "predicted": 0.1502717391304348,
+        "relative_error": 0.001811594202898633
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#fa0484",
+    "color_rgb": [
+      250,
+      4,
+      132
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 2004,
+    "matched_pixels_in_region": 872,
+    "region": [
+      559,
+      192,
+      755,
+      704
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 18.400000000000002,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 3,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.26523379970544936,
+      "y": 0.08291925465838508,
+      "pixel_x": 595.8035714285714,
+      "pixel_y": 553.4285714285714,
+      "pixel_count": 56,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.5347559126743479,
+      "y": 0.13916240409207162,
+      "pixel_x": 630.6617647058823,
+      "pixel_y": 449.94117647058823,
+      "pixel_count": 68,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.8195242521548081,
+      "y": 0.19097469707769066,
+      "pixel_x": 667.4918032786885,
+      "pixel_y": 354.60655737704917,
+      "pixel_count": 61,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig 5b (main p.21), digitized (MSC30)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig5b_MSC30.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

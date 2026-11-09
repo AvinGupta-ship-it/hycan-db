@@ -11879,6 +11879,24 @@
       "reason": "command names the home directory",
       "access": false,
       "note": "The flagged '~' appears only inside quoted text (a quotation from the paper, the agent's notes or a comment) or as an awk/regex match operator; no '~/' path and no $HOME occurs, so it is never a path."
+    },
+    {
+      "screener": "C",
+      "batch": "HYC-0118",
+      "transcript": "agent-a7c1d8209e575f7b1.jsonl",
+      "call": 11,
+      "reason": "command names a path outside the allowed paths: /dev/stdin",
+      "access": false,
+      "note": "The '/dev/stdin' read is the unused branch of a conditional expression ('... if False else '''), so it is never evaluated and nothing is read from it. The rest of the command reads only its own input rows (in/first/rows.csv, in/second/rows.csv) and writes to its own work directory."
+    },
+    {
+      "screener": "C",
+      "batch": "HYC-0118",
+      "transcript": "agent-a7c1d8209e575f7b1.jsonl",
+      "call": 11,
+      "reason": "command names a device path other than /dev/null, /dev/stdout or /dev/stderr (supplementary check)",
+      "access": false,
+      "note": "The '/dev/stdin' read is the unused branch of a conditional expression ('... if False else '''), so it is never evaluated and nothing is read from it. The rest of the command reads only its own input rows (in/first/rows.csv, in/second/rows.csv) and writes to its own work directory."
     }
   ]
 }

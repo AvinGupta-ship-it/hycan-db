@@ -1,0 +1,144 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T04:38:54+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0116",
+  "figure": "Fig 2a (77 K), desorption (open symbols; centres from enclosed marker interiors)",
+  "series_name": "MSC30 77 K desorption",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0116/work/img/hole_MSC30.png",
+    "sha256": "46c9d5f7c5be876b4823130508e28ae7e8e1635eb1a7b455cfd6308df3d67efe",
+    "width_px": 1241,
+    "height_px": 1754
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 241.12,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 533.93,
+        "value": 12.5
+      },
+      "scale": "linear",
+      "label": "Pressure (MPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1212.53,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 790.46,
+        "value": 6.0
+      },
+      "scale": "linear",
+      "label": "Excess H2 (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 358.05,
+        "stated": 5.0,
+        "predicted": 4.991718179023941,
+        "relative_error": 0.001656364195211779
+      },
+      {
+        "axis": "y",
+        "pixel": 1001.52,
+        "stated": 3.0,
+        "predicted": 2.9996446087141946,
+        "relative_error": 0.00011846376193513919
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#fc007c",
+    "color_rgb": [
+      252,
+      0,
+      124
+    ],
+    "tolerance": 20.0,
+    "matched_pixels_in_image": 155,
+    "matched_pixels_in_region": 155,
+    "region": [
+      237,
+      785,
+      573,
+      1211
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 16.882799999999996,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 5,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 2.5101601721252695,
+      "y": 5.714265406212241,
+      "pixel_x": 299.92,
+      "pixel_y": 810.56,
+      "pixel_count": 25,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.5315628669680796,
+      "y": 5.826656533458722,
+      "pixel_x": 323.84615384615387,
+      "pixel_y": 802.6538461538462,
+      "pixel_count": 26,
+      "outside_axis_range": false
+    },
+    {
+      "x": 5.078844177577143,
+      "y": 5.763580793362583,
+      "pixel_x": 360.09090909090907,
+      "pixel_y": 807.0909090909091,
+      "pixel_count": 22,
+      "outside_axis_range": false
+    },
+    {
+      "x": 7.4655920221303935,
+      "y": 5.373942710924728,
+      "pixel_x": 416.0,
+      "pixel_y": 834.5,
+      "pixel_count": 26,
+      "outside_axis_range": false
+    },
+    {
+      "x": 10.910217170367039,
+      "y": 4.662424846997924,
+      "pixel_x": 496.6896551724138,
+      "pixel_y": 884.551724137931,
+      "pixel_count": 29,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig 2a (77 K), desorption (open symbols; centres from enclosed marker interiors), digitized (MSC30 77 K desorption)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig2a_MSC30_desorption.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T04:39:02+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0116",
+  "figure": "Fig 2a (77 K), adsorption (filled symbols), ROI part b",
+  "series_name": "SA20 77 K adsorption",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0116/in/pages/main-17.png",
+    "sha256": "d768dadd47c45a6a10510d0cd903e38dc188f0555c8b771b22f2e7e5a918b113",
+    "width_px": 1241,
+    "height_px": 1754
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 241.12,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 533.93,
+        "value": 12.5
+      },
+      "scale": "linear",
+      "label": "Pressure (MPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1212.53,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 790.46,
+        "value": 6.0
+      },
+      "scale": "linear",
+      "label": "Excess H2 (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 358.05,
+        "stated": 5.0,
+        "predicted": 4.991718179023941,
+        "relative_error": 0.001656364195211779
+      },
+      {
+        "axis": "y",
+        "pixel": 1001.52,
+        "stated": 3.0,
+        "predicted": 2.9996446087141946,
+        "relative_error": 0.00011846376193513919
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#7b05f0",
+    "color_rgb": [
+      123,
+      5,
+      240
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 702,
+    "matched_pixels_in_region": 197,
+    "region": [
+      332,
+      785,
+      573,
+      1211
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 16.882799999999996,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 4,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 5.038841149288197,
+      "y": 3.235580682023216,
+      "pixel_x": 359.15384615384613,
+      "pixel_y": 984.9230769230769,
+      "pixel_count": 39,
+      "outside_axis_range": false
+    },
+    {
+      "x": 7.671177106045057,
+      "y": 3.0212523988911792,
+      "pixel_x": 420.8157894736842,
+      "pixel_y": 1000.0,
+      "pixel_count": 38,
+      "outside_axis_range": false
+    },
+    {
+      "x": 12.076090297462521,
+      "y": 2.644537635937167,
+      "pixel_x": 524.0,
+      "pixel_y": 1026.5,
+      "pixel_count": 12,
+      "outside_axis_range": false
+    },
+    {
+      "x": 13.414251299740185,
+      "y": 2.562524262289705,
+      "pixel_x": 555.3461538461538,
+      "pixel_y": 1032.2692307692307,
+      "pixel_count": 26,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig 2a (77 K), adsorption (filled symbols), ROI part b, digitized (SA20 77 K adsorption)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig2a_SA20_adsorption_b.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

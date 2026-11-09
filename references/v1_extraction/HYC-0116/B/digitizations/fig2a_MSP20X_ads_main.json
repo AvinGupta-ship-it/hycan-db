@@ -1,0 +1,180 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-03T01:24:53+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0116",
+  "figure": "Fig 2a (main p.16)",
+  "series_name": "MSP20X adsorption (filled), full plot",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0116/work/../in/pages/main-17.png",
+    "sha256": "d768dadd47c45a6a10510d0cd903e38dc188f0555c8b771b22f2e7e5a918b113",
+    "width_px": 1241,
+    "height_px": 1754
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 241.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 534.0,
+        "value": 12.5
+      },
+      "scale": "linear",
+      "label": "Pressure (MPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1212.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 790.5,
+        "value": 6.0
+      },
+      "scale": "linear",
+      "label": "Excess H2 (wt.%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 358.0,
+        "stated": 5.0,
+        "predicted": 4.991467576791809,
+        "relative_error": 0.001706484641638184
+      },
+      {
+        "axis": "y",
+        "pixel": 1001.5,
+        "stated": 3.0,
+        "predicted": 3.0,
+        "relative_error": 0.0
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#008000",
+    "color_rgb": [
+      0,
+      128,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 1054,
+    "matched_pixels_in_region": 671,
+    "region": [
+      237,
+      785,
+      572,
+      1211
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 16.88,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 8,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 0.8245274350223163,
+      "y": 4.326376230404667,
+      "pixel_x": 260.3269230769231,
+      "pixel_y": 908.2115384615385,
+      "pixel_count": 52,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.950184674365327,
+      "y": 4.755729403362981,
+      "pixel_x": 286.71232876712327,
+      "pixel_y": 878.013698630137,
+      "pixel_count": 73,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.007679180887372,
+      "y": 4.810490585372102,
+      "pixel_x": 311.5,
+      "pixel_y": 874.1621621621622,
+      "pixel_count": 74,
+      "outside_axis_range": false
+    },
+    {
+      "x": 5.055460750853243,
+      "y": 4.670616113744075,
+      "pixel_x": 359.5,
+      "pixel_y": 884.0,
+      "pixel_count": 12,
+      "outside_axis_range": false
+    },
+    {
+      "x": 7.696956769055746,
+      "y": 4.140047393364928,
+      "pixel_x": 421.4166666666667,
+      "pixel_y": 921.3166666666667,
+      "pixel_count": 60,
+      "outside_axis_range": false
+    },
+    {
+      "x": 10.299072372451212,
+      "y": 3.675173168064163,
+      "pixel_x": 482.4102564102564,
+      "pixel_y": 954.0128205128206,
+      "pixel_count": 78,
+      "outside_axis_range": false
+    },
+    {
+      "x": 12.414019427671304,
+      "y": 3.3717462632154582,
+      "pixel_x": 531.9846153846154,
+      "pixel_y": 975.3538461538461,
+      "pixel_count": 65,
+      "outside_axis_range": false
+    },
+    {
+      "x": 13.881186006825939,
+      "y": 3.1366508688783563,
+      "pixel_x": 566.375,
+      "pixel_y": 991.8888888888889,
+      "pixel_count": 72,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [
+    {
+      "at": 4.0,
+      "expected": 4.74,
+      "got": 4.742709747662354,
+      "difference": 0.0027097476623536565,
+      "percent": 0.05716767220155393,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-11-09T17:38:07+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig 2a (main p.16), digitized (MSP20X adsorption (filled), full plot)",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 4.0."
+  }
+}

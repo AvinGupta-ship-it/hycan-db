@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T17:42:42+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0118",
+  "figure": "FigS3",
+  "series_name": "fS3_CS-C",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0118/work/img/si1-3_masked.png",
+    "sha256": "574310ccd6b9c3977da61def50506efb5f33382fdc82555b4fc9d38f9d82801d",
+    "width_px": 1241,
+    "height_px": 1754
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 407.58,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 909.19,
+        "value": 60.0
+      },
+      "scale": "linear",
+      "label": "pressure_bar",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 582.25,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 211.95,
+        "value": 0.6
+      },
+      "scale": "linear",
+      "label": "Q_excess_wt_pct_298K",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 658.54,
+        "stated": 30.0,
+        "predicted": 30.018540300233244,
+        "relative_error": 0.0006180100077748089
+      },
+      {
+        "axis": "y",
+        "pixel": 397.36,
+        "stated": 0.3,
+        "predicted": 0.29957871995679175,
+        "relative_error": 0.001404266810694129
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 110.0,
+    "matched_pixels_in_image": 24235,
+    "matched_pixels_in_region": 147,
+    "region": [
+      880,
+      240,
+      917,
+      480
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 14.812000000000001,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 5-px opening",
+    "marker_size_px": [
+      8,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 58.812721151100995,
+      "y": 0.19606489383926337,
+      "pixel_x": 899.2641509433962,
+      "pixel_y": 461.24528301886795,
+      "pixel_count": 53,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "FigS3, digitized (fS3_CS-C)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fS3_CS-C.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

@@ -1,0 +1,182 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T17:33:21+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0009",
+  "figure": "Fig. 3B (77 K)",
+  "series_name": "MWCNTs-97% (separable markers only)",
+  "source_image": {
+    "path": "mask_utri.png",
+    "sha256": "f02ad0d5be198416b07bc46a44f0ef1aae3a2f9e5c9695f92d7a1db3828e2101",
+    "width_px": 1530,
+    "height_px": 1530
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 229.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1421.5,
+        "value": 800.0
+      },
+      "scale": "linear",
+      "label": "P (Torr)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1340.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 29.5,
+        "value": 400.0
+      },
+      "scale": "linear",
+      "label": "V (cm3/gr)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 826.0,
+        "stated": 400.0,
+        "predicted": 400.50314465408803,
+        "relative_error": 0.001257861635220081
+      },
+      {
+        "axis": "y",
+        "pixel": 685.0,
+        "stated": 200.0,
+        "predicted": 200.0,
+        "relative_error": 0.0
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#231f20",
+    "color_rgb": [
+      35,
+      31,
+      32
+    ],
+    "tolerance": 35.0,
+    "matched_pixels_in_image": 2023,
+    "matched_pixels_in_region": 2023,
+    "region": [
+      255,
+      800,
+      1420,
+      1337
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 52.44,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      300,
+      5000
+    ],
+    "rejected_markers": [
+      {
+        "pixel_x": 1321.902857142857,
+        "pixel_y": 1049.6514285714286,
+        "pixels": 175,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 1250.89,
+        "pixel_y": 1056.93,
+        "pixels": 200,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 1179.7076923076922,
+        "pixel_y": 1062.3846153846155,
+        "pixels": 195,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 1323.2631578947369,
+        "pixel_y": 1083.3684210526317,
+        "pixels": 57,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 1255.0,
+        "pixel_y": 1089.5,
+        "pixels": 18,
+        "reason": "too small"
+      }
+    ],
+    "n_points": 3,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 627.8108232953132,
+      "y": 80.44835744482802,
+      "pixel_x": 1164.8305084745762,
+      "pixel_y": 1076.8305084745762,
+      "pixel_count": 354,
+      "outside_axis_range": false
+    },
+    {
+      "x": 675.443141254462,
+      "y": 82.22071041293012,
+      "pixel_x": 1235.8324324324324,
+      "pixel_y": 1071.0216216216215,
+      "pixel_count": 370,
+      "outside_axis_range": false
+    },
+    {
+      "x": 722.8187485973584,
+      "y": 84.17666939513619,
+      "pixel_x": 1306.4516971279375,
+      "pixel_y": 1064.6109660574411,
+      "pixel_count": 383,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 722.8187485973584,
+      "expected": 84.074,
+      "got": 84.17666939513619,
+      "difference": 0.10266939513618922,
+      "percent": 0.12211789035396106,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-11-09T17:35:50+00:00"
+    },
+    {
+      "at": 722.8187485973584,
+      "expected": 84.074,
+      "got": 84.17666939513619,
+      "difference": 0.10266939513618922,
+      "percent": 0.12211789035396106,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-11-09T17:36:11+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 3B (77 K), digitized (MWCNTs-97% (separable markers only))",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 722.8187485973584."
+  }
+}

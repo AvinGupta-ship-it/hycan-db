@@ -1,0 +1,139 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-03T01:24:36+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0118",
+  "figure": "Fig. 5a",
+  "series_name": "CS-SE",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0118/work/main-5_masked.png",
+    "sha256": "40200c4882ee9b8c50abecbf7747b9d2d5a97e0c320c5d0683e9a8b194af139e",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 214.4,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 587.06,
+        "value": 1.0
+      },
+      "scale": "linear",
+      "label": "",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1450.98,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1199.31,
+        "value": 2.5
+      },
+      "scale": "linear",
+      "label": "",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 437.61,
+        "stated": 0.6,
+        "predicted": 0.5989642032952289,
+        "relative_error": 0.0017263278412850878
+      },
+      {
+        "axis": "y",
+        "pixel": 1299.9,
+        "stated": 1.5,
+        "predicted": 1.5007748241745131,
+        "relative_error": 0.0005165494496754223
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#c81517",
+    "color_rgb": [
+      200,
+      21,
+      23
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 1302,
+    "matched_pixels_in_region": 272,
+    "region": [
+      208,
+      1175,
+      586,
+      1452
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 10.066800000000002,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      25,
+      2000
+    ],
+    "rejected_markers": [
+      {
+        "pixel_x": 574.0,
+        "pixel_y": 1274.0,
+        "pixels": 9,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 550.0,
+        "pixel_y": 1276.0,
+        "pixels": 21,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 537.5,
+        "pixel_y": 1277.0,
+        "pixels": 24,
+        "reason": "too small"
+      }
+    ],
+    "n_points": 2,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.9354371276767027,
+      "y": 1.748122541423292,
+      "pixel_x": 563.0,
+      "pixel_y": 1275.0,
+      "pixel_count": 33,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.9830945097407826,
+      "y": 1.7505066158064129,
+      "pixel_x": 580.76,
+      "pixel_y": 1274.76,
+      "pixel_count": 25,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 5a, digitized (CS-SE)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig5a_CS-SE.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

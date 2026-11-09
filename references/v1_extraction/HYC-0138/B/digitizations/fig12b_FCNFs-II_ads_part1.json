@@ -1,0 +1,168 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T17:59:13+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0138",
+  "figure": "Fig. 12b (p. 77)",
+  "series_name": "FCNFs-II adsorption boundary curve, part 1 (0.25-1.12 atm; region excludes legend marker)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0138/in/pages/main-09.png",
+    "sha256": "7fcff32f46858347366073a436633c55b6cc07a854b0550c6298812a33d2fe35",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 699.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1084.0,
+        "value": 1.1
+      },
+      "scale": "linear",
+      "label": "Absolute Pressure (atm)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 502.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 183.0,
+        "value": 4.0
+      },
+      "scale": "linear",
+      "label": "H2 storage capacity (wt.%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 874.0,
+        "stated": 0.5,
+        "predicted": 0.5,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 342.5,
+        "stated": 2.0,
+        "predicted": 2.0,
+        "relative_error": 0.0
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#2700f7",
+    "color_rgb": [
+      39,
+      0,
+      247
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 2946,
+    "matched_pixels_in_region": 430,
+    "region": [
+      770,
+      165,
+      1101,
+      403
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 12.76,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      20,
+      120
+    ],
+    "rejected_markers": [],
+    "n_points": 8,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 0.2525396825396826,
+      "y": 1.3618948101706718,
+      "pixel_x": 787.3888888888889,
+      "pixel_y": 393.3888888888889,
+      "pixel_count": 54,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.38091644204851755,
+      "y": 1.7509907139054828,
+      "pixel_x": 832.3207547169811,
+      "pixel_y": 362.35849056603774,
+      "pixel_count": 53,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.5011640211640211,
+      "y": 2.10333217229769,
+      "pixel_x": 874.4074074074074,
+      "pixel_y": 334.25925925925924,
+      "pixel_count": 54,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.6257142857142858,
+      "y": 2.45141065830721,
+      "pixel_x": 918.0,
+      "pixel_y": 306.5,
+      "pixel_count": 52,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.7485714285714287,
+      "y": 2.7899686520376177,
+      "pixel_x": 961.0,
+      "pixel_y": 279.5,
+      "pixel_count": 52,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.8724571428571429,
+      "y": 3.122257053291536,
+      "pixel_x": 1004.36,
+      "pixel_y": 253.0,
+      "pixel_count": 50,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.9957142857142858,
+      "y": 3.4518584863412447,
+      "pixel_x": 1047.5,
+      "pixel_y": 226.71428571428572,
+      "pixel_count": 56,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.1184366576819407,
+      "y": 3.7797362039391973,
+      "pixel_x": 1090.4528301886792,
+      "pixel_y": 200.56603773584905,
+      "pixel_count": 53,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 12b (p. 77), digitized (FCNFs-II adsorption boundary curve, part 1 (0.25-1.12 atm; region excludes legend marker))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig12b_FCNFs-II_ads_part1.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}
