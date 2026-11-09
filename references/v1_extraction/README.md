@@ -200,8 +200,8 @@ recorded in its review:
   HYC-0095. Neither read the file back as input. Listing a system font folder
   (extractor B on HYC-0068 and on HYC-0099, which also loaded two DejaVu fonts
   from it to label its own overlay images) and looking up programs on the
-  system path with `which` (reconciler C on HYC-0087 and on HYC-0022) reach
-  no paper data.
+  system path with `which` (reconciler C on HYC-0087, HYC-0022 and HYC-0116)
+  reach no paper data.
 
 Except where stated, all of these were reported by the agents themselves
 after their reply. The tools check above was added after the first, because
