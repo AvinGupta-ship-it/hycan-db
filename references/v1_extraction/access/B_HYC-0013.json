@@ -18,100 +18,160 @@
       "call": 41,
       "tool": "Bash",
       "reason": "command climbs with ..",
-      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0013/work; COMMON=\"--image /home/claude/work/runs/extract/B/HYC-0013/in/pages/main-06.png --overwrite --x1-px 687 --x1-val 0 --x2-px 1063 --x2-val 50 --y1-px 483 --y1-val 0 --y2-px 172 --y2-val 280 --x-verify-px 875 --x-v"
+      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0013/work; COMMON=\"--image /home/claude/work/runs/extract/B/HYC-0013/in/pages/main-06.png --overwrite --x1-px 687 --x1-val 0 --x2-px 1063 --x2-val 50 --y1-px 483 --y1-val 0 --y2-px 172 --y2-val 280 --x-verify-px 875 --x-v",
+      "review": {
+        "access": false,
+        "note": "From the tools dir runs digitize_figure.py on its own page with absolute own input/work paths, then cd to its own work dir and runs its own work/scripts/overlay2.py on ../in/pages/main-06.png (its own input); ls of its own work dir. No outside access."
+      }
     },
     {
       "call": 41,
       "tool": "Bash",
       "reason": "command moves within the tools directory",
-      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0013/work; COMMON=\"--image /home/claude/work/runs/extract/B/HYC-0013/in/pages/main-06.png --overwrite --x1-px 687 --x1-val 0 --x2-px 1063 --x2-val 50 --y1-px 483 --y1-val 0 --y2-px 172 --y2-val 280 --x-verify-px 875 --x-v"
+      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0013/work; COMMON=\"--image /home/claude/work/runs/extract/B/HYC-0013/in/pages/main-06.png --overwrite --x1-px 687 --x1-val 0 --x2-px 1063 --x2-val 50 --y1-px 483 --y1-val 0 --y2-px 172 --y2-val 280 --x-verify-px 875 --x-v",
+      "review": {
+        "access": false,
+        "note": "From the tools dir runs digitize_figure.py on its own page with absolute own input/work paths, then cd to its own work dir and runs its own work/scripts/overlay2.py on ../in/pages/main-06.png (its own input); ls of its own work dir. No outside access."
+      }
     },
     {
       "call": 53,
       "tool": "Bash",
       "reason": "command moves within the tools directory",
-      "detail": "cat > /home/claude/work/runs/extract/B/HYC-0013/work/scripts/ov4.py <<'EOF'\nimport json, sys\nfrom PIL import Image, ImageDraw\n# usage: ov4.py image out x0 y0 x1 y1 scale json:color[:big] ...  ; marks centroid with a dot and labels index; big blobs (pixel_count>thr) in magenta box\nimg, out = sys.argv"
+      "detail": "cat > /home/claude/work/runs/extract/B/HYC-0013/work/scripts/ov4.py <<'EOF'\nimport json, sys\nfrom PIL import Image, ImageDraw\n# usage: ov4.py image out x0 y0 x1 y1 scale json:color[:big] ...  ; marks centroid with a dot and labels index; big blobs (pixel_count>thr) in magenta box\nimg, out = sys.argv",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
     },
     {
       "call": 61,
       "tool": "Bash",
       "reason": "command moves within the tools directory",
-      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0013/work; CAL=\"--x1-px 190.46 --x1-val 0 --x2-px 1692.03 --x2-val 50 --y1-px 1273.48 --y1-val 0 --y2-px 29.48 --y2-val 280 --x-verify-px 941.48 --x-verify-val 25 --y-verify-px 653.04 --y-verify-val 140\"; python3 scripts/"
+      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0013/work; CAL=\"--x1-px 190.46 --x1-val 0 --x2-px 1692.03 --x2-val 50 --y1-px 1273.48 --y1-val 0 --y2-px 29.48 --y2-val 280 --x-verify-px 941.48 --x-verify-val 25 --y-verify-px 653.04 --y-verify-val 140\"; python3 scripts/",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
     },
     {
       "call": 79,
       "tool": "Bash",
       "reason": "command moves within the tools directory",
-      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0013/work; CAL=\"--x1-px 253.48 --x1-val 0 --x2-px 1765.53 --x2-val 50 --y1-px 1287.47 --y1-val 0 --y2-px 53.54 --y2-val 275 --x-verify-px 1009.51 --x-verify-val 25 --y-verify-px 726.96 --y-verify-val 125\"; python3 scripts"
+      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0013/work; CAL=\"--x1-px 253.48 --x1-val 0 --x2-px 1765.53 --x2-val 50 --y1-px 1287.47 --y1-val 0 --y2-px 53.54 --y2-val 275 --x-verify-px 1009.51 --x-verify-val 25 --y-verify-px 726.96 --y-verify-val 125\"; python3 scripts",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
     },
     {
       "call": 82,
       "tool": "Bash",
       "reason": "command moves within the tools directory",
-      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0013/work; CAL=\"--x1-px 190.46 --x1-val 0 --x2-px 1692.03 --x2-val 50 --y1-px 1273.48 --y1-val 0 --y2-px 29.48 --y2-val 280 --x-verify-px 941.48 --x-verify-val 25 --y-verify-px 653.04 --y-verify-val 140\"; python3 scripts/"
+      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0013/work; CAL=\"--x1-px 190.46 --x1-val 0 --x2-px 1692.03 --x2-val 50 --y1-px 1273.48 --y1-val 0 --y2-px 29.48 --y2-val 280 --x-verify-px 941.48 --x-verify-val 25 --y-verify-px 653.04 --y-verify-val 140\"; python3 scripts/",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
     },
     {
       "call": 96,
       "tool": "Bash",
       "reason": "command moves within the tools directory",
-      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0013/work; CAL=\"--x1-px 190.46 --x1-val 0 --x2-px 1692.03 --x2-val 50 --y1-px 1273.48 --y1-val 0 --y2-px 29.48 --y2-val 280 --x-verify-px 941.48 --x-verify-val 25 --y-verify-px 653.04 --y-verify-val 140\"; python3 scripts/"
+      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0013/work; CAL=\"--x1-px 190.46 --x1-val 0 --x2-px 1692.03 --x2-val 50 --y1-px 1273.48 --y1-val 0 --y2-px 29.48 --y2-val 280 --x-verify-px 941.48 --x-verify-val 25 --y-verify-px 653.04 --y-verify-val 140\"; python3 scripts/",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
     },
     {
       "call": 106,
       "tool": "Bash",
       "reason": "command moves within the tools directory",
-      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0013/work; CAL=\"--x1-px 190.46 --x1-val 0 --x2-px 1692.03 --x2-val 50 --y1-px 1273.48 --y1-val 0 --y2-px 29.48 --y2-val 280 --x-verify-px 941.48 --x-verify-val 25 --y-verify-px 653.04 --y-verify-val 140\"; python3 scripts/"
+      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0013/work; CAL=\"--x1-px 190.46 --x1-val 0 --x2-px 1692.03 --x2-val 50 --y1-px 1273.48 --y1-val 0 --y2-px 29.48 --y2-val 280 --x-verify-px 941.48 --x-verify-val 25 --y-verify-px 653.04 --y-verify-val 140\"; python3 scripts/",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
     },
     {
       "call": 116,
       "tool": "Bash",
       "reason": "command moves within the tools directory",
-      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0013/work; CAL=\"--x1-px 190.46 --x1-val 0 --x2-px 1692.03 --x2-val 50 --y1-px 1273.48 --y1-val 0 --y2-px 29.48 --y2-val 280 --x-verify-px 941.48 --x-verify-val 25 --y-verify-px 653.04 --y-verify-val 140\"; python3 scripts/"
+      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0013/work; CAL=\"--x1-px 190.46 --x1-val 0 --x2-px 1692.03 --x2-val 50 --y1-px 1273.48 --y1-val 0 --y2-px 29.48 --y2-val 280 --x-verify-px 941.48 --x-verify-val 25 --y-verify-px 653.04 --y-verify-val 140\"; python3 scripts/",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
     },
     {
       "call": 119,
       "tool": "Bash",
       "reason": "command moves within the tools directory",
-      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0013/work; CAL=\"--x1-px 190.46 --x1-val 0 --x2-px 1692.03 --x2-val 50 --y1-px 1273.48 --y1-val 0 --y2-px 29.48 --y2-val 280 --x-verify-px 941.48 --x-verify-val 25 --y-verify-px 653.04 --y-verify-val 140\"; python3 scripts/"
+      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0013/work; CAL=\"--x1-px 190.46 --x1-val 0 --x2-px 1692.03 --x2-val 50 --y1-px 1273.48 --y1-val 0 --y2-px 29.48 --y2-val 280 --x-verify-px 941.48 --x-verify-val 25 --y-verify-px 653.04 --y-verify-val 140\"; python3 scripts/",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
     },
     {
       "call": 127,
       "tool": "Bash",
       "reason": "command moves within the tools directory",
-      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0013/work; CAL=\"--x1-px 190.46 --x1-val 0 --x2-px 1692.03 --x2-val 50 --y1-px 1273.48 --y1-val 0 --y2-px 29.48 --y2-val 280 --x-verify-px 941.48 --x-verify-val 25 --y-verify-px 653.04 --y-verify-val 140\"; python3 scripts/"
+      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0013/work; CAL=\"--x1-px 190.46 --x1-val 0 --x2-px 1692.03 --x2-val 50 --y1-px 1273.48 --y1-val 0 --y2-px 29.48 --y2-val 280 --x-verify-px 941.48 --x-verify-val 25 --y-verify-px 653.04 --y-verify-val 140\"; python3 scripts/",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
     },
     {
       "call": 137,
       "tool": "Bash",
       "reason": "command moves within the tools directory",
-      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0013/work; CAL=\"--x1-px 190.46 --x1-val 0 --x2-px 1692.03 --x2-val 50 --y1-px 1273.48 --y1-val 0 --y2-px 29.48 --y2-val 280 --x-verify-px 941.48 --x-verify-val 25 --y-verify-px 653.04 --y-verify-val 140\"; python3 scripts/"
+      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0013/work; CAL=\"--x1-px 190.46 --x1-val 0 --x2-px 1692.03 --x2-val 50 --y1-px 1273.48 --y1-val 0 --y2-px 29.48 --y2-val 280 --x-verify-px 941.48 --x-verify-val 25 --y-verify-px 653.04 --y-verify-val 140\"; python3 scripts/",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
     },
     {
       "call": 158,
       "tool": "Bash",
       "reason": "command moves within the tools directory",
-      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0013/work; CAL6=\"--x1-px 177.52 --x1-val 0 --x2-px 1704.49 --x2-val 50 --y1-px 1297.02 --y1-val 0 --y2-px 31.47 --y2-val 80 --x-verify-px 941.07 --x-verify-val 25 --y-verify-px 664.03 --y-verify-val 40\"; python3 scripts/d"
+      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0013/work; CAL6=\"--x1-px 177.52 --x1-val 0 --x2-px 1704.49 --x2-val 50 --y1-px 1297.02 --y1-val 0 --y2-px 31.47 --y2-val 80 --x-verify-px 941.07 --x-verify-val 25 --y-verify-px 664.03 --y-verify-val 40\"; python3 scripts/d",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
     },
     {
       "call": 162,
       "tool": "Bash",
       "reason": "command moves within the tools directory",
-      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0013/work; CAL7=\"--x1-px 217.91 --x1-val 0 --x2-px 1694.5 --x2-val 50 --y1-px 1293.53 --y1-val 0 --y2-px 45.02 --y2-val 280 --x-verify-px 957.03 --x-verify-val 25 --y-verify-px 669.47 --y-verify-val 140\"; python3 scripts/"
+      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0013/work; CAL7=\"--x1-px 217.91 --x1-val 0 --x2-px 1694.5 --x2-val 50 --y1-px 1293.53 --y1-val 0 --y2-px 45.02 --y2-val 280 --x-verify-px 957.03 --x-verify-val 25 --y-verify-px 669.47 --y-verify-val 140\"; python3 scripts/",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
     },
     {
       "call": 167,
       "tool": "Bash",
       "reason": "command moves within the tools directory",
-      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0013/work; CAL6=\"--x1-px 177.52 --x1-val 0 --x2-px 1704.49 --x2-val 50 --y1-px 1297.02 --y1-val 0 --y2-px 31.47 --y2-val 80 --x-verify-px 941.07 --x-verify-val 25 --y-verify-px 664.03 --y-verify-val 40\"; python3 scripts/d"
+      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0013/work; CAL6=\"--x1-px 177.52 --x1-val 0 --x2-px 1704.49 --x2-val 50 --y1-px 1297.02 --y1-val 0 --y2-px 31.47 --y2-val 80 --x-verify-px 941.07 --x-verify-val 25 --y-verify-px 664.03 --y-verify-val 40\"; python3 scripts/d",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
     }
   ],
   "cross_access": [],
   "tool_calls": 203,
   "output_problems": [],
-  "flags_unreviewed": 15,
+  "flags_unreviewed": 0,
   "flags_access": 0,
-  "access_ok": false,
-  "ok": false,
+  "access_ok": true,
+  "ok": true,
   "earlier_agents": [],
   "unfinished_agents": []
 }

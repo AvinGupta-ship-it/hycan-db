@@ -1,0 +1,45 @@
+{
+  "screener": "B",
+  "batch": "HYC-0027",
+  "transcript": "agent-a28cfa0ec6a416982.jsonl",
+  "launcher_exact": true,
+  "prompt_sha256_ok": true,
+  "models": [
+    "claude-opus-5-5"
+  ],
+  "api_error_stops": 0,
+  "operator_stops": 0,
+  "compactions": 0,
+  "operator_messages": [],
+  "operator_messages_ok": true,
+  "model_ok": true,
+  "flags": [
+    {
+      "call": 113,
+      "tool": "Bash",
+      "reason": "command opens the tools directory: /home/claude/work/v1_tools_frozen",
+      "detail": "mkdir -p /home/claude/work/runs/extract/B/HYC-0027/work/runs && cd /home/claude/work/runs/extract/B/HYC-0027/work && cat > drive.py << 'EOF'\nimport json, subprocess, sys, os\nTOOLS='/home/claude/work/v1_tools_frozen'\nS5='/home/claude/work/runs/extract/B/HYC-0027/in/pages/si1-4.png'\nM4='/home/claude/w"
+    },
+    {
+      "call": 120,
+      "tool": "ToolSearch",
+      "reason": "tool outside the allowed set",
+      "detail": "{\"query\": \"select:TaskStop\", \"max_results\": 1}"
+    },
+    {
+      "call": 121,
+      "tool": "TaskStop",
+      "reason": "tool outside the allowed set",
+      "detail": "{\"task_id\": \"b2a1btrg0\"}"
+    }
+  ],
+  "cross_access": [],
+  "tool_calls": 132,
+  "output_problems": [],
+  "flags_unreviewed": 3,
+  "flags_access": 0,
+  "access_ok": false,
+  "ok": false,
+  "earlier_agents": [],
+  "unfinished_agents": []
+}
