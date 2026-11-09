@@ -204,8 +204,9 @@ recorded in its review:
   extractor B on HYC-0093 (`trial/`), extractor A on HYC-0098 (`dg/`),
   extractor B on HYC-0111 (`trial/`), extractor A on HYC-0124 (`trial/`,
   not self-reported), extractor B on HYC-0124 (`trial/`), extractor B on
-  HYC-0034 (`trial/`), extractor B on HYC-0045 (`trial/`) and extractor B on
-  HYC-0047 (`trial/`) was refused, and nothing was written;
+  HYC-0034 (`trial/`), extractor B on HYC-0045 (`trial/`), extractor B on
+  HYC-0047 (`trial/`) and extractor B on HYC-0060 (`testruns/`) was refused,
+  and nothing was written;
 - writing a scratch image of the agent's own page to `/dev/null.png` and
   removing it: extractor B on HYC-0048 and, hours later, extractor B on
   HYC-0095. Neither read the file back as input. Extractor B on HYC-0021
