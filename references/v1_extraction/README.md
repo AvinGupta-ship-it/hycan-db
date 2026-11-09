@@ -162,9 +162,11 @@ recorded in its review:
   self-reported), and reconciler C on HYC-0100 (whose listing went to
   `head -0`, so it saw nothing);
 - reading a tool script's source: extractor A on HYC-0094 (`sed` of
-  `digitize_figure.py`, piped to `head -0`, so nothing was printed) and
+  `digitize_figure.py`, piped to `head -0`, so nothing was printed),
   extractor A on HYC-0096 (`grep` of `validate_row_detail.py` for the message
-  its validator run had printed). Neither file holds paper data;
+  its validator run had printed) and extractor A on HYC-0124 (`cat` of
+  `digitize_figure.py`, piped to `head -0`, so nothing was printed; not
+  self-reported). Neither file holds paper data;
 - listing the folder that holds the run folders of every stage
   (`/home/claude/work/runs`, reached as `ls ../../../../`): extractor A on
   HYC-0095, which saw the five folder names (`elig`, `extract`, `screen`,
@@ -186,14 +188,16 @@ recorded in its review:
   no file names overlapped, and across every transcript no other agent opened
   any of those folders, so no paper's rows contain another's digitizations.
   After the tools directory was made immutable (below), the same mistake by
-  extractor B on HYC-0093 (`trial/`), extractor A on HYC-0098 (`dg/`) and
-  extractor B on HYC-0111 (`trial/`) was refused, and nothing was written;
+  extractor B on HYC-0093 (`trial/`), extractor A on HYC-0098 (`dg/`),
+  extractor B on HYC-0111 (`trial/`) and extractor A on HYC-0124 (`trial/`,
+  not self-reported) was refused, and nothing was written;
 - writing a scratch image of the agent's own page to `/dev/null.png` and
   removing it: extractor B on HYC-0048 and, hours later, extractor B on
   HYC-0095. Neither read the file back as input. Listing a system font folder
   (extractor B on HYC-0068 and on HYC-0099, which also loaded two DejaVu fonts
   from it to label its own overlay images) and looking up programs on the
-  system path with `which` (reconciler C on HYC-0087) reach no paper data.
+  system path with `which` (reconciler C on HYC-0087 and on HYC-0022) reach
+  no paper data.
 
 Except where stated, all of these were reported by the agents themselves
 after their reply. The tools check above was added after the first, because

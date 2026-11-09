@@ -18,16 +18,20 @@
       "call": 16,
       "tool": "Bash",
       "reason": "command in the tools directory reads more than its scripts' output: diff - /home/claude/work/runs/extract/C/HYC-0127/work/hdr.txt",
-      "detail": "cd /home/claude/work/v1_tools_frozen && head -1 /home/claude/work/runs/extract/C/HYC-0127/out/rows.csv > /home/claude/work/runs/extract/C/HYC-0127/work/hdr.txt && sed -n '180p' /home/claude/work/runs/extract/prompts/reconcile.md | diff - /home/claude/work/runs/extract/C/HYC-0127/work/hdr.txt && echo"
+      "detail": "cd /home/claude/work/v1_tools_frozen && head -1 /home/claude/work/runs/extract/C/HYC-0127/out/rows.csv > /home/claude/work/runs/extract/C/HYC-0127/work/hdr.txt && sed -n '180p' /home/claude/work/runs/extract/prompts/reconcile.md | diff - /home/claude/work/runs/extract/C/HYC-0127/work/hdr.txt && echo",
+      "review": {
+        "access": false,
+        "note": "No instruction breach. From the tools directory it copies the header of its own out/rows.csv to its own work/hdr.txt, prints line 180 of its own instruction file (reconcile.md) and diffs the two, then runs validate_row_detail.py on its own rows. Nothing else in the tools directory is opened."
+      }
     }
   ],
   "cross_access": [],
   "tool_calls": 18,
   "output_problems": [],
-  "flags_unreviewed": 1,
+  "flags_unreviewed": 0,
   "flags_access": 0,
-  "access_ok": false,
-  "ok": false,
+  "access_ok": true,
+  "ok": true,
   "earlier_agents": [],
   "unfinished_agents": []
 }

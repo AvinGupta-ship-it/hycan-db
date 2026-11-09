@@ -1,0 +1,122 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T04:40:02+00:00",
+  "status": "discarded",
+  "paper_id": "HYC-0112",
+  "figure": "Fig. 6 right (298 K)",
+  "series_name": "Pt10CEMC-ad highest-pressure marker",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0112/work/p16_298_nolegend.png",
+    "sha256": "6eeb326f6992fffbee37309d94cf4630f8b1ba4611bef35a53a27243da2066da",
+    "width_px": 1241,
+    "height_px": 1755
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 719.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1047.0,
+        "value": 20.0
+      },
+      "scale": "linear",
+      "label": "pressure_bar",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 680.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 222.0,
+        "value": 0.2
+      },
+      "scale": "linear",
+      "label": "uptake_wt_pct",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 883.0,
+        "stated": 10.0,
+        "predicted": 10.0,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 451.0,
+        "stated": 0.1,
+        "predicted": 0.1,
+        "relative_error": 0.0
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#0000ff",
+    "color_rgb": [
+      0,
+      0,
+      255
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 4359,
+    "matched_pixels_in_region": 70,
+    "region": [
+      1036,
+      345,
+      1054,
+      368
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 18.32,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 4-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 20.0,
+      "y": 0.14104803493449783,
+      "pixel_x": 1047.0,
+      "pixel_y": 357.0,
+      "pixel_count": 45,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 20.0,
+      "expected": 0.17,
+      "got": 0.14104803493449783,
+      "difference": -0.028951965065502183,
+      "percent": 17.030567685589517,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": false,
+      "checked_utc": "2026-10-30T04:40:47+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": null,
+    "notes": "DISCARDED by a failed \u00a73.4 step 6 check. No row may be written from this archive. Re-calibrate from the axis ticks or obtain a higher-resolution crop and extract again; do not adjust this one to fit."
+  }
+}

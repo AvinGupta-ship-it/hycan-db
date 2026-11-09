@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T01:24:32+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0106",
+  "figure": "Fig. 9b",
+  "series_name": "1st cycle (circle) highest-pressure marker, RT (Fig. 9b)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0106/work/f9b_c1.png",
+    "sha256": "08444ed397ddb0661e486b795df70225ca930de7cc596bb7590909a0cb3b5b90",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 667.3,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 954.49,
+        "value": 60.0
+      },
+      "scale": "linear",
+      "label": "",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 860.46,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 621.39,
+        "value": 1.4
+      },
+      "scale": "linear",
+      "label": "",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 858.72,
+        "stated": 40.0,
+        "predicted": 39.99164316306279,
+        "relative_error": 0.00020892092343025582
+      },
+      {
+        "axis": "y",
+        "pixel": 758.14,
+        "stated": 0.6,
+        "predicted": 0.5991885221901536,
+        "relative_error": 0.0013524630164106026
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 30.0,
+    "matched_pixels_in_image": 41,
+    "matched_pixels_in_region": 41,
+    "region": [
+      994,
+      793,
+      1011,
+      804
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 9.562800000000003,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 70.13475399561266,
+      "y": 0.36719564736116694,
+      "pixel_x": 1003.0,
+      "pixel_y": 797.7560975609756,
+      "pixel_count": 41,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 9b, digitized (1st cycle (circle) highest-pressure marker, RT (Fig. 9b))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig9b_RT_cycle1_top_CG_PC_KOH_298K.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

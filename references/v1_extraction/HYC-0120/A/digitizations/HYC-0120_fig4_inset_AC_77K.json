@@ -1,0 +1,156 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-03T01:24:00+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0120",
+  "figure": "Fig. 4 inset",
+  "series_name": "AC_77K",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0120/in/pages/main-3.png",
+    "sha256": "a4d0431ca6edf3706800f26aae46daeaa8829a1137df0fc44aca62310284114a",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 898.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1073.0,
+        "value": 50.0
+      },
+      "scale": "linear",
+      "label": "H2 pressure [bar]",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 887.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 713.0,
+        "value": 3.0
+      },
+      "scale": "linear",
+      "label": "hydrogen storage [wt%]",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 1003.0,
+        "stated": 30.0,
+        "predicted": 30.0,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 771.0,
+        "stated": 2.0,
+        "predicted": 2.0,
+        "relative_error": 0.0
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 100.0,
+    "matched_pixels_in_image": 66494,
+    "matched_pixels_in_region": 46,
+    "region": [
+      900,
+      715,
+      1072,
+      885
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 6.96,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 2-px opening",
+    "marker_size_px": [
+      3,
+      40
+    ],
+    "rejected_markers": [],
+    "n_points": 5,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 2.4285714285714284,
+      "y": 1.9655172413793103,
+      "pixel_x": 906.5,
+      "pixel_y": 773.0,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 7.285714285714286,
+      "y": 2.344827586206897,
+      "pixel_x": 923.5,
+      "pixel_y": 751.0,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 15.964285714285714,
+      "y": 2.605603448275862,
+      "pixel_x": 953.875,
+      "pixel_y": 735.875,
+      "pixel_count": 8,
+      "outside_axis_range": false
+    },
+    {
+      "x": 38.42857142857143,
+      "y": 2.7241379310344827,
+      "pixel_x": 1032.5,
+      "pixel_y": 729.0,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 44.285714285714285,
+      "y": 2.6982758620689657,
+      "pixel_x": 1053.0,
+      "pixel_y": 730.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 44.2857,
+      "expected": 2.7,
+      "got": 2.6982759251471826,
+      "difference": -0.0017240748528175587,
+      "percent": 0.06385462417842809,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-11-03T01:24:08+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 4 inset, digitized (AC_77K)",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 44.2857."
+  }
+}

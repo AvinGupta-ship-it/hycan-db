@@ -18,28 +18,40 @@
       "call": 38,
       "tool": "Bash",
       "reason": "command climbs with ..",
-      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/A/HYC-0125/work; I=$W/main-11_a_blue_filled.png; python3 scripts/digitize_figure.py extract --image $I --out $W/t3_a77.json --color '#1338dd' --tolerance 80 --open-px 3 --mode markers --x1-px 263.17 --x1-val 0 --x2-px 584 --x2-"
+      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/A/HYC-0125/work; I=$W/main-11_a_blue_filled.png; python3 scripts/digitize_figure.py extract --image $I --out $W/t3_a77.json --color '#1338dd' --tolerance 80 --open-px 3 --mode markers --x1-px 263.17 --x1-val 0 --x2-px 584 --x2-",
+      "review": {
+        "access": false,
+        "note": "In the tools directory the command only runs digitize_figure.py on an image in its own work directory, with --out in its own work directory and output to /dev/null; it then changes to its own work directory, from which '../in/pages/main-11.png' is its own page image. Nothing else in the tools directory or outside its run directory is opened."
+      }
     },
     {
       "call": 38,
       "tool": "Bash",
       "reason": "command moves within the tools directory",
-      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/A/HYC-0125/work; I=$W/main-11_a_blue_filled.png; python3 scripts/digitize_figure.py extract --image $I --out $W/t3_a77.json --color '#1338dd' --tolerance 80 --open-px 3 --mode markers --x1-px 263.17 --x1-val 0 --x2-px 584 --x2-"
+      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/A/HYC-0125/work; I=$W/main-11_a_blue_filled.png; python3 scripts/digitize_figure.py extract --image $I --out $W/t3_a77.json --color '#1338dd' --tolerance 80 --open-px 3 --mode markers --x1-px 263.17 --x1-val 0 --x2-px 584 --x2-",
+      "review": {
+        "access": false,
+        "note": "In the tools directory the command only runs digitize_figure.py on an image in its own work directory, with --out in its own work directory and output to /dev/null; it then changes to its own work directory, from which '../in/pages/main-11.png' is its own page image. Nothing else in the tools directory or outside its run directory is opened."
+      }
     },
     {
       "call": 50,
       "tool": "Bash",
       "reason": "command names a path outside the allowed paths: /digitizations/",
-      "detail": "mkdir -p /home/claude/work/runs/extract/A/HYC-0125/work && cat > /home/claude/work/runs/extract/A/HYC-0125/work/build_rows.py <<'E'\nimport csv, json\nOUT='/home/claude/work/runs/extract/A/HYC-0125/out'\ncols=\"paper_id,doi,first_author,year,journal,title,sample_id,material_class,material_description,sy"
+      "detail": "mkdir -p /home/claude/work/runs/extract/A/HYC-0125/work && cat > /home/claude/work/runs/extract/A/HYC-0125/work/build_rows.py <<'E'\nimport csv, json\nOUT='/home/claude/work/runs/extract/A/HYC-0125/out'\ncols=\"paper_id,doi,first_author,year,journal,title,sample_id,material_class,material_description,sy",
+      "review": {
+        "access": false,
+        "note": "The flagged path is the end of a path the script builds from its own output folder (OUT + '/digitizations/'); every absolute path it names is in the agent's own run directory. Nothing outside it is opened."
+      }
     }
   ],
   "cross_access": [],
   "tool_calls": 53,
   "output_problems": [],
-  "flags_unreviewed": 3,
+  "flags_unreviewed": 0,
   "flags_access": 0,
-  "access_ok": false,
-  "ok": false,
+  "access_ok": true,
+  "ok": true,
   "earlier_agents": [],
   "unfinished_agents": []
 }

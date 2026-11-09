@@ -1,0 +1,168 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T01:23:07+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0106",
+  "figure": "Fig. S7 (middle panel, 273 K)",
+  "series_name": "ADS 273 K (Fig. S7)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0106/work/s7f_p2.png",
+    "sha256": "404bed0311b91c0cf64780f40455a8eb471378136aedb99b6084edd5d98239c0",
+    "width_px": 1241,
+    "height_px": 1754
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 516.01,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 814.15,
+        "value": 0.8
+      },
+      "scale": "linear",
+      "label": "",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1122.9,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 997.73,
+        "value": 0.024
+      },
+      "scale": "linear",
+      "label": "",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 665.11,
+        "stated": 0.4,
+        "predicted": 0.4000804990943853,
+        "relative_error": 0.00020124773596322254
+      },
+      {
+        "axis": "y",
+        "pixel": 1060.29,
+        "stated": 0.012,
+        "predicted": 0.01200479348086604,
+        "relative_error": 0.00039945673883659663
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 30.0,
+    "matched_pixels_in_image": 461,
+    "matched_pixels_in_region": 461,
+    "region": [
+      498,
+      942,
+      822,
+      1127
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 5.006800000000003,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 8,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 0.07194176030693775,
+      "y": 0.0021529168092588326,
+      "pixel_x": 542.820895522388,
+      "pixel_y": 1111.6716417910447,
+      "pixel_count": 67,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.11454595209877955,
+      "y": 0.0029086537547031313,
+      "pixel_x": 558.6984126984127,
+      "pixel_y": 1107.7301587301588,
+      "pixel_count": 63,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.19405076501632526,
+      "y": 0.005038341298457081,
+      "pixel_x": 588.327868852459,
+      "pixel_y": 1096.622950819672,
+      "pixel_count": 61,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.27603770830127183,
+      "y": 0.006948291500030545,
+      "pixel_x": 618.8823529411765,
+      "pixel_y": 1086.6617647058824,
+      "pixel_count": 68,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.43600992822164086,
+      "y": 0.010238875129823452,
+      "pixel_x": 678.5,
+      "pixel_y": 1069.5,
+      "pixel_count": 64,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.5487086603609044,
+      "y": 0.012348006710873221,
+      "pixel_x": 720.5,
+      "pixel_y": 1058.5,
+      "pixel_count": 64,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.7047014567239964,
+      "y": 0.014755809022805929,
+      "pixel_x": 778.6346153846154,
+      "pixel_y": 1045.9423076923076,
+      "pixel_count": 52,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.8130140202589389,
+      "y": 0.015895182551729656,
+      "pixel_x": 819.0,
+      "pixel_y": 1040.0,
+      "pixel_count": 21,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. S7 (middle panel, 273 K), digitized (ADS 273 K (Fig. S7))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: figS7_ads_CG_PC_KOH_273K.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

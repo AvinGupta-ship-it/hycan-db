@@ -1,0 +1,188 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T01:23:44+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0112",
+  "figure": "Fig. 6 left panel, 77 K",
+  "series_name": "Fig. 6 left (77 K), Pt5CEMC-de, open red triangles",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0112/work/t/L_red_open_img.png",
+    "sha256": "e54c6a8c16b48e4dc45f481ed74e4853cac0ee5b29bb1b59542967099f0b6f7a",
+    "width_px": 1241,
+    "height_px": 1755
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 218.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 550.0,
+        "value": 20.0
+      },
+      "scale": "linear",
+      "label": "",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 691.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 240.0,
+        "value": 6.0
+      },
+      "scale": "linear",
+      "label": "",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 384.0,
+        "stated": 10.0,
+        "predicted": 10.0,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 466.0,
+        "stated": 3.0,
+        "predicted": 2.9933481152993346,
+        "relative_error": 0.0022172949002217854
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff0000",
+    "color_rgb": [
+      255,
+      0,
+      0
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 389,
+    "matched_pixels_in_region": 389,
+    "region": [
+      205,
+      195,
+      565,
+      700
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 18.04,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 9,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 4.006024096385542,
+      "y": 2.8869179600886916,
+      "pixel_x": 284.5,
+      "pixel_y": 474.0,
+      "pixel_count": 38,
+      "outside_axis_range": false
+    },
+    {
+      "x": 5.023427041499332,
+      "y": 3.0750184774575025,
+      "pixel_x": 301.3888888888889,
+      "pixel_y": 459.8611111111111,
+      "pixel_count": 36,
+      "outside_axis_range": false
+    },
+    {
+      "x": 5.993975903614458,
+      "y": 3.246119733924612,
+      "pixel_x": 317.5,
+      "pixel_y": 447.0,
+      "pixel_count": 38,
+      "outside_axis_range": false
+    },
+    {
+      "x": 8.012048192771084,
+      "y": 3.528743713157753,
+      "pixel_x": 351.0,
+      "pixel_y": 425.7560975609756,
+      "pixel_count": 41,
+      "outside_axis_range": false
+    },
+    {
+      "x": 9.006024096385541,
+      "y": 3.631929046563193,
+      "pixel_x": 367.5,
+      "pixel_y": 418.0,
+      "pixel_count": 38,
+      "outside_axis_range": false
+    },
+    {
+      "x": 11.024096385542169,
+      "y": 3.848034178789682,
+      "pixel_x": 401.0,
+      "pixel_y": 401.7560975609756,
+      "pixel_count": 41,
+      "outside_axis_range": false
+    },
+    {
+      "x": 14.012717536813922,
+      "y": 4.1260162601626025,
+      "pixel_x": 450.6111111111111,
+      "pixel_y": 380.8611111111111,
+      "pixel_count": 36,
+      "outside_axis_range": false
+    },
+    {
+      "x": 15.993975903614457,
+      "y": 4.283813747228382,
+      "pixel_x": 483.5,
+      "pixel_y": 369.0,
+      "pixel_count": 38,
+      "outside_axis_range": false
+    },
+    {
+      "x": 20.0,
+      "y": 4.593045265264182,
+      "pixel_x": 550.0,
+      "pixel_y": 345.7560975609756,
+      "pixel_count": 41,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 20.0,
+      "expected": 4.58,
+      "got": 4.593045265264182,
+      "difference": 0.013045265264182149,
+      "percent": 0.2848311193052871,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-10-30T01:24:23+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 6 left panel, 77 K, digitized (Fig. 6 left (77 K), Pt5CEMC-de, open red triangles)",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 20.0."
+  }
+}

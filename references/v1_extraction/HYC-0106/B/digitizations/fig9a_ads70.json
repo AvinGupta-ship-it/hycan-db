@@ -1,0 +1,124 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T01:20:22+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0106",
+  "figure": "Fig. 9a",
+  "series_name": "Fig. 9a CG_PC_KOH RT adsorption marker at ~70 bar (partly covered by the open desorption marker)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0106/work/fig89_clean.png",
+    "sha256": "4d42e7ffe61d469dfac9f58f9c3b2f8eddcd8a8bb5b508f202c905f79276a11c",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 261.2,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 548.46,
+        "value": 60.0
+      },
+      "scale": "linear",
+      "label": "pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 860.46,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 587.34,
+        "value": 1.6
+      },
+      "scale": "linear",
+      "label": "quantity adsorbed (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 357.0,
+        "stated": 20.0,
+        "predicted": 20.00974726728399,
+        "relative_error": 0.0004873633641995667
+      },
+      {
+        "axis": "y",
+        "pixel": 723.61,
+        "stated": 0.8,
+        "predicted": 0.8016988869361454,
+        "relative_error": 0.0021236086701817425
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 150.0,
+    "matched_pixels_in_image": 77634,
+    "matched_pixels_in_region": 7,
+    "region": [
+      589,
+      768,
+      605,
+      786
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 10.924800000000001,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      3,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 70.25790473538157,
+      "y": 0.5014812955059001,
+      "pixel_x": 597.5714285714286,
+      "pixel_y": 774.8571428571429,
+      "pixel_count": 7,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [
+    {
+      "at": 70.25790473538157,
+      "expected": 0.5,
+      "got": 0.5014812955059001,
+      "difference": 0.0014812955059001487,
+      "percent": 0.29625910118002974,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-10-30T01:21:05+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 9a, digitized (Fig. 9a CG_PC_KOH RT adsorption marker at ~70 bar (partly covered by the open desorption marker))",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 70.25790473538157."
+  }
+}

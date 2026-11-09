@@ -1,0 +1,196 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T04:39:57+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0112",
+  "figure": "Fig. 6 left (77 K)",
+  "series_name": "Pt5CEMC-de (open red down-triangles; derived image of located open markers)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0112/work/derived_fig6_77K_Pt5CEMC-de.png",
+    "sha256": "97a4f1da22a632e3a48badc03aa1e1056cc5632712d0d36a2ad46e3b3d6ee260",
+    "width_px": 1241,
+    "height_px": 1755
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 218.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 550.0,
+        "value": 20.0
+      },
+      "scale": "linear",
+      "label": "pressure_bar",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 691.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 240.0,
+        "value": 6.0
+      },
+      "scale": "linear",
+      "label": "uptake_wt_pct",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 384.0,
+        "stated": 10.0,
+        "predicted": 10.0,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 466.0,
+        "stated": 3.0,
+        "predicted": 2.9933481152993346,
+        "relative_error": 0.0022172949002217854
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff0000",
+    "color_rgb": [
+      255,
+      0,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 337,
+    "matched_pixels_in_region": 337,
+    "region": [
+      212,
+      200,
+      560,
+      697
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 18.04,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 10,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 2.560240963855422,
+      "y": 2.4908749786798565,
+      "pixel_x": 260.5,
+      "pixel_y": 503.7692307692308,
+      "pixel_count": 26,
+      "outside_axis_range": false
+    },
+    {
+      "x": 4.011601963409193,
+      "y": 2.889381621088938,
+      "pixel_x": 284.5925925925926,
+      "pixel_y": 473.81481481481484,
+      "pixel_count": 27,
+      "outside_axis_range": false
+    },
+    {
+      "x": 5.0245426149040595,
+      "y": 3.075634392707563,
+      "pixel_x": 301.4074074074074,
+      "pixel_y": 459.81481481481484,
+      "pixel_count": 27,
+      "outside_axis_range": false
+    },
+    {
+      "x": 5.999553770638109,
+      "y": 3.2485833949248577,
+      "pixel_x": 317.5925925925926,
+      "pixel_y": 446.81481481481484,
+      "pixel_count": 27,
+      "outside_axis_range": false
+    },
+    {
+      "x": 8.012048192771084,
+      "y": 3.5259146341463414,
+      "pixel_x": 351.0,
+      "pixel_y": 425.96875,
+      "pixel_count": 32,
+      "outside_axis_range": false
+    },
+    {
+      "x": 9.006024096385541,
+      "y": 3.6349991471942693,
+      "pixel_x": 367.5,
+      "pixel_y": 417.7692307692308,
+      "pixel_count": 26,
+      "outside_axis_range": false
+    },
+    {
+      "x": 11.044949026876738,
+      "y": 3.848371141054068,
+      "pixel_x": 401.34615384615387,
+      "pixel_y": 401.7307692307692,
+      "pixel_count": 26,
+      "outside_axis_range": false
+    },
+    {
+      "x": 14.011601963409193,
+      "y": 4.126632175412663,
+      "pixel_x": 450.5925925925926,
+      "pixel_y": 380.81481481481484,
+      "pixel_count": 27,
+      "outside_axis_range": false
+    },
+    {
+      "x": 15.999553770638109,
+      "y": 4.286277408228627,
+      "pixel_x": 483.5925925925926,
+      "pixel_y": 368.81481481481484,
+      "pixel_count": 27,
+      "outside_axis_range": false
+    },
+    {
+      "x": 20.0,
+      "y": 4.590216186252771,
+      "pixel_x": 550.0,
+      "pixel_y": 345.96875,
+      "pixel_count": 32,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 20.0,
+      "expected": 4.58,
+      "got": 4.590216186252771,
+      "difference": 0.010216186252771209,
+      "percent": 0.22306083521334516,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-10-30T04:40:46+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 6 left (77 K), digitized (Pt5CEMC-de (open red down-triangles; derived image of located open markers))",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 20.0."
+  }
+}

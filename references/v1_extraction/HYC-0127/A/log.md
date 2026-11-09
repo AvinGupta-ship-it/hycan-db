@@ -1,0 +1,8 @@
+- Table 1 (p. 202): extracted 4 rows (uptake of as-prepared and Ar-treated fibers for catalysts 90:5:5 and 85:10:5, 12 MPa = 120 bar, 298 K). Surface areas 34 and 51 m2/g, TEM diameters, carbon yield and interlayer spacing recorded as sample characterization.
+- Text (p. 203), 6.54 wt % for the 85:10:5 Ar-treated sample: same value as Table 1, one row (M4). Text also gives volumetric 45 kg H2/m3 (estimate, footnote 34) and density 700 kg/m3, put on M4.
+- Figure 3 (p. 203): uptake against time (kinetics), not an isotherm; not digitized. It shows no value that the table and text do not give.
+- Table 2 (p. 203): initial uptake rates, not uptake values; not extracted.
+- Not extracted, other material: MmNi4.5Al0.5 alloy calibration standard, 1.27 wt % (p. 202).
+- Not extracted, computed or modelled, not measured: 0.2 wt % physisorbed monolayer estimate, 0.4 wt % atomic monolayer estimate, 0.46 wt % simulation (Wang and Johnson), 8 wt % simulation (Cracknell), ~0.2 wt % Ahn et al. (other paper's data, cited), 6.5 wt % in abstract (same as the 6.54 row), "approximately 80%" reversible (estimate, not an uptake value), 9 wt % future target, 2 wt % per 1 K differential (error estimate).
+- Figure 2 (TEM), Figure 1 (apparatus): no uptake values.
+- Checked the page 2 image: "ca. 10^3 Pa" degas pressure confirmed.

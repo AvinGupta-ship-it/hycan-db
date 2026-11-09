@@ -1,0 +1,144 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T01:24:28+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0022",
+  "figure": "Fig7",
+  "series_name": "AC",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0022/work/fig7_iso_AC.png",
+    "sha256": "7c20a6715d929822056d38b02ae5ff4d1efc339b2502a88c199a2f71758c4fdc",
+    "width_px": 1228,
+    "height_px": 1632
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 739.27,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1058.81,
+        "value": 20.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1114.6,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 880.73,
+        "value": 7.0
+      },
+      "scale": "linear",
+      "label": "H2 Uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 899.19,
+        "stated": 10.0,
+        "predicted": 10.009388495962952,
+        "relative_error": 0.0009388495962951993
+      },
+      {
+        "axis": "y",
+        "pixel": 981.0,
+        "stated": 4.0,
+        "predicted": 3.998802753666566,
+        "relative_error": 0.00029931158335849695
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 120.0,
+    "matched_pixels_in_image": 145,
+    "matched_pixels_in_region": 145,
+    "region": [
+      741,
+      866,
+      1073,
+      1113
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 9.354799999999996,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 5,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 1.0100398953124747,
+      "y": 1.1874909929384634,
+      "pixel_x": 755.4074074074074,
+      "pixel_y": 1074.9259259259259,
+      "pixel_count": 27,
+      "outside_axis_range": false
+    },
+    {
+      "x": 6.014687780350924,
+      "y": 2.66287538661079,
+      "pixel_x": 835.3666666666667,
+      "pixel_y": 1025.6333333333334,
+      "pixel_count": 30,
+      "outside_axis_range": false
+    },
+    {
+      "x": 8.02086467038303,
+      "y": 2.9347983508897277,
+      "pixel_x": 867.4193548387096,
+      "pixel_y": 1016.5483870967741,
+      "pixel_count": 31,
+      "outside_axis_range": false
+    },
+    {
+      "x": 10.028791387619707,
+      "y": 3.1350750416898254,
+      "pixel_x": 899.5,
+      "pixel_y": 1009.8571428571429,
+      "pixel_count": 28,
+      "outside_axis_range": false
+    },
+    {
+      "x": 20.043187081429558,
+      "y": 4.0287339120023935,
+      "pixel_x": 1059.5,
+      "pixel_y": 980.0,
+      "pixel_count": 26,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig7, digitized (AC)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: Fig7_AC.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

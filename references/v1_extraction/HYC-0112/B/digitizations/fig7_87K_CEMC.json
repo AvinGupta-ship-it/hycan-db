@@ -1,0 +1,273 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T04:40:08+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0112",
+  "figure": "Fig. 7 left (CEMC), main panel",
+  "series_name": "87 K (black diamonds)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0112/work/p18_main_masked.png",
+    "sha256": "2d73e430fd6178adeacb6b37297df3206990b82d1e11910479d2d59c8c31bb93",
+    "width_px": 1241,
+    "height_px": 1755
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 240.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 579.0,
+        "value": 20.0
+      },
+      "scale": "linear",
+      "label": "pressure_bar",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1404.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 951.0,
+        "value": 6.0
+      },
+      "scale": "linear",
+      "label": "uptake_wt_pct",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 410.0,
+        "stated": 10.0,
+        "predicted": 10.029498525073745,
+        "relative_error": 0.002949852507374473
+      },
+      {
+        "axis": "y",
+        "pixel": 1178.0,
+        "stated": 3.0,
+        "predicted": 2.993377483443709,
+        "relative_error": 0.002207505518763734
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 120.0,
+    "matched_pixels_in_image": 41068,
+    "matched_pixels_in_region": 1895,
+    "region": [
+      234,
+      914,
+      583,
+      1396
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 18.12,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      30,
+      2000
+    ],
+    "rejected_markers": [
+      {
+        "pixel_x": 578.4,
+        "pixel_y": 1390.6,
+        "pixels": 15,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 527.5,
+        "pixel_y": 1392.0,
+        "pixels": 12,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 544.5,
+        "pixel_y": 1392.0,
+        "pixels": 12,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 493.6,
+        "pixel_y": 1393.6,
+        "pixels": 15,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 511.0,
+        "pixel_y": 1393.0,
+        "pixels": 9,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 477.0,
+        "pixel_y": 1394.5,
+        "pixels": 12,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 443.0,
+        "pixel_y": 1395.0,
+        "pixels": 9,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 460.0,
+        "pixel_y": 1395.0,
+        "pixels": 9,
+        "reason": "too small"
+      }
+    ],
+    "n_points": 15,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.32448377581120946,
+      "y": 0.5496688741721854,
+      "pixel_x": 245.5,
+      "pixel_y": 1362.5,
+      "pixel_count": 52,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.0141873858688026,
+      "y": 1.2267423525701682,
+      "pixel_x": 257.1904761904762,
+      "pixel_y": 1311.3809523809523,
+      "pixel_count": 63,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.508428150021072,
+      "y": 2.123462630085148,
+      "pixel_x": 282.51785714285717,
+      "pixel_y": 1243.6785714285713,
+      "pixel_count": 56,
+      "outside_axis_range": false
+    },
+    {
+      "x": 4.014850981588852,
+      "y": 2.649691710436171,
+      "pixel_x": 308.05172413793105,
+      "pixel_y": 1203.948275862069,
+      "pixel_count": 58,
+      "outside_axis_range": false
+    },
+    {
+      "x": 5.489777235276168,
+      "y": 3.0470427038136547,
+      "pixel_x": 333.05172413793105,
+      "pixel_y": 1173.948275862069,
+      "pixel_count": 58,
+      "outside_axis_range": false
+    },
+    {
+      "x": 7.015813143769041,
+      "y": 3.3657583324286175,
+      "pixel_x": 358.91803278688525,
+      "pixel_y": 1149.8852459016393,
+      "pixel_count": 61,
+      "outside_axis_range": false
+    },
+    {
+      "x": 8.496575171241439,
+      "y": 3.6289145807610286,
+      "pixel_x": 384.0169491525424,
+      "pixel_y": 1130.0169491525423,
+      "pixel_count": 59,
+      "outside_axis_range": false
+    },
+    {
+      "x": 10.025429762994609,
+      "y": 3.840602877369262,
+      "pixel_x": 409.9310344827586,
+      "pixel_y": 1114.0344827586207,
+      "pixel_count": 58,
+      "outside_axis_range": false
+    },
+    {
+      "x": 11.504424778761063,
+      "y": 4.052980132450331,
+      "pixel_x": 435.0,
+      "pixel_y": 1098.0,
+      "pixel_count": 59,
+      "outside_axis_range": false
+    },
+    {
+      "x": 13.00495352590861,
+      "y": 4.244408346869923,
+      "pixel_x": 460.4339622641509,
+      "pixel_y": 1083.5471698113208,
+      "pixel_count": 53,
+      "outside_axis_range": false
+    },
+    {
+      "x": 13.985823096904857,
+      "y": 4.338242562024316,
+      "pixel_x": 477.05970149253733,
+      "pixel_y": 1076.4626865671642,
+      "pixel_count": 67,
+      "outside_axis_range": false
+    },
+    {
+      "x": 14.985250737463128,
+      "y": 4.4635761589403975,
+      "pixel_x": 494.0,
+      "pixel_y": 1067.0,
+      "pixel_count": 59,
+      "outside_axis_range": false
+    },
+    {
+      "x": 16.456108229071305,
+      "y": 4.622059831011646,
+      "pixel_x": 518.9310344827586,
+      "pixel_y": 1055.0344827586207,
+      "pixel_count": 58,
+      "outside_axis_range": false
+    },
+    {
+      "x": 17.964601769911503,
+      "y": 4.735099337748345,
+      "pixel_x": 544.5,
+      "pixel_y": 1046.5,
+      "pixel_count": 58,
+      "outside_axis_range": false
+    },
+    {
+      "x": 19.970501474926255,
+      "y": 4.947019867549669,
+      "pixel_x": 578.5,
+      "pixel_y": 1030.5,
+      "pixel_count": 52,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 7 left (CEMC), main panel, digitized (87 K (black diamonds))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig7_87K_CEMC.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

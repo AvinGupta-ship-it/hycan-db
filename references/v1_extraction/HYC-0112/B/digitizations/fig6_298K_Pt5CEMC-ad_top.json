@@ -1,0 +1,124 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-10-30T04:40:01+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0112",
+  "figure": "Fig. 6 right (298 K)",
+  "series_name": "Pt5CEMC-ad highest-pressure marker",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0112/work/p16_298_nolegend.png",
+    "sha256": "6eeb326f6992fffbee37309d94cf4630f8b1ba4611bef35a53a27243da2066da",
+    "width_px": 1241,
+    "height_px": 1755
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 719.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1047.0,
+        "value": 20.0
+      },
+      "scale": "linear",
+      "label": "pressure_bar",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 680.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 222.0,
+        "value": 0.2
+      },
+      "scale": "linear",
+      "label": "uptake_wt_pct",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 883.0,
+        "stated": 10.0,
+        "predicted": 10.0,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 451.0,
+        "stated": 0.1,
+        "predicted": 0.1,
+        "relative_error": 0.0
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff0000",
+    "color_rgb": [
+      255,
+      0,
+      0
+    ],
+    "tolerance": 90.0,
+    "matched_pixels_in_image": 2830,
+    "matched_pixels_in_region": 62,
+    "region": [
+      1036,
+      250,
+      1054,
+      272
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 18.32,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 20.00156347717324,
+      "y": 0.18275669018027096,
+      "pixel_x": 1047.025641025641,
+      "pixel_y": 261.4871794871795,
+      "pixel_count": 39,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [
+    {
+      "at": 20.00156347717324,
+      "expected": 0.18,
+      "got": 0.18275669018027096,
+      "difference": 0.002756690180270971,
+      "percent": 1.531494544594984,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-10-30T04:41:15+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 6 right (298 K), digitized (Pt5CEMC-ad highest-pressure marker)",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 20.00156347717324."
+  }
+}

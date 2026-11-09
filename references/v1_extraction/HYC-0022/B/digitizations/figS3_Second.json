@@ -1,0 +1,152 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-03T01:26:47+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0022",
+  "figure": "Figure S3",
+  "series_name": "Second",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0022/work/figS3_Second.png",
+    "sha256": "cab7086e7d7314cb5c607b11b338a0a06356980eae6067f077eae80c105e979c",
+    "width_px": 1240,
+    "height_px": 1755
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 345.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 900.0,
+        "value": 20.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 855.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 420.5,
+        "value": 8.0
+      },
+      "scale": "linear",
+      "label": "Hydrogen Uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 622.5,
+        "stated": 10.0,
+        "predicted": 10.0,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 638.5,
+        "stated": 4.0,
+        "predicted": 3.9908045977011493,
+        "relative_error": 0.0022988505747126853
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 650,
+    "matched_pixels_in_region": 650,
+    "region": [
+      347,
+      423,
+      926,
+      853
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 17.400000000000002,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 6,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 1.0073091959884408,
+      "y": 2.583040555194102,
+      "pixel_x": 372.95283018867923,
+      "pixel_y": 715.0471698113207,
+      "pixel_count": 106,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.0082512418961014,
+      "y": 3.559823826404554,
+      "pixel_x": 400.7289719626168,
+      "pixel_y": 661.9345794392524,
+      "pixel_count": 107,
+      "outside_axis_range": false
+    },
+    {
+      "x": 4.016264051662281,
+      "y": 4.421849252364968,
+      "pixel_x": 456.4513274336283,
+      "pixel_y": 615.0619469026549,
+      "pixel_count": 113,
+      "outside_axis_range": false
+    },
+    {
+      "x": 6.018018018018018,
+      "y": 4.977569467693339,
+      "pixel_x": 512.0,
+      "pixel_y": 584.8446601941747,
+      "pixel_count": 103,
+      "outside_axis_range": false
+    },
+    {
+      "x": 8.031364698031364,
+      "y": 5.378288633461048,
+      "pixel_x": 567.8703703703703,
+      "pixel_y": 563.0555555555555,
+      "pixel_count": 108,
+      "outside_axis_range": false
+    },
+    {
+      "x": 10.031093039942595,
+      "y": 5.728410131217577,
+      "pixel_x": 623.362831858407,
+      "pixel_y": 544.0176991150443,
+      "pixel_count": 113,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure S3, digitized (Second)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: figS3_Second.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

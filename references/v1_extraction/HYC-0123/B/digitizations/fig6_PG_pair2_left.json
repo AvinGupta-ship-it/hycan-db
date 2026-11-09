@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T17:24:47+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0123",
+  "figure": "Fig. 6",
+  "series_name": "PG (pair2_left of an overlapping marker pair, split ROI)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0123/in/pages/main-5.png",
+    "sha256": "3d8dd01ba403eaba061829fcf26e3b3434ace944ccf1f0b677c12e97b20809cf",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 737.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1089.0,
+        "value": 1.2
+      },
+      "scale": "linear",
+      "label": "P /bar",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1431.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1180.5,
+        "value": 2.0
+      },
+      "scale": "linear",
+      "label": "H2 uptake /wt%",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 913.5,
+        "stated": 0.6,
+        "predicted": 0.6008534850640114,
+        "relative_error": 0.0014224751066856576
+      },
+      {
+        "axis": "y",
+        "pixel": 1331.0,
+        "stated": 0.8,
+        "predicted": 0.7984031936127745,
+        "relative_error": 0.001996007984031989
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 60685,
+    "matched_pixels_in_region": 51,
+    "region": [
+      993,
+      1404,
+      1001,
+      1420
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 10.02,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.8905363567902268,
+      "y": 0.1596806387225549,
+      "pixel_x": 998.3529411764706,
+      "pixel_y": 1411.0,
+      "pixel_count": 51,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 6, digitized (PG (pair2_left of an overlapping marker pair, split ROI))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig6_PG_pair2_left.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}
