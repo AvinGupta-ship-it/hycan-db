@@ -1,0 +1,33 @@
+{
+  "screener": "C",
+  "batch": "HYC-0127",
+  "transcript": "agent-a981fd175fe7e5698.jsonl",
+  "launcher_exact": true,
+  "prompt_sha256_ok": true,
+  "models": [
+    "claude-opus-5-5"
+  ],
+  "api_error_stops": 0,
+  "operator_stops": 0,
+  "compactions": 0,
+  "operator_messages": [],
+  "operator_messages_ok": true,
+  "model_ok": true,
+  "flags": [
+    {
+      "call": 16,
+      "tool": "Bash",
+      "reason": "command in the tools directory reads more than its scripts' output: diff - /home/claude/work/runs/extract/C/HYC-0127/work/hdr.txt",
+      "detail": "cd /home/claude/work/v1_tools_frozen && head -1 /home/claude/work/runs/extract/C/HYC-0127/out/rows.csv > /home/claude/work/runs/extract/C/HYC-0127/work/hdr.txt && sed -n '180p' /home/claude/work/runs/extract/prompts/reconcile.md | diff - /home/claude/work/runs/extract/C/HYC-0127/work/hdr.txt && echo"
+    }
+  ],
+  "cross_access": [],
+  "tool_calls": 18,
+  "output_problems": [],
+  "flags_unreviewed": 1,
+  "flags_access": 0,
+  "access_ok": false,
+  "ok": false,
+  "earlier_agents": [],
+  "unfinished_agents": []
+}
