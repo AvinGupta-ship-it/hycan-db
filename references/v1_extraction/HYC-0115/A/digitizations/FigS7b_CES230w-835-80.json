@@ -1,0 +1,164 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-03T01:26:37+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0115",
+  "figure": "FigS7b",
+  "series_name": "CES230w-835-80",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0115/work/derived/FigS7b_CES230w-835-80.png",
+    "sha256": "ae5fd4d397453e28cdd5e5945780b76494a6588337691689de67531c3e153ed0",
+    "width_px": 1241,
+    "height_px": 1754
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 675.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1039.0,
+        "value": 100.0
+      },
+      "scale": "linear",
+      "label": "P (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 602.2,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 299.0,
+        "value": 8.0
+      },
+      "scale": "linear",
+      "label": "H2 uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 820.0,
+        "stated": 40.0,
+        "predicted": 39.83516483516483,
+        "relative_error": 0.004120879120879195
+      },
+      {
+        "axis": "y",
+        "pixel": 451.0,
+        "stated": 4.0,
+        "predicted": 3.989445910290238,
+        "relative_error": 0.0026385224274404484
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff0000",
+    "color_rgb": [
+      255,
+      0,
+      0
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 405,
+    "matched_pixels_in_region": 405,
+    "region": [
+      670,
+      246,
+      1050,
+      622
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 12.128000000000002,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 6,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 30.315170940170926,
+      "y": 6.425681618293755,
+      "pixel_x": 785.3472222222222,
+      "pixel_y": 358.6666666666667,
+      "pixel_count": 72,
+      "outside_axis_range": false
+    },
+    {
+      "x": 40.40317790317791,
+      "y": 6.979533623333095,
+      "pixel_x": 822.0675675675676,
+      "pixel_y": 337.6756756756757,
+      "pixel_count": 74,
+      "outside_axis_range": false
+    },
+    {
+      "x": 50.24563671622495,
+      "y": 7.363029644575509,
+      "pixel_x": 857.8941176470588,
+      "pixel_y": 323.1411764705882,
+      "pixel_count": 85,
+      "outside_axis_range": false
+    },
+    {
+      "x": 60.57170677423843,
+      "y": 7.672689622925086,
+      "pixel_x": 895.4810126582279,
+      "pixel_y": 311.40506329113924,
+      "pixel_count": 79,
+      "outside_axis_range": false
+    },
+    {
+      "x": 70.64894564894566,
+      "y": 7.928332025957356,
+      "pixel_x": 932.1621621621622,
+      "pixel_y": 301.7162162162162,
+      "pixel_count": 74,
+      "outside_axis_range": false
+    },
+    {
+      "x": 100.98116169544744,
+      "y": 8.91217489634376,
+      "pixel_x": 1042.5714285714287,
+      "pixel_y": 264.42857142857144,
+      "pixel_count": 21,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [
+    {
+      "at": 100.0,
+      "expected": 8.8,
+      "got": 8.880350352522687,
+      "difference": 0.08035035252268585,
+      "percent": 0.9130721877577938,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-11-03T01:29:10+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "FigS7b, digitized (CES230w-835-80)",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 100.0."
+  }
+}

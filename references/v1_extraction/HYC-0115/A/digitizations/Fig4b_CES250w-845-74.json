@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-03T01:26:57+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0115",
+  "figure": "Fig4b",
+  "series_name": "CES250w-845-74",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0115/work/derived/Fig4b_CES250w-845-74.png",
+    "sha256": "4e44c95cffa4faa70f9b26fbd57ad303d8d184f290c07bf001ab53798809a99b",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 665.3,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 963.0,
+        "value": 100.0
+      },
+      "scale": "linear",
+      "label": "P (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1451.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1200.0,
+        "value": 8.0
+      },
+      "scale": "linear",
+      "label": "H2 uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 843.55,
+        "stated": 60.0,
+        "predicted": 59.875713805844796,
+        "relative_error": 0.002071436569253393
+      },
+      {
+        "axis": "y",
+        "pixel": 1326.0,
+        "stated": 4.0,
+        "predicted": 3.9840637450199203,
+        "relative_error": 0.003984063745019917
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#0000ff",
+    "color_rgb": [
+      0,
+      0,
+      255
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 48,
+    "matched_pixels_in_region": 48,
+    "region": [
+      660,
+      1148,
+      972,
+      1456
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 10.040000000000001,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 100.13296383383721,
+      "y": 6.281540504648072,
+      "pixel_x": 963.3958333333334,
+      "pixel_y": 1253.9166666666667,
+      "pixel_count": 48,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig4b, digitized (CES250w-845-74)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: Fig4b_CES250w-845-74.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

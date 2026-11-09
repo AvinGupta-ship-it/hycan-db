@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T17:48:20+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0134",
+  "figure": "Fig. 10b",
+  "series_name": "C@Pd90Co10-6 highest-pressure point (marker clipped by frame, disc refit in work copy)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0134/work/main-09_filled_ends.png",
+    "sha256": "cc14338d63ee65a37158479a19a3768e6e39ab0e248eeb2d3dbf3291e05779cf",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 744.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1148.5,
+        "value": 0.1
+      },
+      "scale": "linear",
+      "label": "Pressure_MPa",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1264.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 969.5,
+        "value": 0.02
+      },
+      "scale": "linear",
+      "label": "Hydrogen_capacity_wt_pct",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 905.5,
+        "stated": 0.04,
+        "predicted": 0.03985148514851486,
+        "relative_error": 0.0037128712871285427
+      },
+      {
+        "axis": "y",
+        "pixel": 1117.0,
+        "stated": 0.01,
+        "predicted": 0.01,
+        "relative_error": 0.0
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff0000",
+    "color_rgb": [
+      255,
+      0,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 6135,
+    "matched_pixels_in_region": 64,
+    "region": [
+      1136,
+      980,
+      1148,
+      1008
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 11.8,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.09918143130102483,
+      "y": 0.018348498364555457,
+      "pixel_x": 1145.1929824561403,
+      "pixel_y": 993.859649122807,
+      "pixel_count": 57,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 10b, digitized (C@Pd90Co10-6 highest-pressure point (marker clipped by frame, disc refit in work copy))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig10b_C@Pd90Co10-6_end.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

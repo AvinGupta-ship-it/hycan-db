@@ -1,0 +1,160 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T17:53:11+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0135",
+  "figure": "Fig. 4b",
+  "series_name": "BP280@87K (open stars)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0135/work/fig4b_open_t230.png",
+    "sha256": "ed029540cae83e62933dd1d1cc0bb9596456cf2d57cdcb66ffd64195fdb180c5",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 743.5,
+        "value": 0.2
+      },
+      "reference_2": {
+        "pixel": 1075.0,
+        "value": 1.2
+      },
+      "scale": "linear",
+      "label": "P/kPa",
+      "decades_spanned": 0.7781512503836435
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1408.5,
+        "value": 0.002
+      },
+      "reference_2": {
+        "pixel": 1188.5,
+        "value": 0.008
+      },
+      "scale": "linear",
+      "label": "n_exc/mmol g-1",
+      "decades_spanned": 0.6020599913279624
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 876.0,
+        "stated": 0.6,
+        "predicted": 0.5996983408748116,
+        "relative_error": 0.0005027652086473748
+      },
+      {
+        "axis": "y",
+        "pixel": 1335.0,
+        "stated": 0.004,
+        "predicted": 0.004004545454545455,
+        "relative_error": 0.0011363636363637478
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 40,
+    "matched_pixels_in_region": 40,
+    "region": [
+      685,
+      1153,
+      1125,
+      1482
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 8.8,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      2,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 7,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 6
+  },
+  "series": [
+    {
+      "x": 0.07541478129713439,
+      "y": 0.00047545454545454323,
+      "pixel_x": 702.2,
+      "pixel_y": 1464.4,
+      "pixel_count": 5,
+      "outside_axis_range": true
+    },
+    {
+      "x": 0.08808446455505273,
+      "y": 0.0005463636363636376,
+      "pixel_x": 706.4,
+      "pixel_y": 1461.8,
+      "pixel_count": 5,
+      "outside_axis_range": true
+    },
+    {
+      "x": 0.10950226244343893,
+      "y": 0.0006681818181818204,
+      "pixel_x": 713.5,
+      "pixel_y": 1457.3333333333333,
+      "pixel_count": 6,
+      "outside_axis_range": true
+    },
+    {
+      "x": 0.13262946204122666,
+      "y": 0.0007818181818181797,
+      "pixel_x": 721.1666666666666,
+      "pixel_y": 1453.1666666666667,
+      "pixel_count": 6,
+      "outside_axis_range": true
+    },
+    {
+      "x": 0.17586726998491706,
+      "y": 0.001031818181818182,
+      "pixel_x": 735.5,
+      "pixel_y": 1444.0,
+      "pixel_count": 6,
+      "outside_axis_range": true
+    },
+    {
+      "x": 0.29753645047762706,
+      "y": 0.001599999999999998,
+      "pixel_x": 775.8333333333334,
+      "pixel_y": 1423.1666666666667,
+      "pixel_count": 6,
+      "outside_axis_range": true
+    },
+    {
+      "x": 0.7460030165912519,
+      "y": 0.003504545454545457,
+      "pixel_x": 924.5,
+      "pixel_y": 1353.3333333333333,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 4b, digitized (BP280@87K (open stars))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0135_fig4b_BP280_87K.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

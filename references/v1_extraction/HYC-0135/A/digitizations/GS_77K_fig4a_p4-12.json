@@ -1,0 +1,176 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T17:48:55+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0135",
+  "figure": "Fig. 4a",
+  "series_name": "GS@77K points 4-12",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0135/in/pages/main-4.png",
+    "sha256": "d66f24695995ce6f7bfa84629884a24b8b320a5bf5ac247db8d7649784c22e3d",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 233.0,
+        "value": 0.2
+      },
+      "reference_2": {
+        "pixel": 518.0,
+        "value": 1.0
+      },
+      "scale": "linear",
+      "label": "P/kPa",
+      "decades_spanned": 0.6989700043360189
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1425.5,
+        "value": 0.02
+      },
+      "reference_2": {
+        "pixel": 1203.0,
+        "value": 0.1
+      },
+      "scale": "linear",
+      "label": "n_exc/mmol g-1",
+      "decades_spanned": 0.6989700043360189
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 375.0,
+        "stated": 0.6,
+        "predicted": 0.5985964912280701,
+        "relative_error": 0.002339181286549752
+      },
+      {
+        "axis": "y",
+        "pixel": 1314.0,
+        "stated": 0.06,
+        "predicted": 0.06008988764044944,
+        "relative_error": 0.0014981273408240052
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#231f20",
+    "color_rgb": [
+      35,
+      31,
+      32
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 27933,
+    "matched_pixels_in_region": 1117,
+    "region": [
+      228,
+      1189,
+      583,
+      1478
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 8.9,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 9,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 0.22526315789473686,
+      "y": 0.03779775280898877,
+      "pixel_x": 242.0,
+      "pixel_y": 1376.0,
+      "pixel_count": 49,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.2814035087719298,
+      "y": 0.04408988764044944,
+      "pixel_x": 262.0,
+      "pixel_y": 1358.5,
+      "pixel_count": 56,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.34035087719298246,
+      "y": 0.05002247191011236,
+      "pixel_x": 283.0,
+      "pixel_y": 1342.0,
+      "pixel_count": 49,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.3992982456140351,
+      "y": 0.0557752808988764,
+      "pixel_x": 304.0,
+      "pixel_y": 1326.0,
+      "pixel_count": 49,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.5228070175438597,
+      "y": 0.06638202247191012,
+      "pixel_x": 348.0,
+      "pixel_y": 1296.5,
+      "pixel_count": 56,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.6463157894736842,
+      "y": 0.07626966292134832,
+      "pixel_x": 392.0,
+      "pixel_y": 1269.0,
+      "pixel_count": 49,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.7698245614035089,
+      "y": 0.08543820224719102,
+      "pixel_x": 436.0,
+      "pixel_y": 1243.5,
+      "pixel_count": 56,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.897543859649123,
+      "y": 0.09478651685393259,
+      "pixel_x": 481.5,
+      "pixel_y": 1217.5,
+      "pixel_count": 64,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.0252631578947369,
+      "y": 0.10341573033707865,
+      "pixel_x": 527.0,
+      "pixel_y": 1193.5,
+      "pixel_count": 56,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 4a, digitized (GS@77K points 4-12)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: GS_77K_fig4a_p4-12.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

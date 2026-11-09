@@ -1,0 +1,188 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-03T01:26:59+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0115",
+  "figure": "Fig4b",
+  "series_name": "CES250w-885-81",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0115/work/derived/Fig4b_CES250w-885-81.png",
+    "sha256": "68747ba8665fb908a91cdab089f3dd5d10d86d56e752c7f89547f4169bcde7ea",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 665.3,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 963.0,
+        "value": 100.0
+      },
+      "scale": "linear",
+      "label": "P (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1451.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1200.0,
+        "value": 8.0
+      },
+      "scale": "linear",
+      "label": "H2 uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 843.55,
+        "stated": 60.0,
+        "predicted": 59.875713805844796,
+        "relative_error": 0.002071436569253393
+      },
+      {
+        "axis": "y",
+        "pixel": 1326.0,
+        "stated": 4.0,
+        "predicted": 3.9840637450199203,
+        "relative_error": 0.003984063745019917
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#9400d3",
+    "color_rgb": [
+      148,
+      0,
+      211
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 373,
+    "matched_pixels_in_region": 373,
+    "region": [
+      660,
+      1148,
+      972,
+      1456
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 10.040000000000001,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 9,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 6
+  },
+  "series": [
+    {
+      "x": 2.9633695732321943,
+      "y": 3.6933242639199335,
+      "pixel_x": 674.1219512195122,
+      "pixel_y": 1335.121951219512,
+      "pixel_count": 41,
+      "outside_axis_range": false
+    },
+    {
+      "x": 30.15291145156345,
+      "y": 7.233673999653561,
+      "pixel_x": 755.0652173913044,
+      "pixel_y": 1224.0434782608695,
+      "pixel_count": 46,
+      "outside_axis_range": false
+    },
+    {
+      "x": 40.24558653379614,
+      "y": 7.876759628154054,
+      "pixel_x": 785.1111111111111,
+      "pixel_y": 1203.8666666666666,
+      "pixel_count": 45,
+      "outside_axis_range": false
+    },
+    {
+      "x": 50.59743749700083,
+      "y": 8.292923543919558,
+      "pixel_x": 815.9285714285714,
+      "pixel_y": 1190.8095238095239,
+      "pixel_count": 42,
+      "outside_axis_range": true
+    },
+    {
+      "x": 60.674696482556755,
+      "y": 8.602542212103966,
+      "pixel_x": 845.9285714285714,
+      "pixel_y": 1181.095238095238,
+      "pixel_count": 42,
+      "outside_axis_range": true
+    },
+    {
+      "x": 70.46587943463994,
+      "y": 8.846664623557054,
+      "pixel_x": 875.0769230769231,
+      "pixel_y": 1173.4358974358975,
+      "pixel_count": 39,
+      "outside_axis_range": true
+    },
+    {
+      "x": 80.79722315530178,
+      "y": 9.117055587175109,
+      "pixel_x": 905.8333333333334,
+      "pixel_y": 1164.952380952381,
+      "pixel_count": 42,
+      "outside_axis_range": true
+    },
+    {
+      "x": 90.80632676607617,
+      "y": 9.337952537675386,
+      "pixel_x": 935.6304347826087,
+      "pixel_y": 1158.0217391304348,
+      "pixel_count": 46,
+      "outside_axis_range": true
+    },
+    {
+      "x": 100.77258985555927,
+      "y": 9.600000000000001,
+      "pixel_x": 965.3,
+      "pixel_y": 1149.8,
+      "pixel_count": 30,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [
+    {
+      "at": 100.0,
+      "expected": 9.6,
+      "got": 9.579685945549574,
+      "difference": -0.020314054450425445,
+      "percent": 0.2116047338585984,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-11-03T01:29:09+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig4b, digitized (CES250w-885-81)",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 100.0."
+  }
+}

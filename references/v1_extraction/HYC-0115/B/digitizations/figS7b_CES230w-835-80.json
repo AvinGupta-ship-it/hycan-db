@@ -1,0 +1,164 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T17:28:58+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0115",
+  "figure": "Fig. S7b",
+  "series_name": "CES230w-835-80",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0115/work/fit/s7b_CES230w-835-80.png",
+    "sha256": "fe57de51609890935a1e3558ca8b4f88337154309119259cf25a3a35fb8a3a64",
+    "width_px": 1241,
+    "height_px": 1754
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 675.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1039.0,
+        "value": 100.0
+      },
+      "scale": "linear",
+      "label": "P (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 602.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 299.0,
+        "value": 8.0
+      },
+      "scale": "linear",
+      "label": "H2 uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 893.0,
+        "stated": 60.0,
+        "predicted": 59.89010989010989,
+        "relative_error": 0.001831501831501825
+      },
+      {
+        "axis": "y",
+        "pixel": 451.0,
+        "stated": 4.0,
+        "predicted": 3.9867986798679866,
+        "relative_error": 0.0033003300330033403
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff0000",
+    "color_rgb": [
+      255,
+      0,
+      0
+    ],
+    "tolerance": 30.0,
+    "matched_pixels_in_image": 654,
+    "matched_pixels_in_region": 654,
+    "region": [
+      669,
+      245,
+      1052,
+      622
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 12.120000000000001,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 6,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 30.21978021978022,
+      "y": 6.468646864686469,
+      "pixel_x": 785.0,
+      "pixel_y": 357.0,
+      "pixel_count": 109,
+      "outside_axis_range": false
+    },
+    {
+      "x": 40.38461538461539,
+      "y": 6.996699669966997,
+      "pixel_x": 822.0,
+      "pixel_y": 337.0,
+      "pixel_count": 109,
+      "outside_axis_range": false
+    },
+    {
+      "x": 50.27472527472527,
+      "y": 7.366336633663367,
+      "pixel_x": 858.0,
+      "pixel_y": 323.0,
+      "pixel_count": 109,
+      "outside_axis_range": false
+    },
+    {
+      "x": 60.43956043956044,
+      "y": 7.683168316831683,
+      "pixel_x": 895.0,
+      "pixel_y": 311.0,
+      "pixel_count": 109,
+      "outside_axis_range": false
+    },
+    {
+      "x": 70.6043956043956,
+      "y": 7.947194719471947,
+      "pixel_x": 932.0,
+      "pixel_y": 301.0,
+      "pixel_count": 109,
+      "outside_axis_range": false
+    },
+    {
+      "x": 100.82417582417582,
+      "y": 8.844884488448844,
+      "pixel_x": 1042.0,
+      "pixel_y": 267.0,
+      "pixel_count": 109,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [
+    {
+      "at": 100.0,
+      "expected": 8.8,
+      "got": 8.82040204020402,
+      "difference": 0.02040204020401859,
+      "percent": 0.23184136595475668,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-11-09T17:30:08+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. S7b, digitized (CES230w-835-80)",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 100.0."
+  }
+}

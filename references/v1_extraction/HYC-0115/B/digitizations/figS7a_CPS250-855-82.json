@@ -1,0 +1,170 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T17:27:13+00:00",
+  "status": "discarded",
+  "paper_id": "HYC-0115",
+  "figure": "Fig. S7a",
+  "series_name": "CPS250-855-82",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0115/work/fit/s7a_CPS250-855-82.png",
+    "sha256": "4a16b1c849401e59d479215a388af488b8551092a29c55456c4302d05a3f7c85",
+    "width_px": 1241,
+    "height_px": 1754
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 235.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 599.0,
+        "value": 100.0
+      },
+      "scale": "linear",
+      "label": "P (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 602.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 299.0,
+        "value": 8.0
+      },
+      "scale": "linear",
+      "label": "H2 uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 453.0,
+        "stated": 60.0,
+        "predicted": 59.89010989010989,
+        "relative_error": 0.001831501831501825
+      },
+      {
+        "axis": "y",
+        "pixel": 451.0,
+        "stated": 4.0,
+        "predicted": 3.9867986798679866,
+        "relative_error": 0.0033003300330033403
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#008000",
+    "color_rgb": [
+      0,
+      128,
+      0
+    ],
+    "tolerance": 30.0,
+    "matched_pixels_in_image": 504,
+    "matched_pixels_in_region": 504,
+    "region": [
+      229,
+      245,
+      612,
+      622
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 12.120000000000001,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 7,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 10.302197802197801,
+      "y": 4.858085808580858,
+      "pixel_x": 272.5,
+      "pixel_y": 418.0,
+      "pixel_count": 72,
+      "outside_axis_range": false
+    },
+    {
+      "x": 19.917582417582416,
+      "y": 5.782178217821782,
+      "pixel_x": 307.5,
+      "pixel_y": 383.0,
+      "pixel_count": 72,
+      "outside_axis_range": false
+    },
+    {
+      "x": 30.08241758241758,
+      "y": 6.363036303630363,
+      "pixel_x": 344.5,
+      "pixel_y": 361.0,
+      "pixel_count": 72,
+      "outside_axis_range": false
+    },
+    {
+      "x": 60.57692307692307,
+      "y": 7.4983498349834985,
+      "pixel_x": 455.5,
+      "pixel_y": 318.0,
+      "pixel_count": 72,
+      "outside_axis_range": false
+    },
+    {
+      "x": 70.74175824175825,
+      "y": 7.735973597359736,
+      "pixel_x": 492.5,
+      "pixel_y": 309.0,
+      "pixel_count": 72,
+      "outside_axis_range": false
+    },
+    {
+      "x": 80.63186813186813,
+      "y": 7.947194719471947,
+      "pixel_x": 528.5,
+      "pixel_y": 301.0,
+      "pixel_count": 72,
+      "outside_axis_range": false
+    },
+    {
+      "x": 91.07142857142857,
+      "y": 8.052805280528053,
+      "pixel_x": 566.5,
+      "pixel_y": 297.0,
+      "pixel_count": 72,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [
+    {
+      "at": 91.0714,
+      "expected": 7.2,
+      "got": 8.052804991488623,
+      "difference": 0.8528049914886227,
+      "percent": 11.844513770675315,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": false,
+      "checked_utc": "2026-11-09T17:30:28+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": null,
+    "notes": "DISCARDED by a failed \u00a73.4 step 6 check. No row may be written from this archive. Re-calibrate from the axis ticks or obtain a higher-resolution crop and extract again; do not adjust this one to fit."
+  }
+}

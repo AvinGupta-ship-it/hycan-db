@@ -1,0 +1,151 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T17:41:01+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0001",
+  "figure": "Fig. 2b (main-3)",
+  "series_name": "Purified SWCNT II, T=298K (half-filled squares)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0001/in/pages/main-3.png",
+    "sha256": "b0020cff1b4ef1097d99e8b34f15ff31adcb7e597b8f294fb096ce3bf873730e",
+    "width_px": 1240,
+    "height_px": 1655
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 673.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 993.0,
+        "value": 70.0
+      },
+      "scale": "linear",
+      "label": "H2_pressure_bar",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1429.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1108.0,
+        "value": 3.0
+      },
+      "scale": "linear",
+      "label": "weight_pct_storage",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 856.0,
+        "stated": 40.0,
+        "predicted": 39.984350547730834,
+        "relative_error": 0.000391236306729148
+      },
+      {
+        "axis": "y",
+        "pixel": 1268.5,
+        "stated": 1.5,
+        "predicted": 1.5,
+        "relative_error": 0.0
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 50314,
+    "matched_pixels_in_region": 296,
+    "region": [
+      679,
+      1383,
+      992,
+      1427
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 12.84,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 2-px opening",
+    "marker_size_px": [
+      7,
+      2000
+    ],
+    "rejected_markers": [
+      {
+        "pixel_x": 973.0,
+        "pixel_y": 1388.5,
+        "pixels": 6,
+        "reason": "too small"
+      }
+    ],
+    "n_points": 5,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 6.791862284820032,
+      "y": 0.04672897196261682,
+      "pixel_x": 704.5,
+      "pixel_y": 1424.0,
+      "pixel_count": 10,
+      "outside_axis_range": false
+    },
+    {
+      "x": 18.12989045383412,
+      "y": 0.12227414330217998,
+      "pixel_x": 756.25,
+      "pixel_y": 1415.9166666666667,
+      "pixel_count": 12,
+      "outside_axis_range": false
+    },
+    {
+      "x": 29.933489827856025,
+      "y": 0.21378504672897194,
+      "pixel_x": 810.125,
+      "pixel_y": 1406.125,
+      "pixel_count": 8,
+      "outside_axis_range": false
+    },
+    {
+      "x": 58.846208564518435,
+      "y": 0.3398470688190305,
+      "pixel_x": 942.0909090909091,
+      "pixel_y": 1392.6363636363637,
+      "pixel_count": 11,
+      "outside_axis_range": false
+    },
+    {
+      "x": 66.08372456964007,
+      "y": 0.33528037383177567,
+      "pixel_x": 975.125,
+      "pixel_y": 1393.125,
+      "pixel_count": 8,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 2b (main-3), digitized (Purified SWCNT II, T=298K (half-filled squares))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig2b_purified_SWCNT_II_298K.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

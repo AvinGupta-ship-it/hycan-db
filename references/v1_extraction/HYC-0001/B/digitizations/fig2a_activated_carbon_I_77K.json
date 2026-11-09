@@ -1,0 +1,168 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T17:40:57+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0001",
+  "figure": "Fig. 2a (main-3)",
+  "series_name": "Activated carbon I, T=77K (filled circles)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0001/in/pages/main-3.png",
+    "sha256": "b0020cff1b4ef1097d99e8b34f15ff31adcb7e597b8f294fb096ce3bf873730e",
+    "width_px": 1240,
+    "height_px": 1655
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 260.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 584.5,
+        "value": 70.0
+      },
+      "scale": "linear",
+      "label": "H2_pressure_bar",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1432.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1108.0,
+        "value": 6.0
+      },
+      "scale": "linear",
+      "label": "weight_pct_storage",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 446.0,
+        "stated": 40.0,
+        "predicted": 40.07716049382716,
+        "relative_error": 0.0019290123456789487
+      },
+      {
+        "axis": "y",
+        "pixel": 1270.0,
+        "stated": 3.0,
+        "predicted": 3.00462249614792,
+        "relative_error": 0.0015408320493066618
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 50314,
+    "matched_pixels_in_region": 856,
+    "region": [
+      255,
+      1112,
+      583,
+      1385
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 12.98,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 8,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.23765432098765923,
+      "y": 1.2221879815100136,
+      "pixel_x": 261.6,
+      "pixel_y": 1366.4,
+      "pixel_count": 15,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.43209876543209874,
+      "y": 1.6271186440677967,
+      "pixel_x": 262.5,
+      "pixel_y": 1344.5,
+      "pixel_count": 16,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.5761316872428024,
+      "y": 1.8274268104776565,
+      "pixel_x": 263.1666666666667,
+      "pixel_y": 1333.6666666666667,
+      "pixel_count": 18,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.2407407407407405,
+      "y": 3.0693374422187985,
+      "pixel_x": 275.5,
+      "pixel_y": 1266.5,
+      "pixel_count": 16,
+      "outside_axis_range": false
+    },
+    {
+      "x": 11.450617283950617,
+      "y": 3.9938366718027734,
+      "pixel_x": 313.5,
+      "pixel_y": 1216.5,
+      "pixel_count": 16,
+      "outside_axis_range": false
+    },
+    {
+      "x": 20.308641975308642,
+      "y": 4.003081664098613,
+      "pixel_x": 354.5,
+      "pixel_y": 1216.0,
+      "pixel_count": 12,
+      "outside_axis_range": false
+    },
+    {
+      "x": 42.56172839506173,
+      "y": 4.788906009244992,
+      "pixel_x": 457.5,
+      "pixel_y": 1173.5,
+      "pixel_count": 16,
+      "outside_axis_range": false
+    },
+    {
+      "x": 48.20061728395062,
+      "y": 4.62064714946071,
+      "pixel_x": 483.6,
+      "pixel_y": 1182.6,
+      "pixel_count": 15,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 2a (main-3), digitized (Activated carbon I, T=77K (filled circles))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig2a_activated_carbon_I_77K.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

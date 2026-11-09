@@ -1,0 +1,144 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T17:40:59+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0001",
+  "figure": "Fig. 2a (main-3)",
+  "series_name": "Activated carbon I, T=298K (half-filled squares)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0001/in/pages/main-3.png",
+    "sha256": "b0020cff1b4ef1097d99e8b34f15ff31adcb7e597b8f294fb096ce3bf873730e",
+    "width_px": 1240,
+    "height_px": 1655
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 260.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 584.5,
+        "value": 70.0
+      },
+      "scale": "linear",
+      "label": "H2_pressure_bar",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1432.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1108.0,
+        "value": 6.0
+      },
+      "scale": "linear",
+      "label": "weight_pct_storage",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 446.0,
+        "stated": 40.0,
+        "predicted": 40.07716049382716,
+        "relative_error": 0.0019290123456789487
+      },
+      {
+        "axis": "y",
+        "pixel": 1270.0,
+        "stated": 3.0,
+        "predicted": 3.00462249614792,
+        "relative_error": 0.0015408320493066618
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 140.0,
+    "matched_pixels_in_image": 75017,
+    "matched_pixels_in_region": 561,
+    "region": [
+      262,
+      1386,
+      583,
+      1431
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 12.98,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 5,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 7.021604938271605,
+      "y": 0.046224961479198766,
+      "pixel_x": 293.0,
+      "pixel_y": 1430.0,
+      "pixel_count": 9,
+      "outside_axis_range": false
+    },
+    {
+      "x": 18.169753086419757,
+      "y": 0.1645608628659493,
+      "pixel_x": 344.6,
+      "pixel_y": 1423.6,
+      "pixel_count": 15,
+      "outside_axis_range": false
+    },
+    {
+      "x": 29.814814814814817,
+      "y": 0.24036979969183359,
+      "pixel_x": 398.5,
+      "pixel_y": 1419.5,
+      "pixel_count": 14,
+      "outside_axis_range": false
+    },
+    {
+      "x": 58.873456790123456,
+      "y": 0.4345146379044684,
+      "pixel_x": 533.0,
+      "pixel_y": 1409.0,
+      "pixel_count": 9,
+      "outside_axis_range": false
+    },
+    {
+      "x": 66.00308641975309,
+      "y": 0.5084745762711864,
+      "pixel_x": 566.0,
+      "pixel_y": 1405.0,
+      "pixel_count": 9,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 2a (main-3), digitized (Activated carbon I, T=298K (half-filled squares))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig2a_activated_carbon_I_298K.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}
