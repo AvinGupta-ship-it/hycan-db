@@ -1,0 +1,124 @@
+{
+ "paper_id": "HYC-0060",
+ "figure": "Fig. 8 (main-10.png)",
+ "series": "isotherm 8b at ambient temperature",
+ "method": "digitize_figure.py extract --mode markers --open-px 0 --tolerance 330 (RGB distance from #000000), one run per marker with a square ROI around the marker (half-size 4 px in Fig. 5, 5 px for Fig. 5 diamonds and Fig. 9, 6-7 px in Figs. 4 and 8); each entry is the unmodified tool output for one marker. The figure is black-and-white, so series are isolated by ROI only.",
+ "markers": [
+  {
+   "marker": "A8b",
+   "status": "accepted (highest-pressure point)",
+   "tool_output": {
+    "tool": "digitize_figure.py",
+    "tool_version": "2.1",
+    "created_utc": "2026-11-09T19:07:19+00:00",
+    "status": "unchecked",
+    "paper_id": "HYC-0060",
+    "figure": "Fig. 8 (main-10.png)",
+    "series_name": "A8b marker 1",
+    "source_image": {
+     "path": "/home/claude/work/runs/extract/B/HYC-0060/in/pages/main-10.png",
+     "sha256": "48c2067dac0d261daa2a649d668dfd9374c6bbb766132569738c55858ebd4de1",
+     "width_px": 1241,
+     "height_px": 1654
+    },
+    "calibration": {
+     "x": {
+      "axis": "x",
+      "reference_1": {
+       "pixel": 361.25,
+       "value": 0.0
+      },
+      "reference_2": {
+       "pixel": 914.42,
+       "value": 22.0
+      },
+      "scale": "linear",
+      "label": "Hydrogen perssure (MPa)",
+      "decades_spanned": 0.0
+     },
+     "y": {
+      "axis": "y",
+      "reference_1": {
+       "pixel": 548.32,
+       "value": 0.0
+      },
+      "reference_2": {
+       "pixel": 162.6,
+       "value": 0.7
+      },
+      "scale": "linear",
+      "label": "Hydrogen content (wt%)",
+      "decades_spanned": 0.0
+     },
+     "verification_ticks": [
+      {
+       "axis": "x",
+       "pixel": 612.48,
+       "stated": 10.0,
+       "predicted": 9.991611981850065,
+       "relative_error": 0.000838801814993495
+      },
+      {
+       "axis": "y",
+       "pixel": 383.31,
+       "stated": 0.3,
+       "predicted": 0.2994581561754641,
+       "relative_error": 0.0018061460817862345
+      }
+     ]
+    },
+    "isolation": {
+     "color_hex": "#000000",
+     "color_rgb": [
+      0,
+      0,
+      0
+     ],
+     "tolerance": 330.0,
+     "matched_pixels_in_image": 130899,
+     "matched_pixels_in_region": 37,
+     "region": [
+      432,
+      422,
+      442,
+      432
+     ],
+     "region_basis": "explicit (--roi)"
+    },
+    "extraction": {
+     "bin_width_px": 1,
+     "min_pixels_per_bin": 1,
+     "max_cluster_gap_px": 15.4288,
+     "longest_multimodal_run": 0,
+     "mode": "markers",
+     "aggregation": "centroid of each connected marker after a 0-px opening",
+     "marker_size_px": [
+      6,
+      2000
+     ],
+     "rejected_markers": [],
+     "n_points": 1,
+     "multimodal_bins": [],
+     "points_outside_axis_range": 0
+    },
+    "series": [
+     {
+      "x": 3.030909319211289,
+      "y": 0.22041531316653176,
+      "pixel_x": 437.4594594594595,
+      "pixel_y": 426.86486486486484,
+      "pixel_count": 37,
+      "outside_axis_range": false
+     }
+    ],
+    "checks": [],
+    "row_hint": {
+     "extraction_method": "figure_digitized",
+     "source_location": "Fig. 8 (main-10.png), digitized (A8b marker 1)",
+     "notes": "Digitized with digitize_figure.py v2.1; archive: A8b_01.json",
+     "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+    }
+   }
+  }
+ ]
+}

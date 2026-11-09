@@ -1,0 +1,124 @@
+{
+ "paper_id": "HYC-0060",
+ "figure": "Fig. 9 (main-10.png)",
+ "series": "isotherm 6 at ambient temperature",
+ "method": "digitize_figure.py extract --mode markers --open-px 0 --tolerance 330 (RGB distance from #000000), one run per marker with a square ROI around the marker (half-size 4 px in Fig. 5, 5 px for Fig. 5 diamonds and Fig. 9, 6-7 px in Figs. 4 and 8); each entry is the unmodified tool output for one marker. The figure is black-and-white, so series are isolated by ROI only.",
+ "markers": [
+  {
+   "marker": "A6",
+   "status": "accepted (highest-pressure point)",
+   "tool_output": {
+    "tool": "digitize_figure.py",
+    "tool_version": "2.1",
+    "created_utc": "2026-11-09T19:07:20+00:00",
+    "status": "unchecked",
+    "paper_id": "HYC-0060",
+    "figure": "Fig. 9 (main-10.png)",
+    "series_name": "A6 marker 1",
+    "source_image": {
+     "path": "/home/claude/work/runs/extract/B/HYC-0060/in/pages/main-10.png",
+     "sha256": "48c2067dac0d261daa2a649d668dfd9374c6bbb766132569738c55858ebd4de1",
+     "width_px": 1241,
+     "height_px": 1654
+    },
+    "calibration": {
+     "x": {
+      "axis": "x",
+      "reference_1": {
+       "pixel": 190.0,
+       "value": 0.0
+      },
+      "reference_2": {
+       "pixel": 524.69,
+       "value": 3.0
+      },
+      "scale": "linear",
+      "label": "Hydrogen perssure (MPa)",
+      "decades_spanned": 0.0
+     },
+     "y": {
+      "axis": "y",
+      "reference_1": {
+       "pixel": 1443.35,
+       "value": 0.0
+      },
+      "reference_2": {
+       "pixel": 1179.88,
+       "value": 0.2
+      },
+      "scale": "linear",
+      "label": "Hydrogen content (wt%)",
+      "decades_spanned": 0.0
+     },
+     "verification_ticks": [
+      {
+       "axis": "x",
+       "pixel": 357.49,
+       "stated": 1.5,
+       "predicted": 1.5012997101795689,
+       "relative_error": 0.0008664734530459128
+      },
+      {
+       "axis": "y",
+       "pixel": 1311.26,
+       "stated": 0.1,
+       "predicted": 0.10026948039625005,
+       "relative_error": 0.0026948039625004916
+      }
+     ]
+    },
+    "isolation": {
+     "color_hex": "#000000",
+     "color_rgb": [
+      0,
+      0,
+      0
+     ],
+     "tolerance": 330.0,
+     "matched_pixels_in_image": 130899,
+     "matched_pixels_in_region": 35,
+     "region": [
+      475,
+      1273,
+      485,
+      1283
+     ],
+     "region_basis": "explicit (--roi)"
+    },
+    "extraction": {
+     "bin_width_px": 1,
+     "min_pixels_per_bin": 1,
+     "max_cluster_gap_px": 10.538799999999993,
+     "longest_multimodal_run": 0,
+     "mode": "markers",
+     "aggregation": "centroid of each connected marker after a 0-px opening",
+     "marker_size_px": [
+      6,
+      2000
+     ],
+     "rejected_markers": [],
+     "n_points": 1,
+     "multimodal_bins": [],
+     "points_outside_axis_range": 0
+    },
+    "series": [
+     {
+      "x": 2.5989081580823186,
+      "y": 0.12532193960819624,
+      "pixel_x": 479.9428571428571,
+      "pixel_y": 1278.2571428571428,
+      "pixel_count": 35,
+      "outside_axis_range": false
+     }
+    ],
+    "checks": [],
+    "row_hint": {
+     "extraction_method": "figure_digitized",
+     "source_location": "Fig. 9 (main-10.png), digitized (A6 marker 1)",
+     "notes": "Digitized with digitize_figure.py v2.1; archive: A6_01.json",
+     "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+    }
+   }
+  }
+ ]
+}
