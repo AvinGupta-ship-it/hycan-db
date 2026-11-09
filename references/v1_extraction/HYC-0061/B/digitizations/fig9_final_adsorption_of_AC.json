@@ -1,0 +1,196 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:50:48+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0061",
+  "figure": "Fig._9",
+  "series_name": "final adsorption of AC",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0061/work/main-6_fig9_legendmasked.png",
+    "sha256": "5170eaf71b73c82487d3f7ab3d745bdc8f3fafd580e6be11fa4908c693bfecd8",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 176.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 589.0,
+        "value": 8.0
+      },
+      "scale": "linear",
+      "label": "Hydrogen_pressure_MPa",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 968.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 664.0,
+        "value": 0.7
+      },
+      "scale": "linear",
+      "label": "Hydrogen_adsorption_wt_pct",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 383.0,
+        "stated": 4.0,
+        "predicted": 4.004848484848485,
+        "relative_error": 0.00121212121212122
+      },
+      {
+        "axis": "y",
+        "pixel": 837.5,
+        "stated": 0.3,
+        "predicted": 0.30049342105263155,
+        "relative_error": 0.0016447368421051989
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff0000",
+    "color_rgb": [
+      255,
+      0,
+      0
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 2717,
+    "matched_pixels_in_region": 580,
+    "region": [
+      178,
+      665,
+      588,
+      967
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 12.16,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 10,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.3379573512906846,
+      "y": 0.03317495126705649,
+      "pixel_x": 193.92592592592592,
+      "pixel_y": 953.5925925925926,
+      "pixel_count": 27,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.7210389610389608,
+      "y": 0.06677631578947368,
+      "pixel_x": 213.67857142857142,
+      "pixel_y": 939.0,
+      "pixel_count": 28,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.3804329004329001,
+      "y": 0.13585526315789473,
+      "pixel_x": 247.67857142857142,
+      "pixel_y": 909.0,
+      "pixel_count": 28,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.242770562770563,
+      "y": 0.20608552631578944,
+      "pixel_x": 292.14285714285717,
+      "pixel_y": 878.5,
+      "pixel_count": 28,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.1903030303030304,
+      "y": 0.27557565789473687,
+      "pixel_x": 341.0,
+      "pixel_y": 848.3214285714286,
+      "pixel_count": 28,
+      "outside_axis_range": false
+    },
+    {
+      "x": 4.215411255411255,
+      "y": 0.33733552631578945,
+      "pixel_x": 393.85714285714283,
+      "pixel_y": 821.5,
+      "pixel_count": 28,
+      "outside_axis_range": false
+    },
+    {
+      "x": 5.246060606060606,
+      "y": 0.3814967105263158,
+      "pixel_x": 447.0,
+      "pixel_y": 802.3214285714286,
+      "pixel_count": 28,
+      "outside_axis_range": false
+    },
+    {
+      "x": 6.215757575757576,
+      "y": 0.4236842105263158,
+      "pixel_x": 497.0,
+      "pixel_y": 784.0,
+      "pixel_count": 25,
+      "outside_axis_range": false
+    },
+    {
+      "x": 7.218008658008658,
+      "y": 0.46282894736842106,
+      "pixel_x": 548.6785714285714,
+      "pixel_y": 767.0,
+      "pixel_count": 28,
+      "outside_axis_range": false
+    },
+    {
+      "x": 7.612121212121212,
+      "y": 0.4743421052631579,
+      "pixel_x": 569.0,
+      "pixel_y": 762.0,
+      "pixel_count": 25,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 7.5,
+      "expected": 0.47,
+      "got": 0.4710667231292202,
+      "difference": 0.0010667231292202373,
+      "percent": 0.22696236791919944,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-11-09T18:50:54+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig._9, digitized (final adsorption of AC)",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 7.5."
+  }
+}

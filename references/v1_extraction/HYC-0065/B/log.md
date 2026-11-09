@@ -1,0 +1,45 @@
+# HYC-0065 extraction log (agent B, 2026-11-09)
+
+Paper: Baca et al. 2017, Int J Hydrogen Energy 42, 30461-30469. Input: page images main-1 to main-9 only (no SI). All H2 measurements: volumetric Sieverts (IMI Series, Hiden Isochema), 40 °C, up to 45 bar. No 77 K H2 data in the paper.
+
+## Sources extracted from
+- main-7, Table 3, columns "Hydrogen absorption at pressure 20 bar (% H2)" and "... 30 bar (% H2)": 10 values (5 samples x 2 pressures), rows M1-M2, M4-M5, M7-M8, M10-M11, M13-M14; each merged with the matching Fig. 8A plotted point (printed pressure within 2% of a digitized marker).
+- main-6 text, right column ("the H2 uptake capacities at 45 bar are 0.17, 0.51, 0.53, 0.61 and 0.50 wt%"): 5 values, rows M3, M6, M9, M12, M15; each merged with the highest-pressure point of its Fig. 8A curve.
+- main-7 text, right column ("Hydrogen uptake around 0, 55 (20 bar) and 0,59 (30 bar) ... 3-Pd@_C24"): same measurements as Table 3 (rows M10, M11); no separate rows.
+- main-8 text, left column (cycling): "initial 0.61 wt%" (cycle 1, M16), "0.50 wt% at 45 bar" after the first 2 cycles (cycle 2, M17), "After 4 cycles ... 0.48 wt%" (cycle 4, M19, no pressure printed in that sentence, digitized pressure used); each merged with the highest-pressure point of the Fig. 8B curve.
+- main-8 Conclusions ("The maximum H2 storage (0.61 wt%)"): same measurement as M12 (Fig. 8A 3-Pd@C_24 at 45 bar); named in its source_location, no separate row.
+- main-7, Fig. 8A (H2 isotherms at 40 °C, 5 samples): all 5 series digitized (markers mode); rows only for the highest-pressure point of each isotherm (non-77 K rule), all merged with text values; the 20 and 30 bar points merged with Table 3. Archives: digitizations/fig8A_*.json.
+- main-7, Fig. 8B (3-Pd@C_24 after cycles 1-4, 40 °C): all 4 series digitized; rows for the highest-pressure point of each; cycles 1, 2, 4 merged with text values; cycle 3 is the only figure_digitized row (M18). Archives: digitizations/fig8B_cycle*.json.
+- main-5 Table 1 (Pd crystallite size, Pd content by TGA, Pd particle size range, ID/IG) and main-6 Table 2 (BET area, TPV at p/p0 = 0.989, DR micropore volume): characterization copied to every row of each sample.
+- main-3 Experimental/Characterization: synthesis (CVD on SiO2@m-SiO2_C18TMS templates; Pd reflux 24/72/120 h; repeated reflux cycles), N2 sorption at 77 K on Micromeritics ASAP 2010 M, BET method (no P/P0 range), H2 at 40 °C up to 4.5 MPa on IMI Series - Hiden Isochema.
+
+## Values seen but not extracted
+- Table 3 columns "Carbon absorption at pressure 20/30 bar (% H2)" (100, 19.4, 9.5, 4.5, 20.6; 100, 21.9, 11.3, 5.5, 22.1) and "Pd absorption at pressure 20/30 bar (% H2)" (0, 80.6, 90.5, 95.5, 79.4; 0, 78.1, 88.7, 94.5, 78.9): shares of the uptake the authors attribute to carbon and to Pd, computed from the Pd samples' uptakes and the pristine DMHCS uptake; not uptake values.
+- main-7 text: "Pd sorption is over 90% in both pressures" (attributed share) and "Sorption capacity is 5.5 times and 4.5 times higher compared to the unmodified materials" (ratios): not uptake values.
+- Fig. 8A and 8B points other than those named above (low-pressure and intermediate points): not extracted because the isotherms are at 40 °C (only the highest-pressure point of each, plus points equal to printed table values, become rows). They are in the archives.
+- main-2 Introduction values from other work (about 1 wt% per 500 m2/g at 77 K and 35 bar [24]; enhancement factors and conditions from refs 1-4, 29): literature values, not measurements of this paper.
+- Pd@C_120: TEM/SADP only (Fig. 2c), no H2 uptake and no Table 1/2 entry; no row. Its sample number S5 is kept in first-appearance order (DMHCS S1, 3-Pd@C_24 S2 from the abstract, Pd@C_24 S3, Pd@C_72 S4, Pd@C_120 S5, 2-Pd@C_24 S6).
+- SiO2@mSiO2_C18TMS template (Fig. 1a,b): not a carbon sorbent, TEM only.
+- Fig. 7 (N2 adsorption-desorption isotherms at 77 K), Fig. 6 (TGA), Fig. 4 and Fig. 9 (XRD; PdH0.64 formed after cycle 1), Fig. 5 (Raman), Figs. 1-3 and 10 (TEM, size histograms): not H2 uptake; their numerical characterization is from Tables 1-2 and the text.
+- No metal hydride standard, zeolite or MOF was measured.
+
+## Digitization details
+- Fig. 8A calibration (page main-7): x 0 bar at px 188, 50 bar at px 580, check 20 bar at px 345 (residual 0.13%); y 0.0 at px 433, 0.7 at px 146, check 0.4 at px 269 (residual 0%). Tick pixels found from pixel rows/columns.
+- Fig. 8B calibration: x 0 at px 191, 50 at px 579, check 20 at px 347 (residual 0.5%); y 0.0 at px 863, 0.7 at px 572, check 0.4 at px 697 (residual 0.17%).
+- The tool was run on work/main-7_masked.png, a copy of page main-7 with only the two legend boxes and the panel letters "A." and "B." painted white (same pixel grid), because legend symbols share the series colours and no single rectangular ROI excludes them. ROI = inside of each plot frame.
+- Marker counts (isotherm_point_count): each Pd series in Fig. 8A and each cycle in Fig. 8B has 12 markers: one at the origin (0, 0), one at about 0.1-0.5 bar on the y axis, and 10 at about 2.5, 6, 10.5, 15, 20, 25, 30, 35, 40 and 45 bar. The origin markers overlap; their presence is shown by connecting lines running from the origin and by edge pixels of each colour at the origin. DMHCS (Fig. 8A) has 11 visible markers (first at about 0.6 bar, 0.005 wt%); an origin marker hidden under the others cannot be excluded or confirmed, so 11 is recorded.
+- Markers the tool did not separate (counted, not extracted): Fig. 8A DMHCS first marker partly hidden (extracted, centroid biased right); Pd@C_24 origin marker (only a 1-px edge, rejected as too small) and its 45-bar marker, overlapped by the Pd@C_72 and 2-Pd@C_24 markers, which the tool returned as two components (44.457 and 45.339 bar; one marker, their mean is used in the M6 note); 2-Pd@C_24 origin marker hidden; 3-Pd@C_24 origin marker and first low-pressure marker (only its light hollow half visible, filled half clipped by the y axis); Fig. 8B cycle 1 and cycle 2 origin markers hidden under cycle 4; cycle 3 first low-pressure and origin markers visible only as 3-px and 1-px fragments (recorded as rejected groups in the archive).
+- Half-filled markers (Fig. 8A Pd@C_24, 3-Pd@C_24, Pd@C_72; Fig. 8B cycles 2 and 4): the tool's centroid is of the filled half, biasing x by about 2 px (about 0.25 bar) and, for cycle 2 (top half filled), y slightly high. Fig. 8A Pd@C_24 and Fig. 8B cycles 2-3 were run with --open-px 0 so that thin outlines and small visible parts are kept.
+- Fig. 8B cycle 3 at 45 bar (row M18): the marker is partly covered by the cycle 4 marker; centroid of the visible upper part, estimated about 0.002 wt% high. No stated value exists for cycle 3, so its archive is "unchecked".
+- digitize_figure.py check results (5% tolerance): all passed except Fig. 8A DMHCS at 20 bar (Table 3 prints 0.1; plotted 0.0915; 8.6%), which marked fig8A_DMHCS.json "discarded". The same archive reproduces 0.13 at 30 bar (0.2%) and 0.17 at 45 bar (4.7%), and the shared Fig. 8A calibration reproduces every printed value of the other four series within 3%; the difference is taken as rounding of the printed 0.1. No row value comes from that archive (DMHCS rows use printed values); the archive was kept unchanged with the failed check recorded.
+
+## Coding decisions
+- Fig. 8A 3-Pd@C_24 curve and Fig. 8B cycle 1 are given separate isotherm_ids (I4, I6): each plotted curve is one run, the paper does not say they are the same, and they differ at low pressure (0.474 vs 0.452 wt% near 2.5 bar).
+- Table 3 values for 3-Pd@C_24 (0.55, 0.59) are assigned to the Fig. 8A curve. Points of five curves of this sample (Fig. 8A and Fig. 8B cycles 1-4) lie within 2% of 20 and 30 bar; a strict closest-digitized-pressure tie-break would pick a Fig. 8B cycle (cycle 3 at both pressures), whose values (0.474, 0.484) do not match the printed ones. Explained in the row notes.
+- Text "after the first 2 cycles ... 0.50 wt%" mapped to the cycle 2 curve and "After 4 cycles ... 0.48 wt%" to cycle 4, following the Fig. 8B caption ("after the 1st, 2nd, 3rd and 4th adsorption/desorption cycles").
+- Cycled 3-Pd@C_24 keeps the same sample_id (the authors call it the 3-Pd@C_24 sample); area_same_sample = unclear for cycles 2-4 because PdH0.64 formed and some hydrogen was retained after cycle 1.
+- Degassing 250 °C recorded only on the Fig. 8B rows (stated for the cycling experiment); not stated for Fig. 8A.
+- instrument_identified = true ("IMI Series - Hiden Isochema" read as manufacturer and model); calibration_described = false (free-volume determination not described).
+- replicates_reported = true for all 3-Pd@C_24 rows (repeated isotherms on this sample in Fig. 8A and Fig. 8B); false for the other samples.
+- synthesis_method = cvd (CVD of ethylene on a silica template, as the paper names it); DMHCS material_class = templated_carbon; Pd samples = composite with metal_element Pd and Pd loading from TGA.
+- Table 3 unit "% H2" read as wt% (the values agree with the wt% axis of Fig. 8A).

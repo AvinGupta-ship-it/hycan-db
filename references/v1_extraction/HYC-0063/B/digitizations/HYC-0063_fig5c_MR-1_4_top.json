@@ -1,0 +1,124 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:58:46+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0063",
+  "figure": "Fig. 5 bottom panel (MR-1/4), main p. 238",
+  "series_name": "MR-1/4 298 K highest-pressure point (open marker, desorption start / adsorption end)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0063/in/pages/main-5.png",
+    "sha256": "4c32e090b9ec0055fd5c68a9243a40070307aaed7ce287f286b14ef6f5dc7723",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 180.21,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 548.91,
+        "value": 60.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1372.1,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1005.35,
+        "value": 0.5
+      },
+      "scale": "linear",
+      "label": "H2 adsorbed/desorned amount (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 302.88,
+        "stated": 20.0,
+        "predicted": 19.962571196094387,
+        "relative_error": 0.001871440195280627
+      },
+      {
+        "axis": "y",
+        "pixel": 1225.67,
+        "stated": 0.2,
+        "predicted": 0.19963190184049065,
+        "relative_error": 0.0018404907975468066
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 200.0,
+    "matched_pixels_in_image": 125618,
+    "matched_pixels_in_region": 39,
+    "region": [
+      480,
+      1032,
+      496,
+      1043
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 14.669999999999996,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 50.05866766810624,
+      "y": 0.4535297921800989,
+      "pixel_x": 487.8205128205128,
+      "pixel_y": 1039.4358974358975,
+      "pixel_count": 39,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 50.05866766810624,
+      "expected": 0.46,
+      "got": 0.4535297921800989,
+      "difference": -0.006470207819901097,
+      "percent": 1.4065669173698037,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-11-09T18:58:57+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 5 bottom panel (MR-1/4), main p. 238, digitized (MR-1/4 298 K highest-pressure point (open marker, desorption start / adsorption end))",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 50.05866766810624."
+  }
+}

@@ -1,0 +1,172 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:51:10+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0061",
+  "figure": "Fig._10",
+  "series_name": "GNFs",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0061/work/main-6_fig10_legendmasked.png",
+    "sha256": "e18aa6d4aedae338ac5c44b9dc0d97854308a189177b6f28348822011733d543",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 175.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 588.0,
+        "value": 8.0
+      },
+      "scale": "linear",
+      "label": "Hydrogen_pressure_MPa",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1464.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1160.0,
+        "value": 0.4
+      },
+      "scale": "linear",
+      "label": "Hydrogen_adsorption_wt_pct",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 382.0,
+        "stated": 4.0,
+        "predicted": 4.009685230024213,
+        "relative_error": 0.002421307506053294
+      },
+      {
+        "axis": "y",
+        "pixel": 1312.0,
+        "stated": 0.2,
+        "predicted": 0.2,
+        "relative_error": 0.0
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 45667,
+    "matched_pixels_in_region": 584,
+    "region": [
+      176,
+      1161,
+      587,
+      1463
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 12.16,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 7,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 1.7820823244552058,
+      "y": 0.009210526315789473,
+      "pixel_x": 267.0,
+      "pixel_y": 1457.0,
+      "pixel_count": 49,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.711864406779661,
+      "y": 0.018421052631578946,
+      "pixel_x": 315.0,
+      "pixel_y": 1450.0,
+      "pixel_count": 49,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.738498789346247,
+      "y": 0.03092105263157895,
+      "pixel_x": 368.0,
+      "pixel_y": 1440.5,
+      "pixel_count": 42,
+      "outside_axis_range": false
+    },
+    {
+      "x": 4.707021791767555,
+      "y": 0.042105263157894736,
+      "pixel_x": 418.0,
+      "pixel_y": 1432.0,
+      "pixel_count": 49,
+      "outside_axis_range": false
+    },
+    {
+      "x": 5.675544794188862,
+      "y": 0.060526315789473685,
+      "pixel_x": 468.0,
+      "pixel_y": 1418.0,
+      "pixel_count": 49,
+      "outside_axis_range": false
+    },
+    {
+      "x": 6.6440677966101696,
+      "y": 0.07368421052631578,
+      "pixel_x": 518.0,
+      "pixel_y": 1408.0,
+      "pixel_count": 49,
+      "outside_axis_range": false
+    },
+    {
+      "x": 7.535108958837772,
+      "y": 0.09407894736842105,
+      "pixel_x": 564.0,
+      "pixel_y": 1392.5,
+      "pixel_count": 42,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 7.5351,
+      "expected": 0.1,
+      "got": 0.09407874231264303,
+      "difference": -0.005921257687356976,
+      "percent": 5.9212576873569756,
+      "tolerance_pct": 10.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-11-09T18:51:22+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig._10, digitized (GNFs)",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 7.5351."
+  }
+}

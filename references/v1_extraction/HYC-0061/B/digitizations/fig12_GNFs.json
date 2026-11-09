@@ -1,0 +1,184 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:52:35+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0061",
+  "figure": "Fig._12",
+  "series_name": "GNFs (77 K)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0061/work/main-6_fig12_legendmasked.png",
+    "sha256": "e941d4d7d27d8c6d42014d460092badb2f604513b1b34700f8aee5c5d7d0b844",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 715.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1124.5,
+        "value": 8.0
+      },
+      "scale": "linear",
+      "label": "Hydrogen_pressure_MPa",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 923.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 629.0,
+        "value": 1.6
+      },
+      "scale": "linear",
+      "label": "Hydrogen_adsorption_wt_pct",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 920.0,
+        "stated": 4.0,
+        "predicted": 4.004884004884005,
+        "relative_error": 0.0012210012210012167
+      },
+      {
+        "axis": "y",
+        "pixel": 776.0,
+        "stated": 0.8,
+        "predicted": 0.8,
+        "relative_error": 0.0
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 45546,
+    "matched_pixels_in_region": 659,
+    "region": [
+      714,
+      630,
+      1123,
+      931
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 11.76,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 10,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 0.16605616605616605,
+      "y": -0.0108843537414966,
+      "pixel_x": 723.5,
+      "pixel_y": 925.0,
+      "pixel_count": 42,
+      "outside_axis_range": true
+    },
+    {
+      "x": 0.7130647130647131,
+      "y": 0.02993197278911565,
+      "pixel_x": 751.5,
+      "pixel_y": 917.5,
+      "pixel_count": 36,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.474969474969475,
+      "y": 0.06530612244897958,
+      "pixel_x": 790.5,
+      "pixel_y": 911.0,
+      "pixel_count": 42,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.3345543345543347,
+      "y": 0.05714285714285714,
+      "pixel_x": 834.5,
+      "pixel_y": 912.5,
+      "pixel_count": 36,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.3211233211233213,
+      "y": 0.0598639455782313,
+      "pixel_x": 885.0,
+      "pixel_y": 912.0,
+      "pixel_count": 49,
+      "outside_axis_range": false
+    },
+    {
+      "x": 4.258852258852259,
+      "y": 0.0598639455782313,
+      "pixel_x": 933.0,
+      "pixel_y": 912.0,
+      "pixel_count": 49,
+      "outside_axis_range": false
+    },
+    {
+      "x": 5.137973137973138,
+      "y": 0.0489795918367347,
+      "pixel_x": 978.0,
+      "pixel_y": 914.0,
+      "pixel_count": 49,
+      "outside_axis_range": false
+    },
+    {
+      "x": 5.978021978021978,
+      "y": 0.06802721088435375,
+      "pixel_x": 1021.0,
+      "pixel_y": 910.5,
+      "pixel_count": 42,
+      "outside_axis_range": false
+    },
+    {
+      "x": 6.9743589743589745,
+      "y": 0.10068027210884355,
+      "pixel_x": 1072.0,
+      "pixel_y": 904.5,
+      "pixel_count": 42,
+      "outside_axis_range": false
+    },
+    {
+      "x": 7.540903540903541,
+      "y": 0.12244897959183675,
+      "pixel_x": 1101.0,
+      "pixel_y": 900.5,
+      "pixel_count": 42,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig._12, digitized (GNFs (77 K))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig12_GNFs.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}
