@@ -67,6 +67,16 @@ before any reconciler was started, and the paper was assembled again once B
 had finished (B's `rows.csv` had not changed). For every other assembled
 paper the reconciler's copies equal the extractors' final outputs.
 
+Extractor A on HYC-0123 separated two pairs of overlapping markers that the
+digitizer had returned as single clusters, and stored the four points in an
+archive of its own (`HYC-0123_fig6_PG_split.json`), which names in
+`calibration_from` the digitizer's archive whose axis calibration it read them
+on. Assembly took the axis span (protocol, Amendment 1 item 21) only from an
+archive's own calibration, and stopped with an error after writing part of
+the reconciler's input. That partial input was set aside before any reconciler
+was started; assembly now follows `calibration_from` to an archive in the same
+folder, and the paper was assembled again (its `match.csv` was unchanged).
+
 ### Interruptions
 
 On 29 Oct 2026 the account's five-hour usage limit, and an hour later its
@@ -100,9 +110,11 @@ nothing is assembled or collected from it until it ends its task.
 
 Until 9 Nov 2026 this check read the operator's messages from the agent's
 ordinary user entries only. The harness records a message sent to an agent as a
-metadata entry of origin "coordinator", so no report listed the resume
-messages and the check passed without testing them. It now reads those
-entries, and every report was recomputed with it.
+metadata entry of origin "coordinator", between a fixed line before it ("The
+coordinator sent a message while you were working:") and one after it
+("Address this before completing your current task."), so no report listed the
+resume messages and the check passed without testing them. It now reads those
+entries, removes the two fixed lines, and every report was recomputed with it.
 
 Some agents' contexts filled and were compacted automatically by the harness
 (a summary written in the same session); each report counts these

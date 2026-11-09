@@ -394,6 +394,28 @@ def uptake_axis(archive: dict, value: float | None) -> str:
     return "y"
 
 
+def read_archive(path: Path) -> dict | None:
+    """A digitization archive. An extractor that separates points the tool
+    merged may store them in an archive of its own that names, in
+    `calibration_from`, the tool's archive in the same folder whose axis
+    calibration they were read on; that calibration is used, with the
+    archive's own points. None if no calibration can be found."""
+    archive = json.loads(path.read_text(encoding="utf-8"))
+    if "calibration" in archive:
+        return archive
+    name = archive.get("calibration_from")
+    if not isinstance(name, str) or Path(name).name != name:
+        return None
+    parent = path.parent / name
+    if not parent.is_file():
+        return None
+    calibration = json.loads(parent.read_text(encoding="utf-8")).get("calibration")
+    if not calibration:
+        return None
+    return {**archive, "calibration": calibration,
+            "series": archive.get("series") or archive.get("points", [])}
+
+
 def axis_span(digitization_dir: Path, row: dict) -> float | None:
     """1% of this is the §9 floor on a figure value's uncertainty: the distance
     between the two calibration ticks of the uptake axis, which the extraction
@@ -407,7 +429,9 @@ def axis_span(digitization_dir: Path, row: dict) -> float | None:
     path = digitization_dir / m.group(1)
     if not path.exists():
         return None
-    archive = json.loads(path.read_text(encoding="utf-8"))
+    archive = read_archive(path)
+    if archive is None:
+        return None
     f = uptake_field(row)
     ax = archive["calibration"][uptake_axis(archive, to_float(row.get(f)) if f else None)]
     span = abs(float(ax["reference_2"]["value"]) - float(ax["reference_1"]["value"]))

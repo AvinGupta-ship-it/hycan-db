@@ -341,3 +341,19 @@ def test_check_flags_an_isotherm_with_mixed_basis():
     mixed = {k for k, v in ve._per_isotherm(rows, ve.ISOTHERM_CONSTANT).items()
              if len(v) > 1}
     assert mixed == {"I1"}
+
+
+def test_axis_span_of_an_archive_that_borrows_its_calibration(tmp_path):
+    # An extractor that splits markers the tool merged stores the split points
+    # in its own archive, naming the tool's archive whose calibration they use.
+    d = tmp_path / "a"
+    archive(d, "fig.json", 0, 2)
+    (d / "fig_split.json").write_text(json.dumps({
+        "calibration_from": "fig.json", "points": [{"x": 0.2, "y": 0.14}]}))
+    r = row("A1", wt="0.14", extraction_method="figure_digitized",
+            notes="archive: fig_split.json. Two overlapping markers split")
+    assert ve.axis_span(d, r) == pytest.approx(2.0)
+    # a name outside the folder, or a missing one, gives no span
+    for bad in ("../fig.json", "nope.json"):
+        (d / "fig_split.json").write_text(json.dumps({"calibration_from": bad, "points": []}))
+        assert ve.axis_span(d, r) is None

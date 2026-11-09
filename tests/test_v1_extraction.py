@@ -182,7 +182,8 @@ def _user(text, **kw):
 
 
 def _coord(text):
-    return _user(runs.COORDINATOR_PREFIX + text, isMeta=True, origin={"kind": "coordinator"})
+    return _user(runs.COORDINATOR_PREFIX + text + runs.COORDINATOR_SUFFIX, isMeta=True,
+                 origin={"kind": "coordinator"})
 
 
 _API_ERROR = {"type": "assistant", "isApiErrorMessage": True, "message": {"model": "<synthetic>"}}

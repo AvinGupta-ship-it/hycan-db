@@ -234,8 +234,9 @@ RESUME_PAUSED = ("Your session was paused by the run operator to free account us
                  "your task from where you stopped; your instruction file, input, output and work directory are "
                  "unchanged, and the same rules apply.")
 # The harness writes an operator's message into the agent's transcript as a
-# metadata entry of origin "coordinator", behind this line.
+# metadata entry of origin "coordinator", between these two fixed lines.
 COORDINATOR_PREFIX = "The coordinator sent a message while you were working:\n"
+COORDINATOR_SUFFIX = "\n\nAddress this before completing your current task."
 # What the harness writes into the transcript when the operator stops an agent
 # (the second when the stop came during a tool call).
 OPERATOR_STOP = ("[Request interrupted by user]", "[Request interrupted by user for tool use]")
@@ -282,7 +283,7 @@ def session(transcript: Path) -> dict:
         if text is None or not text.strip():
             continue
         if (d.get("origin") or {}).get("kind") == "coordinator":
-            message = text.removeprefix(COORDINATOR_PREFIX).strip()
+            message = text.removeprefix(COORDINATOR_PREFIX).removesuffix(COORDINATOR_SUFFIX).strip()
             sent.append(message)
             if message not in pending:
                 misplaced.append(message)
