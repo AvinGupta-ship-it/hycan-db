@@ -165,9 +165,11 @@ recorded in its review:
 - reading a tool script's source: extractor A on HYC-0094 (`sed` of
   `digitize_figure.py`, piped to `head -0`, so nothing was printed),
   extractor A on HYC-0096 (`grep` of `validate_row_detail.py` for the message
-  its validator run had printed) and extractor A on HYC-0124 (`cat` of
+  its validator run had printed), extractor A on HYC-0124 (`cat` of
   `digitize_figure.py`, piped to `head -0`, so nothing was printed; not
-  self-reported). Neither file holds paper data;
+  self-reported) and extractor A on HYC-0135 (`sed` of `digitize_figure.py`,
+  which printed its first 60 lines; not self-reported). Neither file holds
+  paper data;
 - listing the folder that holds the run folders of every stage
   (`/home/claude/work/runs`, reached as `ls ../../../../`): extractor A on
   HYC-0095, which saw the five folder names (`elig`, `extract`, `screen`,

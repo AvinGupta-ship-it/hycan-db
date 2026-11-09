@@ -1,0 +1,259 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T17:32:21+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0119",
+  "figure": "Fig. 4a (main-4.png)",
+  "series_name": "CS850-4.5 excess (red open circles)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0119/work/m_red_excess.png",
+    "sha256": "ebfe192a1614d8e55b5ed2eb2ed9324011765f974cfd4309df448023827c586d",
+    "width_px": 1275,
+    "height_px": 1650
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 162.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 500.8,
+        "value": 30.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1087.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 814.0,
+        "value": 5.0
+      },
+      "scale": "linear",
+      "label": "H2 uptake (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 331.46,
+        "stated": 15.0,
+        "predicted": 14.983151049364466,
+        "relative_error": 0.0011232633757022844
+      },
+      {
+        "axis": "y",
+        "pixel": 923.5,
+        "stated": 3.0,
+        "predicted": 2.9981718464351004,
+        "relative_error": 0.0006093845216332087
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff0000",
+    "color_rgb": [
+      255,
+      0,
+      0
+    ],
+    "tolerance": 120.0,
+    "matched_pixels_in_image": 387,
+    "matched_pixels_in_region": 387,
+    "region": [
+      160,
+      812,
+      503,
+      1090
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 10.94,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      3,
+      80
+    ],
+    "rejected_markers": [
+      {
+        "pixel_x": 353.0,
+        "pixel_y": 893.0,
+        "pixels": 1,
+        "reason": "too small"
+      }
+    ],
+    "n_points": 17,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.20604753873172,
+      "y": 0.6575975911388326,
+      "pixel_x": 164.8235294117647,
+      "pixel_y": 1051.5294117647059,
+      "pixel_count": 17,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.31037540644398465,
+      "y": 1.0000000000000009,
+      "pixel_x": 166.0,
+      "pixel_y": 1032.8,
+      "pixel_count": 25,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.45160442736558504,
+      "y": 1.293587920644593,
+      "pixel_x": 167.59259259259258,
+      "pixel_y": 1016.7407407407408,
+      "pixel_count": 27,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.6544487141590299,
+      "y": 1.553564899451554,
+      "pixel_x": 169.88,
+      "pixel_y": 1002.52,
+      "pixel_count": 25,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.8994552594907306,
+      "y": 1.7785322538521817,
+      "pixel_x": 172.64285714285714,
+      "pixel_y": 990.2142857142857,
+      "pixel_count": 28,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.0894810185380677,
+      "y": 1.9182554191694963,
+      "pixel_x": 174.78571428571428,
+      "pixel_y": 982.5714285714286,
+      "pixel_count": 28,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.39048182086905,
+      "y": 2.7324801950030473,
+      "pixel_x": 200.73333333333332,
+      "pixel_y": 938.0333333333333,
+      "pixel_count": 30,
+      "outside_axis_range": false
+    },
+    {
+      "x": 6.087158481483045,
+      "y": 3.129407155915383,
+      "pixel_x": 231.14285714285714,
+      "pixel_y": 916.3214285714286,
+      "pixel_count": 28,
+      "outside_axis_range": false
+    },
+    {
+      "x": 8.74256191443149,
+      "y": 3.34909784595819,
+      "pixel_x": 261.0869565217391,
+      "pixel_y": 904.304347826087,
+      "pixel_count": 23,
+      "outside_axis_range": false
+    },
+    {
+      "x": 11.407303899175018,
+      "y": 3.462689047698188,
+      "pixel_x": 291.1363636363636,
+      "pixel_y": 898.0909090909091,
+      "pixel_count": 22,
+      "outside_axis_range": false
+    },
+    {
+      "x": 14.198228996645634,
+      "y": 3.567681424370082,
+      "pixel_x": 322.60869565217394,
+      "pixel_y": 892.3478260869565,
+      "pixel_count": 23,
+      "outside_axis_range": false
+    },
+    {
+      "x": 16.902624577998353,
+      "y": 3.610603290676417,
+      "pixel_x": 353.10526315789474,
+      "pixel_y": 890.0,
+      "pixel_count": 19,
+      "outside_axis_range": false
+    },
+    {
+      "x": 19.553650605971033,
+      "y": 3.662954960943992,
+      "pixel_x": 383.0,
+      "pixel_y": 887.1363636363636,
+      "pixel_count": 22,
+      "outside_axis_range": false
+    },
+    {
+      "x": 22.23864420139915,
+      "y": 3.687791996749948,
+      "pixel_x": 413.27777777777777,
+      "pixel_y": 885.7777777777778,
+      "pixel_count": 18,
+      "outside_axis_range": false
+    },
+    {
+      "x": 24.831960313074322,
+      "y": 3.6694221445036175,
+      "pixel_x": 442.5217391304348,
+      "pixel_y": 886.7826086956521,
+      "pixel_count": 23,
+      "outside_axis_range": false
+    },
+    {
+      "x": 27.39115746801233,
+      "y": 3.6663184469400187,
+      "pixel_x": 471.3809523809524,
+      "pixel_y": 886.952380952381,
+      "pixel_count": 21,
+      "outside_axis_range": false
+    },
+    {
+      "x": 29.78970482665428,
+      "y": 3.681117785322539,
+      "pixel_x": 498.42857142857144,
+      "pixel_y": 886.1428571428571,
+      "pixel_count": 7,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 1.0,
+      "expected": 1.9,
+      "got": 1.8524613331011879,
+      "difference": -0.04753866689881203,
+      "percent": 2.5020350999374754,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-11-09T17:33:19+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 4a (main-4.png), digitized (CS850-4.5 excess (red open circles))",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 1.0."
+  }
+}
