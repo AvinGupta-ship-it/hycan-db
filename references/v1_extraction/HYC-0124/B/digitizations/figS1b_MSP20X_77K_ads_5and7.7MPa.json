@@ -1,0 +1,120 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T17:43:43+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0124",
+  "figure": "Fig. S1b",
+  "series_name": "MSP20X 77 K adsorption, filled grey circles at ~5 and ~7.7 MPa (hidden or partly hidden by desorption markers in Fig. 2b)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0124/in/pages/si1-1.png",
+    "sha256": "ab620f56411dede8b503486d616993140e8401fe59cdf2cd72d115a7e9c84a4b",
+    "width_px": 1241,
+    "height_px": 1754
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 669.09,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1022.78,
+        "value": 15.0
+      },
+      "scale": "linear",
+      "label": "Pressure (MPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 791.19,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 504.81,
+        "value": 30.0
+      },
+      "scale": "linear",
+      "label": "Hydrogen excess (mmol g-1)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 787.0,
+        "stated": 5.0,
+        "predicted": 5.0005654669343205,
+        "relative_error": 0.00011309338686409376
+      },
+      {
+        "axis": "y",
+        "pixel": 648.18,
+        "stated": 15.0,
+        "predicted": 14.981143934632314,
+        "relative_error": 0.0012570710245123943
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#d1d1d1",
+    "color_rgb": [
+      209,
+      209,
+      209
+    ],
+    "tolerance": 15.0,
+    "matched_pixels_in_image": 4692,
+    "matched_pixels_in_region": 145,
+    "region": [
+      775,
+      555,
+      865,
+      610
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 11.455200000000003,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 2,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 5.073400066626758,
+      "y": 22.947786006431098,
+      "pixel_x": 788.7173913043479,
+      "pixel_y": 572.1304347826087,
+      "pixel_count": 46,
+      "outside_axis_range": false
+    },
+    {
+      "x": 7.720108004184455,
+      "y": 20.63063063063063,
+      "pixel_x": 851.125,
+      "pixel_y": 594.25,
+      "pixel_count": 32,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. S1b, digitized (MSP20X 77 K adsorption, filled grey circles at ~5 and ~7.7 MPa (hidden or partly hidden by desorption markers in Fig. 2b))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: figS1b_MSP20X_77K_ads_5and7.7MPa.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

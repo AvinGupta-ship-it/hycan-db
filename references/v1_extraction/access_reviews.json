@@ -11564,6 +11564,42 @@
       "reason": "command names a path outside the allowed paths: /out/resolutions.csv",
       "access": false,
       "note": "The flagged paths are the ends of paths the command builds from the agent's own run directory (e.g. BASE + '/out/digitizations'); every absolute path it names is in the agent's own run directory, the tools directory's two scripts or its own instruction file. Nothing outside those is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0137",
+      "transcript": "agent-ae95cc97c93a7e489.jsonl",
+      "call": 24,
+      "reason": "command climbs with ..",
+      "access": false,
+      "note": "The flagged '..' is in paths built from the agent's own work directory W: W + '/../in/pages/main-05.png' is its own page image. In the tools directory the command only runs digitize_figure.py with --image and --out in its own run directory (and a Python crop of its own page image saved to its own work directory). Nothing outside its run directory is opened."
+    },
+    {
+      "screener": "A",
+      "batch": "HYC-0137",
+      "transcript": "agent-ae95cc97c93a7e489.jsonl",
+      "call": 25,
+      "reason": "command climbs with ..",
+      "access": false,
+      "note": "The flagged '..' is in paths built from the agent's own work directory W: W + '/../in/pages/main-05.png' is its own page image. In the tools directory the command only runs digitize_figure.py with --image and --out in its own run directory (and a Python crop of its own page image saved to its own work directory). Nothing outside its run directory is opened."
+    },
+    {
+      "screener": "C",
+      "batch": "HYC-0124",
+      "transcript": "agent-a31f4d69ed63201ef.jsonl",
+      "call": 18,
+      "reason": "command opens the tools directory: /home/claude/work/v1_tools_frozen/scripts/",
+      "access": false,
+      "note": "Breach, self-reported: the command ran 'ls /home/claude/work/v1_tools_frozen/scripts/', which lists the tools directory's scripts folder; the output went to 'head -0', so nothing was printed and the agent saw none of it. The rest of the call printed the size of its own page image and the digitizer's --help."
+    },
+    {
+      "screener": "C",
+      "batch": "HYC-0124",
+      "transcript": "agent-a31f4d69ed63201ef.jsonl",
+      "call": 18,
+      "reason": "command reads or lists a file in the tools directory (supplementary check)",
+      "access": false,
+      "note": "Breach, self-reported: the command ran 'ls /home/claude/work/v1_tools_frozen/scripts/', which lists the tools directory's scripts folder; the output went to 'head -0', so nothing was printed and the agent saw none of it. The rest of the call printed the size of its own page image and the digitizer's --help."
     }
   ]
 }

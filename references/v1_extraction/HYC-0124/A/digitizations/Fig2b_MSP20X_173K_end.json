@@ -1,0 +1,165 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T17:31:04+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0124",
+  "figure": "Fig2b",
+  "series_name": "MSP20X 173 K highest-pressure end",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0124/in/pages/main-06.png",
+    "sha256": "eea610cbd4f6e28a0d59290bbce14593de47211f9e5fcc5cc718803cbd31afb9",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 643.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 955.0,
+        "value": 15.0
+      },
+      "scale": "linear",
+      "label": "",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 416.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 162.0,
+        "value": 30.0
+      },
+      "scale": "linear",
+      "label": "",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 747.0,
+        "stated": 5.0,
+        "predicted": 5.0,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 289.0,
+        "stated": 15.0,
+        "predicted": 15.0,
+        "relative_error": 0.0
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#1e1e1e",
+    "color_rgb": [
+      30,
+      30,
+      30
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 22767,
+    "matched_pixels_in_region": 70,
+    "region": [
+      914,
+      312,
+      956,
+      338
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 10.16,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      3,
+      2000
+    ],
+    "rejected_markers": [
+      {
+        "pixel_x": 955.0,
+        "pixel_y": 333.0,
+        "pixels": 1,
+        "reason": "too small"
+      },
+      {
+        "pixel_x": 939.0,
+        "pixel_y": 334.0,
+        "pixels": 1,
+        "reason": "too small"
+      }
+    ],
+    "n_points": 6,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 13.221153846153847,
+      "y": 11.220472440944881,
+      "pixel_x": 918.0,
+      "pixel_y": 321.0,
+      "pixel_count": 9,
+      "outside_axis_range": false
+    },
+    {
+      "x": 14.07914201183432,
+      "y": 10.511811023622046,
+      "pixel_x": 935.8461538461538,
+      "pixel_y": 327.0,
+      "pixel_count": 13,
+      "outside_axis_range": false
+    },
+    {
+      "x": 14.110576923076923,
+      "y": 9.38976377952756,
+      "pixel_x": 936.5,
+      "pixel_y": 336.5,
+      "pixel_count": 4,
+      "outside_axis_range": false
+    },
+    {
+      "x": 14.23076923076923,
+      "y": 10.15748031496063,
+      "pixel_x": 939.0,
+      "pixel_y": 330.0,
+      "pixel_count": 3,
+      "outside_axis_range": false
+    },
+    {
+      "x": 14.278846153846153,
+      "y": 11.338582677165354,
+      "pixel_x": 940.0,
+      "pixel_y": 320.0,
+      "pixel_count": 31,
+      "outside_axis_range": false
+    },
+    {
+      "x": 14.6875,
+      "y": 9.803149606299211,
+      "pixel_x": 948.5,
+      "pixel_y": 333.0,
+      "pixel_count": 8,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig2b, digitized (MSP20X 173 K highest-pressure end)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: Fig2b_MSP20X_173K_end.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

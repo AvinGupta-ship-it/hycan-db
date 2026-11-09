@@ -160,8 +160,8 @@ recorded in its review:
   tools directory itself), HYC-0106 (not self-reported), HYC-0101 (the tools
   directory itself) and HYC-0116 (the tools directory itself, not
   self-reported), and reconciler C on HYC-0100 (whose listing went to
-  `head -0`, so it saw nothing) and on HYC-0101 (which printed the two
-  script names);
+  `head -0`, so it saw nothing), on HYC-0101 (which printed the two script
+  names) and on HYC-0124 (to `head -0`, so it saw nothing);
 - reading a tool script's source: extractor A on HYC-0094 (`sed` of
   `digitize_figure.py`, piped to `head -0`, so nothing was printed),
   extractor A on HYC-0096 (`grep` of `validate_row_detail.py` for the message

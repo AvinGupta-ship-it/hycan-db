@@ -1,0 +1,156 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T17:43:41+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0124",
+  "figure": "Fig. 2b",
+  "series_name": "MSP20X 77 K adsorption, filled grey circles (markers clear of overlap)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0124/in/pages/main-06.png",
+    "sha256": "eea610cbd4f6e28a0d59290bbce14593de47211f9e5fcc5cc718803cbd31afb9",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 642.82,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 955.53,
+        "value": 15.0
+      },
+      "scale": "linear",
+      "label": "Pressure (MPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 416.09,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 162.1,
+        "value": 30.0
+      },
+      "scale": "linear",
+      "label": "Hydrogen excess (mmol g-1)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 747.0,
+        "stated": 5.0,
+        "predicted": 4.997281826612515,
+        "relative_error": 0.000543634677496918
+      },
+      {
+        "axis": "y",
+        "pixel": 289.19,
+        "stated": 15.0,
+        "predicted": 14.988779085790776,
+        "relative_error": 0.0007480609472815777
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#c8c5bd",
+    "color_rgb": [
+      200,
+      197,
+      189
+    ],
+    "tolerance": 25.0,
+    "matched_pixels_in_image": 14837,
+    "matched_pixels_in_region": 865,
+    "region": [
+      636,
+      150,
+      958,
+      345
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 10.1596,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 5,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.0695163619278565,
+      "y": 13.752843085887696,
+      "pixel_x": 644.2692307692307,
+      "pixel_y": 299.65384615384613,
+      "pixel_count": 26,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.7806154264334345,
+      "y": 21.448482223709593,
+      "pixel_x": 659.09375,
+      "pixel_y": 234.5,
+      "pixel_count": 32,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.959323334719065,
+      "y": 23.57848734202134,
+      "pixel_x": 683.6666666666666,
+      "pixel_y": 216.46666666666667,
+      "pixel_count": 30,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.0221385346694087,
+      "y": 23.859415493430724,
+      "pixel_x": 705.8235294117648,
+      "pixel_y": 214.08823529411765,
+      "pixel_count": 34,
+      "outside_axis_range": false
+    },
+    {
+      "x": 13.847334591154745,
+      "y": 15.483680459860622,
+      "pixel_x": 931.5,
+      "pixel_y": 285.0,
+      "pixel_count": 12,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 4.0,
+      "expected": 23.8,
+      "got": 23.102818708447707,
+      "difference": -0.6971812915522939,
+      "percent": 2.9293331577827475,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-11-09T17:45:41+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 2b, digitized (MSP20X 77 K adsorption, filled grey circles (markers clear of overlap))",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 4.0."
+  }
+}

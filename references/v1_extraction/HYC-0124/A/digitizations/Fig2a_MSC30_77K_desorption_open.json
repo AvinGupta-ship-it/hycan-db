@@ -1,0 +1,144 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T17:30:42+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0124",
+  "figure": "Fig2a",
+  "series_name": "MSC30 77 K desorption (open circles; ring centres painted in work copy)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0124/work/painted_desorb.png",
+    "sha256": "abd87a56b95728bb0fb0065eebdf948497fda296bd4155ad044404f06833ff89",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 265.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 578.0,
+        "value": 15.0
+      },
+      "scale": "linear",
+      "label": "",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 416.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 162.0,
+        "value": 30.0
+      },
+      "scale": "linear",
+      "label": "",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 369.5,
+        "stated": 5.0,
+        "predicted": 5.007987220447284,
+        "relative_error": 0.0015974440894568787
+      },
+      {
+        "axis": "y",
+        "pixel": 289.0,
+        "stated": 15.0,
+        "predicted": 15.029469548133594,
+        "relative_error": 0.0019646365422396174
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff00ff",
+    "color_rgb": [
+      255,
+      0,
+      255
+    ],
+    "tolerance": 10.0,
+    "matched_pixels_in_image": 610,
+    "matched_pixels_in_region": 305,
+    "region": [
+      263,
+      158,
+      582,
+      421
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 10.18,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      3,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 5,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 2.4920127795527156,
+      "y": 28.231827111984284,
+      "pixel_x": 317.0,
+      "pixel_y": 177.0,
+      "pixel_count": 61,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.546325878594249,
+      "y": 28.82121807465619,
+      "pixel_x": 339.0,
+      "pixel_y": 172.0,
+      "pixel_count": 61,
+      "outside_axis_range": false
+    },
+    {
+      "x": 5.079872204472844,
+      "y": 28.703339882121806,
+      "pixel_x": 371.0,
+      "pixel_y": 173.0,
+      "pixel_count": 61,
+      "outside_axis_range": false
+    },
+    {
+      "x": 7.476038338658147,
+      "y": 26.581532416502945,
+      "pixel_x": 421.0,
+      "pixel_y": 191.0,
+      "pixel_count": 61,
+      "outside_axis_range": false
+    },
+    {
+      "x": 10.878594249201278,
+      "y": 23.163064833005894,
+      "pixel_x": 492.0,
+      "pixel_y": 220.0,
+      "pixel_count": 61,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig2a, digitized (MSC30 77 K desorption (open circles; ring centres painted in work copy))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: Fig2a_MSC30_77K_desorption_open.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

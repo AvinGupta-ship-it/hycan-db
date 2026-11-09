@@ -1,0 +1,124 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T17:43:46+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0128",
+  "figure": "Fig. 5 (main-3)",
+  "series_name": "GP 273 K: highest-pressure point only (P/P0=1.0, shared adsorption/desorption turning point, drawn as open red star)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0128/in/pages/main-3.png",
+    "sha256": "1056934be1d171f58267cc42628e10e8ec7d9d6cf4873f801b67bde9417542b1",
+    "width_px": 1241,
+    "height_px": 1625
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 731.33,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1067.0,
+        "value": 1.0
+      },
+      "scale": "linear",
+      "label": "P/P0 (P0 = 106.66 kPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1406.45,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1133.67,
+        "value": 2.0
+      },
+      "scale": "linear",
+      "label": "Hydrogen Adsorption (mg/g)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 932.56,
+        "stated": 0.6,
+        "predicted": 0.5994875919802185,
+        "relative_error": 0.0008540133663024567
+      },
+      {
+        "axis": "y",
+        "pixel": 1297.56,
+        "stated": 0.8,
+        "predicted": 0.7983723146858283,
+        "relative_error": 0.002034606642714737
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#d09090",
+    "color_rgb": [
+      208,
+      144,
+      144
+    ],
+    "tolerance": 75.0,
+    "matched_pixels_in_image": 85372,
+    "matched_pixels_in_region": 20,
+    "region": [
+      1063,
+      1391,
+      1070,
+      1399
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 10.9112,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.9985104418029612,
+      "y": 0.08175086150011066,
+      "pixel_x": 1066.5,
+      "pixel_y": 1395.3,
+      "pixel_count": 20,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 0.9985104418029612,
+      "expected": 0.08,
+      "got": 0.08175086150011066,
+      "difference": 0.0017508615001106537,
+      "percent": 2.1885768751383172,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-11-09T17:44:01+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 5 (main-3), digitized (GP 273 K: highest-pressure point only (P/P0=1.0, shared adsorption/desorption turning point, drawn as open red star))",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 0.9985104418029612."
+  }
+}

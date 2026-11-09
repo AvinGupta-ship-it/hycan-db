@@ -1,0 +1,132 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T17:38:38+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0128",
+  "figure": "Fig. 5 (page 3)",
+  "series_name": "F5_GP_top_open_star",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0128/work/fig5_red_split.png",
+    "sha256": "60a6a84e10832339ae60fbcb46c99edf02cb4a1aa96227ec0eb3fa3c6604c265",
+    "width_px": 1241,
+    "height_px": 1625
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 731.3,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1066.8,
+        "value": 1.0
+      },
+      "scale": "linear",
+      "label": "P/P0 (P0=106.66 kPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1406.6,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1133.7,
+        "value": 2.0
+      },
+      "scale": "linear",
+      "label": "Hydrogen Adsorption (mg/g)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 932.57,
+        "stated": 0.6,
+        "predicted": 0.5999105812220569,
+        "relative_error": 0.00014903129657184433
+      },
+      {
+        "axis": "y",
+        "pixel": 1242.64,
+        "stated": 1.2,
+        "predicted": 1.201612312202271,
+        "relative_error": 0.001343593501892578
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 66,
+    "matched_pixels_in_region": 42,
+    "region": [
+      1060,
+      1390,
+      1075,
+      1400
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 10.915999999999995,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      3,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 2,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.9807252856433183,
+      "y": 0.06669109563942772,
+      "pixel_x": 1060.3333333333333,
+      "pixel_y": 1397.5,
+      "pixel_count": 6,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.9980294750786556,
+      "y": 0.08033060543137413,
+      "pixel_x": 1066.138888888889,
+      "pixel_y": 1395.638888888889,
+      "pixel_count": 36,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 0.998,
+      "expected": 0.08,
+      "got": 0.080307372582159,
+      "difference": 0.00030737258215900176,
+      "percent": 0.3842157276987522,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-11-09T17:38:39+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 5 (page 3), digitized (F5_GP_top_open_star)",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 0.998."
+  }
+}

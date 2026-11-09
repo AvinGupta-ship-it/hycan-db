@@ -1,0 +1,180 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T17:30:41+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0124",
+  "figure": "Fig2a",
+  "series_name": "MSC30 77 K adsorption (filled grey circles)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/A/HYC-0124/in/pages/main-06.png",
+    "sha256": "eea610cbd4f6e28a0d59290bbce14593de47211f9e5fcc5cc718803cbd31afb9",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 265.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 578.0,
+        "value": 15.0
+      },
+      "scale": "linear",
+      "label": "",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 416.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 162.0,
+        "value": 30.0
+      },
+      "scale": "linear",
+      "label": "",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 369.5,
+        "stated": 5.0,
+        "predicted": 5.007987220447284,
+        "relative_error": 0.0015974440894568787
+      },
+      {
+        "axis": "y",
+        "pixel": 289.0,
+        "stated": 15.0,
+        "predicted": 15.029469548133594,
+        "relative_error": 0.0019646365422396174
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#c9c6bd",
+    "color_rgb": [
+      201,
+      198,
+      189
+    ],
+    "tolerance": 25.0,
+    "matched_pixels_in_image": 14518,
+    "matched_pixels_in_region": 2269,
+    "region": [
+      263,
+      158,
+      582,
+      421
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 10.18,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 8,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": -0.04792332268370607,
+      "y": 6.365422396856581,
+      "pixel_x": 264.0,
+      "pixel_y": 362.5,
+      "pixel_count": 12,
+      "outside_axis_range": true
+    },
+    {
+      "x": 0.0718849840255591,
+      "y": 13.614931237721022,
+      "pixel_x": 266.5,
+      "pixel_y": 301.0,
+      "pixel_count": 38,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.7907348242811502,
+      "y": 23.94400785854617,
+      "pixel_x": 281.5,
+      "pixel_y": 213.375,
+      "pixel_count": 32,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.9169329073482428,
+      "y": 27.70137524557957,
+      "pixel_x": 305.0,
+      "pixel_y": 181.5,
+      "pixel_count": 30,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.977090314034131,
+      "y": 28.80971776318942,
+      "pixel_x": 327.1219512195122,
+      "pixel_y": 172.09756097560975,
+      "pixel_count": 41,
+      "outside_axis_range": false
+    },
+    {
+      "x": 10.396542003382823,
+      "y": 23.707384722061715,
+      "pixel_x": 481.94117647058823,
+      "pixel_y": 215.38235294117646,
+      "pixel_count": 34,
+      "outside_axis_range": false
+    },
+    {
+      "x": 12.322949946751866,
+      "y": 21.692861820563195,
+      "pixel_x": 522.1388888888889,
+      "pixel_y": 232.47222222222223,
+      "pixel_count": 36,
+      "outside_axis_range": false
+    },
+    {
+      "x": 13.638977635782748,
+      "y": 20.528487229862478,
+      "pixel_x": 549.6,
+      "pixel_y": 242.35,
+      "pixel_count": 20,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 3.0,
+      "expected": 29.0,
+      "got": 28.79396284590445,
+      "difference": -0.2060371540955508,
+      "percent": 0.7104729451570717,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-11-09T17:31:17+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig2a, digitized (MSC30 77 K adsorption (filled grey circles))",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 3.0."
+  }
+}

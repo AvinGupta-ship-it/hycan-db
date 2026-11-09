@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T17:45:21+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0124",
+  "figure": "Fig. 2b",
+  "series_name": "MSP20X 113 K adsorption, highest-pressure filled triangle",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0124/in/pages/main-06.png",
+    "sha256": "eea610cbd4f6e28a0d59290bbce14593de47211f9e5fcc5cc718803cbd31afb9",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 642.82,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 955.53,
+        "value": 15.0
+      },
+      "scale": "linear",
+      "label": "Pressure (MPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 416.09,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 162.1,
+        "value": 30.0
+      },
+      "scale": "linear",
+      "label": "Hydrogen excess (mmol g-1)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 747.0,
+        "stated": 5.0,
+        "predicted": 4.997281826612515,
+        "relative_error": 0.000543634677496918
+      },
+      {
+        "axis": "y",
+        "pixel": 289.19,
+        "stated": 15.0,
+        "predicted": 14.988779085790776,
+        "relative_error": 0.0007480609472815777
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#73afe6",
+    "color_rgb": [
+      115,
+      175,
+      230
+    ],
+    "tolerance": 25.0,
+    "matched_pixels_in_image": 523,
+    "matched_pixels_in_region": 24,
+    "region": [
+      926,
+      266,
+      952,
+      282
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 10.1596,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 2-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 14.176567891831237,
+      "y": 16.482288135896543,
+      "pixel_x": 938.3636363636364,
+      "pixel_y": 276.54545454545456,
+      "pixel_count": 11,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 2b, digitized (MSP20X 113 K adsorption, highest-pressure filled triangle)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig2b_MSP20X_113K_ads_highestP.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}
