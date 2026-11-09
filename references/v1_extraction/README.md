@@ -161,7 +161,9 @@ recorded in its review:
   directory itself) and HYC-0116 (the tools directory itself, not
   self-reported), and reconciler C on HYC-0100 (whose listing went to
   `head -0`, so it saw nothing), on HYC-0101 (which printed the two script
-  names) and on HYC-0124 (to `head -0`, so it saw nothing);
+  names) and on HYC-0124 (to `head -0`, so it saw nothing). Reconciler C on
+  HYC-0026 ran `ls` on `scripts/digitize_figure.py` itself, which printed only
+  that path;
 - reading a tool script's source: extractor A on HYC-0094 (`sed` of
   `digitize_figure.py`, piped to `head -0`, so nothing was printed),
   extractor A on HYC-0096 (`grep` of `validate_row_detail.py` for the message
