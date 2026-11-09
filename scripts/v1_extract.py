@@ -702,11 +702,20 @@ def cmd_assemble(args: argparse.Namespace) -> int:
     if not (c / "paper.json").exists():
         print(f"REFUSED: {c} is not a prepared reconciler input", file=sys.stderr)
         return 1
-    for name, src in (("first", Path(args.first)), ("second", Path(args.second))):
-        dest = c / name
-        if dest.exists():
-            print(f"REFUSED: {dest} exists", file=sys.stderr)
+    sources = (("first", Path(args.first)), ("second", Path(args.second)))
+    # Check every input before writing anything, so that a refusal leaves the
+    # reconciler's input as it was.
+    needed = [src / "rows.csv" for _, src in sources] + ([Path(args.labels)] if args.legacy else [])
+    for name, _ in sources:
+        if (c / name).exists():
+            print(f"REFUSED: {c / name} exists", file=sys.stderr)
             return 1
+    for path in needed:
+        if not path.is_file():
+            print(f"REFUSED: {path} does not exist", file=sys.stderr)
+            return 1
+    for name, src in sources:
+        dest = c / name
         dest.mkdir()
         shutil.copy(src / "rows.csv", dest / "rows.csv")
         if (src / "digitizations").is_dir():

@@ -203,6 +203,26 @@ def test_session_reads_resume_messages_the_harness_records_as_metadata(tmp_path)
     assert s["operator_messages_ok"]
 
 
+_HANDBACK = {"type": "assistant", "message": {"model": "m", "content": [
+    {"type": "tool_use", "id": "t1", "name": "SubagentHandback", "input": {"message": "4"}}]}}
+
+
+def test_agent_is_finished_only_once_it_has_reported(tmp_path):
+    import json as _json
+    reminder = _user("<system-reminder>call SubagentHandback when done</system-reminder>", isMeta=True)
+    agents = {
+        "a1": ("Extraction B HYC-0001", True, [_user("launcher"), reminder, _TURN, _HANDBACK]),
+        "a2": ("Extraction B HYC-0002", True, [_user("launcher"), reminder, _TURN]),  # waiting on background work
+        "a3": ("Extraction B HYC-0003", True, [_user("launcher"), reminder, _TURN, _API_ERROR]),
+        "a4": ("Extraction L HYC-0003", False, [_user("launcher"), reminder]),
+    }
+    for aid, (desc, finished, entries) in agents.items():
+        (tmp_path / f"agent-{aid}.meta.json").write_text(_json.dumps({"description": desc, "finished": finished}))
+        (tmp_path / f"agent-{aid}.jsonl").write_text("\n".join(_json.dumps(e) for e in entries) + "\n")
+    assert ex.agent_states(tmp_path) == {("B", "HYC-0001"): "finished", ("B", "HYC-0002"): "running",
+                                         ("B", "HYC-0003"): "interrupted", ("L", "HYC-0003"): "running"}
+
+
 @pytest.mark.parametrize("entries", [
     [_TURN, _coord("Also extract Table 3.")],                       # any other text
     [_TURN, _coord(runs.RESUME)],                                    # resume with no stop before it

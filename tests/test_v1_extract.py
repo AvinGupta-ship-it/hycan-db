@@ -298,6 +298,17 @@ def test_prepare_refuses_inputs_that_share_a_parent(tmp_path):
     assert rc == 1
 
 
+def test_assemble_refuses_a_missing_extraction_and_writes_nothing(tmp_path):
+    c, first, second = tmp_path / "C", tmp_path / "A", tmp_path / "B"
+    for d in (c, first, second):
+        d.mkdir()
+    (c / "paper.json").write_text('{"paper_id": "HYC-9999"}', encoding="utf-8")
+    (first / "rows.csv").write_text("row_id\n", encoding="utf-8")
+    rc = ve.main(["assemble", "--c", str(c), "--first", str(first), "--second", str(second)])
+    assert rc == 1
+    assert sorted(p.name for p in c.iterdir()) == ["paper.json"]
+
+
 def test_axis_span_uses_the_uptake_axis_of_a_pressure_composition_plot(tmp_path):
     d = tmp_path / "a"
     d.mkdir()

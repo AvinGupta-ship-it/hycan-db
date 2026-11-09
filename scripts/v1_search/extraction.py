@@ -362,10 +362,36 @@ def interrupted(transcript: Path) -> bool:
     return bool(last and last.get("isApiErrorMessage"))
 
 
+def handed_back(transcript: Path) -> bool:
+    """True when the agent has delivered its report (a SubagentHandback call).
+    An agent that ends a turn while a command of its own still runs in the
+    background is marked finished in its metadata before it has reported; it
+    resumes when that command ends, and may still change its output."""
+    try:
+        with transcript.open(encoding="utf-8", errors="replace") as fh:
+            for line in fh:
+                if "SubagentHandback" not in line:
+                    continue
+                try:
+                    d = json.loads(line)
+                except json.JSONDecodeError:
+                    continue
+                content = d.get("message", {}).get("content") if d.get("type") == "assistant" else None
+                if isinstance(content, list) and any(
+                        isinstance(x, dict) and x.get("type") == "tool_use" and x.get("name") == "SubagentHandback"
+                        for x in content):
+                    return True
+    except OSError:
+        return False
+    return False
+
+
 def agent_states(transcripts: Path) -> dict[tuple[str, str], str]:
     """(role, paper_id) -> 'running', 'interrupted' or 'finished', from the
     agents' metadata (the description each agent is started with:
-    'Extraction <R> <paper_id>') and, for a stopped agent, its transcript."""
+    'Extraction <R> <paper_id>') and, for a stopped agent, its transcript: it
+    is interrupted if it stopped on an API error, finished only once it has
+    delivered its report, and otherwise still running."""
     out: dict[tuple[str, str], str] = {}
     for meta_path in sorted(transcripts.glob("*.meta.json")):
         meta = json.loads(meta_path.read_text())
@@ -373,8 +399,12 @@ def agent_states(transcripts: Path) -> dict[tuple[str, str], str]:
         if m:
             key = (m.group(1), m.group(2))
             state = "finished" if meta.get("finished") else "running"
-            if state == "finished" and interrupted(meta_path.with_name(meta_path.name.replace(".meta.json", ".jsonl"))):
-                state = "interrupted"
+            if state == "finished":
+                transcript = meta_path.with_name(meta_path.name.replace(".meta.json", ".jsonl"))
+                if interrupted(transcript):
+                    state = "interrupted"
+                elif not handed_back(transcript):
+                    state = "running"
             if out.get(key) != "finished":
                 out[key] = state
     return out

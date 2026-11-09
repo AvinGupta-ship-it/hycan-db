@@ -64,8 +64,16 @@ An agent can write its output file before it has finished revising it, so
 (read from the run's transcripts). That guard was added after HYC-0083 was
 assembled while extractor B was still running; the assembly was set aside
 before any reconciler was started, and the paper was assembled again once B
-had finished (B's `rows.csv` had not changed). For every other assembled
-paper the reconciler's copies equal the extractors' final outputs.
+had finished (B's `rows.csv` had not changed). On HYC-0033, extractor B ended
+a turn while a search script of its own still ran in the background; the
+harness marks such an agent finished before it has delivered its report, so
+`assemble` started while B had written no `rows.csv` yet and stopped with an
+error after copying the first extraction. That partial input was set aside
+before any reconciler was started. An agent now counts as finished only once
+its transcript holds its report (its `SubagentHandback` call), `assemble`
+checks every input before it writes anything, and HYC-0033 was assembled again
+after B reported. For every other assembled paper the reconciler's copies
+equal the extractors' final outputs.
 
 Extractor A on HYC-0123 separated two pairs of overlapping markers that the
 digitizer had returned as single clusters, and stored the four points in an
