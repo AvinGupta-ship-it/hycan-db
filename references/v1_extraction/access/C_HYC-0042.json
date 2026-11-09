@@ -1,0 +1,33 @@
+{
+  "screener": "C",
+  "batch": "HYC-0042",
+  "transcript": "agent-ad8fe436c08761c88.jsonl",
+  "launcher_exact": true,
+  "prompt_sha256_ok": true,
+  "models": [
+    "claude-opus-5-5"
+  ],
+  "api_error_stops": 0,
+  "operator_stops": 0,
+  "compactions": 0,
+  "operator_messages": [],
+  "operator_messages_ok": true,
+  "model_ok": true,
+  "flags": [
+    {
+      "call": 28,
+      "tool": "Bash",
+      "reason": "command climbs with ..",
+      "detail": "cd /home/claude/work/runs/extract/C/HYC-0042/out && python3 -c \"\nimport csv\nrows=list(csv.DictReader(open('rows.csv')))\nres=list(csv.DictReader(open('resolutions.csv')))\nm=list(csv.DictReader(open('../in/match.csv')))\nneed={x['match_line'] for x in m if x['status']!='agree'}\nhave={x['match_line'] fo"
+    }
+  ],
+  "cross_access": [],
+  "tool_calls": 32,
+  "output_problems": [],
+  "flags_unreviewed": 1,
+  "flags_access": 0,
+  "access_ok": false,
+  "ok": false,
+  "earlier_agents": [],
+  "unfinished_agents": []
+}

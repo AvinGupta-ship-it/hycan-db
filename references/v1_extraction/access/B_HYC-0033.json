@@ -108,7 +108,11 @@
       "call": 68,
       "tool": "ToolSearch",
       "reason": "tool outside the allowed set",
-      "detail": "{\"query\": \"select:Monitor\", \"max_results\": 1}"
+      "detail": "{\"query\": \"select:Monitor\", \"max_results\": 1}",
+      "review": {
+        "access": false,
+        "note": "Loads the Monitor tool's schema with ToolSearch. No file access."
+      }
     },
     {
       "call": 69,
@@ -124,13 +128,21 @@
       "call": 70,
       "tool": "Monitor",
       "reason": "tool outside the allowed set",
-      "detail": "{\"command\": \"F=/tmp/claude-0/-home-claude/663fb236-481a-5f2f-b02f-82bfd72801cf/tasks/bks9qs6x0.output; until [ -s $F ]; do sleep 2; done; echo done\", \"description\": \"grid search completion\", \"timeout_ms\": 900000}"
+      "detail": "{\"command\": \"F=/tmp/claude-0/-home-claude/663fb236-481a-5f2f-b02f-82bfd72801cf/tasks/bks9qs6x0.output; until [ -s $F ]; do sleep 2; done; echo done\", \"description\": \"grid search completion\", \"timeout_ms\": 900000}",
+      "review": {
+        "access": false,
+        "note": "Monitor waits for its own background task's output file (bks9qs6x0, started by its call 69) in the harness tasks folder: its own command output. No outside access."
+      }
     },
     {
       "call": 71,
       "tool": "Monitor",
       "reason": "tool outside the allowed set",
-      "detail": "{\"command\": \"F=/tmp/claude-0/-home-claude/663fb236-481a-5f2f-b02f-82bfd72801cf/tasks/bks9qs6x0.output; until [ -s $F ]; do sleep 2; done; echo finished\", \"description\": \"grid search completion second wait\", \"timeout_ms\": 600000}"
+      "detail": "{\"command\": \"F=/tmp/claude-0/-home-claude/663fb236-481a-5f2f-b02f-82bfd72801cf/tasks/bks9qs6x0.output; until [ -s $F ]; do sleep 2; done; echo finished\", \"description\": \"grid search completion second wait\", \"timeout_ms\": 600000}",
+      "review": {
+        "access": false,
+        "note": "Same wait on its own background task's output file (bks9qs6x0, started by its call 69). No outside access."
+      }
     },
     {
       "call": 72,
@@ -146,7 +158,11 @@
       "call": 73,
       "tool": "Monitor",
       "reason": "tool outside the allowed set",
-      "detail": "{\"command\": \"until ! pgrep -f \\\"scripts/grid.py\\\" >/dev/null; do sleep 2; done; cat /tmp/claude-0/-home-claude/663fb236-481a-5f2f-b02f-82bfd72801cf/tasks/be2uvenk0.output | tail -n +8\", \"description\": \"grid.py process exit\", \"timeout_ms\": 600000}"
+      "detail": "{\"command\": \"until ! pgrep -f \\\"scripts/grid.py\\\" >/dev/null; do sleep 2; done; cat /tmp/claude-0/-home-claude/663fb236-481a-5f2f-b02f-82bfd72801cf/tasks/be2uvenk0.output | tail -n +8\", \"description\": \"grid.py process exit\", \"timeout_ms\": 600000}",
+      "review": {
+        "access": false,
+        "note": "Waits for its own grid.py (pgrep, output discarded), then prints its own command output (be2uvenk0, its own command moved to the background on timeout). pgrep reaches no paper data; its call 74 shows the only matching processes were its own. No outside access."
+      }
     },
     {
       "call": 74,
@@ -162,16 +178,149 @@
       "call": 75,
       "tool": "Monitor",
       "reason": "tool outside the allowed set",
-      "detail": "{\"command\": \"until ! pgrep -f \\\"scripts/grid.py\\\" >/dev/null; do sleep 2; done; echo grid-finished\", \"description\": \"grid.py finished\", \"timeout_ms\": 600000}"
+      "detail": "{\"command\": \"until ! pgrep -f \\\"scripts/grid.py\\\" >/dev/null; do sleep 2; done; echo grid-finished\", \"description\": \"grid.py finished\", \"timeout_ms\": 600000}",
+      "review": {
+        "access": false,
+        "note": "Waits for its own grid.py with pgrep, output discarded. Reaches no paper data."
+      }
+    },
+    {
+      "call": 81,
+      "tool": "Bash",
+      "reason": "command moves within the tools directory",
+      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0033/work; O=/home/claude/work/runs/extract/B/HYC-0033/out/digitizations; rm -f $O/*.json\nCAL4=\"--x1-px 382 --x1-val 0 --x2-px 813 --x2-val 100 --y1-px 925 --y1-val 0 --y2-px 583 --y2-val 100 --x-verify-px 554 --x-verify-",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
+    },
+    {
+      "call": 81,
+      "tool": "Bash",
+      "reason": "command in the tools directory does more than run its two scripts: run --image $W/main-6_fig5_legendmasked.png --out $O/fig5_Bdoped_excess.json --figure Figure 5 --series-name B-doped (op",
+      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0033/work; O=/home/claude/work/runs/extract/B/HYC-0033/out/digitizations; rm -f $O/*.json\nCAL4=\"--x1-px 382 --x1-val 0 --x2-px 813 --x2-val 100 --y1-px 925 --y1-val 0 --y2-px 583 --y2-val 100 --x-verify-px 554 --x-verify-",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
+    },
+    {
+      "call": 81,
+      "tool": "Bash",
+      "reason": "command in the tools directory does more than run its two scripts: run --image $W/main-5_fig4_legendmasked.png --out $O/fig4_Bdoped_total.json --figure Figure 4 --series-name B-doped Tota",
+      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0033/work; O=/home/claude/work/runs/extract/B/HYC-0033/out/digitizations; rm -f $O/*.json\nCAL4=\"--x1-px 382 --x1-val 0 --x2-px 813 --x2-val 100 --y1-px 925 --y1-val 0 --y2-px 583 --y2-val 100 --x-verify-px 554 --x-verify-",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
+    },
+    {
+      "call": 81,
+      "tool": "Bash",
+      "reason": "command in the tools directory does more than run its two scripts: run --image $W/main-5_fig4_legendmasked.png --out $O/fig4_Bdoped1min_excess.json --figure Figure 4 --series-name B-doped",
+      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0033/work; O=/home/claude/work/runs/extract/B/HYC-0033/out/digitizations; rm -f $O/*.json\nCAL4=\"--x1-px 382 --x1-val 0 --x2-px 813 --x2-val 100 --y1-px 925 --y1-val 0 --y2-px 583 --y2-val 100 --x-verify-px 554 --x-verify-",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
+    },
+    {
+      "call": 81,
+      "tool": "Bash",
+      "reason": "command in the tools directory does more than run its two scripts: run --image $W/main-5_fig4_legendmasked.png --out $O/fig4_Bdoped1min_total.json --figure Figure 4 --series-name B-doped ",
+      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0033/work; O=/home/claude/work/runs/extract/B/HYC-0033/out/digitizations; rm -f $O/*.json\nCAL4=\"--x1-px 382 --x1-val 0 --x2-px 813 --x2-val 100 --y1-px 925 --y1-val 0 --y2-px 583 --y2-val 100 --x-verify-px 554 --x-verify-",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
+    },
+    {
+      "call": 81,
+      "tool": "Bash",
+      "reason": "command in the tools directory does more than run its two scripts: run --image $W/main-5_fig4_legendmasked.png --out $O/fig4_Bdoped_excess_lastpoint_crosscheck.json --figure Figure 4 --se",
+      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0033/work; O=/home/claude/work/runs/extract/B/HYC-0033/out/digitizations; rm -f $O/*.json\nCAL4=\"--x1-px 382 --x1-val 0 --x2-px 813 --x2-val 100 --y1-px 925 --y1-val 0 --y2-px 583 --y2-val 100 --x-verify-px 554 --x-verify-",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
+    },
+    {
+      "call": 81,
+      "tool": "Bash",
+      "reason": "command in the tools directory does more than run its two scripts: run --image $W/main-6_fig5_legendmasked.png --out $O/fig5_Bdoped1min_excess_lastpoint_crosscheck.json --figure Figure 5 ",
+      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0033/work; O=/home/claude/work/runs/extract/B/HYC-0033/out/digitizations; rm -f $O/*.json\nCAL4=\"--x1-px 382 --x1-val 0 --x2-px 813 --x2-val 100 --y1-px 925 --y1-val 0 --y2-px 583 --y2-val 100 --x-verify-px 554 --x-verify-",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
+    },
+    {
+      "call": 82,
+      "tool": "Bash",
+      "reason": "command moves within the tools directory",
+      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0033/work; O=/home/claude/work/runs/extract/B/HYC-0033/out/digitizations; ls -la $O\nCAL4=\"--x1-px 382 --x1-val 0 --x2-px 813 --x2-val 100 --y1-px 925 --y1-val 0 --y2-px 583 --y2-val 100 --x-verify-px 554 --x-verify-val 40"
+    },
+    {
+      "call": 82,
+      "tool": "Bash",
+      "reason": "command in the tools directory does more than run its two scripts: run --image $W/main-6_fig5_legendmasked.png --out $O/fig5_Bdoped_excess.json --figure Figure 5 --series-name B-doped (op",
+      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0033/work; O=/home/claude/work/runs/extract/B/HYC-0033/out/digitizations; ls -la $O\nCAL4=\"--x1-px 382 --x1-val 0 --x2-px 813 --x2-val 100 --y1-px 925 --y1-val 0 --y2-px 583 --y2-val 100 --x-verify-px 554 --x-verify-val 40"
+    },
+    {
+      "call": 82,
+      "tool": "Bash",
+      "reason": "command in the tools directory does more than run its two scripts: run --image $W/main-5_fig4_legendmasked.png --out $O/fig4_Bdoped_total.json --figure Figure 4 --series-name B-doped Tota",
+      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0033/work; O=/home/claude/work/runs/extract/B/HYC-0033/out/digitizations; ls -la $O\nCAL4=\"--x1-px 382 --x1-val 0 --x2-px 813 --x2-val 100 --y1-px 925 --y1-val 0 --y2-px 583 --y2-val 100 --x-verify-px 554 --x-verify-val 40"
+    },
+    {
+      "call": 82,
+      "tool": "Bash",
+      "reason": "command in the tools directory does more than run its two scripts: run --image $W/main-5_fig4_legendmasked.png --out $O/fig4_Bdoped1min_excess.json --figure Figure 4 --series-name B-doped",
+      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0033/work; O=/home/claude/work/runs/extract/B/HYC-0033/out/digitizations; ls -la $O\nCAL4=\"--x1-px 382 --x1-val 0 --x2-px 813 --x2-val 100 --y1-px 925 --y1-val 0 --y2-px 583 --y2-val 100 --x-verify-px 554 --x-verify-val 40"
+    },
+    {
+      "call": 82,
+      "tool": "Bash",
+      "reason": "command in the tools directory does more than run its two scripts: run --image $W/main-5_fig4_legendmasked.png --out $O/fig4_Bdoped1min_total.json --figure Figure 4 --series-name B-doped ",
+      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0033/work; O=/home/claude/work/runs/extract/B/HYC-0033/out/digitizations; ls -la $O\nCAL4=\"--x1-px 382 --x1-val 0 --x2-px 813 --x2-val 100 --y1-px 925 --y1-val 0 --y2-px 583 --y2-val 100 --x-verify-px 554 --x-verify-val 40"
+    },
+    {
+      "call": 82,
+      "tool": "Bash",
+      "reason": "command in the tools directory does more than run its two scripts: run --image $W/main-5_fig4_legendmasked.png --out $O/fig4_Bdoped_excess_lastpoint_crosscheck.json --figure Figure 4 --se",
+      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0033/work; O=/home/claude/work/runs/extract/B/HYC-0033/out/digitizations; ls -la $O\nCAL4=\"--x1-px 382 --x1-val 0 --x2-px 813 --x2-val 100 --y1-px 925 --y1-val 0 --y2-px 583 --y2-val 100 --x-verify-px 554 --x-verify-val 40"
+    },
+    {
+      "call": 82,
+      "tool": "Bash",
+      "reason": "command in the tools directory does more than run its two scripts: run --image $W/main-6_fig5_legendmasked.png --out $O/fig5_Bdoped1min_excess_lastpoint_crosscheck.json --figure Figure 5 ",
+      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0033/work; O=/home/claude/work/runs/extract/B/HYC-0033/out/digitizations; ls -la $O\nCAL4=\"--x1-px 382 --x1-val 0 --x2-px 813 --x2-val 100 --y1-px 925 --y1-val 0 --y2-px 583 --y2-val 100 --x-verify-px 554 --x-verify-val 40"
+    },
+    {
+      "call": 83,
+      "tool": "Bash",
+      "reason": "command moves within the tools directory",
+      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0033/work; O=/home/claude/work/runs/extract/B/HYC-0033/out/digitizations\nCAL4=\"--x1-px 382 --x1-val 0 --x2-px 813 --x2-val 100 --y1-px 925 --y1-val 0 --y2-px 583 --y2-val 100 --x-verify-px 554 --x-verify-val 40 --y-verify",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
+    },
+    {
+      "call": 84,
+      "tool": "Bash",
+      "reason": "command moves within the tools directory",
+      "detail": "cd /home/claude/work/v1_tools_frozen && W=/home/claude/work/runs/extract/B/HYC-0033/work; O=/home/claude/work/runs/extract/B/HYC-0033/out/digitizations\nCAL4=\"--x1-px 382 --x1-val 0 --x2-px 813 --x2-val 100 --y1-px 925 --y1-val 0 --y2-px 583 --y2-val 100 --x-verify-px 554 --x-verify-val 40 --y-verify",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
     }
   ],
   "cross_access": [],
-  "tool_calls": 75,
-  "output_problems": [
-    "rows.csv missing",
-    "log.md missing"
-  ],
-  "flags_unreviewed": 5,
+  "tool_calls": 92,
+  "output_problems": [],
+  "flags_unreviewed": 7,
   "flags_access": 0,
   "access_ok": false,
   "ok": false,

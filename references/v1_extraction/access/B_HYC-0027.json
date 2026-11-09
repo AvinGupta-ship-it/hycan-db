@@ -18,28 +18,40 @@
       "call": 113,
       "tool": "Bash",
       "reason": "command opens the tools directory: /home/claude/work/v1_tools_frozen",
-      "detail": "mkdir -p /home/claude/work/runs/extract/B/HYC-0027/work/runs && cd /home/claude/work/runs/extract/B/HYC-0027/work && cat > drive.py << 'EOF'\nimport json, subprocess, sys, os\nTOOLS='/home/claude/work/v1_tools_frozen'\nS5='/home/claude/work/runs/extract/B/HYC-0027/in/pages/si1-4.png'\nM4='/home/claude/w"
+      "detail": "mkdir -p /home/claude/work/runs/extract/B/HYC-0027/work/runs && cd /home/claude/work/runs/extract/B/HYC-0027/work && cat > drive.py << 'EOF'\nimport json, subprocess, sys, os\nTOOLS='/home/claude/work/v1_tools_frozen'\nS5='/home/claude/work/runs/extract/B/HYC-0027/in/pages/si1-4.png'\nM4='/home/claude/w",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
     },
     {
       "call": 120,
       "tool": "ToolSearch",
       "reason": "tool outside the allowed set",
-      "detail": "{\"query\": \"select:TaskStop\", \"max_results\": 1}"
+      "detail": "{\"query\": \"select:TaskStop\", \"max_results\": 1}",
+      "review": {
+        "access": false,
+        "note": "The agent loaded the schema of a harness tool (select:TaskStop); this reads no file."
+      }
     },
     {
       "call": 121,
       "tool": "TaskStop",
       "reason": "tool outside the allowed set",
-      "detail": "{\"task_id\": \"b2a1btrg0\"}"
+      "detail": "{\"task_id\": \"b2a1btrg0\"}",
+      "review": {
+        "access": false,
+        "note": "The agent stopped its own background command b2a1btrg0 (the harness gave it that ID in its own transcript); no other agent's task was touched and no file was opened."
+      }
     }
   ],
   "cross_access": [],
   "tool_calls": 132,
   "output_problems": [],
-  "flags_unreviewed": 3,
+  "flags_unreviewed": 0,
   "flags_access": 0,
-  "access_ok": false,
-  "ok": false,
+  "access_ok": true,
+  "ok": true,
   "earlier_agents": [],
   "unfinished_agents": []
 }
