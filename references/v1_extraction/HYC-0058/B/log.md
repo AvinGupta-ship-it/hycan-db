@@ -1,0 +1,39 @@
+# HYC-0058 extraction log (agent B)
+
+Paper: Rosas et al. 2024, Processes 12, 2715. Pages read: main-01 to main-12 (no supplementary file). Two carbon sorbents; no non-carbon sorbent measured.
+
+## Sources extracted from
+
+- main-09, Section 3.6 text: "The hydrogen storage capacity achieved was 0.33 wt% and 0.40 wt% for SKTP and SSKTP". Rows M1 (SKTP, 0.33 wt%) and M2 (SSKTP, 0.40 wt%).
+- main-01, Abstract: "at 45 °C and 50 bar, where SSKTP achieved 0.40 wt%. In comparison, the non-doped biocarbon (SKPT) showed ... 0.33 wt%". The same two measurements; gives the printed 50 bar used on M1 and M2.
+- main-10, Conclusions: "0.40 wt% at 50 bar and 45 °C compared to the SKTP (0.33 wt%)". The same two measurements.
+- main-10, Figure 7a/7b: H2 adsorption (empty circles) and desorption (filled circles) at 45 °C up to 50 bar. Not 77 K, so only the highest-pressure point of each isotherm was digitized. The point is a filled marker at 49.695 bar, 0.3285 wt% (7a) and 49.685 bar, 0.4080 wt% (7b). Each is within 1 bar of the printed 50 bar, so it was merged into M1 and M2 respectively (isotherms I1 and I2); there is no separate digitized row.
+- main-05, Table 1 (BET area, average pore size, pore volume, CHNS) and main-07, Table 2 (CHNS C and S, XPS C1s and S 2p at.%, S species): characterization on M1 and M2.
+- main-03 Sections 2.1 and 2.2 (synthesis; BET by N2 at 77 K on Quantachrome Nova 2200, degassed 523 K, 5 h) and main-04 Section 2.3 (PCI on Quantachrome Isorb-100, about 0.15 g, degassed 200 °C for 2 h, He void-volume calibration, 0.01 to 50 bar in 25 steps each way, absolute pressures, chromatographic-purity H2): method fields.
+- main-04, main-06, main-07, main-08: Section 3.1 (BET 1670 and 2377), Raman ID/IG (1.35, 1.46) and XPS functional groups go in the notes and functional_groups.
+
+## Digitization (Figure 7, main-10)
+
+- Panel a (SKTP): x calibrated at 0 bar = 234.26 px and 50 bar = 571.26 px, checked at 30 bar = 436.5 px (relative error 0.02%). y calibrated at 0.0 = 777.0 px and 0.4 = 462.74 px, checked at 0.2 = 620.0 px (0.08%). Tick centres come from pixel-column and pixel-row scans with darkness-weighted centroids. Colour #0000ff, tolerance 40, ROI 202 464 604 815, markers mode with a 2-px opening. Archive out/digitizations/HYC-0058_Fig7a_SKTP_filled.json: 25 filled markers, which equals the 25 counted. The step-6 check passed (0.3284 against 0.33, 0.47%).
+- Panel b (SSKTP): x calibrated at 0 bar = 737.5 px and 50 bar = 1074.26 px, checked at 30 bar = 939.5 px. y calibrated at 0.0 = 787.85 px and 0.4 = 500.74 px, checked at 0.2 = 644.26 px. Colour #008000, tolerance 40, ROI 706 466 1107 823, markers mode with a 2-px opening. Archive out/digitizations/HYC-0058_Fig7b_SSKTP_filled.json: 24 filled markers, which equals the 24 visible. The default 3-px opening found 23 because it erased the ~47.6 bar disc, which is almost entirely covered by an open ring. The step-6 check passed (0.4080 against 0.40, 1.99%). The top point lies slightly above the highest labelled y tick (0.4), so the tool flags it as outside the calibrated range; the drawn axis runs to 0.45 and the scale is linear.
+- The step-6 check was run at x = 49.69 and 49.68 bar, the digitized pressures of the top markers, because the tool refuses x = 50, which lies just beyond the last extracted marker.
+- The inset in each panel has the same colour as the main plot. Its diamonds (4 px) fall below the marker size floor, so they were rejected and recorded in each archive. No accepted marker lies inside an inset.
+- Open (adsorption) markers were counted with a ring-detection script in work/scripts/rings.py, used only to count. Panel a has 25 open rings (0.18 to 47.66 bar) plus 25 filled discs, 50 in all. Panel b has 25 open rings (0.15 to 47.66 bar) plus 24 filled discs, 49 in all. Section 2.3 states 25 adsorption and 25 desorption steps. In panel b the open rings near the origin overlap, and one filled marker may be hidden under them. That marker could not be separated, so isotherm_point_count is 49 for I2.
+- The open rings are drawn on top of the filled discs with a white fill. No open ring is drawn at 50 bar in either panel. The 50 bar point is therefore drawn only as a filled (desorption) marker. It is the turnaround point between the hydriding run (0.01 to 50 bar) and the dehydriding run. The text does not say the value was measured on desorption, so isotherm_branch = adsorption (explained in notes).
+
+## Values seen but not extracted
+
+- Figure 7a: 24 lower-pressure filled points and 25 open points. Figure 7b: 23 lower-pressure filled points and 25 open points. These are 45 °C isotherms, and only the highest-pressure point is extracted at temperatures other than 77 K.
+- Figure 7a/7b insets: the same isotherms replotted with log pressure against wt%. They are not digitized because they duplicate the main panels. The inset symbols do not map onto the main panels: in the 7b inset, the low-pressure filled diamonds (about 0.035 to 0.05 wt% at 0.1 to 0.9 bar) match the main panel's open markers, and an open diamond appears near 0.0 wt% at about 0.1 bar, where the main panel has no marker.
+- In both main panels the open (adsorption) markers lie above the filled (desorption) markers at nearly every pressure, the reverse of the usual order. This is recorded as printed and not corrected.
+- Section 3.6 (main-10): "given the obtained capacity of 0.4 wt%" restates M2 and gives no new row. "250 kg of our SSKTP material is required to store 1 kg of hydrogen", "116 kg of SSKTP material" per ton of dried sargasso, and "18.3 kWh (hydrogen HHV = 39.39 kWh/kg)" are derived from 0.4 wt% and the process yield, not measured.
+- Section 3.6 (main-09): "SSKPH has a 20% higher hydrogen uptake capacity compared to SKPH". The Abstract and Conclusions give "20% improvement". This is a ratio computed from M1 and M2, not a row. "SSKTP displays a higher specific H2 uptake per surface area": no number is printed.
+- Figure 2 (main-05): N2 adsorption/desorption isotherms at 77 K and pore size distribution insets. These are characterization, not H2, and are not digitized. The characterization comes from Table 1.
+- Figure 1 (main-03): process yields of 100%, 76.8% and 11.6% (biochar 11.6% relative to sun-dried sargasso). Not an uptake.
+- Figures 3 to 6 (XRD, Raman, XPS spectra, HR-TEM/EDS maps): characterization only. The Raman ID/IG values and XPS species are in the notes and functional_groups. The XPS binding energies in Table 2 are not stored in fields.
+- Abstract and Conclusions print the SKTP surface area as 1620 m2/g, while Table 1 and Section 3.1 print 1670 m2/g. The table value 1670 is used, and the discrepancy is in the M1 notes.
+- The pyrolysis temperature is 700 °C in Section 2.1 but 900 °C in the Abstract and Section 3.2. Both are recorded in activation_method.
+- For SKTP, the average pore size of 1.904 nm equals 4V/S from Table 1. For SSKTP it does not (4V/S = 1.814 nm against 2.519 nm printed). The paper does not state the method, so pore_diameter_method is unspecified.
+- Sample labels are inconsistent. SKTP is also printed as SKPT and as SKPH (Figure 7a panel label, Section 3.6). SSKTP is also printed as SSKPT and SSKPH (Figure 7b panel label), and Section 3.1 uses "SKPH" for the 2377 m2/g sample. No table reports uptake, so the labels SKTP and SSKTP are taken from the Figure 7 caption, the first figure legend that shows uptake.
+- SKTP contains native sulfur (0.85 wt% by CHNS, 0.64 at.% by XPS, with thiophenic C-S-C), and the authors call it the non-doped sample. It is coded activated_carbon with no dopant_element. The XRD sharp peaks are attributed by the authors to possible silica or silicate impurities, so it is not coded composite.
+- No uncertainty, error bars or repeated isotherms are reported. No supplementary information exists.

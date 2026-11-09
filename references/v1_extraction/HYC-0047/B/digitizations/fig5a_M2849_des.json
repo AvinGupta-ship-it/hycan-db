@@ -1,0 +1,152 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:52:11+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0047",
+  "figure": "Fig. 5a",
+  "series_name": "M2849 desorption (open symbols)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0047/work/img/f5a_M2849_des.png",
+    "sha256": "6d49f649c9a071fa0e8c9af3011fc53e80eba3b24a7a82c4601f930dab15402b",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 717.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1112.0,
+        "value": 10.0
+      },
+      "scale": "linear",
+      "label": "P (MPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 762.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 556.0,
+        "value": 7.0
+      },
+      "scale": "linear",
+      "label": "H2 (wt %)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 875.0,
+        "stated": 4.0,
+        "predicted": 4.0,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 674.0,
+        "stated": 3.0,
+        "predicted": 2.9902912621359223,
+        "relative_error": 0.003236245954692555
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#121212",
+    "color_rgb": [
+      18,
+      18,
+      18
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 202,
+    "matched_pixels_in_region": 202,
+    "region": [
+      705,
+      550,
+      1125,
+      772
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 8.24,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 6,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.4469328140214225,
+      "y": 4.41747572815534,
+      "pixel_x": 734.6538461538462,
+      "pixel_y": 632.0,
+      "pixel_count": 26,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.0,
+      "y": 5.148058252427185,
+      "pixel_x": 756.5,
+      "pixel_y": 610.5,
+      "pixel_count": 32,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.996483825597749,
+      "y": 5.68797195253506,
+      "pixel_x": 795.8611111111111,
+      "pixel_y": 594.6111111111111,
+      "pixel_count": 36,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.0,
+      "y": 5.8956310679611645,
+      "pixel_x": 835.5,
+      "pixel_y": 588.5,
+      "pixel_count": 32,
+      "outside_axis_range": false
+    },
+    {
+      "x": 4.506329113924051,
+      "y": 5.980582524271845,
+      "pixel_x": 895.0,
+      "pixel_y": 586.0,
+      "pixel_count": 37,
+      "outside_axis_range": false
+    },
+    {
+      "x": 6.506329113924051,
+      "y": 5.980582524271845,
+      "pixel_x": 974.0,
+      "pixel_y": 586.0,
+      "pixel_count": 37,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 5a, digitized (M2849 desorption (open symbols))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig5a_M2849_des.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

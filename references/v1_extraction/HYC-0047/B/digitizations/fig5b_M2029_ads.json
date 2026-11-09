@@ -1,0 +1,168 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:52:21+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0047",
+  "figure": "Fig. 5b",
+  "series_name": "M2029 adsorption (full symbols)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0047/work/img/f5b_M2029_ads.png",
+    "sha256": "bf207f4e447cd15a4a8b5a8f8da63be9aa0dfc9690945eb5972fd048599468ab",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 717.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1118.0,
+        "value": 10.0
+      },
+      "scale": "linear",
+      "label": "P (MPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1056.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 843.0,
+        "value": 7.0
+      },
+      "scale": "linear",
+      "label": "H2 (wt %)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 877.0,
+        "stated": 4.0,
+        "predicted": 3.9900249376558605,
+        "relative_error": 0.0024937655860348684
+      },
+      {
+        "axis": "y",
+        "pixel": 965.0,
+        "stated": 3.0,
+        "predicted": 2.9906103286384975,
+        "relative_error": 0.003129890453834161
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#121212",
+    "color_rgb": [
+      18,
+      18,
+      18
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 321,
+    "matched_pixels_in_region": 321,
+    "region": [
+      705,
+      838,
+      1125,
+      1066
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 8.52,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 8,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.539484621778886,
+      "y": 3.882316118935837,
+      "pixel_x": 738.6333333333333,
+      "pixel_y": 937.8666666666667,
+      "pixel_count": 30,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.0224438902743143,
+      "y": 4.24523612261806,
+      "pixel_x": 758.0,
+      "pixel_y": 926.8235294117648,
+      "pixel_count": 34,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.6526864656540463,
+      "y": 4.382842509603074,
+      "pixel_x": 783.2727272727273,
+      "pixel_y": 922.6363636363636,
+      "pixel_count": 33,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.9925187032418954,
+      "y": 4.680991934513062,
+      "pixel_x": 837.0,
+      "pixel_y": 913.5641025641025,
+      "pixel_count": 39,
+      "outside_axis_range": false
+    },
+    {
+      "x": 4.664766654791592,
+      "y": 4.702347417840375,
+      "pixel_x": 904.0571428571428,
+      "pixel_y": 912.9142857142857,
+      "pixel_count": 35,
+      "outside_axis_range": false
+    },
+    {
+      "x": 6.572278979969431,
+      "y": 4.573375738300772,
+      "pixel_x": 980.5483870967741,
+      "pixel_y": 916.8387096774194,
+      "pixel_count": 31,
+      "outside_axis_range": false
+    },
+    {
+      "x": 8.066125010055508,
+      "y": 4.441920339239738,
+      "pixel_x": 1040.4516129032259,
+      "pixel_y": 920.8387096774194,
+      "pixel_count": 31,
+      "outside_axis_range": false
+    },
+    {
+      "x": 8.938260409582107,
+      "y": 4.347986911367192,
+      "pixel_x": 1075.4242424242425,
+      "pixel_y": 923.6969696969697,
+      "pixel_count": 33,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 5b, digitized (M2029 adsorption (full symbols))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig5b_M2029_ads.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

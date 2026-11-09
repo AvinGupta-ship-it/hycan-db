@@ -1,0 +1,160 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:52:05+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0047",
+  "figure": "Fig. 5a",
+  "series_name": "M2029 adsorption (full symbols)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0047/work/img/f5a_M2029_ads.png",
+    "sha256": "0bc0b557eecb8413dbf667670cfaa2e53ddd5b6aacba1c25b2c1a26cb6248cf2",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 717.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1112.0,
+        "value": 10.0
+      },
+      "scale": "linear",
+      "label": "P (MPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 762.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 556.0,
+        "value": 7.0
+      },
+      "scale": "linear",
+      "label": "H2 (wt %)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 875.0,
+        "stated": 4.0,
+        "predicted": 4.0,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 674.0,
+        "stated": 3.0,
+        "predicted": 2.9902912621359223,
+        "relative_error": 0.003236245954692555
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#121212",
+    "color_rgb": [
+      18,
+      18,
+      18
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 278,
+    "matched_pixels_in_region": 278,
+    "region": [
+      705,
+      550,
+      1125,
+      772
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 8.24,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 7,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.13502109704641446,
+      "y": 2.8368637834657258,
+      "pixel_x": 722.3333333333334,
+      "pixel_y": 678.5151515151515,
+      "pixel_count": 33,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.6344457230533165,
+      "y": 4.11268020005884,
+      "pixel_x": 742.060606060606,
+      "pixel_y": 640.969696969697,
+      "pixel_count": 33,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.285232067510548,
+      "y": 4.5239482200647245,
+      "pixel_x": 767.7666666666667,
+      "pixel_y": 628.8666666666667,
+      "pixel_count": 30,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.768776371308017,
+      "y": 4.761812297734627,
+      "pixel_x": 826.3666666666667,
+      "pixel_y": 621.8666666666667,
+      "pixel_count": 30,
+      "outside_axis_range": false
+    },
+    {
+      "x": 4.063291139240507,
+      "y": 4.854368932038836,
+      "pixel_x": 877.5,
+      "pixel_y": 619.1428571428571,
+      "pixel_count": 28,
+      "outside_axis_range": false
+    },
+    {
+      "x": 5.227848101265823,
+      "y": 4.871216447744147,
+      "pixel_x": 923.5,
+      "pixel_y": 618.6470588235294,
+      "pixel_count": 34,
+      "outside_axis_range": false
+    },
+    {
+      "x": 7.836668027766435,
+      "y": 4.830723457563419,
+      "pixel_x": 1026.5483870967741,
+      "pixel_y": 619.8387096774194,
+      "pixel_count": 31,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 5a, digitized (M2029 adsorption (full symbols))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig5a_M2029_ads.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

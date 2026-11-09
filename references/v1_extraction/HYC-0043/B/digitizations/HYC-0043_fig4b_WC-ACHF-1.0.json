@@ -1,0 +1,184 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:43:25+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0043",
+  "figure": "Fig. 4b",
+  "series_name": "WC-ACHF-1.0%",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0043/work/page07_mask4b.png",
+    "sha256": "89571db4c068566958cc1684c0634bba7bd082374d9f38b092f59edc2700830d",
+    "width_px": 1275,
+    "height_px": 1650
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 704.45,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 933.66,
+        "value": 80.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 794.62,
+        "value": -1.0
+      },
+      "reference_2": {
+        "pixel": 563.1,
+        "value": 6.0
+      },
+      "scale": "linear",
+      "label": "Hydrogen storage (wt%)",
+      "decades_spanned": 0.7781512503836436
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 819.11,
+        "stated": 40.0,
+        "predicted": 40.01919637014092,
+        "relative_error": 0.0004799092535229477
+      },
+      {
+        "axis": "y",
+        "pixel": 695.43,
+        "stated": 2.0,
+        "predicted": 1.9990065653075346,
+        "relative_error": 0.000496717346232689
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#d21ecd",
+    "color_rgb": [
+      210,
+      30,
+      205
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 676,
+    "matched_pixels_in_region": 620,
+    "region": [
+      678,
+      609,
+      962,
+      790
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 9.2608,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 10,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 3.3331879062867964,
+      "y": 3.5539910158949555,
+      "pixel_x": 714.0,
+      "pixel_y": 644.0,
+      "pixel_count": 15,
+      "outside_axis_range": false
+    },
+    {
+      "x": 4.729287552899074,
+      "y": 3.780753282653767,
+      "pixel_x": 718.0,
+      "pixel_y": 636.5,
+      "pixel_count": 18,
+      "outside_axis_range": false
+    },
+    {
+      "x": 6.719672859893606,
+      "y": 3.992806645622819,
+      "pixel_x": 723.7027027027027,
+      "pixel_y": 629.4864864864865,
+      "pixel_count": 37,
+      "outside_axis_range": false
+    },
+    {
+      "x": 13.847563369835513,
+      "y": 4.304826076940799,
+      "pixel_x": 744.125,
+      "pixel_y": 619.1666666666666,
+      "pixel_count": 24,
+      "outside_axis_range": false
+    },
+    {
+      "x": 26.019807163736303,
+      "y": 4.461040082930201,
+      "pixel_x": 779.0,
+      "pixel_y": 614.0,
+      "pixel_count": 9,
+      "outside_axis_range": false
+    },
+    {
+      "x": 28.11395663365472,
+      "y": 4.506392536281964,
+      "pixel_x": 785.0,
+      "pixel_y": 612.5,
+      "pixel_count": 12,
+      "outside_axis_range": false
+    },
+    {
+      "x": 39.28275380655294,
+      "y": 4.4912750518313755,
+      "pixel_x": 817.0,
+      "pixel_y": 613.0,
+      "pixel_count": 9,
+      "outside_axis_range": false
+    },
+    {
+      "x": 41.72592818812443,
+      "y": 4.461040082930201,
+      "pixel_x": 824.0,
+      "pixel_y": 614.0,
+      "pixel_count": 9,
+      "outside_axis_range": false
+    },
+    {
+      "x": 53.418262728502256,
+      "y": 4.385452660677264,
+      "pixel_x": 857.5,
+      "pixel_y": 616.5,
+      "pixel_count": 14,
+      "outside_axis_range": false
+    },
+    {
+      "x": 69.2988962087169,
+      "y": 4.2947477539737395,
+      "pixel_x": 903.0,
+      "pixel_y": 619.5,
+      "pixel_count": 12,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 4b, digitized (WC-ACHF-1.0%)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0043_fig4b_WC-ACHF-1.0.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

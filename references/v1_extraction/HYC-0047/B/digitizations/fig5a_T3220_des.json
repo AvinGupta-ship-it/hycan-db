@@ -1,0 +1,160 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:52:15+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0047",
+  "figure": "Fig. 5a",
+  "series_name": "T3220 desorption (open symbols)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0047/work/img/f5a_T3220_des.png",
+    "sha256": "7691f10ddfc97ac92e4cb2b13327c44215fdb374ed934204b883eb5fcb445403",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 717.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1112.0,
+        "value": 10.0
+      },
+      "scale": "linear",
+      "label": "P (MPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 762.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 556.0,
+        "value": 7.0
+      },
+      "scale": "linear",
+      "label": "H2 (wt %)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 875.0,
+        "stated": 4.0,
+        "predicted": 4.0,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 674.0,
+        "stated": 3.0,
+        "predicted": 2.9902912621359223,
+        "relative_error": 0.003236245954692555
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#121212",
+    "color_rgb": [
+      18,
+      18,
+      18
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 222,
+    "matched_pixels_in_region": 222,
+    "region": [
+      705,
+      550,
+      1125,
+      772
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 8.24,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 7,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.26582278481012656,
+      "y": 3.708737864077669,
+      "pixel_x": 727.5,
+      "pixel_y": 652.8571428571429,
+      "pixel_count": 28,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.3900609470229719,
+      "y": 4.117943185904353,
+      "pixel_x": 732.4074074074074,
+      "pixel_y": 640.8148148148148,
+      "pixel_count": 27,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.6745610453246219,
+      "y": 4.601628562480425,
+      "pixel_x": 743.6451612903226,
+      "pixel_y": 626.5806451612904,
+      "pixel_count": 31,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.3522479266695762,
+      "y": 5.2646468028121856,
+      "pixel_x": 770.4137931034483,
+      "pixel_y": 607.0689655172414,
+      "pixel_count": 29,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.6962025316455698,
+      "y": 5.755461165048544,
+      "pixel_x": 823.5,
+      "pixel_y": 592.625,
+      "pixel_count": 32,
+      "outside_axis_range": false
+    },
+    {
+      "x": 4.113924050632912,
+      "y": 5.8786407766990285,
+      "pixel_x": 879.5,
+      "pixel_y": 589.0,
+      "pixel_count": 38,
+      "outside_axis_range": false
+    },
+    {
+      "x": 6.772151898734177,
+      "y": 5.822672758423758,
+      "pixel_x": 984.5,
+      "pixel_y": 590.6470588235294,
+      "pixel_count": 34,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 5a, digitized (T3220 desorption (open symbols))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig5a_T3220_des.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}
