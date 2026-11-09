@@ -18,106 +18,170 @@
       "call": 77,
       "tool": "Bash",
       "reason": "command in the tools directory does more than run its two scripts: cat",
-      "detail": "mkdir -p /home/claude/work/runs/extract/B/HYC-0052/out/digitizations && cd /home/claude/work/v1_tools_frozen && cat > /home/claude/work/runs/extract/B/HYC-0052/work/run_dig.sh <<'EOF'\n#!/bin/bash\n# usage: run_dig.sh name axis(L|R) series roi(x0 y0 x1 y1)\nIMG=/home/claude/work/runs/extract/B/HYC-0052"
+      "detail": "mkdir -p /home/claude/work/runs/extract/B/HYC-0052/out/digitizations && cd /home/claude/work/v1_tools_frozen && cat > /home/claude/work/runs/extract/B/HYC-0052/work/run_dig.sh <<'EOF'\n#!/bin/bash\n# usage: run_dig.sh name axis(L|R) series roi(x0 y0 x1 y1)\nIMG=/home/claude/work/runs/extract/B/HYC-0052",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
     },
     {
       "call": 77,
       "tool": "Bash",
       "reason": "command in the tools directory does more than run its two scripts: chmod +x /home/claude/work/runs/extract/B/HYC-0052/work/run_dig.sh",
-      "detail": "mkdir -p /home/claude/work/runs/extract/B/HYC-0052/out/digitizations && cd /home/claude/work/v1_tools_frozen && cat > /home/claude/work/runs/extract/B/HYC-0052/work/run_dig.sh <<'EOF'\n#!/bin/bash\n# usage: run_dig.sh name axis(L|R) series roi(x0 y0 x1 y1)\nIMG=/home/claude/work/runs/extract/B/HYC-0052"
+      "detail": "mkdir -p /home/claude/work/runs/extract/B/HYC-0052/out/digitizations && cd /home/claude/work/v1_tools_frozen && cat > /home/claude/work/runs/extract/B/HYC-0052/work/run_dig.sh <<'EOF'\n#!/bin/bash\n# usage: run_dig.sh name axis(L|R) series roi(x0 y0 x1 y1)\nIMG=/home/claude/work/runs/extract/B/HYC-0052",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
     },
     {
       "call": 77,
       "tool": "Bash",
       "reason": "command in the tools directory does more than run its two scripts: $W fig3_AC_233K_end L Activated carbon 233 K (hatched down-triangle), highest-pressure marker 814 998 822 1005",
-      "detail": "mkdir -p /home/claude/work/runs/extract/B/HYC-0052/out/digitizations && cd /home/claude/work/v1_tools_frozen && cat > /home/claude/work/runs/extract/B/HYC-0052/work/run_dig.sh <<'EOF'\n#!/bin/bash\n# usage: run_dig.sh name axis(L|R) series roi(x0 y0 x1 y1)\nIMG=/home/claude/work/runs/extract/B/HYC-0052"
+      "detail": "mkdir -p /home/claude/work/runs/extract/B/HYC-0052/out/digitizations && cd /home/claude/work/v1_tools_frozen && cat > /home/claude/work/runs/extract/B/HYC-0052/work/run_dig.sh <<'EOF'\n#!/bin/bash\n# usage: run_dig.sh name axis(L|R) series roi(x0 y0 x1 y1)\nIMG=/home/claude/work/runs/extract/B/HYC-0052",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
     },
     {
       "call": 77,
       "tool": "Bash",
       "reason": "command in the tools directory does more than run its two scripts: $W fig3_AC_253K_end L Activated carbon 253 K (hatched up-triangle), highest-pressure marker 821 1050 830 1058",
-      "detail": "mkdir -p /home/claude/work/runs/extract/B/HYC-0052/out/digitizations && cd /home/claude/work/v1_tools_frozen && cat > /home/claude/work/runs/extract/B/HYC-0052/work/run_dig.sh <<'EOF'\n#!/bin/bash\n# usage: run_dig.sh name axis(L|R) series roi(x0 y0 x1 y1)\nIMG=/home/claude/work/runs/extract/B/HYC-0052"
+      "detail": "mkdir -p /home/claude/work/runs/extract/B/HYC-0052/out/digitizations && cd /home/claude/work/v1_tools_frozen && cat > /home/claude/work/runs/extract/B/HYC-0052/work/run_dig.sh <<'EOF'\n#!/bin/bash\n# usage: run_dig.sh name axis(L|R) series roi(x0 y0 x1 y1)\nIMG=/home/claude/work/runs/extract/B/HYC-0052",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
     },
     {
       "call": 77,
       "tool": "Bash",
       "reason": "command in the tools directory does more than run its two scripts: $W fig3_AC_253K_check_penultimate L Activated carbon 253 K (hatched up-triangle), second-highest-pressure marker (merge ",
-      "detail": "mkdir -p /home/claude/work/runs/extract/B/HYC-0052/out/digitizations && cd /home/claude/work/v1_tools_frozen && cat > /home/claude/work/runs/extract/B/HYC-0052/work/run_dig.sh <<'EOF'\n#!/bin/bash\n# usage: run_dig.sh name axis(L|R) series roi(x0 y0 x1 y1)\nIMG=/home/claude/work/runs/extract/B/HYC-0052"
+      "detail": "mkdir -p /home/claude/work/runs/extract/B/HYC-0052/out/digitizations && cd /home/claude/work/v1_tools_frozen && cat > /home/claude/work/runs/extract/B/HYC-0052/work/run_dig.sh <<'EOF'\n#!/bin/bash\n# usage: run_dig.sh name axis(L|R) series roi(x0 y0 x1 y1)\nIMG=/home/claude/work/runs/extract/B/HYC-0052",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
     },
     {
       "call": 77,
       "tool": "Bash",
       "reason": "command in the tools directory does more than run its two scripts: $W fig3_AC_273K_end L Activated carbon 273 K (hatched diamond), highest-pressure marker 816 1096 826 1107",
-      "detail": "mkdir -p /home/claude/work/runs/extract/B/HYC-0052/out/digitizations && cd /home/claude/work/v1_tools_frozen && cat > /home/claude/work/runs/extract/B/HYC-0052/work/run_dig.sh <<'EOF'\n#!/bin/bash\n# usage: run_dig.sh name axis(L|R) series roi(x0 y0 x1 y1)\nIMG=/home/claude/work/runs/extract/B/HYC-0052"
+      "detail": "mkdir -p /home/claude/work/runs/extract/B/HYC-0052/out/digitizations && cd /home/claude/work/v1_tools_frozen && cat > /home/claude/work/runs/extract/B/HYC-0052/work/run_dig.sh <<'EOF'\n#!/bin/bash\n# usage: run_dig.sh name axis(L|R) series roi(x0 y0 x1 y1)\nIMG=/home/claude/work/runs/extract/B/HYC-0052",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
     },
     {
       "call": 77,
       "tool": "Bash",
       "reason": "command in the tools directory does more than run its two scripts: $W fig3_AC_298K_end L Activated carbon 298 K (hatched square), highest-pressure marker 818 1129 826 1137",
-      "detail": "mkdir -p /home/claude/work/runs/extract/B/HYC-0052/out/digitizations && cd /home/claude/work/v1_tools_frozen && cat > /home/claude/work/runs/extract/B/HYC-0052/work/run_dig.sh <<'EOF'\n#!/bin/bash\n# usage: run_dig.sh name axis(L|R) series roi(x0 y0 x1 y1)\nIMG=/home/claude/work/runs/extract/B/HYC-0052"
+      "detail": "mkdir -p /home/claude/work/runs/extract/B/HYC-0052/out/digitizations && cd /home/claude/work/v1_tools_frozen && cat > /home/claude/work/runs/extract/B/HYC-0052/work/run_dig.sh <<'EOF'\n#!/bin/bash\n# usage: run_dig.sh name axis(L|R) series roi(x0 y0 x1 y1)\nIMG=/home/claude/work/runs/extract/B/HYC-0052",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
     },
     {
       "call": 78,
       "tool": "Bash",
       "reason": "command in the tools directory does more than run its two scripts: $W fig3_MWNT_233K_end R MWNT 233 K (open down-triangle), highest-pressure marker 925 1125 936 1133",
-      "detail": "W=/home/claude/work/runs/extract/B/HYC-0052/work/run_dig.sh; cd /home/claude/work/v1_tools_frozen\n$W fig3_MWNT_233K_end R \"MWNT 233 K (open down-triangle), highest-pressure marker\" 925 1125 936 1133 2>&1 | grep -E \"points|range|rror|fail|FAIL|region|rejected\"\n$W fig3_MWNT_253K_end R \"MWNT 253 K (ope"
+      "detail": "W=/home/claude/work/runs/extract/B/HYC-0052/work/run_dig.sh; cd /home/claude/work/v1_tools_frozen\n$W fig3_MWNT_233K_end R \"MWNT 233 K (open down-triangle), highest-pressure marker\" 925 1125 936 1133 2>&1 | grep -E \"points|range|rror|fail|FAIL|region|rejected\"\n$W fig3_MWNT_253K_end R \"MWNT 253 K (ope",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
     },
     {
       "call": 78,
       "tool": "Bash",
       "reason": "command in the tools directory does more than run its two scripts: $W fig3_MWNT_253K_end R MWNT 253 K (open up-triangle), highest-pressure marker 926 1119 938 1128",
-      "detail": "W=/home/claude/work/runs/extract/B/HYC-0052/work/run_dig.sh; cd /home/claude/work/v1_tools_frozen\n$W fig3_MWNT_233K_end R \"MWNT 233 K (open down-triangle), highest-pressure marker\" 925 1125 936 1133 2>&1 | grep -E \"points|range|rror|fail|FAIL|region|rejected\"\n$W fig3_MWNT_253K_end R \"MWNT 253 K (ope"
+      "detail": "W=/home/claude/work/runs/extract/B/HYC-0052/work/run_dig.sh; cd /home/claude/work/v1_tools_frozen\n$W fig3_MWNT_233K_end R \"MWNT 233 K (open down-triangle), highest-pressure marker\" 925 1125 936 1133 2>&1 | grep -E \"points|range|rror|fail|FAIL|region|rejected\"\n$W fig3_MWNT_253K_end R \"MWNT 253 K (ope",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
     },
     {
       "call": 78,
       "tool": "Bash",
       "reason": "command in the tools directory does more than run its two scripts: $W fig3_MWNT_273K_end R MWNT 273 K (open diamond), highest-pressure marker 940 1123 950 1135",
-      "detail": "W=/home/claude/work/runs/extract/B/HYC-0052/work/run_dig.sh; cd /home/claude/work/v1_tools_frozen\n$W fig3_MWNT_233K_end R \"MWNT 233 K (open down-triangle), highest-pressure marker\" 925 1125 936 1133 2>&1 | grep -E \"points|range|rror|fail|FAIL|region|rejected\"\n$W fig3_MWNT_253K_end R \"MWNT 253 K (ope"
+      "detail": "W=/home/claude/work/runs/extract/B/HYC-0052/work/run_dig.sh; cd /home/claude/work/v1_tools_frozen\n$W fig3_MWNT_233K_end R \"MWNT 233 K (open down-triangle), highest-pressure marker\" 925 1125 936 1133 2>&1 | grep -E \"points|range|rror|fail|FAIL|region|rejected\"\n$W fig3_MWNT_253K_end R \"MWNT 253 K (ope",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
     },
     {
       "call": 78,
       "tool": "Bash",
       "reason": "command in the tools directory does more than run its two scripts: $W fig3_MWNT_298K_end R MWNT 298 K (open square), highest-pressure marker 952 1129 960 1138",
-      "detail": "W=/home/claude/work/runs/extract/B/HYC-0052/work/run_dig.sh; cd /home/claude/work/v1_tools_frozen\n$W fig3_MWNT_233K_end R \"MWNT 233 K (open down-triangle), highest-pressure marker\" 925 1125 936 1133 2>&1 | grep -E \"points|range|rror|fail|FAIL|region|rejected\"\n$W fig3_MWNT_253K_end R \"MWNT 253 K (ope"
+      "detail": "W=/home/claude/work/runs/extract/B/HYC-0052/work/run_dig.sh; cd /home/claude/work/v1_tools_frozen\n$W fig3_MWNT_233K_end R \"MWNT 233 K (open down-triangle), highest-pressure marker\" 925 1125 936 1133 2>&1 | grep -E \"points|range|rror|fail|FAIL|region|rejected\"\n$W fig3_MWNT_253K_end R \"MWNT 253 K (ope",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
     },
     {
       "call": 78,
       "tool": "Bash",
       "reason": "command in the tools directory does more than run its two scripts: $W fig3_MWNT_318K_end R MWNT 318 K (open circle), highest-pressure marker 958 1129 968 1141",
-      "detail": "W=/home/claude/work/runs/extract/B/HYC-0052/work/run_dig.sh; cd /home/claude/work/v1_tools_frozen\n$W fig3_MWNT_233K_end R \"MWNT 233 K (open down-triangle), highest-pressure marker\" 925 1125 936 1133 2>&1 | grep -E \"points|range|rror|fail|FAIL|region|rejected\"\n$W fig3_MWNT_253K_end R \"MWNT 253 K (ope"
+      "detail": "W=/home/claude/work/runs/extract/B/HYC-0052/work/run_dig.sh; cd /home/claude/work/v1_tools_frozen\n$W fig3_MWNT_233K_end R \"MWNT 233 K (open down-triangle), highest-pressure marker\" 925 1125 936 1133 2>&1 | grep -E \"points|range|rror|fail|FAIL|region|rejected\"\n$W fig3_MWNT_253K_end R \"MWNT 253 K (ope",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
     },
     {
       "call": 78,
       "tool": "Bash",
       "reason": "command in the tools directory does more than run its two scripts: $W fig3_MWNT_233K-253K_check_near6MPa R MWNT 233 K down-triangle and 253 K up-triangle superimposed near 5.8 MPa (merge ",
-      "detail": "W=/home/claude/work/runs/extract/B/HYC-0052/work/run_dig.sh; cd /home/claude/work/v1_tools_frozen\n$W fig3_MWNT_233K_end R \"MWNT 233 K (open down-triangle), highest-pressure marker\" 925 1125 936 1133 2>&1 | grep -E \"points|range|rror|fail|FAIL|region|rejected\"\n$W fig3_MWNT_253K_end R \"MWNT 253 K (ope"
+      "detail": "W=/home/claude/work/runs/extract/B/HYC-0052/work/run_dig.sh; cd /home/claude/work/v1_tools_frozen\n$W fig3_MWNT_233K_end R \"MWNT 233 K (open down-triangle), highest-pressure marker\" 925 1125 936 1133 2>&1 | grep -E \"points|range|rror|fail|FAIL|region|rejected\"\n$W fig3_MWNT_253K_end R \"MWNT 253 K (ope",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
     },
     {
       "call": 78,
       "tool": "Bash",
       "reason": "command in the tools directory does more than run its two scripts: $W fig3_MWNT_298K_check_near6MPa R MWNT 298 K (open square) marker near 5.8 MPa (merge check only) 814 1201 820 1208",
-      "detail": "W=/home/claude/work/runs/extract/B/HYC-0052/work/run_dig.sh; cd /home/claude/work/v1_tools_frozen\n$W fig3_MWNT_233K_end R \"MWNT 233 K (open down-triangle), highest-pressure marker\" 925 1125 936 1133 2>&1 | grep -E \"points|range|rror|fail|FAIL|region|rejected\"\n$W fig3_MWNT_253K_end R \"MWNT 253 K (ope"
+      "detail": "W=/home/claude/work/runs/extract/B/HYC-0052/work/run_dig.sh; cd /home/claude/work/v1_tools_frozen\n$W fig3_MWNT_233K_end R \"MWNT 233 K (open down-triangle), highest-pressure marker\" 925 1125 936 1133 2>&1 | grep -E \"points|range|rror|fail|FAIL|region|rejected\"\n$W fig3_MWNT_253K_end R \"MWNT 253 K (ope",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
     },
     {
       "call": 78,
       "tool": "Bash",
       "reason": "command in the tools directory does more than run its two scripts: $W fig3_MWNT_273K_check_below6MPa R MWNT 273 K (open diamond) marker below 6 MPa (merge check only) 797 1199 807 1210",
-      "detail": "W=/home/claude/work/runs/extract/B/HYC-0052/work/run_dig.sh; cd /home/claude/work/v1_tools_frozen\n$W fig3_MWNT_233K_end R \"MWNT 233 K (open down-triangle), highest-pressure marker\" 925 1125 936 1133 2>&1 | grep -E \"points|range|rror|fail|FAIL|region|rejected\"\n$W fig3_MWNT_253K_end R \"MWNT 253 K (ope"
+      "detail": "W=/home/claude/work/runs/extract/B/HYC-0052/work/run_dig.sh; cd /home/claude/work/v1_tools_frozen\n$W fig3_MWNT_233K_end R \"MWNT 233 K (open down-triangle), highest-pressure marker\" 925 1125 936 1133 2>&1 | grep -E \"points|range|rror|fail|FAIL|region|rejected\"\n$W fig3_MWNT_253K_end R \"MWNT 253 K (ope",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
     },
     {
       "call": 78,
       "tool": "Bash",
       "reason": "command in the tools directory does more than run its two scripts: $W fig3_MWNT_273K_check_above6MPa R MWNT 273 K (open diamond) marker above 6 MPa (merge check only) 826 1181 837 1193",
-      "detail": "W=/home/claude/work/runs/extract/B/HYC-0052/work/run_dig.sh; cd /home/claude/work/v1_tools_frozen\n$W fig3_MWNT_233K_end R \"MWNT 233 K (open down-triangle), highest-pressure marker\" 925 1125 936 1133 2>&1 | grep -E \"points|range|rror|fail|FAIL|region|rejected\"\n$W fig3_MWNT_253K_end R \"MWNT 253 K (ope"
+      "detail": "W=/home/claude/work/runs/extract/B/HYC-0052/work/run_dig.sh; cd /home/claude/work/v1_tools_frozen\n$W fig3_MWNT_233K_end R \"MWNT 233 K (open down-triangle), highest-pressure marker\" 925 1125 936 1133 2>&1 | grep -E \"points|range|rror|fail|FAIL|region|rejected\"\n$W fig3_MWNT_253K_end R \"MWNT 253 K (ope",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
     }
   ],
   "cross_access": [],
   "tool_calls": 90,
   "output_problems": [],
-  "flags_unreviewed": 16,
+  "flags_unreviewed": 0,
   "flags_access": 0,
-  "access_ok": false,
-  "ok": false,
+  "access_ok": true,
+  "ok": true,
   "earlier_agents": [],
   "unfinished_agents": []
 }

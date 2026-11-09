@@ -18,28 +18,40 @@
       "call": 78,
       "tool": "Bash",
       "reason": "command uses the network",
-      "detail": "cd /home/claude/work/runs/extract/B/HYC-0046/work && cat > build2.py << 'EOF'\nimport json,numpy as np,os\nfrom PIL import Image\nfrom scipy import ndimage as ndi\nfrom mk_masks import MASK\nsrc='/home/claude/work/runs/extract/B/HYC-0046/in/pages/main-3.png'\nrgb=np.array(Image.open(src).convert('RGB'))\ng"
+      "detail": "cd /home/claude/work/runs/extract/B/HYC-0046/work && cat > build2.py << 'EOF'\nimport json,numpy as np,os\nfrom PIL import Image\nfrom scipy import ndimage as ndi\nfrom mk_masks import MASK\nsrc='/home/claude/work/runs/extract/B/HYC-0046/in/pages/main-3.png'\nrgb=np.array(Image.open(src).convert('RGB'))\ng",
+      "review": {
+        "access": false,
+        "note": "The flagged network-client name is a variable or word in the agent's own code (e.g. a Python variable 'nc'); no network client runs and no URL appears."
+      }
     },
     {
       "call": 79,
       "tool": "Bash",
       "reason": "command uses the network",
-      "detail": "cd /home/claude/work/runs/extract/B/HYC-0046/work && python3 - << 'EOF'\nimport re\np='build2.py'; s=open(p).read()\ns=s.replace(\"\"\"    if nc!=1: print('WARNING',m['id'],'footprint has',nc,'components', [ (lab==i).sum() for i in range(1,nc+1)])\n\"\"\",\"\"\"    if nc!=1:\n        sizes=[(lab==i).sum() for i i"
+      "detail": "cd /home/claude/work/runs/extract/B/HYC-0046/work && python3 - << 'EOF'\nimport re\np='build2.py'; s=open(p).read()\ns=s.replace(\"\"\"    if nc!=1: print('WARNING',m['id'],'footprint has',nc,'components', [ (lab==i).sum() for i in range(1,nc+1)])\n\"\"\",\"\"\"    if nc!=1:\n        sizes=[(lab==i).sum() for i i",
+      "review": {
+        "access": false,
+        "note": "The flagged network-client name is a variable or word in the agent's own code (e.g. a Python variable 'nc'); no network client runs and no URL appears."
+      }
     },
     {
       "call": 80,
       "tool": "Bash",
       "reason": "command in the tools directory does more than run its two scripts: $n",
-      "detail": "mkdir -p /home/claude/work/runs/extract/B/HYC-0046/out/digitizations && cd /home/claude/work/v1_tools_frozen && for f in /home/claude/work/runs/extract/B/HYC-0046/work/series_img/*.png; do n=$(basename $f .png); s=$(echo $n | sed -E 's/fig1_([0-9]+).*/\\1/'); echo \"== $n\"; python3 scripts/digitize_fi"
+      "detail": "mkdir -p /home/claude/work/runs/extract/B/HYC-0046/out/digitizations && cd /home/claude/work/v1_tools_frozen && for f in /home/claude/work/runs/extract/B/HYC-0046/work/series_img/*.png; do n=$(basename $f .png); s=$(echo $n | sed -E 's/fig1_([0-9]+).*/\\1/'); echo \"== $n\"; python3 scripts/digitize_fi",
+      "review": {
+        "access": false,
+        "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+      }
     }
   ],
   "cross_access": [],
   "tool_calls": 92,
   "output_problems": [],
-  "flags_unreviewed": 3,
+  "flags_unreviewed": 0,
   "flags_access": 0,
-  "access_ok": false,
-  "ok": false,
+  "access_ok": true,
+  "ok": true,
   "earlier_agents": [],
   "unfinished_agents": []
 }

@@ -18,16 +18,20 @@
       "call": 28,
       "tool": "Bash",
       "reason": "command climbs with ..",
-      "detail": "cd /home/claude/work/runs/extract/C/HYC-0042/out && python3 -c \"\nimport csv\nrows=list(csv.DictReader(open('rows.csv')))\nres=list(csv.DictReader(open('resolutions.csv')))\nm=list(csv.DictReader(open('../in/match.csv')))\nneed={x['match_line'] for x in m if x['status']!='agree'}\nhave={x['match_line'] fo"
+      "detail": "cd /home/claude/work/runs/extract/C/HYC-0042/out && python3 -c \"\nimport csv\nrows=list(csv.DictReader(open('rows.csv')))\nres=list(csv.DictReader(open('resolutions.csv')))\nm=list(csv.DictReader(open('../in/match.csv')))\nneed={x['match_line'] for x in m if x['status']!='agree'}\nhave={x['match_line'] fo",
+      "review": {
+        "access": false,
+        "note": "Checks its own output from its out dir; reads ../in/match.csv (its own input). The only other path, ../../../prompts/reconcile_legacy.md (its own instruction file), sits in the true branch of an 'if False' conditional expression and is never evaluated. No outside access."
+      }
     }
   ],
   "cross_access": [],
   "tool_calls": 32,
   "output_problems": [],
-  "flags_unreviewed": 1,
+  "flags_unreviewed": 0,
   "flags_access": 0,
-  "access_ok": false,
-  "ok": false,
+  "access_ok": true,
+  "ok": true,
   "earlier_agents": [],
   "unfinished_agents": []
 }

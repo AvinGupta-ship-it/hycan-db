@@ -13832,6 +13832,249 @@
       "reason": "command in the tools directory reads more than its scripts' output: tr , \\n",
       "access": false,
       "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0033",
+      "transcript": "agent-a979aaa7eec321909.jsonl",
+      "call": 82,
+      "reason": "command moves within the tools directory",
+      "access": false,
+      "note": "From the tools dir lists its own output folder and runs digitize_figure.py with absolute own work/output paths. No outside access."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0033",
+      "transcript": "agent-a979aaa7eec321909.jsonl",
+      "call": 82,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $W/main-6_fig5_legendmasked.png --out $O/fig5_Bdoped_excess.json --figure Figure 5 --series-name B-doped (op",
+      "access": false,
+      "note": "From the tools dir lists its own output folder and runs digitize_figure.py with absolute own work/output paths. No outside access."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0033",
+      "transcript": "agent-a979aaa7eec321909.jsonl",
+      "call": 82,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $W/main-5_fig4_legendmasked.png --out $O/fig4_Bdoped_total.json --figure Figure 4 --series-name B-doped Tota",
+      "access": false,
+      "note": "From the tools dir lists its own output folder and runs digitize_figure.py with absolute own work/output paths. No outside access."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0033",
+      "transcript": "agent-a979aaa7eec321909.jsonl",
+      "call": 82,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $W/main-5_fig4_legendmasked.png --out $O/fig4_Bdoped1min_excess.json --figure Figure 4 --series-name B-doped",
+      "access": false,
+      "note": "From the tools dir lists its own output folder and runs digitize_figure.py with absolute own work/output paths. No outside access."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0033",
+      "transcript": "agent-a979aaa7eec321909.jsonl",
+      "call": 82,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $W/main-5_fig4_legendmasked.png --out $O/fig4_Bdoped1min_total.json --figure Figure 4 --series-name B-doped ",
+      "access": false,
+      "note": "From the tools dir lists its own output folder and runs digitize_figure.py with absolute own work/output paths. No outside access."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0033",
+      "transcript": "agent-a979aaa7eec321909.jsonl",
+      "call": 82,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $W/main-5_fig4_legendmasked.png --out $O/fig4_Bdoped_excess_lastpoint_crosscheck.json --figure Figure 4 --se",
+      "access": false,
+      "note": "From the tools dir lists its own output folder and runs digitize_figure.py with absolute own work/output paths. No outside access."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0033",
+      "transcript": "agent-a979aaa7eec321909.jsonl",
+      "call": 82,
+      "reason": "command in the tools directory does more than run its two scripts: run --image $W/main-6_fig5_legendmasked.png --out $O/fig5_Bdoped1min_excess_lastpoint_crosscheck.json --figure Figure 5 ",
+      "access": false,
+      "note": "From the tools dir lists its own output folder and runs digitize_figure.py with absolute own work/output paths. No outside access."
+    },
+    {
+      "screener": "C",
+      "batch": "HYC-0042",
+      "transcript": "agent-ad8fe436c08761c88.jsonl",
+      "call": 28,
+      "reason": "command climbs with ..",
+      "access": false,
+      "note": "Checks its own output from its out dir; reads ../in/match.csv (its own input). The only other path, ../../../prompts/reconcile_legacy.md (its own instruction file), sits in the true branch of an 'if False' conditional expression and is never evaluated. No outside access."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0046",
+      "transcript": "agent-a1c65683e263baa67.jsonl",
+      "call": 78,
+      "reason": "command uses the network",
+      "access": false,
+      "note": "The flagged network-client name is a variable or word in the agent's own code (e.g. a Python variable 'nc'); no network client runs and no URL appears."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0046",
+      "transcript": "agent-a1c65683e263baa67.jsonl",
+      "call": 79,
+      "reason": "command uses the network",
+      "access": false,
+      "note": "The flagged network-client name is a variable or word in the agent's own code (e.g. a Python variable 'nc'); no network client runs and no URL appears."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0046",
+      "transcript": "agent-a1c65683e263baa67.jsonl",
+      "call": 80,
+      "reason": "command in the tools directory does more than run its two scripts: $n",
+      "access": false,
+      "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0052",
+      "transcript": "agent-a915f903c89efc7dd.jsonl",
+      "call": 77,
+      "reason": "command in the tools directory does more than run its two scripts: cat",
+      "access": false,
+      "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0052",
+      "transcript": "agent-a915f903c89efc7dd.jsonl",
+      "call": 77,
+      "reason": "command in the tools directory does more than run its two scripts: chmod +x /home/claude/work/runs/extract/B/HYC-0052/work/run_dig.sh",
+      "access": false,
+      "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0052",
+      "transcript": "agent-a915f903c89efc7dd.jsonl",
+      "call": 77,
+      "reason": "command in the tools directory does more than run its two scripts: $W fig3_AC_233K_end L Activated carbon 233 K (hatched down-triangle), highest-pressure marker 814 998 822 1005",
+      "access": false,
+      "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0052",
+      "transcript": "agent-a915f903c89efc7dd.jsonl",
+      "call": 77,
+      "reason": "command in the tools directory does more than run its two scripts: $W fig3_AC_253K_end L Activated carbon 253 K (hatched up-triangle), highest-pressure marker 821 1050 830 1058",
+      "access": false,
+      "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0052",
+      "transcript": "agent-a915f903c89efc7dd.jsonl",
+      "call": 77,
+      "reason": "command in the tools directory does more than run its two scripts: $W fig3_AC_253K_check_penultimate L Activated carbon 253 K (hatched up-triangle), second-highest-pressure marker (merge ",
+      "access": false,
+      "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0052",
+      "transcript": "agent-a915f903c89efc7dd.jsonl",
+      "call": 77,
+      "reason": "command in the tools directory does more than run its two scripts: $W fig3_AC_273K_end L Activated carbon 273 K (hatched diamond), highest-pressure marker 816 1096 826 1107",
+      "access": false,
+      "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0052",
+      "transcript": "agent-a915f903c89efc7dd.jsonl",
+      "call": 77,
+      "reason": "command in the tools directory does more than run its two scripts: $W fig3_AC_298K_end L Activated carbon 298 K (hatched square), highest-pressure marker 818 1129 826 1137",
+      "access": false,
+      "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0052",
+      "transcript": "agent-a915f903c89efc7dd.jsonl",
+      "call": 78,
+      "reason": "command in the tools directory does more than run its two scripts: $W fig3_MWNT_233K_end R MWNT 233 K (open down-triangle), highest-pressure marker 925 1125 936 1133",
+      "access": false,
+      "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0052",
+      "transcript": "agent-a915f903c89efc7dd.jsonl",
+      "call": 78,
+      "reason": "command in the tools directory does more than run its two scripts: $W fig3_MWNT_253K_end R MWNT 253 K (open up-triangle), highest-pressure marker 926 1119 938 1128",
+      "access": false,
+      "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0052",
+      "transcript": "agent-a915f903c89efc7dd.jsonl",
+      "call": 78,
+      "reason": "command in the tools directory does more than run its two scripts: $W fig3_MWNT_273K_end R MWNT 273 K (open diamond), highest-pressure marker 940 1123 950 1135",
+      "access": false,
+      "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0052",
+      "transcript": "agent-a915f903c89efc7dd.jsonl",
+      "call": 78,
+      "reason": "command in the tools directory does more than run its two scripts: $W fig3_MWNT_298K_end R MWNT 298 K (open square), highest-pressure marker 952 1129 960 1138",
+      "access": false,
+      "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0052",
+      "transcript": "agent-a915f903c89efc7dd.jsonl",
+      "call": 78,
+      "reason": "command in the tools directory does more than run its two scripts: $W fig3_MWNT_318K_end R MWNT 318 K (open circle), highest-pressure marker 958 1129 968 1141",
+      "access": false,
+      "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0052",
+      "transcript": "agent-a915f903c89efc7dd.jsonl",
+      "call": 78,
+      "reason": "command in the tools directory does more than run its two scripts: $W fig3_MWNT_233K-253K_check_near6MPa R MWNT 233 K down-triangle and 253 K up-triangle superimposed near 5.8 MPa (merge ",
+      "access": false,
+      "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0052",
+      "transcript": "agent-a915f903c89efc7dd.jsonl",
+      "call": 78,
+      "reason": "command in the tools directory does more than run its two scripts: $W fig3_MWNT_298K_check_near6MPa R MWNT 298 K (open square) marker near 5.8 MPa (merge check only) 814 1201 820 1208",
+      "access": false,
+      "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0052",
+      "transcript": "agent-a915f903c89efc7dd.jsonl",
+      "call": 78,
+      "reason": "command in the tools directory does more than run its two scripts: $W fig3_MWNT_273K_check_below6MPa R MWNT 273 K (open diamond) marker below 6 MPa (merge check only) 797 1199 807 1210",
+      "access": false,
+      "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
+    },
+    {
+      "screener": "B",
+      "batch": "HYC-0052",
+      "transcript": "agent-a915f903c89efc7dd.jsonl",
+      "call": 78,
+      "reason": "command in the tools directory does more than run its two scripts: $W fig3_MWNT_273K_check_above6MPa R MWNT 273 K (open diamond) marker above 6 MPa (merge check only) 826 1181 837 1193",
+      "access": false,
+      "note": "In or through the tools directory the command runs only the allowed scripts (digitize_figure.py, validate_row_detail.py), directly, in loops, through a shell function, eval of argument variables, or a helper script the agent wrote in its own work directory, on the agent's own images and files, and filters or saves the printed output or its own JSON in its own directories. Every absolute path it names is in the agent's own run directory, the tools directory's two scripts, or the agent's own saved command output. Nothing in the tools directory is opened, listed or searched."
     }
   ]
 }
