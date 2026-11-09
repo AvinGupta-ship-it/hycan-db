@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:17:45+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0020",
+  "figure": "Fig. S1c",
+  "series_name": "G-800 80 degC 10 cycles (end marker)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0020/in/pages/si1-6.png",
+    "sha256": "2043e938d33399aeb01c3a7b3c56f8cde8f5bffd919e1784822690e3c2f41eb5",
+    "width_px": 1241,
+    "height_px": 1754
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 293.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 963.5,
+        "value": 50.0
+      },
+      "scale": "linear",
+      "label": "Pressure [bar]",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 770.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 232.5,
+        "value": 6.0
+      },
+      "scale": "linear",
+      "label": "Adsorption capacity [mmol/g]",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 562.5,
+        "stated": 20.0,
+        "predicted": 20.096942580164058,
+        "relative_error": 0.004847129008202877
+      },
+      {
+        "axis": "y",
+        "pixel": 592.5,
+        "stated": 2.0,
+        "predicted": 1.9851301115241635,
+        "relative_error": 0.0074349442379182396
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#255640",
+    "color_rgb": [
+      37,
+      86,
+      64
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 19077,
+    "matched_pixels_in_region": 197,
+    "region": [
+      880,
+      228,
+      960,
+      272
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 21.52,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 44.66967222733243,
+      "y": 5.896939218387335,
+      "pixel_x": 892.0203045685279,
+      "pixel_y": 241.74111675126903,
+      "pixel_count": 197,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. S1c, digitized (G-800 80 degC 10 cycles (end marker))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: figS1c_G-800_80C_10cycles.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

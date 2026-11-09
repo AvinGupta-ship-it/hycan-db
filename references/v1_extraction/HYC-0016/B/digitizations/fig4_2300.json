@@ -1,0 +1,216 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:17:03+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0016",
+  "figure": "Figure_4_main-17",
+  "series_name": "Fig4 77K 2300m2/g",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0016/in/pages/main-17.png",
+    "sha256": "ba712cfe05db38e4c93938c241ceaf7326fc029d28ff9cc75b35c8b96d6efb41",
+    "width_px": 1275,
+    "height_px": 1650
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 365.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 945.0,
+        "value": 50.0
+      },
+      "scale": "linear",
+      "label": "Pressure_bar",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1277.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 943.5,
+        "value": 5.0
+      },
+      "scale": "linear",
+      "label": "Wt_pct",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 597.0,
+        "stated": 20.0,
+        "predicted": 20.0,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 1143.0,
+        "stated": 2.0,
+        "predicted": 2.0089955022488755,
+        "relative_error": 0.004497751124437732
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 21113,
+    "matched_pixels_in_region": 3523,
+    "region": [
+      366,
+      898,
+      840,
+      1276
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 13.34,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 62,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 2.327586206896552,
+      "y": 2.9965868129764917,
+      "pixel_x": 392.0,
+      "pixel_y": 1077.127659574468,
+      "pixel_count": 47,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.8017241379310347,
+      "y": 3.1634182908545725,
+      "pixel_x": 397.5,
+      "pixel_y": 1066.0,
+      "pixel_count": 42,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.318965517241379,
+      "y": 3.2983508245877062,
+      "pixel_x": 403.5,
+      "pixel_y": 1057.0,
+      "pixel_count": 42,
+      "outside_axis_range": false
+    },
+    {
+      "x": 4.924798239178285,
+      "y": 3.628185907046477,
+      "pixel_x": 422.1276595744681,
+      "pixel_y": 1035.0,
+      "pixel_count": 47,
+      "outside_axis_range": false
+    },
+    {
+      "x": 7.413793103448276,
+      "y": 3.9505247376311843,
+      "pixel_x": 451.0,
+      "pixel_y": 1013.5,
+      "pixel_count": 42,
+      "outside_axis_range": false
+    },
+    {
+      "x": 10.560344827586206,
+      "y": 4.24287856071964,
+      "pixel_x": 487.5,
+      "pixel_y": 994.0,
+      "pixel_count": 42,
+      "outside_axis_range": false
+    },
+    {
+      "x": 15.387931034482758,
+      "y": 4.535232383808096,
+      "pixel_x": 543.5,
+      "pixel_y": 974.5,
+      "pixel_count": 36,
+      "outside_axis_range": false
+    },
+    {
+      "x": 21.465517241379313,
+      "y": 4.7901049475262365,
+      "pixel_x": 614.0,
+      "pixel_y": 957.5,
+      "pixel_count": 42,
+      "outside_axis_range": false
+    },
+    {
+      "x": 28.534482758620687,
+      "y": 4.962518740629685,
+      "pixel_x": 696.0,
+      "pixel_y": 946.0,
+      "pixel_count": 49,
+      "outside_axis_range": false
+    },
+    {
+      "x": 38.75,
+      "y": 5.097451274362818,
+      "pixel_x": 814.5,
+      "pixel_y": 937.0,
+      "pixel_count": 42,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure_4_main-17, digitized (Fig4 77K 2300m2/g)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig4_2300.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  },
+  "split_from": {
+    "combined_run_archive": "fig4_black_combined_run.json",
+    "combined_run_point_indices": [
+      15,
+      16,
+      19,
+      23,
+      28,
+      34,
+      40,
+      46,
+      52,
+      58
+    ],
+    "note": "Black markers of all Figure 4 series share one colour, so one digitize_figure.py run was made on the whole plot and its single-marker blobs were assigned to series by the curve each lies on; this file holds this series' markers unchanged from that run. Blobs of merged or partly hidden markers, and one clean marker whose series could not be determined, are listed in combined_run_points_not_assigned and in log.md.",
+    "combined_run_points_not_assigned": {
+      "0": "merged column of several low-pressure markers on the y axis (bbox 6x16 px)",
+      "1": "fragment of a hidden marker (15 px)",
+      "2": "merged column of markers on the y axis (bbox 5x13 px)",
+      "3": "fragment of a hidden marker (15 px)",
+      "4": "two merged markers on the y axis (bbox 6x11 px)",
+      "5": "two side-by-side merged markers (102 px)",
+      "6": "single clean marker near 0.9 bar; lies on both the 2300m2/g and 1730m2/g traces, series ambiguous",
+      "8": "two merged markers near 1.4-1.5 bar: 2300m2/g and 1730m2/g",
+      "9": "two merged markers: 1450m2/g near 1.2 bar and 1259m2/g near 1.7 bar",
+      "10": "merged staircase of the 370m2/g series (7 markers, 0.9-3.5 bar) plus y-axis markers (389 px)",
+      "12": "two merged markers: 2300m2/g near 1.8 bar and 1730m2/g near 2.1 bar",
+      "13": "merged staircase of the 650m2/g series (7 markers, 0.9-3.5 bar) (273 px)",
+      "17": "three merged markers of the 1259m2/g series near 2.3-3.4 bar (108 px)",
+      "18": "two merged markers of the 1450m2/g series near 2.8-3.4 bar (84 px)"
+    }
+  }
+}

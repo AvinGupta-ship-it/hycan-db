@@ -1,0 +1,204 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:21:23+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0037",
+  "figure": "Fig. 5c",
+  "series_name": "N-doped CNTs, 298 K, 0-19 bar (IGA gravimetric)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0037/in/pages/main-5.png",
+    "sha256": "a4ef8c91a285e6c2f23ed306c2fb14917e6605ec80d6b5efbb541723f3add4c0",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 190.41,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 586.56,
+        "value": 20.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1095.48,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 827.61,
+        "value": 0.2
+      },
+      "scale": "linear",
+      "label": "Hydrogen adsorption (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 388.43,
+        "stated": 10.0,
+        "predicted": 9.99722327401237,
+        "relative_error": 0.0002776725987629902
+      },
+      {
+        "axis": "y",
+        "pixel": 988.54,
+        "stated": 0.08,
+        "predicted": 0.07984470078769557,
+        "relative_error": 0.0019412401538054444
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 100.0,
+    "matched_pixels_in_image": 96407,
+    "matched_pixels_in_region": 1434,
+    "region": [
+      189,
+      820,
+      592,
+      1098
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 10.7148,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 11,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 0.02978669695822307,
+      "y": -1.49326165677245e-05,
+      "pixel_x": 191.0,
+      "pixel_y": 1095.5,
+      "pixel_count": 30,
+      "outside_axis_range": true
+    },
+    {
+      "x": 1.0142622743910137,
+      "y": 0.013051106880203098,
+      "pixel_x": 210.5,
+      "pixel_y": 1078.0,
+      "pixel_count": 30,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.983213429256595,
+      "y": 0.03470340090342332,
+      "pixel_x": 249.5,
+      "pixel_y": 1049.0,
+      "pixel_count": 42,
+      "outside_axis_range": false
+    },
+    {
+      "x": 5.004592277594929,
+      "y": 0.05394350301954735,
+      "pixel_x": 289.53846153846155,
+      "pixel_y": 1023.2307692307693,
+      "pixel_count": 39,
+      "outside_axis_range": false
+    },
+    {
+      "x": 6.9968446295595115,
+      "y": 0.0761414118788965,
+      "pixel_x": 329.0,
+      "pixel_y": 993.5,
+      "pixel_count": 42,
+      "outside_axis_range": false
+    },
+    {
+      "x": 8.991038747949009,
+      "y": 0.09667375965953635,
+      "pixel_x": 368.5,
+      "pixel_y": 966.0,
+      "pixel_count": 42,
+      "outside_axis_range": false
+    },
+    {
+      "x": 10.985232866338508,
+      "y": 0.11235300705566134,
+      "pixel_x": 408.0,
+      "pixel_y": 945.0,
+      "pixel_count": 49,
+      "outside_axis_range": false
+    },
+    {
+      "x": 12.979426984728008,
+      "y": 0.12616567738081907,
+      "pixel_x": 447.5,
+      "pixel_y": 926.5,
+      "pixel_count": 36,
+      "outside_axis_range": false
+    },
+    {
+      "x": 14.998864066641426,
+      "y": 0.14259155560533096,
+      "pixel_x": 487.5,
+      "pixel_y": 904.5,
+      "pixel_count": 36,
+      "outside_axis_range": false
+    },
+    {
+      "x": 17.015222738369,
+      "y": 0.15560296357807346,
+      "pixel_x": 527.439024390244,
+      "pixel_y": 887.0731707317074,
+      "pixel_count": 41,
+      "outside_axis_range": false
+    },
+    {
+      "x": 19.01249526694434,
+      "y": 0.16573711128532498,
+      "pixel_x": 567.0,
+      "pixel_y": 873.5,
+      "pixel_count": 42,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 19.0,
+      "expected": 0.17,
+      "got": 0.1656737103828223,
+      "difference": -0.004326289617177709,
+      "percent": 2.544876245398652,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-11-09T18:21:29+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 5c, digitized (N-doped CNTs, 298 K, 0-19 bar (IGA gravimetric))",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 19.0."
+  }
+}

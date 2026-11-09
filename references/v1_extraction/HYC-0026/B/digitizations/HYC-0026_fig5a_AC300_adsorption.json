@@ -1,0 +1,184 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:19:51+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0026",
+  "figure": "Fig. 5a",
+  "series_name": "AC300 adsorption (filled diamonds)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0026/work/fig5a_nolabels.png",
+    "sha256": "f75a5e098cad4aef452c69d3b3530727948d14d4d87766023ea07979b009a3e3",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 145.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 586.0,
+        "value": 8.0
+      },
+      "scale": "linear",
+      "label": "P (MPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 385.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 145.0,
+        "value": 7.0
+      },
+      "scale": "linear",
+      "label": "H2 ads (wt.%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 366.0,
+        "stated": 4.0,
+        "predicted": 4.00907029478458,
+        "relative_error": 0.0022675736961450532
+      },
+      {
+        "axis": "y",
+        "pixel": 248.0,
+        "stated": 4.0,
+        "predicted": 3.995833333333333,
+        "relative_error": 0.0010416666666667185
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff0000",
+    "color_rgb": [
+      255,
+      0,
+      0
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 762,
+    "matched_pixels_in_region": 547,
+    "region": [
+      140,
+      140,
+      592,
+      392
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 9.6,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 2-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 10,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": -0.011861154718297694,
+      "y": 0.010096153846154483,
+      "pixel_x": 144.34615384615384,
+      "pixel_y": 384.65384615384613,
+      "pixel_count": 26,
+      "outside_axis_range": true
+    },
+    {
+      "x": 0.12619540569851134,
+      "y": 3.0548913043478265,
+      "pixel_x": 151.95652173913044,
+      "pixel_y": 280.2608695652174,
+      "pixel_count": 23,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.25900730662635413,
+      "y": 3.72199074074074,
+      "pixel_x": 159.27777777777777,
+      "pixel_y": 257.3888888888889,
+      "pixel_count": 18,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.3882086167800455,
+      "y": 4.1154166666666665,
+      "pixel_x": 166.4,
+      "pixel_y": 243.9,
+      "pixel_count": 20,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.6684109541252398,
+      "y": 4.579166666666667,
+      "pixel_x": 181.84615384615384,
+      "pixel_y": 228.0,
+      "pixel_count": 13,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.2698412698412698,
+      "y": 5.191666666666666,
+      "pixel_x": 215.0,
+      "pixel_y": 207.0,
+      "pixel_count": 25,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.5850340136054424,
+      "y": 5.73125,
+      "pixel_x": 287.5,
+      "pixel_y": 188.5,
+      "pixel_count": 24,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.8702250130821563,
+      "y": 5.930929487179487,
+      "pixel_x": 358.34615384615387,
+      "pixel_y": 181.65384615384616,
+      "pixel_count": 26,
+      "outside_axis_range": false
+    },
+    {
+      "x": 5.224489795918367,
+      "y": 5.979166666666666,
+      "pixel_x": 433.0,
+      "pixel_y": 180.0,
+      "pixel_count": 21,
+      "outside_axis_range": false
+    },
+    {
+      "x": 8.0,
+      "y": 5.95,
+      "pixel_x": 586.0,
+      "pixel_y": 181.0,
+      "pixel_count": 21,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 5a, digitized (AC300 adsorption (filled diamonds))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0026_fig5a_AC300_adsorption.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

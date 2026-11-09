@@ -1,0 +1,189 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:17:03+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0016",
+  "figure": "Figure_4_main-17",
+  "series_name": "Fig4 77K 1730m2/g",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0016/in/pages/main-17.png",
+    "sha256": "ba712cfe05db38e4c93938c241ceaf7326fc029d28ff9cc75b35c8b96d6efb41",
+    "width_px": 1275,
+    "height_px": 1650
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 365.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 945.0,
+        "value": 50.0
+      },
+      "scale": "linear",
+      "label": "Pressure_bar",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1277.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 943.5,
+        "value": 5.0
+      },
+      "scale": "linear",
+      "label": "Wt_pct",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 597.0,
+        "stated": 20.0,
+        "predicted": 20.0,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 1143.0,
+        "stated": 2.0,
+        "predicted": 2.0089955022488755,
+        "relative_error": 0.004497751124437732
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000000",
+    "color_rgb": [
+      0,
+      0,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 21113,
+    "matched_pixels_in_region": 3523,
+    "region": [
+      366,
+      898,
+      840,
+      1276
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 13.34,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 62,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 3.577586206896552,
+      "y": 3.058470764617691,
+      "pixel_x": 406.5,
+      "pixel_y": 1073.0,
+      "pixel_count": 42,
+      "outside_axis_range": false
+    },
+    {
+      "x": 6.077586206896552,
+      "y": 3.3808095952023987,
+      "pixel_x": 435.5,
+      "pixel_y": 1051.5,
+      "pixel_count": 36,
+      "outside_axis_range": false
+    },
+    {
+      "x": 9.310344827586208,
+      "y": 3.641264474145907,
+      "pixel_x": 473.0,
+      "pixel_y": 1034.127659574468,
+      "pixel_count": 47,
+      "outside_axis_range": false
+    },
+    {
+      "x": 14.292661361626882,
+      "y": 3.876523276823127,
+      "pixel_x": 530.7948717948718,
+      "pixel_y": 1018.4358974358975,
+      "pixel_count": 39,
+      "outside_axis_range": false
+    },
+    {
+      "x": 20.646551724137932,
+      "y": 4.0254872563718145,
+      "pixel_x": 604.5,
+      "pixel_y": 1008.5,
+      "pixel_count": 24,
+      "outside_axis_range": false
+    },
+    {
+      "x": 27.93103448275862,
+      "y": 4.145427286356822,
+      "pixel_x": 689.0,
+      "pixel_y": 1000.5,
+      "pixel_count": 42,
+      "outside_axis_range": false
+    },
+    {
+      "x": 38.44827586206897,
+      "y": 4.190404797601199,
+      "pixel_x": 811.0,
+      "pixel_y": 997.5,
+      "pixel_count": 42,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure_4_main-17, digitized (Fig4 77K 1730m2/g)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig4_1730.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  },
+  "split_from": {
+    "combined_run_archive": "fig4_black_combined_run.json",
+    "combined_run_point_indices": [
+      20,
+      26,
+      32,
+      38,
+      44,
+      50,
+      56
+    ],
+    "note": "Black markers of all Figure 4 series share one colour, so one digitize_figure.py run was made on the whole plot and its single-marker blobs were assigned to series by the curve each lies on; this file holds this series' markers unchanged from that run. Blobs of merged or partly hidden markers, and one clean marker whose series could not be determined, are listed in combined_run_points_not_assigned and in log.md.",
+    "combined_run_points_not_assigned": {
+      "0": "merged column of several low-pressure markers on the y axis (bbox 6x16 px)",
+      "1": "fragment of a hidden marker (15 px)",
+      "2": "merged column of markers on the y axis (bbox 5x13 px)",
+      "3": "fragment of a hidden marker (15 px)",
+      "4": "two merged markers on the y axis (bbox 6x11 px)",
+      "5": "two side-by-side merged markers (102 px)",
+      "6": "single clean marker near 0.9 bar; lies on both the 2300m2/g and 1730m2/g traces, series ambiguous",
+      "8": "two merged markers near 1.4-1.5 bar: 2300m2/g and 1730m2/g",
+      "9": "two merged markers: 1450m2/g near 1.2 bar and 1259m2/g near 1.7 bar",
+      "10": "merged staircase of the 370m2/g series (7 markers, 0.9-3.5 bar) plus y-axis markers (389 px)",
+      "12": "two merged markers: 2300m2/g near 1.8 bar and 1730m2/g near 2.1 bar",
+      "13": "merged staircase of the 650m2/g series (7 markers, 0.9-3.5 bar) (273 px)",
+      "17": "three merged markers of the 1259m2/g series near 2.3-3.4 bar (108 px)",
+      "18": "two merged markers of the 1450m2/g series near 2.8-3.4 bar (84 px)"
+    }
+  }
+}

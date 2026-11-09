@@ -1,0 +1,505 @@
+{
+ "paper_id": "HYC-0137",
+ "figure": "Fig. 2(F)",
+ "series_name": "d-1000-1",
+ "sample_label": "CS-1000-1",
+ "quantity": "excess H2 uptake (wt.%)",
+ "legend_branch": "desorption (open symbols)",
+ "page_image": "in/pages/main-05.png",
+ "isolation_method": "hollow-marker mask: outline pixels of the series hue in a lower saturation band, minus pixels within 1 px of a filled core of the same series; neutral/bluish-grey pixels split between d-900-4 and d-900-2 by mean(B-R) per component; closed 3x3 and hole-filled; painted #ff0000 on white (work/classify2.py); tool run with --open-px 1 --marker-min-px 7; merged markers split by sub-ROI runs (T_* runs)",
+ "calibration_ticks": "x: 0 bar at px 873.29, 50 bar at px 1088.58, check 20 bar at px 959.47; y: 0 wt% at px 543.58, 6 wt% at px 379.0, check 3 wt% at px 461.0",
+ "component_runs": [
+  {
+   "run": "F_d-1000-1",
+   "accepted_indices": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "tool_output": {
+    "tool": "digitize_figure.py",
+    "tool_version": "2.1",
+    "created_utc": "2026-11-09T18:05:39+00:00",
+    "status": "unchecked",
+    "paper_id": "HYC-0137",
+    "figure": "Fig 2(F)",
+    "series_name": "d-1000-1",
+    "source_image": {
+     "path": "/home/claude/work/runs/extract/B/HYC-0137/work/iso2_F_d-1000-1.png",
+     "sha256": "9581fb1d283a24ceec7f33b26b619c55165e0e7c9d784eb352c54c5a90d3e334",
+     "width_px": 1241,
+     "height_px": 1654
+    },
+    "calibration": {
+     "x": {
+      "axis": "x",
+      "reference_1": {
+       "pixel": 873.29,
+       "value": 0.0
+      },
+      "reference_2": {
+       "pixel": 1088.58,
+       "value": 50.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+     },
+     "y": {
+      "axis": "y",
+      "reference_1": {
+       "pixel": 543.58,
+       "value": 0.0
+      },
+      "reference_2": {
+       "pixel": 379.0,
+       "value": 6.0
+      },
+      "scale": "linear",
+      "label": "H2 uptake (wt.%)",
+      "decades_spanned": 0.0
+     },
+     "verification_ticks": [
+      {
+       "axis": "x",
+       "pixel": 959.47,
+       "stated": 20.0,
+       "predicted": 20.014863672256045,
+       "relative_error": 0.000743183612802234
+      },
+      {
+       "axis": "y",
+       "pixel": 461.0,
+       "stated": 3.0,
+       "predicted": 3.010572366022604,
+       "relative_error": 0.0035241220075346766
+      }
+     ]
+    },
+    "isolation": {
+     "color_hex": "#ff0000",
+     "color_rgb": [
+      255,
+      0,
+      0
+     ],
+     "tolerance": 30.0,
+     "matched_pixels_in_image": 275,
+     "matched_pixels_in_region": 275,
+     "region": [
+      859,
+      385,
+      1103,
+      541
+     ],
+     "region_basis": "explicit (--roi)"
+    },
+    "extraction": {
+     "bin_width_px": 1,
+     "min_pixels_per_bin": 1,
+     "max_cluster_gap_px": 6.5832000000000015,
+     "longest_multimodal_run": 0,
+     "mode": "markers",
+     "aggregation": "centroid of each connected marker after a 1-px opening",
+     "marker_size_px": [
+      7,
+      2000
+     ],
+     "rejected_markers": [
+      {
+       "pixel_x": 930.0,
+       "pixel_y": 437.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 905.0,
+       "pixel_y": 440.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 911.0,
+       "pixel_y": 441.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 915.0,
+       "pixel_y": 441.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 906.0,
+       "pixel_y": 444.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 971.0,
+       "pixel_y": 447.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 889.0,
+       "pixel_y": 449.5,
+       "pixels": 2,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 973.0,
+       "pixel_y": 450.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 890.0,
+       "pixel_y": 452.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 981.0,
+       "pixel_y": 456.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 1014.0,
+       "pixel_y": 460.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 876.0,
+       "pixel_y": 469.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 1024.0,
+       "pixel_y": 469.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 880.0,
+       "pixel_y": 472.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 1055.0,
+       "pixel_y": 483.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 897.0,
+       "pixel_y": 484.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 881.4,
+       "pixel_y": 487.0,
+       "pixels": 5,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 906.0,
+       "pixel_y": 486.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 1068.0,
+       "pixel_y": 487.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 928.0,
+       "pixel_y": 489.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 1066.0,
+       "pixel_y": 490.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 949.0,
+       "pixel_y": 495.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 963.0,
+       "pixel_y": 499.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 979.0,
+       "pixel_y": 500.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 872.0,
+       "pixel_y": 503.5,
+       "pixels": 2,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 875.5,
+       "pixel_y": 504.5,
+       "pixels": 2,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 871.5,
+       "pixel_y": 509.0,
+       "pixels": 2,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 873.0,
+       "pixel_y": 512.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 1006.0,
+       "pixel_y": 512.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 1002.0,
+       "pixel_y": 513.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 871.0,
+       "pixel_y": 517.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 876.0,
+       "pixel_y": 517.0,
+       "pixels": 1,
+       "reason": "too small"
+      }
+     ],
+     "n_points": 10,
+     "multimodal_bins": [],
+     "points_outside_axis_range": 0
+    },
+    "series": [
+     {
+      "x": 3.1418509494593128,
+      "y": 2.298014781427104,
+      "pixel_x": 886.8181818181819,
+      "pixel_y": 480.54545454545456,
+      "pixel_count": 11,
+      "outside_axis_range": false
+     },
+     {
+      "x": 8.586826581526527,
+      "y": 2.254581038816509,
+      "pixel_x": 910.2631578947369,
+      "pixel_y": 481.7368421052632,
+      "pixel_count": 19,
+      "outside_axis_range": false
+     },
+     {
+      "x": 13.308233683076933,
+      "y": 2.162622702907065,
+      "pixel_x": 930.5925925925926,
+      "pixel_y": 484.25925925925924,
+      "pixel_count": 27,
+      "outside_axis_range": false
+     },
+     {
+      "x": 18.263977537915988,
+      "y": 1.9193935660678607,
+      "pixel_x": 951.9310344827586,
+      "pixel_y": 490.9310344827586,
+      "pixel_count": 29,
+      "outside_axis_range": false
+     },
+     {
+      "x": 23.05860875464668,
+      "y": 1.6837790961013726,
+      "pixel_x": 972.5757575757576,
+      "pixel_y": 497.3939393939394,
+      "pixel_count": 33,
+      "outside_axis_range": false
+     },
+     {
+      "x": 28.108597705420618,
+      "y": 1.4137805322639454,
+      "pixel_x": 994.32,
+      "pixel_y": 504.8,
+      "pixel_count": 25,
+      "outside_axis_range": false
+     },
+     {
+      "x": 33.13356907871486,
+      "y": 1.1037423322607742,
+      "pixel_x": 1015.9565217391304,
+      "pixel_y": 513.304347826087,
+      "pixel_count": 23,
+      "outside_axis_range": false
+     },
+     {
+      "x": 37.7965727062615,
+      "y": 0.8181578186480949,
+      "pixel_x": 1036.0344827586207,
+      "pixel_y": 521.1379310344828,
+      "pixel_count": 29,
+      "outside_axis_range": false
+     },
+     {
+      "x": 42.8495672503755,
+      "y": 0.5360918702150943,
+      "pixel_x": 1057.7916666666667,
+      "pixel_y": 528.875,
+      "pixel_count": 24,
+      "outside_axis_range": false
+     },
+     {
+      "x": 49.555638131512566,
+      "y": 0.1450966095515865,
+      "pixel_x": 1086.6666666666667,
+      "pixel_y": 539.6,
+      "pixel_count": 15,
+      "outside_axis_range": false
+     }
+    ],
+    "checks": [],
+    "row_hint": {
+     "extraction_method": "figure_digitized",
+     "source_location": "Fig 2(F), digitized (d-1000-1)",
+     "notes": "Digitized with digitize_figure.py v2.1; archive: F_d-1000-1.json",
+     "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+    }
+   }
+  }
+ ],
+ "points": [
+  {
+   "x": 49.555638131512566,
+   "y": 0.1450966095515865,
+   "pixel_x": 1086.6666666666667,
+   "pixel_y": 539.6,
+   "pixel_count": 15,
+   "run": "F_d-1000-1",
+   "index": 9,
+   "confidence": 3,
+   "flags": []
+  },
+  {
+   "x": 42.8495672503755,
+   "y": 0.5360918702150943,
+   "pixel_x": 1057.7916666666667,
+   "pixel_y": 528.875,
+   "pixel_count": 24,
+   "run": "F_d-1000-1",
+   "index": 8,
+   "confidence": 3,
+   "flags": []
+  },
+  {
+   "x": 37.7965727062615,
+   "y": 0.8181578186480949,
+   "pixel_x": 1036.0344827586207,
+   "pixel_y": 521.1379310344828,
+   "pixel_count": 29,
+   "run": "F_d-1000-1",
+   "index": 7,
+   "confidence": 3,
+   "flags": []
+  },
+  {
+   "x": 33.13356907871486,
+   "y": 1.1037423322607742,
+   "pixel_x": 1015.9565217391304,
+   "pixel_y": 513.304347826087,
+   "pixel_count": 23,
+   "run": "F_d-1000-1",
+   "index": 6,
+   "confidence": 3,
+   "flags": []
+  },
+  {
+   "x": 28.108597705420618,
+   "y": 1.4137805322639454,
+   "pixel_x": 994.32,
+   "pixel_y": 504.8,
+   "pixel_count": 25,
+   "run": "F_d-1000-1",
+   "index": 5,
+   "confidence": 3,
+   "flags": []
+  },
+  {
+   "x": 23.05860875464668,
+   "y": 1.6837790961013726,
+   "pixel_x": 972.5757575757576,
+   "pixel_y": 497.3939393939394,
+   "pixel_count": 33,
+   "run": "F_d-1000-1",
+   "index": 4,
+   "confidence": 3,
+   "flags": []
+  },
+  {
+   "x": 18.263977537915988,
+   "y": 1.9193935660678607,
+   "pixel_x": 951.9310344827586,
+   "pixel_y": 490.9310344827586,
+   "pixel_count": 29,
+   "run": "F_d-1000-1",
+   "index": 3,
+   "confidence": 3,
+   "flags": []
+  },
+  {
+   "x": 13.308233683076933,
+   "y": 2.162622702907065,
+   "pixel_x": 930.5925925925926,
+   "pixel_y": 484.25925925925924,
+   "pixel_count": 27,
+   "run": "F_d-1000-1",
+   "index": 2,
+   "confidence": 3,
+   "flags": []
+  },
+  {
+   "x": 8.586826581526527,
+   "y": 2.254581038816509,
+   "pixel_x": 910.2631578947369,
+   "pixel_y": 481.7368421052632,
+   "pixel_count": 19,
+   "run": "F_d-1000-1",
+   "index": 1,
+   "confidence": 3,
+   "flags": []
+  }
+ ]
+}

@@ -1,0 +1,124 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:17:34+00:00",
+  "status": "passed",
+  "paper_id": "HYC-0020",
+  "figure": "Fig. 8b",
+  "series_name": "G-800 60 degC",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0020/in/pages/main-06.png",
+    "sha256": "5285c941061d816e8688e06ba5b0eec3607962a1e088d029d19701ef2c645fab",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 670.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1098.0,
+        "value": 50.0
+      },
+      "scale": "linear",
+      "label": "Pressure [bar]",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1059.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 745.0,
+        "value": 14.0
+      },
+      "scale": "linear",
+      "label": "Adsorption capacity [mmol/g]",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 841.0,
+        "stated": 20.0,
+        "predicted": 19.976635514018692,
+        "relative_error": 0.001168224299065379
+      },
+      {
+        "axis": "y",
+        "pixel": 925.0,
+        "stated": 6.0,
+        "predicted": 5.974522292993631,
+        "relative_error": 0.00424628450106157
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff0000",
+    "color_rgb": [
+      255,
+      0,
+      0
+    ],
+    "tolerance": 90.0,
+    "matched_pixels_in_image": 1803,
+    "matched_pixels_in_region": 48,
+    "region": [
+      1030,
+      746,
+      1097,
+      1010
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 12.56,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 2-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 45.14602803738318,
+      "y": 6.469426751592358,
+      "pixel_x": 1056.45,
+      "pixel_y": 913.9,
+      "pixel_count": 20,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [
+    {
+      "at": 45.14602803738318,
+      "expected": 6.51,
+      "got": 6.469426751592358,
+      "difference": -0.040573248407642204,
+      "percent": 0.6232449832203104,
+      "tolerance_pct": 5.0,
+      "tolerance_abs": null,
+      "passed": true,
+      "checked_utc": "2026-11-09T18:18:02+00:00"
+    }
+  ],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 8b, digitized (G-800 60 degC)",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check",
+    "notes": "Digitized with digitize_figure.py v2.1; \u00a73.4 step 6 check passed at 45.14602803738318."
+  }
+}

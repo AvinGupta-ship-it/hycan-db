@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:03:17+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0133",
+  "figure": "Fig. S6",
+  "series_name": "rN-pC -196 C ultralow-pressure (Fig. S6 open squares) marker 04",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0133/in/pages/si1-04.png",
+    "sha256": "a8625c64f45204b5d033a247b40e7e421af9dce650a0b9d67d8e71a94e28398a",
+    "width_px": 1241,
+    "height_px": 1754
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 414.35,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 892.84,
+        "value": 0.014
+      },
+      "scale": "linear",
+      "label": "Pressure (Mpa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 615.67,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 268.24,
+        "value": 1.0
+      },
+      "scale": "linear",
+      "label": "Hydrogen adsorption (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 619.47,
+        "stated": 0.006,
+        "predicted": 0.0060015465317979485,
+        "relative_error": 0.00025775529965806646
+      },
+      {
+        "axis": "y",
+        "pixel": 477.05,
+        "stated": 0.4,
+        "predicted": 0.39898684627119124,
+        "relative_error": 0.00253288432202195
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#4a4a4a",
+    "color_rgb": [
+      74,
+      74,
+      74
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 23357,
+    "matched_pixels_in_region": 63,
+    "region": [
+      429,
+      517,
+      440,
+      528
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 13.897199999999998,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.0005698249818294113,
+      "y": 0.26992807503989596,
+      "pixel_x": 433.8253968253968,
+      "pixel_y": 521.8888888888889,
+      "pixel_count": 63,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. S6, digitized (rN-pC -196 C ultralow-pressure (Fig. S6 open squares) marker 04)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: figS6_rNpC_77K_m04.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

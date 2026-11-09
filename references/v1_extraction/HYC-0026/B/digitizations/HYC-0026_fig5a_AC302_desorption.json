@@ -1,0 +1,168 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:19:54+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0026",
+  "figure": "Fig. 5a",
+  "series_name": "AC302 desorption (open squares)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0026/work/fig5a_nolabels.png",
+    "sha256": "f75a5e098cad4aef452c69d3b3530727948d14d4d87766023ea07979b009a3e3",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 145.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 586.0,
+        "value": 8.0
+      },
+      "scale": "linear",
+      "label": "P (MPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 385.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 145.0,
+        "value": 7.0
+      },
+      "scale": "linear",
+      "label": "H2 ads (wt.%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 366.0,
+        "stated": 4.0,
+        "predicted": 4.00907029478458,
+        "relative_error": 0.0022675736961450532
+      },
+      {
+        "axis": "y",
+        "pixel": 248.0,
+        "stated": 4.0,
+        "predicted": 3.995833333333333,
+        "relative_error": 0.0010416666666667185
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#008000",
+    "color_rgb": [
+      0,
+      128,
+      0
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 302,
+    "matched_pixels_in_region": 186,
+    "region": [
+      140,
+      140,
+      592,
+      392
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 9.6,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 1-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 8,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.25396825396825395,
+      "y": 2.916666666666667,
+      "pixel_x": 159.0,
+      "pixel_y": 285.0,
+      "pixel_count": 24,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.3900226757369615,
+      "y": 3.208333333333333,
+      "pixel_x": 166.5,
+      "pixel_y": 275.0,
+      "pixel_count": 22,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.6530612244897959,
+      "y": 3.5,
+      "pixel_x": 181.0,
+      "pixel_y": 265.0,
+      "pixel_count": 24,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.3605442176870748,
+      "y": 3.966666666666667,
+      "pixel_x": 220.0,
+      "pixel_y": 249.0,
+      "pixel_count": 24,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.684807256235828,
+      "y": 4.345833333333333,
+      "pixel_x": 293.0,
+      "pixel_y": 236.0,
+      "pixel_count": 24,
+      "outside_axis_range": false
+    },
+    {
+      "x": 4.090702947845805,
+      "y": 4.477083333333333,
+      "pixel_x": 370.5,
+      "pixel_y": 231.5,
+      "pixel_count": 20,
+      "outside_axis_range": false
+    },
+    {
+      "x": 6.149659863945578,
+      "y": 4.520833333333334,
+      "pixel_x": 484.0,
+      "pixel_y": 230.0,
+      "pixel_count": 24,
+      "outside_axis_range": false
+    },
+    {
+      "x": 7.582766439909297,
+      "y": 4.520833333333334,
+      "pixel_x": 563.0,
+      "pixel_y": 230.0,
+      "pixel_count": 24,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 5a, digitized (AC302 desorption (open squares))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0026_fig5a_AC302_desorption.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

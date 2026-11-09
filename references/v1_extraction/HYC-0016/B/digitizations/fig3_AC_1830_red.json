@@ -1,0 +1,144 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:16:59+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0016",
+  "figure": "Figure_3_main-17",
+  "series_name": "Fig3 293K AC (1830 m2/g, red)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0016/in/pages/main-17.png",
+    "sha256": "ba712cfe05db38e4c93938c241ceaf7326fc029d28ff9cc75b35c8b96d6efb41",
+    "width_px": 1275,
+    "height_px": 1650
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 367.33,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 909.5,
+        "value": 140.0
+      },
+      "scale": "linear",
+      "label": "Pressure_bar",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 612.5,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 271.0,
+        "value": 0.6
+      },
+      "scale": "linear",
+      "label": "Wt_pct",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 599.5,
+        "stated": 60.0,
+        "predicted": 59.95130678569452,
+        "relative_error": 0.0008115535717580021
+      },
+      {
+        "axis": "y",
+        "pixel": 498.54,
+        "stated": 0.2,
+        "predicted": 0.20022254758418737,
+        "relative_error": 0.0011127379209367738
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#fe0100",
+    "color_rgb": [
+      254,
+      1,
+      0
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 1007,
+    "matched_pixels_in_region": 365,
+    "region": [
+      369,
+      216,
+      908,
+      611
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 13.66,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 3-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 5,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": 25.478724385340392,
+      "y": 0.20380673499267934,
+      "pixel_x": 466.0,
+      "pixel_y": 496.5,
+      "pixel_count": 56,
+      "outside_axis_range": false
+    },
+    {
+      "x": 50.6449412842687,
+      "y": 0.35568233452819714,
+      "pixel_x": 563.4597701149426,
+      "pixel_y": 410.0574712643678,
+      "pixel_count": 87,
+      "outside_axis_range": false
+    },
+    {
+      "x": 75.83193463304866,
+      "y": 0.4734992679355783,
+      "pixel_x": 661.0,
+      "pixel_y": 343.0,
+      "pixel_count": 63,
+      "outside_axis_range": false
+    },
+    {
+      "x": 100.81559890519019,
+      "y": 0.5630052478325958,
+      "pixel_x": 757.7528089887641,
+      "pixel_y": 292.0561797752809,
+      "pixel_count": 89,
+      "outside_axis_range": false
+    },
+    {
+      "x": 124.81695585374308,
+      "y": 0.6308647101243416,
+      "pixel_x": 850.7014925373135,
+      "pixel_y": 253.43283582089552,
+      "pixel_count": 67,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Figure_3_main-17, digitized (Fig3 293K AC (1830 m2/g, red))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig3_AC_1830_red.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

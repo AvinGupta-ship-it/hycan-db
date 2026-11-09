@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T17:57:03+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0133",
+  "figure": "Fig. 2a",
+  "series_name": "rN-pC -196 C excess (Fig. 2a open squares) marker 05",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0133/in/pages/main-08.png",
+    "sha256": "dc96438ff27e4a7b82a9556d07d25e676c05135c4edd60b87b099210550d73b7",
+    "width_px": 1241,
+    "height_px": 1648
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 187.79,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 571.26,
+        "value": 6.0
+      },
+      "scale": "linear",
+      "label": "Pressure (MPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 511.12,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 219.59,
+        "value": 3.5
+      },
+      "scale": "linear",
+      "label": "Hydrogen adsorption (wt%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 379.61,
+        "stated": 3.0,
+        "predicted": 3.0013299606227344,
+        "relative_error": 0.0004433202075781277
+      },
+      {
+        "axis": "y",
+        "pixel": 344.49,
+        "stated": 2.0,
+        "predicted": 2.000497375913285,
+        "relative_error": 0.00024868795664256815
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#505050",
+    "color_rgb": [
+      80,
+      80,
+      80
+    ],
+    "tolerance": 60.0,
+    "matched_pixels_in_image": 34568,
+    "matched_pixels_in_region": 18,
+    "region": [
+      185,
+      413,
+      191,
+      420
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 11.6612,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 0-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 1
+  },
+  "series": [
+    {
+      "x": -0.0001912361679748702,
+      "y": 1.1406411385144282,
+      "pixel_x": 187.77777777777777,
+      "pixel_y": 416.1111111111111,
+      "pixel_count": 18,
+      "outside_axis_range": true
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 2a, digitized (rN-pC -196 C excess (Fig. 2a open squares) marker 05)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig2a_rNpC_77K_excess_m05.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

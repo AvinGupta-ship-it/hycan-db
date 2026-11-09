@@ -1,0 +1,428 @@
+{
+ "paper_id": "HYC-0137",
+ "figure": "Fig. 2(F)",
+ "series_name": "d-700-1",
+ "sample_label": "CS-700-1",
+ "quantity": "excess H2 uptake (wt.%)",
+ "legend_branch": "desorption (open symbols)",
+ "page_image": "in/pages/main-05.png",
+ "isolation_method": "hollow-marker mask: outline pixels of the series hue in a lower saturation band, minus pixels within 1 px of a filled core of the same series; neutral/bluish-grey pixels split between d-900-4 and d-900-2 by mean(B-R) per component; closed 3x3 and hole-filled; painted #ff0000 on white (work/classify2.py); tool run with --open-px 1 --marker-min-px 7; merged markers split by sub-ROI runs (T_* runs)",
+ "calibration_ticks": "x: 0 bar at px 873.29, 50 bar at px 1088.58, check 20 bar at px 959.47; y: 0 wt% at px 543.58, 6 wt% at px 379.0, check 3 wt% at px 461.0",
+ "component_runs": [
+  {
+   "run": "F_d-700-1",
+   "accepted_indices": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ],
+   "tool_output": {
+    "tool": "digitize_figure.py",
+    "tool_version": "2.1",
+    "created_utc": "2026-11-09T18:05:37+00:00",
+    "status": "unchecked",
+    "paper_id": "HYC-0137",
+    "figure": "Fig 2(F)",
+    "series_name": "d-700-1",
+    "source_image": {
+     "path": "/home/claude/work/runs/extract/B/HYC-0137/work/iso2_F_d-700-1.png",
+     "sha256": "cbe1b006da319873af32f8773b6dbc03943e1ba7c836fda4580288fc396e4235",
+     "width_px": 1241,
+     "height_px": 1654
+    },
+    "calibration": {
+     "x": {
+      "axis": "x",
+      "reference_1": {
+       "pixel": 873.29,
+       "value": 0.0
+      },
+      "reference_2": {
+       "pixel": 1088.58,
+       "value": 50.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+     },
+     "y": {
+      "axis": "y",
+      "reference_1": {
+       "pixel": 543.58,
+       "value": 0.0
+      },
+      "reference_2": {
+       "pixel": 379.0,
+       "value": 6.0
+      },
+      "scale": "linear",
+      "label": "H2 uptake (wt.%)",
+      "decades_spanned": 0.0
+     },
+     "verification_ticks": [
+      {
+       "axis": "x",
+       "pixel": 959.47,
+       "stated": 20.0,
+       "predicted": 20.014863672256045,
+       "relative_error": 0.000743183612802234
+      },
+      {
+       "axis": "y",
+       "pixel": 461.0,
+       "stated": 3.0,
+       "predicted": 3.010572366022604,
+       "relative_error": 0.0035241220075346766
+      }
+     ]
+    },
+    "isolation": {
+     "color_hex": "#ff0000",
+     "color_rgb": [
+      255,
+      0,
+      0
+     ],
+     "tolerance": 30.0,
+     "matched_pixels_in_image": 225,
+     "matched_pixels_in_region": 225,
+     "region": [
+      859,
+      385,
+      1103,
+      541
+     ],
+     "region_basis": "explicit (--roi)"
+    },
+    "extraction": {
+     "bin_width_px": 1,
+     "min_pixels_per_bin": 1,
+     "max_cluster_gap_px": 6.5832000000000015,
+     "longest_multimodal_run": 0,
+     "mode": "markers",
+     "aggregation": "centroid of each connected marker after a 1-px opening",
+     "marker_size_px": [
+      7,
+      2000
+     ],
+     "rejected_markers": [
+      {
+       "pixel_x": 928.0,
+       "pixel_y": 458.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 910.0,
+       "pixel_y": 459.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 955.0,
+       "pixel_y": 463.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 973.0,
+       "pixel_y": 466.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 981.0,
+       "pixel_y": 470.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 878.0,
+       "pixel_y": 485.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 875.0,
+       "pixel_y": 486.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 887.6,
+       "pixel_y": 491.4,
+       "pixels": 5,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 1036.5,
+       "pixel_y": 491.0,
+       "pixels": 2,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 1040.0,
+       "pixel_y": 494.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 871.5,
+       "pixel_y": 501.0,
+       "pixels": 2,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 873.0,
+       "pixel_y": 507.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 872.0,
+       "pixel_y": 512.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 1024.0,
+       "pixel_y": 522.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 1049.5,
+       "pixel_y": 523.0,
+       "pixels": 2,
+       "reason": "too small"
+      }
+     ],
+     "n_points": 11,
+     "multimodal_bins": [],
+     "points_outside_axis_range": 1
+    },
+    "series": [
+     {
+      "x": 0.9611620206631711,
+      "y": 1.4064892453518059,
+      "pixel_x": 877.4285714285714,
+      "pixel_y": 505.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+     },
+     {
+      "x": 1.790608017093232,
+      "y": 1.7674079475027344,
+      "pixel_x": 881.0,
+      "pixel_y": 495.1,
+      "pixel_count": 10,
+      "outside_axis_range": false
+     },
+     {
+      "x": 6.130684193413545,
+      "y": 1.8485235144002927,
+      "pixel_x": 899.6875,
+      "pixel_y": 492.875,
+      "pixel_count": 16,
+      "outside_axis_range": false
+     },
+     {
+      "x": 8.479260532305261,
+      "y": 1.8366751731680657,
+      "pixel_x": 909.8,
+      "pixel_y": 493.2,
+      "pixel_count": 15,
+      "outside_axis_range": false
+     },
+     {
+      "x": 13.336496287399719,
+      "y": 1.6838185511171295,
+      "pixel_x": 930.7142857142857,
+      "pixel_y": 497.39285714285717,
+      "pixel_count": 28,
+      "outside_axis_range": false
+     },
+     {
+      "x": 18.302469736993928,
+      "y": 1.5323227452871246,
+      "pixel_x": 952.0967741935484,
+      "pixel_y": 501.5483870967742,
+      "pixel_count": 31,
+      "outside_axis_range": false
+     },
+     {
+      "x": 23.26951343948674,
+      "y": 1.3429844883751023,
+      "pixel_x": 973.483870967742,
+      "pixel_y": 506.741935483871,
+      "pixel_count": 31,
+      "outside_axis_range": false
+     },
+     {
+      "x": 28.176206770196284,
+      "y": 1.1290152711953683,
+      "pixel_x": 994.6111111111111,
+      "pixel_y": 512.6111111111111,
+      "pixel_count": 18,
+      "outside_axis_range": false
+     },
+     {
+      "x": 33.02754424264946,
+      "y": 0.9204034512091384,
+      "pixel_x": 1015.5,
+      "pixel_y": 518.3333333333334,
+      "pixel_count": 12,
+      "outside_axis_range": false
+     },
+     {
+      "x": 43.1724228208041,
+      "y": 0.6409041195771067,
+      "pixel_x": 1059.1818181818182,
+      "pixel_y": 526.0,
+      "pixel_count": 11,
+      "outside_axis_range": false
+     },
+     {
+      "x": 50.56203260718103,
+      "y": 0.318872280957589,
+      "pixel_x": 1091.0,
+      "pixel_y": 534.8333333333334,
+      "pixel_count": 24,
+      "outside_axis_range": true
+     }
+    ],
+    "checks": [],
+    "row_hint": {
+     "extraction_method": "figure_digitized",
+     "source_location": "Fig 2(F), digitized (d-700-1)",
+     "notes": "Digitized with digitize_figure.py v2.1; archive: F_d-700-1.json",
+     "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+    }
+   }
+  }
+ ],
+ "points": [
+  {
+   "x": 50.56203260718103,
+   "y": 0.318872280957589,
+   "pixel_x": 1091.0,
+   "pixel_y": 534.8333333333334,
+   "pixel_count": 24,
+   "run": "F_d-700-1",
+   "index": 10,
+   "confidence": 3,
+   "flags": []
+  },
+  {
+   "x": 43.1724228208041,
+   "y": 0.6409041195771067,
+   "pixel_x": 1059.1818181818182,
+   "pixel_y": 526.0,
+   "pixel_count": 11,
+   "run": "F_d-700-1",
+   "index": 9,
+   "confidence": 2,
+   "flags": [
+    "partly occluded marker (centroid of visible part)"
+   ]
+  },
+  {
+   "x": 33.02754424264946,
+   "y": 0.9204034512091384,
+   "pixel_x": 1015.5,
+   "pixel_y": 518.3333333333334,
+   "pixel_count": 12,
+   "run": "F_d-700-1",
+   "index": 8,
+   "confidence": 3,
+   "flags": []
+  },
+  {
+   "x": 28.176206770196284,
+   "y": 1.1290152711953683,
+   "pixel_x": 994.6111111111111,
+   "pixel_y": 512.6111111111111,
+   "pixel_count": 18,
+   "run": "F_d-700-1",
+   "index": 7,
+   "confidence": 3,
+   "flags": []
+  },
+  {
+   "x": 23.26951343948674,
+   "y": 1.3429844883751023,
+   "pixel_x": 973.483870967742,
+   "pixel_y": 506.741935483871,
+   "pixel_count": 31,
+   "run": "F_d-700-1",
+   "index": 6,
+   "confidence": 3,
+   "flags": []
+  },
+  {
+   "x": 18.302469736993928,
+   "y": 1.5323227452871246,
+   "pixel_x": 952.0967741935484,
+   "pixel_y": 501.5483870967742,
+   "pixel_count": 31,
+   "run": "F_d-700-1",
+   "index": 5,
+   "confidence": 3,
+   "flags": []
+  },
+  {
+   "x": 13.336496287399719,
+   "y": 1.6838185511171295,
+   "pixel_x": 930.7142857142857,
+   "pixel_y": 497.39285714285717,
+   "pixel_count": 28,
+   "run": "F_d-700-1",
+   "index": 4,
+   "confidence": 3,
+   "flags": []
+  },
+  {
+   "x": 8.479260532305261,
+   "y": 1.8366751731680657,
+   "pixel_x": 909.8,
+   "pixel_y": 493.2,
+   "pixel_count": 15,
+   "run": "F_d-700-1",
+   "index": 3,
+   "confidence": 3,
+   "flags": []
+  },
+  {
+   "x": 6.130684193413545,
+   "y": 1.8485235144002927,
+   "pixel_x": 899.6875,
+   "pixel_y": 492.875,
+   "pixel_count": 16,
+   "run": "F_d-700-1",
+   "index": 2,
+   "confidence": 3,
+   "flags": []
+  },
+  {
+   "x": 1.790608017093232,
+   "y": 1.7674079475027344,
+   "pixel_x": 881.0,
+   "pixel_y": 495.1,
+   "pixel_count": 10,
+   "run": "F_d-700-1",
+   "index": 1,
+   "confidence": 2,
+   "flags": [
+    "in or next to the low-pressure marker stack",
+    "partly occluded marker (centroid of visible part)"
+   ]
+  }
+ ]
+}

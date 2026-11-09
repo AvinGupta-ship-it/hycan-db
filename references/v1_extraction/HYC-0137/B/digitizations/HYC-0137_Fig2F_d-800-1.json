@@ -1,0 +1,360 @@
+{
+ "paper_id": "HYC-0137",
+ "figure": "Fig. 2(F)",
+ "series_name": "d-800-1",
+ "sample_label": "CS-800-1",
+ "quantity": "excess H2 uptake (wt.%)",
+ "legend_branch": "desorption (open symbols)",
+ "page_image": "in/pages/main-05.png",
+ "isolation_method": "hollow-marker mask: outline pixels of the series hue in a lower saturation band, minus pixels within 1 px of a filled core of the same series; neutral/bluish-grey pixels split between d-900-4 and d-900-2 by mean(B-R) per component; closed 3x3 and hole-filled; painted #ff0000 on white (work/classify2.py); tool run with --open-px 1 --marker-min-px 7; merged markers split by sub-ROI runs (T_* runs)",
+ "calibration_ticks": "x: 0 bar at px 873.29, 50 bar at px 1088.58, check 20 bar at px 959.47; y: 0 wt% at px 543.58, 6 wt% at px 379.0, check 3 wt% at px 461.0",
+ "component_runs": [
+  {
+   "run": "F_d-800-1",
+   "accepted_indices": [
+    0,
+    1,
+    2
+   ],
+   "tool_output": {
+    "tool": "digitize_figure.py",
+    "tool_version": "2.1",
+    "created_utc": "2026-11-09T18:05:38+00:00",
+    "status": "unchecked",
+    "paper_id": "HYC-0137",
+    "figure": "Fig 2(F)",
+    "series_name": "d-800-1",
+    "source_image": {
+     "path": "/home/claude/work/runs/extract/B/HYC-0137/work/iso2_F_d-800-1.png",
+     "sha256": "b865127d789427197f8745e75db93b089c6859911c4f77a2fe74e789ba8b3467",
+     "width_px": 1241,
+     "height_px": 1654
+    },
+    "calibration": {
+     "x": {
+      "axis": "x",
+      "reference_1": {
+       "pixel": 873.29,
+       "value": 0.0
+      },
+      "reference_2": {
+       "pixel": 1088.58,
+       "value": 50.0
+      },
+      "scale": "linear",
+      "label": "Pressure (bar)",
+      "decades_spanned": 0.0
+     },
+     "y": {
+      "axis": "y",
+      "reference_1": {
+       "pixel": 543.58,
+       "value": 0.0
+      },
+      "reference_2": {
+       "pixel": 379.0,
+       "value": 6.0
+      },
+      "scale": "linear",
+      "label": "H2 uptake (wt.%)",
+      "decades_spanned": 0.0
+     },
+     "verification_ticks": [
+      {
+       "axis": "x",
+       "pixel": 959.47,
+       "stated": 20.0,
+       "predicted": 20.014863672256045,
+       "relative_error": 0.000743183612802234
+      },
+      {
+       "axis": "y",
+       "pixel": 461.0,
+       "stated": 3.0,
+       "predicted": 3.010572366022604,
+       "relative_error": 0.0035241220075346766
+      }
+     ]
+    },
+    "isolation": {
+     "color_hex": "#ff0000",
+     "color_rgb": [
+      255,
+      0,
+      0
+     ],
+     "tolerance": 30.0,
+     "matched_pixels_in_image": 81,
+     "matched_pixels_in_region": 81,
+     "region": [
+      859,
+      385,
+      1103,
+      541
+     ],
+     "region_basis": "explicit (--roi)"
+    },
+    "extraction": {
+     "bin_width_px": 1,
+     "min_pixels_per_bin": 1,
+     "max_cluster_gap_px": 6.5832000000000015,
+     "longest_multimodal_run": 0,
+     "mode": "markers",
+     "aggregation": "centroid of each connected marker after a 1-px opening",
+     "marker_size_px": [
+      7,
+      2000
+     ],
+     "rejected_markers": [
+      {
+       "pixel_x": 885.3333333333334,
+       "pixel_y": 482.6666666666667,
+       "pixels": 3,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 911.0,
+       "pixel_y": 482.5,
+       "pixels": 2,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 879.6666666666666,
+       "pixel_y": 484.6666666666667,
+       "pixels": 3,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 882.0,
+       "pixel_y": 487.5,
+       "pixels": 2,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 928.0,
+       "pixel_y": 487.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 930.0,
+       "pixel_y": 490.0,
+       "pixels": 3,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 936.5,
+       "pixel_y": 490.5,
+       "pixels": 2,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 878.0,
+       "pixel_y": 495.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 970.0,
+       "pixel_y": 500.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 973.0,
+       "pixel_y": 502.8,
+       "pixels": 5,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 871.5,
+       "pixel_y": 508.0,
+       "pixels": 2,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 1006.0,
+       "pixel_y": 510.5,
+       "pixels": 2,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 872.0,
+       "pixel_y": 513.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 1019.0,
+       "pixel_y": 515.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 1016.5,
+       "pixel_y": 517.0,
+       "pixels": 4,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 871.5,
+       "pixel_y": 518.0,
+       "pixels": 2,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 876.0,
+       "pixel_y": 518.5,
+       "pixels": 2,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 1033.2,
+       "pixel_y": 521.8,
+       "pixels": 5,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 871.0,
+       "pixel_y": 522.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 875.0,
+       "pixel_y": 523.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 1044.0,
+       "pixel_y": 526.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 1058.0,
+       "pixel_y": 526.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 876.0,
+       "pixel_y": 527.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 871.0,
+       "pixel_y": 528.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 875.0,
+       "pixel_y": 529.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 1055.0,
+       "pixel_y": 530.0,
+       "pixels": 1,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 873.0,
+       "pixel_y": 532.0,
+       "pixels": 3,
+       "reason": "too small"
+      },
+      {
+       "pixel_x": 872.0,
+       "pixel_y": 537.0,
+       "pixels": 1,
+       "reason": "too small"
+      }
+     ],
+     "n_points": 3,
+     "multimodal_bins": [],
+     "points_outside_axis_range": 0
+    },
+    "series": [
+     {
+      "x": 17.92107052221319,
+      "y": 1.7445398203692044,
+      "pixel_x": 950.4545454545455,
+      "pixel_y": 495.72727272727275,
+      "pixel_count": 11,
+      "outside_axis_range": false
+     },
+     {
+      "x": 28.133812863712087,
+      "y": 1.2242070725483059,
+      "pixel_x": 994.4285714285714,
+      "pixel_y": 510.0,
+      "pixel_count": 7,
+      "outside_axis_range": false
+     },
+     {
+      "x": 49.581443118068165,
+      "y": 0.24798476931178312,
+      "pixel_x": 1086.7777777777778,
+      "pixel_y": 536.7777777777778,
+      "pixel_count": 9,
+      "outside_axis_range": false
+     }
+    ],
+    "checks": [],
+    "row_hint": {
+     "extraction_method": "figure_digitized",
+     "source_location": "Fig 2(F), digitized (d-800-1)",
+     "notes": "Digitized with digitize_figure.py v2.1; archive: F_d-800-1.json",
+     "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+    }
+   }
+  }
+ ],
+ "points": [
+  {
+   "x": 49.581443118068165,
+   "y": 0.24798476931178312,
+   "pixel_x": 1086.7777777777778,
+   "pixel_y": 536.7777777777778,
+   "pixel_count": 9,
+   "run": "F_d-800-1",
+   "index": 2,
+   "confidence": 2,
+   "flags": [
+    "partly occluded marker (centroid of visible part)"
+   ]
+  },
+  {
+   "x": 28.133812863712087,
+   "y": 1.2242070725483059,
+   "pixel_x": 994.4285714285714,
+   "pixel_y": 510.0,
+   "pixel_count": 7,
+   "run": "F_d-800-1",
+   "index": 1,
+   "confidence": 2,
+   "flags": [
+    "below size threshold; corroborated by the same point in the other panel",
+    "partly occluded marker (centroid of visible part)"
+   ]
+  },
+  {
+   "x": 17.92107052221319,
+   "y": 1.7445398203692044,
+   "pixel_x": 950.4545454545455,
+   "pixel_y": 495.72727272727275,
+   "pixel_count": 11,
+   "run": "F_d-800-1",
+   "index": 0,
+   "confidence": 2,
+   "flags": [
+    "partly occluded marker (centroid of visible part)"
+   ]
+  }
+ ]
+}

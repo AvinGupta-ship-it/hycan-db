@@ -1,0 +1,184 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:19:53+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0026",
+  "figure": "Fig. 5a",
+  "series_name": "AC301 adsorption (filled triangles)",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0026/work/fig5a_nolabels.png",
+    "sha256": "f75a5e098cad4aef452c69d3b3530727948d14d4d87766023ea07979b009a3e3",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 145.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 586.0,
+        "value": 8.0
+      },
+      "scale": "linear",
+      "label": "P (MPa)",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 385.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 145.0,
+        "value": 7.0
+      },
+      "scale": "linear",
+      "label": "H2 ads (wt.%)",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 366.0,
+        "stated": 4.0,
+        "predicted": 4.00907029478458,
+        "relative_error": 0.0022675736961450532
+      },
+      {
+        "axis": "y",
+        "pixel": 248.0,
+        "stated": 4.0,
+        "predicted": 3.995833333333333,
+        "relative_error": 0.0010416666666667185
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#000080",
+    "color_rgb": [
+      0,
+      0,
+      128
+    ],
+    "tolerance": 40.0,
+    "matched_pixels_in_image": 1386,
+    "matched_pixels_in_region": 426,
+    "region": [
+      140,
+      140,
+      592,
+      392
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 9.6,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 2-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 10,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 0.11791383219954649,
+      "y": 2.7951388888888884,
+      "pixel_x": 151.5,
+      "pixel_y": 289.1666666666667,
+      "pixel_count": 24,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.24429327286470148,
+      "y": 3.371666666666667,
+      "pixel_x": 158.46666666666667,
+      "pixel_y": 269.4,
+      "pixel_count": 15,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.3692905733722061,
+      "y": 3.6624999999999996,
+      "pixel_x": 165.35714285714286,
+      "pixel_y": 259.42857142857144,
+      "pixel_count": 14,
+      "outside_axis_range": false
+    },
+    {
+      "x": 0.6405023547880693,
+      "y": 4.060897435897435,
+      "pixel_x": 180.30769230769232,
+      "pixel_y": 245.76923076923077,
+      "pixel_count": 13,
+      "outside_axis_range": false
+    },
+    {
+      "x": 1.2803437164339417,
+      "y": 4.517763157894737,
+      "pixel_x": 215.57894736842104,
+      "pixel_y": 230.10526315789474,
+      "pixel_count": 19,
+      "outside_axis_range": false
+    },
+    {
+      "x": 2.554958825635518,
+      "y": 4.975219298245613,
+      "pixel_x": 285.8421052631579,
+      "pixel_y": 214.42105263157896,
+      "pixel_count": 19,
+      "outside_axis_range": false
+    },
+    {
+      "x": 3.8505081044763583,
+      "y": 5.16141975308642,
+      "pixel_x": 357.25925925925924,
+      "pixel_y": 208.03703703703704,
+      "pixel_count": 27,
+      "outside_axis_range": false
+    },
+    {
+      "x": 5.1354359925788495,
+      "y": 5.214204545454545,
+      "pixel_x": 428.09090909090907,
+      "pixel_y": 206.22727272727272,
+      "pixel_count": 22,
+      "outside_axis_range": false
+    },
+    {
+      "x": 6.4170655916687664,
+      "y": 5.190586419753086,
+      "pixel_x": 498.74074074074076,
+      "pixel_y": 207.03703703703704,
+      "pixel_count": 27,
+      "outside_axis_range": false
+    },
+    {
+      "x": 7.682539682539683,
+      "y": 5.186805555555556,
+      "pixel_x": 568.5,
+      "pixel_y": 207.16666666666666,
+      "pixel_count": 24,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 5a, digitized (AC301 adsorption (filled triangles))",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: HYC-0026_fig5a_AC301_adsorption.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}

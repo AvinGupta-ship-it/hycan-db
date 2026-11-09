@@ -1,0 +1,112 @@
+{
+  "tool": "digitize_figure.py",
+  "tool_version": "2.1",
+  "created_utc": "2026-11-09T18:17:38+00:00",
+  "status": "unchecked",
+  "paper_id": "HYC-0020",
+  "figure": "Fig. 8c",
+  "series_name": "G-900 60 degC",
+  "source_image": {
+    "path": "/home/claude/work/runs/extract/B/HYC-0020/in/pages/main-06.png",
+    "sha256": "5285c941061d816e8688e06ba5b0eec3607962a1e088d029d19701ef2c645fab",
+    "width_px": 1241,
+    "height_px": 1654
+  },
+  "calibration": {
+    "x": {
+      "axis": "x",
+      "reference_1": {
+        "pixel": 666.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1091.0,
+        "value": 50.0
+      },
+      "scale": "linear",
+      "label": "Pressure [bar]",
+      "decades_spanned": 0.0
+    },
+    "y": {
+      "axis": "y",
+      "reference_1": {
+        "pixel": 1433.0,
+        "value": 0.0
+      },
+      "reference_2": {
+        "pixel": 1155.0,
+        "value": 8.0
+      },
+      "scale": "linear",
+      "label": "Adsorption capacity [mmol/g]",
+      "decades_spanned": 0.0
+    },
+    "verification_ticks": [
+      {
+        "axis": "x",
+        "pixel": 836.0,
+        "stated": 20.0,
+        "predicted": 20.0,
+        "relative_error": 0.0
+      },
+      {
+        "axis": "y",
+        "pixel": 1294.0,
+        "stated": 4.0,
+        "predicted": 4.0,
+        "relative_error": 0.0
+      }
+    ]
+  },
+  "isolation": {
+    "color_hex": "#ff0000",
+    "color_rgb": [
+      255,
+      0,
+      0
+    ],
+    "tolerance": 90.0,
+    "matched_pixels_in_image": 1803,
+    "matched_pixels_in_region": 53,
+    "region": [
+      1023,
+      1121,
+      1090,
+      1390
+    ],
+    "region_basis": "explicit (--roi)"
+  },
+  "extraction": {
+    "bin_width_px": 1,
+    "min_pixels_per_bin": 1,
+    "max_cluster_gap_px": 11.120000000000001,
+    "longest_multimodal_run": 0,
+    "mode": "markers",
+    "aggregation": "centroid of each connected marker after a 2-px opening",
+    "marker_size_px": [
+      6,
+      2000
+    ],
+    "rejected_markers": [],
+    "n_points": 1,
+    "multimodal_bins": [],
+    "points_outside_axis_range": 0
+  },
+  "series": [
+    {
+      "x": 45.063529411764705,
+      "y": 4.608920863309355,
+      "pixel_x": 1049.04,
+      "pixel_y": 1272.84,
+      "pixel_count": 25,
+      "outside_axis_range": false
+    }
+  ],
+  "checks": [],
+  "row_hint": {
+    "extraction_method": "figure_digitized",
+    "source_location": "Fig. 8c, digitized (G-900 60 degC)",
+    "notes": "Digitized with digitize_figure.py v2.1; archive: fig8c_G-900_60C.json",
+    "reminder": "extraction_confidence is reduced for digitized values (\u00a73.4 step 5), and the \u00a73.4 step 6 check must pass before any row is written: digitize_figure.py check"
+  }
+}
