@@ -15,7 +15,8 @@ is checked after it runs by `scripts/v1_search/extraction_runs.py`.
 | `<paper_id>/C_input/` | What code gave the reconciler: `match.csv`, `digitized_means.csv`, and `labels.csv` for a v0.1 paper. |
 | `access/` | One check report per agent (launcher, frozen prompt SHA-256, model, access audit, output). |
 | `access_reviews.json` | Each audit flag reviewed against its call, with the finding. |
-| `agreement_dual.json`, `agreement_legacy.json` | The §9 agreement statistics (`scripts/v1_search/agreement.py`), dual and legacy papers separately: per-field agreement, row detection, C's outcomes, and per-paper row counts. |
+| `agreement_dual.json`, `agreement_legacy.json`, `agreement_v01_sample.json` | The §9 agreement statistics (`scripts/v1_search/agreement.py`), dual papers, legacy papers and the sampled v0.1 papers' v0.1-rows comparison separately: per-field agreement, row detection, C's outcomes, and per-paper row counts. |
+| `<paper_id>/L_compare/` | For a sampled v0.1 paper, the comparison labeller's `labels.csv` (below). |
 
 ## Modes (§9)
 
@@ -247,6 +248,18 @@ rows have no v0.1 counterpart and go to C as B-only rows (C kept nearly all of
 them). The informative legacy numbers are the matched share of the v0.1 rows
 (335 of 398; the 63 unmatched went to C as row decisions) and the field
 agreement on the matched pairs.
+
+§9 also compares each sampled v0.1 paper's v0.1 rows with its reconciled
+rows. The §9 matching needs each v0.1 sample's printed label, which the v0.1
+descriptions predate (the labeller role supplies it for legacy papers), so on
+15 Nov 2026 the frozen labeller (`legacy_labels.md`, its frozen model) was
+run once on each of the 7 sampled v0.1 papers' v0.1 samples, in the standard
+run layout and under the same checks as the run's agents. These runs are
+comparison machinery: nothing from them entered the dataset or any
+reconciliation. Their labels are collected under each paper's `L_compare/`,
+and the comparison — matched through those labels, no C outcomes — is
+`agreement_v01_sample.json` (105 of 110 v0.1 rows matched; `only_second` is
+large by the same design as above).
 
 ## Schema limits met in extraction
 

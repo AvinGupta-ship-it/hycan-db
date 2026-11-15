@@ -2447,3 +2447,63 @@ Claude built from the committed assessments, which saved each decision as he
 made it: 81 confirmed, none reversed (`references/v1_fulltext/author_review.csv`).
 Claude copied the decisions unchanged and checked that they cover exactly the
 81 exclusions.
+
+## 2026-10-29 → 2026-11-09 — v1.0: §9 extraction run
+
+**Tools and agents.** Claude (`claude-opus-5-5`), Mode A, as orchestrator.
+369 extraction agents under the frozen prompts (Amendment 1): extractor A
+(`extract_A.md`, `claude-sonnet-5-5`) on the 80 dual papers; extractor B
+(`extract_B.md`, `claude-opus-5-5`) on all 123 extracted papers; labeller L
+(`legacy_labels.md`, `claude-opus-5-5`) on the 43 legacy papers; reconciler C
+(`reconcile.md` or `reconcile_legacy.md`, `claude-opus-5-5`) on all 123. Each
+agent ran once; none was rerun. At most 20 ran at a time.
+
+**What was done.** Claude prepared each agent's input with the committed
+scripts, started every agent with the frozen launcher, assembled each paper's
+two row sets into the reconciler's input after both extractors had finished,
+checked every agent after it ran, reviewed every audit flag against its call,
+and collected every output into `references/v1_extraction/`. Claude entered
+no row and changed no agent output. The run was interrupted twice (a usage
+limit on 29 Oct; an operator pause on 3 Nov) and resumed with fixed messages;
+`references/v1_extraction/README.md` (Interruptions) has the record, the
+in-run tooling fixes (the finished-only-once-reported guard, the assemble
+preflight, the coordinator-message check), and every launcher-rule breach
+with its review. HYC-0041 was not extracted (Amendment 2).
+
+**Verified.** All 369 agents pass the launcher, prompt-hash, model, access and
+output checks; no agent opened another agent's output, a v0.1 row, a pilot
+output or the repository (Amendment 1 item 26), so no output was discarded.
+Every reconciled output passes the §9 output check (every match line
+resolved, every computed W1 equal to code, no isotherm mixing bases), and
+every collected copy is byte-identical to the agent's output. Full test suite
+passing.
+
+**Author's role.** Pushing the committed run to the repository from delivered
+bundles. The §12 extraction audit comes next.
+
+## 2026-11-15 — v1.0: agreement statistics, dataset assembly, comparison labellers
+
+**Tools and agents.** Claude (`claude-fable-5`), Mode A, as orchestrator and
+coder. 7 further labeller agents under the frozen `legacy_labels.md`
+(`claude-opus-5-5`), one per sampled v0.1 paper (HYC-0009, HYC-0022,
+HYC-0031, HYC-0040, HYC-0044, HYC-0048, HYC-0057), run once each.
+
+**What was done.** Claude wrote and ran `scripts/v1_search/agreement.py`,
+which reports the §9 agreement statistics from the collected outputs
+(`agreement_dual.json`, `agreement_legacy.json`), and
+`scripts/v1_search/dataset.py`, which assembles the v1.0 dataset from the
+reconciled rows (17,061 rows, 124 papers) with the §3, §10.1 and §10.2
+computed fields. For the §9 comparison of the sampled v0.1 papers' v0.1 rows
+with their reconciled rows, the v0.1 descriptions predate the printed-label
+convention, so Claude ran the frozen labeller on each of the 7 papers' v0.1
+samples — comparison machinery only; nothing entered the dataset — and
+reported the comparison in `agreement_v01_sample.json`.
+
+**Verified.** The 7 labellers pass the same launcher, prompt-hash, model,
+access and output checks as the run's agents (`references/v1_extraction/access/`);
+their labels are collected under each paper's `L_compare/`. The assembled
+dataset validates against schema v2 with no errors, and its carried-over
+HYC-0041 rows are cell-identical to their v0.1 values outside the two
+sampling-provenance fields. Full test suite passing.
+
+**Author's role.** None in this step.

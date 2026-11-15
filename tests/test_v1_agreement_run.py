@@ -63,11 +63,11 @@ def test_dual_and_legacy_summaries_from_a_collected_tree(tmp_path):
     tree.mkdir()
     write_csv(
         tree / "papers.csv",
-        ["paper_id", "mode"],
+        ["paper_id", "mode", "v01_paper"],
         [
-            {"paper_id": "HYC-9001", "mode": "dual"},
-            {"paper_id": "HYC-9002", "mode": "legacy"},
-            {"paper_id": "HYC-9003", "mode": "none"},
+            {"paper_id": "HYC-9001", "mode": "dual", "v01_paper": "true"},
+            {"paper_id": "HYC-9002", "mode": "legacy", "v01_paper": "true"},
+            {"paper_id": "HYC-9003", "mode": "none", "v01_paper": "true"},
         ],
     )
     # Dual paper: A and B agree on one row; B finds one more.
@@ -80,6 +80,14 @@ def test_dual_and_legacy_summaries_from_a_collected_tree(tmp_path):
               ["match_line", "field", "first_value", "second_value", "decision",
                "final_value", "evidence", "location"],
               [{"match_line": "2", "field": "row", "decision": "second"}])
+    # HYC-9001 is a sampled v0.1 paper: its reconciled rows are compared with
+    # its v0.1 rows, whose printed labels come from the comparison labeller.
+    write_rows(tree / "HYC-9001" / "C" / "rows.csv",
+               [row("HYC-9001", "HYC-9001-M1", "AC-1", "1", "1.52"),
+                row("HYC-9001", "HYC-9001-M2", "AC-2", "20", "4.0")])
+    write_csv(tree / "HYC-9001" / "L_compare" / "labels.csv",
+              ["sample_id", "label", "measurement_ids"],
+              [{"sample_id": "S9", "label": "AC-1", "measurement_ids": ""}])
     # Legacy paper: one v0.1 row matching B through the printed label.
     write_rows(tree / "HYC-9002" / "B" / "rows.csv",
                [row("HYC-9002", "HYC-9002-M1", "sample A", "1", "2.0")])
@@ -93,7 +101,9 @@ def test_dual_and_legacy_summaries_from_a_collected_tree(tmp_path):
     v01 = tmp_path / "v01.csv"
     legacy_row = row("HYC-9002", "HYC-9002-M1", "legacy name", "1", "2.0")
     legacy_row["sample_id"] = "S1"
-    write_csv(v01, COLS + ["sample_id"], [legacy_row])
+    sampled_row = row("HYC-9001", "HYC-9001-V1", "AC-1", "1", "1.50")
+    sampled_row["sample_id"] = "S9"
+    write_csv(v01, COLS + ["sample_id"], [legacy_row, sampled_row])
 
     rc = run.main(["--tree", str(tree), "--v01", str(v01)])
     assert rc == 0
@@ -112,6 +122,17 @@ def test_dual_and_legacy_summaries_from_a_collected_tree(tmp_path):
     assert legacy["summary"]["matched_pairs"] == 1
     assert legacy["summary"]["only_first"] == 0
     assert legacy["summary"]["c_outcomes"]["fields"] == {"first": 1}
+
+    v01s = json.loads((tree / "agreement_v01_sample.json").read_text())
+    # The sampled v0.1 paper's v0.1 row matches a reconciled row through the
+    # comparison labeller's label; the uptake difference (1.50 vs 1.52) is
+    # outside the printed rounding. No C outcomes are counted.
+    assert [p["paper"] for p in v01s["papers"]] == ["HYC-9001"]
+    assert v01s["summary"]["matched_pairs"] == 1
+    assert v01s["summary"]["only_second"] == 1
+    assert v01s["summary"]["numeric"]["uptake_wt_pct"]["share_within_tolerance"] == 0.0
+    assert v01s["summary"]["c_outcomes"] == {
+        "fields": {}, "rows": {}, "curve_sample_mapping": {}}
 
 
 def test_refuses_a_legacy_paper_with_no_v01_rows(tmp_path, capsys):

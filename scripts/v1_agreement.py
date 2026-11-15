@@ -124,7 +124,11 @@ def paper_stats(
 ) -> dict:
     cols, first = ve.read_rows(paper_dir / first_name / "rows.csv")
     _, second = ve.read_rows(paper_dir / second_name / "rows.csv")
-    labels = ve.read_labels(paper_dir / "C" / "labels.csv") if legacy else None
+    labels_path = paper_dir / "C" / "labels.csv"
+    # Without a labels file (the §9 comparison of a sampled v0.1 paper's rows
+    # with its reconciled rows, where no labeller ran), both sides match on
+    # material_description.
+    labels = ve.read_labels(labels_path) if legacy and labels_path.exists() else None
     pairs = ve.match(first, second, labels, legacy=legacy)
     matched = [p for p in pairs if p.first is not None and p.second is not None]
     out = {
