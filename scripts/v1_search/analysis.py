@@ -27,7 +27,7 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "src"))
 
-from hycan import v1, v1_rq1, v1_sets  # noqa: E402
+from hycan import v1, v1_rq1, v1_sets
 
 
 def dual_papers(tree: Path) -> set[str]:
@@ -49,7 +49,7 @@ def ladder(df: pd.DataFrame, dual: set[str]) -> dict:
     steps["every_point_measured"] = measured
     steps["eligible_area_300"] = v1_sets.eligible_isotherms(df, dual)
     return {
-        name: {"isotherms": int(len(t)), "papers": int(t["paper_id"].nunique()) if len(t) else 0}
+        name: {"isotherms": len(t), "papers": int(t["paper_id"].nunique()) if len(t) else 0}
         for name, t in steps.items()
     }
 
@@ -72,7 +72,7 @@ def cmd_rq1(args) -> int:
         "secondary": secondary,
         "exclusion_ladder": ladder(df, dual),
         "p_at_nmax_bar": {
-            "n": int(len(p)),
+            "n": len(p),
             "quartiles": [float(x) for x in np.percentile(p, [25, 50, 75])],
             "min": float(p.min()), "max": float(p.max()),
             "outside_10_60_bar": [

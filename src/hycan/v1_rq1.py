@@ -105,7 +105,7 @@ def fit_primary(samples: pd.DataFrame, *, n_boot: int = BOOT_N,
     for _ in range(n_boot):
         try:
             mus.append(_fit_mixed(_resample_labs(frame, rng), "1")["params"][0])
-        except Exception:
+        except Exception:  # noqa: BLE001 — a failed resample is counted, never fatal
             failures += 1
     ci_boot = (
         (float(np.percentile(mus, 2.5)), float(np.percentile(mus, 97.5)))
@@ -116,7 +116,7 @@ def fit_primary(samples: pd.DataFrame, *, n_boot: int = BOOT_N,
     t = float(stats.t.ppf(0.975, labs - 1))
     pred = (mu - t * sd_all, mu + t * sd_all)
     return {
-        "n_samples": int(len(frame)), "n_papers": int(frame["paper_id"].nunique()),
+        "n_samples": len(frame), "n_papers": int(frame["paper_id"].nunique()),
         "n_labs": labs,
         "mu": mu, "se": se,
         "ratio": float(np.exp(mu)),
