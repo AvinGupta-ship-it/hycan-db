@@ -2507,3 +2507,23 @@ HYC-0041 rows are cell-identical to their v0.1 values outside the two
 sampling-provenance fields. Full test suite passing.
 
 **Author's role.** None in this step.
+
+## 2026-11-15 — v1.0: audit format deviation (D1) and page rebuild
+
+**Decision.** The author, before entering any audit value, changed the §12
+audit from the registered blind re-entry to a verification format: the audit
+page shows each extracted value and he marks it against the PDF, field by
+field. Claude advised keeping the registered blind format and said why
+(confirmation-bias risk; a disclosed deviation); the author decided for
+verification on grounds of burden. Recorded as deviation D1 in
+`references/v1_audit/README.md` and disclosed wherever the audit is
+reported.
+
+**Tools.** Claude (`claude-fable-5`) rebuilt the audit page (rows grouped by
+paper, per-field matches/wrong verdicts with the PDF's value on wrong),
+rewrote `scripts/v1_search/audit.py score` to score verdicts before any
+verdict existed, and updated the tests. The draw, the audited fields, the
+error rule, the estimator and the follow-up rules are unchanged.
+
+**Author's role.** The format decision, and the audit itself (without AI
+assistance, §13).

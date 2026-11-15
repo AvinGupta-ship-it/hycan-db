@@ -90,59 +90,66 @@ def test_draw_reproduces_the_committed_files(tmp_path):
         assert (tmp_path / name).read_bytes() == (committed / name).read_bytes(), name
 
 
-def test_row_errors_applies_the_s12_rule():
-    import pandas as pd
-    row = pd.Series({
-        "measurement_id": "HYC-9001-M1", "paper_id": "HYC-9001",
-        "material_description": "AC-1 | activated carbon",
-        "extraction_method": "table_direct", "notes": "",
-        "temperature_k": "77", "pressure_bar": "20",
-        "uptake_wt_pct": "1.50", "uptake_mmol_g": "", "uptake_ml_stp_g": "",
-        "bet_surface_area_m2_g": "1250", "surface_area_method": "BET",
-        "surface_area_probe_gas": "", "basis_stated": "true",
-        "basis_inferred": "excess", "wt_pct_convention": "W1",
-        "value_kind": "measured",
-    })
-    good = {"uptake_value": "1.5", "uptake_unit": "wt%", "temperature_k": "77",
-            "pressure_bar": "20", "a_bet_m2_g": "1250", "a_bet_method": "bet",
-            "a_bet_probe_gas": "unspecified", "basis_stated": "TRUE",
-            "basis_inferred": "excess", "wt_pct_convention": "w1",
-            "value_kind": "measured", "sample_identity": "AC 1"}
-    errs = au.row_errors(good, row)
-    assert errs and not any(errs.values())
-    bad = dict(good, temperature_k="78", basis_inferred="absolute",
-               uptake_unit="mmol/g", sample_identity="AC-2")
-    errs = au.row_errors(bad, row)
-    assert errs["temperature_k"] and errs["basis_inferred"]
-    assert errs["uptake_unit"] and errs["uptake_value"]  # no mmol/g stored
-    assert errs["sample_identity"]
-    assert not errs["pressure_bar"] and not errs["a_bet_m2_g"]
+def test_score_counts_wrong_verdicts_with_the_s12_weights(tmp_path):
+    import json
+    # Two drawn rows: one table row (11 fields), one figure row (12 fields).
+    processed = tmp_path / "p.csv"
+    write_csv(processed, ["measurement_id", "paper_id", "extraction_method"],
+              [{"measurement_id": "M1", "paper_id": "P1",
+                "extraction_method": "table_direct"},
+               {"measurement_id": "M2", "paper_id": "P2",
+                "extraction_method": "figure_digitized"}])
+    out = tmp_path / "out"
+    write_csv(out / "draw.csv",
+              ["audit_stratum", "cell", "order", "paper_id", "measurement_id"],
+              [{"audit_stratum": "a", "cell": "agreed", "order": "1",
+                "paper_id": "P1", "measurement_id": "M1"},
+               {"audit_stratum": "c", "cell": "all", "order": "1",
+                "paper_id": "P2", "measurement_id": "M2"}])
+    (out / "cells.json").write_text(json.dumps({"cells": {
+        "a/agreed": {"pool": 14, "quota": 1}, "c/all": {"pool": 30, "quota": 1}}}))
+    rows = [{"measurement_id": "M1", "field": f, "verdict": "matches",
+             "pdf_value": ""} for f in au.VERIFY_FIELDS]
+    rows += [{"measurement_id": "M2", "field": f, "verdict": "matches",
+              "pdf_value": ""} for f in au.VERIFY_FIELDS]
+    rows.append({"measurement_id": "M2", "field": "digitized_point",
+                 "verdict": "wrong", "pdf_value": "20.5; 1.9 wt%"})
+    verdicts = tmp_path / "verdicts.csv"
+    write_csv(verdicts, ["measurement_id", "field", "verdict", "pdf_value"], rows)
+
+    rc = au.main(["score", "--verdicts", str(verdicts),
+                  "--processed", str(processed), "--out", str(out)])
+    assert rc == 0
+    rep = json.loads((out / "score.json").read_text())
+    assert rep["strata"]["a"]["row_errors"] == 0
+    assert rep["strata"]["c"]["row_errors"] == 1
+    assert rep["fields"]["c/digitized_point"] == {
+        "errors": 1, "n": 1, "ci95": rep["fields"]["c/digitized_point"]["ci95"]}
+    # Weighted overall: M1 clean (weight 14), M2 errored (weight 30).
+    assert abs(rep["overall"]["weighted_row_error_rate"] - 30 / 44) < 1e-12
 
 
-def test_row_errors_uses_3_percent_for_figure_rows():
-    import pandas as pd
-    row = pd.Series({
-        "measurement_id": "HYC-9001-M2", "paper_id": "HYC-9001",
-        "material_description": "AC-1 | activated carbon",
-        "extraction_method": "figure_digitized", "notes": "",
-        "temperature_k": "77", "pressure_bar": "20.0",
-        "uptake_wt_pct": "2.00", "uptake_mmol_g": "", "uptake_ml_stp_g": "",
-        "bet_surface_area_m2_g": "", "surface_area_method": "",
-        "surface_area_probe_gas": "", "basis_stated": "false",
-        "basis_inferred": "excess", "wt_pct_convention": "unknown",
-        "value_kind": "measured",
-    })
-    sheet = {"uptake_value": "2.05", "uptake_unit": "wt%",
-             "temperature_k": "77", "pressure_bar": "20.3",
-             "basis_stated": "false", "basis_inferred": "excess",
-             "wt_pct_convention": "unknown", "value_kind": "measured",
-             "sample_identity": "AC-1", "digitized_point": "20.5; 1.95"}
-    errs = au.row_errors(sheet, row)
-    assert not errs["uptake_value"]      # 2.5% off, within 3%
-    assert not errs["pressure_bar"]      # 1.5% off, within 3%
-    assert not errs["digitized_point"]   # both parts within 3%
-    bad = dict(sheet, digitized_point="25; 1.95")
-    assert au.row_errors(bad, row)["digitized_point"]
+def test_score_refuses_a_missing_field_verdict(tmp_path, capsys):
+    import json
+    processed = tmp_path / "p.csv"
+    write_csv(processed, ["measurement_id", "paper_id", "extraction_method"],
+              [{"measurement_id": "M1", "paper_id": "P1",
+                "extraction_method": "figure_digitized"}])
+    out = tmp_path / "out"
+    write_csv(out / "draw.csv",
+              ["audit_stratum", "cell", "order", "paper_id", "measurement_id"],
+              [{"audit_stratum": "b", "cell": "agreed", "order": "1",
+                "paper_id": "P1", "measurement_id": "M1"}])
+    (out / "cells.json").write_text(json.dumps({"cells": {
+        "b/agreed": {"pool": 8, "quota": 1}}}))
+    verdicts = tmp_path / "verdicts.csv"
+    write_csv(verdicts, ["measurement_id", "field", "verdict", "pdf_value"],
+              [{"measurement_id": "M1", "field": f, "verdict": "matches",
+                "pdf_value": ""} for f in au.VERIFY_FIELDS])  # no digitized_point
+    rc = au.main(["score", "--verdicts", str(verdicts),
+                  "--processed", str(processed), "--out", str(out)])
+    assert rc == 1
+    assert "digitized_point" in capsys.readouterr().err
 
 
 def test_clopper_pearson_bounds():

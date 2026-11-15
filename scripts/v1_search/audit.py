@@ -41,22 +41,23 @@ BET area of its maximum-point row at least 300 m² g⁻¹. (No row of the v1.0
 dataset has ``duplicate_of`` set, so the §11.0 duplicate rule removes
 nothing.)
 
-`score` compares the author's filled sheet with the dataset and writes
-``score.json``: errors per field and per audit stratum with exact
-(Clopper–Pearson) 95% CIs, each audit stratum's row-level error rate, and the
-overall row-level rate weighted by the rows each cell represents (§12). An
-error is a numeric difference larger than the printed rounding — half the
-last printed digit of either entry — or 3% relative for a figure-digitized
-value, or any categorical difference. The author's uptake is compared in the
-unit he records (`wt%`, `mmol/g` or `mL(STP)/g`); naming a unit whose column
-the row does not fill is a unit error. ``sample_identity`` is compared as a
-printed label (letters and digits, ignoring case). An empty cell against an
-empty field is agreement; empty against filled, either way, is an error.
+`score` scores the author's verdicts (verification format; §15 deviation
+D1, recorded in references/v1_audit/README.md: the author chose to verify
+each extracted value against the PDF and mark it, rather than re-enter
+values blind as §12 registered). Input is ``verdicts.csv`` — one line per
+row and audited field, ``verdict`` of ``matches`` (within the §12 tolerance:
+printed rounding, 3% for a figure reading) or ``wrong``, with the PDF's
+value when wrong. Every drawn row must carry a verdict for every audited
+field (the §12 field list, uptake value and unit verified as one field;
+``digitized_point`` on figure rows only). ``score.json`` reports errors
+(fields marked wrong) per field and per audit stratum with exact
+(Clopper–Pearson) 95% CIs, each audit stratum's row-level error rate, and
+the overall row-level rate weighted by the rows each cell represents.
 
     python3 scripts/v1_search/audit.py draw [--processed ...] [--tree ...]
         [--out references/v1_audit]
-    python3 scripts/v1_search/audit.py score [--sheet ...] [--processed ...]
-        [--out references/v1_audit]
+    python3 scripts/v1_search/audit.py score [--verdicts ...]
+        [--processed ...] [--out references/v1_audit]
 """
 
 from __future__ import annotations
@@ -255,104 +256,22 @@ def cmd_draw(args) -> int:
 
 
 # ---------------------------------------------------------------------------
-# score
+# score (verification format — deviation D1, references/v1_audit/README.md)
 # ---------------------------------------------------------------------------
 
-UNIT_COLUMN = {
-    "wt%": "uptake_wt_pct", "wt_pct": "uptake_wt_pct", "wt %": "uptake_wt_pct",
-    "mmol/g": "uptake_mmol_g", "mmol g-1": "uptake_mmol_g",
-    "ml(stp)/g": "uptake_ml_stp_g", "cm3(stp)/g": "uptake_ml_stp_g",
-    "cm3/g": "uptake_ml_stp_g", "ml/g": "uptake_ml_stp_g",
-}
+VERIFY_FIELDS = (
+    "uptake", "temperature_k", "pressure_bar", "a_bet_m2_g", "a_bet_method",
+    "a_bet_probe_gas", "basis_stated", "basis_inferred", "wt_pct_convention",
+    "value_kind", "sample_identity",
+)
 
 
-def half_unit(printed: str) -> float:
-    s = str(printed).strip()
-    return 0.5 * 10.0 ** (-(len(s.split(".", 1)[1]) if "." in s else 0))
-
-
-def numeric_error(author: str, stored: str, digitized: bool) -> bool | None:
-    """None: both empty (not compared). True: an error under the §12 rule."""
-    a, b = str(author or "").strip(), str(stored or "").strip()
-    fa, fb = v1.as_float(a), v1.as_float(b)
-    if fa is None and fb is None:
-        return None
-    if fa is None or fb is None:
-        return True
-    if digitized:
-        return abs(fa - fb) > 0.03 * max(abs(fa), abs(fb))
-    return abs(fa - fb) > max(half_unit(a), half_unit(b)) + 1e-12
-
-
-def categorical_error(author: str, stored: str) -> bool | None:
-    a = str(author or "").strip().casefold()
-    b = str(stored or "").strip().casefold()
-    if not a and not b:
-        return None
-    return a != b
-
-
-def norm_label(label: str) -> str:
-    import re
-    import unicodedata
-    return re.sub(r"[\W_]+", "", unicodedata.normalize("NFKC", str(label or "")).casefold())
-
-
-def row_errors(sheet: dict, row: pd.Series) -> dict[str, bool]:
-    """{audited field: is_error} for one audited row; fields where both sides
-    are empty are left out."""
-    figure = v1.as_str(row.get("extraction_method")) == "figure_digitized"
-
-    def stored(field):
-        val = row.get(field)
-        return "" if pd.isna(val) else str(val)
-
-    out: dict[str, bool | None] = {}
-    unit = str(sheet.get("uptake_unit") or "").strip().casefold()
-    col = UNIT_COLUMN.get(unit)
-    any_uptake = any(stored(c) for c in
-                     ("uptake_wt_pct", "uptake_mmol_g", "uptake_ml_stp_g"))
-    author_val = str(sheet.get("uptake_value") or "").strip()
-    if not unit and not author_val and not any_uptake:
-        out["uptake_unit"] = out["uptake_value"] = None
-    elif col and stored(col):
-        out["uptake_unit"] = False
-        out["uptake_value"] = numeric_error(author_val, stored(col), figure)
-    else:
-        # The author's unit names no column the row fills (or is missing or
-        # unrecognized while the row holds an uptake): a unit error, and the
-        # value cannot be compared.
-        out["uptake_unit"] = True
-        out["uptake_value"] = True
-    out["temperature_k"] = numeric_error(sheet.get("temperature_k"),
-                                         stored("temperature_k"), False)
-    p_digitized = figure or "pressure digitized" in (stored("notes") or "")
-    out["pressure_bar"] = numeric_error(sheet.get("pressure_bar"),
-                                        stored("pressure_bar"), p_digitized)
-    out["a_bet_m2_g"] = numeric_error(sheet.get("a_bet_m2_g"),
-                                      stored("bet_surface_area_m2_g"), False)
-    out["a_bet_method"] = categorical_error(sheet.get("a_bet_method"),
-                                            stored("surface_area_method"))
-    out["a_bet_probe_gas"] = categorical_error(
-        sheet.get("a_bet_probe_gas"),
-        stored("surface_area_probe_gas") or ("unspecified" if stored("bet_surface_area_m2_g") else ""),
-    )
-    for field in ("basis_stated", "basis_inferred", "wt_pct_convention", "value_kind"):
-        out[field] = categorical_error(sheet.get(field), stored(field))
-    label = str(row.get("material_description") or "").split(" | ", 1)[0]
-    out["sample_identity"] = (
-        norm_label(sheet.get("sample_identity")) != norm_label(label)
-        if str(sheet.get("sample_identity") or "").strip() or label else None
-    )
-    if figure:
-        dp = str(sheet.get("digitized_point") or "")
-        parts = [x.strip() for x in dp.split(";")]
-        p_author = parts[0] if parts else ""
-        v_author = parts[1] if len(parts) > 1 else ""
-        err_p = numeric_error(p_author, stored("pressure_bar"), True)
-        err_v = numeric_error(v_author, stored(col) if col else stored("uptake_wt_pct"), True)
-        out["digitized_point"] = (err_p or err_v) if (err_p is not None or err_v is not None) else True
-    return {k: bool(v) for k, v in out.items() if v is not None}
+def expected_fields(row: pd.Series) -> tuple[str, ...]:
+    """The audited fields of one drawn row: the §12 list, with the digitized
+    point on figure rows only."""
+    if v1.as_str(row.get("extraction_method")) == "figure_digitized":
+        return VERIFY_FIELDS + ("digitized_point",)
+    return VERIFY_FIELDS
 
 
 def clopper_pearson(k: int, n: int) -> tuple[float, float]:
@@ -368,51 +287,58 @@ def cmd_score(args) -> int:
     out = Path(args.out)
     df = pd.read_csv(args.processed, low_memory=False)
     by_mid = df.set_index("measurement_id", drop=False)
-    with Path(args.sheet).open(newline="", encoding="utf-8") as fh:
-        sheet = {r["measurement_id"]: r for r in csv.DictReader(fh)}
+    verdicts: dict[str, dict[str, str]] = {}
+    with Path(args.verdicts).open(newline="", encoding="utf-8") as fh:
+        for r in csv.DictReader(fh):
+            if r["verdict"] not in ("matches", "wrong"):
+                print(f"REFUSED: {r['measurement_id']}/{r['field']}: "
+                      f"verdict {r['verdict']!r}", file=sys.stderr)
+                return 1
+            verdicts.setdefault(r["measurement_id"], {})[r["field"]] = r["verdict"]
     with (out / "draw.csv").open(newline="", encoding="utf-8") as fh:
         draw = list(csv.DictReader(fh))
     cells = json.loads((out / "cells.json").read_text(encoding="utf-8"))["cells"]
 
-    unfilled = [d["measurement_id"] for d in draw
-                if not any(str(sheet.get(d["measurement_id"], {}).get(f) or "").strip()
-                           for f in AUDIT_FIELDS)]
-    if unfilled:
-        print(f"REFUSED: {len(unfilled)} drawn rows have no audited entry "
-              f"(first: {unfilled[0]})", file=sys.stderr)
-        return 1
+    for d in draw:
+        mid = d["measurement_id"]
+        missing = [f for f in expected_fields(by_mid.loc[mid])
+                   if f not in verdicts.get(mid, {})]
+        if missing:
+            print(f"REFUSED: {mid} lacks a verdict for {missing[0]} "
+                  f"({len(missing)} missing)", file=sys.stderr)
+            return 1
 
     per_field: dict[tuple[str, str], list[int]] = {}
     per_row: dict[str, list[int]] = {}
-    for d in draw:
-        errs = row_errors(sheet[d["measurement_id"]], by_mid.loc[d["measurement_id"]])
-        s = d["audit_stratum"]
-        per_row.setdefault(s, []).append(int(any(errs.values())))
-        for f, e in errs.items():
-            per_field.setdefault((s, f), []).append(int(e))
-
-    report = {"fields": {}, "strata": {}, "overall": {}}
-    for (s, f), v in sorted(per_field.items()):
-        k, n = sum(v), len(v)
-        report["fields"][f"{s}/{f}"] = {"errors": k, "n": n,
-                                        "ci95": clopper_pearson(k, n)}
     weighted_num = weighted_den = 0.0
-    for s, v in sorted(per_row.items()):
-        k, n = sum(v), len(v)
-        report["strata"][s] = {"row_errors": k, "n": n, "rate": k / n,
-                               "ci95": clopper_pearson(k, n)}
     for d in draw:
-        c = cells[f"{d['audit_stratum']}/{d['cell']}"]
+        mid, stratum = d["measurement_id"], d["audit_stratum"]
+        errs = {f: int(verdicts[mid][f] == "wrong")
+                for f in expected_fields(by_mid.loc[mid])}
+        per_row.setdefault(stratum, []).append(int(any(errs.values())))
+        for f, e in errs.items():
+            per_field.setdefault((stratum, f), []).append(e)
+        c = cells[f"{stratum}/{d['cell']}"]
         w = c["pool"] / c["quota"]
-        errs = row_errors(sheet[d["measurement_id"]], by_mid.loc[d["measurement_id"]])
         weighted_num += w * int(any(errs.values()))
         weighted_den += w
+
+    report = {"format": "verification (deviation D1)", "fields": {},
+              "strata": {}, "overall": {}}
+    for (stratum, f), v in sorted(per_field.items()):
+        k, n = sum(v), len(v)
+        report["fields"][f"{stratum}/{f}"] = {"errors": k, "n": n,
+                                              "ci95": clopper_pearson(k, n)}
+    for stratum, v in sorted(per_row.items()):
+        k, n = sum(v), len(v)
+        report["strata"][stratum] = {"row_errors": k, "n": n, "rate": k / n,
+                                     "ci95": clopper_pearson(k, n)}
     report["overall"] = {"weighted_row_error_rate": weighted_num / weighted_den}
     (out / "score.json").write_text(json.dumps(report, indent=2) + "\n",
                                     encoding="utf-8")
-    for s, v in report["strata"].items():
-        print(f"stratum {s}: {v['row_errors']}/{v['n']} rows with an error, "
-              f"CI95 [{v['ci95'][0]:.3f}, {v['ci95'][1]:.3f}]")
+    for stratum, v in report["strata"].items():
+        print(f"stratum {stratum}: {v['row_errors']}/{v['n']} rows with an "
+              f"error, CI95 [{v['ci95'][0]:.3f}, {v['ci95'][1]:.3f}]")
     print(f"overall weighted row-error rate: "
           f"{report['overall']['weighted_row_error_rate']:.4f}")
     return 0
@@ -427,7 +353,8 @@ def main(argv: list[str] | None = None) -> int:
     d.add_argument("--tree", default=str(ROOT / "references" / "v1_extraction"))
     d.add_argument("--out", default=str(ROOT / "references" / "v1_audit"))
     s = sub.add_parser("score")
-    s.add_argument("--sheet", default=str(ROOT / "references" / "v1_audit" / "sheet.csv"))
+    s.add_argument("--verdicts",
+                   default=str(ROOT / "references" / "v1_audit" / "verdicts.csv"))
     s.add_argument("--processed",
                    default=str(ROOT / "data" / "processed" / "measurements_v1.0_computed.csv"))
     s.add_argument("--out", default=str(ROOT / "references" / "v1_audit"))
