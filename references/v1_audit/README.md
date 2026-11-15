@@ -52,7 +52,9 @@ For a figure row, `isotherm_point` says which plotted point the row is ("k of
 n, by increasing pressure", counting the dataset's digitized points of that
 isotherm); a row of audit stratum (a) is its isotherm's maximum-uptake point.
 
-Code then compares the filled sheet with the dataset. An error is a numeric
+Code then compares the filled sheet with the dataset
+(`scripts/v1_search/audit.py score`, committed before any sheet was filled,
+writes `score.json`). An error is a numeric
 difference larger than the printed rounding (table or text) or 3% relative
 (figures), or any categorical difference (§12). Errors are reported per field
 and per audit stratum with exact (Clopper–Pearson) 95% CIs, and overall

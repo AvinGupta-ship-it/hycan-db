@@ -106,10 +106,9 @@ def main(argv: list[str] | None = None) -> int:
             if p["mode"] == "none":
                 continue
             mine = [r for r in v01_rows if r.get("paper_id") == pid]
-            if p["mode"] == "legacy" or p.get("v01_paper") == "true":
-                if not mine:
-                    print(f"REFUSED: no v0.1 rows for {pid}", file=sys.stderr)
-                    return 1
+            if (p["mode"] == "legacy" or p.get("v01_paper") == "true") and not mine:
+                print(f"REFUSED: no v0.1 rows for {pid}", file=sys.stderr)
+                return 1
             if p["mode"] == "dual":
                 dual.append(ag.paper_stats(paper_dir, kinds, "A", "B"))
                 if p.get("v01_paper") == "true":

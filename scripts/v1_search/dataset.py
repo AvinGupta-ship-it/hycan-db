@@ -43,7 +43,7 @@ def paper_rows(p: dict, tree: Path, v01_cols: list[str], v01_rows: list[dict],
     if p["mode"] == "none":
         rows = [dict(r) for r in v01_rows if r.get("paper_id") == p["paper_id"]]
         if v01_cols != columns:
-            raise SystemExit(f"REFUSED: v0.1 columns differ from C columns")
+            raise SystemExit("REFUSED: v0.1 columns differ from C columns")
     else:
         path = tree / p["paper_id"] / "C" / "rows.csv"
         with path.open(newline="", encoding="utf-8") as fh:
@@ -84,6 +84,7 @@ def main(argv: list[str] | None = None) -> int:
         rows.extend(paper_rows(p, tree, v01_cols, v01_rows, columns))
 
     import pandas as pd
+
     from hycan.v1 import add_computed_fields
     from hycan.validate import print_report, validate_dataset
 

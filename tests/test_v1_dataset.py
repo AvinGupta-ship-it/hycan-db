@@ -86,7 +86,7 @@ def test_assembles_reconciled_and_carried_over_rows(tmp_path):
 
 
 def test_refuses_schema_errors_and_writes_nothing(tmp_path):
-    cols, c_rows = read(TREE / "HYC-0048" / "C" / "rows.csv")
+    _, c_rows = read(TREE / "HYC-0048" / "C" / "rows.csv")
     bad = [dict(r) for r in c_rows]
     bad[0]["temperature_k"] = "9999"  # outside the registered 50-500 K range
     tree = make_tree(tmp_path, bad)

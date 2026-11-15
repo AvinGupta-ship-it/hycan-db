@@ -88,3 +88,65 @@ def test_draw_reproduces_the_committed_files(tmp_path):
     assert rc == 0
     for name in ("draw.csv", "cells.json", "sheet.csv"):
         assert (tmp_path / name).read_bytes() == (committed / name).read_bytes(), name
+
+
+def test_row_errors_applies_the_s12_rule():
+    import pandas as pd
+    row = pd.Series({
+        "measurement_id": "HYC-9001-M1", "paper_id": "HYC-9001",
+        "material_description": "AC-1 | activated carbon",
+        "extraction_method": "table_direct", "notes": "",
+        "temperature_k": "77", "pressure_bar": "20",
+        "uptake_wt_pct": "1.50", "uptake_mmol_g": "", "uptake_ml_stp_g": "",
+        "bet_surface_area_m2_g": "1250", "surface_area_method": "BET",
+        "surface_area_probe_gas": "", "basis_stated": "true",
+        "basis_inferred": "excess", "wt_pct_convention": "W1",
+        "value_kind": "measured",
+    })
+    good = {"uptake_value": "1.5", "uptake_unit": "wt%", "temperature_k": "77",
+            "pressure_bar": "20", "a_bet_m2_g": "1250", "a_bet_method": "bet",
+            "a_bet_probe_gas": "unspecified", "basis_stated": "TRUE",
+            "basis_inferred": "excess", "wt_pct_convention": "w1",
+            "value_kind": "measured", "sample_identity": "AC 1"}
+    errs = au.row_errors(good, row)
+    assert errs and not any(errs.values())
+    bad = dict(good, temperature_k="78", basis_inferred="absolute",
+               uptake_unit="mmol/g", sample_identity="AC-2")
+    errs = au.row_errors(bad, row)
+    assert errs["temperature_k"] and errs["basis_inferred"]
+    assert errs["uptake_unit"] and errs["uptake_value"]  # no mmol/g stored
+    assert errs["sample_identity"]
+    assert not errs["pressure_bar"] and not errs["a_bet_m2_g"]
+
+
+def test_row_errors_uses_3_percent_for_figure_rows():
+    import pandas as pd
+    row = pd.Series({
+        "measurement_id": "HYC-9001-M2", "paper_id": "HYC-9001",
+        "material_description": "AC-1 | activated carbon",
+        "extraction_method": "figure_digitized", "notes": "",
+        "temperature_k": "77", "pressure_bar": "20.0",
+        "uptake_wt_pct": "2.00", "uptake_mmol_g": "", "uptake_ml_stp_g": "",
+        "bet_surface_area_m2_g": "", "surface_area_method": "",
+        "surface_area_probe_gas": "", "basis_stated": "false",
+        "basis_inferred": "excess", "wt_pct_convention": "unknown",
+        "value_kind": "measured",
+    })
+    sheet = {"uptake_value": "2.05", "uptake_unit": "wt%",
+             "temperature_k": "77", "pressure_bar": "20.3",
+             "basis_stated": "false", "basis_inferred": "excess",
+             "wt_pct_convention": "unknown", "value_kind": "measured",
+             "sample_identity": "AC-1", "digitized_point": "20.5; 1.95"}
+    errs = au.row_errors(sheet, row)
+    assert not errs["uptake_value"]      # 2.5% off, within 3%
+    assert not errs["pressure_bar"]      # 1.5% off, within 3%
+    assert not errs["digitized_point"]   # both parts within 3%
+    bad = dict(sheet, digitized_point="25; 1.95")
+    assert au.row_errors(bad, row)["digitized_point"]
+
+
+def test_clopper_pearson_bounds():
+    lo, hi = au.clopper_pearson(0, 30)
+    assert lo == 0.0 and 0.10 < hi < 0.13
+    lo, hi = au.clopper_pearson(30, 30)
+    assert hi == 1.0 and 0.87 < lo < 0.90
