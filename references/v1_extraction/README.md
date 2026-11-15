@@ -15,6 +15,7 @@ is checked after it runs by `scripts/v1_search/extraction_runs.py`.
 | `<paper_id>/C_input/` | What code gave the reconciler: `match.csv`, `digitized_means.csv`, and `labels.csv` for a v0.1 paper. |
 | `access/` | One check report per agent (launcher, frozen prompt SHA-256, model, access audit, output). |
 | `access_reviews.json` | Each audit flag reviewed against its call, with the finding. |
+| `agreement_dual.json`, `agreement_legacy.json` | The §9 agreement statistics (`scripts/v1_search/agreement.py`), dual and legacy papers separately: per-field agreement, row detection, C's outcomes, and per-paper row counts. |
 
 ## Modes (§9)
 
@@ -229,6 +230,23 @@ when the agent reports it. At 22:27 UTC on 29 Oct 2026 the tools directory was
 made immutable (`chattr +i`), so that a relative output path now fails at once
 instead of writing there; its files and MANIFEST are unchanged, and both
 scripts run as before.
+
+## Agreement statistics (§9)
+
+`scripts/v1_search/agreement.py` recomputes the §9 matching
+(`scripts/v1_extract.py`) for every paper from the collected outputs — for a
+legacy paper, the v0.1 rows against extractor B — and reports per field type
+through `scripts/v1_agreement.py`, writing `agreement_dual.json` (80 papers)
+and `agreement_legacy.json` (43 papers). Numbers below are from those files;
+rerun the script to regenerate them.
+
+On the legacy papers, `only_second` dominates row detection by design: the
+v0.1 extraction recorded chiefly reported values and maxima, while the §9
+prompt digitizes every plotted point of every 77 K isotherm, so most of B's
+rows have no v0.1 counterpart and go to C as B-only rows (C kept nearly all of
+them). The informative legacy numbers are the matched share of the v0.1 rows
+(335 of 398; the 63 unmatched went to C as row decisions) and the field
+agreement on the matched pairs.
 
 ## Schema limits met in extraction
 
