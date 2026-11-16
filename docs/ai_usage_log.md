@@ -2527,3 +2527,17 @@ error rule, the estimator and the follow-up rules are unchanged.
 
 **Author's role.** The format decision, and the audit itself (without AI
 assistance, §13).
+
+## 2026-11-16 — v1.0: §12 audit completed and scored
+
+**Author's role.** The author audited all 60 drawn rows (verification format,
+deviation D1) against the papers' PDFs, without AI assistance (§13),
+marking every audited field; one earlier page defect (verdicts freezing
+after the first save) was fixed before the audit proper and the affected
+rows re-marked by the author.
+
+**Result.** 708 field verdicts, 0 marked wrong. Scored by the committed
+scorer: 0/30 (a), 0/15 (b), 0/15 (c) rows with an error; exact 95% CI upper
+bounds 11.6% (a) and 21.8% (b, c); weighted overall row-error rate 0. No
+§12 follow-up fires. Verdicts exported verbatim from the audit page's store
+to `references/v1_audit/verdicts.csv`.
