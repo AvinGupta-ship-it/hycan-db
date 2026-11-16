@@ -2541,3 +2541,30 @@ scorer: 0/30 (a), 0/15 (b), 0/15 (c) rows with an error; exact 95% CI upper
 bounds 11.6% (a) and 21.8% (b, c); weighted overall row-error rate 0. No
 §12 follow-up fires. Verdicts exported verbatim from the audit page's store
 to `references/v1_audit/verdicts.csv`.
+
+## 2026-11-16 — §11 analyses completed, PRISMA counts, v1.0 figures
+
+Claude (Fable 5, Claude Code cloud session), directed by the author.
+
+- RQ1 sensitivity analyses (i)–(xiii) and moderators
+  (`references/v1_analysis/rq1_sensitivity.json`, `rq1_moderators.json`):
+  (i) stated-excess-only is inconclusive (t CI 0.865–1.081), so the §11
+  robustness rule applies and the abstract will state both; every other
+  decision-bearing variant is supported; no moderator CI excludes zero.
+- RQ2 (`rq2.json`): area exponent b = 0.573 [0.501, 0.645] at 0.9–1.2 bar;
+  1-bar ratio to A_BET/500 = 0.581 [0.519, 0.650]; BET beats N₂-derived
+  V_micro on the same samples by ML AIC.
+- RQ3 (`rq3.json`): interlaboratory CVs over the committed
+  `material_identity_map.csv` (merge rules and known limitations in
+  `references/v1_analysis/README.md`); a within-paper shared area counts
+  once.
+- RQ4 (`rq4.json`): §7-weighted reporting-practice estimates with
+  Korn–Graubard CIs.
+- RQ5 (`rq5.json`): paper-grouped CV over 20 partitions; linear R² 0.714,
+  XGBoost 0.647, physical 0.637 on the primary set; all models weak at
+  ≥ 10 bar.
+- PRISMA counts assembled from committed artifacts
+  (`prisma.json`); six figures in `figures/v1/` with captions.
+- All code in `src/hycan/v1_rq{2..5}.py`, `v1_sets.py`, `v1_rq1.py`,
+  `scripts/v1_search/{analysis,prisma,figures}.py`; 1,161 tests passing.
+  The author has not yet reviewed these results; nothing is published.
