@@ -58,6 +58,7 @@ def _fit_mixed(frame: pd.DataFrame, rhs: str = "1") -> dict:
     return {
         "params": [float(p) for p in res.fe_params],
         "se": [float(s) for s in res.bse[:k]],
+        "names": [str(n) for n in res.fe_params.index],
         "lab_var": lab_var, "paper_var": paper_var,
         "resid_var": float(res.scale), "lab_variance_zero": lab_zero,
     }
@@ -129,6 +130,84 @@ def fit_primary(samples: pd.DataFrame, *, n_boot: int = BOOT_N,
         "variances": {"laboratory": fit["lab_var"], "paper": fit["paper_var"],
                       "sample": fit["resid_var"]},
         "lab_variance_zero": fit["lab_variance_zero"],
+    }
+
+
+def fit_moderator(frame: pd.DataFrame, rhs: str, columns: list[str]) -> dict:
+    """One §11 moderator model: the primary model with ``rhs`` added, on the
+    complete cases of ``columns``. Every fixed effect is reported with its
+    t-based 95% CI on L − 1 degrees of freedom (exploratory, per §11)."""
+    frame = frame.copy()
+    frame["y"] = np.log(
+        frame["n_ex_max_w1_wt_pct"] / (frame["a_bet_m2_g"] / 500.0)
+    )
+    sub = frame.dropna(subset=columns).copy()
+    if sub.empty or sub["paper_id"].nunique() < 3:
+        return {"skipped": f"{len(sub)} complete cases"}
+    labs = int(sub["lab_id"].nunique())
+    fit = _fit_mixed(sub, rhs)
+    terms = {}
+    for name, b, se in zip(fit["names"], fit["params"], fit["se"]):
+        lo, hi = _interval(b, se, labs)
+        terms[name] = {"estimate": b, "se": se, "ci95": [float(lo), float(hi)]}
+    return {
+        "n_samples": len(sub), "n_papers": int(sub["paper_id"].nunique()),
+        "n_labs": labs, "terms": terms,
+        "lab_variance_zero": fit["lab_variance_zero"],
+    }
+
+
+def fit_lolo(samples: pd.DataFrame) -> dict:
+    """RQ1 sensitivity (xi): the primary ratio with each laboratory left out."""
+    frame = samples.copy()
+    frame["y"] = np.log(
+        frame["n_ex_max_w1_wt_pct"] / (frame["a_bet_m2_g"] / 500.0)
+    )
+    est = {}
+    for lab in sorted(frame["lab_id"].unique()):
+        sub = frame[frame["lab_id"] != lab]
+        est[lab] = float(np.exp(_fit_mixed(sub, "1")["params"][0]))
+    lo_lab = min(est, key=est.get)
+    hi_lab = max(est, key=est.get)
+    return {
+        "n_labs": len(est), "estimates": est,
+        "min": {"lab_id": lo_lab, "ratio": est[lo_lab]},
+        "max": {"lab_id": hi_lab, "ratio": est[hi_lab]},
+    }
+
+
+def fit_weighted(samples: pd.DataFrame, weights: pd.Series, *,
+                 n_boot: int = BOOT_N, seed: int = BOOT_SEED) -> dict:
+    """RQ1 sensitivity (xii): the §7 design-weighted mean of y, with a
+    laboratory-cluster bootstrap CI. MixedLM takes no sampling weights, so the
+    estimator is the weighted mean over samples (each carrying its paper's §7
+    weight), and the CI is the 2.5–97.5 percentile of the weighted mean over
+    laboratory resamples."""
+    frame = samples.copy()
+    frame["y"] = np.log(
+        frame["n_ex_max_w1_wt_pct"] / (frame["a_bet_m2_g"] / 500.0)
+    )
+    frame["w"] = np.asarray(weights, dtype=float)
+
+    def wmean(f: pd.DataFrame) -> float:
+        return float(np.average(f["y"], weights=f["w"]))
+
+    mu = wmean(frame)
+    rng = np.random.default_rng(seed)
+    labs = sorted(frame["lab_id"].unique())
+    mus = []
+    for _ in range(n_boot):
+        picked = rng.choice(np.array(labs, dtype=object), size=len(labs),
+                            replace=True)
+        boot = pd.concat([frame[frame["lab_id"] == lab] for lab in picked])
+        mus.append(wmean(boot))
+    ci = (float(np.percentile(mus, 2.5)), float(np.percentile(mus, 97.5)))
+    return {
+        "n_samples": len(frame), "n_labs": len(labs),
+        "ratio": float(np.exp(mu)),
+        "ci95_bootstrap": [float(np.exp(x)) for x in ci],
+        "bootstrap_resamples": len(mus),
+        "decision": decision(*[float(np.exp(x)) for x in ci]),
     }
 
 

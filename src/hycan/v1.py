@@ -375,11 +375,13 @@ ISOTHERM_COLUMNS = (
 )
 
 
-def isotherm_table(df: pd.DataFrame) -> pd.DataFrame:
+def isotherm_table(df: pd.DataFrame, *, unknown_as_w2: bool = False) -> pd.DataFrame:
     """One row per coded 77 K isotherm with ``basis_inferred = excess``.
 
     Raises ValueError when an isotherm mixes samples, temperatures outside the
     77 K window, or bases, because that is an extraction error, not data.
+    ``unknown_as_w2`` converts unknown-convention wt% as W2 (RQ1 sensitivity
+    (vii)).
     """
     rows = []
     coded = df[df.apply(is_coded, axis=1)] if len(df) else df
@@ -404,7 +406,7 @@ def isotherm_table(df: pd.DataFrame) -> pd.DataFrame:
         use = g[g.apply(_usable_point_row, axis=1)]
         pts = []
         for _, r in use.iterrows():
-            w1 = w1_wt_pct(r)
+            w1 = w1_wt_pct(r, unknown_as_w2)
             if w1 is not None:
                 pts.append(Point(float(r["pressure_bar"]), w1, point_uncertainty(r)))
         res = nmax(pts)
