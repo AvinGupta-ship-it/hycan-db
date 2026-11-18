@@ -2585,3 +2585,10 @@ Claude (Fable 5, Claude Code cloud session), directed by the author.
   descriptor draft marked superseded.
 - The author has not yet reviewed the manuscript; nothing is submitted or
   published.
+
+## 2026-11-18 (later) — PRISMA checklist and reference expansion
+
+Claude (Fable 5, Claude Code cloud session), directed by the author.
+`manuscript/v1/prisma_checklist.md` (27-item mapping); manuscript references
+expanded to 21 entries, with the four least-certain citations verified
+against the published record before inclusion.
