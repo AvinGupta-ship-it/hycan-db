@@ -224,7 +224,99 @@ def fig_rq5_models(out: Path) -> None:
     save(fig, out, "fig_v1_rq5_models")
 
 
+def fig_prisma(out: Path) -> None:
+    p = json.loads((ANA / "prisma.json").read_text())
+    ident, scr = p["identification"], p["screening"]
+    s1, s2 = p["sampling"]["S1"], p["sampling"]["S2"]
+    v01 = p["other_methods_v01_corpus"]
+    routes = v01["by_route"]
+    a = p["analysed"]
+
+    fig, ax = plt.subplots(figsize=(7.4, 8.2))
+    ax.set_xlim(0, 10)
+    ax.set_ylim(0, 13)
+    ax.axis("off")
+
+    def box(x, y, w, h, text, bold=False):
+        ax.add_patch(plt.Rectangle((x, y), w, h, fill=True, fc="#f2f5f8",
+                                   ec="0.25", lw=0.8))
+        ax.text(x + w / 2, y + h / 2, text, ha="center", va="center",
+                fontsize=7.3, fontweight="bold" if bold else "normal")
+
+    def arrow(x0, y0, x1, y1):
+        ax.annotate("", (x1, y1), (x0, y0),
+                    arrowprops={"arrowstyle": "-|>", "color": "0.25",
+                                "lw": 0.8})
+
+    # Identification (databases) — left arm.
+    box(0.2, 12.0, 2.7, 0.8,
+        f"OpenAlex\n{ident['openalex_records']:,} records")
+    box(3.1, 12.0, 2.7, 0.8,
+        f"Semantic Scholar\n{ident['semantic_scholar_records']:,} records")
+    box(1.2, 10.6, 3.6, 0.8,
+        f"Merged unique records\n{ident['merged_unique_records']:,}")
+    arrow(1.55, 12.0, 2.6, 11.4)
+    arrow(4.45, 12.0, 3.4, 11.4)
+    box(1.2, 9.2, 3.6, 0.8,
+        f"Screened (title/abstract,\ntwo agents) {scr['screened']:,}")
+    arrow(3.0, 10.6, 3.0, 10.0)
+    box(5.6, 9.2, 3.2, 0.8,
+        f"Excluded\n{scr['excluded_by_double_screen']:,}")
+    arrow(4.8, 9.6, 5.6, 9.6)
+    box(1.2, 7.8, 3.6, 0.8,
+        f"Sampling frame {scr['frame']['total']:,}\n"
+        f"S1 {scr['frame']['S1']} · S2 {scr['frame']['S2']:,}")
+    arrow(3.0, 9.2, 3.0, 8.6)
+    box(1.2, 6.4, 3.6, 0.8,
+        f"Drawn by the §7 walk\nS1 {s1['drawn']} · S2 {s2['drawn']}")
+    arrow(3.0, 7.8, 3.0, 7.2)
+    box(5.6, 6.4, 3.2, 0.8,
+        f"Not retrieved\nS1 {s1['not_retrieved']} · S2 {s2['not_retrieved']}")
+    arrow(4.8, 6.8, 5.6, 6.8)
+    box(1.2, 5.0, 3.6, 0.8,
+        f"Assessed at full text\nS1 {s1['assessed']} · S2 {s2['assessed']}")
+    arrow(3.0, 6.4, 3.0, 5.8)
+    box(5.6, 5.0, 3.2, 0.8,
+        f"Ineligible\nS1 {s1['ineligible']} · S2 {s2['ineligible']}")
+    arrow(4.8, 5.4, 5.6, 5.4)
+    box(1.2, 3.6, 3.6, 0.8,
+        f"Eligible (probability sample)\nS1 {s1['eligible']} · "
+        f"S2 {s2['eligible']}", bold=True)
+    arrow(3.0, 5.0, 3.0, 4.4)
+
+    # Other methods — the v0.1 corpus, right arm.
+    box(5.8, 12.0, 3.4, 0.8,
+        f"v0.1 corpus (other methods)\n{v01['v01_papers']} papers")
+    n_drawn = routes.get("S1", 0) + routes.get("S2", 0)
+    box(5.8, 10.6, 3.4, 1.0,
+        f"Drawn by the walk: {n_drawn} (join left arm)\n"
+        f"Eligible, legacy extraction: {routes.get('legacy_v0.1', 0)}\n"
+        f"Ineligible {routes.get('legacy_v0.1_ineligible', 0)} · "
+        f"not retrieved {routes.get('legacy_v0.1_not_retrieved', 0)}")
+    arrow(7.5, 12.0, 7.5, 11.6)
+
+    # Included and analysed.
+    box(1.2, 2.0, 7.8, 0.9,
+        f"Extracted into HyCAN-DB v1.0: {a['rq4']['papers']} "
+        f"probability-sample papers (dual extraction)\n"
+        f"+ {routes.get('legacy_v0.1', 0)} eligible v0.1 papers "
+        f"(legacy extraction), retained alongside", bold=True)
+    arrow(3.0, 3.6, 3.0, 2.9)
+    arrow(9.05, 10.6, 9.05, 2.9)
+    box(1.2, 0.3, 7.8, 1.1,
+        f"Analysed — RQ1: {a['rq1_primary']['papers']} papers / "
+        f"{a['rq1_primary']['samples']} samples · RQ2: "
+        f"{a['rq2_primary']['papers']} / {a['rq2_primary']['samples']} "
+        f"samples\nRQ3: {a['rq3']['materials_with_2plus_labs']} materials · "
+        f"RQ4: {a['rq4']['papers']} papers · RQ5: "
+        f"{a['rq5_primary']['papers']} papers / "
+        f"{a['rq5_primary']['rows']:,} rows")
+    arrow(5.1, 2.0, 5.1, 1.4)
+    save(fig, out, "fig_v1_prisma")
+
+
 FIGURES = {
+    "fig_v1_prisma": (fig_prisma, ["prisma.json"]),
     "fig_v1_rq1_ratio": (fig_rq1_ratio,
                          ["rq1_samples.csv", "rq1.json"]),
     "fig_v1_rq1_sensitivity": (fig_rq1_sensitivity,

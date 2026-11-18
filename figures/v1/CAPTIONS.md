@@ -5,6 +5,12 @@ read from `references/v1_analysis/` at figure-build time
 (`scripts/v1_search/figures.py`), and the manuscript captions cite the same
 JSON values.
 
+**fig_v1_prisma.** PRISMA 2020 flow of the v1.0 study: identification from
+the two databases, double title/abstract screening, the two-stratum sampling
+frame, the §7 sampling walk with retrieval and eligibility outcomes, the
+v0.1 corpus as the other-methods arm, and the papers and units entering each
+research question. All counts from `references/v1_analysis/prisma.json`.
+
 **fig_v1_rq1_ratio.** Maximum excess H₂ uptake at 77 K against BET area for
 the RQ1 primary set, one point per sample. The dashed line is the Chahine
 rule (1 wt% per 500 m² g⁻¹), the solid line the pooled geometric-mean ratio

@@ -1,5 +1,9 @@
 # HyCAN-DB: a verified, reproducibility-tiered database of hydrogen sorption in carbon nanomaterials
 
+> **Superseded (2026-11-18).** This v0.1 draft is retained as history; its
+> headline estimate was withdrawn. The registered v1.0 study and its
+> manuscript are in `manuscript/v1/`.
+
 **Author:** Avin Gupta (ORCID 0009-0009-4133-2275)
 
 > **Status: draft for author review.** The science, numbers, and figures are

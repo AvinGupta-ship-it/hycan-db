@@ -2568,3 +2568,20 @@ Claude (Fable 5, Claude Code cloud session), directed by the author.
 - All code in `src/hycan/v1_rq{2..5}.py`, `v1_sets.py`, `v1_rq1.py`,
   `scripts/v1_search/{analysis,prisma,figures}.py`; 1,161 tests passing.
   The author has not yet reviewed these results; nothing is published.
+
+## 2026-11-18 — §14 reporting: PRISMA diagram, generated tables, v1.0 manuscript draft
+
+Claude (Fable 5, Claude Code cloud session), directed by the author.
+
+- `scripts/v1_search/tables.py`: all count-bearing manuscript tables
+  generated from the committed analysis outputs (`manuscript/v1/tables.md`).
+- `scripts/v1_search/figures.py`: PRISMA 2020 flow diagram added
+  (`figures/v1/fig_v1_prisma`).
+- `manuscript/v1/manuscript_v1.md`: full draft of the v1.0 manuscript
+  (abstract through references), every number checked against the generated
+  tables; the stated-excess qualification (sensitivity (i)) carried in the
+  abstract per the §11 robustness rule; deviations table included; drafted
+  by the AI assistant for the author's review and revision. The v0.1 data
+  descriptor draft marked superseded.
+- The author has not yet reviewed the manuscript; nothing is submitted or
+  published.
