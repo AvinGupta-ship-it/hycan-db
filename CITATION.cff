@@ -1,27 +1,37 @@
 cff-version: 1.2.0
 title: "HyCAN-DB: Hydrogen in Carbon Nanomaterials Database"
-version: v0.1
+version: v1.0.0
 doi: "10.5281/zenodo.23231985"
 identifiers:
   - type: doi
-    value: "10.5281/zenodo.23231986"
-    description: "Zenodo DOI for the v0.1 release"
-date-released: "2026-10-08"
+    value: "10.5281/zenodo.23231985"
+    description: "Concept DOI (resolves to the latest version)"
+  - type: doi
+    value: "10.5281/zenodo.23719010"
+    description: "The registered v1.0 protocol"
+date-released: "2026-11-26"
 message: "If you use this dataset or code, please cite it using the metadata in this file."
-type: software
+type: dataset
 license: MIT
 authors:
   - family-names: "Gupta"
     given-names: "Avin"
     orcid: "https://orcid.org/0009-0009-4133-2275"
 abstract: >
-  HyCAN-DB is an open, FAIR-compliant database of hydrogen sorption measurements
-  in carbon nanomaterials, accompanied by a meta-analytic and machine-learning
-  benchmarking pipeline.
+  HyCAN-DB is an open database of primary hydrogen sorption measurements on
+  carbon sorbents, built under a publicly registered protocol: 17,061
+  measurement rows from 124 papers (1987-2026), 80 of them a stratified
+  probability sample of a 5,251-record frame, each independently
+  dual-extracted and adjudicated, with released agreement statistics, a
+  60-row author audit, and registered design-based analyses of the Chahine
+  rule, interlaboratory precision, reporting practice and prediction
+  baselines. Data CC BY 4.0; code MIT.
 repository-code: "https://github.com/AvinGupta-ship-it/hycan-db"
 keywords:
   - hydrogen storage
   - carbon nanomaterials
   - adsorption
-  - machine learning
+  - Chahine rule
+  - systematic review
+  - probability sample
   - FAIR data

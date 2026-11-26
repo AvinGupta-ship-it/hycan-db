@@ -1,6 +1,7 @@
 {
   "title": "HyCAN-DB: Hydrogen in Carbon Nanomaterials Database",
-  "description": "<p>An open, FAIR-compliant database of hydrogen sorption measurements in carbon nanomaterials (activated carbons, carbon nanotubes, graphene-family materials, carbide-derived and templated carbons, and doped variants), with full per-row provenance, a reproducibility tier on every measurement, and a reproducible meta-analysis and machine-learning pipeline. v0.1: 521 measurements from 51 papers (1999-2025), 50 of 51 papers independently dual-agent verified. Headline result: pooled across the corpus, 77 K hydrogen uptake scales with BET surface area at about 0.72 wt% per 500 m2/g (95% CI 0.62-0.81), roughly 30% below the canonical Chahine rule.</p>",
+  "version": "v1.0.0",
+  "description": "<p>An open database of primary hydrogen sorption measurements on carbon sorbents (activated carbons, nanotubes, graphene-family, carbide-derived, templated and doped carbons), built under a publicly registered protocol (10.5281/zenodo.23719010): 17,061 measurement rows from 124 papers (1987\u20132026) with full per-row provenance, 80 papers drawn as a stratified probability sample of a 5,251-record frame and independently dual-extracted with adjudication, released extraction-agreement statistics, and a 60-row author audit (0 errors).</p><p>Registered analyses: at the 77 K excess-uptake maximum the Chahine rule holds on average (ratio to A_BET/500 = 0.98, 95% CI 0.91\u20131.05, inside the registered \u00b115% margin; restricted to explicitly stated excess values the interval crosses the margin and the decision is inconclusive). The rule is a poor sample-level predictor (95% prediction interval 0.61\u20131.56), fails at 1 bar (ratio 0.58), and uptake rises sublinearly with area (ln\u2013ln slope 0.75). Interlaboratory CV on identical commercial carbons is \u22489% for 1-bar uptake. This version supersedes v0.1, whose analyses are withdrawn on its record.</p><p>Data CC BY 4.0; code MIT. Literature PDFs are not redistributed.</p>",
   "upload_type": "dataset",
   "access_right": "open",
   "license": "cc-by-4.0",
@@ -16,7 +17,8 @@
     "activated carbon",
     "hydrogen adsorption",
     "Chahine rule",
-    "machine learning",
+    "systematic review",
+    "probability sample",
     "FAIR data",
     "reproducibility"
   ],
@@ -25,6 +27,11 @@
       "identifier": "https://github.com/AvinGupta-ship-it/hycan-db",
       "relation": "isSupplementTo",
       "scheme": "url"
+    },
+    {
+      "identifier": "10.5281/zenodo.23719010",
+      "relation": "isDocumentedBy",
+      "scheme": "doi"
     }
   ]
 }

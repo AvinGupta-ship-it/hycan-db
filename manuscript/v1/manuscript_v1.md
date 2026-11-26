@@ -7,7 +7,7 @@
 > named file under `references/`; the framing and acknowledgements are left
 > for the author. This manuscript reports the registered v1.0 study and
 > supersedes the v0.1 data descriptor draft (`manuscript/data_descriptor/`),
-> whose headline estimate was withdrawn before any public use.
+> whose headline estimate is withdrawn on its own public record.
 
 ## Abstract
 
@@ -74,10 +74,12 @@ with all deviations disclosed (§ 7).
 
 A prior, unregistered version of this database (v0.1; 51 papers assembled by
 citation chaining) produced a headline estimate that the rule overstates
-uptake by about 30% (0.72 wt% per 500 m² g⁻¹). That estimate was withdrawn
-by the author before any public use, for reasons the registered study now
-makes quantitative: it depended on the model specification, not only on the
-data (§ 6.2). The v1.0 study replaces it.
+uptake by about 30% (0.72 wt% per 500 m² g⁻¹). The author withdrew that
+estimate on the release's own public record, with the notice that it mixed
+near-1-bar with high-pressure measurements and should not be cited; the
+registered study now makes the reason quantitative: the estimate depended on
+the model specification, not only on the data (§ 6.2). The v1.0 study
+replaces it.
 
 ## 2. Methods
 

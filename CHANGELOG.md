@@ -3,6 +3,17 @@
 All notable changes to HyCAN-DB will be documented in this file.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## v1.0.0 (2026-11-26)
+
+The registered v1.0 release. The dataset is
+`data/raw/measurements_v1.0.csv` (17,061 rows, 124 papers) with computed
+fields in `data/processed/measurements_v1.0_computed.csv`; the registered
+protocol, all pipeline and decision records, the §11 analyses, the §12
+audit, the PRISMA artifacts, the manuscript and its typeset PDF are in the
+repository as described in the README. Supersedes v0.1, whose analyses are
+withdrawn on its Zenodo record. Release metadata (CITATION.cff,
+.zenodo.json, README, version) updated; 1,161 tests passing.
+
 ## 2026-11-26 — documentation reorganization; manuscript declaration in registered form
 
 - `docs/ai_usage_log.md` moved verbatim to `docs/history/ai_usage_log.md`
