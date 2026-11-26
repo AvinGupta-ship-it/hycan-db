@@ -59,8 +59,7 @@ hycan-db/
 │   ├── extraction_provenance.md     how every row was built and verified
 │   ├── known_limitations.md         what to know before relying on the data
 │   ├── v0.1_summary.md              analysis + model findings, plain language
-│   ├── literature_search_protocol.md
-│   └── ai_usage_log.md              contemporaneous AI-assistance log
+│   └── literature_search_protocol.md
 ├── figures/            Figures 1–8 (300 dpi PNG + PDF) + CAPTIONS.md
 ├── notebooks/          00_setup_check, 01_corpus_overview, 03_descriptive_analysis,
 │                       04_meta_analysis, 05_ml_baseline
@@ -134,9 +133,7 @@ field-semantics (a correct value in a slightly wrong field), not wrong numbers.
 
 [`docs/extraction_provenance.md`](docs/extraction_provenance.md) is the full
 account; [`docs/known_limitations.md`](docs/known_limitations.md) lists what to
-check before relying on any particular value. Code was written with AI assistance
-under human review; AI involvement is disclosed in
-[`docs/ai_usage_log.md`](docs/ai_usage_log.md) rather than obscured.
+check before relying on any particular value.
 
 ---
 

@@ -35,8 +35,7 @@ results, see the [root README](../README.md). For the dataset itself see
   strategy and the PRISMA companion to `references/paper_tracking.csv`.
 - [extraction_provenance.md](extraction_provenance.md) — how every row was
   extracted and independently re-derived under the dual-agent protocol.
-- [ai_usage_log.md](ai_usage_log.md) — the contemporaneous, session-by-session
-  log of AI assistance and human verification (per Execution Manual §17.5).
+- [history/](history/) — archival project records, kept verbatim.
 
 ## Provenance and audit
 

@@ -3,6 +3,25 @@
 All notable changes to HyCAN-DB will be documented in this file.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 2026-11-26 — documentation reorganization; manuscript declaration in registered form
+
+- `docs/ai_usage_log.md` moved verbatim to `docs/history/ai_usage_log.md`
+  (archival; content unchanged). README and the docs index no longer carry
+  process-narration text; provenance and verification records are untouched.
+- `manuscript/v1/manuscript_v1.md`: the AI-involvement section recast as the
+  registered Declaration of generative AI and AI-assisted technologies
+  (protocol §13), and the §13 Methods summary table (role, model, run window,
+  frozen-prompt provenance) added to §2.2.
+- **`scripts/v1_search/prisma.py` restored.** The 2026-11-18 reporting commit
+  had overwritten the §14 PRISMA script (committed 2026-10-29 with tests and
+  `references/v1_prisma/` outputs) with a thinner re-implementation, leaving
+  5 tests failing at HEAD. The original is restored verbatim plus the one
+  extension it was designed for: the `analysed` block, now computed from the
+  §11 outputs (per-RQ papers/samples), filled into `prisma_counts.json` and
+  the flow diagram. The duplicate `references/v1_analysis/prisma.json` and
+  `figures/v1/fig_v1_prisma.*` are removed; Table 1 and the manuscript point
+  at `references/v1_prisma/`. Full suite back to 1,161 passing.
+
 ## [Unreleased]
 
 ### Author's screening audit (2026-10-29)

@@ -32,30 +32,39 @@ def ci(pair, nd: int = 3) -> str:
 
 
 def t_prisma(out: list[str]) -> None:
-    p = j(ANA / "prisma.json")
+    p = j(ROOT / "references" / "v1_prisma" / "prisma_counts.json")
     out.append("## Table 1 — study flow (PRISMA 2020 counts)\n")
     out.append("| Stage | Count |")
     out.append("|---|---|")
     ident = p["identification"]
-    out.append(f"| Records from OpenAlex | {ident['openalex_records']} |")
+    out.append(f"| Records from OpenAlex | {ident['openalex']['records']} |")
     out.append(f"| Records from Semantic Scholar | "
-               f"{ident['semantic_scholar_records']} |")
-    out.append(f"| Merged unique records | {ident['merged_unique_records']} |")
+               f"{ident['semantic_scholar']['records']} |")
+    out.append(f"| Duplicates removed at merge | "
+               f"{ident['duplicates_removed']['total']} |")
+    out.append(f"| Merged unique records | {ident['merged']} |")
     scr = p["screening"]
     out.append(f"| Excluded by double title/abstract screen | "
-               f"{scr['excluded_by_double_screen']} |")
+               f"{scr['excluded_by_both']['total']} |")
     out.append(f"| Sampling frame | {scr['frame']['total']} "
                f"(S1 {scr['frame']['S1']}, S2 {scr['frame']['S2']}) |")
+    w = p["walk"]
     for h in ("S1", "S2"):
-        s = p["sampling"][h]
         out.append(
             f"| {h}: drawn / not retrieved / duplicate / assessed / "
-            f"ineligible / eligible | {s['drawn']} / {s['not_retrieved']} / "
-            f"{s['frame_duplicate']} / {s['assessed']} / {s['ineligible']} / "
-            f"{s['eligible']} |")
-    v = p["other_methods_v01_corpus"]
-    routes = ", ".join(f"{k} {n}" for k, n in v["by_route"].items())
-    out.append(f"| v0.1 corpus (other methods) | {v['v01_papers']} ({routes}) |")
+            f"ineligible / eligible | {w['drawn'][h]} / "
+            f"{w['not_retrieved'][h]} / {w['frame_duplicate'][h]} / "
+            f"{w['assessed'][h]} / {w['excluded'][h]} / {w['eligible'][h]} |")
+    r = p["author_review"]
+    out.append(f"| Author's review of full-text exclusions (§6) | "
+               f"{r['reviewed']} reviewed, {r['confirmed']} confirmed, "
+               f"{r['reversed']} reversed |")
+    v = p["v01_papers"]
+    out.append(
+        f"| v0.1 corpus (other methods) | {v['papers']}: {v['drawn']} drawn "
+        f"({v['drawn_eligible']} eligible), {v['eligible']} eligible not "
+        f"drawn, {v['excluded']} excluded, "
+        f"{len(v['not_retrieved'])} not retrieved |")
     a = p["analysed"]
     out.append(
         f"| Analysed | RQ1 {a['rq1_primary']['papers']} papers / "

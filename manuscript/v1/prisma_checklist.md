@@ -23,7 +23,7 @@ measurement-literature counterparts, named explicitly below.
 | 13 | Synthesis methods | Manuscript §2.5 and protocol §11: unit-of-analysis rules, mixed models, bootstrap, design weights; eligibility ladder in Table 5 |
 | 14 | Reporting-bias assessment | Protocol §14: no small-study tests (per-value variances unavailable); S1 vs S2 and sensitivity (iii) reported as the available selection checks (Tables 6, 10) |
 | 15 | Certainty assessment | Registered decision rule with equivalence margin, 13 sensitivity analyses, robustness rule carried to the abstract (Manuscript §3.3) |
-| 16 | Study selection (results) | Figure 1 (fig_v1_prisma) and Table 1; per-record outcomes in `references/v1_fulltext/` |
+| 16 | Study selection (results) | Figure 1 (`references/v1_prisma/prisma_flow`) and Table 1; per-record outcomes in `references/v1_fulltext/` |
 | 17 | Study characteristics | Table 2; per-paper records in `references/v1_extraction/papers.csv`; the dataset itself |
 | 18 | Risk of bias within studies (results) | Reporting-tier distribution (Table 2), flagged rows, RQ4 estimates (Table 10) |
 | 19 | Results of individual studies | The released row-level dataset with provenance (`data/`), one row per reported measurement |

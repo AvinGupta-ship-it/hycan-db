@@ -8,14 +8,16 @@ manuscript traces to a cell here or to the named JSON.
 
 | Stage | Count |
 |---|---|
-| Records from OpenAlex | 10043 |
+| Records from OpenAlex | 10048 |
 | Records from Semantic Scholar | 8608 |
+| Duplicates removed at merge | 7418 |
 | Merged unique records | 11238 |
 | Excluded by double title/abstract screen | 5987 |
 | Sampling frame | 5251 (S1 176, S2 5075) |
 | S1: drawn / not retrieved / duplicate / assessed / ineligible / eligible | 106 / 32 / 0 / 74 / 14 / 60 |
 | S2: drawn / not retrieved / duplicate / assessed / ineligible / eligible | 127 / 47 / 0 / 80 / 60 / 20 |
-| v0.1 corpus (other methods) | 51 (S1 6, S2 1, legacy_v0.1 36, legacy_v0.1_ineligible 7, legacy_v0.1_not_retrieved 1) |
+| Author's review of full-text exclusions (§6) | 81 reviewed, 81 confirmed, 0 reversed |
+| v0.1 corpus (other methods) | 51: 7 drawn (7 eligible), 36 eligible not drawn, 7 excluded, 1 not retrieved |
 | Analysed | RQ1 29 papers / 82 samples; RQ2 50 papers / 188 samples; RQ3 6 materials; RQ4 80 papers; RQ5 57 papers / 6404 rows |
 
 ## Table 2 — the v1.0 dataset
